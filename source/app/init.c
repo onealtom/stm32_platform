@@ -1,4 +1,4 @@
-﻿/***************************************************************
+/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :init.c
@@ -724,15 +724,18 @@ void InitSystem()
 	}
 	WTD_CLR; 
 	//InitKeyDev();
-	
+
+
+	ad936x_init_main();
+
 
 	WTD_CLR; 
 	InitFpga();
 	WTD_CLR; 
-	InitTransceiver(SYS_A_FLAG);
-	InitTransceiver(SYS_B_FLAG);
-	InitTransceiver(SYS_C_FLAG);
-	InitTransceiver(SYS_D_FLAG);
+	//InitTransceiver(SYS_A_FLAG);
+	///InitTransceiver(SYS_B_FLAG);
+	///InitTransceiver(SYS_C_FLAG);
+	///InitTransceiver(SYS_D_FLAG);
 
 	#if 0
 	if(FPGA_LDST_OK== fpga_load_status )
@@ -787,6 +790,7 @@ void InitSystem()
 
 	// 配置USB
 	InitUsb();
+
 	
 	WTD_CLR;
 	// 初始化其他配置

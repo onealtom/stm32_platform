@@ -1,9 +1,9 @@
 /***************************************************************************//**
- *   @file   config.h
- *   @brief  Config file of AD9361/API Driver.
+ *   @file   parameters.h
+ *   @brief  Parameters Definitions.
  *   @author DBogdan (dragos.bogdan@analog.com)
 ********************************************************************************
- * Copyright 2015(c) Analog Devices, Inc.
+ * Copyright 2013(c) Analog Devices, Inc.
  *
  * All rights reserved.
  *
@@ -36,33 +36,22 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *******************************************************************************/
-#ifndef CONFIG_H_
-#define CONFIG_H_
+#ifndef __PARAMETERS_H__
+#define __PARAMETERS_H__
 
-#define HAVE_VERBOSE_MESSAGES /* Recommended during development prints errors and warnings */
-//#define HAVE_DEBUG_MESSAGES /* For Debug purposes only */
+/******************************************************************************/
+/********************** Macros and Constants Definitions **********************/
+/******************************************************************************/
+#define CF_AD9361_RX_BASEADDR		0
+#define CF_AD9361_TX_BASEADDR		0
+#define CF_AD9361_RX_DMA_BASEADDR	0
+#define CF_AD9361_TX_DMA_BASEADDR	0
 
-/*
- * In case memory footprint is a concern these options allow
- * to disable unused functionality which may free up a few kb
- */
+#define ADC_DDR_BASEADDR			0
+#define DAC_DDR_BASEADDR			0
 
-#define HAVE_SPLIT_GAIN_TABLE	1 /* only set to 0 in case split_gain_table_mode_enable = 0*/
-#define HAVE_TDD_SYNTH_TABLE	1 /* only set to 0 in case split_gain_table_mode_enable = 0*/
+#define GPIO_DEVICE_ID				0
+#define GPIO_RESET_PIN				0
+#define SPI_DEVICE_ID				0
 
-#define AD9361_DEVICE			0 /* set it 1 if AD9361 device is used, 0 otherwise */
-#define AD9364_DEVICE			0 /* set it 1 if AD9364 device is used, 0 otherwise */
-#define AD9363A_DEVICE			1 /* set it 1 if AD9363A device is used, 0 otherwise */
-
-#define STM32_PL_SPI_PORT_PLATFORM
-//#define CONSOLE_COMMANDS
-//#define XILINX_PLATFORM
-//#define ALTERA_PLATFORM
-//#define FMCOMMS5
-//#define PICOZED_SDR
-//#define PICOZED_SDR_CMOS
-//#define CAPTURE_SCRIPT
-//#define AXI_ADC_NOT_PRESENT
-//#define TDD_SWITCH_STATE_EXAMPLE
-
-#endif
+#endif // __PARAMETERS_H__

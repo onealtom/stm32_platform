@@ -87,11 +87,11 @@
 #endif
 
 #if defined(HAVE_VERBOSE_MESSAGES)
-	#define dev_err(dev, format, ...)		printf(format, ## __VA_ARGS__)
-	#define dev_warn(dev, format, ...)		printf(format, ## __VA_ARGS__)
+	#define dev_err(dev, format, ...)		do {printf(format, ## __VA_ARGS__);printf("\r\n");}while(0)
+	#define dev_warn(dev, format, ...)		do {printf(format, ## __VA_ARGS__);printf("\r\n");}while(0)
 
-	#define dev_dbg(dev, format, ...)		printf(format, ## __VA_ARGS__)
-	#define printk(format, ...)			printf(format, ## __VA_ARGS__)
+	#define dev_dbg(dev, format, ...)		do {printf(format, ## __VA_ARGS__);printf("\r\n");}while(0)
+	#define printk(format, ...)			do {printf(format, ## __VA_ARGS__);printf("\r\n");}while(0)
 
 #endif
 

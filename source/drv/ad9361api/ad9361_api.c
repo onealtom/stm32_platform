@@ -47,6 +47,7 @@
 #include "config.h"
 #include <string.h>
 
+
 #ifndef AXI_ADC_NOT_PRESENT
 /******************************************************************************/
 /************************ Constants Definitions *******************************/
@@ -78,7 +79,8 @@ int32_t ad9361_init (struct ad9361_rf_phy **ad9361_phy, AD9361_InitParam *init_p
 	int32_t ret = 0;
 	int32_t rev = 0;
 	int32_t i   = 0;
-
+	int j;
+	
 	phy = (struct ad9361_rf_phy *)zmalloc(sizeof(*phy));
 	if (!phy) {
 		return -ENOMEM;
@@ -111,6 +113,9 @@ int32_t ad9361_init (struct ad9361_rf_phy **ad9361_phy, AD9361_InitParam *init_p
 	phy->adc_state->phy = phy;
 #endif
 
+	printf("%d %d %d %d \r\n", sizeof(AD9361_InitParam), sizeof(*phy), sizeof(*phy->clk_refin), sizeof(*phy->pdata) );
+	printf("phy ad=0x%08X\r\n", phy);
+	
 	/* Device selection */
 	phy->dev_sel = init_param->dev_sel;
 
@@ -411,7 +416,7 @@ int32_t ad9361_init (struct ad9361_rf_phy **ad9361_phy, AD9361_InitParam *init_p
 
 	ret = ad9361_spi_read(phy->spi, REG_PRODUCT_ID);
 	if ((ret & PRODUCT_ID_MASK) != PRODUCT_ID_9361) {
-		printf("%s : Unsupported PRODUCT_ID 0x%X", __func__, (unsigned int)ret);
+		printf("%s : Unsupported PRODUCT_ID 0x%X \n", __func__, (unsigned int)ret);
 		ret = -ENODEV;
 		goto out;
 	}
@@ -469,6 +474,16 @@ out:
 	return -ENODEV;
 }
 
+
+
+int32_t ad9361_free (	struct ad9361_rf_phy *phy )
+{	
+	//struct ad9361_rf_phy *phy;
+	//phy = *ad9361_phy ;
+	free(phy->clk_refin);
+	free(phy->pdata);
+	free(phy);
+}
 /**
  * Set the Enable State Machine (ENSM) mode.
  * @param phy The AD9361 current state structure.
@@ -863,7 +878,7 @@ int32_t ad9361_set_rx_fir_config (struct ad9361_rf_phy *phy,
 								  AD9361_RXFIRConfig fir_cfg)
 {
 	int32_t ret;
-
+	
 	phy->rx_fir_dec = fir_cfg.rx_dec;
 	ret = ad9361_load_fir_filter_coef(phy, (enum fir_dest)(fir_cfg.rx | FIR_IS_RX),
 			fir_cfg.rx_gain, fir_cfg.rx_coef_size, fir_cfg.rx_coef);
@@ -1403,6 +1418,7 @@ int32_t ad9361_set_tx_fir_config (struct ad9361_rf_phy *phy,
 	int32_t ret;
 
 	phy->tx_fir_int = fir_cfg.tx_int;
+
 	ret = ad9361_load_fir_filter_coef(phy, (enum fir_dest)fir_cfg.tx,
 			fir_cfg.tx_gain, fir_cfg.tx_coef_size, fir_cfg.tx_coef);
 

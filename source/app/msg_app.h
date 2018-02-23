@@ -1,4 +1,4 @@
-﻿/***************************************************************
+/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :msg_app.h
@@ -138,6 +138,10 @@ typedef struct _S_BIG_PKT_BUFF
 #define MSG_CMD_GET_FLASH_PAGE	0x00DE	// 读取Flash页内容
 #define MSG_CMD_ERR_ALARM			0x00EE	// 错误或故障报警
 #define MSG_CMD_BLANK				0x00DF	// 空命令
+
+#define MSG_CMD_PROMTP					0x00B6
+#define MSG_CMD_RMTCMD					0x00B7
+
 #define MSG_CMD_START_ATT_ADJ	    0x00A0	// 进入校准模式
 #define MSG_CMD_ATT_STEP_ADJ		0x00A1	// 步进校准
 #define MSG_CMD_END_ATT_ADJ		    0x00A2	// 退出校准
@@ -223,6 +227,7 @@ void MsgCrcError( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UCHAR8 cmd, UINT16 crc );//20
 void MsgReceiverBusy( UCHAR8 des_fp, UCHAR8 des_re,UCHAR8 des_rf );
 void MsgHandleUnknowCmd( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
 void MsgHandleBlankCmd( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
+int MsgHandlePromtp(UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff);
 void MsgHandleSetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
 void MsgHandleGetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
 void MsgHandleSetTable( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );

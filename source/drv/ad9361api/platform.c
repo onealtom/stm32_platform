@@ -62,14 +62,6 @@ int32_t spi_init(uint32_t device_id,
 	return 0;
 }
 
-/***************************************************************************//**
- * @brief spi_read
-*******************************************************************************/
-int32_t spi_read(uint8_t *data,
-				 uint8_t bytes_number)
-{
-	return 0;
-}
 
 /***************************************************************************//**
  * @brief spi_write_then_read
@@ -78,6 +70,8 @@ int spi_write_then_read(struct spi_device *spi,
 		const unsigned char *txbuf, unsigned n_tx,
 		unsigned char *rxbuf, unsigned n_rx)
 {
+	
+	
 	return 0;
 }
 

@@ -460,6 +460,41 @@
               <FileType>1</FileType>
               <FilePath>..\source\drv\utility\math.c</FilePath>
             </File>
+            <File>
+              <FileName>ad936x_init_main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\drv\ad9361api\ad936x_init_main.c</FilePath>
+            </File>
+            <File>
+              <FileName>ad9361.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\drv\ad9361api\ad9361.c</FilePath>
+            </File>
+            <File>
+              <FileName>ad9361_api.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\drv\ad9361api\ad9361_api.c</FilePath>
+            </File>
+            <File>
+              <FileName>ad9361_conv.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\drv\ad9361api\ad9361_conv.c</FilePath>
+            </File>
+            <File>
+              <FileName>platform.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\drv\ad9361api\platform.c</FilePath>
+            </File>
+            <File>
+              <FileName>util.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\drv\ad9361api\util.c</FilePath>
+            </File>
+            <File>
+              <FileName>pl_spi_drv.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\drv\pl_spi_drv.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -569,6 +604,16 @@
               <FileName>usbTxRx.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\app\usbTxRx.c</FilePath>
+            </File>
+            <File>
+              <FileName>cmd_prompt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\cli\cmd_prompt.c</FilePath>
+            </File>
+            <File>
+              <FileName>getopt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\cli\getopt.c</FilePath>
             </File>
           </Files>
         </Group>

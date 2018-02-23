@@ -51,6 +51,9 @@
 #include "util.h"
 #include "config.h"
 
+
+#include "pl_spi_drv.h"
+
 /* Used for static code size optimization: please see config.h */
 const bool has_split_gt = HAVE_SPLIT_GAIN_TABLE;
 const bool have_tdd_tables = HAVE_TDD_SYNTH_TABLE;
@@ -390,6 +393,7 @@ static const struct SynthLUT SynthLUT_TDD[LUT_FTDD_ENT][SYNTH_LUT_SIZE] = {
 /* Rx Gain Tables */
 
 #define SIZE_FULL_TABLE		77
+#define SELF_TABLE		31
 
 static const uint8_t full_gain_table[RXGAIN_TBLS_END][SIZE_FULL_TABLE][3] =
 { {  /* 800 MHz */
@@ -566,6 +570,23 @@ const char *ad9361_ensm_states[] = {
 int32_t ad9361_spi_readm(struct spi_device *spi, uint32_t reg,
 	uint8_t *rbuf, uint32_t num)
 {
+#ifdef STM32_PL_SPI_PORT_PLATFORM
+	
+	int i;
+	uint8_t *p;
+	
+	if (num > MAX_MBYTE_SPI)
+		return -EINVAL;
+	
+	p = rbuf;
+	
+	for(i=0; i<num ; i++ ){
+		CMB_SPIReadByte(NULL, reg, p );
+		reg--;
+		p++;
+	}
+	
+#else
 	uint8_t buf[2];
 	int32_t ret;
 	uint16_t cmd;
@@ -589,9 +610,12 @@ int32_t ad9361_spi_readm(struct spi_device *spi, uint32_t reg,
 			dev_dbg(&spi->dev, "%s: reg 0x%"PRIX32" val 0x%X",
 			__func__, reg--, rbuf[i]);
 	}
-#endif
-
+#endif /*_DEBUG*/
+	
+#endif /*STM32_PL_SPI_PORT_PLATFORM*/
+	
 	return 0;
+
 }
 
 /**
@@ -659,6 +683,14 @@ static int32_t __ad9361_spi_readf(struct spi_device *spi, uint32_t reg,
 int32_t ad9361_spi_write(struct spi_device *spi,
 	uint32_t reg, uint32_t val)
 {
+
+#ifdef STM32_PL_SPI_PORT_PLATFORM
+	
+	if((reg == 0x02 )||(reg == 0x03)){
+		printf("ad=0x%04X",val);
+	}
+	return CMB_SPIWriteByte(NULL , reg , (uint8_t)val );
+#else
 	uint8_t buf[3];
 	int32_t ret;
 	uint16_t cmd;
@@ -677,8 +709,10 @@ int32_t ad9361_spi_write(struct spi_device *spi,
 #ifdef _DEBUG
 	dev_dbg(&spi->dev, "%s: reg 0x%"PRIX32" val 0x%X", __func__, reg, buf[2]);
 #endif
-
+	
 	return 0;
+	
+#endif /*STM32_PL_SPI_PORT_PLATFORM*/
 }
 
 /**
@@ -731,6 +765,24 @@ static int32_t __ad9361_spi_writef(struct spi_device *spi, uint32_t reg,
 static int32_t ad9361_spi_writem(struct spi_device *spi,
 	uint32_t reg, uint8_t *tbuf, uint32_t num)
 {
+	
+#ifdef STM32_PL_SPI_PORT_PLATFORM
+	
+	int i;
+	uint8_t *p;
+	
+	if (num > MAX_MBYTE_SPI)
+		return -EINVAL;
+	
+	p = tbuf;
+	
+	for(i=0; i<num ; i++ ){
+		CMB_SPIWriteByte(NULL, reg, *p );
+		reg--;
+		p++;
+	}
+
+#else
 	uint8_t buf[10];
 	int32_t ret;
 	uint16_t cmd;
@@ -748,7 +800,7 @@ static int32_t ad9361_spi_writem(struct spi_device *spi,
 	int32_t i;
 	for (i = 0; i < num; i++)
 		buf[2 + i] =  tbuf[i];
-#endif
+#endif /*ALTERA_PLATFORM*/
 	ret = spi_write_then_read(spi, buf, num + 2, NULL, 0);
 	if (ret < 0) {
 		dev_err(&spi->dev, "Write Error %"PRId32, ret);
@@ -761,9 +813,10 @@ static int32_t ad9361_spi_writem(struct spi_device *spi,
 		for (i = 0; i < num; i++)
 			dev_dbg(&spi->dev, "Reg 0x%"PRIX32" val 0x%X", reg--, tbuf[i]);
 	}
-#endif
-
+#endif /*_DEBUG*/
+#endif /*STM32_PL_SPI_PORT_PLATFORM*/
 	return 0;
+	
 }
 
 /**
@@ -904,7 +957,7 @@ int32_t ad9361_en_dis_tx(struct ad9361_rf_phy *phy, uint32_t tx_if, uint32_t ena
 {
 	if ((tx_if & enable) > 1 && AD9364_DEVICE && enable)
 		return -EINVAL;
-
+LOG();
 	return ad9361_spi_writef(phy->spi, REG_TX_ENABLE_FILTER_CTRL,
 		TX_CHANNEL_ENABLE(tx_if), enable);
 }
@@ -920,7 +973,7 @@ int32_t ad9361_en_dis_rx(struct ad9361_rf_phy *phy, uint32_t rx_if, uint32_t ena
 {
 	if ((rx_if & enable) > 1 && AD9364_DEVICE && enable)
 		return -EINVAL;
-
+LOG();
 	return ad9361_spi_writef(phy->spi, REG_RX_ENABLE_FILTER_CTRL,
 		RX_CHANNEL_ENABLE(rx_if), enable);
 }
@@ -1660,7 +1713,7 @@ int32_t ad9361_get_rx_gain(struct ad9361_rf_phy *phy,
 		rc = -EINVAL;
 		goto out;
 	}
-
+LOG();
 	val = ad9361_spi_readf(spi, REG_RX_ENABLE_FILTER_CTRL, rx_enable_mask);
 
 	if (!val) {
@@ -3482,7 +3535,9 @@ static int32_t ad9361_gc_setup(struct ad9361_rf_phy *phy, struct gain_control *c
 		reg = SIZE_SPLIT_TABLE - 1;
 	}
 	else {
-		reg = SIZE_FULL_TABLE - 1;
+		//reg = SIZE_FULL_TABLE - 1;
+		reg = SELF_TABLE - 1;
+		LOG();
 	}
 	ad9361_spi_write(spi, REG_MAX_LMT_FULL_GAIN, reg); // Max Full/LMT Gain Table Index
 	ad9361_spi_write(spi, REG_RX1_MANUAL_LMT_FULL_GAIN, reg); // Rx1 Full/LMT Gain Index
@@ -4346,11 +4401,13 @@ int32_t ad9361_set_trx_clock_chain(struct ad9361_rf_phy *phy,
 	 */
 
 	if (phy->rx_fir_dec == 1 || phy->bypass_rx_fir) {
+		LOG();
 		ad9361_spi_writef(phy->spi, REG_RX_ENABLE_FILTER_CTRL,
 			RX_FIR_ENABLE_DECIMATION(~0), !phy->bypass_rx_fir);
 	}
 
 	if (phy->tx_fir_int == 1 || phy->bypass_tx_fir) {
+		LOG();
 		ad9361_spi_writef(phy->spi, REG_TX_ENABLE_FILTER_CTRL,
 			TX_FIR_ENABLE_INTERPOLATION(~0), !phy->bypass_tx_fir);
 	}
@@ -5475,7 +5532,7 @@ int32_t ad9361_load_fir_filter_coef(struct ad9361_rf_phy *phy,
 	struct spi_device *spi = phy->spi;
 	uint32_t val, offs = 0, fir_conf = 0, fir_enable = 0;
 
-	dev_dbg(&phy->spi->dev, "%s: TAPS %"PRIu32", gain %"PRId32", dest %d",
+	dev_dbg(&phy->spi->dev, "%s: TAPS %"PRIu32", gain %"PRId32", dest %x",
 		__func__, ntaps, gain_dB, dest);
 
 	if (coef == NULL || !ntaps || ntaps > 128 || ntaps % 16) {
@@ -5508,6 +5565,7 @@ int32_t ad9361_load_fir_filter_coef(struct ad9361_rf_phy *phy,
 		ad9361_spi_writef(phy->spi, REG_TX_ENABLE_FILTER_CTRL,
 			TX_FIR_ENABLE_INTERPOLATION(~0),
 			(phy->tx_fir_int == 4) ? 3 : phy->tx_fir_int);
+			printf("phy->tx_fir_dec=%d\n",phy->tx_fir_int );
 	}
 
 	val = ntaps / 16 - 1;
@@ -5532,13 +5590,15 @@ int32_t ad9361_load_fir_filter_coef(struct ad9361_rf_phy *phy,
 	fir_conf &= ~FIR_START_CLK;
 	ad9361_spi_write(spi, REG_TX_FILTER_CONF + offs, fir_conf);
 
-	if (dest & FIR_IS_RX)
+/*	if (dest & FIR_IS_RX){
+		LOG();
 		ad9361_spi_writef(phy->spi, REG_RX_ENABLE_FILTER_CTRL,
 			RX_FIR_ENABLE_DECIMATION(~0), fir_enable);
+	}
 	else
 		ad9361_spi_writef(phy->spi, REG_TX_ENABLE_FILTER_CTRL,
 			TX_FIR_ENABLE_INTERPOLATION(~0), fir_enable);
-
+*/
 	ad9361_ensm_restore_prev_state(phy);
 
 	return ad9361_verify_fir_filter_coef(phy, dest, ntaps, coef);
@@ -5876,24 +5936,30 @@ static int32_t ad9361_set_clk_scaler(struct refclk_scale *clk_priv, bool set)
 	case R2_CLK:
 		if (clk_priv->mult != 1 || clk_priv->div > 3 || clk_priv->div < 1)
 			return -EINVAL;
-		if (set)
+		if (set){
+			LOG();
 			return ad9361_spi_writef(spi, REG_RX_ENABLE_FILTER_CTRL,
 			DEC3_ENABLE_DECIMATION(~0),
 			clk_priv->div - 1);
+		}
 		break;
 	case R1_CLK:
 		if (clk_priv->mult != 1 || clk_priv->div > 2 || clk_priv->div < 1)
 			return -EINVAL;
-		if (set)
+		if (set){
+			LOG();
 			return ad9361_spi_writef(spi, REG_RX_ENABLE_FILTER_CTRL,
 			RHB2_EN, clk_priv->div - 1);
+		}
 		break;
 	case CLKRF_CLK:
 		if (clk_priv->mult != 1 || clk_priv->div > 2 || clk_priv->div < 1)
 			return -EINVAL;
-		if (set)
+		if (set){
+			LOG();
 			return ad9361_spi_writef(spi, REG_RX_ENABLE_FILTER_CTRL,
 			RHB1_EN, clk_priv->div - 1);
+		}
 		break;
 	case RX_SAMPL_CLK:
 		if (clk_priv->mult != 1 || clk_priv->div > 4 ||
@@ -5905,9 +5971,11 @@ static int32_t ad9361_set_clk_scaler(struct refclk_scale *clk_priv, bool set)
 		else
 			tmp = ilog2(clk_priv->div) + 1;
 
-		if (set)
+		if (set){
+			LOG();
 			return ad9361_spi_writef(spi, REG_RX_ENABLE_FILTER_CTRL,
 			RX_FIR_ENABLE_DECIMATION(~0), tmp);
+		}
 		break;
 	case DAC_CLK:
 		if (clk_priv->mult != 1 || clk_priv->div > 2 || clk_priv->div < 1)

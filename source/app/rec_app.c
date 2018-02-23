@@ -1,4 +1,4 @@
-﻿/***************************************************************
+/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :rec_app.c
@@ -4413,7 +4413,7 @@ void MAUGetParamFromMEU(void)
 	if ( 0 !=	(au_send_msg & AU_MSG_FLAG_GET_EU_PARA) )
 	{
 		au_send_msg &= (~AU_MSG_FLAG_GET_EU_PARA);
-		printf("au_send_msg TO EU:%x\r\n",au_send_msg);
+		//printf("au_send_msg TO EU:%x\r\n",au_send_msg);
 		MauGetMeuAlarm();
 	}
 

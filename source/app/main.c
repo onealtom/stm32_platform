@@ -1,4 +1,4 @@
-﻿/***************************************************************
+/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 * 
 * FileName    :main.c
@@ -138,19 +138,6 @@ void GetMcuWaterPrint()
 
 	p_mcu_date = __DATE__; 	
 
-#if 0
-	for ( ; tmp<PRI_MCU_DATE_LEN; tmp++ )
-	{
-		if (*p_mcu_date!=0)
-		{
-			str_pri_mcu_date[tmp] = *p_mcu_date++;	
-		}
-		else
-		{ 
-			str_pri_mcu_date[tmp] = 0;
-		}
-	} 
-#endif
 	memcpy(str_pri_mcu_date+tmp,p_mcu_date,PRI_MCU_DATE_LEN-tmp);
 	
 }

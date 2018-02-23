@@ -1,4 +1,4 @@
-﻿/***************************************************************
+/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :sys_param.c
@@ -13,6 +13,8 @@
 *RJ		2010-03-10		v0.1			初始版本
 **************************************************************/
 #include "Header.h"
+#include <stdio.h>
+
 
 extern _T_PARAM_1B sys_param_1b[];
 extern _T_PARAM_2B sys_param_2b[];
@@ -566,197 +568,6 @@ void MsgPktTransmit( UINT32 tx_len, UCHAR8 * p_msg_dat )
 	
 }
 
-
-#if 0
-/*************************************************************
-Name:MsgHandle          
-Description: 处理收到的消息包
-Input:
-	msg_len: 消息包的长度，包括CRC
-	p_msg_dat: 指向存放消息包的缓冲指针
-Return: void
-**************************************************************/
-void MsgHandle( UINT32 msg_len, UCHAR8* p_msg_dat )
-{
-
-	UINT16 tmp,i;
-	UINT16 crc_val;
-	UCHAR8 des_fp, des_re;
-    UCHAR8 src_fp, src_re;
-
-	WTD_CLR;
-	
-	// 判断是否是有效数据包 
-	des_fp = p_msg_dat[MSG_DES_FP]; 
-	des_re = p_msg_dat[MSG_DES_RE];
-	src_fp = p_msg_dat[MSG_SRC_FP];
-	src_re = p_msg_dat[MSG_SRC_RE];	
- 
-	if (( msg_len<MSG_PKT_SIZE_MIN )||( msg_len>MSG_BIG_PKT_SIZE )||( NULL == p_msg_dat ))
-	{
-		TRACE_DEBUG("This Is Not a MsgPkt!\r\n");
-		return;
-	}
-	
-	crc_val = CalCrc16( p_msg_dat, msg_len-2, POLYNOMIAL );
-	tmp = (UINT16)((p_msg_dat[msg_len-1]<<8)|(p_msg_dat[msg_len-2]));
-	
-	if ( crc_val != tmp )  
-	{
-		TRACE_INFO("CRC Error!Calc CRC=%08X, Receive CRC=%08X\r\n", crc_val, tmp);
-		MsgCrcError( des_fp, des_re, p_msg_dat[MSG_CMD_ID], crc_val );
-		return; 
-	} 
-
-	#ifdef CLIENT_XINMIN   
-     if ( des_fp >0 && des_fp < 9 ) 
-     {
-       p_msg_dat[MSG_DES_FP] = 9 - p_msg_dat[MSG_DES_FP];
-       crc_val = CalCrc16( p_msg_dat, msg_len-2, POLYNOMIAL );
-       p_msg_dat[msg_len-1] = (UCHAR8)(crc_val>>8);
-	   p_msg_dat[msg_len-2] = (UCHAR8)(crc_val);
-	   
-     }   
-	#endif   
-    //TRACE_INFO("src fp =%d,src re =%d\r\n",p_msg_dat[2],p_msg_dat[3]); 
-    TRACE_INFO("Got Msg[%02X:%02X]->[%02X:%02X],cmd=%02X.\r\n", 
-	p_msg_dat[MSG_SRC_FP], p_msg_dat[MSG_SRC_RE], p_msg_dat[MSG_DES_FP], p_msg_dat[MSG_DES_RE], p_msg_dat[MSG_CMD_ID]);
-    WTD_CLR;
-	 
-	// 根据目的地址处理  绝对地址或者拓扑地址                                           
-	if  ( ((LOCAL_ADD_FP==des_fp)&&(LOCAL_ADD_RE==des_re))||(0x80==des_fp) ) 
-	{
-		// 发给REC的，或是主控给本地模块的
-
-		// 计算实际数据长度，不包括CRC
-		msg_len-=2;
-		
-		if ( MSG_ACK_MASTER_SEND == p_msg_dat[MSG_ACK_FLAG] )
-		{
-			// 确定应答包的目的地址
-
-			// 数据包应答给发送方
-			msg_tx_buff[MSG_DES_FP] = p_msg_dat[MSG_SRC_FP];
-			msg_tx_buff[MSG_DES_RE] = p_msg_dat[MSG_SRC_RE];
-			
-			if ((PC_ABS_FP==msg_tx_buff[MSG_DES_FP])&&(PC_ABS_NODE==msg_tx_buff[MSG_DES_RE]))
-			{
-				// 若应答地址为主控的相对地址，则改为主控的拓扑地址
-				msg_tx_buff[MSG_DES_FP] = PC_ADD_FP;
-				msg_tx_buff[MSG_DES_RE] = PC_ADD_RE;
-			}
-			// 源地址REC [0x00,0x00]
-			msg_tx_buff[MSG_SRC_FP] = LOCAL_ADD_FP;
-			msg_tx_buff[MSG_SRC_RE] = LOCAL_ADD_RE;
-
-			// 应答包的保留字段
-			msg_tx_buff[MSG_RESERVE1] = p_msg_dat[MSG_RESERVE1];
-			msg_tx_buff[MSG_RESERVE2] = p_msg_dat[MSG_RESERVE2];
-
-			// 应答包的命令字
-			msg_tx_buff[MSG_CMD_ID] = p_msg_dat[MSG_CMD_ID];
-
-			// 处理应答包命令
-			switch ( p_msg_dat[MSG_CMD_ID] )
-			{
-				case MSG_CMD_SET_PARAM:		// 设置参数
-					MsgHandleSetParam( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-
-				case MSG_CMD_GET_PARAM:		// 查询参数
-					MsgHandleGetParam( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-					
-				case MSG_CMD_SET_DEV_REG:		// 设置器件寄存器
-					MsgHandleSetDevReg( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-
-				case MSG_CMD_GET_DEV_REG:		// 查询器件寄存器
-					MsgHandleGetDevReg( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-
-				case MSG_CMD_RESET_DEV:		// 重新初始化器件
-					MsgHandleResetDev( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-
-				case MSG_CMD_GET_FPGA_REG:
-					MsgHandleGetFpgaReg( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-
-				case MSG_CMD_GET_TABLE:		// 查询表格
-					MsgHandleGetTable( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-
-				case MSG_CMD_SET_TABLE:		// 设置表格
-					MsgHandleSetTable( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-					
-				case MSG_CMD_GET_TOPO:		// 查询拓扑
-					MsgHandleGetTopo( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-					
-				case MSG_CMD_SET_TOPO:			// 设置拓扑
-					MsgHandleSetTopo( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-					
-				case MSG_CMD_UPDATE_MCU:		// 升级MCU
-					MsgHandleUpdateMCU( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-					
-				case MSG_CMD_UPDATE_FPGA:		// 升级FPGA
-					MsgHandleUpdateFPGA( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-					
-				case MSG_CMD_GET_FLASH_PAGE:	// 读取FLASH页内容
-					MsgHandleGetFlashPage( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-
-				case MSG_CMD_START_ATT_ADJ:  //0XA0
-					MsgHandleStartAttAdj( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-
-				case MSG_CMD_ATT_STEP_ADJ:
-					MsgHandleAttStepAdj( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-
-				case MSG_CMD_END_ATT_ADJ:
-					MsgHandleEndAttAdj( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-
-				case MSG_CMD_FC_SCAN:
-					MsgHandleFcScan( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-					
-				case MSG_CMD_ERR_ALARM:		// 错误报警
-					//MsgHandleDlGainStepAdjust( msg_length, p_msg_dat );
-				break;
-
-				case MSG_CMD_BLANK:
-					MsgHandleBlankCmd( msg_len, p_msg_dat, msg_tx_buff );
-				break;
-
-				default:		// 未知命令
-					MsgHandleUnknowCmd( msg_len, p_msg_dat, msg_tx_buff );
-
-			}
-		}
-		else
-		{
-			// 应答包
-			MsgHandleAck( msg_len, p_msg_dat );
-		}
-	}
-	else
-	{
-		// 需要转发的
-		MsgPktTransmit( msg_len, p_msg_dat );
-	}
-	
-	WTD_CLR;
-
-		
-}
-#endif
 /*************************************************************
 Name:MsgHandle          
 Description: 处理收到的消息包
@@ -968,7 +779,10 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 			case MSG_CMD_BLANK:
 				MsgHandleBlankCmd( msg_len, p_msg_dat, msg_tx_buff );
 				break;
-
+			case MSG_CMD_PROMTP:
+				printf("MSG_CMD_PROMTP\r\n");
+				MsgHandlePromtp( msg_len, p_msg_dat, msg_tx_buff );
+				break;
 			default:		// 未知命令
 				MsgHandleUnknowCmd( msg_len, p_msg_dat, msg_tx_buff );
 
@@ -1818,13 +1632,13 @@ void MsgHandleSetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 		case DEV_ID_A_AD9363:
 			TRACE_INFO_WP("<W IC>9363.(CHAR8)reg_add=[%02x], tmp=[%08x]\r\n",(CHAR8)reg_add, tmp);
 			CmdHandleSpiWrite(TF_A,reg_add,tmp);
-			
 			break;
 
 		case DEV_ID_B_AD9363:
-			TRACE_INFO_WP("<W IC>9363_B.(CHAR8)reg_add=[%02x], tmp=[%08x]\r\n",(CHAR8)reg_add, tmp);
-			CmdHandleSpiWrite(TF_B,reg_add,tmp);
-			
+			FPGA_ENABLE_WRITE;
+			printf("<W IC>9363_B.(CHAR8)reg_add=[%02x], tmp=[%08x]\r\n",(CHAR8)reg_add, tmp);
+			CMB_SPIWriteByte(NULL, reg_add, (uint8_t )tmp );
+			FPGA_DISABLE_WRITE;
 			break;
 			
 		case DEV_ID_C_AD9363:
@@ -1953,8 +1767,8 @@ void MsgHandleGetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 			break;
 
 			case DEV_ID_DA_B:		// B段DA AD9779
-				tmp = Ad9122Read(reg_add, DA_B_FLAG);
-				//TRACE_INFO_WP("<R IC>DA9779_B.");	
+				 tmp = Ad9122Read(reg_add, DA_B_FLAG);
+				//TRACE_INFO_WP("<R IC>DA9779_B.");
 			break;
 
 			case DEV_ID_A_UP_LINK:		// A段上行链路
@@ -2001,14 +1815,16 @@ void MsgHandleGetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 				tmp = *((UINT32 *)reg_add);
 				//TRACE_INFO_WP("<R IC>MCU.");	
 			break;
-			case DEV_ID_A_AD9363:	
+			case DEV_ID_A_AD9363:
 				tmp=ReadWriteTF(TF_A,0,reg_add,0);	
 				TRACE_INFO_WP("%08X=%08X\r\n", reg_add, tmp );
 			break;
 			
-			case DEV_ID_B_AD9363:	
-				tmp=ReadWriteTF(TF_B,0,reg_add,0);	
-				TRACE_INFO_WP("%08X=%08X\r\n", reg_add, tmp );
+			case DEV_ID_B_AD9363:
+				FPGA_ENABLE_WRITE;
+				CMB_SPIReadByte(NULL , reg_add , &tmp);
+				printf("%08X=%08X\r\n", reg_add, tmp );
+				FPGA_DISABLE_WRITE;
 			break;
 
 			case DEV_ID_C_AD9363:	
@@ -3682,3 +3498,41 @@ void MsgHandleAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
 
 }
 #endif
+
+
+int MsgHandlePromtp(UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff)
+{
+	UINT32 i=0;
+	UCHAR8 ret_val = 0;
+	UINT32 msg_tx_len;
+	char * p;
+	int len ;
+	
+	len = p_msg_dat[10];
+	
+	//printf("\rlen=%d\r\n",len);
+	
+	p=(char *)malloc(p_msg_dat[10]+1);
+	
+	if(p==NULL){
+		printf("malloc error\r\n");
+		return -1;
+	}
+	
+	for(i=0;i<p_msg_dat[10];i++){
+		p[i]=(char)p_msg_dat[i+11];
+		printf("%c",p[i]);
+	}
+	p[p_msg_dat[10]+1-1]='\0';
+	
+	command_process(p);
+	
+	ret_val = MSG_ACK_CMD_OK;
+	p_tx_buff[MSG_ACK_FLAG] = ret_val;
+	SendMsgPkt(msg_tx_len, p_tx_buff);
+	
+	free(p);
+	
+WTD_CLR;
+
+}

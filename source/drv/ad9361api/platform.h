@@ -45,6 +45,8 @@
 #include "stdint.h"
 #include "util.h"
 
+#define LOG() do{printf("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);}while(0)
+
 /******************************************************************************/
 /********************** Macros and Constants Definitions **********************/
 /******************************************************************************/
@@ -139,11 +141,11 @@ enum adc_data_sel {
 int32_t spi_init(uint32_t device_id,
 				 uint8_t  clk_pha,
 				 uint8_t  clk_pol);
-int32_t spi_read(uint8_t *data,
-				 uint8_t bytes_number);
+
 int spi_write_then_read(struct spi_device *spi,
 		const unsigned char *txbuf, unsigned n_tx,
 		unsigned char *rxbuf, unsigned n_rx);
+
 void gpio_init(uint32_t device_id);
 void gpio_direction(uint8_t pin, uint8_t direction);
 bool gpio_is_valid(int number);
