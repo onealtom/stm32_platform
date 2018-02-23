@@ -625,7 +625,7 @@ BOOL FpgaSetDlAttAdjTableB()
 	if ( fpga_cfg.b_net_type==NET_DIVE )
 	{
 		// B段为分集，无下行输入
-		return;
+		return NULL;
 	}
 
 	//TRACE_INFO("Load Dl Att Tbl_B");

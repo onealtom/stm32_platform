@@ -1916,7 +1916,7 @@ UINT16 FpgaReadRegister(UINT16 add)
 
 	if ( FPGA_LDST_OK != fpga_load_status )
 	{
-		return;
+		return NULL;
 	}
 
 	reg_type = (add>>12)&0x0F;

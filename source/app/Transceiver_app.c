@@ -442,30 +442,30 @@ CHAR8 InitTransceiver(UCHAR8 abcd)
 
 	if ( FPGA_LDST_OK != fpga_load_status )
 	{
-		return;		
+		return NULL;		
 	}
 
 	if(SYS_A_FLAG==abcd)
 	{
-		if ( fpga_cfg.a_net_type==NET_NONE ) return;
+		if ( fpga_cfg.a_net_type==NET_NONE ) return NULL;
 		
 		npcs = fpga_cfg.a_9363; 
 	}
 	else if(SYS_B_FLAG==abcd)
 	{
-		if ( fpga_cfg.b_net_type==NET_NONE ) return;
+		if ( fpga_cfg.b_net_type==NET_NONE ) return NULL;
 		
 		npcs = fpga_cfg.b_9363;
 	}
 	else if(SYS_C_FLAG==abcd)
 	{
-		if ( fpga_cfg.c_net_type==NET_NONE ) return;
+		if ( fpga_cfg.c_net_type==NET_NONE ) return NULL;
 
 		npcs = fpga_cfg.c_9363;
 	}
 	else if(SYS_D_FLAG==abcd)
 	{
-		if ( fpga_cfg.d_net_type==NET_NONE ) return;
+		if ( fpga_cfg.d_net_type==NET_NONE ) return NULL;
 
 		npcs = fpga_cfg.d_9363;
 	}
