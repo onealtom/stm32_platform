@@ -1,22 +1,22 @@
-/************************************************************
+ï»¿/************************************************************
 
-     Copyright (C), 2011-2111, ¸ñÀ¼Ì©¿Ë¿Æ¼¼ÓĞÏŞ¹«Ë¾
+     Copyright (C), 2011-2111, æ ¼å…°æ³°å…‹ç§‘æŠ€æœ‰é™å…¬å¸
 
 *************************************************************
-ÎÄ¼şÃû£º   SPI_DRV_C_
-°æ±¾ºÅ£º   V03
-×÷Õß£º     Î¤Èğ½õ 
-Éú³ÉÈÕÆÚ£º 2010Äê08ÔÂ05ÈÕ
-×î½üĞŞ¸Ä£º 
-¹¦ÄÜÃèÊö£º SPI_DRV_C_µÄµ×²ãÇı¶¯ÎÄ¼ş 
-º¯ÊıÁĞ±í£º 
-ĞŞ¸ÄÈÕÆÚ£º 
-        1.ÈÕÆÚ:      2010Äê08ÔÂ05ÈÕ  
-          ×÷Õß£º     Î¤Èğ½õ 
-          ĞŞ¸ÄÄÚÈİ£º Ô­°æ
-        2.ÈÕÆÚ:      2012Äê04ÔÂ17ÈÕ  
-          ×÷Õß£º     µË×ÓÇ«
-          ĞŞ¸ÄÄÚÈİ£º Î¢ĞÍ¹âÇ¥V02 
+æ–‡ä»¶åï¼š   SPI_DRV_C_
+ç‰ˆæœ¬å·ï¼š   V03
+ä½œè€…ï¼š     éŸ¦ç‘é”¦ 
+ç”Ÿæˆæ—¥æœŸï¼š 2010å¹´08æœˆ05æ—¥
+æœ€è¿‘ä¿®æ”¹ï¼š 
+åŠŸèƒ½æè¿°ï¼š SPI_DRV_C_çš„åº•å±‚é©±åŠ¨æ–‡ä»¶ 
+å‡½æ•°åˆ—è¡¨ï¼š 
+ä¿®æ”¹æ—¥æœŸï¼š 
+        1.æ—¥æœŸ:      2010å¹´08æœˆ05æ—¥  
+          ä½œè€…ï¼š     éŸ¦ç‘é”¦ 
+          ä¿®æ”¹å†…å®¹ï¼š åŸç‰ˆ
+        2.æ—¥æœŸ:      2012å¹´04æœˆ17æ—¥  
+          ä½œè€…ï¼š     é‚“å­è°¦
+          ä¿®æ”¹å†…å®¹ï¼š å¾®å‹å…‰é’V02 
 **************************************************************/
 #include "Header.h"
 
@@ -27,7 +27,7 @@ extern UCHAR8 ucPllStatus;
 
 /*************************************************************
 Name:	      SpiCsEnable          
-Description: Ê¹ÄÜSPIÆ¬Ñ¡
+Description: ä½¿èƒ½SPIç‰‡é€‰
 Input:	      chip_sel: 
 	             SPI_CS_AT45,
 	             SPI_CS_AD9524,
@@ -67,7 +67,7 @@ void SpiCsEnable( UINT16 chip_sel )
 
 /*************************************************************
 Name:	      SpiCsEnable          
-Description: Ê§ÄÜSPIÆ¬Ñ¡
+Description: å¤±èƒ½SPIç‰‡é€‰
 Input:	      chip_sel: 
 	             SPI_CS_AT45,
 	             SPI_CS_AD9524,
@@ -113,7 +113,7 @@ void SpiCsDisable( UINT16 chip_sel )
 
 /*************************************************************
 Name:	      InitSpi          
-Description: ³õÊ¼»¯SPI2
+Description: åˆå§‹åŒ–SPI2
 Input:	void
 Return: 	void
 **************************************************************/
@@ -122,35 +122,35 @@ void InitSpi()
 	
 	SpiCsDisable(SPI_CS_ALL);
 	
-	SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;		// 2ÏßÈ«Ë«¹¤
-	SPI_InitStructure.SPI_Mode = SPI_Mode_Master;					// Ö÷»úÄ£Ê½
-	SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;					// 8Î»Ä£Ê½
-	SPI_InitStructure.SPI_CPOL = SPI_CPOL_Low;						// Ê±ÖÓ¿ÕÏĞÊ±ÎªµÍµçÆ½
-	SPI_InitStructure.SPI_CPHA = SPI_CPHA_1Edge;					// Ê±ÖÓµÚ1¸ö±ßÑØÊ±²ÉÑùÊı¾İ
-	SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;						// Èí¼ş¿ØÖÆÆ¬Ñ¡ĞÅºÅ
-	SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;	// Ê±ÖÓ·ÖÆµ2M
-	SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;					// ¸ßÎ»ÔÚÇ°
+	SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;		// 2çº¿å…¨åŒå·¥
+	SPI_InitStructure.SPI_Mode = SPI_Mode_Master;					// ä¸»æœºæ¨¡å¼
+	SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;					// 8ä½æ¨¡å¼
+	SPI_InitStructure.SPI_CPOL = SPI_CPOL_Low;						// æ—¶é’Ÿç©ºé—²æ—¶ä¸ºä½ç”µå¹³
+	SPI_InitStructure.SPI_CPHA = SPI_CPHA_1Edge;					// æ—¶é’Ÿç¬¬1ä¸ªè¾¹æ²¿æ—¶é‡‡æ ·æ•°æ®
+	SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;						// è½¯ä»¶æ§åˆ¶ç‰‡é€‰ä¿¡å·
+	SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;	// æ—¶é’Ÿåˆ†é¢‘2M
+	SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;					// é«˜ä½åœ¨å‰
 	SPI_InitStructure.SPI_CRCPolynomial = 7;
 
-	//SPI1Ê±ÖÓ
+	//SPI1æ—¶é’Ÿ
 //	RCC_APB2PeriphClockCmd( RCC_APB2Periph_SPI1, ENABLE );
-//	SPI_Init(SPI1, &SPI_InitStructure);								// ³õÊ¼»¯SPI1
+//	SPI_Init(SPI1, &SPI_InitStructure);								// åˆå§‹åŒ–SPI1
 
-	//SPI2Ê±ÖÓ
+	//SPI2æ—¶é’Ÿ
 	RCC_APB1PeriphClockCmd( RCC_APB1Periph_SPI2, ENABLE );
-	SPI_Init(SPI2, &SPI_InitStructure);								// ³õÊ¼»¯SPI2
+	SPI_Init(SPI2, &SPI_InitStructure);								// åˆå§‹åŒ–SPI2
 	/* Enable SPI1 */
 //	SPI_Cmd(SPI1, ENABLE);
 
-	//DMA1Ê±ÖÓ
+	//DMA1æ—¶é’Ÿ
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
 
 }
 
 /*************************************************************
 Name:	           SpiDmaTrans          
-Description:      Í¨¹ıDMA´«ÊäSPIÊı¾İ
-Input:	dat_size:  Êı¾İ×Ö½Ú³¤¶È		p_buff: Êı¾İÖ¸Õë
+Description:      é€šè¿‡DMAä¼ è¾“SPIæ•°æ®
+Input:	dat_size:  æ•°æ®å­—èŠ‚é•¿åº¦		p_buff: æ•°æ®æŒ‡é’ˆ
 Return: 	    void
 **************************************************************/
 void SpiDmaTrans( UINT16 dat_size, UCHAR8 * p_buff )
@@ -175,7 +175,7 @@ void SpiDmaTrans( UINT16 dat_size, UCHAR8 * p_buff )
 	DMA_Init(DMA1_Channel2, &DMA_InitStructure);
 
 	/* SPI1 configuration ------------------------------------------------------*/
-//	SPI_Init(SPI1, &SPI_InitStructure);								// ³õÊ¼»¯SPI1
+//	SPI_Init(SPI1, &SPI_InitStructure);								// åˆå§‹åŒ–SPI1
 
 //	TRACE_INFO("dat-:%02X %02X %02X\r\n", p_buff[0], p_buff[1], p_buff[2]);
 
@@ -243,7 +243,7 @@ void SpiDmaTrans( UINT16 dat_size, UCHAR8 * p_buff )
 	DMA_Init(DMA1_Channel4, &DMA_InitStructure);
 
 	/* SPI1 configuration ------------------------------------------------------*/
-//	SPI_Init(SPI1, &SPI_InitStructure);								// ³õÊ¼»¯SPI1
+//	SPI_Init(SPI1, &SPI_InitStructure);								// åˆå§‹åŒ–SPI1
 
 //	TRACE_INFO("dat-:%02X %02X %02X\r\n", p_buff[0], p_buff[1], p_buff[2]);
 
@@ -298,9 +298,9 @@ void SpiDmaTrans( UINT16 dat_size, UCHAR8 * p_buff )
 #if 0
 /*************************************************************
 Name:	       SpiTransDat          
-Description: ´«ÊäSPIÊı¾İ,²»Ê¹ÓÃDMA
-Input:	      dat_size: Êı¾İ×Ö½Ú³¤¶È	
-             p_buff: Êı¾İÖ¸Õë
+Description: ä¼ è¾“SPIæ•°æ®,ä¸ä½¿ç”¨DMA
+Input:	      dat_size: æ•°æ®å­—èŠ‚é•¿åº¦	
+             p_buff: æ•°æ®æŒ‡é’ˆ
 Return: 	void
 **************************************************************/
 void SpiTransDat( UINT16 dat_size, UCHAR8 * p_buff )
@@ -353,9 +353,9 @@ void SpiTransDat( UINT16 dat_size, UCHAR8 * p_buff )
 #endif 
 /*************************************************************
 Name:	       SpiTransDat          
-Description: ´«ÊäSPIÊı¾İ,²»Ê¹ÓÃDMA
-Input:	      dat_size: Êı¾İ×Ö½Ú³¤¶È	
-             p_buff: Êı¾İÖ¸Õë
+Description: ä¼ è¾“SPIæ•°æ®,ä¸ä½¿ç”¨DMA
+Input:	      dat_size: æ•°æ®å­—èŠ‚é•¿åº¦	
+             p_buff: æ•°æ®æŒ‡é’ˆ
 Return: 	void
 **************************************************************/
 void SpiTransDat( UINT16 dat_size, UCHAR8 * p_buff )
@@ -407,12 +407,12 @@ void SpiTransDat( UINT16 dat_size, UCHAR8 * p_buff )
 }
 /*************************************************************
 Name:	            spi_dma_rw_buffer          
-Description:      SPI¶ÁĞ´Êı¾İ
+Description:      SPIè¯»å†™æ•°æ®
 Input:	           
-                 p_cmd_buf: ÃüÁîÊı¾İÖ¸Õë		
-                 cmd_len: ÃüÁîÊı¾İ³¤¶È		
-                 p_data_buf: ¿ÉÑ¡¸½¼Ó²ÎÊıÖ¸Õë
-                 data_len: ¿ÉÑ¡¸½¼Ó²ÎÊı³¤¶È
+                 p_cmd_buf: å‘½ä»¤æ•°æ®æŒ‡é’ˆ		
+                 cmd_len: å‘½ä»¤æ•°æ®é•¿åº¦		
+                 p_data_buf: å¯é€‰é™„åŠ å‚æ•°æŒ‡é’ˆ
+                 data_len: å¯é€‰é™„åŠ å‚æ•°é•¿åº¦
 Return: 	   void
 **************************************************************/
 void spi_dma_rw_buffer(UCHAR8 *p_cmd_buf, UINT16 cmd_len,UCHAR8 *p_data_buf, UINT16 data_len)
@@ -440,8 +440,8 @@ void spi_dma_rw_buffer(UCHAR8 *p_cmd_buf, UINT16 cmd_len,UCHAR8 *p_data_buf, UIN
 #if 0
 /*************************************************************
 Name:SpiWriteBuf          
-Description:SPIĞ´buffer
-Input:Æ¬Ñ¡,buffer,len
+Description:SPIå†™buffer
+Input:ç‰‡é€‰,buffer,len
 Output:void         
 Return:void         
 **************************************************************/
@@ -458,8 +458,8 @@ UCHAR8 SpiWriteBuf(UINT16 npcs, UCHAR8 * p_cmd_buf,UINT16 cmd_len,UCHAR8 * p_dat
 
 /*************************************************************
 Name:SpiReadBuf
-Description:SPI¶Ábuffer
-Input:Æ¬Ñ¡,buffer,len
+Description:SPIè¯»buffer
+Input:ç‰‡é€‰,buffer,len
 Output:void         
 Return:void         
 **************************************************************/
@@ -476,8 +476,8 @@ UCHAR8 SpiReadBuf(UINT16 npcs, UCHAR8 * p_cmd_buf,UINT16 cmd_len,UCHAR8 * p_data
 #endif 
 /*************************************************************
 Name:SpiWriteBuf          
-Description:SPIĞ´buffer
-Input:Æ¬Ñ¡,buffer,len
+Description:SPIå†™buffer
+Input:ç‰‡é€‰,buffer,len
 Output:void         
 Return:void         
 **************************************************************/
@@ -494,8 +494,8 @@ UCHAR8 SpiWriteBuf(UINT16 npcs, UCHAR8 * p_cmd_buf,UINT16 cmd_len,UCHAR8 * p_dat
 
 /*************************************************************
 Name:SpiReadBuf
-Description:SPI¶Ábuffer
-Input:Æ¬Ñ¡,buffer,len
+Description:SPIè¯»buffer
+Input:ç‰‡é€‰,buffer,len
 Output:void         
 Return:void         
 **************************************************************/
@@ -511,7 +511,7 @@ UCHAR8 SpiReadBuf(UINT16 npcs, UCHAR8 * p_cmd_buf,UINT16 cmd_len,UCHAR8 * p_data
 }
 /*************************************************************
 Name  :        SpiDatOutputMode
-Description:   ÉèÖÃÎªÊä³öÄ£Ê½
+Description:   è®¾ç½®ä¸ºè¾“å‡ºæ¨¡å¼
 Input:         void 
 Output:        void         
 Return:        void         
@@ -526,7 +526,7 @@ void SpiDatOutputMode()
 
 /*************************************************************
 Name  :        SpiDatInputMode
-Description:   ÉèÖÃÎªÊäÈëÄ£Ê½
+Description:   è®¾ç½®ä¸ºè¾“å…¥æ¨¡å¼
 Input:         void 
 Output:        void         
 Return:        void         
@@ -540,8 +540,8 @@ void SpiDatInputMode()
 
 /*************************************************************
 Name:SdioSpiWriteByte          
-Description:GPIOÄ£ÄâµÄSPIĞ´×Ö½Ú
-Input:µØÖ·Êı¾İdata            
+Description:GPIOæ¨¡æ‹Ÿçš„SPIå†™å­—èŠ‚
+Input:åœ°å€æ•°æ®data            
 Output:void         
 Return:void
 **************************************************************/
@@ -607,10 +607,10 @@ void SdioSpiWriteByte(UINT16 add,UCHAR8  data)
 
 /*************************************************************
 Name:SdioSpiReadByte          
-Description:GPIOÄ£ÄâµÄSPI¶Á×Ö½Ú
+Description:GPIOæ¨¡æ‹Ÿçš„SPIè¯»å­—èŠ‚
 Input:add            
 Output:void         
-Return:¶Áµ½µÄÊı¾İ
+Return:è¯»åˆ°çš„æ•°æ®
 **************************************************************/
 UCHAR8 SdioSpiReadByte(UINT16 add)
 {
@@ -641,7 +641,7 @@ UCHAR8 SdioSpiReadByte(UINT16 add)
 		}
 		tmp <<= 1;
 		UsNopDelay(5);
-		SET_SDIO_CLK_PIN;							//clk highÉÏÑØËÍÊı¾İ				
+		SET_SDIO_CLK_PIN;							//clk highä¸Šæ²¿é€æ•°æ®				
 		UsNopDelay(5);
 		CLR_SDIO_CLK_PIN;						//clk low		
 	}
@@ -674,8 +674,8 @@ UCHAR8 SdioSpiReadByte(UINT16 add)
 
 /*************************************************************
 Name:Hmc830CsEnalbe
-Description:HMC830Æ¬Ñ¡Ê¹ÄÜ
-Input:Æ¬Ñ¡
+Description:HMC830ç‰‡é€‰ä½¿èƒ½
+Input:ç‰‡é€‰
 Output:void         
 Return:void   
 **************************************************************/
@@ -716,8 +716,8 @@ void Hmc830CsEnalbe(UCHAR8 npcs)
 
 /*************************************************************
 Name:Hmc830CsDisable
-Description:HMC830Æ¬Ñ¡½ûÄÜ
-Input:Æ¬Ñ¡
+Description:HMC830ç‰‡é€‰ç¦èƒ½
+Input:ç‰‡é€‰
 Output:void         
 Return:void   
 **************************************************************/
@@ -756,8 +756,8 @@ void Hmc830CsDisable(UCHAR8 npcs)
 
 /*************************************************************
 Name:Hmc830OutputEnalbe
-Description:HMC830¹¤×÷Ê¹ÄÜ
-Input:Æ¬Ñ¡
+Description:HMC830å·¥ä½œä½¿èƒ½
+Input:ç‰‡é€‰
 Output:void         
 Return:void   
 **************************************************************/
@@ -798,8 +798,8 @@ void Hmc830OutputEnalbe(UCHAR8 npcs)
 
 /*************************************************************
 Name:Hmc830OutputDisable
-Description:HMC830¹¤×÷½ûÄÜ
-Input:Æ¬Ñ¡
+Description:HMC830å·¥ä½œç¦èƒ½
+Input:ç‰‡é€‰
 Output:void         
 Return:void   
 **************************************************************/
@@ -839,7 +839,7 @@ void Hmc830OutputDisable(UCHAR8 npcs)
 
 /*************************************************************
 Name: SetHmc830Mode
-Description: ÅäÖÃ830µÄSPIÄ£Ê½
+Description: é…ç½®830çš„SPIæ¨¡å¼
 Input:void
 Output:void         
 Return:void   
@@ -850,17 +850,17 @@ void SetHmc830Mode(void)
 
 	FPGA_ENABLE_WRITE;
 	
-	// ÏÈÀ­¸ßCS, ÆäËûÏß±£³ÖµÍ
+	// å…ˆæ‹‰é«˜CS, å…¶ä»–çº¿ä¿æŒä½
 	fpga_data = BIT_R_L_PLL_CS|BIT_A_B_PLL_CS;
 	FpgaWriteRegister( FPGA_REG_W_A_PLL, fpga_data );
 	FpgaWriteRegister( FPGA_REG_W_B_PLL, fpga_data );
 	UsNopDelay( 100 );
-	// ºóÀ­¸ßCLK, È·¶¨SPIµÄÄ£Ê½
+	// åæ‹‰é«˜CLK, ç¡®å®šSPIçš„æ¨¡å¼
 	fpga_data |= BIT_PLL_CLK;
 	FpgaWriteRegister( FPGA_REG_W_A_PLL, fpga_data );
 	FpgaWriteRegister( FPGA_REG_W_B_PLL, fpga_data );
 	UsNopDelay( 100 );
-	// È«²¿Êı¾İÏßÀ­µÍ£¬»¹Ô­
+	// å…¨éƒ¨æ•°æ®çº¿æ‹‰ä½ï¼Œè¿˜åŸ
 	FpgaWriteRegister( FPGA_REG_W_A_PLL, 0 );
 	FpgaWriteRegister( FPGA_REG_W_B_PLL, 0 );
 	
@@ -873,8 +873,8 @@ void SetHmc830Mode(void)
 
 /*************************************************************
 Name:ReadWriteHmc830
-Description:HMC830¶ÁĞ´º¯Êı
-Input:Æ¬Ñ¡£¬¶ÁĞ´±êÖ¾:1¶Á£¬0Ğ´£¬µØÖ·£¬Êı¾İ
+Description:HMC830è¯»å†™å‡½æ•°
+Input:ç‰‡é€‰ï¼Œè¯»å†™æ ‡å¿—:1è¯»ï¼Œ0å†™ï¼Œåœ°å€ï¼Œæ•°æ®
 Output:void         
 Return:void   
 **************************************************************/
@@ -886,7 +886,7 @@ UINT32 ReadWriteHmc830(UCHAR8 npcs, UCHAR8 read_wirte_flag,UCHAR8 add, UINT32 da
 	UINT16 fpga_data;
 	UINT32 read_data = 0;
 	
-#if 1	// >>RJ 2012-10-29 Èô¼Ä´æÆ÷ÖµÎª0xFAAAFFFFÔòºöÂÔÉèÖÃ£¬±íÊ¾Ê¹ÓÃÄ¬ÈÏÖµ
+#if 1	// >>RJ 2012-10-29 è‹¥å¯„å­˜å™¨å€¼ä¸º0xFAAAFFFFåˆ™å¿½ç•¥è®¾ç½®ï¼Œè¡¨ç¤ºä½¿ç”¨é»˜è®¤å€¼
 	if ( 0xFAAAFFFF==data ) return data;
 #endif
 
@@ -923,7 +923,7 @@ UINT32 ReadWriteHmc830(UCHAR8 npcs, UCHAR8 read_wirte_flag,UCHAR8 add, UINT32 da
 		return 0;
 
 	
-	//×éºÏÊı¾İ
+	//ç»„åˆæ•°æ®
 	data = ((((add&0x3f)|(read_wirte_flag<<6))<<24)&0xff000000)|(data&0x00ffffff);
 
 
@@ -940,7 +940,7 @@ UINT32 ReadWriteHmc830(UCHAR8 npcs, UCHAR8 read_wirte_flag,UCHAR8 add, UINT32 da
 	FPGA_DISABLE_WRITE;
 	for (i=30; i>=0; i--)
 	{
-		//ÏÂÑÓĞ´Êı¾İ
+		//ä¸‹å»¶å†™æ•°æ®
 		if ((data>>i)&0x00000001)
 			fpga_data |= sdo_bit;
 		else
@@ -951,7 +951,7 @@ UINT32 ReadWriteHmc830(UCHAR8 npcs, UCHAR8 read_wirte_flag,UCHAR8 add, UINT32 da
 		FPGA_DISABLE_WRITE;
 		UsNopDelay(10);	
 
-		//CLKÀ­¸ßËø´æÊı¾İ
+		//CLKæ‹‰é«˜é”å­˜æ•°æ®
 		fpga_data |= clk_bit;
 		FpgaWriteRegister(reg_add,fpga_data);		
 		UsNopDelay(10);
@@ -959,7 +959,7 @@ UINT32 ReadWriteHmc830(UCHAR8 npcs, UCHAR8 read_wirte_flag,UCHAR8 add, UINT32 da
 		fpga_data &= ~clk_bit;
 		FpgaWriteRegister(reg_add,fpga_data);
 
-		//¶Á²Ù×÷Ê±ÏÂÑÓ¶ÁÈ¡Êı¾İ
+		//è¯»æ“ä½œæ—¶ä¸‹å»¶è¯»å–æ•°æ®
 		if (read_wirte_flag && (i<=23))
 		{
 			if (FpgaReadRegister(FPGA_REG_R_PLL_CLK)&(0x01<<sdi_bit))
@@ -997,8 +997,8 @@ UINT32 ReadWriteHmc830(UCHAR8 npcs, UCHAR8 read_wirte_flag,UCHAR8 add, UINT32 da
 #if 0
 /*************************************************************
 Name:Hmc1197CsEnalbe
-Description:HMC1197Æ¬Ñ¡Ê¹ÄÜ   enable 0:½ûÄÜ£¬1:Ê¹ÄÜ
-Input:Æ¬Ñ¡
+Description:HMC1197ç‰‡é€‰ä½¿èƒ½   enable 0:ç¦èƒ½ï¼Œ1:ä½¿èƒ½
+Input:ç‰‡é€‰
 Output:void         
 Return:void   
 **************************************************************/
@@ -1025,8 +1025,8 @@ void Hmc1197CsEnalbe(UCHAR8 enable)
 
 /*************************************************************
 Name:WriteHmc1197
-Description:HMC1197Ğ´º¯Êı
-Input:µØÖ·£¬Êı¾İ
+Description:HMC1197å†™å‡½æ•°
+Input:åœ°å€ï¼Œæ•°æ®
 Output:void         
 Return:void   
 **************************************************************/
@@ -1073,13 +1073,13 @@ UINT32 WriteHmc1197(UCHAR8 add, UINT32 data)
 
 	for (i=31; i>=0; i--)
 	{
-		//CLKÀ­µÍ
+		//CLKæ‹‰ä½
 		fpga_data &= ~clk_bit;
 		FpgaWriteRegister(reg_add,fpga_data);
 		UsNopDelay(1);	
 		
 		fpga_data = FpgaReadRegister(FPGA_REG_W_HMC_A_PLL);
-		//ÏÂÑÓĞ´Êı¾İ
+		//ä¸‹å»¶å†™æ•°æ®
 		if ((data>>i)&0x00000001)
 			fpga_data |= sdo_bit;
 		else
@@ -1087,7 +1087,7 @@ UINT32 WriteHmc1197(UCHAR8 add, UINT32 data)
 		FpgaWriteRegister(reg_add,fpga_data);
 		UsNopDelay(1);
 
-		//CLKÀ­¸ß
+		//CLKæ‹‰é«˜
 		fpga_data |= clk_bit;
 		FpgaWriteRegister(reg_add,fpga_data);		
 		UsNopDelay(1);
@@ -1105,7 +1105,7 @@ UINT32 WriteHmc1197(UCHAR8 add, UINT32 data)
 
 
 #if 0
-	//×éºÏÊı¾İ
+	//ç»„åˆæ•°æ®
 	data = ((((add&0x3f)|(read_wirte_flag<<6))<<24)&0xff000000)|(data&0x00ffffff);
 
 
@@ -1121,7 +1121,7 @@ UINT32 WriteHmc1197(UCHAR8 add, UINT32 data)
 
 	for (i=30; i>=0; i--)
 	{
-		//ÏÂÑÓĞ´Êı¾İ
+		//ä¸‹å»¶å†™æ•°æ®
 		if ((data>>i)&0x00000001)
 			fpga_data |= sdo_bit;
 		else
@@ -1130,7 +1130,7 @@ UINT32 WriteHmc1197(UCHAR8 add, UINT32 data)
 		FpgaWriteRegister(reg_add,fpga_data);
 		UsNopDelay(10);	
 
-		//CLKÀ­¸ßËø´æÊı¾İ
+		//CLKæ‹‰é«˜é”å­˜æ•°æ®
 		fpga_data |= clk_bit;
 		FpgaWriteRegister(reg_add,fpga_data);		
 		UsNopDelay(10);
@@ -1138,7 +1138,7 @@ UINT32 WriteHmc1197(UCHAR8 add, UINT32 data)
 		fpga_data &= ~clk_bit;
 		FpgaWriteRegister(reg_add,fpga_data);
 
-		//¶Á²Ù×÷Ê±ÏÂÑÓ¶ÁÈ¡Êı¾İ
+		//è¯»æ“ä½œæ—¶ä¸‹å»¶è¯»å–æ•°æ®
 		if (read_wirte_flag && (i<=23))
 		{
 			if (FpgaReadRegister(FPGA_REG_R_PLL_CLK)&(0x01<<sdi_bit))
@@ -1176,10 +1176,10 @@ UINT32 WriteHmc1197(UCHAR8 add, UINT32 data)
 
 /*************************************************************
 Name:ReadHmc1197
-Description:HMC1197¶Áº¯Êı
-Input:µØÖ·£¬Êı¾İ
+Description:HMC1197è¯»å‡½æ•°
+Input:åœ°å€ï¼Œæ•°æ®
 Output:void         
-Return:¶Á»ØµÄ32Î»Êı¾İ   
+Return:è¯»å›çš„32ä½æ•°æ®   
 **************************************************************/
 UINT32 ReadHmc1197(UCHAR8 add) 
 {
@@ -1214,20 +1214,20 @@ UINT32 ReadHmc1197(UCHAR8 add)
 	UsNopDelay(1);
 	
 	fpga_data = FpgaReadRegister(FPGA_REG_W_HMC_A_PLL);
-	//CLKÀ­µÍ
+	//CLKæ‹‰ä½
 	fpga_data &= ~clk_bit;
 	FpgaWriteRegister(write_reg_add,fpga_data);
 	UsNopDelay(1);
 
 	for (i=31; i>=0; i--)//first circle
 	{
-		//CLKÀ­µÍ
+		//CLKæ‹‰ä½
 		fpga_data &= ~clk_bit;
 		FpgaWriteRegister(write_reg_add,fpga_data);
 		UsNopDelay(1);
 		
 		fpga_data = FpgaReadRegister(FPGA_REG_W_HMC_A_PLL);
-		//ÏÂÑÓĞ´Êı¾İ
+		//ä¸‹å»¶å†™æ•°æ®
 		if ((write_data>>i)&0x00000001)
 			fpga_data |= sdo_bit;
 		else
@@ -1235,7 +1235,7 @@ UINT32 ReadHmc1197(UCHAR8 add)
 		FpgaWriteRegister(write_reg_add,fpga_data);
 		UsNopDelay(1);
 
-		//CLKÀ­¸ß
+		//CLKæ‹‰é«˜
 		fpga_data |= clk_bit;
 		//TRACE_INFO("ReadHmc1197---w---high---.i=[%02x],write_reg_add=[%x],fpga_data =[%x]\r\n",i,write_reg_add,fpga_data );		
 		FpgaWriteRegister(write_reg_add,fpga_data);		
@@ -1257,7 +1257,7 @@ UINT32 ReadHmc1197(UCHAR8 add)
 	UsNopDelay(1);
 	
 	UsNopDelay(10);
-	//CLKÀ­µÍ
+	//CLKæ‹‰ä½
 	fpga_data &= ~clk_bit;
 	FpgaWriteRegister(write_reg_add,fpga_data);
 	UsNopDelay(1);
@@ -1266,7 +1266,7 @@ UINT32 ReadHmc1197(UCHAR8 add)
 	{
 		
 		fpga_data = FpgaReadRegister(FPGA_REG_W_HMC_A_PLL);
-		//ÏÂÑÓĞ´Êı¾İ
+		//ä¸‹å»¶å†™æ•°æ®
 		if ((write_data2>>i)&0x00000001)
 			fpga_data |= sdo_bit;
 		else
@@ -1274,7 +1274,7 @@ UINT32 ReadHmc1197(UCHAR8 add)
 		FpgaWriteRegister(write_reg_add,fpga_data);
 		UsNopDelay(1);
 		
-		//CLKÀ­¸ß
+		//CLKæ‹‰é«˜
 		fpga_data |= clk_bit;
 		
 	//TRACE_INFO("ReadHmc1197---r---high---.i=[%02x],write_reg_add=[%x],fpga_data =[%x]\r\n",i,write_reg_add,fpga_data );		
@@ -1282,7 +1282,7 @@ UINT32 ReadHmc1197(UCHAR8 add)
 		FpgaWriteRegister(write_reg_add,fpga_data);		
 		UsNopDelay(50);
 
-		//CLKÀ­µÍ
+		//CLKæ‹‰ä½
 		fpga_data &= ~clk_bit;
 		//TRACE_INFO("ReadHmc1197---r---high---.i=[%02x],write_reg_add=[%x],fpga_data =[%x]\r\n",i,write_reg_add,fpga_data );		
 		
@@ -1318,11 +1318,11 @@ UINT32 ReadHmc1197(UCHAR8 add)
 
 /*************************************************************
 Name           :IsPllLocked
-Description    ÅĞ¶ÏÖ¸¶¨µÄ830ÊÇ·ñËø¶¨
-Input:         ucDev-Ö¸¶¨µÄÆ÷¼ş
+Description    åˆ¤æ–­æŒ‡å®šçš„830æ˜¯å¦é”å®š
+Input:         ucDev-æŒ‡å®šçš„å™¨ä»¶
 Output:        void         
-Return:        1 - Ëø¶¨ 
-               0-  Ê§Ëø 
+Return:        1 - é”å®š 
+               0-  å¤±é” 
 **************************************************************/
 BOOL IsPllLocked(UCHAR8 ucDev)
 {
@@ -1401,8 +1401,8 @@ void GetPllStatus(void)
 #if 0
 /*************************************************************
 Name:TFInit
-Description:³õÊ¼»¯IO
-Input:Æ¬Ñ¡
+Description:åˆå§‹åŒ–IO
+Input:ç‰‡é€‰
 Output:void         
 Return:void   
 **************************************************************/
@@ -1422,8 +1422,8 @@ void TFInit(void)
 }
 /*************************************************************
 Name:TFInit
-Description:³õÊ¼»¯IO
-Input:Æ¬Ñ¡
+Description:åˆå§‹åŒ–IO
+Input:ç‰‡é€‰
 Output:void         
 Return:void   
 **************************************************************/
@@ -1458,8 +1458,8 @@ void TFInitCs(UCHAR8 npcs)
 
 /*************************************************************
 Name:TFInit
-Description:³õÊ¼»¯IO
-Input:Æ¬Ñ¡
+Description:åˆå§‹åŒ–IO
+Input:ç‰‡é€‰
 Output:void         
 Return:void   
 **************************************************************/
@@ -1500,8 +1500,8 @@ void TFInit(void)
 }
 /*************************************************************
 Name:TFInit
-Description:³õÊ¼»¯IO
-Input:Æ¬Ñ¡
+Description:åˆå§‹åŒ–IO
+Input:ç‰‡é€‰
 Output:void         
 Return:void   
 **************************************************************/
@@ -1561,8 +1561,8 @@ void TFInitCs(UCHAR8 npcs)
 }
 /*************************************************************
 Name:TFCsEnalbe
-Description:ÊÕ·¢Æ÷Ğ¾Æ¬Ñ¡Ê¹ÄÜ
-Input:Æ¬Ñ¡
+Description:æ”¶å‘å™¨èŠ¯ç‰‡é€‰ä½¿èƒ½
+Input:ç‰‡é€‰
 Output:void         
 Return:void   
 **************************************************************/
@@ -1605,8 +1605,8 @@ void TFCsEnable(UCHAR8 npcs)
 }
 /*************************************************************
 Name:TFCsDiable
-Description:ÊÕ·¢Æ÷Ğ¾Æ¬Ñ¡½ûÄÜ
-Input:Æ¬Ñ¡
+Description:æ”¶å‘å™¨èŠ¯ç‰‡é€‰ç¦èƒ½
+Input:ç‰‡é€‰
 Output:void         
 Return:void   
 **************************************************************/
@@ -1654,8 +1654,8 @@ void TFCsDiable(UCHAR8 npcs)
 
 /*************************************************************
 Name:ReadWriteTF
-Description:ÊÕ·¢Æ÷Ğ¾Æ¬¶ÁĞ´º¯Êı
-Input:Æ¬Ñ¡£¬¶ÁĞ´±êÖ¾:0¶Á£¬1Ğ´£¬µØÖ·£¬Êı¾İ
+Description:æ”¶å‘å™¨èŠ¯ç‰‡è¯»å†™å‡½æ•°
+Input:ç‰‡é€‰ï¼Œè¯»å†™æ ‡å¿—:0è¯»ï¼Œ1å†™ï¼Œåœ°å€ï¼Œæ•°æ®
 Output:void         
 Return:void   
 **************************************************************/
@@ -1679,7 +1679,7 @@ UCHAR8 ReadWriteTF(UCHAR8 npcs, UCHAR8 read_wirte_flag,UINT16  add, UCHAR8 data)
 		bit_tf_do   	= BIT_9363_SPI_C_DO;
 		bit_tf_di   	= BIT_9363_SPI_C_DI;
 
-		//FPGA¿ØÖÆ9363
+		//FPGAæ§åˆ¶9363
 		spi_control_add = FPGA_REG_C_W_SPI_CONTROL;
 		spi_w_data_add = FPGA_REG_C_W_SPI_WRITE_DATA;
 		spi_r_data_add = FPGA_REG_C_R_SPI_DATA;
@@ -1689,12 +1689,12 @@ UCHAR8 ReadWriteTF(UCHAR8 npcs, UCHAR8 read_wirte_flag,UINT16  add, UCHAR8 data)
 		fpga_data = fpga_wo_reg[write_reg_add&0XFF];
 
 		FPGA_ENABLE_WRITE;
-		//Ğ´µØÖ·
-		//FpgaWriteRegister(FPGA_RE_W_C_9363_CONTROL,0X00);//MCU´ÓFPGA»ñÈ¡9363_CµÄ¿ØÖÆÈ¨
+		//å†™åœ°å€
+		//FpgaWriteRegister(FPGA_RE_W_C_9363_CONTROL,0X00);//MCUä»FPGAè·å–9363_Cçš„æ§åˆ¶æƒ
 		UsNopDelay(15);
 		for (i=0; i<16; i++)
 		{
-			//clk low,Ëø´æÊı¾İ
+			//clk low,é”å­˜æ•°æ®
 			fpga_data &= ~bit_tf_clk;
 			FpgaWriteRegister(write_reg_add, fpga_data);	
 			UsNopDelay(1);	
@@ -1714,13 +1714,13 @@ UCHAR8 ReadWriteTF(UCHAR8 npcs, UCHAR8 read_wirte_flag,UINT16  add, UCHAR8 data)
 		}
 		FPGA_DISABLE_WRITE;
 
-		//¶ÁĞ´Êı¾İ
+		//è¯»å†™æ•°æ®
 		read_data = 0;
 		FPGA_ENABLE_WRITE;
 		for (i=0; i<8; i++)
 		{
 
-			//clk low,Ëø´æÊı¾İ
+			//clk low,é”å­˜æ•°æ®
 			fpga_data &= ~bit_tf_clk;
 			FpgaWriteRegister(write_reg_add, fpga_data);
 			if(0==read_wirte_flag)
@@ -1747,7 +1747,7 @@ UCHAR8 ReadWriteTF(UCHAR8 npcs, UCHAR8 read_wirte_flag,UINT16  add, UCHAR8 data)
 			UsNopDelay(1);
 			
 		}
-		//FpgaWriteRegister(FPGA_RE_W_C_9363_CONTROL,0X01);//MCUÊÍ·Å9363_CµÄ¿ØÖÆÈ¨¸øFPGA
+		//FpgaWriteRegister(FPGA_RE_W_C_9363_CONTROL,0X01);//MCUé‡Šæ”¾9363_Cçš„æ§åˆ¶æƒç»™FPGA
 		
 		FPGA_DISABLE_WRITE;
 	}	
@@ -1771,7 +1771,7 @@ UCHAR8 ReadWriteTF(UCHAR8 npcs, UCHAR8 read_wirte_flag,UINT16  add, UCHAR8 data)
 			bit_tf_do   	= BIT_9363_SPI_B_DO;
 			bit_tf_di   	= BIT_9363_SPI_B_DI;
 
-			//FPGA¿ØÖÆ9363
+			//FPGAæ§åˆ¶9363
 			spi_control_add = FPGA_REG_B_W_SPI_CONTROL;
 			spi_w_data_add = FPGA_REG_B_W_SPI_WRITE_DATA;
 			spi_r_data_add = FPGA_REG_B_R_SPI_DATA;
@@ -1784,7 +1784,7 @@ UCHAR8 ReadWriteTF(UCHAR8 npcs, UCHAR8 read_wirte_flag,UINT16  add, UCHAR8 data)
 			bit_tf_do   	= BIT_9363_SPI_C_DO;
 			bit_tf_di   	= BIT_9363_SPI_C_DI;
 
-			//FPGA¿ØÖÆ9363
+			//FPGAæ§åˆ¶9363
 			spi_control_add = FPGA_REG_C_W_SPI_CONTROL;
 			spi_w_data_add = FPGA_REG_C_W_SPI_WRITE_DATA;
 			spi_r_data_add = FPGA_REG_C_R_SPI_DATA;
@@ -1797,7 +1797,7 @@ UCHAR8 ReadWriteTF(UCHAR8 npcs, UCHAR8 read_wirte_flag,UINT16  add, UCHAR8 data)
 			bit_tf_do   	= BIT_9363_SPI_C_DO;
 			bit_tf_di   	= BIT_9363_SPI_C_DI;
 
-			//FPGA¿ØÖÆ9363
+			//FPGAæ§åˆ¶9363
 			spi_control_add = FPGA_REG_C_W_SPI_CONTROL;
 			spi_w_data_add = FPGA_REG_C_W_SPI_WRITE_DATA;
 			spi_r_data_add = FPGA_REG_C_R_SPI_DATA;
@@ -1810,8 +1810,8 @@ UCHAR8 ReadWriteTF(UCHAR8 npcs, UCHAR8 read_wirte_flag,UINT16  add, UCHAR8 data)
 		fpga_data = fpga_wo_reg[write_reg_add&0XFF];
 
 		FPGA_ENABLE_WRITE;
-		//Ğ´µØÖ·
-		//FpgaWriteRegister(FPGA_RE_W_C_9363_CONTROL,0X00);//MCU´ÓFPGA»ñÈ¡9363_CµÄ¿ØÖÆÈ¨
+		//å†™åœ°å€
+		//FpgaWriteRegister(FPGA_RE_W_C_9363_CONTROL,0X00);//MCUä»FPGAè·å–9363_Cçš„æ§åˆ¶æƒ
 		UsNopDelay(15);
 		for (i=0; i<16; i++)
 		{
@@ -1828,14 +1828,14 @@ UCHAR8 ReadWriteTF(UCHAR8 npcs, UCHAR8 read_wirte_flag,UINT16  add, UCHAR8 data)
 			FpgaWriteRegister(write_reg_add, fpga_data);
 			UsNopDelay(1);
 
-			//clk low,Ëø´æÊı¾İ
+			//clk low,é”å­˜æ•°æ®
 			fpga_data &= ~bit_tf_clk;
 			FpgaWriteRegister(write_reg_add, fpga_data);	
 			UsNopDelay(1);
 		}
 		FPGA_DISABLE_WRITE;
 
-		//¶ÁĞ´Êı¾İ
+		//è¯»å†™æ•°æ®
 		read_data = 0;
 		FPGA_ENABLE_WRITE;
 		for (i=0; i<8; i++)
@@ -1855,7 +1855,7 @@ UCHAR8 ReadWriteTF(UCHAR8 npcs, UCHAR8 read_wirte_flag,UINT16  add, UCHAR8 data)
 				FpgaWriteRegister(write_reg_add, fpga_data);
 				UsNopDelay(1);
 			}
-			//clk low,Ëø´æÊı¾İ
+			//clk low,é”å­˜æ•°æ®
 			fpga_data &= ~bit_tf_clk;
 			FpgaWriteRegister(write_reg_add, fpga_data);
 			if(0==read_wirte_flag)
@@ -1867,7 +1867,7 @@ UCHAR8 ReadWriteTF(UCHAR8 npcs, UCHAR8 read_wirte_flag,UINT16  add, UCHAR8 data)
 			UsNopDelay(1);
 			
 		}
-		//FpgaWriteRegister(FPGA_RE_W_C_9363_CONTROL,0X01);//MCUÊÍ·Å9363_CµÄ¿ØÖÆÈ¨¸øFPGA
+		//FpgaWriteRegister(FPGA_RE_W_C_9363_CONTROL,0X01);//MCUé‡Šæ”¾9363_Cçš„æ§åˆ¶æƒç»™FPGA
 		
 		FPGA_DISABLE_WRITE;
 	}
@@ -1882,8 +1882,8 @@ UCHAR8 ReadWriteTF(UCHAR8 npcs, UCHAR8 read_wirte_flag,UINT16  add, UCHAR8 data)
 #if 0
 /*************************************************************
 Name:TFCsDiable
-Description:ÊÕ·¢Æ÷Ğ¾Æ¬Ñ¡½ûÄÜ
-Input:Æ¬Ñ¡
+Description:æ”¶å‘å™¨èŠ¯ç‰‡é€‰ç¦èƒ½
+Input:ç‰‡é€‰
 Output:void         
 Return:void   
 **************************************************************/
@@ -1906,8 +1906,8 @@ void TFCsDiable(UCHAR8 npcs)
 
 /*************************************************************
 Name:ReadWriteTF
-Description:ÊÕ·¢Æ÷Ğ¾Æ¬¶ÁĞ´º¯Êı
-Input:Æ¬Ñ¡£¬¶ÁĞ´±êÖ¾:0¶Á£¬1Ğ´£¬µØÖ·£¬Êı¾İ
+Description:æ”¶å‘å™¨èŠ¯ç‰‡è¯»å†™å‡½æ•°
+Input:ç‰‡é€‰ï¼Œè¯»å†™æ ‡å¿—:0è¯»ï¼Œ1å†™ï¼Œåœ°å€ï¼Œæ•°æ®
 Output:void         
 Return:void   
 **************************************************************/
@@ -1939,7 +1939,7 @@ UCHAR8 ReadWriteTF(UCHAR8 npcs, UCHAR8 read_wirte_flag,UINT16  add, UCHAR8 data)
 	
 	TFCsEnable(npcs);
 	fpga_data = fpga_write_bak[write_reg_add];
-	//Ğ´µØÖ·
+	//å†™åœ°å€
 	for (i=0; i<16; i++)
 	{
 		//clk high	
@@ -1955,13 +1955,13 @@ UCHAR8 ReadWriteTF(UCHAR8 npcs, UCHAR8 read_wirte_flag,UINT16  add, UCHAR8 data)
 		FpgaWriteRegister(write_reg_add, fpga_data);
 		UsNopDelay(10);
 
-		//clk low,Ëø´æÊı¾İ
+		//clk low,é”å­˜æ•°æ®
 		fpga_data &= ~BIT_TF_CLK;
 		FpgaWriteRegister(write_reg_add, fpga_data);	
 		UsNopDelay(10);
 	}
 
-	//¶ÁĞ´Êı¾İ
+	//è¯»å†™æ•°æ®
 	read_data = 0;
 	for (i=0; i<8; i++)
 	{
@@ -1978,7 +1978,7 @@ UCHAR8 ReadWriteTF(UCHAR8 npcs, UCHAR8 read_wirte_flag,UINT16  add, UCHAR8 data)
 		FpgaWriteRegister(write_reg_add, fpga_data);
 		UsNopDelay(10);
 
-		//clk low,Ëø´æÊı¾İ
+		//clk low,é”å­˜æ•°æ®
 		fpga_data &= ~BIT_TF_CLK;
 		FpgaWriteRegister(write_reg_add, fpga_data);
 		if (FpgaReadRegister(read_reg_add)&BIT_TF_DO)

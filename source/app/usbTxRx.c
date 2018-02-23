@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :usbTxRx.c
-* Description :USB ÊÕ·¢Êı¾İÏà¹Ø´¦Àíº¯Êı;
+* Description :USB æ”¶å‘æ•°æ®ç›¸å…³å¤„ç†å‡½æ•°;
 * Version     :v0.1
 * Author      :gaochanggang
 * Date        :2009-07-15
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*gaochanggang		2009-07-15	v0.1			³õÊ¼°æ±¾
+*gaochanggang		2009-07-15	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #include "Header.h"
 
@@ -52,14 +52,14 @@ UINT16 usb_remain_len;
 UINT16 usb_remain_start;
 
 volatile UINT16 usb_rx_len;
-volatile UCHAR8 usb_rx_end=1;		// USB½ÓÊÕµ½Êı¾İ±êÖ¾
-volatile UCHAR8 usb_tx_end=1;		// USBÊı¾İÒÑ·¢ËÍ±êÖ¾
+volatile UCHAR8 usb_rx_end=1;		// USBæ¥æ”¶åˆ°æ•°æ®æ ‡å¿—
+volatile UCHAR8 usb_tx_end=1;		// USBæ•°æ®å·²å‘é€æ ‡å¿—
 
 UCHAR8 port_open=0;
 
 /*************************************************************
 Name:    USBChgStatus       
-Description: USB×´Ì¬×ª»»£»
+Description: USBçŠ¶æ€è½¬æ¢ï¼›
 Input:void          
 Output:void
 Return:void         
@@ -109,7 +109,7 @@ void USBChgStatus()
 	{
 		if ( 0 == usb_state )
 		{
-			sys_work_info &= (~SYSTEM_FLAG_USB_PKT_UNSEND);	//Çå³ıÊı¾İ´ı·¢ËÍ±êÖ¾
+			sys_work_info &= (~SYSTEM_FLAG_USB_PKT_UNSEND);	//æ¸…é™¤æ•°æ®å¾…å‘é€æ ‡å¿—
 			//CDCDSerialDriver_Initialize();
 			usb_state = 1;
 			//port_open = 0;
@@ -122,7 +122,7 @@ void USBChgStatus()
 	{
 	       TRACE_DEBUG("usb connected\r\n");			
 	       //CDCDSerialDriver_Read(usbBuffer,DATABUFFERSIZE,	(TransferCallback) UsbDataReceived,0);
-		//Ê¹ÄÜ½ÓÊÕĞÂµÄÊı¾İ
+		//ä½¿èƒ½æ¥æ”¶æ–°çš„æ•°æ®
 		if ( USBD_STATUS_SUCCESS == CDCDSerialDriver_Read(usbBuffer, DATABUFFERSIZE, (TransferCallback)UsbDataReceived, 0) )
 		{
 			sys_work_info |= SYSTEM_FLAG_USB_WAIT_RX;
@@ -132,7 +132,7 @@ void USBChgStatus()
 		return;
 	}
 #if 0
-	if ( 0 != CDCDSerialDriver_GetCarrierActivated() )		// USB´®¿ÚÉè±¸ÒÑ´ò¿ª
+	if ( 0 != CDCDSerialDriver_GetCarrierActivated() )		// USBä¸²å£è®¾å¤‡å·²æ‰“å¼€
 	{
 		port_open = 1;
 	}
@@ -179,7 +179,7 @@ void USBChgStatus()
 
 /*************************************************************
 Name:USBRxHandle          
-Description:½ÓÊÕÊı¾İ°ü´¦Àí
+Description:æ¥æ”¶æ•°æ®åŒ…å¤„ç†
 Input:void            
 Output:void         
 Return:void         
@@ -210,10 +210,10 @@ void USBRxHandle()
 #if 0
 /*************************************************************
 Name:SaveUsbMsgData          
-Description: ×ªÒå±£´æUSBÊÕµ½µÄÊı¾İ
+Description: è½¬ä¹‰ä¿å­˜USBæ”¶åˆ°çš„æ•°æ®
 Input:
-	p_rx_dat: USB½ÓÊÕ»º³åÇøÖ¸Õë
-	data_len: Êı¾İ³¤¶È
+	p_rx_dat: USBæ¥æ”¶ç¼“å†²åŒºæŒ‡é’ˆ
+	data_len: æ•°æ®é•¿åº¦
 Output:void         
 Return:void         
 **************************************************************/
@@ -234,7 +234,7 @@ UCHAR8 SaveUsbMsgData(UCHAR8 * p_rx_dat, UINT16 data_len)
 
 		if ( 0 == usb_pkt_flag)
 		{
-			//µÈ´ı°ü·Ö¸ô±êÖ¾
+			//ç­‰å¾…åŒ…åˆ†éš”æ ‡å¿—
 			if ( MSG_PKT_FLAG == tmp )
 			{
 				usb_pkt_flag = 1;
@@ -245,7 +245,7 @@ UCHAR8 SaveUsbMsgData(UCHAR8 * p_rx_dat, UINT16 data_len)
 		{
 			if ( 2 == usb_pkt_flag )
 			{
-				//Ç°Ò»¸öÊÕµ½µÄ×Ö·ûÊÇ×ªÒå×Ö·û
+				//å‰ä¸€ä¸ªæ”¶åˆ°çš„å­—ç¬¦æ˜¯è½¬ä¹‰å­—ç¬¦
 				if ( 0x4D == tmp )
 				{
 					p_msg_dat[msg_len] = 0x4E;
@@ -260,22 +260,22 @@ UCHAR8 SaveUsbMsgData(UCHAR8 * p_rx_dat, UINT16 data_len)
 			}
 			else if ( MSG_PKT_FLAG == tmp )
 			{
-				//ÊÕµ½ÁË·Ö¸ô±êÖ¾
+				//æ”¶åˆ°äº†åˆ†éš”æ ‡å¿—
 				if ( msg_len >= MSG_PKT_SIZE_MIN )
 				{
-					//ÊÕµ½ÍêÕûÊı¾İ°ü
+					//æ”¶åˆ°å®Œæ•´æ•°æ®åŒ…
 					usb_pkt_flag = 0;
-					//¸üĞÂ³¤¶È
+					//æ›´æ–°é•¿åº¦
 					g_rx_dat.lenth = msg_len;
-					//ÉèÖÃĞèÒª´¦Àí±êÖ¾Î»
+					//è®¾ç½®éœ€è¦å¤„ç†æ ‡å¿—ä½
 					sys_work_info |= SYSTEM_FLAG_USB_RECE;
-					//±£´æÏÂÒ»¸ö¶Á³öÊı¾İµÄÎ»ÖÃ
+					//ä¿å­˜ä¸‹ä¸€ä¸ªè¯»å‡ºæ•°æ®çš„ä½ç½®
 					usb_remain_start = i+1;
 					return 1;
 				}
 				else
 				{
-					//ÒÔĞÂÊÕµ½Õâ¸ö×÷Îª°üÍ·£¬Ç°ÃæÊÕµ½µÄÊı¾İ¶¼È¥µô
+					//ä»¥æ–°æ”¶åˆ°è¿™ä¸ªä½œä¸ºåŒ…å¤´ï¼Œå‰é¢æ”¶åˆ°çš„æ•°æ®éƒ½å»æ‰
 					msg_len = 0;
 				}
 			}
@@ -290,10 +290,10 @@ UCHAR8 SaveUsbMsgData(UCHAR8 * p_rx_dat, UINT16 data_len)
 					usb_pkt_flag = 1;
 					p_msg_dat[msg_len] = tmp;
 					msg_len++;
-					//³¤¶È¼ì²é
+					//é•¿åº¦æ£€æŸ¥
 					if ( msg_len > USB_RX_BUFFER_LEN )
 					{
-						//Êı¾İ°ü³¤¶È³¬¹ıÁËÔÊĞí³¤¶È£¬¶ªÆú
+						//æ•°æ®åŒ…é•¿åº¦è¶…è¿‡äº†å…è®¸é•¿åº¦ï¼Œä¸¢å¼ƒ
 						usb_pkt_flag = 0;
 						msg_len = 0; 
 					}
@@ -309,10 +309,10 @@ UCHAR8 SaveUsbMsgData(UCHAR8 * p_rx_dat, UINT16 data_len)
 
 /*************************************************************
 Name:GetUsbMsgPkt          
-Description: ×ªÒå±£´æUSBÊÕµ½µÄÊı¾İ
+Description: è½¬ä¹‰ä¿å­˜USBæ”¶åˆ°çš„æ•°æ®
 Input:
-	p_rx_dat: USB½ÓÊÕ»º³åÇøÖ¸Õë
-	data_len: Êı¾İ³¤¶È
+	p_rx_dat: USBæ¥æ”¶ç¼“å†²åŒºæŒ‡é’ˆ
+	data_len: æ•°æ®é•¿åº¦
 Output:void         
 Return:void         
 **************************************************************/
@@ -339,7 +339,7 @@ UINT16 GetUsbMsgPkt(UCHAR8 * p_rx_dat, UINT16 data_len)
 
 		if ( 0 == usb_pkt_flag)
 		{
-			//µÈ´ı°ü·Ö¸ô±êÖ¾
+			//ç­‰å¾…åŒ…åˆ†éš”æ ‡å¿—
 			if ( MSG_PKT_FLAG == tmp )
 			{
 				usb_pkt_flag = 1;
@@ -350,7 +350,7 @@ UINT16 GetUsbMsgPkt(UCHAR8 * p_rx_dat, UINT16 data_len)
 		{
 			if ( 2 == usb_pkt_flag )
 			{
-				//Ç°Ò»¸öÊÕµ½µÄ×Ö·ûÊÇ×ªÒå×Ö·û
+				//å‰ä¸€ä¸ªæ”¶åˆ°çš„å­—ç¬¦æ˜¯è½¬ä¹‰å­—ç¬¦
 				if ( 0x4D == tmp )
 				{
 					p_msg_dat[msg_len] = 0x4E;
@@ -365,11 +365,11 @@ UINT16 GetUsbMsgPkt(UCHAR8 * p_rx_dat, UINT16 data_len)
 			}
 			else if ( MSG_PKT_FLAG == tmp )
 			{
-				//ÊÕµ½ÁË·Ö¸ô±êÖ¾
+				//æ”¶åˆ°äº†åˆ†éš”æ ‡å¿—
 				if ( msg_len >= MSG_PKT_SIZE_MIN )
 				{
-					//ÊÕµ½ÍêÕûÊı¾İ°ü
-					//ÉèÖÃĞèÒª´¦Àí±êÖ¾Î»
+					//æ”¶åˆ°å®Œæ•´æ•°æ®åŒ…
+					//è®¾ç½®éœ€è¦å¤„ç†æ ‡å¿—ä½
 					//MsgHandle( PC_ABS_FP, PC_ABS_NODE, msg_len, p_msg_dat );
 					//msg_len = 0;
 					usb_pkt_flag = 0;
@@ -378,7 +378,7 @@ UINT16 GetUsbMsgPkt(UCHAR8 * p_rx_dat, UINT16 data_len)
 				}
 				else
 				{
-					//ÒÔĞÂÊÕµ½Õâ¸ö×÷Îª°üÍ·£¬Ç°ÃæÊÕµ½µÄÊı¾İ¶¼È¥µô
+					//ä»¥æ–°æ”¶åˆ°è¿™ä¸ªä½œä¸ºåŒ…å¤´ï¼Œå‰é¢æ”¶åˆ°çš„æ•°æ®éƒ½å»æ‰
 					msg_len = 0;
 				}
 			}
@@ -393,10 +393,10 @@ UINT16 GetUsbMsgPkt(UCHAR8 * p_rx_dat, UINT16 data_len)
 					usb_pkt_flag = 1;
 					p_msg_dat[msg_len] = tmp;
 					msg_len++;
-					//³¤¶È¼ì²é
+					//é•¿åº¦æ£€æŸ¥
 					if ( msg_len >= USB_RX_BUFFER_LEN )
 					{
-						//Êı¾İ°ü³¤¶È³¬¹ıÁËÔÊĞí³¤¶È£¬¶ªÆú
+						//æ•°æ®åŒ…é•¿åº¦è¶…è¿‡äº†å…è®¸é•¿åº¦ï¼Œä¸¢å¼ƒ
 						usb_pkt_flag = 0;
 						msg_len = 0; 
 					}
@@ -466,10 +466,10 @@ void UsbGetReceivedData()
 		return;
 	}
 
-	// Çå³ıµÈ´ı½ÓÊÕÊı¾İ±êÖ¾
+	// æ¸…é™¤ç­‰å¾…æ¥æ”¶æ•°æ®æ ‡å¿—
 	sys_work_info &= (~SYSTEM_FLAG_USB_WAIT_RX);
 
-	// Çå³ı±êÖ¾£¬ÖØĞÂÊ¹ÄÜ½ÓÊÕ
+	// æ¸…é™¤æ ‡å¿—ï¼Œé‡æ–°ä½¿èƒ½æ¥æ”¶
 	sys_work_info &= (~SYSTEM_FLAG_USB_RX_END);
 	
 	// CDCDSerialDriver_Read(usbBuffer, DATABUFFERSIZE, (TransferCallback)UsbDataReceived, 0);
@@ -480,7 +480,7 @@ void UsbStartReceive()
 {
 	sys_work_info |= SYSTEM_FLAG_USB_WAIT_RX;
 	
-	//Ê¹ÄÜ½ÓÊÕĞÂµÄÊı¾İ
+	//ä½¿èƒ½æ¥æ”¶æ–°çš„æ•°æ®
 	if ( USBD_STATUS_SUCCESS != CDCDSerialDriver_Read(usbBuffer, DATABUFFERSIZE, (TransferCallback)UsbDataReceived, 0) )
 	{
 		sys_work_info &= (~SYSTEM_FLAG_USB_WAIT_RX);
@@ -491,10 +491,10 @@ void UsbStartReceive()
 
 /*************************************************************
 Name:UsbSendMsgPkt
-Description:´ÓUSB¿Ú·¢ËÍÒ»¸öÏûÏ¢°ü
+Description:ä»USBå£å‘é€ä¸€ä¸ªæ¶ˆæ¯åŒ…
 Input:
-	msg_length: Êı¾İ°ü³¤¶È
-	p_msg_dat: Êı¾İÖ¸Õë
+	msg_length: æ•°æ®åŒ…é•¿åº¦
+	p_msg_dat: æ•°æ®æŒ‡é’ˆ
 Output:void         
 Return:void         
 **************************************************************/
@@ -504,45 +504,45 @@ void UsbSendMsgPkt( UINT32 msg_length, UCHAR8 * p_msg_dat  )
 	UCHAR8 tmp;
 
 	WTD_CLR;
-	//Ğ´ÈëÏûÏ¢°üÆğÊ¼±êÖ¾
+	//å†™å…¥æ¶ˆæ¯åŒ…èµ·å§‹æ ‡å¿—
 	len = 0;
 	g_tx_dat.dat[len++] = MSG_PKT_FLAG;
 	g_tx_dat.dat[len++] = MSG_PKT_FLAG;
-	//Ğ´ÈëÏûÏ¢°üÊı¾İ(°üÀ¨CRC)£¬¶Ô×ªÒå×Ö·û½øĞĞ×ª»»
+	//å†™å…¥æ¶ˆæ¯åŒ…æ•°æ®(åŒ…æ‹¬CRC)ï¼Œå¯¹è½¬ä¹‰å­—ç¬¦è¿›è¡Œè½¬æ¢
 	for ( i=0; i<msg_length; i++ )
 	{
 		tmp = * p_msg_dat++;
 		if ( 0x4E == tmp )
 		{
-			//×ªÒå0x4E
+			//è½¬ä¹‰0x4E
 			g_tx_dat.dat[len++] = MSG_SHIFT_FLAG;
 			g_tx_dat.dat[len++] = 0x4D;
 		}
 		else if ( 0x5E == tmp )
 		{
-			//×ªÒå0x5D
+			//è½¬ä¹‰0x5D
 			g_tx_dat.dat[len++] = MSG_SHIFT_FLAG;
 			g_tx_dat.dat[len++] = 0x5D;
 		}
 		else
 		{
-			//ÆÕÍ¨Êı¾İ
+			//æ™®é€šæ•°æ®
 			g_tx_dat.dat[len++] = tmp;
 		}
 	}
 	
-	//Ğ´ÈëÏûÏ¢°ü½áÊø±êÖ¾
+	//å†™å…¥æ¶ˆæ¯åŒ…ç»“æŸæ ‡å¿—
 	g_tx_dat.dat[len++] = MSG_PKT_FLAG;
 	
 	if ( len>0 )
 	{
-		//Ğ´Èë×ªÒåºóµÄÏûÏ¢°ü³¤¶È(°üÀ¨ÆğÊ¼ºÍ½áÊø×Ö·û)
+		//å†™å…¥è½¬ä¹‰åçš„æ¶ˆæ¯åŒ…é•¿åº¦(åŒ…æ‹¬èµ·å§‹å’Œç»“æŸå­—ç¬¦)
 		g_tx_dat.lenth = len;
 
-		//ÉèÖÃUSB·¢ËÍµÈ´ı±êÖ¾
+		//è®¾ç½®USBå‘é€ç­‰å¾…æ ‡å¿—
 		sys_work_info |= SYSTEM_FLAG_USB_PKT_UNSEND;
 		
-		//·¢ËÍÏûÏ¢°ü
+		//å‘é€æ¶ˆæ¯åŒ…
 		USBStartTrans();
 	}
 
@@ -564,7 +564,7 @@ void CheckUsbConnect()
 
 /*************************************************************
 Name:USBStartTrans          
-Description:¿ªÊ¼·¢ËÍ
+Description:å¼€å§‹å‘é€
 Input:void            
 Output:void         
 Return:void         
@@ -585,19 +585,19 @@ void USBStartTrans(void)
 		return;
 	}
 	
-	//ÉèÖÃUSB·¢ËÍµÈ´ı±êÖ¾
+	//è®¾ç½®USBå‘é€ç­‰å¾…æ ‡å¿—
 	//sys_work_info |= SYSTEM_FLAG_USB_PKT_UNSEND;
 	
-	// Æô¶¯·¢ËÍ
+	// å¯åŠ¨å‘é€
 	//TRACE_INFO("USB Start Trans.");
 	if (USBD_STATUS_SUCCESS == CDCDSerialDriver_Write(g_tx_dat.dat, g_tx_dat.lenth, (TransferCallback)UsbTransFinished, 0) )
 	{
-		// ¿ªÊ¼·¢ËÍ
+		// å¼€å§‹å‘é€
 		//TRACE_INFO_WP(".");
 	}
 	else
 	{
-		// ·¢ËÍÊ§°Ü
+		// å‘é€å¤±è´¥
 		//sys_work_info &= (~SYSTEM_FLAG_USB_PKT_UNSEND);
 		usb_tx_end = 1;
 		TRACE_INFO_WP("Fail.");
@@ -610,12 +610,12 @@ void USBStartTrans(void)
 
 /*************************************************************
 Name:UsbTransFinished       
-Description:USBÊı¾İ·¢ËÍÍê³É»Øµ÷º¯Êı
+Description:USBæ•°æ®å‘é€å®Œæˆå›è°ƒå‡½æ•°
 Input:
-	p_argument: ËÍÈëµÄ²ÎÊıÖ¸Õë
-	status: ×´Ì¬
-	transferred: ·¢ËÍµÄÊı¾İ³¤¶È
-	remaining: ÈÔÎ´·¢ËÍµÄÊı¾İ³¤¶È
+	p_argument: é€å…¥çš„å‚æ•°æŒ‡é’ˆ
+	status: çŠ¶æ€
+	transferred: å‘é€çš„æ•°æ®é•¿åº¦
+	remaining: ä»æœªå‘é€çš„æ•°æ®é•¿åº¦
 Output:void         
 Return:void         
 **************************************************************/

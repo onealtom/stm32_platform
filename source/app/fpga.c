@@ -2,7 +2,7 @@
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :fpga.c
-* Description :FPGA´¦ÀíÏà¹Øº¯Êı
+* Description :FPGAå¤„ç†ç›¸å…³å‡½æ•°
 * Version     :v0.1
 * Author      :shiyang
 * Date        :2008-01-29
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*shiyang		2008-01-29	v0.1			³õÊ¼°æ±¾
+*shiyang		2008-01-29	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #include "Header.h"
 
@@ -18,9 +18,9 @@ extern _T_PARAM_2B sys_param_2b[];
 extern UCHAR8      sys_temp_buff[SYS_TMP_BUFF_SIZE];
 extern _T_FP_INFO  fp_inf[FP_MAX];
 extern _T_BIG_PKT_BUFF msg_big_buff[MSG_BIG_PKT_COUNT];
-extern UCHAR8 msg_buff[FP_MAX][FPGA_MSG_BUFF_SIZE];		// Ğ¡ÏûÏ¢°ü»º³å
+extern UCHAR8 msg_buff[FP_MAX][FPGA_MSG_BUFF_SIZE];		// å°æ¶ˆæ¯åŒ…ç¼“å†²
 extern UINT32 re_msg_buff_st[FP_MAX];
-extern UINT32 module_param_chg_flag;		//ÏµÍ³¹¤×÷²ÎÊıĞŞ¸Ä±êÖ¾
+extern UINT32 module_param_chg_flag;		//ç³»ç»Ÿå·¥ä½œå‚æ•°ä¿®æ”¹æ ‡å¿—
 extern UINT32 bit_err_cnt; 
 extern UINT32 fpga_rx_pkt_cnt;   
 extern UCHAR8 benzhen2340;
@@ -28,7 +28,7 @@ extern UCHAR8 benzhen2340;
 UCHAR8 str_fpga_check_err[]="Fpga Data Bus Check Error!";
 UCHAR8 str_fpga_prog_err[] ="Fpga Program Error!";
 
-UCHAR8 fpga_load_block;		// Fpga¼ÓÔØÇø¿é
+UCHAR8 fpga_load_block;		// FpgaåŠ è½½åŒºå—
 UINT32 fpga_load_status; 
 UINT16 fpga_wo_reg[FPGA_WO_REG_COUNT]={0};
 UCHAR8 att_adj_buff[20+2*64*4];
@@ -57,20 +57,20 @@ FLOAT32 fpga_dgcic_d=0;
 FLOAT32 fpga_uginp_d=0;
 FLOAT32 fpga_ugcic_d=0;
 
-UINT16 fpga_a_regbk[MAX_CHANNEL_COUNT*2+2];	// ±¸·İĞ´Èë¼Ä´æÆ÷ginp+gcic+{ÏÂĞĞÔöÒæ,ÉÏĞĞÔöÒæ}x ch_count 
-UINT16 fpga_b_regbk[MAX_CHANNEL_COUNT*2+2];	// ±¸·İĞ´Èë¼Ä´æÆ÷ginp+gcic+{ÏÂĞĞÔöÒæ,ÉÏĞĞÔöÒæ}x ch_count
+UINT16 fpga_a_regbk[MAX_CHANNEL_COUNT*2+2];	// å¤‡ä»½å†™å…¥å¯„å­˜å™¨ginp+gcic+{ä¸‹è¡Œå¢ç›Š,ä¸Šè¡Œå¢ç›Š}x ch_count 
+UINT16 fpga_b_regbk[MAX_CHANNEL_COUNT*2+2];	// å¤‡ä»½å†™å…¥å¯„å­˜å™¨ginp+gcic+{ä¸‹è¡Œå¢ç›Š,ä¸Šè¡Œå¢ç›Š}x ch_count
 
-UINT16 fpga_c_regbk[MAX_CHANNEL_COUNT*2+2];	// ±¸·İĞ´Èë¼Ä´æÆ÷ginp+gcic+{ÏÂĞĞÔöÒæ,ÉÏĞĞÔöÒæ}x ch_count 
-UINT16 fpga_d_regbk[MAX_CHANNEL_COUNT*2+2];	// ±¸·İĞ´Èë¼Ä´æÆ÷ginp+gcic+{ÏÂĞĞÔöÒæ,ÉÏĞĞÔöÒæ}x ch_count
+UINT16 fpga_c_regbk[MAX_CHANNEL_COUNT*2+2];	// å¤‡ä»½å†™å…¥å¯„å­˜å™¨ginp+gcic+{ä¸‹è¡Œå¢ç›Š,ä¸Šè¡Œå¢ç›Š}x ch_count 
+UINT16 fpga_d_regbk[MAX_CHANNEL_COUNT*2+2];	// å¤‡ä»½å†™å…¥å¯„å­˜å™¨ginp+gcic+{ä¸‹è¡Œå¢ç›Š,ä¸Šè¡Œå¢ç›Š}x ch_count
 
 //UINT16 fpga_write_bak[FPGA_W_REG_MAX];
 
 
 /*************************************************************
 Name:        FpgaSetErrInfo
-Description: ÔÚFpgaË®Ó¡ĞÅÏ¢ÖĞÌî³ä´íÎóĞÅÏ¢
+Description: åœ¨Fpgaæ°´å°ä¿¡æ¯ä¸­å¡«å……é”™è¯¯ä¿¡æ¯
 Input:
-	      err_id: ´íÎóid 
+	      err_id: é”™è¯¯id 
 Output:void          
 Return:void
 **************************************************************/
@@ -78,12 +78,12 @@ void FpgaSetErrInfo( UCHAR8 err_id )
 {
 	switch(err_id)
 	{
-		case FPGA_ERR_PROG:			// ¼ÓÔØ´íÎó
+		case FPGA_ERR_PROG:			// åŠ è½½é”™è¯¯
 			sys_param_asc[MADD_PRI_FPGA_DATE].length = sizeof(str_fpga_prog_err);
 			sys_param_asc[MADD_PRI_FPGA_DATE].p_asc = str_fpga_prog_err;
 		break;
 			
-		case FPGA_ERR_CHECK:		// Ğ£Ñé´íÎó
+		case FPGA_ERR_CHECK:		// æ ¡éªŒé”™è¯¯
 			sys_param_asc[MADD_PRI_FPGA_DATE].length = sizeof(str_fpga_check_err);
 			sys_param_asc[MADD_PRI_FPGA_DATE].p_asc = str_fpga_check_err;
 		break;
@@ -93,12 +93,12 @@ void FpgaSetErrInfo( UCHAR8 err_id )
 #ifdef FPGA_MSG_ADD_ADDRESS
 /*************************************************************
 Name:           FpgaSendMsgPkt
-Description:    Í¨¹ıFPGAÏò¹â¿ÚµÄRE·¢ËÍÊı¾İ
+Description:    é€šè¿‡FPGAå‘å…‰å£çš„REå‘é€æ•°æ®
 Input:
-		  des_add: ½ÓÊÕÊı¾İ°üµÄµØÖ·£¬¸ß8Î»±íÊ¾¹â¿ÚºÅ£¬µÍ8Î»±íÊ¾REĞòºÅ
-  		  src_add: ·¢ËÍÊı¾İ°üµÄµØÖ·£¬¸ß8Î»±íÊ¾¹â¿ÚºÅ£¬µÍ8Î»±íÊ¾REĞòºÅ
-  		  length:  Êı¾İ°ü×Ö½Ú³¤¶È
-  		  p_msg_dat: Ö»ÊÇÊı¾İ»º³åµÄÖ¸Õë
+		  des_add: æ¥æ”¶æ•°æ®åŒ…çš„åœ°å€ï¼Œé«˜8ä½è¡¨ç¤ºå…‰å£å·ï¼Œä½8ä½è¡¨ç¤ºREåºå·
+  		  src_add: å‘é€æ•°æ®åŒ…çš„åœ°å€ï¼Œé«˜8ä½è¡¨ç¤ºå…‰å£å·ï¼Œä½8ä½è¡¨ç¤ºREåºå·
+  		  length:  æ•°æ®åŒ…å­—èŠ‚é•¿åº¦
+  		  p_msg_dat: åªæ˜¯æ•°æ®ç¼“å†²çš„æŒ‡é’ˆ
   		  
 Output:        void          
 Return:        void
@@ -131,14 +131,14 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 	src_re_tx = p_msg_dat[MSG_SRC_RE];
 	src_ree_tx = p_msg_dat[MSG_SRC_REE];
 
-	des_fp = (UCHAR8)((des_add>>16)&0xff);	// ¸ßÎ»±íÊ¾¹â¿ÚºÅ
-	des_re = (UCHAR8)((des_add>>8)&0xff);		// µÍÎ»±íÊ¾REºÅ
-	des_ree = (UCHAR8)(des_add&0xff);		// µÍÎ»±íÊ¾REeºÅ
+	des_fp = (UCHAR8)((des_add>>16)&0xff);	// é«˜ä½è¡¨ç¤ºå…‰å£å·
+	des_re = (UCHAR8)((des_add>>8)&0xff);		// ä½ä½è¡¨ç¤ºREå·
+	des_ree = (UCHAR8)(des_add&0xff);		// ä½ä½è¡¨ç¤ºREeå·
 
 	
-	src_fp = (UCHAR8)((src_add>>16)&0x00ff);	   // ¸ßÎ»±íÊ¾¹â¿ÚºÅ
-	src_re = (UCHAR8)((src_add>>8)&0x00ff);		   // µÍÎ»±íÊ¾REºÅ 
-	src_ree = (UCHAR8)((src_add>>0)&0x00ff);		   // µÍÎ»±íÊ¾ReeºÅ
+	src_fp = (UCHAR8)((src_add>>16)&0x00ff);	   // é«˜ä½è¡¨ç¤ºå…‰å£å·
+	src_re = (UCHAR8)((src_add>>8)&0x00ff);		   // ä½ä½è¡¨ç¤ºREå· 
+	src_ree = (UCHAR8)((src_add>>0)&0x00ff);		   // ä½ä½è¡¨ç¤ºReeå·
 
 	TRACE_INFO("FpgaSendMsgPkt(%02x:%02x:%02x)-->des(%02x:%02x:%02x)\r\n" , src_fp,src_re,src_ree, des_fp,des_re,des_ree);
 #if 0	
@@ -153,14 +153,14 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 
 	FPGA_ENABLE_WRITE;
 
-	// Ğ´ÈëÒª²Ù×÷µÄ¹â¿ÚºÅ
+	// å†™å…¥è¦æ“ä½œçš„å…‰å£å·
 	FPGA_SET_OPT(des_fp);
 //	TRACE_INFO_WP("fp%d.", des_fp);
 
 	while ( tx_count<=MSG_BIG_PKT_SIZE )
 	{
 //		TRACE_INFO_WP("fpga tx2.");
-		// µÈ´ı·¢ËÍ»º³å¿ÕÏĞ
+		// ç­‰å¾…å‘é€ç¼“å†²ç©ºé—²
 		i = 0;
 		while ( 0 == ( (1<<des_fp)&FpgaReadRegister(FPGA_REG_MSG_TX_READY) ) )
 		{
@@ -174,7 +174,7 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 			}
 		}
 		
-		// ·Ö°ü£¬ÅĞ¶ÏÊÇ·ñÊÇ×îºóÒ»¸öÊı¾İÖ¡
+		// åˆ†åŒ…ï¼Œåˆ¤æ–­æ˜¯å¦æ˜¯æœ€åä¸€ä¸ªæ•°æ®å¸§
 		if(frame_no==0)
 		{
 			if ( length <= FPGA_MSG_FRAME_LEN )
@@ -200,16 +200,16 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 			}
 		}
 		
-		// ¼ÆËãÊ£ÓàÊı¾İ³¤¶È
+		// è®¡ç®—å‰©ä½™æ•°æ®é•¿åº¦
 		length -= len;
 		tx_count += len;
 		
-		// Ğ´ÈëÏûÏ¢°üµÄµØÖ·ĞÅÏ¢
+		// å†™å…¥æ¶ˆæ¯åŒ…çš„åœ°å€ä¿¡æ¯
 		FpgaWriteRegister( FPGA_REG_W_MSG_DES_ADD, (des_add>>8)&0xffff );
 		FpgaWriteRegister( FPGA_REG_W_MSG_SRC_ADD, (src_add>>8)&0xffff );
 //		TRACE_INFO_WP( "\r\nDesAdd:%06X, SrcAdd:%06X, ", des_add, src_add );
 		
-		// Ğ´ÈëÊı¾İ³¤¶È,°üÀ¨1×Ö½ÚµÄÖ¡ĞòºÅ 
+		// å†™å…¥æ•°æ®é•¿åº¦,åŒ…æ‹¬1å­—èŠ‚çš„å¸§åºå· 
 		if((frame_no & MSG_FRAME_INDEX_MASK) == 0)
 		{
 			FpgaWriteRegister( FPGA_REG_W_MSG_LEN, len+1 );
@@ -220,14 +220,14 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 		}
 		TRACE_INFO_WP( "MsgLen:%d,\r\n ", len+1 );
 
-		// Ğ´ÈëÖ¡±àºÅ
+		// å†™å…¥å¸§ç¼–å·
 		FpgaWriteRegister( FPGA_REG_W_MSG_DAT, frame_no );
 //		TRACE_INFO_WP( "FrmIndex:%02X\r\n ", frame_no );
 
-		//¹âÏË·¢ËÍ´ÓµÚ¶ş°üÊı¾İ¿ªÊ¼Ìí¼ÓÄ¿µÄµØÖ·¡¢Ô´µØÖ·¡£20141205 
-		//µÚÒ»°üÊı¾İÔ­À´ÒÑÌí¼Ó¡£
+		//å…‰çº¤å‘é€ä»ç¬¬äºŒåŒ…æ•°æ®å¼€å§‹æ·»åŠ ç›®çš„åœ°å€ã€æºåœ°å€ã€‚20141205 
+		//ç¬¬ä¸€åŒ…æ•°æ®åŸæ¥å·²æ·»åŠ ã€‚
 		if ( (frame_no & MSG_FRAME_INDEX_MASK) != 0 )
-		{//²»ÊÇµÚÒ»¸ö°ü
+		{//ä¸æ˜¯ç¬¬ä¸€ä¸ªåŒ…
 			FpgaWriteRegister( FPGA_REG_W_MSG_DAT, des_fp_tx );
 			FpgaWriteRegister( FPGA_REG_W_MSG_DAT, des_re_tx );
 			FpgaWriteRegister( FPGA_REG_W_MSG_DAT, des_ree_tx );
@@ -237,18 +237,18 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 			FpgaWriteRegister( FPGA_REG_W_MSG_DAT, src_ree_tx );
 		}
 
-		// Ğ´ÈëÏûÏ¢Êı¾İ
+		// å†™å…¥æ¶ˆæ¯æ•°æ®
 		for ( i=0; i<len; i++ )
 		{
 			FpgaWriteRegister( FPGA_REG_W_MSG_DAT, *p_msg_dat++ );
 		}
 		
-		// Æô¶¯·¢ËÍ
+		// å¯åŠ¨å‘é€
 		FpgaWriteRegister( FPGA_REG_MSG_START_SEND, 0x00 );
 		TRACE_INFO_WP( "End.\r\n" );
 		
 		WTD_CLR;
-		//Êı¾İÖ¡ĞòºÅÀÛ¼Ó
+		//æ•°æ®å¸§åºå·ç´¯åŠ 
 		if ( 0 == (frame_no & MSG_FRAME_END_FLAG) )
 		{
 			frame_no++;
@@ -266,12 +266,12 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 #else
 /*************************************************************
 Name:           FpgaSendMsgPkt
-Description:    Í¨¹ıFPGAÏò¹â¿ÚµÄRE·¢ËÍÊı¾İ
+Description:    é€šè¿‡FPGAå‘å…‰å£çš„REå‘é€æ•°æ®
 Input:
-		  des_add: ½ÓÊÕÊı¾İ°üµÄµØÖ·£¬¸ß8Î»±íÊ¾¹â¿ÚºÅ£¬µÍ8Î»±íÊ¾REĞòºÅ
-  		  src_add: ·¢ËÍÊı¾İ°üµÄµØÖ·£¬¸ß8Î»±íÊ¾¹â¿ÚºÅ£¬µÍ8Î»±íÊ¾REĞòºÅ
-  		  length:  Êı¾İ°ü×Ö½Ú³¤¶È
-  		  p_msg_dat: Ö»ÊÇÊı¾İ»º³åµÄÖ¸Õë
+		  des_add: æ¥æ”¶æ•°æ®åŒ…çš„åœ°å€ï¼Œé«˜8ä½è¡¨ç¤ºå…‰å£å·ï¼Œä½8ä½è¡¨ç¤ºREåºå·
+  		  src_add: å‘é€æ•°æ®åŒ…çš„åœ°å€ï¼Œé«˜8ä½è¡¨ç¤ºå…‰å£å·ï¼Œä½8ä½è¡¨ç¤ºREåºå·
+  		  length:  æ•°æ®åŒ…å­—èŠ‚é•¿åº¦
+  		  p_msg_dat: åªæ˜¯æ•°æ®ç¼“å†²çš„æŒ‡é’ˆ
   		  
 Output:        void          
 Return:        void
@@ -299,9 +299,9 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 //		TRACE_INFO("1SendMsgPkt id =DB,p_msg_dat[ MSG_RESERVE1]=%02x.201310090921##############################################\r\n",p_msg_dat[ MSG_RESERVE1]);
 //	}
 //	fp_mask = 1<<( ((des_add>>8)&0x00ff) );
-	des_fp = (UCHAR8)((des_add>>16)&0xff);	// ¸ßÎ»±íÊ¾¹â¿ÚºÅ
-	des_re = (UCHAR8)((des_add>>8)&0xff);		// µÍÎ»±íÊ¾REºÅ
-	des_ree = (UCHAR8)(des_add&0xff);		// µÍÎ»±íÊ¾REeºÅ
+	des_fp = (UCHAR8)((des_add>>16)&0xff);	// é«˜ä½è¡¨ç¤ºå…‰å£å·
+	des_re = (UCHAR8)((des_add>>8)&0xff);		// ä½ä½è¡¨ç¤ºREå·
+	des_ree = (UCHAR8)(des_add&0xff);		// ä½ä½è¡¨ç¤ºREeå·
 //	TRACE_INFO("FpgaSendMsgPkt [%02X:%02X:%02X]->[%02X:%02X:%02X],cmd=%02X\r\n",*( p_msg_dat+3),*( p_msg_dat+4),*( p_msg_dat+5),des_fp,des_re,des_ree,p_msg_dat[MSG_CMD_ID] );
 #if 0	
 	if (    (  (des_fp>FP_MAX)&&(  (BROADCAST_ADD_FP!=des_fp)  || (BROADCAST_ADD_FP!=des_fp)  )   )
@@ -315,14 +315,14 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 
 	FPGA_ENABLE_WRITE;
 
-	// Ğ´ÈëÒª²Ù×÷µÄ¹â¿ÚºÅ
+	// å†™å…¥è¦æ“ä½œçš„å…‰å£å·
 	FPGA_SET_OPT(des_fp);
 //	TRACE_INFO_WP("fp%d.", des_fp);
 
 	while ( tx_count<=MSG_BIG_PKT_SIZE )
 	{
 //		TRACE_INFO_WP("fpga tx2.");
-		// µÈ´ı·¢ËÍ»º³å¿ÕÏĞ
+		// ç­‰å¾…å‘é€ç¼“å†²ç©ºé—²
 		i = 0;
 		while ( 0 == ( (1<<des_fp)&FpgaReadRegister(FPGA_REG_MSG_TX_READY) ) )
 		{
@@ -336,7 +336,7 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 			}
 		}
 		
-		// ·Ö°ü£¬ÅĞ¶ÏÊÇ·ñÊÇ×îºóÒ»¸öÊı¾İÖ¡
+		// åˆ†åŒ…ï¼Œåˆ¤æ–­æ˜¯å¦æ˜¯æœ€åä¸€ä¸ªæ•°æ®å¸§
 		if ( length <= FPGA_MSG_FRAME_LEN )
 		{
 			frame_no |= MSG_FRAME_END_FLAG;
@@ -347,35 +347,35 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 			len = FPGA_MSG_FRAME_LEN;
 		}
 		
-		// ¼ÆËãÊ£ÓàÊı¾İ³¤¶È
+		// è®¡ç®—å‰©ä½™æ•°æ®é•¿åº¦
 		length -= len;
 		tx_count += len;
 		
-		// Ğ´ÈëÏûÏ¢°üµÄµØÖ·ĞÅÏ¢
+		// å†™å…¥æ¶ˆæ¯åŒ…çš„åœ°å€ä¿¡æ¯
 		FpgaWriteRegister( FPGA_REG_W_MSG_DES_ADD, (des_add>>8)&0xffff );
 		FpgaWriteRegister( FPGA_REG_W_MSG_SRC_ADD, (src_add>>8)&0xffff );
 //		TRACE_INFO_WP( "\r\nDesAdd:%06X, SrcAdd:%06X, ", des_add, src_add );
 		
-		// Ğ´ÈëÊı¾İ³¤¶È
+		// å†™å…¥æ•°æ®é•¿åº¦
 		FpgaWriteRegister( FPGA_REG_W_MSG_LEN, len+1 );
 //		TRACE_INFO_WP( "MsgLen:%d, ", len+1 );
 
-		// Ğ´ÈëÖ¡±àºÅ
+		// å†™å…¥å¸§ç¼–å·
 		FpgaWriteRegister( FPGA_REG_W_MSG_DAT, frame_no );
 //		TRACE_INFO_WP( "FrmIndex:%02X\r\n ", frame_no );
 
-		// Ğ´ÈëÏûÏ¢Êı¾İ
+		// å†™å…¥æ¶ˆæ¯æ•°æ®
 		for ( i=0; i<len; i++ )
 		{
 			FpgaWriteRegister( FPGA_REG_W_MSG_DAT, *p_msg_dat++ );
 		}
 		
-		// Æô¶¯·¢ËÍ
+		// å¯åŠ¨å‘é€
 		FpgaWriteRegister( FPGA_REG_MSG_START_SEND, 0x00 );
 		TRACE_INFO_WP( "End.\r\n" );
 		
 		WTD_CLR;
-		//Êı¾İÖ¡ĞòºÅÀÛ¼Ó
+		//æ•°æ®å¸§åºå·ç´¯åŠ 
 		if ( 0 == (frame_no & MSG_FRAME_END_FLAG) )
 		{
 			frame_no++;
@@ -395,12 +395,12 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 #if 0
 /*************************************************************
 Name:FpgaSaveMsgDat
-Description: ´Ó¹â¿ÚÊı¾İFIFO¶ÁÈ¡Êı¾İ£¬´æÈëÖ¸¶¨»º³åÇø
+Description: ä»å…‰å£æ•°æ®FIFOè¯»å–æ•°æ®ï¼Œå­˜å…¥æŒ‡å®šç¼“å†²åŒº
 Input:
-	len: Òª¶ÁÈ¡µÄÊı¾İ³¤¶È
-	p_save_buff: »º³åÇøµØÖ·
+	len: è¦è¯»å–çš„æ•°æ®é•¿åº¦
+	p_save_buff: ç¼“å†²åŒºåœ°å€
 Output:void         
-Return: ÒÑ±£´æµÄÊı¾İ³¤¶È
+Return: å·²ä¿å­˜çš„æ•°æ®é•¿åº¦
 **************************************************************/
 INT16 FpgaSaveMsgDat( INT16 len, UCHAR8 *p_save_buff )
 {
@@ -423,12 +423,12 @@ INT16 FpgaSaveMsgDat( INT16 len, UCHAR8 *p_save_buff )
 
 /*************************************************************
 Name:FpgaGetMsgPkt
-Description: Í¨¹ıFPGAÏò¹â¿ÚµÄRE·¢ËÍÊı¾İ
+Description: é€šè¿‡FPGAå‘å…‰å£çš„REå‘é€æ•°æ®
 Input:
-	des_add: ½ÓÊÕÊı¾İ°üµÄµØÖ·£¬¸ß8Î»±íÊ¾¹â¿ÚºÅ£¬µÍ8Î»±íÊ¾REĞòºÅ
-	src_add: ·¢ËÍÊı¾İ°üµÄµØÖ·£¬¸ß8Î»±íÊ¾¹â¿ÚºÅ£¬µÍ8Î»±íÊ¾REĞòºÅ
-	length: Êı¾İ°ü×Ö½Ú³¤¶È
-	p_msg_dat: Ö»ÊÇÊı¾İ»º³åµÄÖ¸Õë
+	des_add: æ¥æ”¶æ•°æ®åŒ…çš„åœ°å€ï¼Œé«˜8ä½è¡¨ç¤ºå…‰å£å·ï¼Œä½8ä½è¡¨ç¤ºREåºå·
+	src_add: å‘é€æ•°æ®åŒ…çš„åœ°å€ï¼Œé«˜8ä½è¡¨ç¤ºå…‰å£å·ï¼Œä½8ä½è¡¨ç¤ºREåºå·
+	length: æ•°æ®åŒ…å­—èŠ‚é•¿åº¦
+	p_msg_dat: åªæ˜¯æ•°æ®ç¼“å†²çš„æŒ‡é’ˆ
 Output:void         
 Return:void
 **************************************************************/
@@ -449,26 +449,26 @@ void FpgaGetMsgPkt( void )
 	
 	if ( FPGA_LDST_OK != fpga_load_status )
 	{
-		// FPGA¹ÊÕÏ£¬·µ»Ø
+		// FPGAæ•…éšœï¼Œè¿”å›
 		return;    
 	} 
  
-	// ¹â¿ÚÊı¾İ°ü½ÓÊÕFIFO×´Ì¬,Î»¶ÔÓ¦,µÍ8Î»1±íÊ¾FIFOÓĞÊı¾İ,¸ß8Î»1±íÊ¾FIFOÂú 
+	// å…‰å£æ•°æ®åŒ…æ¥æ”¶FIFOçŠ¶æ€,ä½å¯¹åº”,ä½8ä½1è¡¨ç¤ºFIFOæœ‰æ•°æ®,é«˜8ä½1è¡¨ç¤ºFIFOæ»¡ 
 	msg_fifo_st = FpgaReadRegister( FPGA_REG_MSG_FIFO_ST );
 	
-	// °´¹â¿ÚË³Ğò´¦ÀíÊı¾İ°ü 
+	// æŒ‰å…‰å£é¡ºåºå¤„ç†æ•°æ®åŒ… 
 	for ( i=0; i<FP_MAX; i++ )
 	{
-		// Ğ´ÈëÒª²Ù×÷µÄ¹â¿ÚºÅ
+		// å†™å…¥è¦æ“ä½œçš„å…‰å£å·
 		FPGA_ENABLE_WRITE;
 		FPGA_SET_OPT(i);
 		FPGA_DISABLE_WRITE; 
 
-		// ÀÛ¼ÆÊı¾İ°ü´íÎó¼ÆÊı £¬²¢Çå¿Õ¶ÔÓ¦¼Ä´æÆ÷
+		// ç´¯è®¡æ•°æ®åŒ…é”™è¯¯è®¡æ•° ï¼Œå¹¶æ¸…ç©ºå¯¹åº”å¯„å­˜å™¨
 		bit_err_cnt += FpgaReadRegister(FPGA_REG_PKT_ERR_COUNT);
 		FpgaReadRegister(FPGA_REG_CLEAR_PKT_ERR);
 		
-		// ÅĞ¶Ï¹â¿ÚÊÇ·ñÓĞÊÕµ½Êı¾İ°ü
+		// åˆ¤æ–­å…‰å£æ˜¯å¦æœ‰æ”¶åˆ°æ•°æ®åŒ…
 		if ( 0 != (msg_fifo_st & (0x0001<<i)) ) 
 		{
 			p_msg_dat = sys_temp_buff;
@@ -478,21 +478,21 @@ void FpgaGetMsgPkt( void )
 				*p_msg_dat++ = (UCHAR8)( 0x00FF & FpgaReadRegister( FPGA_REG_R_MSG_DAT ) );
 			} 	   
 	   		
-	   		// ¶ÁÈ¡Êı¾İ³¤¶È
+	   		// è¯»å–æ•°æ®é•¿åº¦
 	   		frame_len = sys_temp_buff[4];	 //TRACE_INFO("frame_len = %d\r\n",frame_len);  
 	   		
-	   		// ¶ÁÈ¡Êı¾İÖ¡±àºÅ  
+	   		// è¯»å–æ•°æ®å¸§ç¼–å·  
 	   		frame_no = sys_temp_buff[5];	 // TRACE_INFO("frame_no = %02x\r\n",frame_no);
 
 			if (( src_fp>FP_MAX )||( src_re>RE_MAX )||(0==frame_len)||(frame_len>FPGA_MSG_BUFF_SIZE)||
 				((frame_no&MSG_FRAME_INDEX_MASK)>=MSG_MAX_FRAME_INDEX) )
 			{
-				// ÇĞ»»FIFOÒ³
+				// åˆ‡æ¢FIFOé¡µ
 				FpgaReadRegister( FPGA_REG_R_NEXT_MSG );
 				continue;
 			}  
 			
-			frame_len--;	  // ³¤¶È¼õ1,¼´ÎªÓĞĞ§Êı¾İ³¤¶È
+			frame_len--;	  // é•¿åº¦å‡1,å³ä¸ºæœ‰æ•ˆæ•°æ®é•¿åº¦
 
 			if ( 0 ==(frame_no & MSG_FRAME_INDEX_MASK) ) 
 			{ 
@@ -502,28 +502,28 @@ void FpgaGetMsgPkt( void )
 				src_re   = sys_temp_buff[9];
 			}       
 
-			if ( 0 != (frame_no & MSG_FRAME_END_FLAG) )	// ×îÄ©Ö¡
+			if ( 0 != (frame_no & MSG_FRAME_END_FLAG) )	// æœ€æœ«å¸§
 			{
 				msg_end_flag = b_TRUE;
 				
-				frame_no &= MSG_FRAME_INDEX_MASK;	// È¡µÃÖ¡±àºÅ
+				frame_no &= MSG_FRAME_INDEX_MASK;	// å–å¾—å¸§ç¼–å·
 				
-				// ÅĞ¶ÏÊÇ·ñÊÇ´óÊı¾İ°ü
+				// åˆ¤æ–­æ˜¯å¦æ˜¯å¤§æ•°æ®åŒ…
 				if ( frame_no > 0 )
 				{	
-					// ´óÊı¾İ°ü£¬ÅĞ¶ÏREÊÇ·ñÓĞ´ó»º³åÊ¹ÓÃÈ¨
+					// å¤§æ•°æ®åŒ…ï¼Œåˆ¤æ–­REæ˜¯å¦æœ‰å¤§ç¼“å†²ä½¿ç”¨æƒ
 					tmp = GetReBigMsgBuffIndex( src_fp, src_re );
 					
-					if ( 0 == tmp ) 	// ¸ÃREÃ»ÓĞ´ó»º³åµÄÊ¹ÓÃÈ¨
+					if ( 0 == tmp ) 	// è¯¥REæ²¡æœ‰å¤§ç¼“å†²çš„ä½¿ç”¨æƒ
 					{
-						// ·µ»Ø½ÓÊÕ¶ËÎ´¾ÍĞ÷µÄÓ¦´ğ
+						// è¿”å›æ¥æ”¶ç«¯æœªå°±ç»ªçš„åº”ç­”
 						p_msg_dat = 0;
 						MsgReceiverBusy( src_fp, src_re );
 						continue;
 					} 
 					else
 					{
-						// ´æÈë´óÊı¾İ»º³å
+						// å­˜å…¥å¤§æ•°æ®ç¼“å†²
 						tmp--;
 						p_msg_dat = msg_big_buff[tmp].buff;
 						p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
@@ -532,37 +532,37 @@ void FpgaGetMsgPkt( void )
 				}
 				else
 				{
-					// ÆÕÍ¨Êı¾İ°ü£¬Ö±½Ó±£´æ²¢´¦Àí
+					// æ™®é€šæ•°æ®åŒ…ï¼Œç›´æ¥ä¿å­˜å¹¶å¤„ç†
 					p_msg_dat = msg_buff[i];
 					msg_len = frame_len;
 				}
 			}
 			else
 			{
-				// ²»ÊÇ×îºóµÄÊı¾İÖ¡
+				// ä¸æ˜¯æœ€åçš„æ•°æ®å¸§
 				msg_end_flag = b_FALSE; 
 				
-				// Êı¾İĞèÒª±£´æµ½´ó»º³åÖĞ£¬ÏÈÅĞ¶ÏREÓĞÃ»ÓĞ´ó»º³åµÄÊ¹ÓÃÈ¨
+				// æ•°æ®éœ€è¦ä¿å­˜åˆ°å¤§ç¼“å†²ä¸­ï¼Œå…ˆåˆ¤æ–­REæœ‰æ²¡æœ‰å¤§ç¼“å†²çš„ä½¿ç”¨æƒ
 				tmp = GetReBigMsgBuffIndex( src_fp, src_re );
 				
-				if ( 0 == tmp )	 // REÃ»ÓĞ´óÊı¾İ»º³åµÄÊ¹ÓÃÈ¨
+				if ( 0 == tmp )	 // REæ²¡æœ‰å¤§æ•°æ®ç¼“å†²çš„ä½¿ç”¨æƒ
 				{  
 					tmp = GetFreeBigBuffIndex();
 
-					if ( 0 != tmp )	// ´óÊı¾İ»º³å¿ÕÏĞ,½«Æä·ÖÅä¸øµ±Ç°RE
+					if ( 0 != tmp )	// å¤§æ•°æ®ç¼“å†²ç©ºé—²,å°†å…¶åˆ†é…ç»™å½“å‰RE
 					{
 						tmp--;    
 						
 						msg_big_buff[tmp].owner = ((src_fp<<8)|src_re); 
 						msg_big_buff[tmp].time_out = MSG_BIG_PKT_TIME_OUT;
 
-						 // Êı¾İÖ¸ÕëÖ¸Ïò´óÊı¾İ»º³å    
+						 // æ•°æ®æŒ‡é’ˆæŒ‡å‘å¤§æ•°æ®ç¼“å†²    
 						p_msg_dat = msg_big_buff[tmp].buff; 
 						p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
 					}
-					else // ´óÊı¾İ»º³å±»Õ¼ÓÃ
+					else // å¤§æ•°æ®ç¼“å†²è¢«å ç”¨
 					{
-						// ·µ»Ø½ÓÊÕ¶ËÎ´¾ÍĞ÷µÄÓ¦´ğ
+						// è¿”å›æ¥æ”¶ç«¯æœªå°±ç»ªçš„åº”ç­”
 						p_msg_dat = 0;
 						MsgReceiverBusy( src_fp, src_re );
 						continue;
@@ -585,7 +585,7 @@ void FpgaGetMsgPkt( void )
  	
 		    }
            
-			// ÇĞ»»FIFOÒ³
+			// åˆ‡æ¢FIFOé¡µ
 			FpgaReadRegister( FPGA_REG_R_NEXT_MSG );
 
 			if ( b_TRUE == msg_end_flag )
@@ -600,7 +600,7 @@ void FpgaGetMsgPkt( void )
 					{
 						tmp--;
 						MsgHandle(msg_len, msg_big_buff[tmp].buff );
-						msg_big_buff[tmp].owner = 0;		// ÊÍ·Å´óÊı¾İ»º³å×ÊÔ´
+						msg_big_buff[tmp].owner = 0;		// é‡Šæ”¾å¤§æ•°æ®ç¼“å†²èµ„æº
 					}
 				}
 				else
@@ -620,12 +620,12 @@ void FpgaGetMsgPkt( void )
 
 /*************************************************************
 Name:FpgaSaveMsgDat
-Description: ´Ó¹â¿ÚÊı¾İFIFO¶ÁÈ¡Êı¾İ£¬´æÈëÖ¸¶¨»º³åÇø
+Description: ä»å…‰å£æ•°æ®FIFOè¯»å–æ•°æ®ï¼Œå­˜å…¥æŒ‡å®šç¼“å†²åŒº
 Input:
-	len: Òª¶ÁÈ¡µÄÊı¾İ³¤¶È
-	p_save_buff: »º³åÇøµØÖ·
+	len: è¦è¯»å–çš„æ•°æ®é•¿åº¦
+	p_save_buff: ç¼“å†²åŒºåœ°å€
 Output:void         
-Return: ÒÑ±£´æµÄÊı¾İ³¤¶È
+Return: å·²ä¿å­˜çš„æ•°æ®é•¿åº¦
 **************************************************************/
 INT16 FpgaSaveMsgDat( INT16 len, UCHAR8 *p_save_buff )
 {
@@ -651,12 +651,12 @@ INT16 FpgaSaveMsgDat( INT16 len, UCHAR8 *p_save_buff )
 #ifdef FPGA_MSG_ADD_ADDRESS
 /*************************************************************
 Name:FpgaGetMsgPkt
-Description: Í¨¹ıFPGA´Ó¹â¿ÚµÄ¶ÁÈ¡REÊı¾İ
+Description: é€šè¿‡FPGAä»å…‰å£çš„è¯»å–REæ•°æ®
 Input:
-	des_add: ½ÓÊÕÊı¾İ°üµÄµØÖ·£¬¸ß8Î»±íÊ¾¹â¿ÚºÅ£¬µÍ8Î»±íÊ¾REĞòºÅ
-	src_add: ·¢ËÍÊı¾İ°üµÄµØÖ·£¬¸ß8Î»±íÊ¾¹â¿ÚºÅ£¬µÍ8Î»±íÊ¾REĞòºÅ
-	length: Êı¾İ°ü×Ö½Ú³¤¶È
-	p_msg_dat: Ö»ÊÇÊı¾İ»º³åµÄÖ¸Õë
+	des_add: æ¥æ”¶æ•°æ®åŒ…çš„åœ°å€ï¼Œé«˜8ä½è¡¨ç¤ºå…‰å£å·ï¼Œä½8ä½è¡¨ç¤ºREåºå·
+	src_add: å‘é€æ•°æ®åŒ…çš„åœ°å€ï¼Œé«˜8ä½è¡¨ç¤ºå…‰å£å·ï¼Œä½8ä½è¡¨ç¤ºREåºå·
+	length: æ•°æ®åŒ…å­—èŠ‚é•¿åº¦
+	p_msg_dat: åªæ˜¯æ•°æ®ç¼“å†²çš„æŒ‡é’ˆ
 Output:void         
 Return:void
 **************************************************************/
@@ -677,28 +677,28 @@ void FpgaGetMsgPkt( void )
 	
 	if ( FPGA_LDST_OK != fpga_load_status )
 	{
-		// FPGA¹ÊÕÏ£¬·µ»Ø
+		// FPGAæ•…éšœï¼Œè¿”å›
 		return;    
 	} 
  
-	// ¹â¿ÚÊı¾İ°ü½ÓÊÕFIFO×´Ì¬,Î»¶ÔÓ¦,µÍ8Î»1±íÊ¾FIFOÓĞÊı¾İ,¸ß8Î»1±íÊ¾FIFOÂú 
+	// å…‰å£æ•°æ®åŒ…æ¥æ”¶FIFOçŠ¶æ€,ä½å¯¹åº”,ä½8ä½1è¡¨ç¤ºFIFOæœ‰æ•°æ®,é«˜8ä½1è¡¨ç¤ºFIFOæ»¡ 
 	msg_fifo_st = FpgaReadRegister( FPGA_REG_MSG_FIFO_ST );
 	
 	//TRACE_INFO_WP("fpga msg_fifo_st = %02x \r\n",msg_fifo_st); 
 	
-	// °´¹â¿ÚË³Ğò´¦ÀíÊı¾İ°ü 
+	// æŒ‰å…‰å£é¡ºåºå¤„ç†æ•°æ®åŒ… 
 	for ( i=0; i<FP_MAX; i++ )
 	{
-		// Ğ´ÈëÒª²Ù×÷µÄ¹â¿ÚºÅ
+		// å†™å…¥è¦æ“ä½œçš„å…‰å£å·
 		FPGA_ENABLE_WRITE;
 		FPGA_SET_OPT(i);
 		FPGA_DISABLE_WRITE; 
 
-		// ÀÛ¼ÆÊı¾İ°ü´íÎó¼ÆÊı £¬²¢Çå¿Õ¶ÔÓ¦¼Ä´æÆ÷
+		// ç´¯è®¡æ•°æ®åŒ…é”™è¯¯è®¡æ•° ï¼Œå¹¶æ¸…ç©ºå¯¹åº”å¯„å­˜å™¨
 		bit_err_cnt += FpgaReadRegister(FPGA_REG_PKT_ERR_COUNT);
 		FpgaReadRegister(FPGA_REG_CLEAR_PKT_ERR);
 //		TRACE_INFO_WP("fpga rx1\n"); 
-		// ÅĞ¶Ï¹â¿ÚÊÇ·ñÓĞÊÕµ½Êı¾İ°ü
+		// åˆ¤æ–­å…‰å£æ˜¯å¦æœ‰æ”¶åˆ°æ•°æ®åŒ…
 		if ( 0 != (msg_fifo_st & (0x0001<<i)) )
 		{
 			TRACE_INFO_WP("fpga rx2\n"); 
@@ -709,10 +709,10 @@ void FpgaGetMsgPkt( void )
 				*p_msg_dat++ = (UCHAR8)( 0x00FF & FpgaReadRegister( FPGA_REG_R_MSG_DAT ) );
 			} 
 
-	   		// ¶ÁÈ¡Êı¾İ³¤¶È
+	   		// è¯»å–æ•°æ®é•¿åº¦
 	   		frame_len = sys_temp_buff[4];	
 	   		
-	   		// ¶ÁÈ¡Êı¾İÖ¡±àºÅ 
+	   		// è¯»å–æ•°æ®å¸§ç¼–å· 
 			frame_no = sys_temp_buff[5]; 
 			frame_no1 = sys_temp_buff[5]; 
 
@@ -730,37 +730,37 @@ void FpgaGetMsgPkt( void )
 				((frame_no&MSG_FRAME_INDEX_MASK)>=MSG_MAX_FRAME_INDEX) )
 			{
 				TRACE_INFO_WP("FpgaGetMsgPkt--Err(%02X:%02X->%02X:%02X-%d).", src_fp, src_re, des_fp, des_re, frame_len);
-				// ÇĞ»»FIFOÒ³
+				// åˆ‡æ¢FIFOé¡µ
 				FpgaReadRegister( FPGA_REG_R_NEXT_MSG );
 				continue;
 			} 
 			
 			//TRACE_INFO_WP( "(%d) fi(0x%02X).", frame_len, frame_no );
 
-			frame_len--;	// ³¤¶È¼õ1,¼´ÎªÓĞĞ§Êı¾İ³¤¶È   
+			frame_len--;	// é•¿åº¦å‡1,å³ä¸ºæœ‰æ•ˆæ•°æ®é•¿åº¦   
 			  			 
-			if ( 0 != (frame_no & MSG_FRAME_END_FLAG) )	// ×îÄ©Ö¡
+			if ( 0 != (frame_no & MSG_FRAME_END_FLAG) )	// æœ€æœ«å¸§
 			{
 				msg_end_flag = b_TRUE;
 				
-				frame_no &= MSG_FRAME_INDEX_MASK;	// È¡µÃÖ¡±àºÅ
+				frame_no &= MSG_FRAME_INDEX_MASK;	// å–å¾—å¸§ç¼–å·
 				
-				// ÅĞ¶ÏÊÇ·ñÊÇ´óÊı¾İ°ü
+				// åˆ¤æ–­æ˜¯å¦æ˜¯å¤§æ•°æ®åŒ…
 				if ( frame_no > 0 )
 				{	
-					// ´óÊı¾İ°ü£¬ÅĞ¶ÏREÊÇ·ñÓĞ´ó»º³åÊ¹ÓÃÈ¨
+					// å¤§æ•°æ®åŒ…ï¼Œåˆ¤æ–­REæ˜¯å¦æœ‰å¤§ç¼“å†²ä½¿ç”¨æƒ
 					tmp = GetReBigMsgBuffIndex( src_fp, src_re,src_ree);
 					
-					if ( 0 == tmp ) 	// ¸ÃREÃ»ÓĞ´ó»º³åµÄÊ¹ÓÃÈ¨
+					if ( 0 == tmp ) 	// è¯¥REæ²¡æœ‰å¤§ç¼“å†²çš„ä½¿ç”¨æƒ
 					{
-						// ·µ»Ø½ÓÊÕ¶ËÎ´¾ÍĞ÷µÄÓ¦´ğ
+						// è¿”å›æ¥æ”¶ç«¯æœªå°±ç»ªçš„åº”ç­”
 						p_msg_dat = 0;
 						//MsgReceiverBusy( src_fp, src_re,src_ree);
 						continue;
 					} 
 					else
 					{
-						// ´æÈë´óÊı¾İ»º³å
+						// å­˜å…¥å¤§æ•°æ®ç¼“å†²
 						tmp--;
 						p_msg_dat = msg_big_buff[tmp].buff;
 						p_msg_dat += (FPGA_MSG_FRAME_LEN+ (frame_no-1) * (FPGA_MSG_FRAME_LEN-FPGA_MSG_ADDR_LEN) );
@@ -769,37 +769,37 @@ void FpgaGetMsgPkt( void )
 				}
 				else
 				{
-					// ÆÕÍ¨Êı¾İ°ü£¬Ö±½Ó±£´æ²¢´¦Àí
+					// æ™®é€šæ•°æ®åŒ…ï¼Œç›´æ¥ä¿å­˜å¹¶å¤„ç†
 					p_msg_dat = msg_buff[i];
 					msg_len   = frame_len;
 				}
 			}
 			else
 			{
-				// ²»ÊÇ×îºóµÄÊı¾İÖ¡
+				// ä¸æ˜¯æœ€åçš„æ•°æ®å¸§
 				msg_end_flag = b_FALSE; 
 				
-				// Êı¾İĞèÒª±£´æµ½´ó»º³åÖĞ£¬ÏÈÅĞ¶ÏREÓĞÃ»ÓĞ´ó»º³åµÄÊ¹ÓÃÈ¨
+				// æ•°æ®éœ€è¦ä¿å­˜åˆ°å¤§ç¼“å†²ä¸­ï¼Œå…ˆåˆ¤æ–­REæœ‰æ²¡æœ‰å¤§ç¼“å†²çš„ä½¿ç”¨æƒ
 				tmp = GetReBigMsgBuffIndex( src_fp, src_re,src_ree);
 				
-				if ( 0 == tmp )	 // REÃ»ÓĞ´óÊı¾İ»º³åµÄÊ¹ÓÃÈ¨
+				if ( 0 == tmp )	 // REæ²¡æœ‰å¤§æ•°æ®ç¼“å†²çš„ä½¿ç”¨æƒ
 				{  
 					tmp = GetFreeBigBuffIndex();
 
-					if ( 0 != tmp )	// ´óÊı¾İ»º³å¿ÕÏĞ,½«Æä·ÖÅä¸øµ±Ç°RE
+					if ( 0 != tmp )	// å¤§æ•°æ®ç¼“å†²ç©ºé—²,å°†å…¶åˆ†é…ç»™å½“å‰RE
 					{
 						tmp--;    
 						
 						msg_big_buff[tmp].owner = ((src_fp<<16)|(src_re<<8)|src_ree); 
 						msg_big_buff[tmp].time_out = MSG_BIG_PKT_TIME_OUT;
 
-						 // Êı¾İÖ¸ÕëÖ¸Ïò´óÊı¾İ»º³å    
+						 // æ•°æ®æŒ‡é’ˆæŒ‡å‘å¤§æ•°æ®ç¼“å†²    
 						p_msg_dat = msg_big_buff[tmp].buff; 
 						p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
 					}
-					else // ´óÊı¾İ»º³å±»Õ¼ÓÃ
+					else // å¤§æ•°æ®ç¼“å†²è¢«å ç”¨
 					{
-						// ·µ»Ø½ÓÊÕ¶ËÎ´¾ÍĞ÷µÄÓ¦´ğ
+						// è¿”å›æ¥æ”¶ç«¯æœªå°±ç»ªçš„åº”ç­”
 						p_msg_dat = 0;
 						//MsgReceiverBusy( src_fp, src_re,src_ree);
 						continue;
@@ -817,16 +817,16 @@ void FpgaGetMsgPkt( void )
 
 			WTD_CLR;
 			
-			//¹âÏË·¢ËÍÃ¿°üÊı¾İ¶¼Ìí¼ÓÄ¿µÄµØÖ·¡¢Ô´µØÖ·¡£20141205 
-			//´æ´¢Ê±Ö»´æ´¢µÚÒ»¸ö°üµÄÔ´µØÖ·ºÍÄ¿µÄµØÖ·
+			//å…‰çº¤å‘é€æ¯åŒ…æ•°æ®éƒ½æ·»åŠ ç›®çš„åœ°å€ã€æºåœ°å€ã€‚20141205 
+			//å­˜å‚¨æ—¶åªå­˜å‚¨ç¬¬ä¸€ä¸ªåŒ…çš„æºåœ°å€å’Œç›®çš„åœ°å€
 			if ( (frame_no1 & MSG_FRAME_END_FLAG) == 0 )
 			{
-				if ( (frame_no1 & MSG_FRAME_INDEX_MASK) == 0 )//µÚÒ»¸ö°ü
+				if ( (frame_no1 & MSG_FRAME_INDEX_MASK) == 0 )//ç¬¬ä¸€ä¸ªåŒ…
 				{
 					for ( k=0; k<frame_len; k++ )
 					{
 						//TRACE_INFO_WP("%d ",*p_msg_dat);
-						*p_msg_dat++ = sys_temp_buff[k+6];//È¥µô°üÍ·
+						*p_msg_dat++ = sys_temp_buff[k+6];//å»æ‰åŒ…å¤´
 					}
 				}
 				else
@@ -834,18 +834,18 @@ void FpgaGetMsgPkt( void )
 					for ( k=0; k<(frame_len-FPGA_MSG_ADDR_LEN); k++ )
 					{
 						//TRACE_INFO_WP("%d ",*p_msg_dat);
-						*p_msg_dat++ = sys_temp_buff[k+6+FPGA_MSG_ADDR_LEN];//È¥µô°üÍ·
+						*p_msg_dat++ = sys_temp_buff[k+6+FPGA_MSG_ADDR_LEN];//å»æ‰åŒ…å¤´
 					}
 				}
 			}
 			else
-			{//×îºóÒ»¸ö°ü
-					if ( (frame_no1 & MSG_FRAME_INDEX_MASK) == 0 )//µÚÒ»¸ö°ü
+			{//æœ€åä¸€ä¸ªåŒ…
+					if ( (frame_no1 & MSG_FRAME_INDEX_MASK) == 0 )//ç¬¬ä¸€ä¸ªåŒ…
 					{
 						for ( k=0; k<frame_len; k++ )
 						{
 							//TRACE_INFO_WP("%d ",*p_msg_dat);
-							*p_msg_dat++ = sys_temp_buff[k+6];//È¥µô°üÍ·
+							*p_msg_dat++ = sys_temp_buff[k+6];//å»æ‰åŒ…å¤´
 						}
 					}
 					else
@@ -853,13 +853,13 @@ void FpgaGetMsgPkt( void )
 						for ( k=0; k<(frame_len-FPGA_MSG_ADDR_LEN); k++ )
 						{
 							//TRACE_INFO_WP("%d ",*p_msg_dat);
-							*p_msg_dat++ = sys_temp_buff[k+6+FPGA_MSG_ADDR_LEN];//È¥µô°üÍ·
+							*p_msg_dat++ = sys_temp_buff[k+6+FPGA_MSG_ADDR_LEN];//å»æ‰åŒ…å¤´
 						}
 				
 					}
 			}
 			
-			// ÇĞ»»FIFOÒ³ 
+			// åˆ‡æ¢FIFOé¡µ 
 			FpgaReadRegister( FPGA_REG_R_NEXT_MSG );
 			TRACE_INFO_WP("fpga rx3\n"); 
 		//	TRACE_INFO_WP("msg_end_flag(%d)\n",msg_end_flag); 
@@ -876,7 +876,7 @@ void FpgaGetMsgPkt( void )
 //						TRACE_INFO_WP("msg_big_buff(%d)\n",tmp); 
 						tmp--;
 						MsgHandle(src_fp, src_re, src_ree,msg_len, msg_big_buff[tmp].buff);
-						msg_big_buff[tmp].owner = 0;		// ÊÍ·Å´óÊı¾İ»º³å×ÊÔ´
+						msg_big_buff[tmp].owner = 0;		// é‡Šæ”¾å¤§æ•°æ®ç¼“å†²èµ„æº
 #if 0  				
 							for(j=0;j<msg_len;j++)
 							{
@@ -920,12 +920,12 @@ void FpgaGetMsgPkt( void )
 #else
 /*************************************************************
 Name:FpgaGetMsgPkt
-Description: Í¨¹ıFPGA´Ó¹â¿ÚµÄ¶ÁÈ¡REÊı¾İ
+Description: é€šè¿‡FPGAä»å…‰å£çš„è¯»å–REæ•°æ®
 Input:
-	des_add: ½ÓÊÕÊı¾İ°üµÄµØÖ·£¬¸ß8Î»±íÊ¾¹â¿ÚºÅ£¬µÍ8Î»±íÊ¾REĞòºÅ
-	src_add: ·¢ËÍÊı¾İ°üµÄµØÖ·£¬¸ß8Î»±íÊ¾¹â¿ÚºÅ£¬µÍ8Î»±íÊ¾REĞòºÅ
-	length: Êı¾İ°ü×Ö½Ú³¤¶È
-	p_msg_dat: Ö»ÊÇÊı¾İ»º³åµÄÖ¸Õë
+	des_add: æ¥æ”¶æ•°æ®åŒ…çš„åœ°å€ï¼Œé«˜8ä½è¡¨ç¤ºå…‰å£å·ï¼Œä½8ä½è¡¨ç¤ºREåºå·
+	src_add: å‘é€æ•°æ®åŒ…çš„åœ°å€ï¼Œé«˜8ä½è¡¨ç¤ºå…‰å£å·ï¼Œä½8ä½è¡¨ç¤ºREåºå·
+	length: æ•°æ®åŒ…å­—èŠ‚é•¿åº¦
+	p_msg_dat: åªæ˜¯æ•°æ®ç¼“å†²çš„æŒ‡é’ˆ
 Output:void         
 Return:void
 **************************************************************/
@@ -946,26 +946,26 @@ void FpgaGetMsgPkt( void )
 	
 	if ( FPGA_LDST_OK != fpga_load_status )
 	{
-		// FPGA¹ÊÕÏ£¬·µ»Ø
+		// FPGAæ•…éšœï¼Œè¿”å›
 		return;    
 	} 
  
-	// ¹â¿ÚÊı¾İ°ü½ÓÊÕFIFO×´Ì¬,Î»¶ÔÓ¦,µÍ8Î»1±íÊ¾FIFOÓĞÊı¾İ,¸ß8Î»1±íÊ¾FIFOÂú 
+	// å…‰å£æ•°æ®åŒ…æ¥æ”¶FIFOçŠ¶æ€,ä½å¯¹åº”,ä½8ä½1è¡¨ç¤ºFIFOæœ‰æ•°æ®,é«˜8ä½1è¡¨ç¤ºFIFOæ»¡ 
 	msg_fifo_st = FpgaReadRegister( FPGA_REG_MSG_FIFO_ST );
 	
-	// °´¹â¿ÚË³Ğò´¦ÀíÊı¾İ°ü 
+	// æŒ‰å…‰å£é¡ºåºå¤„ç†æ•°æ®åŒ… 
 	for ( i=0; i<FP_MAX; i++ )
 	{
-		// Ğ´ÈëÒª²Ù×÷µÄ¹â¿ÚºÅ
+		// å†™å…¥è¦æ“ä½œçš„å…‰å£å·
 		FPGA_ENABLE_WRITE;
 		FPGA_SET_OPT(i);
 		FPGA_DISABLE_WRITE; 
 
-		// ÀÛ¼ÆÊı¾İ°ü´íÎó¼ÆÊı £¬²¢Çå¿Õ¶ÔÓ¦¼Ä´æÆ÷
+		// ç´¯è®¡æ•°æ®åŒ…é”™è¯¯è®¡æ•° ï¼Œå¹¶æ¸…ç©ºå¯¹åº”å¯„å­˜å™¨
 		bit_err_cnt += FpgaReadRegister(FPGA_REG_PKT_ERR_COUNT);
 		FpgaReadRegister(FPGA_REG_CLEAR_PKT_ERR);
 //		TRACE_INFO_WP("fpga rx1\n"); 
-		// ÅĞ¶Ï¹â¿ÚÊÇ·ñÓĞÊÕµ½Êı¾İ°ü
+		// åˆ¤æ–­å…‰å£æ˜¯å¦æœ‰æ”¶åˆ°æ•°æ®åŒ…
 		if ( 0 != (msg_fifo_st & (0x0001<<i)) )
 		{
 			TRACE_INFO_WP("fpga rx2\n"); 
@@ -976,10 +976,10 @@ void FpgaGetMsgPkt( void )
 				*p_msg_dat++ = (UCHAR8)( 0x00FF & FpgaReadRegister( FPGA_REG_R_MSG_DAT ) );
 			} 
 
-	   		// ¶ÁÈ¡Êı¾İ³¤¶È
+	   		// è¯»å–æ•°æ®é•¿åº¦
 	   		frame_len = sys_temp_buff[4];	
 	   		
-	   		// ¶ÁÈ¡Êı¾İÖ¡±àºÅ 
+	   		// è¯»å–æ•°æ®å¸§ç¼–å· 
 	   		frame_no = sys_temp_buff[5]; 
 			 
 			if ( 0 ==(frame_no & MSG_FRAME_INDEX_MASK) )
@@ -1002,37 +1002,37 @@ void FpgaGetMsgPkt( void )
 				((frame_no&MSG_FRAME_INDEX_MASK)>=MSG_MAX_FRAME_INDEX) )
 			{
 				TRACE_INFO_WP("FpgaGetMsgPkt--Err(%02X:%02X->%02X:%02X-%d).", src_fp[i], src_re[i], des_fp, des_re, frame_len);
-				// ÇĞ»»FIFOÒ³
+				// åˆ‡æ¢FIFOé¡µ
 				FpgaReadRegister( FPGA_REG_R_NEXT_MSG );
 				continue;
 			} 
 			
 			//TRACE_INFO_WP( "(%d) fi(0x%02X).", frame_len, frame_no );
 
-			frame_len--;	// ³¤¶È¼õ1,¼´ÎªÓĞĞ§Êı¾İ³¤¶È   
+			frame_len--;	// é•¿åº¦å‡1,å³ä¸ºæœ‰æ•ˆæ•°æ®é•¿åº¦   
 			  			 
-			if ( 0 != (frame_no & MSG_FRAME_END_FLAG) )	// ×îÄ©Ö¡
+			if ( 0 != (frame_no & MSG_FRAME_END_FLAG) )	// æœ€æœ«å¸§
 			{
 				msg_end_flag = b_TRUE;
 				
-				frame_no &= MSG_FRAME_INDEX_MASK;	// È¡µÃÖ¡±àºÅ
+				frame_no &= MSG_FRAME_INDEX_MASK;	// å–å¾—å¸§ç¼–å·
 				
-				// ÅĞ¶ÏÊÇ·ñÊÇ´óÊı¾İ°ü
+				// åˆ¤æ–­æ˜¯å¦æ˜¯å¤§æ•°æ®åŒ…
 				if ( frame_no > 0 )
 				{	
-					// ´óÊı¾İ°ü£¬ÅĞ¶ÏREÊÇ·ñÓĞ´ó»º³åÊ¹ÓÃÈ¨
+					// å¤§æ•°æ®åŒ…ï¼Œåˆ¤æ–­REæ˜¯å¦æœ‰å¤§ç¼“å†²ä½¿ç”¨æƒ
 					tmp = GetReBigMsgBuffIndex( src_fp[i], src_re[i],src_ree[i]);
 					
-					if ( 0 == tmp ) 	// ¸ÃREÃ»ÓĞ´ó»º³åµÄÊ¹ÓÃÈ¨
+					if ( 0 == tmp ) 	// è¯¥REæ²¡æœ‰å¤§ç¼“å†²çš„ä½¿ç”¨æƒ
 					{
-						// ·µ»Ø½ÓÊÕ¶ËÎ´¾ÍĞ÷µÄÓ¦´ğ
+						// è¿”å›æ¥æ”¶ç«¯æœªå°±ç»ªçš„åº”ç­”
 						p_msg_dat = 0;
 						MsgReceiverBusy( src_fp[i], src_re[i],src_ree[i]);
 						continue;
 					} 
 					else
 					{
-						// ´æÈë´óÊı¾İ»º³å
+						// å­˜å…¥å¤§æ•°æ®ç¼“å†²
 						tmp--;
 						p_msg_dat = msg_big_buff[tmp].buff;
 						p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
@@ -1041,37 +1041,37 @@ void FpgaGetMsgPkt( void )
 				}
 				else
 				{
-					// ÆÕÍ¨Êı¾İ°ü£¬Ö±½Ó±£´æ²¢´¦Àí
+					// æ™®é€šæ•°æ®åŒ…ï¼Œç›´æ¥ä¿å­˜å¹¶å¤„ç†
 					p_msg_dat = msg_buff[i];
 					msg_len   = frame_len;
 				}
 			}
 			else
 			{
-				// ²»ÊÇ×îºóµÄÊı¾İÖ¡
+				// ä¸æ˜¯æœ€åçš„æ•°æ®å¸§
 				msg_end_flag = b_FALSE; 
 				
-				// Êı¾İĞèÒª±£´æµ½´ó»º³åÖĞ£¬ÏÈÅĞ¶ÏREÓĞÃ»ÓĞ´ó»º³åµÄÊ¹ÓÃÈ¨
+				// æ•°æ®éœ€è¦ä¿å­˜åˆ°å¤§ç¼“å†²ä¸­ï¼Œå…ˆåˆ¤æ–­REæœ‰æ²¡æœ‰å¤§ç¼“å†²çš„ä½¿ç”¨æƒ
 				tmp = GetReBigMsgBuffIndex( src_fp[i], src_re[i],src_ree[i]);
 				
-				if ( 0 == tmp )	 // REÃ»ÓĞ´óÊı¾İ»º³åµÄÊ¹ÓÃÈ¨
+				if ( 0 == tmp )	 // REæ²¡æœ‰å¤§æ•°æ®ç¼“å†²çš„ä½¿ç”¨æƒ
 				{  
 					tmp = GetFreeBigBuffIndex();
 
-					if ( 0 != tmp )	// ´óÊı¾İ»º³å¿ÕÏĞ,½«Æä·ÖÅä¸øµ±Ç°RE
+					if ( 0 != tmp )	// å¤§æ•°æ®ç¼“å†²ç©ºé—²,å°†å…¶åˆ†é…ç»™å½“å‰RE
 					{
 						tmp--;    
 						
 						msg_big_buff[tmp].owner = ((src_fp[i]<<16)|(src_re[i]<<8)|src_ree[i]); 
 						msg_big_buff[tmp].time_out = MSG_BIG_PKT_TIME_OUT;
 
-						 // Êı¾İÖ¸ÕëÖ¸Ïò´óÊı¾İ»º³å    
+						 // æ•°æ®æŒ‡é’ˆæŒ‡å‘å¤§æ•°æ®ç¼“å†²    
 						p_msg_dat = msg_big_buff[tmp].buff; 
 						p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
 					}
-					else // ´óÊı¾İ»º³å±»Õ¼ÓÃ
+					else // å¤§æ•°æ®ç¼“å†²è¢«å ç”¨
 					{
-						// ·µ»Ø½ÓÊÕ¶ËÎ´¾ÍĞ÷µÄÓ¦´ğ
+						// è¿”å›æ¥æ”¶ç«¯æœªå°±ç»ªçš„åº”ç­”
 						p_msg_dat = 0;
 						MsgReceiverBusy( src_fp[i], src_re[i],src_ree[i]);
 						continue;
@@ -1093,7 +1093,7 @@ void FpgaGetMsgPkt( void )
 				*p_msg_dat++ = sys_temp_buff[k+6];
 			}  
 			
-			// ÇĞ»»FIFOÒ³ 
+			// åˆ‡æ¢FIFOé¡µ 
 			FpgaReadRegister( FPGA_REG_R_NEXT_MSG );
 			TRACE_INFO_WP("fpga rx3\n"); 
 		//	TRACE_INFO_WP("msg_end_flag(%d)\n",msg_end_flag); 
@@ -1110,7 +1110,7 @@ void FpgaGetMsgPkt( void )
 //						TRACE_INFO_WP("msg_big_buff(%d)\n",tmp); 
 						tmp--;
 						MsgHandle(src_fp[i], src_re[i], src_ree[i],msg_len, msg_big_buff[tmp].buff);
-						msg_big_buff[tmp].owner = 0;		// ÊÍ·Å´óÊı¾İ»º³å×ÊÔ´
+						msg_big_buff[tmp].owner = 0;		// é‡Šæ”¾å¤§æ•°æ®ç¼“å†²èµ„æº
 #if 0  				
 							for(j=0;j<msg_len;j++)
 							{
@@ -1155,12 +1155,12 @@ void FpgaGetMsgPkt( void )
 #if 0
 /*************************************************************
 Name:FpgaGetMsgPkt
-Description: Í¨¹ıFPGAÏò¹â¿ÚµÄRE·¢ËÍÊı¾İ
+Description: é€šè¿‡FPGAå‘å…‰å£çš„REå‘é€æ•°æ®
 Input:
-	des_add: ½ÓÊÕÊı¾İ°üµÄµØÖ·£¬¸ß8Î»±íÊ¾¹â¿ÚºÅ£¬µÍ8Î»±íÊ¾REĞòºÅ
-	src_add: ·¢ËÍÊı¾İ°üµÄµØÖ·£¬¸ß8Î»±íÊ¾¹â¿ÚºÅ£¬µÍ8Î»±íÊ¾REĞòºÅ
-	length: Êı¾İ°ü×Ö½Ú³¤¶È
-	p_msg_dat: Ö»ÊÇÊı¾İ»º³åµÄÖ¸Õë
+	des_add: æ¥æ”¶æ•°æ®åŒ…çš„åœ°å€ï¼Œé«˜8ä½è¡¨ç¤ºå…‰å£å·ï¼Œä½8ä½è¡¨ç¤ºREåºå·
+	src_add: å‘é€æ•°æ®åŒ…çš„åœ°å€ï¼Œé«˜8ä½è¡¨ç¤ºå…‰å£å·ï¼Œä½8ä½è¡¨ç¤ºREåºå·
+	length: æ•°æ®åŒ…å­—èŠ‚é•¿åº¦
+	p_msg_dat: åªæ˜¯æ•°æ®ç¼“å†²çš„æŒ‡é’ˆ
 Output:void         
 Return:void
 **************************************************************/
@@ -1180,45 +1180,45 @@ void FpgaGetMsgPkt( void )
 	WTD_CLR;
 	if ( FPGA_LDST_OK != fpga_load_status )
 	{
-		// FPGA¹ÊÕÏ£¬·µ»Ø
+		// FPGAæ•…éšœï¼Œè¿”å›
 		return;
 	}
 
-	// ¶ÁÈ¡Êı¾İ°üFIFO×´Ì¬
+	// è¯»å–æ•°æ®åŒ…FIFOçŠ¶æ€
 	msg_fifo_st = FpgaReadRegister( FPGA_REG_MSG_FIFO_ST );
 	
-	// °´¹â¿ÚË³Ğò´¦ÀíÊı¾İ°ü
+	// æŒ‰å…‰å£é¡ºåºå¤„ç†æ•°æ®åŒ…
 	for ( i=0; i<FP_MAX; i++ )
 	{
-		// Ğ´ÈëÒª²Ù×÷µÄ¹â¿ÚºÅ
+		// å†™å…¥è¦æ“ä½œçš„å…‰å£å·
 		FPGA_ENABLE_WRITE;
 		FPGA_SET_OPT(i);
 		FPGA_DISABLE_WRITE;
 
-		// ÀÛ¼ÆÊı¾İ°ü´íÎó¼ÆÊı
+		// ç´¯è®¡æ•°æ®åŒ…é”™è¯¯è®¡æ•°
 		bit_err_cnt += FpgaReadRegister(FPGA_REG_PKT_ERR_COUNT);
 		FpgaReadRegister(FPGA_REG_CLEAR_PKT_ERR);
 
 		TRACE_INFO_WP( "test1");
 		TRACE_INFO_WP( "msg_fifo_st=%d",msg_fifo_st);
-		// ÅĞ¶Ï¹â¿ÚÊÇ·ñÓĞÊÕµ½Êı¾İ°ü
+		// åˆ¤æ–­å…‰å£æ˜¯å¦æœ‰æ”¶åˆ°æ•°æ®åŒ…
 		if ( 0 != (msg_fifo_st & (0x0001<<i)) )
 		{
 			TRACE_INFO_WP("fpga rx");
 	
-			// ¶ÁÈ¡Ä¿µÄµØÖ·
+			// è¯»å–ç›®çš„åœ°å€
 			des_fp = FpgaReadRegister( FPGA_REG_R_MSG_DAT )+2;
 			des_re = FpgaReadRegister( FPGA_REG_R_MSG_DAT )+1;
 			des_ree = FpgaReadRegister( FPGA_REG_R_MSG_DAT );
-			// ¶ÁÈ¡Ô´µØÖ·
+			// è¯»å–æºåœ°å€
 			src_fp = FpgaReadRegister( FPGA_REG_R_MSG_DAT )+2;
 			src_re = FpgaReadRegister( FPGA_REG_R_MSG_DAT )+1;
 			src_ree = FpgaReadRegister( FPGA_REG_R_MSG_DAT );
 			
-			// ¶ÁÈ¡Êı¾İ³¤¶È
+			// è¯»å–æ•°æ®é•¿åº¦
 			frame_len = FpgaReadRegister( FPGA_REG_R_MSG_DAT );
 			
-			// ¶ÁÈ¡Êı¾İÖ¡±àºÅ
+			// è¯»å–æ•°æ®å¸§ç¼–å·
 			frame_no = FpgaReadRegister( FPGA_REG_R_MSG_DAT );
 
 			TRACE_INFO_WP(" test(%02X:%02X->%02X:%02X-%d).", src_fp, src_re, des_fp, des_re, frame_len);//add20121127
@@ -1227,38 +1227,38 @@ void FpgaGetMsgPkt( void )
 				((frame_no&MSG_FRAME_INDEX_MASK)>=MSG_MAX_FRAME_INDEX) )
 			{
 				TRACE_INFO_WP(" Err(%02X:%02X->%02X:%02X-%d).", src_fp, src_re, des_fp, des_re, frame_len);
-				// ÇĞ»»FIFOÒ³
+				// åˆ‡æ¢FIFOé¡µ
 				FpgaReadRegister( FPGA_REG_R_NEXT_MSG );
 				continue;
 			}
 			
 			TRACE_INFO_WP( "(%d) fi(0x%02X).", frame_len, frame_no );
 
-			frame_len--;	// ³¤¶È¼õ1,¼´ÎªÓĞĞ§Êı¾İ³¤¶È
+			frame_len--;	// é•¿åº¦å‡1,å³ä¸ºæœ‰æ•ˆæ•°æ®é•¿åº¦
 
-			// ÊÍ·Å»º³åÇøÖ¸Õë
+			// é‡Šæ”¾ç¼“å†²åŒºæŒ‡é’ˆ
 			p_msg_dat = 0;
 			
-			if ( 0 != (frame_no & MSG_FRAME_END_FLAG) )	// ×îÄ©Ö¡
+			if ( 0 != (frame_no & MSG_FRAME_END_FLAG) )	// æœ€æœ«å¸§
 			{
 				msg_end_flag = b_TRUE;
 				
-				frame_no &= MSG_FRAME_INDEX_MASK;	// È¡µÃÖ¡±àºÅ
+				frame_no &= MSG_FRAME_INDEX_MASK;	// å–å¾—å¸§ç¼–å·
 				
-				// ÅĞ¶ÏÊÇ·ñÊÇ´óÊı¾İ°ü
+				// åˆ¤æ–­æ˜¯å¦æ˜¯å¤§æ•°æ®åŒ…
 				if ( frame_no > 0 )
 				{	
-					// ´óÊı¾İ°ü£¬ÅĞ¶ÏREÊÇ·ñÓĞ´ó»º³åÊ¹ÓÃÈ¨
+					// å¤§æ•°æ®åŒ…ï¼Œåˆ¤æ–­REæ˜¯å¦æœ‰å¤§ç¼“å†²ä½¿ç”¨æƒ
 					tmp = GetReBigMsgBuffIndex( src_fp, src_re );
 					
-					if ( 0 == tmp ) 	// ¸ÃREÃ»ÓĞ´ó»º³åµÄÊ¹ÓÃÈ¨
+					if ( 0 == tmp ) 	// è¯¥REæ²¡æœ‰å¤§ç¼“å†²çš„ä½¿ç”¨æƒ
 					{
-						// ·µ»Ø½ÓÊÕ¶ËÎ´¾ÍĞ÷µÄÓ¦´ğ
+						// è¿”å›æ¥æ”¶ç«¯æœªå°±ç»ªçš„åº”ç­”
 						MsgReceiverBusy( src_fp, src_re );
 					}
 					else
 					{
-						// ´æÈë´óÊı¾İ»º³å
+						// å­˜å…¥å¤§æ•°æ®ç¼“å†²
 						tmp--;
 						p_msg_dat = msg_big_buff[tmp].buff;
 						p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
@@ -1267,37 +1267,37 @@ void FpgaGetMsgPkt( void )
 				}
 				else
 				{
-					// ÆÕÍ¨Êı¾İ°ü£¬Ö±½Ó±£´æ²¢´¦Àí
+					// æ™®é€šæ•°æ®åŒ…ï¼Œç›´æ¥ä¿å­˜å¹¶å¤„ç†
 					p_msg_dat = msg_buff[i];
 					msg_len = frame_len;
 				}
 			}
 			else
 			{
-				// ²»ÊÇ×îºóµÄÊı¾İÖ¡
+				// ä¸æ˜¯æœ€åçš„æ•°æ®å¸§
 				msg_end_flag = b_FALSE;
 				
-				// Êı¾İĞèÒª±£´æµ½´ó»º³åÖĞ£¬ÏÈÅĞ¶ÏREÓĞÃ»ÓĞ´ó»º³åµÄÊ¹ÓÃÈ¨
+				// æ•°æ®éœ€è¦ä¿å­˜åˆ°å¤§ç¼“å†²ä¸­ï¼Œå…ˆåˆ¤æ–­REæœ‰æ²¡æœ‰å¤§ç¼“å†²çš„ä½¿ç”¨æƒ
 				//if ( 0 == (re_msg_buff_st[src_fp] & (0x00000001<<src_re)) )
 				tmp = GetReBigMsgBuffIndex( src_fp, src_re );
-				if ( 0 == tmp )	 // REÃ»ÓĞ´óÊı¾İ»º³åµÄÊ¹ÓÃÈ¨
+				if ( 0 == tmp )	 // REæ²¡æœ‰å¤§æ•°æ®ç¼“å†²çš„ä½¿ç”¨æƒ
 				{
 					tmp = GetFreeBigBuffIndex();
 
-					if ( 0 != tmp )	// ´óÊı¾İ»º³å¿ÕÏĞ,½«Æä·ÖÅä¸øµ±Ç°RE
+					if ( 0 != tmp )	// å¤§æ•°æ®ç¼“å†²ç©ºé—²,å°†å…¶åˆ†é…ç»™å½“å‰RE
 					{
 						tmp--;
 						
 						msg_big_buff[tmp].owner = ((src_fp<<8)|src_re);
 						msg_big_buff[tmp].time_out = MSG_BIG_PKT_TIME_OUT;
 
-						// Êı¾İÖ¸ÕëÖ¸Ïò´óÊı¾İ»º³å
+						// æ•°æ®æŒ‡é’ˆæŒ‡å‘å¤§æ•°æ®ç¼“å†²
 						p_msg_dat = msg_big_buff[tmp].buff;
 						p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
 					}
-					else		// ´óÊı¾İ»º³å±»Õ¼ÓÃ
+					else		// å¤§æ•°æ®ç¼“å†²è¢«å ç”¨
 					{
-						// ·µ»Ø½ÓÊÕ¶ËÎ´¾ÍĞ÷µÄÓ¦´ğ
+						// è¿”å›æ¥æ”¶ç«¯æœªå°±ç»ªçš„åº”ç­”
 						MsgReceiverBusy( src_fp, src_re );
 					}
 				}
@@ -1318,11 +1318,11 @@ void FpgaGetMsgPkt( void )
 			tmp = 0;
 			if ( 0!=p_msg_dat )
 			{
-				// ¶ÁÈ¡Êı¾İ
+				// è¯»å–æ•°æ®
 				tmp = FpgaSaveMsgDat( frame_len, p_msg_dat );
 			}
 
-			// ÇĞ»»FIFOÒ³
+			// åˆ‡æ¢FIFOé¡µ
 			FpgaReadRegister( FPGA_REG_R_NEXT_MSG );
 
 			if (( tmp>0 )&&( tmp<=FPGA_MSG_BUFF_SIZE))
@@ -1330,7 +1330,7 @@ void FpgaGetMsgPkt( void )
 				WTD_CLR;
 				if ( 0!=p_msg_dat )
 				{
-					// ´¦ÀíÏûÏ¢°ü
+					// å¤„ç†æ¶ˆæ¯åŒ…
 					if ( b_TRUE == msg_end_flag )
 					{
 						TRACE_INFO_WP("handle(%d).", msg_len);
@@ -1341,7 +1341,7 @@ void FpgaGetMsgPkt( void )
 							{
 								tmp--;
 								MsgHandle( src_fp, src_re, src_ree,msg_len, msg_big_buff[tmp].buff );
-								msg_big_buff[tmp].owner = 0;		// ÊÍ·Å´óÊı¾İ»º³å×ÊÔ´
+								msg_big_buff[tmp].owner = 0;		// é‡Šæ”¾å¤§æ•°æ®ç¼“å†²èµ„æº
 							}
 						}
 						else
@@ -1379,14 +1379,14 @@ void FpgaGetMsgPkt( void )
 //#if 0//20130621
 /*************************************************************
 Name:         FpgaReadThrDat
-Description:  ´ÓÖ¸¶¨µÄ¹â¿ÚÖĞ¶ÁÈ¡Í¸´«Êı¾İ
+Description:  ä»æŒ‡å®šçš„å…‰å£ä¸­è¯»å–é€ä¼ æ•°æ®
 Input:         void
 Output:        void          
 Return:        void
 **************************************************************/
 void FpgaReadThrDat()
 {
-	_T_THR_FIFO * p_fifo;	// FIFOÖ¸Õë
+	_T_THR_FIFO * p_fifo;	// FIFOæŒ‡é’ˆ
 	UINT16 fp; 
 	UCHAR8 dat; 
 
@@ -1394,51 +1394,51 @@ void FpgaReadThrDat()
 
 	if ( FPGA_LDST_OK != fpga_load_status )
 	{
-		// FPGA¹ÊÕÏ£¬·µ»Ø
+		// FPGAæ•…éšœï¼Œè¿”å›
 		return; 
 	}
 
-	// FPGAÍ¸´«½ÓÊÕFIFOÖ¸Õë
+	// FPGAé€ä¼ æ¥æ”¶FIFOæŒ‡é’ˆ
 	p_fifo = (0==thr_utx_fifo_use) ? (&uart_thr_tx_fifo[1]) : (&uart_thr_tx_fifo[0]);	
 	//TRACE_INFO("FpgaReadThrDat---thr_utx_fifo_use=[%x]\r\n",thr_utx_fifo_use);
 
-	// Ñ­»·¶ÁÈ¡8¸ö¹â¿ÚµÄÍ¸´«Êı¾İ
+	// å¾ªç¯è¯»å–8ä¸ªå…‰å£çš„é€ä¼ æ•°æ®
 	for ( fp=0; fp<FP_MAX; fp++ )	
 	{
-		FPGA_ENABLE_WRITE;	// ´ò¿ªFPGAĞ´Ê¹ÄÜ 
-		FPGA_SET_OPT(fp);	// ÇĞ»»¹â¿ÚºÅ 
-		FPGA_DISABLE_WRITE;	// ¹Ø±ÕFPGAĞ´Ê¹ÄÜ 
+		FPGA_ENABLE_WRITE;	// æ‰“å¼€FPGAå†™ä½¿èƒ½ 
+		FPGA_SET_OPT(fp);	// åˆ‡æ¢å…‰å£å· 
+		FPGA_DISABLE_WRITE;	// å…³é—­FPGAå†™ä½¿èƒ½ 
 
-		//thr_func.pf_en_tx_it(0);	// ¹Ø±ÕÍ¸´«´®¿Ú·¢ËÍÖĞ¶Ï£¬·ÀÖ¹´ËÊ±´®¿ÚÖĞ¶Ï¸Ä±ä¶ÓÁĞ½á¹¹
+		//thr_func.pf_en_tx_it(0);	// å…³é—­é€ä¼ ä¸²å£å‘é€ä¸­æ–­ï¼Œé˜²æ­¢æ­¤æ—¶ä¸²å£ä¸­æ–­æ”¹å˜é˜Ÿåˆ—ç»“æ„
 
-		if ( IS_OPT_ENABLE(fp) )	// ¹â¿ÚÒÑÊ¹ÄÜ
+		if ( IS_OPT_ENABLE(fp) )	// å…‰å£å·²ä½¿èƒ½
 		{
 			while ( p_fifo->count < THR_FIFO_SIZE )
 			{
 				//TRACE_INFO("mau_rev_thr_dat_from_meu---dat_flag=[%x],fp=[%d]\r\n",FpgaReadRegister(FPGA_REG_THR_FIFO_ST) & (1<<fp),fp);
 				
-				// FPGAÍ¸´«»º³åÓĞÊı¾İ
+				// FPGAé€ä¼ ç¼“å†²æœ‰æ•°æ®
 				if ( 0 != (FpgaReadRegister(FPGA_REG_THR_FIFO_ST) & (1<<fp)) )	
 				{
-					// ´ÓFPGAÍ¸´«»º³å¶ÁÈ¡Êı¾İ
+					// ä»FPGAé€ä¼ ç¼“å†²è¯»å–æ•°æ®
 					dat = (UCHAR8)(0xff&FpgaReadRegister(FPGA_REG_R_THR_DAT));	
 
-					// ±£´æÊı¾İµ½FIFOÖĞ, Êı¾İ¸öÊı+1
+					// ä¿å­˜æ•°æ®åˆ°FIFOä¸­, æ•°æ®ä¸ªæ•°+1
 					p_fifo->p_dat[p_fifo->count++] = dat;
 					TRACE_INFO("dat=%02x,p_fifo->count=%dr\n",dat,p_fifo->count);
 				}
 				else
 				{
 					
-				// Ìø³ö¶ÁÏÂÒ»¹â¿ÚÊı¾İ
+				// è·³å‡ºè¯»ä¸‹ä¸€å…‰å£æ•°æ®
 					break;	
 				}
 				WTD_CLR;
 			}
 		}
-		//if ( 0==thr_tx_end )			// Ç°Ò»´Î´«ÊäÎ´Íê³É
+		//if ( 0==thr_tx_end )			// å‰ä¸€æ¬¡ä¼ è¾“æœªå®Œæˆ
 		//{
-			//thr_func.pf_en_tx_it(1);	// »Ö¸´Í¸´«´®¿Ú·¢ËÍÖĞ¶Ï
+			//thr_func.pf_en_tx_it(1);	// æ¢å¤é€ä¼ ä¸²å£å‘é€ä¸­æ–­
 		//}
 	}
 
@@ -1448,26 +1448,26 @@ void FpgaReadThrDat()
 
 /*************************************************************
 Name:        FpgaSendThrDat
-Description: FPGA·¢ËÍÍ¸´«Êı¾İ£¬²»ĞèÒªÖ¸¶¨¹â¿ÚµÄ²Ù×÷
+Description: FPGAå‘é€é€ä¼ æ•°æ®ï¼Œä¸éœ€è¦æŒ‡å®šå…‰å£çš„æ“ä½œ
 Input:       void     
 Output:      void         
 Return:      void
 **************************************************************/
 void FpgaSendThrDat()
 {
-	_T_THR_FIFO * p_fifo;	// FIFOÖ¸Õë
+	_T_THR_FIFO * p_fifo;	// FIFOæŒ‡é’ˆ
 	UCHAR8 wait_time = 0; 
 	UCHAR8 dat;
 	UINT16 count = 0;
 	UINT16 i=0;
 
-	// FPGAÍ¸´«·¢ËÍFIFOÖ¸Õë
+	// FPGAé€ä¼ å‘é€FIFOæŒ‡é’ˆ
 	p_fifo = (0==thr_urx_fifo_use) ? (&uart_thr_rx_fifo[1]) : (&uart_thr_rx_fifo[0]);
 
-	// ¸´Î»Êı¾İË÷ÒıÖµ
+	// å¤ä½æ•°æ®ç´¢å¼•å€¼
 	p_fifo->index = 0;
 #if 0
-/*--------------------------ÒÔÏÂÎª²âÊÔÍ¸´«Êı¾İ--------------------------*/	
+/*--------------------------ä»¥ä¸‹ä¸ºæµ‹è¯•é€ä¼ æ•°æ®--------------------------*/	
 	p_fifo->p_dat[ p_fifo->index++ ]='T';
 	p_fifo->p_dat[ p_fifo->index++ ]='h';
 	p_fifo->p_dat[ p_fifo->index++ ]='r';
@@ -1485,7 +1485,7 @@ void FpgaSendThrDat()
 	p_fifo->p_dat[ p_fifo->index++ ]='u';		
 	p_fifo->count=p_fifo->index;
 	p_fifo->index = 0;
-/*--------------------------ÒÔÉÏÎª²âÊÔÍ¸´«Êı¾İ--------------------------*/	
+/*--------------------------ä»¥ä¸Šä¸ºæµ‹è¯•é€ä¼ æ•°æ®--------------------------*/	
 #endif
 	//TRACE_INFO("-------------------1ThrUart_send_dat_to_meu---p_fifo->count=[%d]\r\n",p_fifo->count);	
 	
@@ -1494,18 +1494,18 @@ void FpgaSendThrDat()
 		TRACE_INFO("-------------------1ThrUart_send_dat_to_meu---p_fifo->count=%d:  ",p_fifo->count);	
 		TRACE_INFO("data: %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x\r\n", p_fifo->p_dat[0], p_fifo->p_dat[1],p_fifo->p_dat[2], p_fifo->p_dat[3],p_fifo->p_dat[4], p_fifo->p_dat[5],p_fifo->p_dat[6], p_fifo->p_dat[7],p_fifo->p_dat[8], p_fifo->p_dat[9],p_fifo->p_dat[10], p_fifo->p_dat[11],p_fifo->p_dat[12], p_fifo->p_dat[13],p_fifo->p_dat[14], p_fifo->p_dat[15],p_fifo->p_dat[16], p_fifo->p_dat[17],p_fifo->p_dat[18]);	
 	}
-	// Ñ­»··¢ËÍÊı¾İ
+	// å¾ªç¯å‘é€æ•°æ®
 	while ( p_fifo->count > 0 ) 
 	{
 		//printf("aa");
 		//TRACE_INFO("2ThrUart_send_dat_to_meu---FpgaReadRegister(FPGA_REG_R_THR_IDLE_ST)=[%x]\r\n",FpgaReadRegister(FPGA_REG_R_THR_IDLE_ST));	
 		
-		// µÈ´ıFPGAÍ¸´«»º³å¿ÕÏĞ
+		// ç­‰å¾…FPGAé€ä¼ ç¼“å†²ç©ºé—²
 		if ( 0==(0x01&FpgaReadRegister(FPGA_REG_R_THR_IDLE_ST)) )
 		{
-			UsNopDelay(1);	// ÑÓÊ±1us
-			wait_time++;		// µÈ´ıÊ±¼ä+1
-			if ( wait_time>150 )	// ×î¶àÑÓÊ±100us£¬»º³åÈÔ·±Ã¦ÔòÍË³ö
+			UsNopDelay(1);	// å»¶æ—¶1us
+			wait_time++;		// ç­‰å¾…æ—¶é—´+1
+			if ( wait_time>150 )	// æœ€å¤šå»¶æ—¶100usï¼Œç¼“å†²ä»ç¹å¿™åˆ™é€€å‡º
 			{
 				break;
 			}
@@ -1515,23 +1515,23 @@ void FpgaSendThrDat()
 			}
 		}
 		
-		// µÈ´ıÊ±¼äÇåÁã
+		// ç­‰å¾…æ—¶é—´æ¸…é›¶
 		wait_time = 0;
 		
-		// ´ÓFIFOÈ¡³öÊı¾İ,FIFO¶ÁÖ¸ÕëºóÒÆ
+		// ä»FIFOå–å‡ºæ•°æ®,FIFOè¯»æŒ‡é’ˆåç§»
 		dat = p_fifo->p_dat[ p_fifo->index++ ];	
 		
 		//TRACE_INFO("dat=%02x,count=[%d] ",dat,p_fifo->count);	
 		//UsNopDelay(5000);
-		// ¹âÏË·¢ËÍÍ¸´«Êı¾İ
-		FPGA_ENABLE_WRITE;		// ´ò¿ªFPGAĞ´Ê¹ÄÜ
-		FpgaWriteRegister( FPGA_REG_W_THR_DAT, dat );	// Ğ´ÈëÊı¾İµ½FPGAÍ¸´«»º³å
-		FPGA_DISABLE_WRITE;		// ¹Ø±ÕFPGAĞ´Ê¹ÄÜ
+		// å…‰çº¤å‘é€é€ä¼ æ•°æ®
+		FPGA_ENABLE_WRITE;		// æ‰“å¼€FPGAå†™ä½¿èƒ½
+		FpgaWriteRegister( FPGA_REG_W_THR_DAT, dat );	// å†™å…¥æ•°æ®åˆ°FPGAé€ä¼ ç¼“å†²
+		FPGA_DISABLE_WRITE;		// å…³é—­FPGAå†™ä½¿èƒ½
 
 		
 		if(sys_param_1b[MADD_PASSTHROUGH_EN].val)
 		{
-			TRACE_INFO("ÕıÔÚ²âÊÔÍ¸´«485......uart_index=%d\r\n",uart_index);
+			TRACE_INFO("æ­£åœ¨æµ‹è¯•é€ä¼ 485......uart_index=%d\r\n",uart_index);
 	
 			uart_test_tx_buff[uart_index++]=dat; 
 	
@@ -1541,7 +1541,7 @@ void FpgaSendThrDat()
 				for(i=0;i<uart_index;i++)
 				{
 					thr_func.pf_send_byte(uart_test_tx_buff[i]);
-					TRACE_INFO("ÕıÔÚ·¢ËÍ²âÊÔÍ¸´«485Êı¾İ[%d]:[%x]......\r\n",i,uart_test_tx_buff[i]);
+					TRACE_INFO("æ­£åœ¨å‘é€æµ‹è¯•é€ä¼ 485æ•°æ®[%d]:[%x]......\r\n",i,uart_test_tx_buff[i]);
 				}
 				uart_index=0;
 				uart_flag=0;
@@ -1554,10 +1554,10 @@ void FpgaSendThrDat()
 		}
 
 		
-		// FIFOÊı¾İ¸öÊı-1
+		// FIFOæ•°æ®ä¸ªæ•°-1
 		p_fifo->count--;	
 
-		// Î¹¹·
+		// å–‚ç‹—
 		if ( ++count > 1000 )
 		{
 			WTD_CLR;
@@ -1565,17 +1565,17 @@ void FpgaSendThrDat()
 		}
 	}
 
-	// Êı¾İ·¢ËÍÍê³É£¬ÈôÍ¸´«´®¿Ú½ÓÊÕFIFOÖĞÓĞÊı¾İÔòÇĞ»»FIFO
+	// æ•°æ®å‘é€å®Œæˆï¼Œè‹¥é€ä¼ ä¸²å£æ¥æ”¶FIFOä¸­æœ‰æ•°æ®åˆ™åˆ‡æ¢FIFO
 	if ( 0 != uart_thr_rx_fifo[thr_urx_fifo_use].count )
 	{
-		// ¸´Î»µ±Ç°FIFO
+		// å¤ä½å½“å‰FIFO
 		p_fifo->index = 0;
 		p_fifo->count = 0;
-		// ¹Ø±Õ½ÓÊÕÖĞ¶Ï
+		// å…³é—­æ¥æ”¶ä¸­æ–­
 		thr_func.pf_ie_rx_dat(0);
-		// ÇĞ»»FIFO
+		// åˆ‡æ¢FIFO
 		thr_urx_fifo_use = 1-thr_urx_fifo_use;
-		// »Ö¸´½ÓÊÕÖĞ¶Ï
+		// æ¢å¤æ¥æ”¶ä¸­æ–­
 		thr_func.pf_ie_rx_dat(1);
 	}
 
@@ -1584,15 +1584,15 @@ void FpgaSendThrDat()
 
 /*************************************************************
 Name:        FpgaGetTopoStaus
-Description: »ñÈ¡ÍØÆË½á¹¹µÄ»ù±¾ĞÅÏ¢
+Description: è·å–æ‹“æ‰‘ç»“æ„çš„åŸºæœ¬ä¿¡æ¯
 Input:
-	      opt: ¹â¿ÚºÅ£¬´Ó0Æğ
-	      p_fp_info: Ö¸Ïò´æ·Å¹â¿ÚĞÅÏ¢µÄ½á¹¹ÌåÖ¸Õë
+	      opt: å…‰å£å·ï¼Œä»0èµ·
+	      p_fp_info: æŒ‡å‘å­˜æ”¾å…‰å£ä¿¡æ¯çš„ç»“æ„ä½“æŒ‡é’ˆ
 	      
 Output:      void         
 Return:
-		1-¶ÁÈ¡³É¹¦
-		0-¶ÁÈ¡Ê§°Ü
+		1-è¯»å–æˆåŠŸ
+		0-è¯»å–å¤±è´¥
 **************************************************************/
 BOOL FpgaGetTopoStaus( UCHAR8 opt, _T_FP_INFO* p_fp_info )
 {
@@ -1605,26 +1605,26 @@ BOOL FpgaGetTopoStaus( UCHAR8 opt, _T_FP_INFO* p_fp_info )
 		return b_FALSE;
 	} 
     
-	// Ğ´ÈëÒª²Ù×÷µÄ¹â¿ÚºÅ   
+	// å†™å…¥è¦æ“ä½œçš„å…‰å£å·   
 	FPGA_ENABLE_WRITE;
 	FPGA_SET_OPT(opt);
 	FPGA_DISABLE_WRITE;   
 	//printf("opt = %d ",opt);
 
-	// ¶ÁÈ¡¹â¿Ú×´Ì¬   
+	// è¯»å–å…‰å£çŠ¶æ€   
 	tmp = FpgaReadRegister( FPGA_REG_OPT_INFO );
 	//printf("tmp = %02x\r\n ",tmp);
 
-	// ¶ººÅËø¶¨×´Ì¬  COMMA_LOCK:1Ëø¶¨ 
+	// é€—å·é”å®šçŠ¶æ€  COMMA_LOCK:1é”å®š 
 	p_fp_info->comma_lock = (BM_OPT_COMMA_LOCK==(tmp&BM_OPT_COMMA_LOCK)) ? COMMA_LOCK : COMMA_UNLOCK;
 
-	// ÊÕµ½µÄÖ¡ÊôĞÔ 
+	// æ”¶åˆ°çš„å¸§å±æ€§ 
 	p_fp_info->rcv_frm_mode = (tmp&BM_UP_DN)>>UP_DN_BITS;
 
-    /*¹â¿ÚÖ¡µÄÅĞ¶ÏÌõ¼şÊÇ:±¾¶Ë¿Ú½ÓÊÕÖ¡Ëø¶¨ +±¾¶Ë¶ººÅËø¶¨ +¶Ô¶Ë¶ººÅËø¶¨ */
-	if (  ( 0!=(tmp&BM_OPT_FRM_LOCK) )		// Ö¡Ëø¶¨
-		&&( 0!=(tmp&BM_OPS_COMMA_LOCK) )	// ±¾¶Ë¶ººÅËø¶¨
-		&&( 0!=(tmp&BM_OPT_COMMA_LOCK) )	// ¶Ô¶Ë¶ººÅËø¶¨
+    /*å…‰å£å¸§çš„åˆ¤æ–­æ¡ä»¶æ˜¯:æœ¬ç«¯å£æ¥æ”¶å¸§é”å®š +æœ¬ç«¯é€—å·é”å®š +å¯¹ç«¯é€—å·é”å®š */
+	if (  ( 0!=(tmp&BM_OPT_FRM_LOCK) )		// å¸§é”å®š
+		&&( 0!=(tmp&BM_OPS_COMMA_LOCK) )	// æœ¬ç«¯é€—å·é”å®š
+		&&( 0!=(tmp&BM_OPT_COMMA_LOCK) )	// å¯¹ç«¯é€—å·é”å®š
 		)
 	{
 		p_fp_info->frm_lock = FRAME_LOCK;
@@ -1634,16 +1634,16 @@ BOOL FpgaGetTopoStaus( UCHAR8 opt, _T_FP_INFO* p_fp_info )
 		p_fp_info->frm_lock = FRAME_UNLOCK;
 	}
 
-	//½ÚµãÏÂĞĞ¼ÆÊı£¬Êı¾İÖ¡Ëø¶¨Ê±ÓĞĞ§        
+	//èŠ‚ç‚¹ä¸‹è¡Œè®¡æ•°ï¼Œæ•°æ®å¸§é”å®šæ—¶æœ‰æ•ˆ        
 	p_fp_info->re_cnt = (UCHAR8)(tmp&0x00ff);
 
-    /*0/1------Ä©¶ËREÃ»ÓĞÊÕµ½/ÊÕµ½µÄÁíÒ»¹â¶Ë¿Ú*/
+    /*0/1------æœ«ç«¯REæ²¡æœ‰æ”¶åˆ°/æ”¶åˆ°çš„å¦ä¸€å…‰ç«¯å£*/
 	if ( BM_OPS_END_YES == (tmp&BM_OPS_END_YES) )
 	{
-		//D7-0£ºÄ©¶ËREÊÕµ½µÄÁíÒ»¹â¶Ë¿Ú½ÚµãÏÂĞĞ¼ÆÊı ,D15-8£ºÄ©¶ËREÊÕµ½µÄÁíÒ»¹â¶Ë¿ÚĞòºÅ
+		//D7-0ï¼šæœ«ç«¯REæ”¶åˆ°çš„å¦ä¸€å…‰ç«¯å£èŠ‚ç‚¹ä¸‹è¡Œè®¡æ•° ,D15-8ï¼šæœ«ç«¯REæ”¶åˆ°çš„å¦ä¸€å…‰ç«¯å£åºå·
 		tmp = FpgaReadRegister( FPGA_REG_OPS_INFO );  
-		//D7Î»ÖÃ 1±íÊ¾ ¶Ô¶Ë¿Ú´æÔÚ£¬D0~D6±íÊ¾¶Ô¶Ë»úµÄ¹â¿ÚºÅ Îª 1~8
-		#ifdef  CLIENT_XINMIN	// ĞÀÃñÒªÇó¹â¿ÚÄæĞòÅÅÁĞ
+		//D7ä½ç½® 1è¡¨ç¤º å¯¹ç«¯å£å­˜åœ¨ï¼ŒD0~D6è¡¨ç¤ºå¯¹ç«¯æœºçš„å…‰å£å· ä¸º 1~8
+		#ifdef  CLIENT_XINMIN	// æ¬£æ°‘è¦æ±‚å…‰å£é€†åºæ’åˆ—
 			p_fp_info->ops_info = OPS_RCV_FLAG|(7-(tmp>>8));
 		#else  
 		   p_fp_info->ops_info = OPS_RCV_FLAG|(tmp>>8);
@@ -1660,13 +1660,13 @@ BOOL FpgaGetTopoStaus( UCHAR8 opt, _T_FP_INFO* p_fp_info )
 
 /*************************************************************
 Name: FpgaGetSfpStatus
-Description: ¼ì²â¹âÄ£¿é×´Ì¬
+Description: æ£€æµ‹å…‰æ¨¡å—çŠ¶æ€
 Input:
-	fp_no: ¹â¿ÚºÅ
+	fp_no: å…‰å£å·
 Output:void         
 Return:
-	b_TRUE - Õı³£
-	b_FALSE - Òì³£
+	b_TRUE - æ­£å¸¸
+	b_FALSE - å¼‚å¸¸
 **************************************************************/
 BOOL FpgaGetSfpStatus( UINT32 fp_no )
 {
@@ -1675,17 +1675,17 @@ BOOL FpgaGetSfpStatus( UINT32 fp_no )
 		return b_TRUE;
 	}
 
-	return b_TRUE;		// ÔİÊ±²»Ö§³Ö¶ÁÈ¡¹âÄ£¿é×´Ì¬£¬È«²¿·µ»ØÕı³£
+	return b_TRUE;		// æš‚æ—¶ä¸æ”¯æŒè¯»å–å…‰æ¨¡å—çŠ¶æ€ï¼Œå…¨éƒ¨è¿”å›æ­£å¸¸
 }
 
 
 
 /*************************************************************
 Name:FpgaTest         
-Description:²âÊÔFPGA×ÜÏß¶ÁĞ´ÊÇ·ñÕı³£
+Description:æµ‹è¯•FPGAæ€»çº¿è¯»å†™æ˜¯å¦æ­£å¸¸
 Input:void
 Output:void      
-Return:	0:Ê§°Ü£¬1: ³É¹¦            
+Return:	0:å¤±è´¥ï¼Œ1: æˆåŠŸ            
 **************************************************************/
 UCHAR8 FpgaTest()
 {
@@ -1719,13 +1719,13 @@ UCHAR8 FpgaTest()
 
 /*************************************************************
 Name:FpgaLoad
-Description:FPGA¼ÓÔØ
+Description:FPGAåŠ è½½
 Input:void          
 Output:void         
 Return:
-	0£º¼ÓÔØ³É¹¦
-	1£º¼ÓÔØÊ§°Ü
-	2£ºÎ´·¢ÏÖ¼ÓÔØÎÄ¼ş  
+	0ï¼šåŠ è½½æˆåŠŸ
+	1ï¼šåŠ è½½å¤±è´¥
+	2ï¼šæœªå‘ç°åŠ è½½æ–‡ä»¶  
 **************************************************************/
 UINT32 FpgaLoad(void)
 {
@@ -1777,21 +1777,21 @@ UINT32 FpgaLoad(void)
 		
 		WTD_CLR;
 		
-		if ( 1==result)			//¼ÓÔØ³É¹¦
+		if ( 1==result)			//åŠ è½½æˆåŠŸ
 		{
 
 			for(i=0;i<200;i++)
 			{
-				//ÏòĞ´µØÖ·0Ğ´Èë0xA5A5,´Ó¶ÁµØÖ·0¶Á³öÅĞ¶Ï
+				//å‘å†™åœ°å€0å†™å…¥0xA5A5,ä»è¯»åœ°å€0è¯»å‡ºåˆ¤æ–­
 				FpgaWriteRegister(FPGA_REG_WRITE_PROTECT, 0xA5A5);
 				if ( (UINT16)FpgaReadRegister(FPGA_REG_WRITE_CHECK) == 0x5A5A)
 				{
-					// FPGA¹¦ÄÜÕı³£
+					// FPGAåŠŸèƒ½æ­£å¸¸
 					fpga_load_status = FPGA_LDST_OK;
 					return 0;
 				}
 				WTD_CLR;
-				//TRACE_INFO("FpgaLoadAll---0¼Ä´æÆ÷ÑéÖ¤Ê§°Üreturn 0\r\n");			
+				//TRACE_INFO("FpgaLoadAll---0å¯„å­˜å™¨éªŒè¯å¤±è´¥return 0\r\n");			
 			}
 			return 0;
 		}
@@ -1803,8 +1803,8 @@ UINT32 FpgaLoad(void)
 
 /*************************************************************
 Name: FpgaAttOutput
-Description: ATTË¥¼õÆ÷Êä³ö¿ØÖÆ
-Input: 1-È«Ë¥£¬0-Õı³£
+Description: ATTè¡°å‡å™¨è¾“å‡ºæ§åˆ¶
+Input: 1-å…¨è¡°ï¼Œ0-æ­£å¸¸
 Output:void         
 Return:void   
 **************************************************************/
@@ -1828,8 +1828,8 @@ void FpgaAttOutput( UCHAR8 mode )
 }
 /*************************************************************
 Name: FpgaPowSelSlot 
-Description:  Ñ¡Ôñ¹¦ÂÊÊ±Ï¶
-Input: reg_add µØÖ·
+Description:  é€‰æ‹©åŠŸç‡æ—¶éš™
+Input: reg_add åœ°å€
 Output:void         
 Return:void   
 **************************************************************/
@@ -1866,8 +1866,8 @@ void FpgaPowSelSlot(UINT32 reg_add)
 
 /*************************************************************
 Name:FpgaWriteRegister
-Description:ÏòFPGAĞ´¼Ä´æÆ÷Ğ´Êı¾İ
-Input:µØÖ·£¬Êı¾İ
+Description:å‘FPGAå†™å¯„å­˜å™¨å†™æ•°æ®
+Input:åœ°å€ï¼Œæ•°æ®
 Output:void         
 Return:void   
 **************************************************************/
@@ -1890,7 +1890,7 @@ void FpgaWriteRegister(UINT16 add, UINT16 dat)
 
 	if ( add<FPGA_WO_REG_COUNT )
 	{
-		//µØÖ··¶Î§Òç³ö
+		//åœ°å€èŒƒå›´æº¢å‡º
 		fpga_wo_reg[add] = dat;
 
 	}
@@ -1905,10 +1905,10 @@ void FpgaWriteRegister(UINT16 add, UINT16 dat)
 
 /*************************************************************
 Name:FpgaReadRegister
-Description:´ÓFPGA¶Á¼Ä´æÆ÷¶ÁÊı¾İ
-Input:µØÖ·
+Description:ä»FPGAè¯»å¯„å­˜å™¨è¯»æ•°æ®
+Input:åœ°å€
 Output:void         
-Return:Êı¾İ   
+Return:æ•°æ®   
 **************************************************************/
 UINT16 FpgaReadRegister(UINT16 add)
 {
@@ -1926,12 +1926,12 @@ UINT16 FpgaReadRegister(UINT16 add)
 	switch( reg_type )
 	{
 		case 0x00:
-			//Ö»¶Á¼Ä´æÆ÷µØÖ·
+			//åªè¯»å¯„å­˜å™¨åœ°å€
 			return *(p_ext_16+(add<<1));	
 		break;
 			
 		case 0x08:
-			//Ö»Ğ´¼Ä´æÆ÷µØÖ·£¬´Ó»º³å¶ÁÈ¡
+			//åªå†™å¯„å­˜å™¨åœ°å€ï¼Œä»ç¼“å†²è¯»å–
 			if ( add>FPGA_WO_REG_COUNT )
 			{
 				return 0;
@@ -1975,7 +1975,7 @@ UINT16 FpgaReadRegister(UINT16 add)
 			return fpga_d_regbk[add];
 		break;
 		
-		case 0x1://1×Ö½ÚÍ¨¹ı¶ÁÂß¼­¶ÁA¶Î²ÎÊı
+		case 0x1://1å­—èŠ‚é€šè¿‡è¯»é€»è¾‘è¯»Aæ®µå‚æ•°
 			//if (0X00==add  )
 			{
 				return sys_param_1b[add].val;
@@ -1983,7 +1983,7 @@ UINT16 FpgaReadRegister(UINT16 add)
 			return 0;
 		break;
 
-		case 0x2://2×Ö½ÚÍ¨¹ı¶ÁÂß¼­¶ÁB¶Î²ÎÊı
+		case 0x2://2å­—èŠ‚é€šè¿‡è¯»é€»è¾‘è¯»Bæ®µå‚æ•°
 		//	if ( 0X00==add )
 			{
 				return sys_param_2b[add].val;
@@ -2001,7 +2001,7 @@ UINT16 FpgaReadRegister(UINT16 add)
 
 /*************************************************************
 Name:FpgaConfigPara
-Description:ÅäÖÃFPGA²ÎÊı
+Description:é…ç½®FPGAå‚æ•°
 Input:void
 Output:void         
 Return:void
@@ -2012,18 +2012,18 @@ void FpgaConfigPara(void)
 
 	FPGA_ENABLE_WRITE;
 
-	// ³õÊ¼»¯¹â¿Ú£¬È«²¿¹Ø±Õ
+	// åˆå§‹åŒ–å…‰å£ï¼Œå…¨éƒ¨å…³é—­
 	FpgaWriteRegister(FPGA_REG_OPT_ON, 0);
 		
-	// ¸´Î»ÍâÉè¿ØÖÆIO
+	// å¤ä½å¤–è®¾æ§åˆ¶IO
 	FpgaWriteRegister( FPGA_REG_EX_DEV_CTL, 
 		BM_EX_PLL_CLK|BM_EX_PLL_DAT|BM_EX_BA_PLL_LE|BM_EX_BB_PLL_LE|BM_EX_FA_PLL_LE|BM_EX_FB_PLL_LE );
 
-	// ÉèÖÃ¹¤×÷Ä£Ê½
-	FpgaWriteRegister( FPGA_REG_A_ATT_CTL, ATT_MODE_NORMAL );		// A¶ÎATTÕı³£¹¤×÷Ä£Ê½
-	FpgaWriteRegister( FPGA_REG_B_ATT_CTL, ATT_MODE_NORMAL );		// B¶ÎATTÕı³£¹¤×÷Ä£Ê½
-	FpgaWriteRegister( FPGA_REG_C_ATT_CTL, ATT_MODE_NORMAL );		// A¶ÎATTÕı³£¹¤×÷Ä£Ê½
-	FpgaWriteRegister( FPGA_REG_D_ATT_CTL, ATT_MODE_NORMAL );		// B¶ÎATTÕı³£¹¤×÷Ä£Ê½
+	// è®¾ç½®å·¥ä½œæ¨¡å¼
+	FpgaWriteRegister( FPGA_REG_A_ATT_CTL, ATT_MODE_NORMAL );		// Aæ®µATTæ­£å¸¸å·¥ä½œæ¨¡å¼
+	FpgaWriteRegister( FPGA_REG_B_ATT_CTL, ATT_MODE_NORMAL );		// Bæ®µATTæ­£å¸¸å·¥ä½œæ¨¡å¼
+	FpgaWriteRegister( FPGA_REG_C_ATT_CTL, ATT_MODE_NORMAL );		// Aæ®µATTæ­£å¸¸å·¥ä½œæ¨¡å¼
+	FpgaWriteRegister( FPGA_REG_D_ATT_CTL, ATT_MODE_NORMAL );		// Bæ®µATTæ­£å¸¸å·¥ä½œæ¨¡å¼
 		
 	UsNopDelay(200000);
 	
@@ -2036,7 +2036,7 @@ void FpgaConfigPara(void)
 	ReadWriteTF(2,1,0x0FB,0X0B);
 	//ReadWriteTF(3,1,0x0FB,0X0B);	
 	FPGA_ENABLE_WRITE;
-	FpgaWriteRegister( FPGA_REG_ATT_FULL_REDUCE, 0 );		// att1ÁãË¥	
+	FpgaWriteRegister( FPGA_REG_ATT_FULL_REDUCE, 0 );		// att1é›¶è¡°	
 	FPGA_DISABLE_WRITE;
 	
 	
@@ -2047,7 +2047,7 @@ void FpgaConfigPara(void)
 
 /*************************************************************
 Name:		CheckClkMode
-Description: ¼ì²éFPGAÊ±ÖÓ
+Description: æ£€æŸ¥FPGAæ—¶é’Ÿ
 Input:void
 Output:void         
 Return:void
@@ -2079,7 +2079,7 @@ void CheckClkMode()
 
 /*************************************************************
 Name:AfterFpgaLoad         
-Description:FPGA¼ÓÔØÍêºó³õÊ¼»¯
+Description:FPGAåŠ è½½å®Œååˆå§‹åŒ–
 Input:void
 Output:void      
 Return:void        
@@ -2091,7 +2091,7 @@ void AfterFpgaLoad(void)
 
 	//TRACE_INFO("Reset FPGA.\r\n");
 
-	// ¶ÁÈ¡AB¶ÎÍ¨Ñ¶ÖÆÊ½
+	// è¯»å–ABæ®µé€šè®¯åˆ¶å¼
 	reg_val = FpgaReadRegister(FPGA_REG_RF_INFO);
 	fpga_cfg.a_ultra_info = (UCHAR8)(reg_val>>8)&0x07;
 	fpga_cfg.b_ultra_info = (UCHAR8)(reg_val>>12)&0x0F;
@@ -2107,16 +2107,16 @@ void AfterFpgaLoad(void)
 	
 	//InitFpga();	
 
-	//Èí¼ş°æ±¾	
+	//è½¯ä»¶ç‰ˆæœ¬	
 	reg_val = FpgaReadRegister(FPGA_REG_EDITION_INFO); 
 	sys_param_2b[MADD_PRI_SOFT_V].val = MCU_SOFT_VER|((reg_val<<8)&0xFF00);
 	
-	//PCB°æ±¾ºÅ    
+	//PCBç‰ˆæœ¬å·    
 	reg_val = FpgaReadRegister(FPGA_REG_PCB_VERSION); 
 	sys_param_2b[MADD_PRI_HARD_V].val = reg_val;	//hard_ware_v;
 	
-	//¶ÁÈ¡Ë®Ó¡ÎÄ¼ş 
-	FpgaReadRegister(FPGA_REG_IRQ_CLEAN);	//Ë®Ó¡¶Á³ö³õÊ¼»¯
+	//è¯»å–æ°´å°æ–‡ä»¶ 
+	FpgaReadRegister(FPGA_REG_IRQ_CLEAN);	//æ°´å°è¯»å‡ºåˆå§‹åŒ–
 	
 	for (ret_val=0; ret_val<sys_param_asc[MADD_PRI_FPGA_DATE].length; ret_val++)
 	{
@@ -2126,33 +2126,33 @@ void AfterFpgaLoad(void)
 	{
 		str_pri_fpga2_date[ret_val] = ' ';
 	}	
-	//³õÊ¼»¯µ±Ç°ÍØÆË½á¹¹ÌåºÍREÑÓÊ±²âÁ¿Öµ
+	//åˆå§‹åŒ–å½“å‰æ‹“æ‰‘ç»“æ„ä½“å’ŒREå»¶æ—¶æµ‹é‡å€¼
 	//InitTopoInfo();
 }		
 
 /*************************************************************
 Name:FpgaGetChannelCount         
-Description: ´ÓFPGA¶ÁÈ¡Í¨µÀÊı
+Description: ä»FPGAè¯»å–é€šé“æ•°
 Input:void
 Output:void      
-Return:-1:Ê§°Ü£¬1: ³É¹¦            
+Return:-1:å¤±è´¥ï¼Œ1: æˆåŠŸ            
 **************************************************************/
 void FpgaGetChannelCount()
 {
 	UINT16 tmp;
 	UINT16 i;
 	
-	tmp = FpgaReadRegister(FPGA_REG_CH_COUNT);		// ´ÓFPGA¶ÁÈ¡Í¨µÀÊı
+	tmp = FpgaReadRegister(FPGA_REG_CH_COUNT);		// ä»FPGAè¯»å–é€šé“æ•°
 	#if defined CLIENT_JIZHUN
-	sys_param_1b[MADD_A_CHANNEL_COUNT].val = tmp&0x1F>>0;		// A¶ÎÖ§³ÖµÄÍ¨µÀÊı
-	sys_param_1b[MADD_B_CHANNEL_COUNT].val = 0;		// B¶ÎÖ§³ÖµÄÍ¨µÀÊı
-	sys_param_1b[MADD_C_CHANNEL_COUNT].val = 0;			// C¶ÎÖ§³ÖµÄÍ¨µÀÊı
-	sys_param_1b[MADD_D_CHANNEL_COUNT].val = 0;		// D¶ÎÖ§³ÖµÄÍ¨µÀÊı
+	sys_param_1b[MADD_A_CHANNEL_COUNT].val = tmp&0x1F>>0;		// Aæ®µæ”¯æŒçš„é€šé“æ•°
+	sys_param_1b[MADD_B_CHANNEL_COUNT].val = 0;		// Bæ®µæ”¯æŒçš„é€šé“æ•°
+	sys_param_1b[MADD_C_CHANNEL_COUNT].val = 0;			// Cæ®µæ”¯æŒçš„é€šé“æ•°
+	sys_param_1b[MADD_D_CHANNEL_COUNT].val = 0;		// Dæ®µæ”¯æŒçš„é€šé“æ•°
 	#else 
-	sys_param_1b[MADD_A_CHANNEL_COUNT].val = tmp&BM_A_CH_COUNT;			// A¶ÎÖ§³ÖµÄÍ¨µÀÊı
-	sys_param_1b[MADD_B_CHANNEL_COUNT].val = (tmp&BM_B_CH_COUNT)>>8;		// B¶ÎÖ§³ÖµÄÍ¨µÀÊı
-	sys_param_1b[MADD_C_CHANNEL_COUNT].val = (tmp&BM_C_CH_COUNT)>>4;			// C¶ÎÖ§³ÖµÄÍ¨µÀÊı
-	sys_param_1b[MADD_D_CHANNEL_COUNT].val = (tmp&BM_D_CH_COUNT)>>12;		// D¶ÎÖ§³ÖµÄÍ¨µÀÊı
+	sys_param_1b[MADD_A_CHANNEL_COUNT].val = tmp&BM_A_CH_COUNT;			// Aæ®µæ”¯æŒçš„é€šé“æ•°
+	sys_param_1b[MADD_B_CHANNEL_COUNT].val = (tmp&BM_B_CH_COUNT)>>8;		// Bæ®µæ”¯æŒçš„é€šé“æ•°
+	sys_param_1b[MADD_C_CHANNEL_COUNT].val = (tmp&BM_C_CH_COUNT)>>4;			// Cæ®µæ”¯æŒçš„é€šé“æ•°
+	sys_param_1b[MADD_D_CHANNEL_COUNT].val = (tmp&BM_D_CH_COUNT)>>12;		// Dæ®µæ”¯æŒçš„é€šé“æ•°
 	#endif
 
 	if ( sys_param_1b[MADD_A_CHANNEL_COUNT].val > MAX_CHANNEL_COUNT )
@@ -2185,9 +2185,9 @@ void FpgaGetChannelCount()
 
 /*************************************************************
 Name:         FpgaEnableTrafficCtl         
-Description:  ¿ØÖÆ»°ÎñÍ³¼Æ
-Input:        time   -  ¶à³¤Ê±¼äÍ³¼ÆÒ»´Î
-              enable -  Ê¹ÄÜ¿ØÖÆ
+Description:  æ§åˆ¶è¯åŠ¡ç»Ÿè®¡
+Input:        time   -  å¤šé•¿æ—¶é—´ç»Ÿè®¡ä¸€æ¬¡
+              enable -  ä½¿èƒ½æ§åˆ¶
 Output:       void      
 Return:       void          
 **************************************************************/
@@ -2201,10 +2201,10 @@ void FpgaEnableTrafficCtl( UCHAR8 time, UCHAR8 enable )
 		
 /*************************************************************
 Name:InitFpga         
-Description:³õÊ¼»¯FPGA
+Description:åˆå§‹åŒ–FPGA
 Input:void
 Output:void      
-Return:-1:Ê§°Ü£¬1: ³É¹¦            
+Return:-1:å¤±è´¥ï¼Œ1: æˆåŠŸ            
 **************************************************************/
 BOOL InitFpga(void)
 {
@@ -2212,7 +2212,7 @@ BOOL InitFpga(void)
 
 	if ( FPGA_LDST_OK != fpga_load_status )
 	{
-		// FPGA¹ÊÕÏ£¬·µ»Ø
+		// FPGAæ•…éšœï¼Œè¿”å›
 		return b_FALSE; 
 	}
 
@@ -2223,10 +2223,10 @@ BOOL InitFpga(void)
 	UsNopDelay(10); 
 	SET_FPGA_RST_PIN;	//PIO_Set(fpga_reset);
 	
-	// ¶ÁÈ¡AB¶ÎÖ§³ÖµÄÍ¨µÀÊı 
+	// è¯»å–ABæ®µæ”¯æŒçš„é€šé“æ•° 
 	FpgaGetChannelCount();
 
-	//ÅäÖÃĞ´¼Ä´æÆ÷
+	//é…ç½®å†™å¯„å­˜å™¨
 	FpgaConfigPara();
 
 	
@@ -2234,19 +2234,19 @@ BOOL InitFpga(void)
 	InitPartB();
 	InitPartC();
 	InitPartD();
-	//FPGAÆµÂÊÊä³ö²¹³¥
+	//FPGAé¢‘ç‡è¾“å‡ºè¡¥å¿
 	// SetFpgaFreqAdj();
 
-	// FPGAÎÂ¶È²¹³¥ÏµÊı
+	// FPGAæ¸©åº¦è¡¥å¿ç³»æ•°
 	FpgaSetTempAdjustTable();
 
-	// Ê¹ÄÜ»°ÎñÁ¿Í³¼Æ,15·ÖÖÓ
+	// ä½¿èƒ½è¯åŠ¡é‡ç»Ÿè®¡,15åˆ†é’Ÿ
 	FpgaEnableTrafficCtl( TRAFFIC_TIME, 1 );
 
 
 	
 	FPGA_ENABLE_WRITE;
-	FpgaWriteRegister(FPGA_REG_SHOW_ERROR, 0xF000);//Çå³ı¸æ¾¯Ïî
+	FpgaWriteRegister(FPGA_REG_SHOW_ERROR, 0xF000);//æ¸…é™¤å‘Šè­¦é¡¹
 	FPGA_DISABLE_WRITE;
 	
 	return b_TRUE;
@@ -2256,10 +2256,10 @@ BOOL InitFpga(void)
 
 /*************************************************************
 Name:    	  FpgaMakeAttAdjMsgHead         
-Description:   ´ò°üÊı¾İµ½att_adj_buffÊı×éÖĞ
+Description:   æ‰“åŒ…æ•°æ®åˆ°att_adj_buffæ•°ç»„ä¸­
 
-Input:         len   - ´ò°üµÄÊı¾İ³¤¶È
-               p_dat - Êı¾İÖ¸Õë
+Input:         len   - æ‰“åŒ…çš„æ•°æ®é•¿åº¦
+               p_dat - æ•°æ®æŒ‡é’ˆ
 Output:  
 Return:        void            
 **************************************************************/
@@ -2269,10 +2269,10 @@ void FpgaMakeAttAdjMsgHead( UINT32 len, UCHAR8 * p_dat )
  
 	if ( len>512 ) return;
 
-	// ¸´Î»Êı¾İ³¤¶È
+	// å¤ä½æ•°æ®é•¿åº¦
 	fpga_att_adj_st.dat_len = 0;
 
-	// ¿½±´Êı¾İ
+	// æ‹·è´æ•°æ®
 	for ( i=0; i<len; i++ )
 	{
 		att_adj_buff[fpga_att_adj_st.dat_len++] = *p_dat++;
@@ -2282,8 +2282,8 @@ void FpgaMakeAttAdjMsgHead( UINT32 len, UCHAR8 * p_dat )
 
 /*************************************************************
 Name:         FpgaGetAdDaPow         
-Description:  »ñµÃRECµÄADºÍDA¹¦ÂÊ
-Input:        ab_flag   -  A¶Î,B¶ÎÑ¡Ôñ
+Description:  è·å¾—RECçš„ADå’ŒDAåŠŸç‡
+Input:        ab_flag   -  Aæ®µ,Bæ®µé€‰æ‹©
 Output:       void      
 Return:       void          
 **************************************************************/  
@@ -2366,8 +2366,8 @@ void FpgaGetAdDaPow( UCHAR8 ab_flag )
 
 /*************************************************************
 Name:         FpgaHandlePsfAck         
-Description:  °Ñ´ÓRE¶ÁÈ¡»ØÀ´µÄÑ¡Æµ¹¦ÂÊ±£´æµ½Êı×éÖĞ
-Input:        p_dat -Ö¸Ñ¡Æµ¹¦ÂÊÊı¾İµÄ Ö¸ÕëÍ·
+Description:  æŠŠä»REè¯»å–å›æ¥çš„é€‰é¢‘åŠŸç‡ä¿å­˜åˆ°æ•°ç»„ä¸­
+Input:        p_dat -æŒ‡é€‰é¢‘åŠŸç‡æ•°æ®çš„ æŒ‡é’ˆå¤´
 Output:       void      
 Return:       void          
 **************************************************************/ 
@@ -2376,20 +2376,20 @@ void FpgaHandlePsfAck( UCHAR8 * p_dat )
 	if ( 1==fpga_att_adj_st.is_wait )
 	{
 
-		// Ìø¹ı1×Ö½Ú¼Ä´æÆ÷ÊôĞÔ£¬2×Ö½ÚµØÖ·
+		// è·³è¿‡1å­—èŠ‚å¯„å­˜å™¨å±æ€§ï¼Œ2å­—èŠ‚åœ°å€
 		p_dat += 4; 
 
 		TRACE_INFO_WP("-------------------fpga_att_adj_st.dat_len=%d,H=%04X,L=%04X\r\n",fpga_att_adj_st.dat_len,*(p_dat+3)<<8|*(p_dat+2),*(p_dat+1)<<8|*(p_dat));		
-		// ±£´æPsfÊı¾İµÍ16Î»
+		// ä¿å­˜Psfæ•°æ®ä½16ä½
 		att_adj_buff[ fpga_att_adj_st.dat_len++] = *p_dat++;
 		att_adj_buff[ fpga_att_adj_st.dat_len++] = *p_dat++;
 		
-		// Ìø¹ı1×Ö½Ú¼Ä´æÆ÷ÊôĞÔ£¬2×Ö½ÚµØÖ·
+		// è·³è¿‡1å­—èŠ‚å¯„å­˜å™¨å±æ€§ï¼Œ2å­—èŠ‚åœ°å€
 		p_dat += 4;  
-		// ±£´æPsfÊı¾İ¸ß16Î»
+		// ä¿å­˜Psfæ•°æ®é«˜16ä½
 		att_adj_buff[ fpga_att_adj_st.dat_len++] = *p_dat++;
 		att_adj_buff[ fpga_att_adj_st.dat_len++] = *p_dat++;
-		// Çå³ıµÈ´ı±êÖ¾   
+		// æ¸…é™¤ç­‰å¾…æ ‡å¿—   
 		fpga_att_adj_st.is_wait = 0;
 		TRACE_INFO_WP("-------------------0=%X,1=%X,2=%X,3=%X\\r\n",att_adj_buff[ fpga_att_adj_st.dat_len-4],att_adj_buff[ fpga_att_adj_st.dat_len-3],att_adj_buff[ fpga_att_adj_st.dat_len-2],att_adj_buff[ fpga_att_adj_st.dat_len-1]);		
 		
@@ -2399,7 +2399,7 @@ void FpgaHandlePsfAck( UCHAR8 * p_dat )
 
 /*************************************************************
 Name:         FpgaAttStepAdj        
-Description:  Ñ¡ÔñÒªĞ£ÕıµÄATT£¬²¢Ğ´Èë²½½øÖµ
+Description:  é€‰æ‹©è¦æ ¡æ­£çš„ATTï¼Œå¹¶å†™å…¥æ­¥è¿›å€¼
 Input:        void
 Output:       void      
 Return:       void          
@@ -2411,7 +2411,7 @@ void FpgaAttStepAdj()
 	
 	if ( ATT_UL_ADJ==fpga_att_adj_st.ud_flag )
 	{
-		// ÉÏĞĞÊä³öĞ£×¼,3att 
+		// ä¸Šè¡Œè¾“å‡ºæ ¡å‡†,3att 
 		if ( 0==fpga_att_adj_st.att_no )
 		{
 			if ( SYS_A_FLAG==fpga_att_adj_st.ab_flag )
@@ -2438,7 +2438,7 @@ void FpgaAttStepAdj()
 	}
 	else 
 	{
-		// ÏÂĞĞÊäÈëĞ£×¼ 1att 
+		// ä¸‹è¡Œè¾“å…¥æ ¡å‡† 1att 
 		if ( 0==fpga_att_adj_st.att_no )
 		{
 			if ( SYS_A_FLAG==fpga_att_adj_st.ab_flag )
@@ -2508,7 +2508,7 @@ void FpgaAttStepAdj()
 
 /*************************************************************
 Name:         FpgaAttAdjust        
-Description:  Ğ£ÕıATT±í¸ñº¯Êı
+Description:  æ ¡æ­£ATTè¡¨æ ¼å‡½æ•°
 Input:        void
 Output:       void      
 Return:       void          
@@ -2519,10 +2519,10 @@ void FpgaAttAdjust()
 	if ( ATT_ADJ_ST_MAX_ADJ==fpga_att_adj_st.adj_st)
 	{
 //		TRACE_INFO("FpgaAttAdjust_ ATT_ADJ_ST_MAX_ADJ\r\n");
-		// ¿ªÊ¼Ğ£×¼
+		// å¼€å§‹æ ¡å‡†
 		if ( 0 == fpga_att_adj_st.is_wait )
 		{
-			//REC±¾Éí½øÈë Ğ£×¼Ä£Ê½²¢ÇÒ3¸öATT¶¼ÉèÖÃÎª0 
+			//RECæœ¬èº«è¿›å…¥ æ ¡å‡†æ¨¡å¼å¹¶ä¸”3ä¸ªATTéƒ½è®¾ç½®ä¸º0 
 			FpgaEnterAttAdjMode( fpga_att_adj_st.ab_flag );
 			WTD_CLR;
 			UsNopDelay(1000*1000);
@@ -2531,13 +2531,13 @@ void FpgaAttAdjust()
 			//WTD_CLR;
 			//UsNopDelay(1000*1000);	
 			WTD_CLR;
-			// ´ÓRE¶ÁÈ¡Ñ¡Æµ¹¦ÂÊ¼Ä´æÆ÷   32Î» 
+			// ä»REè¯»å–é€‰é¢‘åŠŸç‡å¯„å­˜å™¨   32ä½ 
 			GetPsfFromRe( fpga_att_adj_st.ab_flag, fpga_att_adj_st.ud_flag );
-			// ¶ÁÈ¡REC ×ÔÉíµÄ AD¡¢DA¹¦ÂÊ      
+			// è¯»å–REC è‡ªèº«çš„ ADã€DAåŠŸç‡      
 			FpgaGetAdDaPow( fpga_att_adj_st.ab_flag );
 			
 			fpga_att_adj_st.adj_st= ATT_ADJ_ST_WAIT_MAX_PSF;
-			// ÖÃµÈ´ı±êÖ¾
+			// ç½®ç­‰å¾…æ ‡å¿—
 			fpga_att_adj_st.is_wait = 1;
 		} 		
 		return;
@@ -2557,12 +2557,12 @@ void FpgaAttAdjust()
 			//TRACE_INFO("ATT_ADJ_ST_WAIT_MAX_PSF-------------fpga_att_adj_st.dat_len=%X\r\n",fpga_att_adj_st.dat_len);
 			//TRACE_INFO_WP("1=%X,2=%X,3=%X,4=%X\r\n",att_adj_buff[17],att_adj_buff[18],att_adj_buff[19],att_adj_buff[21]);		
 
-			// ½«Êı¾İ·µ»Ø¸øÖ÷¿Ø
+			// å°†æ•°æ®è¿”å›ç»™ä¸»æ§
 			SendMsgPkt( fpga_att_adj_st.dat_len, att_adj_buff );
-			// ×´Ì¬»ú¸´Î»
+			// çŠ¶æ€æœºå¤ä½
 			fpga_att_adj_st.adj_st  = ATT_ADJ_ST_IDLE; 
 			fpga_att_adj_st.is_wait = 0;  
-			// Çå³ıĞ£×¼±êÖ¾Î»
+			// æ¸…é™¤æ ¡å‡†æ ‡å¿—ä½
 			sys_work_info &= (~SYSTEM_FLAG_ATT_ADJ);
 		} 
 		
@@ -2572,17 +2572,17 @@ void FpgaAttAdjust()
 	if ( ATT_ADJ_ST_STEP_ADJ== fpga_att_adj_st.adj_st )
 	{
 //		TRACE_INFO("FpgaAttAdjust_ATT_ADJ_ST_STEP_ADJ(%d)\r\n",fpga_att_adj_st.step);			
-		// ²½½øĞ£×¼ 
+		// æ­¥è¿›æ ¡å‡† 
 		if ( fpga_att_adj_st.step>=64 )
 		{
-			// ²½½øÍê³É£¬½«Êı¾İ·µ»Ø¸øÖ÷¿Ø
+			// æ­¥è¿›å®Œæˆï¼Œå°†æ•°æ®è¿”å›ç»™ä¸»æ§
 			SendMsgPkt( fpga_att_adj_st.dat_len, att_adj_buff );
 
-			// ×´Ì¬»ú¸´Î»  
+			// çŠ¶æ€æœºå¤ä½  
 			fpga_att_adj_st.adj_st  = ATT_ADJ_ST_IDLE; 
 			fpga_att_adj_st.is_wait = 0; 
 			
-			// Çå³ıĞ£×¼±êÖ¾Î»
+			// æ¸…é™¤æ ¡å‡†æ ‡å¿—ä½
 			sys_work_info &= (~SYSTEM_FLAG_ATT_ADJ);
 			
 		}
@@ -2592,10 +2592,10 @@ void FpgaAttAdjust()
 			WTD_CLR;
 			UsNopDelay(50000);
 			//TRACE_INFO("FpgaAttAdjust_ATT_ADJ_ST_STEP_ADJ(%d)\r\n",fpga_att_adj_st.step);
-			// ´ÓRE¶ÁÈ¡Ñ¡Æµ¹¦ÂÊ¼Ä´æÆ÷
+			// ä»REè¯»å–é€‰é¢‘åŠŸç‡å¯„å­˜å™¨
 			GetPsfFromRe( fpga_att_adj_st.ab_flag, fpga_att_adj_st.ud_flag );
 			fpga_att_adj_st.adj_st= ATT_ADJ_ST_WAIT_STEP_PSF;
-			// ÖÃµÈ´ı±êÖ¾
+			// ç½®ç­‰å¾…æ ‡å¿—
 			fpga_att_adj_st.is_wait = 1;
 		}
 		return;
@@ -2616,9 +2616,9 @@ void FpgaAttAdjust()
 
 /*************************************************************
 Name:        FpgaEnterAttAdjMode
-Description: FPGA½øÈëĞ£×¼Ä£Ê½
+Description: FPGAè¿›å…¥æ ¡å‡†æ¨¡å¼
 Input: 
-	      ab_flag: AB¶Î±êÖ¾
+	      ab_flag: ABæ®µæ ‡å¿—
 Output:      void 
 Return:      void 
 **************************************************************/
@@ -2633,13 +2633,13 @@ void FpgaEnterAttAdjMode( UCHAR8 abcd_flag )
 	{  
 		tmp = FpgaReadRegister(FPGA_REG_A_ATT_CTL);
 		tmp &= 0xFFFC;
-		tmp |= (ATT_MODE_ADJUST|ATT_WORK_EN);//|ATT_MANUAL);  // Ë¥¼õĞ£×¼Ä£Ê½  
-		FpgaWriteRegister(FPGA_REG_A_ATT_CTL, tmp);//Ë¥¼õĞ£×¼Ä£Ê½  
-		//FpgaWriteRegister(FPGA_REG_ATT_FULL_REDUCE, tmp);//Êı¿ØË¥¼õÆ÷È«Ë¥
+		tmp |= (ATT_MODE_ADJUST|ATT_WORK_EN);//|ATT_MANUAL);  // è¡°å‡æ ¡å‡†æ¨¡å¼  
+		FpgaWriteRegister(FPGA_REG_A_ATT_CTL, tmp);//è¡°å‡æ ¡å‡†æ¨¡å¼  
+		//FpgaWriteRegister(FPGA_REG_ATT_FULL_REDUCE, tmp);//æ•°æ§è¡°å‡å™¨å…¨è¡°
 		SetAtt1(TF_A,0X1F);
 		
 		FPGA_ENABLE_WRITE;
-		FpgaWriteRegister(FPGA_REG_A_ATT3_CAL, 0X00 ); // ËùÓĞË¥¼õÆ÷²»Ë¥
+		FpgaWriteRegister(FPGA_REG_A_ATT3_CAL, 0X00 ); // æ‰€æœ‰è¡°å‡å™¨ä¸è¡°
 		FpgaWriteRegister(FPGA_REG_A_ATT3_EN,0x01);
 		FPGA_DISABLE_WRITE;
 
@@ -2659,18 +2659,18 @@ void FpgaEnterAttAdjMode( UCHAR8 abcd_flag )
 		tmp &= 0xFFFC;
 		tmp |= (ATT_MODE_ADJUST|ATT_WORK_EN);//|ATT_MANUAL);
 		FpgaWriteRegister(FPGA_REG_B_ATT_CTL, tmp);
-		//FpgaWriteRegister(FPGA_REG_ATT_FULL_REDUCE, tmp);//Êı¿ØË¥¼õÆ÷È«Ë¥
+		//FpgaWriteRegister(FPGA_REG_ATT_FULL_REDUCE, tmp);//æ•°æ§è¡°å‡å™¨å…¨è¡°
 
-		// ËùÓĞË¥¼õÆ÷²»Ë¥
+		// æ‰€æœ‰è¡°å‡å™¨ä¸è¡°
 		SetAtt1(TF_B,0X1F);
 		FPGA_ENABLE_WRITE;
-		FpgaWriteRegister(FPGA_REG_B_ATT3_CAL, 0X00 ); // ËùÓĞË¥¼õÆ÷²»Ë¥
+		FpgaWriteRegister(FPGA_REG_B_ATT3_CAL, 0X00 ); // æ‰€æœ‰è¡°å‡å™¨ä¸è¡°
 		FpgaWriteRegister(FPGA_REG_B_ATT3_EN,0x01);
 		UsNopDelay(20);
 
-		if ( FPGA_B_NT_TD_WB !=fpga_cfg.b_ultra_info)	// TD¿í´ø°æ
+		if ( FPGA_B_NT_TD_WB !=fpga_cfg.b_ultra_info)	// TDå®½å¸¦ç‰ˆ
 		{
-			FPGA_SET_CHANNEL(0);		// ÉèÖÃÍ¨µÀºÅ
+			FPGA_SET_CHANNEL(0);		// è®¾ç½®é€šé“å·
 			FpgaWriteRegister(FPGA_REG_B_FREQ_CTL_L_12, 0x8D86);
  			FpgaWriteRegister(FPGA_REG_B_FREQ_CTL_H_14, 0x0015);
 			TRACE_INFO("----------FPGA_B_NT_TD_WB !=fpga_cfg.b_ultra_info\r\n");
@@ -2691,18 +2691,18 @@ void FpgaEnterAttAdjMode( UCHAR8 abcd_flag )
 		FPGA_ENABLE_WRITE;
 		FpgaWriteRegister(FPGA_REG_C_ATT_CTL, tmp);
 		FPGA_DISABLE_WRITE;
-		//FpgaWriteRegister(FPGA_REG_ATT_FULL_REDUCE, tmp);//Êı¿ØË¥¼õÆ÷È«Ë¥
+		//FpgaWriteRegister(FPGA_REG_ATT_FULL_REDUCE, tmp);//æ•°æ§è¡°å‡å™¨å…¨è¡°
 		SetAtt1(TF_C,0X1F);
 		FPGA_ENABLE_WRITE;
-		FPGA_SET_CHANNEL(0); //´ò¿ª0Í¨µÀ
-		FpgaWriteRegister(FPGA_REG_C_ATT3_CAL, 0X00 ); // ËùÓĞË¥¼õÆ÷²»Ë¥
+		FPGA_SET_CHANNEL(0); //æ‰“å¼€0é€šé“
+		FpgaWriteRegister(FPGA_REG_C_ATT3_CAL, 0X00 ); // æ‰€æœ‰è¡°å‡å™¨ä¸è¡°
 		FpgaWriteRegister(FPGA_REG_C_ATT3_EN,0x01);
 		UsNopDelay(20);
 		TRACE_INFO("\r\n");
 		TRACE_INFO("FpgaAttAdjust_ 66666666666666666666666666666-----------\r\n");
 		TRACE_INFO("\r\n");
 		TRACE_INFO("\r\n");
-		FPGA_SET_CHANNEL(0);		// ÉèÖÃÍ¨µÀºÅ
+		FPGA_SET_CHANNEL(0);		// è®¾ç½®é€šé“å·
 		//FpgaWriteRegister(FPGA_REG_C_FREQ_CTL_L_12, 0x8893);
  		//FpgaWriteRegister(FPGA_REG_C_FREQ_CTL_H_14, 0x0041);
  		//if(version_number == VERSION_40M_IN_E)
@@ -2732,7 +2732,7 @@ void FpgaEnterAttAdjMode( UCHAR8 abcd_flag )
 		
 		TRACE_INFO("FpgaReadRegister( FPGA_REG_CH_SEL):%x\r\n",FpgaReadRegister( FPGA_REG_CH_SEL));
  		TRACE_INFO("FpgaReadRegister( FPGA_REG_C_FREQ_CTL_L_12)11111:%x\r\n",FpgaReadRegister( FPGA_REG_C_FREQ_CTL_L_12));
-		// ËùÓĞË¥¼õÆ÷²»Ë¥
+		// æ‰€æœ‰è¡°å‡å™¨ä¸è¡°
 	
 
 
@@ -2745,16 +2745,16 @@ void FpgaEnterAttAdjMode( UCHAR8 abcd_flag )
 		tmp &= 0xFFFC;
 		tmp |= (ATT_MODE_ADJUST|ATT_WORK_EN);//|ATT_MANUAL);
 		FpgaWriteRegister(FPGA_REG_D_ATT_CTL, tmp);
-		//FpgaWriteRegister(FPGA_REG_ATT_FULL_REDUCE, tmp);//Êı¿ØË¥¼õÆ÷È«Ë¥
+		//FpgaWriteRegister(FPGA_REG_ATT_FULL_REDUCE, tmp);//æ•°æ§è¡°å‡å™¨å…¨è¡°
 
-		// ËùÓĞË¥¼õÆ÷²»Ë¥
+		// æ‰€æœ‰è¡°å‡å™¨ä¸è¡°
 		SetAtt1(TF_D,0X1F);
 		FPGA_ENABLE_WRITE;
-		FPGA_SET_CHANNEL(0); //´ò¿ª0Í¨µÀ
-		FpgaWriteRegister(FPGA_REG_D_ATT3_CAL, 0X00 ); // ËùÓĞË¥¼õÆ÷²»Ë¥
+		FPGA_SET_CHANNEL(0); //æ‰“å¼€0é€šé“
+		FpgaWriteRegister(FPGA_REG_D_ATT3_CAL, 0X00 ); // æ‰€æœ‰è¡°å‡å™¨ä¸è¡°
 		FpgaWriteRegister(FPGA_REG_D_ATT3_EN,0x01);
 		UsNopDelay(20);
-		FPGA_SET_CHANNEL(0);		// ÉèÖÃÍ¨µÀºÅ
+		FPGA_SET_CHANNEL(0);		// è®¾ç½®é€šé“å·
 		//FREQ_CTL_Val=0x8893*50/62.5;
 		if((version_number == VERSION_40M_IN_E))
 		{
@@ -2773,10 +2773,10 @@ void FpgaEnterAttAdjMode( UCHAR8 abcd_flag )
 		/*for(i=0; i<63; i++ )
 		{
 			tmp = 0;
-			FpgaWriteRegister(FPGA_REG_D_ATT1_CAL, tmp ); // ËùÓĞË¥¼õÆ÷²»Ë¥
+			FpgaWriteRegister(FPGA_REG_D_ATT1_CAL, tmp ); // æ‰€æœ‰è¡°å‡å™¨ä¸è¡°
 			UsNopDelay(20);
-			//FpgaWriteRegister(FPGA_REG_C_ATT2_CAL, 0 ); // ËùÓĞË¥¼õÆ÷²»Ë¥
-			FpgaWriteRegister(FPGA_REG_D_ATT3_CAL, tmp ); // ËùÓĞË¥¼õÆ÷²»Ë¥
+			//FpgaWriteRegister(FPGA_REG_C_ATT2_CAL, 0 ); // æ‰€æœ‰è¡°å‡å™¨ä¸è¡°
+			FpgaWriteRegister(FPGA_REG_D_ATT3_CAL, tmp ); // æ‰€æœ‰è¡°å‡å™¨ä¸è¡°
 			UsNopDelay(20);
 		}*/
 
@@ -2787,9 +2787,9 @@ void FpgaEnterAttAdjMode( UCHAR8 abcd_flag )
 
 /*************************************************************
 Name:FpgaExitAttAdjMode
-Description: FPGAÍË³öĞ£×¼Ä£Ê½
+Description: FPGAé€€å‡ºæ ¡å‡†æ¨¡å¼
 Input: 
-	ab_flag: AB¶Î±êÖ¾
+	ab_flag: ABæ®µæ ‡å¿—
 Output: void
 Return: void
 **************************************************************/
@@ -2803,29 +2803,29 @@ void FpgaExitAttAdjMode( UCHAR8 ab_flag )
 	{
 		reg= FPGA_REG_A_ATT_CTL;
 		data=0x0a;
-		ReadWriteTF(TF_A,1,0X56,0X00);//´ò¿ªÉÏĞĞ£¬Êä³öÍ¨µÀ¡¢	
+		ReadWriteTF(TF_A,1,0X56,0X00);//æ‰“å¼€ä¸Šè¡Œï¼Œè¾“å‡ºé€šé“ã€	
 
 		if(version_number == VERSION_50M_IN_V5)
 		{
 			FPGA_ENABLE_WRITE;
-			FPGA_SET_CHANNEL(0);		// ÉèÖÃÍ¨µÀºÅ
+			FPGA_SET_CHANNEL(0);		// è®¾ç½®é€šé“å·
 			FpgaWriteRegister(FPGA_REG_A_D_FREQ_CTL_L_12, 0x8000);
 	 		FpgaWriteRegister(FPGA_REG_A_D_FREQ_CTL_H_14, 0x0000);
 			
 			//FpgaWriteRegister(FPGA_REC_D_TD_WORK_MODE, TD_WM_NORMAL);
 			//sys_param_1b[MADD_D_TD_WORK_MODE].val = TD_WM_NORMAL;
 			FPGA_DISABLE_WRITE;
-			//ÍË³öĞ£×¼ÉÏĞĞÊ±£¬´ò¿ªÉÏĞĞÉäÆµ¿ª¹Ø
+			//é€€å‡ºæ ¡å‡†ä¸Šè¡Œæ—¶ï¼Œæ‰“å¼€ä¸Šè¡Œå°„é¢‘å¼€å…³
 			tmp=ReadWriteTF(TF_A,0,0x057,0x01);
 			tmp&=(~0x01<<0);
 			ReadWriteTF(TF_A,1,0x057,tmp);		
-			// ÏÂĞĞÊäÈë			
-			//ÍË³öĞ£×¼£¬´ò¿ªÏÂĞĞÉäÆµ¿ª¹Ø
+			// ä¸‹è¡Œè¾“å…¥			
+			//é€€å‡ºæ ¡å‡†ï¼Œæ‰“å¼€ä¸‹è¡Œå°„é¢‘å¼€å…³
 			tmp=ReadWriteTF(TF_D,0,0x053,0x01);
 			tmp&=~((0x01<<2)|(0x01<<4));			
 			ReadWriteTF(TF_A,1,0x053,tmp);		
 
-			ReadWriteTF(TF_A,1,0X56,0X00);//´ò¿ªÉÏĞĞ£¬Êä³öÍ¨µÀ¡¢
+			ReadWriteTF(TF_A,1,0X56,0X00);//æ‰“å¼€ä¸Šè¡Œï¼Œè¾“å‡ºé€šé“ã€
 		}
 	}
 	else if ( SYS_B_FLAG == ab_flag )
@@ -2835,24 +2835,24 @@ void FpgaExitAttAdjMode( UCHAR8 ab_flag )
 		FPGA_ENABLE_WRITE;
 		if(NET_TYPE_TD!=fpga_cfg.b_net_type)
 		{
-			FPGA_SET_CHANNEL(0);		// ÉèÖÃÍ¨µÀºÅ
+			FPGA_SET_CHANNEL(0);		// è®¾ç½®é€šé“å·
 			FpgaWriteRegister(FPGA_REG_B_FREQ_CTL_L_12, 0x8000);
 	 		FpgaWriteRegister(FPGA_REG_B_FREQ_CTL_H_14, 0x0000);			
 		}
 		FpgaWriteRegister(FPGA_REG_TD_WORK_MODE, TD_WM_NORMAL);
 		sys_param_1b[MADD_TD_WORK_MODE].val = 0;
 		FPGA_DISABLE_WRITE;		
-		//ÍË³öĞ£×¼ÉÏĞĞÊ±£¬´ò¿ªÉÏĞĞÉäÆµ¿ª¹Ø
+		//é€€å‡ºæ ¡å‡†ä¸Šè¡Œæ—¶ï¼Œæ‰“å¼€ä¸Šè¡Œå°„é¢‘å¼€å…³
 		tmp=ReadWriteTF(TF_B,0,0x057,0x01);
 		tmp&=(~0x01<<0);
 		ReadWriteTF(TF_B,1,0x057,tmp);		
-	// ÏÂĞĞÊäÈë			
-		//ÍË³öĞ£×¼£¬´ò¿ªÏÂĞĞÉäÆµ¿ª¹Ø
+	// ä¸‹è¡Œè¾“å…¥			
+		//é€€å‡ºæ ¡å‡†ï¼Œæ‰“å¼€ä¸‹è¡Œå°„é¢‘å¼€å…³
 		tmp=ReadWriteTF(TF_B,0,0x053,0x01);
 		tmp&=~((0x01<<3)|(0x01<<5));			
 		ReadWriteTF(TF_B,1,0x053,tmp);		
 		
-		ReadWriteTF(TF_B,1,0X56,0X00);//´ò¿ªÉÏĞĞ£¬Êä³öÍ¨µÀ¡¢
+		ReadWriteTF(TF_B,1,0X56,0X00);//æ‰“å¼€ä¸Šè¡Œï¼Œè¾“å‡ºé€šé“ã€
 		
 	} 
 	else if ( SYS_C_FLAG == ab_flag )
@@ -2860,7 +2860,7 @@ void FpgaExitAttAdjMode( UCHAR8 ab_flag )
 		data=0x0b;
 		reg= FPGA_REG_C_ATT_CTL;
 		FPGA_ENABLE_WRITE;
-		FPGA_SET_CHANNEL(0);		// ÉèÖÃÍ¨µÀºÅ
+		FPGA_SET_CHANNEL(0);		// è®¾ç½®é€šé“å·
 		FpgaWriteRegister(FPGA_REG_C_FREQ_CTL_L_12, 0x8000);
  		FpgaWriteRegister(FPGA_REG_C_FREQ_CTL_H_14, 0x0000);
 		
@@ -2868,16 +2868,16 @@ void FpgaExitAttAdjMode( UCHAR8 ab_flag )
 		sys_param_1b[MADD_C_TD_WORK_MODE].val = TD_WM_NORMAL;
 		FPGA_DISABLE_WRITE;		
 		
-		//ÍË³öĞ£×¼ÉÏĞĞÊ±£¬´ò¿ªÉÏĞĞÉäÆµ¿ª¹Ø
+		//é€€å‡ºæ ¡å‡†ä¸Šè¡Œæ—¶ï¼Œæ‰“å¼€ä¸Šè¡Œå°„é¢‘å¼€å…³
 		tmp=ReadWriteTF(TF_C,0,0x057,0x01);
 		tmp&=(~0x01<<1);
 		ReadWriteTF(TF_C,1,0x057,tmp);		
-	// ÏÂĞĞÊäÈë			
-		//ÍË³öĞ£×¼£¬´ò¿ªÏÂĞĞÉäÆµ¿ª¹Ø
+	// ä¸‹è¡Œè¾“å…¥			
+		//é€€å‡ºæ ¡å‡†ï¼Œæ‰“å¼€ä¸‹è¡Œå°„é¢‘å¼€å…³
 		tmp=ReadWriteTF(TF_C,0,0x053,0x01);
 		tmp&=~((0x01<<3)|(0x01<<5));			
 		ReadWriteTF(TF_C,1,0x053,tmp);	
-		ReadWriteTF(TF_C,1,0X56,0X00);//´ò¿ªÉÏĞĞ£¬Êä³öÍ¨µÀ¡¢
+		ReadWriteTF(TF_C,1,0X56,0X00);//æ‰“å¼€ä¸Šè¡Œï¼Œè¾“å‡ºé€šé“ã€
 				
 	} 
 	else if ( SYS_D_FLAG == ab_flag )
@@ -2886,31 +2886,31 @@ void FpgaExitAttAdjMode( UCHAR8 ab_flag )
 		reg= FPGA_REG_D_ATT_CTL;
 
 		FPGA_ENABLE_WRITE;
-		FPGA_SET_CHANNEL(0);		// ÉèÖÃÍ¨µÀºÅ
+		FPGA_SET_CHANNEL(0);		// è®¾ç½®é€šé“å·
 		FpgaWriteRegister(FPGA_REG_D_FREQ_CTL_L_12, 0x8000);
  		FpgaWriteRegister(FPGA_REG_D_FREQ_CTL_H_14, 0x0000);
 		
 		FpgaWriteRegister(FPGA_REC_D_TD_WORK_MODE, TD_WM_NORMAL);
 		sys_param_1b[MADD_D_TD_WORK_MODE].val = TD_WM_NORMAL;
 		FPGA_DISABLE_WRITE;
-		//ÍË³öĞ£×¼ÉÏĞĞÊ±£¬´ò¿ªÉÏĞĞÉäÆµ¿ª¹Ø
+		//é€€å‡ºæ ¡å‡†ä¸Šè¡Œæ—¶ï¼Œæ‰“å¼€ä¸Šè¡Œå°„é¢‘å¼€å…³
 		tmp=ReadWriteTF(TF_D,0,0x057,0x01);
 		tmp&=(~0x01<<0);
 		ReadWriteTF(TF_D,1,0x057,tmp);		
-	// ÏÂĞĞÊäÈë			
-		//ÍË³öĞ£×¼£¬´ò¿ªÏÂĞĞÉäÆµ¿ª¹Ø
+	// ä¸‹è¡Œè¾“å…¥			
+		//é€€å‡ºæ ¡å‡†ï¼Œæ‰“å¼€ä¸‹è¡Œå°„é¢‘å¼€å…³
 		tmp=ReadWriteTF(TF_D,0,0x053,0x01);
 		tmp&=~((0x01<<2)|(0x01<<4));			
 		ReadWriteTF(TF_D,1,0x053,tmp);		
 
-		ReadWriteTF(TF_D,1,0X56,0X00);//´ò¿ªÉÏĞĞ£¬Êä³öÍ¨µÀ¡¢
+		ReadWriteTF(TF_D,1,0X56,0X00);//æ‰“å¼€ä¸Šè¡Œï¼Œè¾“å‡ºé€šé“ã€
 
 	} 
-	// ÍË³öĞ£×¼Ä£Ê½
+	// é€€å‡ºæ ¡å‡†æ¨¡å¼
 	tmp = FpgaReadRegister(reg);
 	
-	tmp &= (~(ATT_MODE_MASK|ATT_MANUAL)); //×Ô¶¯ATTË¥¼õ  
-	tmp |= ATT_MODE_NORMAL;  //ATTÕı³£¹¤×÷Ä£Ê½   
+	tmp &= (~(ATT_MODE_MASK|ATT_MANUAL)); //è‡ªåŠ¨ATTè¡°å‡  
+	tmp |= ATT_MODE_NORMAL;  //ATTæ­£å¸¸å·¥ä½œæ¨¡å¼   
 	
 	FPGA_ENABLE_WRITE;  
 	FpgaWriteRegister(reg, tmp);
@@ -2925,16 +2925,16 @@ void FpgaExitAttAdjMode( UCHAR8 ab_flag )
 #if 0
 	FPGA_ENABLE_WRITE;
 //	if ( 0==p_args[1] )  
-//	{	// ÉÏĞĞÊä³ö
-		//Ğ£×¼ÉÏĞĞÊ±£¬´ò¿ªÉÏĞĞÉäÆµ¿ª¹Ø
+//	{	// ä¸Šè¡Œè¾“å‡º
+		//æ ¡å‡†ä¸Šè¡Œæ—¶ï¼Œæ‰“å¼€ä¸Šè¡Œå°„é¢‘å¼€å…³
 		tmp=ReadWriteTF(TF_C,0,0x057,0x01);
 		tmp&=(~0x01<<1);
 		ReadWriteTF(TF_C,1,0x057,tmp);	
 //	}    
 //	else 
-//	{	// ÏÂĞĞÊäÈë
+//	{	// ä¸‹è¡Œè¾“å…¥
 				
-		//Ğ£×¼ÏÂĞĞÊ±¹ØÉÏĞĞÉäÆµ¿ª¹Ø£¬´ò¿ªÏÂĞĞÉäÆµ¿ª¹Ø
+		//æ ¡å‡†ä¸‹è¡Œæ—¶å…³ä¸Šè¡Œå°„é¢‘å¼€å…³ï¼Œæ‰“å¼€ä¸‹è¡Œå°„é¢‘å¼€å…³
 		tmp=ReadWriteTF(TF_C,0,0x057,0x01);
 		tmp|=(0x01<<1);
 		ReadWriteTF(TF_C,1,0x057,tmp);
@@ -2946,14 +2946,14 @@ void FpgaExitAttAdjMode( UCHAR8 ab_flag )
 //	}
 	FPGA_DISABLE_WRITE;
 #endif 	
-	// ÖØĞÂ¸ù¾İ²ÎÊıÅäÖÃFPGA¼Ä´æÆ÷
+	// é‡æ–°æ ¹æ®å‚æ•°é…ç½®FPGAå¯„å­˜å™¨
 	module_param_chg_flag = 0xFFFFFFFF;
 
 }
 
 /*************************************************************
 Name:         FpgaSetTempAdjustTable
-Description:  ÏòFPGAĞ´ÈëÎÂ¶È²¹³¥±í¸ñ
+Description:  å‘FPGAå†™å…¥æ¸©åº¦è¡¥å¿è¡¨æ ¼
 Input:        void 
 Output:       void
 Return:       void 
@@ -2983,14 +2983,14 @@ void FpgaSetTempAdjustTable()
  
 /*************************************************************
 Name:       FpgaSaveAdjustTable
-Description:½«±í¸ñ±£´æµ½FLASHÖĞ
+Description:å°†è¡¨æ ¼ä¿å­˜åˆ°FLASHä¸­
 Input:
-	p_data:Êı¾İÖ¸Õë
-	att_count: Ë¥¼õÆ÷¸öÊı
-	ab_flag: AB¶ÎÑ¡Ôñ
-	ud_flag: 1-ÉÏĞĞ£¬0-ÏÂĞĞ
+	p_data:æ•°æ®æŒ‡é’ˆ
+	att_count: è¡°å‡å™¨ä¸ªæ•°
+	ab_flag: ABæ®µé€‰æ‹©
+	ud_flag: 1-ä¸Šè¡Œï¼Œ0-ä¸‹è¡Œ
 Output:void
-Return:0:Ê§°Ü1:³É¹¦
+Return:0:å¤±è´¥1:æˆåŠŸ
 **************************************************************/
 UCHAR8 FpgaSaveAdjustTable(UCHAR8 *p_data, UCHAR8 att_count, UCHAR8 ab_flag, UCHAR8 ud_flag )
 {
@@ -3074,13 +3074,13 @@ UCHAR8 FpgaSaveAdjustTable(UCHAR8 *p_data, UCHAR8 att_count, UCHAR8 ab_flag, UCH
 		}  
 	}
 
-	// Ginp, 4×Ö½Ú, ¸¡µãÊı
+	// Ginp, 4å­—èŠ‚, æµ®ç‚¹æ•°
 	for ( i=0; i<4; i++ )
 	{
 		buff[w_len++] = *p_data++;
 	}
 
-	// Gcic, 4×Ö½Ú, ¸¡µãÊı
+	// Gcic, 4å­—èŠ‚, æµ®ç‚¹æ•°
 	for ( i=0; i<4; i++ )
 	{
 		buff[w_len++] = *p_data++;
@@ -3147,8 +3147,8 @@ TRACE_INFO("return1");
 
 /*************************************************************
 Name:        FpgaSetGsmBW
-Description: ÉèÖÃGSMµÄ´ø¿í
-Input:       BW - ´ø¿í±êÖ¾
+Description: è®¾ç½®GSMçš„å¸¦å®½
+Input:       BW - å¸¦å®½æ ‡å¿—
 Output:      void         
 Return:      void
 **************************************************************/
@@ -3163,20 +3163,20 @@ void FpgaSetGsmBW( UCHAR8 bw )
 
 /*************************************************************
 Name: CalcGsmFreqWord
-Description: ¸ù¾İGSMÆµµãºÅ¼ÆËãÆµÂÊ×Ö£¬REC°´ÏÂĞĞµÄ¹«Ê½¼ÆËã
+Description: æ ¹æ®GSMé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—ï¼ŒRECæŒ‰ä¸‹è¡Œçš„å…¬å¼è®¡ç®—
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 //NT32 CalcGsmFreqWord( INT32 freq_code, FLOAT32 fd_local )
 INT32 SearchFpCalcGsmFreqWord( INT32 freq_code, FLOAT32 up_fre, FLOAT32 down_fre, INT32 *up_fre_word,INT32 *down_fre_word )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ
+	FLOAT32 freq_point;	// é¢‘ç‡
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡
 	INT32   freq_word;   
-/*------------ÏÂĞĞ----------------*/	
+/*------------ä¸‹è¡Œ----------------*/	
 	//printf("<fp=%f, ful=%f> ", freq_point, fu_local);
     freq_point = ConvGsmFcToFreqDL(freq_code);
 	TRACE_INFO("<fp=%f, ful=%f>\r\n", freq_point, down_fre);
@@ -3188,11 +3188,11 @@ INT32 SearchFpCalcGsmFreqWord( INT32 freq_code, FLOAT32 up_fre, FLOAT32 down_fre
 	TRACE_INFO("freq_point = %f,fu_local=[%f]\r\n",freq_point,down_fre);
 	
 
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ    
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡    
 	digit_freq = CalcGsmdfu( freq_point, 10*down_fre); 
     TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	freq_word = CalcFpgaFw_AB( digit_freq )/10.0;  
 	*down_fre_word=freq_word;
 	if(freq_point<10*down_fre)
@@ -3200,7 +3200,7 @@ INT32 SearchFpCalcGsmFreqWord( INT32 freq_code, FLOAT32 up_fre, FLOAT32 down_fre
 		*down_fre_word |=0x80000000;
 	}
 	
-/*------------ÉÏĞĞ----------------*/	
+/*------------ä¸Šè¡Œ----------------*/	
 	//printf("<fp=%f, ful=%f> ", freq_point, fu_local);
     freq_point = ConvGsmFcToFreqUL(freq_code);
 	TRACE_INFO("<fp=%f, ful=%f>\r\n", freq_point, up_fre);
@@ -3211,11 +3211,11 @@ INT32 SearchFpCalcGsmFreqWord( INT32 freq_code, FLOAT32 up_fre, FLOAT32 down_fre
 
 	TRACE_INFO("freq_point = %f,fu_local=[%f]\r\n",freq_point,up_fre);
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ    
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡    
 	digit_freq = CalcGsmdfu( freq_point, 10*up_fre); 
     TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	*up_fre_word = CalcFpgaFw_AB( digit_freq )/10.0;
 	if(freq_point<10*up_fre)
 	{
@@ -3232,32 +3232,32 @@ INT32 SearchFpCalcGsmFreqWord( INT32 freq_code, FLOAT32 up_fre, FLOAT32 down_fre
 
 /*************************************************************
 Name: CalcGsmFreqWord
-Description: ¸ù¾İGSMÆµµãºÅ¼ÆËãÆµÂÊ×Ö£¬REC°´ÏÂĞĞµÄ¹«Ê½¼ÆËã
+Description: æ ¹æ®GSMé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—ï¼ŒRECæŒ‰ä¸‹è¡Œçš„å…¬å¼è®¡ç®—
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 //NT32 CalcGsmFreqWord( INT32 freq_code, FLOAT32 fd_local )
 INT32 CalcGsmFreqWord( INT32 freq_code,  FLOAT32 fpga_data_clk,  FLOAT32 up_fre, FLOAT32 down_fre, INT32 *up_fre_word,INT32 *down_fre_word )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ
+	FLOAT32 freq_point;	// é¢‘ç‡
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡
 	INT32   freq_word;   
 
 	
 	printf("freq_code = %d,up_fre=[%f],down_fre = %f\r\n",freq_code,up_fre,down_fre);
-/*------------ÏÂĞĞ----------------*/	
+/*------------ä¸‹è¡Œ----------------*/	
 	
 	freq_point = ConvGsmFcToFreqDL(freq_code);
 	printf("freq_point = %f\r\n",freq_point);	
 
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ    
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡    
 	digit_freq = CalcGsmdfu( freq_point, 10*down_fre); 
 	printf("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//freq_word = CalcFpgaFw_AB( digit_freq )/10.0; 
 	freq_word = CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk)/10.0;
 	printf("freq_word = %02x\r\n",freq_word);  
@@ -3270,17 +3270,17 @@ INT32 CalcGsmFreqWord( INT32 freq_code,  FLOAT32 fpga_data_clk,  FLOAT32 up_fre,
 	
 	printf("down_fre_word = %02x\r\n",*down_fre_word);  
 	
-/*------------ÉÏĞĞ----------------*/	
+/*------------ä¸Šè¡Œ----------------*/	
 	//printf("<fp=%f, ful=%f> ", freq_point, fu_local);
 	freq_point = ConvGsmFcToFreqUL(freq_code);
 	printf("freq_point = %f\r\n",freq_point);
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ    
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡    
 	digit_freq = CalcGsmdfu( freq_point, 10*up_fre); 
 	
 	printf("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//*up_fre_word = CalcFpgaFw_AB( digit_freq )/10.0;
 	
 	freq_word = CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk)/10.0;
@@ -3303,17 +3303,17 @@ INT32 CalcGsmFreqWord( INT32 freq_code,  FLOAT32 fpga_data_clk,  FLOAT32 up_fre,
 #if 0
 /*************************************************************
 Name: CalcGsmFreqWord
-Description: ¸ù¾İGSMÆµµãºÅ¼ÆËãÆµÂÊ×Ö£¬RE°´ÉÏĞĞµÄ¹«Ê½¼ÆËã
+Description: æ ¹æ®GSMé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—ï¼ŒREæŒ‰ä¸Šè¡Œçš„å…¬å¼è®¡ç®—
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 CalcDcsFreqWord( INT32 freq_code, FLOAT32 fu_local )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ
+	FLOAT32 freq_point;	// é¢‘ç‡
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡
 	INT32   freq_word;   
 	
 	if (!VAL_IN_RANGE( freq_code, 512, 885 ))
@@ -3324,11 +3324,11 @@ INT32 CalcDcsFreqWord( INT32 freq_code, FLOAT32 fu_local )
 	freq_point = (FLOAT32)(freq_code-511) * 0.2 + 1805;
    TRACE_INFO("freq_point = %0.2f,freq_code=%d, fu_local=%f\r\n",freq_point,freq_code, fu_local); 
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ     
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡     
 	digit_freq = CalcDcsfu( freq_point, fu_local); 
     TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	freq_word = CalcFpgaFw_AB( digit_freq );   
 	TRACE_INFO("freq_word = %08x\r\n",freq_word);  
 	return (freq_word) ;			   
@@ -3339,32 +3339,32 @@ INT32 CalcDcsFreqWord( INT32 freq_code, FLOAT32 fu_local )
 #endif 
 /*************************************************************
 Name: CalcGsmFreqWord
-Description: ¸ù¾İGSMÆµµãºÅ¼ÆËãÆµÂÊ×Ö£¬RE°´ÉÏĞĞµÄ¹«Ê½¼ÆËã
+Description: æ ¹æ®GSMé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—ï¼ŒREæŒ‰ä¸Šè¡Œçš„å…¬å¼è®¡ç®—
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 CalcDcsFreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fre, FLOAT32 down_fre, INT32 *up_fre_word,INT32 *down_fre_word )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ
+	FLOAT32 freq_point;	// é¢‘ç‡
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡
 	INT32   freq_word;   
 	
 	if (!VAL_IN_RANGE( freq_code, DCS_MIN_FRE_CODE_CNMOBILE, 885 ))
 	{
 		return 0;
 	} 
-/*--------------ÏÂĞĞ------------------------*/
+/*--------------ä¸‹è¡Œ------------------------*/
 	freq_point = (FLOAT32)(freq_code-511) *10* 0.2 + 1805*10;
    TRACE_INFO("freq_point = %0.2f,freq_code=%d, fu_local=%f\r\n",freq_point,freq_code, down_fre); 
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ     
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡     
 	digit_freq = CalcDcsfu( freq_point, down_fre*10); 
     TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//*down_fre_word = CalcFpgaFw_A( digit_freq )/10; 
 	*down_fre_word = CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk)/10;
     TRACE_INFO("*down_fre_word = %x\r\n",*down_fre_word);  	
@@ -3374,15 +3374,15 @@ INT32 CalcDcsFreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fre, F
 	}
 	TRACE_INFO("down_down_freq_word = %08x\r\n",*down_fre_word);  
 
-/*--------------ÉÏĞĞ------------------------*/
+/*--------------ä¸Šè¡Œ------------------------*/
 	freq_point = (FLOAT32)(freq_code-511) *10* 0.2 + 1710*10;
    TRACE_INFO("up_freq_point = %0.2f,freq_code=%d, fu_local=%f\r\n",freq_point,freq_code, up_fre); 
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ     
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡     
 	digit_freq = CalcDcsfu( freq_point, up_fre*10); 
     TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//*up_fre_word = CalcFpgaFw_A( digit_freq )/10; 
 	*up_fre_word = CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk)/10;
 	if(freq_point<10*up_fre)
@@ -3397,12 +3397,12 @@ INT32 CalcDcsFreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fre, F
 }
 /*************************************************************
 Name: WcdmaFreqWordConfigureadTxRxPll
-Description: ¸ù¾İWCDMAplloutputfreqÅäÖÃ9363
+Description: æ ¹æ®WCDMAplloutputfreqé…ç½®9363
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 WcdmaFreqWordConfigureTxRxPll( FLOAT32 up_fre,  FLOAT32 down_fre)
 {
@@ -3410,7 +3410,7 @@ INT32 WcdmaFreqWordConfigureTxRxPll( FLOAT32 up_fre,  FLOAT32 down_fre)
 	UINT32 data;
 	
 
-	ReadWriteTF(TF_A,1,0X014,0X03);		 //Ğ¾Æ¬½øÈëµÈ´ıÄ£Ê½£¨´ËÊ±Ğ¾Æ¬ÎŞÊä³ö£©
+	ReadWriteTF(TF_A,1,0X014,0X03);		 //èŠ¯ç‰‡è¿›å…¥ç­‰å¾…æ¨¡å¼ï¼ˆæ­¤æ—¶èŠ¯ç‰‡æ— è¾“å‡ºï¼‰
 	
 	ReadWriteTF(TF_A,1,0X5,0X11);
 	tmp=down_fre*100*pow(2,2);
@@ -3471,19 +3471,19 @@ INT32 WcdmaFreqWordConfigureTxRxPll( FLOAT32 up_fre,  FLOAT32 down_fre)
 	ReadWriteTF(TF_A,1,0X272,(data&0X0700)>>8 );
 	ReadWriteTF(TF_A,1,0X271,(data&0X0FF) );
 	UsNopDelay(500);
-	ReadWriteTF(TF_A,1,0X014,0X23);		 //ÅäÖÃÍê³ÉºóĞ¾Æ¬½øÈëÕı³£¹¤×÷×´Ì¬¡£	
+	ReadWriteTF(TF_A,1,0X014,0X23);		 //é…ç½®å®ŒæˆåèŠ¯ç‰‡è¿›å…¥æ­£å¸¸å·¥ä½œçŠ¶æ€ã€‚	
 
 	return 0;
 }
 
 /*************************************************************
 Name: LteFddFreqWordConfigureTxRxPllFreqWordConfigureadTxRxPll
-Description: ¸ù¾İLTEFDDplloutputfreqÅäÖÃ9363
+Description: æ ¹æ®LTEFDDplloutputfreqé…ç½®9363
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 LteTdFreqWordConfigureTxRxPll( FLOAT32 plloutputfreq ,UCHAR8 flag)
 {
@@ -3502,7 +3502,7 @@ INT32 LteTdFreqWordConfigureTxRxPll( FLOAT32 plloutputfreq ,UCHAR8 flag)
 	plloutputfreq +=(CHAR8)sys_param_1b[MADD_FREQ_MODIF_VAL_D].val/100.0;
 
 
-	ReadWriteTF(abcd_flag,1,0X014,0X03);		 //Ğ¾Æ¬½øÈëµÈ´ıÄ£Ê½£¨´ËÊ±Ğ¾Æ¬ÎŞÊä³ö£©
+	ReadWriteTF(abcd_flag,1,0X014,0X03);		 //èŠ¯ç‰‡è¿›å…¥ç­‰å¾…æ¨¡å¼ï¼ˆæ­¤æ—¶èŠ¯ç‰‡æ— è¾“å‡ºï¼‰
 	
 	ReadWriteTF(abcd_flag,1,0X5,0X11);
 	tmp=plloutputfreq*100*pow(2,2);
@@ -3570,7 +3570,7 @@ INT32 LteTdFreqWordConfigureTxRxPll( FLOAT32 plloutputfreq ,UCHAR8 flag)
 	ReadWriteTF(abcd_flag,1,0X271,(data&0X0FF) );
 	UsNopDelay(10*1000);
 
-	ReadWriteTF(abcd_flag,1,0X014,0X23);		 //ÅäÖÃÍê³ÉºóĞ¾Æ¬½øÈëÕı³£¹¤×÷×´Ì¬¡£	
+	ReadWriteTF(abcd_flag,1,0X014,0X23);		 //é…ç½®å®ŒæˆåèŠ¯ç‰‡è¿›å…¥æ­£å¸¸å·¥ä½œçŠ¶æ€ã€‚	
 
 	ReadWriteTF(abcd_flag,1,0X53,0Xff);		 //	
 	UsNopDelay(1*1000);
@@ -3583,12 +3583,12 @@ INT32 LteTdFreqWordConfigureTxRxPll( FLOAT32 plloutputfreq ,UCHAR8 flag)
 
 /*************************************************************
 Name: LteFddFreqWordConfigureTxRxPllFreqWordConfigureadTxRxPll
-Description: ¸ù¾İLTEFDDplloutputfreqÅäÖÃ9363
+Description: æ ¹æ®LTEFDDplloutputfreqé…ç½®9363
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 LteFddFreqWordConfigureTxRxPll( FLOAT32 plloutputfreq ,UCHAR8 flag)
 {
@@ -3606,7 +3606,7 @@ INT32 LteFddFreqWordConfigureTxRxPll( FLOAT32 plloutputfreq ,UCHAR8 flag)
 	TRACE_INFO("FDD_(CHAR8)sys_param_1b[MADD_FREQ_MODIF_VAL_D].val[d=%d][f=%f],plloutputfreq=%f\r\n",(CHAR8)sys_param_1b[MADD_FREQ_MODIF_VAL_D].val,(CHAR8)sys_param_1b[MADD_FREQ_MODIF_VAL_D].val/100.0,plloutputfreq);	
 	plloutputfreq +=(CHAR8)sys_param_1b[MADD_FREQ_MODIF_VAL_D].val/100.0;
 	
-	ReadWriteTF(abcd_flag,1,0X014,0X03);		 //Ğ¾Æ¬½øÈëµÈ´ıÄ£Ê½£¨´ËÊ±Ğ¾Æ¬ÎŞÊä³ö£©
+	ReadWriteTF(abcd_flag,1,0X014,0X03);		 //èŠ¯ç‰‡è¿›å…¥ç­‰å¾…æ¨¡å¼ï¼ˆæ­¤æ—¶èŠ¯ç‰‡æ— è¾“å‡ºï¼‰
 	
 	ReadWriteTF(abcd_flag,1,0X5,0X11);
 	tmp=plloutputfreq*100*pow(2,2);
@@ -3648,9 +3648,9 @@ INT32 LteFddFreqWordConfigureTxRxPll( FLOAT32 plloutputfreq ,UCHAR8 flag)
 
 	UsNopDelay(10*1000);
 	
-	ReadWriteTF(abcd_flag,1,0X53,0Xff);		 //ÅäÖÃÍê³ÉºóĞ¾Æ¬½øÈëÕı³£¹¤×÷×´Ì¬¡£	
+	ReadWriteTF(abcd_flag,1,0X53,0Xff);		 //é…ç½®å®ŒæˆåèŠ¯ç‰‡è¿›å…¥æ­£å¸¸å·¥ä½œçŠ¶æ€ã€‚	
 	UsNopDelay(1*1000);
-	ReadWriteTF(abcd_flag,1,0X53,0X00);		 //ÅäÖÃÍê³ÉºóĞ¾Æ¬½øÈëÕı³£¹¤×÷×´Ì¬¡£	
+	ReadWriteTF(abcd_flag,1,0X53,0X00);		 //é…ç½®å®ŒæˆåèŠ¯ç‰‡è¿›å…¥æ­£å¸¸å·¥ä½œçŠ¶æ€ã€‚	
 
 	//plloutputfreq*=100;
 	if ( VAL_IN_RANGE(plloutputfreq, 2110*100, 2170*100) )//CMDA2100
@@ -3687,23 +3687,23 @@ INT32 LteFddFreqWordConfigureTxRxPll( FLOAT32 plloutputfreq ,UCHAR8 flag)
 	ReadWriteTF(abcd_flag,1,0X271,(data&0X0FF) );
 	UsNopDelay(10*1000);
 
-	ReadWriteTF(abcd_flag,1,0X014,0X23);		 //ÅäÖÃÍê³ÉºóĞ¾Æ¬½øÈëÕı³£¹¤×÷×´Ì¬¡£	
+	ReadWriteTF(abcd_flag,1,0X014,0X23);		 //é…ç½®å®ŒæˆåèŠ¯ç‰‡è¿›å…¥æ­£å¸¸å·¥ä½œçŠ¶æ€ã€‚	
 
 	return 0;
 }
 
 /*************************************************************
 Name: CalcGsmFreqWord
-Description: ¸ù¾İwcdmaÆµµãºÅ¼ÆËãÆµÂÊ×Ö,
+Description: æ ¹æ®wcdmaé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—,
 Input:
 	void 
 Output:        
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 void CalcWcdmaPLLoutputFreq(FLOAT32 *up_fre,FLOAT32 *down_fre )
 {
-	FLOAT32 plloput_freq;	// ÆµÂÊ 
+	FLOAT32 plloput_freq;	// é¢‘ç‡ 
 	UCHAR8 i=0,j=0;
 	INT16 freq_code_min,freq_code_max;     
 
@@ -3729,7 +3729,7 @@ void CalcWcdmaPLLoutputFreq(FLOAT32 *up_fre,FLOAT32 *down_fre )
 		freq_code_max=sys_param_2b[MADD_A_DL_CHANNEL1+0].val;
 		
 	}
-	//ÉÏĞĞÆµÂÊ
+	//ä¸Šè¡Œé¢‘ç‡
 	if (((freq_code_max-freq_code_min)<15*5+25)&&((freq_code_max-freq_code_min)>15*5-1))
 	{
 		*up_fre = (FLOAT32)(freq_code_min+freq_code_max)*0.2*100/2 -190*100;
@@ -3743,8 +3743,8 @@ void CalcWcdmaPLLoutputFreq(FLOAT32 *up_fre,FLOAT32 *down_fre )
 		
 	}
 
-	//ÏÂĞĞÆµÂÊ
-	//Õı³£Ä£Ê½
+	//ä¸‹è¡Œé¢‘ç‡
+	//æ­£å¸¸æ¨¡å¼
 	*down_fre = (FLOAT32)(freq_code_min+freq_code_max)*0.2*100/2;
 	TRACE_INFO("up_fre = %f,down_fre = %f\r\n",*up_fre,*down_fre);
 #if 0
@@ -3752,7 +3752,7 @@ void CalcWcdmaPLLoutputFreq(FLOAT32 *up_fre,FLOAT32 *down_fre )
 	{
 		*down_fre = (FLOAT32)(freq_code_min+freq_code_max)*0.2*100/2;
 	}
-	//Ğ£×¼Ä£Ê½
+	//æ ¡å‡†æ¨¡å¼
 	else
 	{
 		if (((freq_code_max-freq_code_min)<15*5+25)&&((freq_code_max-freq_code_min)>15*5-1))
@@ -3778,16 +3778,16 @@ void CalcWcdmaPLLoutputFreq(FLOAT32 *up_fre,FLOAT32 *down_fre )
 
 /*************************************************************
 Name: CalcGsmFreqWord
-Description: ¸ù¾İwcdmaÆµµãºÅ¼ÆËãÆµÂÊ×Ö,
+Description: æ ¹æ®wcdmaé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—,
 Input:
 	void 
 Output:        
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 FLOAT32 CalcLteTdPLLoutputFreq(UCHAR8 flag)
 {
-	FLOAT32 plloput_freq;	// ÆµÂÊ 
+	FLOAT32 plloput_freq;	// é¢‘ç‡ 
 	UCHAR8 i=0,j=0;
 	INT32 freq_code_min,freq_code_max;     
 
@@ -3908,8 +3908,8 @@ FLOAT32 CalcLteTdPLLoutputFreq(UCHAR8 flag)
 	}
 
 
-	//¹Ì¶¨±¾Õñ
-	if(version_number == VERSION_50M_IN_V4) //ÓÉ¹Ì¶¨±¾Õñ±äÎª¶¯Ì¬±¾Õñ 201601070950
+	//å›ºå®šæœ¬æŒ¯
+	if(version_number == VERSION_50M_IN_V4) //ç”±å›ºå®šæœ¬æŒ¯å˜ä¸ºåŠ¨æ€æœ¬æŒ¯ 201601070950
 	{
 		//plloput_freq=2345*100;
 		
@@ -3924,16 +3924,16 @@ FLOAT32 CalcLteTdPLLoutputFreq(UCHAR8 flag)
 
 /*************************************************************
 Name: CalcGsmFreqWord
-Description: ¸ù¾İwcdmaÆµµãºÅ¼ÆËãÆµÂÊ×Ö,
+Description: æ ¹æ®wcdmaé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—,
 Input:
 	void 
 Output:        
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 FLOAT32 CalcLteFddPLLoutputFreq(UCHAR8 flag)
 {
-	FLOAT32 plloput_freq;	// ÆµÂÊ 
+	FLOAT32 plloput_freq;	// é¢‘ç‡ 
 	UCHAR8 i=0,j=0;
 	INT32 freq_code_min,freq_code_max;   
 	INT32 freq_code; 
@@ -4010,24 +4010,24 @@ FLOAT32 CalcLteFddPLLoutputFreq(UCHAR8 flag)
 
 /*************************************************************
 Name: CalcGsmFreqWord
-Description: ¸ù¾İGSMÆµµãºÅ¼ÆËãÆµÂÊ×Ö£¬RE°´ÉÏĞĞµÄ¹«Ê½¼ÆËã
+Description: æ ¹æ®GSMé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—ï¼ŒREæŒ‰ä¸Šè¡Œçš„å…¬å¼è®¡ç®—
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 CalcWcdmaFreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fre, FLOAT32 down_fre, INT32 *up_fre_word,INT32 *down_fre_word )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ 
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ 
+	FLOAT32 freq_point;	// é¢‘ç‡ 
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡ 
 	INT32   freq_word;     
 
-	//ÏÂĞĞ
+	//ä¸‹è¡Œ
 	freq_point = freq_code*0.2*100;
 	TRACE_INFO("freq_point = %f,fu_local= %f,freq_code=[%X]\r\n",freq_point,down_fre,freq_code);
 
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ    
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡    
 	if(freq_point>down_fre)
 	{
 			digit_freq = freq_point - down_fre;
@@ -4046,14 +4046,14 @@ INT32 CalcWcdmaFreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fre,
 	}
 	
 
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	TRACE_INFO("freq_word = %08x\r\n",*down_fre_word);  
 	//------------------------------------------------------//
-	//ÉÏĞĞ
+	//ä¸Šè¡Œ
 	freq_point = freq_code*0.2*100 -190*100;
 	TRACE_INFO("freq_point = %f,fu_local= %f\r\n",freq_point,up_fre);
 
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ    
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡    
 	if(freq_point>up_fre)
 	{
 			digit_freq = freq_point - up_fre;
@@ -4076,20 +4076,20 @@ INT32 CalcWcdmaFreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fre,
 }
 /*************************************************************
 Name: CalcGsmFreqWord
-Description: ¸ù¾İLteFddÆµµãºÅ¼ÆËãÆµÂÊ×Ö,ĞÂµÄ¼ÆËã¹«Ê½
+Description: æ ¹æ®LteFddé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—,æ–°çš„è®¡ç®—å…¬å¼
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 CalcWCDMAFreqWordNew( INT32 freq_code,FLOAT32 fpga_data_clk,  FLOAT32 up_fre, FLOAT32 down_fre, INT32 *up_fre_word,INT32 *down_fre_word )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ
+	FLOAT32 freq_point;	// é¢‘ç‡
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡
 	INT32   freq_word;   
 
-/*--------------ÏÂĞĞ------------------------*/
+/*--------------ä¸‹è¡Œ------------------------*/
 	//freq_point = (FLOAT32)(freq_code-511) *10* 0.2 + 1805*10;
 	//freq_point = (FLOAT32)(freq_code-0) * 0.01 + 866;
 	freq_point = freq_code*0.2;
@@ -4099,11 +4099,11 @@ INT32 CalcWCDMAFreqWordNew( INT32 freq_code,FLOAT32 fpga_data_clk,  FLOAT32 up_f
 
 	TRACE_INFO("freq_point = %0.2f,freq_code=%d, fu_local=%f\r\n",freq_point,freq_code, down_fre); 
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ     
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡     
 	digit_freq = CalcDcsfu( freq_point, down_fre); 
 	TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//*down_fre_word = CalcFpgaFw_CD( digit_freq ); 
 	*down_fre_word = CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk);
 	TRACE_INFO("*down_fre_word = %x\r\n",*down_fre_word);  	
@@ -4113,17 +4113,17 @@ INT32 CalcWCDMAFreqWordNew( INT32 freq_code,FLOAT32 fpga_data_clk,  FLOAT32 up_f
 	}
 	TRACE_INFO("down_down_freq_word = %08x\r\n",*down_fre_word);  
 
-/*--------------ÉÏĞĞ------------------------*/
+/*--------------ä¸Šè¡Œ------------------------*/
 	//freq_point = (FLOAT32)(freq_code-511) * 0.2 + 1710;
 	//freq_point = (FLOAT32)(freq_code-0) * 0.01 + 821;
 	freq_point = freq_code*0.2 -190;
 	TRACE_INFO("up_freq_point = %0.2f,freq_code=%d, fu_local=%f\r\n",freq_point,freq_code, up_fre); 
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ     
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡     
 	digit_freq = CalcDcsfu( freq_point, up_fre); 
 	TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//*up_fre_word = CalcFpgaFw_CD( digit_freq ); 
 	*up_fre_word = CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk);
 	
@@ -4141,17 +4141,17 @@ INT32 CalcWCDMAFreqWordNew( INT32 freq_code,FLOAT32 fpga_data_clk,  FLOAT32 up_f
 #if 0
 /*************************************************************
 Name: TdSysCalcGsmFreqWord
-Description: ¸ù¾İGSMÆµµãºÅ¼ÆËãÆµÂÊ×Ö£¬RE°´ÉÏĞĞµÄ¹«Ê½¼ÆËã
+Description: æ ¹æ®GSMé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—ï¼ŒREæŒ‰ä¸Šè¡Œçš„å…¬å¼è®¡ç®—
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 CalcTDFreqWord( INT32 freq_code, FLOAT32 fu_local )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ 
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ 
+	FLOAT32 freq_point;	// é¢‘ç‡ 
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡ 
 	INT32   freq_word;     
 	
 	//printf("<fp=%f, ful=%f> ", freq_point, fu_local);
@@ -4164,11 +4164,11 @@ INT32 CalcTDFreqWord( INT32 freq_code, FLOAT32 fu_local )
 	//freq_point = 2010+(freq_code-36200)*0.1; 
 	TRACE_INFO("CalcTDfreq_point = %.2f,ful=%f\r\n",freq_point, fu_local);
 
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ    
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡    
 	digit_freq = CalcWcdmafu( freq_point*10, fu_local*10); 
 	TRACE_INFO("CalcTDdigit_freq = %.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	if(version_number == VERSION_40M_IN_A)
 		freq_word = ((INT32)( (FLOAT32)pow(2,13)*1024*8*digit_freq*(7/156.25/4)))/10;  
 	else
@@ -4188,31 +4188,31 @@ INT32 CalcTDFreqWord( INT32 freq_code, FLOAT32 fu_local )
 #endif
 /*************************************************************
 Name: CalcGsmFreqWord
-Description: ¸ù¾İLteFddÆµµãºÅ¼ÆËãÆµÂÊ×Ö,ĞÂµÄ¼ÆËã¹«Ê½
+Description: æ ¹æ®LteFddé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—,æ–°çš„è®¡ç®—å…¬å¼
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 CalcTDSCDMAFreqWordNew( INT32 freq_code,FLOAT32 fpga_data_clk,  FLOAT32 up_fre, FLOAT32 down_fre, INT32 *up_fre_word,INT32 *down_fre_word )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ
+	FLOAT32 freq_point;	// é¢‘ç‡
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡
 	INT32   freq_word;   
 
-/*--------------ÏÂĞĞ------------------------*/
+/*--------------ä¸‹è¡Œ------------------------*/
 	//freq_point = (FLOAT32)(freq_code-511) *10* 0.2 + 1805*10;
 	//freq_point = (FLOAT32)(freq_code-0) * 0.01 + 866;
 	freq_point = 2017.5;
 
 	TRACE_INFO("freq_point = %0.2f,freq_code=%d, fu_local=%f\r\n",freq_point,freq_code, down_fre); 
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ     
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡     
 	digit_freq = CalcDcsfu( freq_point, down_fre); 
 	TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//*down_fre_word = CalcFpgaFw_CD( digit_freq ); 
 	*down_fre_word = CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk);
 	TRACE_INFO("*down_fre_word = %x\r\n",*down_fre_word);  	
@@ -4222,16 +4222,16 @@ INT32 CalcTDSCDMAFreqWordNew( INT32 freq_code,FLOAT32 fpga_data_clk,  FLOAT32 up
 	}
 	TRACE_INFO("down_down_freq_word = %08x\r\n",*down_fre_word);  
 
-/*--------------ÉÏĞĞ------------------------*/
+/*--------------ä¸Šè¡Œ------------------------*/
 	//freq_point = (FLOAT32)(freq_code-511) * 0.2 + 1710;
 	freq_point = (FLOAT32)(freq_code-0) * 0.01 + 821;
 	TRACE_INFO("up_freq_point = %0.2f,freq_code=%d, fu_local=%f\r\n",freq_point,freq_code, up_fre); 
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ     
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡     
 	digit_freq = CalcDcsfu( freq_point, up_fre); 
 	TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//*up_fre_word = CalcFpgaFw_CD( digit_freq ); 
 	*up_fre_word = CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk);
 	
@@ -4249,17 +4249,17 @@ INT32 CalcTDSCDMAFreqWordNew( INT32 freq_code,FLOAT32 fpga_data_clk,  FLOAT32 up
 
 /*************************************************************
 Name: CalcGsmFreqWord
-Description: ¸ù¾İGSMÆµµãºÅ¼ÆËãÆµÂÊ×Ö£¬RE°´ÉÏĞĞµÄ¹«Ê½¼ÆËã
+Description: æ ¹æ®GSMé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—ï¼ŒREæŒ‰ä¸Šè¡Œçš„å…¬å¼è®¡ç®—
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 SearchFpCalcTDFreqWord( INT32 freq_code, FLOAT32 fu_local )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ 
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ 
+	FLOAT32 freq_point;	// é¢‘ç‡ 
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡ 
 	INT32   freq_word;     
 	
 	//printf("<fp=%f, ful=%f> ", freq_point, fu_local);
@@ -4273,11 +4273,11 @@ INT32 SearchFpCalcTDFreqWord( INT32 freq_code, FLOAT32 fu_local )
 
 	TRACE_INFO("freq_point = %f,fu_local=[%f]\r\n",freq_point,fu_local);
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ    
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡    
 	digit_freq = CalcWcdmafu( freq_point*10, fu_local*10); 
     TRACE_INFO("digit_freq = %f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	
 	if(version_number == VERSION_40M_IN_A)
 		freq_word = ((INT32)( (FLOAT32)pow(2,13)*1024*8*digit_freq*(7/156.25/4)))/10;  
@@ -4302,24 +4302,24 @@ INT32 SearchFpCalcTDFreqWord( INT32 freq_code, FLOAT32 fu_local )
 #if 0
 /*************************************************************
 Name: CalcGsmFreqWord
-Description: ¸ù¾İGSMÆµµãºÅ¼ÆËãÆµÂÊ×Ö£¬RE°´ÉÏĞĞµÄ¹«Ê½¼ÆËã
+Description: æ ¹æ®GSMé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—ï¼ŒREæŒ‰ä¸Šè¡Œçš„å…¬å¼è®¡ç®—
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 CalcTetraFreqWord( INT32 freq_code, FLOAT32 fu_local )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ 
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ 
+	FLOAT32 freq_point;	// é¢‘ç‡ 
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡ 
 	INT32   freq_word;     
 	
 	//printf("<fp=%f, ful=%f> ", freq_point, fu_local);
 	freq_point = 361+freq_code*0.0125;
 	//TRACE_INFO("freq_point = %0.2f\r\n",freq_point);
 
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ    
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡    
 	digit_freq = CalcTdLtefu( freq_point, fu_local); 
 	
 	if(freq_point>fu_local)
@@ -4332,7 +4332,7 @@ INT32 CalcTetraFreqWord( INT32 freq_code, FLOAT32 fu_local )
 	}
 	 
 
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//freq_word = CalcFpgaFw_B( digit_freq );   
 
 	freq_word = CalcFpgaFw_AB( digit_freq )/10.0;  	
@@ -4345,13 +4345,13 @@ INT32 CalcTetraFreqWord( INT32 freq_code, FLOAT32 fu_local )
 #endif
 INT32 CalcTetraFreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fre, FLOAT32 down_fre, INT32 *up_fre_word,INT32 *down_fre_word )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ
+	FLOAT32 freq_point;	// é¢‘ç‡
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡
 	INT32   freq_word;   
 
 	
 	//printf("freq_code = %d,up_fre=[%f],down_fre = %f\r\n",freq_code,up_fre,down_fre);
-	/*------------ÏÂĞĞ----------------*/	
+	/*------------ä¸‹è¡Œ----------------*/	
 	
 	freq_point = 361+(freq_code-1)*0.0125;
 
@@ -4359,7 +4359,7 @@ INT32 CalcTetraFreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fre,
 
 	
 
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ    
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡    
 	//digit_freq = CalcGsmdfu( freq_point, 10*down_fre); 
 	//printf("digit_freq = %0.2f\r\n",digit_freq);
 	if(freq_point>down_fre)
@@ -4371,7 +4371,7 @@ INT32 CalcTetraFreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fre,
 		digit_freq =   down_fre-freq_point; 
 	}
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//*down_fre_word = CalcFpgaFw_AB( digit_freq );  
 	*down_fre_word = CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk);
 	//printf("freq_word = %02x\r\n",freq_word);  
@@ -4384,12 +4384,12 @@ INT32 CalcTetraFreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fre,
 	
 	//printf("down_fre_word = %02x\r\n",*down_fre_word);  
 	
-	/*------------ÉÏĞĞ----------------*/	
+	/*------------ä¸Šè¡Œ----------------*/	
 	//printf("<fp=%f, ful=%f> ", freq_point, fu_local);
 	freq_point = 351+(freq_code-1)*0.0125;
 	//printf("freq_point = %f\r\n",freq_point);
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ    
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡    
 	//digit_freq = CalcGsmdfu( freq_point, 10*up_fre); 
 	if(freq_point>up_fre)
 	{
@@ -4401,7 +4401,7 @@ INT32 CalcTetraFreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fre,
 	}
 	//printf("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//*up_fre_word = CalcFpgaFw_AB( digit_freq );
 	*up_fre_word = CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk);
 	
@@ -4420,15 +4420,15 @@ INT32 CalcTetraFreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fre,
 Name: 
 Description: 
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 CalcLteTdFreqWord( INT32 freq_code, FLOAT32 fu_local )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ 
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ 
+	FLOAT32 freq_point;	// é¢‘ç‡ 
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡ 
 	INT32   freq_word;     
 	
 	//TRACE_INFO("<freq_code=%f, ful=%f> ", freq_code, fu_local);
@@ -4448,11 +4448,11 @@ INT32 CalcLteTdFreqWord( INT32 freq_code, FLOAT32 fu_local )
 		freq_point = 100*2496+100*(freq_code-39650)*0.1;
 		TRACE_INFO("38250_freq_point = %0.2f\r\n",freq_point);
 	}
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ    
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡    
 	digit_freq = CalcTdLtefu( freq_point, fu_local); 
     //TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	freq_word = CalcFpgaFw_CD( digit_freq )/100;   
 	//TRACE_INFO("freq_word = %08x\r\n",freq_word);  
    
@@ -4467,30 +4467,30 @@ INT32 CalcLteTdFreqWord( INT32 freq_code, FLOAT32 fu_local )
 #endif
 /*************************************************************
 Name: CalcGsmFreqWord
-Description: ¸ù¾İLteFddÆµµãºÅ¼ÆËãÆµÂÊ×Ö,ĞÂµÄ¼ÆËã¹«Ê½
+Description: æ ¹æ®LteFddé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—,æ–°çš„è®¡ç®—å…¬å¼
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 CalcLteTddFreqWordNew( INT32 freq_code,FLOAT32 fpga_data_clk,  FLOAT32 up_fre, FLOAT32 down_fre, INT32 *up_fre_word,INT32 *down_fre_word )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ
+	FLOAT32 freq_point;	// é¢‘ç‡
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡
 	INT32   freq_word;   
 
-/*--------------ÏÂĞĞ------------------------*/
+/*--------------ä¸‹è¡Œ------------------------*/
 	//freq_point = (FLOAT32)(freq_code-511) *10* 0.2 + 1805*10;
 	freq_point = (FLOAT32)(freq_code-0) * 0.01 + 866;
 
 	TRACE_INFO("freq_point = %0.2f,freq_code=%d, fu_local=%f\r\n",freq_point,freq_code, down_fre); 
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ     
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡     
 	digit_freq = CalcDcsfu( freq_point, down_fre); 
 	TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//*down_fre_word = CalcFpgaFw_CD( digit_freq ); 
 	*down_fre_word = CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk);
 	TRACE_INFO("*down_fre_word = %x\r\n",*down_fre_word);  	
@@ -4500,16 +4500,16 @@ INT32 CalcLteTddFreqWordNew( INT32 freq_code,FLOAT32 fpga_data_clk,  FLOAT32 up_
 	}
 	TRACE_INFO("down_down_freq_word = %08x\r\n",*down_fre_word);  
 
-/*--------------ÉÏĞĞ------------------------*/
+/*--------------ä¸Šè¡Œ------------------------*/
 	//freq_point = (FLOAT32)(freq_code-511) * 0.2 + 1710;
 	freq_point = (FLOAT32)(freq_code-0) * 0.01 + 821;
 	TRACE_INFO("up_freq_point = %0.2f,freq_code=%d, fu_local=%f\r\n",freq_point,freq_code, up_fre); 
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ     
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡     
 	digit_freq = CalcDcsfu( freq_point, up_fre); 
 	TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//*up_fre_word = CalcFpgaFw_CD( digit_freq ); 
 	*up_fre_word = CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk);
 	
@@ -4528,15 +4528,15 @@ INT32 CalcLteTddFreqWordNew( INT32 freq_code,FLOAT32 fpga_data_clk,  FLOAT32 up_
 Name: 
 Description: 
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 CalcLteFddFreqWord( INT32 freq_code, FLOAT32 fu_local )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ 
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ 
+	FLOAT32 freq_point;	// é¢‘ç‡ 
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡ 
 	INT32   freq_word;     
 	
 	//printf("<fp=%f, ful=%f> ", freq_point, fu_local);
@@ -4553,12 +4553,12 @@ INT32 CalcLteFddFreqWord( INT32 freq_code, FLOAT32 fu_local )
 
 	TRACE_INFO("111freq_point = %d,freq_code:%d\r\n",(INT32)freq_point,freq_code);
 
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ    
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡    
 	digit_freq = CalcWcdmafu( freq_point, fu_local); 
 	//digit_freq =0.1;
     TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	freq_word = CalcFpgaFw_CD( digit_freq )/100;   
 	TRACE_INFO("!!1freq_word = %d\r\n",freq_word);  
    
@@ -4568,23 +4568,23 @@ INT32 CalcLteFddFreqWord( INT32 freq_code, FLOAT32 fu_local )
 }
 /*************************************************************
 Name: CalcGsmFreqWord
-Description: ¸ù¾İLteFddÆµµãºÅ¼ÆËãÆµÂÊ×Ö,ĞÂµÄ¼ÆËã¹«Ê½
+Description: æ ¹æ®LteFddé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—,æ–°çš„è®¡ç®—å…¬å¼
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 CalcLteFddFreqWordNew( INT32 freq_code,FLOAT32 fpga_data_clk,  FLOAT32 up_fre, FLOAT32 down_fre, INT32 *up_fre_word,INT32 *down_fre_word )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ
+	FLOAT32 freq_point;	// é¢‘ç‡
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡
 	INT32   freq_word;   
 	//if (!VAL_IN_RANGE(freq_code, 0, 1400))
 	//{
 	//	return 0;
 	//} 
-/*--------------ÏÂĞĞ------------------------*/
+/*--------------ä¸‹è¡Œ------------------------*/
 	//freq_point = (FLOAT32)(freq_code-511) *10* 0.2 + 1805*10;
 
 	#if (defined CLIENT_ERRICSON2)
@@ -4613,11 +4613,11 @@ INT32 CalcLteFddFreqWordNew( INT32 freq_code,FLOAT32 fpga_data_clk,  FLOAT32 up_
 
 	TRACE_INFO("freq_point = %0.2f,freq_code=%d, fu_local=%f\r\n",freq_point,freq_code, down_fre); 
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ     
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡     
 	digit_freq = CalcDcsfu( freq_point, down_fre); 
 	TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//*down_fre_word = CalcFpgaFw_CD( digit_freq ); 
 	*down_fre_word = CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk);
 	TRACE_INFO("*down_fre_word = %x\r\n",*down_fre_word);  	
@@ -4627,7 +4627,7 @@ INT32 CalcLteFddFreqWordNew( INT32 freq_code,FLOAT32 fpga_data_clk,  FLOAT32 up_
 	}
 	TRACE_INFO("down_down_freq_word = %08x\r\n",*down_fre_word);  
 
-/*--------------ÉÏĞĞ------------------------*/
+/*--------------ä¸Šè¡Œ------------------------*/
 	//freq_point = (FLOAT32)(freq_code-511) * 0.2 + 1710;
 	#if (defined CLIENT_ERRICSON2)
 	freq_point = (FLOAT32)(freq_code-0) * 0.01 + 821;
@@ -4637,11 +4637,11 @@ INT32 CalcLteFddFreqWordNew( INT32 freq_code,FLOAT32 fpga_data_clk,  FLOAT32 up_
 	#endif
 	TRACE_INFO("up_freq_point = %0.2f,freq_code=%d, fu_local=%f\r\n",freq_point,freq_code, up_fre); 
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ     
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡     
 	digit_freq = CalcDcsfu( freq_point, up_fre); 
 	TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//*up_fre_word = CalcFpgaFw_CD( digit_freq ); 
 	*up_fre_word = CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk);
 	
@@ -4658,28 +4658,28 @@ INT32 CalcLteFddFreqWordNew( INT32 freq_code,FLOAT32 fpga_data_clk,  FLOAT32 up_
 
 /*************************************************************
 Name: CalcCdma800FreqWord
-Description: ¸ù¾İGSMÆµµãºÅ¼ÆËãÆµÂÊ×Ö£¬RE°´ÉÏĞĞµÄ¹«Ê½¼ÆËã
+Description: æ ¹æ®GSMé¢‘ç‚¹å·è®¡ç®—é¢‘ç‡å­—ï¼ŒREæŒ‰ä¸Šè¡Œçš„å…¬å¼è®¡ç®—
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
 Return:
-	ÆµÂÊ×Ö
+	é¢‘ç‡å­—
 **************************************************************/
 INT32 CalcCdma800FreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fre, FLOAT32 down_fre, INT32 *up_fre_word,INT32 *down_fre_word )
 {
-	FLOAT32 freq_point;	// ÆµÂÊ
-	FLOAT32 digit_freq;	// Êı×ÖÆµÂÊ
+	FLOAT32 freq_point;	// é¢‘ç‡
+	FLOAT32 digit_freq;	// æ•°å­—é¢‘ç‡
 	INT32   freq_word;   
 	
 	if (!VAL_IN_RANGE( freq_code, 1, 333 ))
 	{
 		return 0;
 	} 
-/*--------------ÏÂĞĞ------------------------*/
+/*--------------ä¸‹è¡Œ------------------------*/
 	freq_point = (FLOAT32)(freq_code *10* 0.03 + 870*10);
 //   TRACE_INFO("freq_point = %0.2f,freq_code=%d, fu_local=%f\r\n",freq_point,freq_code, down_fre); 
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ     
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡     
 	//digit_freq = CalcDcsdfu ( freq_point, down_fre*10); 
 	digit_freq = 0*10; 
 	*down_fre_word = 0;
@@ -4692,17 +4692,17 @@ INT32 CalcCdma800FreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fr
 	
 //    TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//*down_fre_word |= CalcFpgaFw_AB( digit_freq )/10;   
 	*down_fre_word |= CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk)/10;
 
 	TRACE_INFO("down_down_freq_word = %08x\r\n",*down_fre_word);  
 
-/*--------------ÉÏĞĞ------------------------*/
+/*--------------ä¸Šè¡Œ------------------------*/
 	freq_point = (FLOAT32)(freq_code *10* 0.03 + 825*10);
 //   TRACE_INFO("up_freq_point = %0.2f,freq_code=%d, fu_local=%f\r\n",freq_point,freq_code, up_fre); 
 	
-	// ¼ÆËãÊı×Ö±¾ÕğÆµÂÊ     
+	// è®¡ç®—æ•°å­—æœ¬éœ‡é¢‘ç‡     
 	//digit_freq = CalcDcsfu( freq_point, up_fre*10); 
 	digit_freq = 0*10; 
 
@@ -4716,7 +4716,7 @@ INT32 CalcCdma800FreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fr
 
 //    TRACE_INFO("digit_freq = %0.2f\r\n",digit_freq);  
 	  
-	// ¼ÆËãÆµÂÊ×Ö    
+	// è®¡ç®—é¢‘ç‡å­—    
 	//*up_fre_word |= CalcFpgaFw_AB( digit_freq )/10;   
 	*up_fre_word |= CALC_FPGA_FRE_WORD(digit_freq,fpga_data_clk)/10;
 
@@ -4729,63 +4729,63 @@ INT32 CalcCdma800FreqWord( INT32 freq_code, FLOAT32 fpga_data_clk, FLOAT32 up_fr
 
 /*************************************************************
 Name: FpgaSetTempComp
-Params: [seg_sel: 0-A¶Î, 1-B¶Î] [udl_sel: 0-ULÉÏĞĞ, 1-DLÏÂĞĞ] [comp: ²¹³¥¼Ä´æÆ÷µÄÖµ]
+Params: [seg_sel: 0-Aæ®µ, 1-Bæ®µ] [udl_sel: 0-ULä¸Šè¡Œ, 1-DLä¸‹è¡Œ] [comp: è¡¥å¿å¯„å­˜å™¨çš„å€¼]
 Return: void
-Description: ÉèÖÃ²¹³¥¼Ä´æÆ÷µÄÖµ
+Description: è®¾ç½®è¡¥å¿å¯„å­˜å™¨çš„å€¼
 **************************************************************/
 void FpgaSetTempComp( UCHAR8 seg_sel, UCHAR8 udl_sel, UINT16 comp )
 {
 	UINT16 reg_addr = 0xFFFF;
 
-	// ¸ù¾İÑ¡ÔñÈ·¶¨¼Ä´æÆ÷µØÖ·
-	if ( 0==seg_sel )	// A¶Î
+	// æ ¹æ®é€‰æ‹©ç¡®å®šå¯„å­˜å™¨åœ°å€
+	if ( 0==seg_sel )	// Aæ®µ
 	{
-		if ( 0==udl_sel )	// ÉÏĞĞ
+		if ( 0==udl_sel )	// ä¸Šè¡Œ
 		{
-			reg_addr = FPGA_REG_A_BT_CMPS;	// ºó¶Ë
+			reg_addr = FPGA_REG_A_BT_CMPS;	// åç«¯
 		}
-		else if ( 1==udl_sel )	// ÏÂĞĞ
+		else if ( 1==udl_sel )	// ä¸‹è¡Œ
 		{
-			reg_addr = FPGA_REG_A_FT_CMPS;	// Ç°¶Ë
+			reg_addr = FPGA_REG_A_FT_CMPS;	// å‰ç«¯
 		}
 	}
-	else if ( 1==seg_sel )	// B¶Î
+	else if ( 1==seg_sel )	// Bæ®µ
 	{
-		if ( 0==udl_sel )	// ÉÏĞĞ
+		if ( 0==udl_sel )	// ä¸Šè¡Œ
 		{
-			reg_addr = FPGA_REG_B_BT_CMPS;	// ºó¶Ë
+			reg_addr = FPGA_REG_B_BT_CMPS;	// åç«¯
 		}
-		else if ( 1==udl_sel )	// ÏÂĞĞ
+		else if ( 1==udl_sel )	// ä¸‹è¡Œ
 		{
-			reg_addr = FPGA_REG_B_FT_CMPS;	// Ç°¶Ë
+			reg_addr = FPGA_REG_B_FT_CMPS;	// å‰ç«¯
 		}
 	}
-	else if ( 2==seg_sel )	// C¶Î
+	else if ( 2==seg_sel )	// Cæ®µ
 	{
-		if ( 0==udl_sel )	// ÉÏĞĞ
+		if ( 0==udl_sel )	// ä¸Šè¡Œ
 		{
-			reg_addr = FPGA_REG_C_BT_CMPS;	// ºó¶Ë
+			reg_addr = FPGA_REG_C_BT_CMPS;	// åç«¯
 		}
-		else if ( 1==udl_sel )	// ÏÂĞĞ
+		else if ( 1==udl_sel )	// ä¸‹è¡Œ
 		{
-			reg_addr = FPGA_REG_C_FT_CMPS;	// Ç°¶Ë
+			reg_addr = FPGA_REG_C_FT_CMPS;	// å‰ç«¯
 		}
 	}
-	else if ( 3==seg_sel )	// D¶Î
+	else if ( 3==seg_sel )	// Dæ®µ
 	{
-		if ( 0==udl_sel )	// ÉÏĞĞ
+		if ( 0==udl_sel )	// ä¸Šè¡Œ
 		{
-			reg_addr = FPGA_REG_D_BT_CMPS;	// ºó¶Ë
+			reg_addr = FPGA_REG_D_BT_CMPS;	// åç«¯
 		}
-		else if ( 1==udl_sel )	// ÏÂĞĞ
+		else if ( 1==udl_sel )	// ä¸‹è¡Œ
 		{
-			reg_addr = FPGA_REG_D_FT_CMPS;	// Ç°¶Ë
+			reg_addr = FPGA_REG_D_FT_CMPS;	// å‰ç«¯
 		}
 	}
-	// ÎŞĞ§µÄµØÖ·Ñ¡Ôñ
+	// æ— æ•ˆçš„åœ°å€é€‰æ‹©
 	if ( 0xFFFF==reg_addr ) return;
 
-	// Ğ´Èë¼Ä´æÆ÷
+	// å†™å…¥å¯„å­˜å™¨
 	FPGA_ENABLE_WRITE;
 	FpgaWriteRegister( reg_addr, comp );
 	FPGA_DISABLE_WRITE;
@@ -4795,8 +4795,8 @@ void FpgaSetTempComp( UCHAR8 seg_sel, UCHAR8 udl_sel, UINT16 comp )
 
 /*************************************************************
 Name:          SentLoadDat      
-Description:   ´®ĞĞ·¢ËÍ¼ÓÔØÊı¾İ
-Input:         Dat - ·¢ËÍµÄ×Ö½Ú          
+Description:   ä¸²è¡Œå‘é€åŠ è½½æ•°æ®
+Input:         Dat - å‘é€çš„å­—èŠ‚          
 Output:        void           
 Return:        void       
 **************************************************************/
@@ -4805,8 +4805,8 @@ void SentLoadDatA7(UCHAR8 Dat)
 
 #if 1
 	UCHAR8 i; 
-	//Îª¼Ó¿ìÂß¼­¼ÓÔØ
-	//20151120Âß¼­¼ÓÔØÖ±½Ó²Ù×÷¼Ä´æÆ÷µØÖ·
+	//ä¸ºåŠ å¿«é€»è¾‘åŠ è½½
+	//20151120é€»è¾‘åŠ è½½ç›´æ¥æ“ä½œå¯„å­˜å™¨åœ°å€
 	//volatile unsigned long *DBSRR_SFR=GPIOD_SFR_BASE_SET; 
 	//volatile unsigned long *DBRR_SFR=GPIOD_SFR_BASE_RESET; 
 	volatile unsigned long *datBSRR_SFR=(unsigned long *)(GPIOD_BASE+0X10); 
@@ -4815,7 +4815,7 @@ void SentLoadDatA7(UCHAR8 Dat)
 	volatile unsigned long *clkBRR_SFR=(unsigned long *)(GPIOB_BASE+0X14); 
 	for (i = 0;i<8; i++ )
 	{ 
-		//20151120¼ÓÔØÂß¼­Ö±½Ó²Ù×÷¼Ä´æÆ÷
+		//20151120åŠ è½½é€»è¾‘ç›´æ¥æ“ä½œå¯„å­˜å™¨
 		if ( (Dat>>(7-i))&0x01 )
 		{
 			*datBSRR_SFR = GPIO_Pin_13;
@@ -4835,7 +4835,7 @@ void SentLoadDatA7(UCHAR8 Dat)
 	for (i = 8;i>0; i-- )
 	{
 	    //UsNopDelay(20);			
-		if ( (Dat>>(i-1))&0x01 )//¸ßÎ»ÔÚÇ°
+		if ( (Dat>>(i-1))&0x01 )//é«˜ä½åœ¨å‰
 		{
 		      SET_FPGA_DATA1_PIN;
 		}
@@ -4853,10 +4853,10 @@ void SentLoadDatA7(UCHAR8 Dat)
 
 /*************************************************************
 Name:FpgaLoadA7
-Description:FPGA¼ÓÔØ
-Input:¼ÓÔØÎÄ¼şµÄ×Ü³¤¶È          
+Description:FPGAåŠ è½½
+Input:åŠ è½½æ–‡ä»¶çš„æ€»é•¿åº¦          
 Output:void         
-Return:-1:Ê§°Ü£¬1: ³É¹¦         
+Return:-1:å¤±è´¥ï¼Œ1: æˆåŠŸ         
 **************************************************************/
 CHAR8 FpgaLoadA7(UINT32 len)
 {
@@ -4870,12 +4870,12 @@ CHAR8 FpgaLoadA7(UINT32 len)
 	UCHAR8 serial_retry = 4; 
 	UCHAR8 ucTmpDat= 0;
 	
-	CLR_FPGA_CS_PIN;      // FPGAÆ¬Ñ¡½Å   
+	CLR_FPGA_CS_PIN;      // FPGAç‰‡é€‰è„š   
 	TRACE_DEBUG_WP("FpgaLoadAll enter\r\n");
 	printf("\r\nCLR_FPGA_CS_PIN\r\n");
 
   
-	//µÚÒ»²½
+	//ç¬¬ä¸€æ­¥
 	SET_FPGA_PROGRAM_B_PIN;	
 	printf("SET_FPGA_PROGRAM_B_PIN\r\n");
 	i =0;
@@ -4901,11 +4901,11 @@ CHAR8 FpgaLoadA7(UINT32 len)
 	}
 	
 	
-	//µÚ¶ş²½
+	//ç¬¬äºŒæ­¥
 	CLR_FPGA_PROGRAM_B_PIN;
 	printf("CLR_FPGA_PROGRAM_B_PIN\r\n");
 	WTD_CLR;
-	UsNopDelay(2000);				//ÑÓÊ± 20us   µÈ´ı FPGA_INIT_B_ST À­µÍ
+	UsNopDelay(2000);				//å»¶æ—¶ 20us   ç­‰å¾… FPGA_INIT_B_ST æ‹‰ä½
 	i =0;
 	while(1==GET_FPGA_INIT_B_ST)
 	{	
@@ -4923,7 +4923,7 @@ CHAR8 FpgaLoadA7(UINT32 len)
 		return -1;
 	}
 	
-	//µÚÈı²½
+	//ç¬¬ä¸‰æ­¥
 	SET_FPGA_PROGRAM_B_PIN;
 	printf("SET_FPGA_PROGRAM_B_PIN\r\n");
 	i =0;
@@ -4944,7 +4944,7 @@ CHAR8 FpgaLoadA7(UINT32 len)
 	}
 	
 	
-	//µÚËÄ²½
+	//ç¬¬å››æ­¥
 	TRACE_INFO("FpgaLoad Start\r\n"); // ?????
 
 	page_index = ( FPGA_LOAD_BLOCK1==fpga_load_block ) ? (FLASH_FPGA_PAGE_START1+1) : (FLASH_FPGA_PAGE_START2+1) ;
@@ -4992,7 +4992,7 @@ CHAR8 FpgaLoadA7(UINT32 len)
 	}
 	TRACE_INFO("load all\r\n");
 	WTD_CLR;
-   //¼ÓÔØÍê±Ï
+   //åŠ è½½å®Œæ¯•
 	UsNopDelay(1000); 			//Delay 1ms 
 	if (GET_FPGA_DONE_ST)  
 	{     
@@ -5040,10 +5040,10 @@ CHAR8 FpgaLoadA7(UINT32 len)
 }
 /*************************************************************
 Name:FpgaLoadA7
-Description:FPGA¼ÓÔØ
-Input:¼ÓÔØÎÄ¼şµÄ×Ü³¤¶È          
+Description:FPGAåŠ è½½
+Input:åŠ è½½æ–‡ä»¶çš„æ€»é•¿åº¦          
 Output:void         
-Return:-1:Ê§°Ü£¬1: ³É¹¦         
+Return:-1:å¤±è´¥ï¼Œ1: æˆåŠŸ         
 **************************************************************/
 CHAR8 FpgaLoadA72(UINT32 len)
 {
@@ -5059,20 +5059,20 @@ CHAR8 FpgaLoadA72(UINT32 len)
 	//TRACE_DEBUG_WP("FpgaLoadAll enter\r\n");
 	WTD_CLR;
 
-	CLR_FPGA_CS_PIN;      // FPGAµÄÆ¬Ñ¡ÓĞĞ§
+	CLR_FPGA_CS_PIN;      // FPGAçš„ç‰‡é€‰æœ‰æ•ˆ
 
 	//UsNopDelay(1000);
 
-	// Fpga½øÈë¼ÓÔØ×´Ì¬ 
+	// Fpgaè¿›å…¥åŠ è½½çŠ¶æ€ 
 
 		
 
-	//µÚÒ»²½
-	CLR_FPGA_NCS1_PIN ;		//À­µÍÊ±ÖÓ
-	SET_FPGA_NCONFIG	;	//À­¸ß nCONFIG 
+	//ç¬¬ä¸€æ­¥
+	CLR_FPGA_NCS1_PIN ;		//æ‹‰ä½æ—¶é’Ÿ
+	SET_FPGA_NCONFIG	;	//æ‹‰é«˜ nCONFIG 
 	i =0;
 	UsNopDelay(100);
-	while(0==FPGA_INIT_B)  //µÈ´ıGET_FPGA_INIT_B_ST À­¸ß
+	while(0==FPGA_INIT_B)  //ç­‰å¾…GET_FPGA_INIT_B_ST æ‹‰é«˜
 	{	
 		i++;
 		UsNopDelay(1000);
@@ -5088,14 +5088,14 @@ CHAR8 FpgaLoadA72(UINT32 len)
 		//return 1;
 	}
 
-	UsNopDelay(350);			        //ÑÓÊ±350us  
+	UsNopDelay(350);			        //å»¶æ—¶350us  
 
-	//µÚ¶ş²½
-	CLR_FPGA_NCONFIG ; //À­µÍconfig ½Å
+	//ç¬¬äºŒæ­¥
+	CLR_FPGA_NCONFIG ; //æ‹‰ä½config è„š
 
-	UsNopDelay(100);			        //ÑÓÊ±350us  
+	UsNopDelay(100);			        //å»¶æ—¶350us  
 	i=0;
-	while(1==FPGA_INIT_B)  //µÈ´ıGET_FPGA_INIT_B_ST À­µÍ
+	while(1==FPGA_INIT_B)  //ç­‰å¾…GET_FPGA_INIT_B_ST æ‹‰ä½
 	{	
 		i++;
 		UsNopDelay(1000);
@@ -5111,10 +5111,10 @@ CHAR8 FpgaLoadA72(UINT32 len)
 		//return 1;
 	}
 
-	//µÚÈı²½
-	SET_FPGA_NCONFIG ; //À­¸ßconfig ½Å
+	//ç¬¬ä¸‰æ­¥
+	SET_FPGA_NCONFIG ; //æ‹‰é«˜config è„š
 	i= 0 ;
-	while(0==FPGA_INIT_B)  //µÈ´ıGET_FPGA_INIT_B_ST À­µÍ
+	while(0==FPGA_INIT_B)  //ç­‰å¾…GET_FPGA_INIT_B_ST æ‹‰ä½
 	{	
 		i++;
 		UsNopDelay(1000);
@@ -5139,7 +5139,7 @@ CHAR8 FpgaLoadA72(UINT32 len)
 	UsNopDelay(1000);	
 	WTD_CLR;
 	
-	TRACE_DEBUG_WP("FpgaLoad Start\r\n"); // ¶¨Î»Ò³µØÖ·
+	TRACE_DEBUG_WP("FpgaLoad Start\r\n"); // å®šä½é¡µåœ°å€
 	page_index = ( FPGA_LOAD_BLOCK1==fpga_load_block ) ? (FLASH_FPGA_PAGE_START1+1) : (FLASH_FPGA_PAGE_START2+1) ;
 	TRACE_INFO_WP("Start Page:%04X.\r\n", page_index);
 
@@ -5172,7 +5172,7 @@ CHAR8 FpgaLoadA72(UINT32 len)
 	}
 	TRACE_INFO("load all\r\n");
 	WTD_CLR;
-    //¼ÓÔØÍê±Ï
+    //åŠ è½½å®Œæ¯•
 	UsNopDelay(1000); 			//Delay 1ms 
 	
 	if (GET_FPGA_CONF_DONE)  
@@ -5188,7 +5188,7 @@ CHAR8 FpgaLoadA72(UINT32 len)
 		SET_FPGA_NCS1_PIN;
 
 
-        //¼ÓÔØ³É¹¦,ÑÓ³Ù1ms½øÈëuser mode 
+        //åŠ è½½æˆåŠŸ,å»¶è¿Ÿ1msè¿›å…¥user mode 
 		UsNopDelay(1000);  
 		
 		
@@ -5199,7 +5199,7 @@ CHAR8 FpgaLoadA72(UINT32 len)
 	{
 		TRACE_INFO_WP("LOAD FAIL-1\r\n");
 		
-		while (serial_retry--)			  //³¢ÊÔ¶à·¢µãCLK
+		while (serial_retry--)			  //å°è¯•å¤šå‘ç‚¹CLK
 		{	
 			if (GET_FPGA_CONF_DONE)
 			{
@@ -5211,7 +5211,7 @@ CHAR8 FpgaLoadA72(UINT32 len)
 
 				SET_FPGA_NCS1_PIN;
 
-		        	//¼ÓÔØ³É¹¦,ÑÓ³Ù1ms½øÈëuser mode 
+		        	//åŠ è½½æˆåŠŸ,å»¶è¿Ÿ1msè¿›å…¥user mode 
 				UsNopDelay(1000);  
 				
 				return 1; 		
@@ -5232,9 +5232,9 @@ CHAR8 FpgaLoadA72(UINT32 len)
 
 /*************************************************************
 Name:        GainAdjSetAUEnterAdjMode
-Description: ÔöÒæĞ£×¼ÉèÖÃAU½øÈëĞ£×¼Ä£Ê½
+Description: å¢ç›Šæ ¡å‡†è®¾ç½®AUè¿›å…¥æ ¡å‡†æ¨¡å¼
 Input: 
-	      ab_flag: AB¶Î±êÖ¾
+	      ab_flag: ABæ®µæ ‡å¿—
 Output:      void 
 Return:      void 
 **************************************************************/
@@ -5248,14 +5248,14 @@ void GainAdjSetAUEnterAdjMode( UCHAR8 abcd_flag )
 	{  
 		
 		FPGA_ENABLE_WRITE;
-		FpgaWriteRegister(FPGA_REG_A_ATT_CTL, 0x06);//Ë¥¼õĞ£×¼Ä£Ê½ 	
-		FPGA_SET_CHANNEL(0); //´ò¿ª0Í¨µÀ
+		FpgaWriteRegister(FPGA_REG_A_ATT_CTL, 0x06);//è¡°å‡æ ¡å‡†æ¨¡å¼ 	
+		FPGA_SET_CHANNEL(0); //æ‰“å¼€0é€šé“
 		FPGA_DISABLE_WRITE;
 		
 		SetAtt1(TF_A,0X1F);
 		
 		FPGA_ENABLE_WRITE;
-		FpgaWriteRegister(FPGA_REG_A_ATT3_CAL, 0X00 ); // ËùÓĞË¥¼õÆ÷²»Ë¥
+		FpgaWriteRegister(FPGA_REG_A_ATT3_CAL, 0X00 ); // æ‰€æœ‰è¡°å‡å™¨ä¸è¡°
 		FpgaWriteRegister(FPGA_REG_A_ATT3_EN,0x01);
 		FPGA_DISABLE_WRITE;
 
@@ -5276,7 +5276,7 @@ void GainAdjSetAUEnterAdjMode( UCHAR8 abcd_flag )
 
 /*************************************************************
 Name:         GainAdjSetAUFrePoint        
-Description:  ÔöÒæ²¨¶¯Ğ£×¼ÉèÖÃAUÆµµã
+Description:  å¢ç›Šæ³¢åŠ¨æ ¡å‡†è®¾ç½®AUé¢‘ç‚¹
 Input:        void
 Output:       void      
 Return:       void          
@@ -5298,7 +5298,7 @@ void GainAdjSetAUFrePoint(UCHAR8 abcd_flag,INT32 freq_point)
 
 /*************************************************************
 Name:         FpgaAttAdjust        
-Description:  ÔöÒæ²¨¶¯Ğ£×¼
+Description:  å¢ç›Šæ³¢åŠ¨æ ¡å‡†
 Input:        void
 Output:       void      
 Return:       void          
@@ -5308,7 +5308,7 @@ void FpgaGainAdjust()
 	UINT16 fre_point = 512;
 
 	//printf("adj_st:%d  is_wait:%d\r\n",gain_adj_st.adj_st,gain_adj_st.is_wait);
-	if(gain_adj_st.is_wait)//µÈ´ıÃüÁîÖ´ĞĞ
+	if(gain_adj_st.is_wait)//ç­‰å¾…å‘½ä»¤æ‰§è¡Œ
 		return;
 
 	switch(gain_adj_st.adj_st)
@@ -5316,47 +5316,47 @@ void FpgaGainAdjust()
 		case GAIN_ADJ_ST_IDLE:
 			gain_adj_st.is_wait = 0;
 			break;
-		case GAIN_ADJ_ST_SET_AUEU_ADJ_MODE://½øÈëĞ£×¼Ä£Ê½
+		case GAIN_ADJ_ST_SET_AUEU_ADJ_MODE://è¿›å…¥æ ¡å‡†æ¨¡å¼
 			//printf("abcd:%d  ud:%d\r\n",gain_adj_st.ab_flag,gain_adj_st.ud_flag);
 			
 			
-			// ÖÃµÈ´ı±êÖ¾
+			// ç½®ç­‰å¾…æ ‡å¿—
 			gain_adj_st.is_wait = 1;			
 			gain_adj_st.adj_st= GAIN_ADJ_ST_IDLE;
-			gain_adj_st.fre_point = 512;//ÆğÊ¼Æµµã
-			gain_adj_st.step = 0;//ÇåÁã¼ÆÊı
+			gain_adj_st.fre_point = 512;//èµ·å§‹é¢‘ç‚¹
+			gain_adj_st.step = 0;//æ¸…é›¶è®¡æ•°
 
 			if(gain_adj_st.ud_flag == SYS_DL_FLAG)
 			{
 				//printf("EU adj\r\n");
-				//EU½øÈëĞ£×¼Ä£Ê½				
+				//EUè¿›å…¥æ ¡å‡†æ¨¡å¼				
 				GainAdjSetEUEnterAdjMode( gain_adj_st.ab_flag );
 				
 			}
 			else
 			{
 				//printf("AU adj\r\n");
-				//AU½øÈëĞ£×¼Ä£Ê½
+				//AUè¿›å…¥æ ¡å‡†æ¨¡å¼
 				GainAdjSetAUEnterAdjMode( gain_adj_st.ab_flag );
-				gain_adj_st.is_wait = 0;//½øÈëÏÂÒ»¸öÃüÁî
+				gain_adj_st.is_wait = 0;//è¿›å…¥ä¸‹ä¸€ä¸ªå‘½ä»¤
 			}
 			WTD_CLR;
 			UsNopDelay(1000*1000);
 			
 			break;
-		case GAIN_ADJ_ST_SET_AUEU_FRE://ÉèÖÃAU EUµÚÒ»¸öÍ¨µÀµÄÆµµã
-			fre_point = gain_adj_st.fre_point+gain_adj_st.step;//Æµµã²½½ø
+		case GAIN_ADJ_ST_SET_AUEU_FRE://è®¾ç½®AU EUç¬¬ä¸€ä¸ªé€šé“çš„é¢‘ç‚¹
+			fre_point = gain_adj_st.fre_point+gain_adj_st.step;//é¢‘ç‚¹æ­¥è¿›
 			
 			//printf("fre_point%d\r\n",fre_point);
-			//ÉèÖÃAUµÄÆµµã
+			//è®¾ç½®AUçš„é¢‘ç‚¹
 			GainAdjSetAUFrePoint(gain_adj_st.ab_flag,fre_point);
-			//ÉèÖÃEUµÄÆµµã			
+			//è®¾ç½®EUçš„é¢‘ç‚¹			
 			GainAdjSetEUFrePoint(gain_adj_st.ab_flag,fre_point);
 			gain_adj_st.is_wait = 1;
 			gain_adj_st.adj_st= GAIN_ADJ_ST_GET_EU_SF_POW;
-			//gain_adj_st.is_wait = 0;//½øÈëÏÂÒ»¸öÃüÁî
+			//gain_adj_st.is_wait = 0;//è¿›å…¥ä¸‹ä¸€ä¸ªå‘½ä»¤
 			break;
-		case GAIN_ADJ_ST_GET_EU_SF_POW://¶ÁÈ¡EUµÚÒ»¸öÍ¨µÀµÄÑ¡Æµ¹¦ÂÊ
+		case GAIN_ADJ_ST_GET_EU_SF_POW://è¯»å–EUç¬¬ä¸€ä¸ªé€šé“çš„é€‰é¢‘åŠŸç‡
 		
 			//GetPsfFromRe( gain_adj_st.ab_flag, gain_adj_st.ud_flag );
 			GainAdjGetEUPow(gain_adj_st.ab_flag, gain_adj_st.ud_flag);
@@ -5369,15 +5369,15 @@ void FpgaGainAdjust()
 				gain_adj_st.adj_st= GAIN_ADJ_ST_DONE;
 
 			
-			//gain_adj_st.is_wait = 0;//½øÈëÏÂÒ»¸öÃüÁî
+			//gain_adj_st.is_wait = 0;//è¿›å…¥ä¸‹ä¸€ä¸ªå‘½ä»¤
 			break;
 
-		case GAIN_ADJ_ST_DONE://Ğ£×¼Íê³É
-			// ²½½øÍê³É£¬½«Êı¾İ·µ»Ø¸øÖ÷¿Ø
+		case GAIN_ADJ_ST_DONE://æ ¡å‡†å®Œæˆ
+			// æ­¥è¿›å®Œæˆï¼Œå°†æ•°æ®è¿”å›ç»™ä¸»æ§
 			//SendMsgPkt( gain_adj_st.dat_len, att_adj_buff );
 			gain_adj_st.adj_st  =GAIN_ADJ_ST_DONE; 
 			gain_adj_st.is_wait = 0;  
-			// Çå³ıĞ£×¼±êÖ¾Î»
+			// æ¸…é™¤æ ¡å‡†æ ‡å¿—ä½
 			sys_work_info &= (~SYSTEM_FLAG_GAIN_ADJ);
 			break;
 	}
@@ -5385,7 +5385,7 @@ void FpgaGainAdjust()
 
 /*************************************************************
 Name:         GianAdjustStartAdj        
-Description:  ÔöÒæ²¨¶¯Ğ£×¼×ÓÃüÁî¿ªÊ¼Ğ£×¼
+Description:  å¢ç›Šæ³¢åŠ¨æ ¡å‡†å­å‘½ä»¤å¼€å§‹æ ¡å‡†
 Input:        void
 Output:       void      
 Return:       void          
@@ -5402,7 +5402,7 @@ UINT16 GianAdjustStartAdj(UINT16 len, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
 }
 /*************************************************************
 Name:         GianAdjustGetAdjStatus        
-Description:  ÔöÒæ²¨¶¯Ğ£×¼×ÓÃüÁî²éÑ¯Ğ£×¼×´Ì¬
+Description:  å¢ç›Šæ³¢åŠ¨æ ¡å‡†å­å‘½ä»¤æŸ¥è¯¢æ ¡å‡†çŠ¶æ€
 Input:        void
 Output:       void      
 Return:       void          
@@ -5417,7 +5417,7 @@ UINT16 GianAdjustGetAdjStatus(UINT16 len, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff
 }
 /*************************************************************
 Name:         GianAdjustGetAdjData        
-Description:  ÔöÒæ²¨¶¯Ğ£×¼×ÓÃüÁî»ñÈ¡Ğ£×¼Êı¾İ
+Description:  å¢ç›Šæ³¢åŠ¨æ ¡å‡†å­å‘½ä»¤è·å–æ ¡å‡†æ•°æ®
 Input:        void
 Output:       void      
 Return:       void          
@@ -5435,7 +5435,7 @@ UINT16 GianAdjustGetAdjData(UINT16 len, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
 
 /*************************************************************
 Name:         GianAdjustEnterAdjMode        
-Description:  ÔöÒæ²¨¶¯Ğ£×¼×ÓÃüÁî½øÈëĞ£×¼Ä£Ê½
+Description:  å¢ç›Šæ³¢åŠ¨æ ¡å‡†å­å‘½ä»¤è¿›å…¥æ ¡å‡†æ¨¡å¼
 Input:        void
 Output:       void      
 Return:       void          
@@ -5444,8 +5444,8 @@ UINT16 GianAdjustEnterAdjMode(UINT16 len, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff
 {
 	UINT16 msg_tx_len = 0;
 
-	gain_adj_st.ab_flag = p_msg_dat[0];//ABCD¶Î
-	gain_adj_st.ud_flag= p_msg_dat[1];//ÉÏÏÂĞĞ
+	gain_adj_st.ab_flag = p_msg_dat[0];//ABCDæ®µ
+	gain_adj_st.ud_flag= p_msg_dat[1];//ä¸Šä¸‹è¡Œ
 
 	
 	gain_adj_st.adj_st = GAIN_ADJ_ST_SET_AUEU_ADJ_MODE;
@@ -5458,7 +5458,7 @@ UINT16 GianAdjustEnterAdjMode(UINT16 len, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff
 }
 /*************************************************************
 Name:         MoveCenterFre        
-Description:  ÔöÒæ²¨¶¯Ğ£×¼»ñÈ¡EU¹¦ÂÊ
+Description:  å¢ç›Šæ³¢åŠ¨æ ¡å‡†è·å–EUåŠŸç‡
 Input:        void
 Output:       void      
 Return:       void          
@@ -5518,11 +5518,11 @@ UINT32 MoveCenterFre(UCHAR8 ab_flag, UCHAR8 ud_flag)
 	}
 
 
-	//AUÓëRUµÄ½ÓÊÕÒ»¸öÊÇÏÂĞĞÒ»¸öÊÇÉÏĞĞ
-	//½ÓÊÕ²¿·Ö ÆäÖĞÕûÊı²¿·Ö»»Ëã³É11Î»16½øÖÆÕûÊı£¬D10-D8Ğ´Èë0X232µÄµÍ3bit£¬D7-D0Ğ´Èë0X231£¬Ğ¡Êı²¿·Ö¡Á2^23»»Ëã³É23Î»16½øÖÆÕûÊı£¬D22-D16Ğ´Èë0X235µÄµÍ7bit£¬D15-D8Ğ´Èë0X234£¬D7-D0Ğ´Èë0X233
+	//AUä¸RUçš„æ¥æ”¶ä¸€ä¸ªæ˜¯ä¸‹è¡Œä¸€ä¸ªæ˜¯ä¸Šè¡Œ
+	//æ¥æ”¶éƒ¨åˆ† å…¶ä¸­æ•´æ•°éƒ¨åˆ†æ¢ç®—æˆ11ä½16è¿›åˆ¶æ•´æ•°ï¼ŒD10-D8å†™å…¥0X232çš„ä½3bitï¼ŒD7-D0å†™å…¥0X231ï¼Œå°æ•°éƒ¨åˆ†Ã—2^23æ¢ç®—æˆ23ä½16è¿›åˆ¶æ•´æ•°ï¼ŒD22-D16å†™å…¥0X235çš„ä½7bitï¼ŒD15-D8å†™å…¥0X234ï¼ŒD7-D0å†™å…¥0X233
 	fre = (center_fre_d - 15.5)/constant;
-	val_int16 = (UINT16)fre;//È¡Õû
-	val_mod = fre - (float)val_int16;//È¡Óà
+	val_int16 = (UINT16)fre;//å–æ•´
+	val_mod = fre - (float)val_int16;//å–ä½™
 	val_int32 = (UINT32) (val_mod*8388608);	
 
 	ReadWriteTF(TF_A,1,0x005, val_reg5);
@@ -5535,15 +5535,15 @@ UINT32 MoveCenterFre(UCHAR8 ab_flag, UCHAR8 ud_flag)
 	ReadWriteTF(TF_A,1,0x234,(UCHAR8)((val_int32&0x00ff00)>>8));
 	ReadWriteTF(TF_A,1,0x235,(UCHAR8)((val_int32&0x7f0000)>>16));
 
-	//ÔÙĞ´Ò»´ÎÕûÊı²ÅÉúĞ§
+	//å†å†™ä¸€æ¬¡æ•´æ•°æ‰ç”Ÿæ•ˆ
 	ReadWriteTF(TF_A,1,0x231,(UCHAR8)((val_int16&0x00ff)>>0));
 
 
 	
-	//·¢ËÍ²¿·Ö ÆäÖĞÕûÊı²¿·Ö»»Ëã³É11Î»16½øÖÆÕûÊı£¬D10-D8Ğ´Èë0X272µÄµÍ3bit£¬D7-D0Ğ´Èë0X271£¬Ğ¡Êı²¿·Ö¡Á2^23»»Ëã³É23Î»16½øÖÆÕûÊı£¬D22-D16Ğ´Èë0X275µÄµÍ7bit£¬D15-D8Ğ´Èë0X274£¬D7-D0Ğ´Èë0X273
+	//å‘é€éƒ¨åˆ† å…¶ä¸­æ•´æ•°éƒ¨åˆ†æ¢ç®—æˆ11ä½16è¿›åˆ¶æ•´æ•°ï¼ŒD10-D8å†™å…¥0X272çš„ä½3bitï¼ŒD7-D0å†™å…¥0X271ï¼Œå°æ•°éƒ¨åˆ†Ã—2^23æ¢ç®—æˆ23ä½16è¿›åˆ¶æ•´æ•°ï¼ŒD22-D16å†™å…¥0X275çš„ä½7bitï¼ŒD15-D8å†™å…¥0X274ï¼ŒD7-D0å†™å…¥0X273
 	fre = (center_fre_u - 15.5)/constant;
-	val_int16 = (UINT16)fre;//È¡Õû
-	val_mod = fre - (float)val_int16;//È¡Óà
+	val_int16 = (UINT16)fre;//å–æ•´
+	val_mod = fre - (float)val_int16;//å–ä½™
 	val_int32 = (UINT32) (val_mod*8388608);	
 
 
@@ -5556,7 +5556,7 @@ UINT32 MoveCenterFre(UCHAR8 ab_flag, UCHAR8 ud_flag)
 	ReadWriteTF(TF_A,1,0x274,(UCHAR8)((val_int32&0x00ff00)>>8));
 	ReadWriteTF(TF_A,1,0x275,(UCHAR8)((val_int32&0x7f0000)>>16));
 
-	//ÔÙĞ´Ò»´ÎÕûÊı²ÅÉúĞ§
+	//å†å†™ä¸€æ¬¡æ•´æ•°æ‰ç”Ÿæ•ˆ
 	ReadWriteTF(TF_A,1,0x271,(UCHAR8)((val_int16&0x00ff)>>0));
 
 }

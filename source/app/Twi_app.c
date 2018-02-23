@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :twi_app.c
-* Description :TWI(IIC)½Ó¿Ú²Ù×÷
+* Description :TWI(IIC)æ¥å£æ“ä½œ
 * Version     :v0.1
 * Author      :RJ
 * Date        :2008-08-29
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*	RJ		2008-08-29	v0.1			³õÊ¼°æ±¾
+*	RJ		2008-08-29	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 
 #include "Header.h"
@@ -28,7 +28,7 @@ CHAR8 GetTemperature()
 	
 	if ( tmp & 0x0200 )
 	{
-		//0¶ÈÒÔÏÂ£¬ÎÂ¶ÈÖµÊÇ²¹ÂëĞÎÊ½µÄ
+		//0åº¦ä»¥ä¸‹ï¼Œæ¸©åº¦å€¼æ˜¯è¡¥ç å½¢å¼çš„
 		tmp = ((~tmp)+1)/4;
 		temperature = tmp*(-1);
 	}
@@ -88,7 +88,7 @@ CHAR8 GetTemperature()
 	tmp = (dat1<<2) | (dat2>>6);
 	if ( tmp & 0x0200 )
 	{
-		//0¶ÈÒÔÏÂ£¬ÎÂ¶ÈÖµÊÇ²¹ÂëĞÎÊ½µÄ
+		//0åº¦ä»¥ä¸‹ï¼Œæ¸©åº¦å€¼æ˜¯è¡¥ç å½¢å¼çš„
 		tmp = ((~tmp)+1)/4;
 		temperature = tmp*(-1);
 	}

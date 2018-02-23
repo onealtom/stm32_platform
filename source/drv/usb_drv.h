@@ -1,4 +1,4 @@
-/******************** (C) COPYRIGHT 2010 STMicroelectronics ********************
+ï»¿/******************** (C) COPYRIGHT 2010 STMicroelectronics ********************
 * File Name          : hw_config.h
 * Author             : MCD Application Team
 * Version            : V3.2.1
@@ -66,15 +66,15 @@ typedef struct
 // packet head define.
 struct S_USB_PACKET_HEAD
 {
-	UINT16 s_syn;				// 2 byte Í¬²½±êÖ¾
-	UCHAR8 c_protocol_ver;		// 1 byte Ğ­Òé°æ±¾ºÅ
-	UCHAR8 c_machine_no;			// 1 byte Õû»ú±àºÅ
-	UCHAR8 c_module_addr;		// 1 byte Ä£¿éµØÖ·
-	UCHAR8 c_cmd_id;				// 1 byte ÃüÁî×Ö
-	UCHAR8 c_ack;				// 1 byte Ğ£Ñé±êÖ¾ [7 Byte]
-	CHAR8 data;						// ÃüÁîÊı¾İÖ¸Õë£»[FPGA 1056+8]
-	UINT16 s_crc;				// 2 byte; Ğ£ÑéÂë
-	UCHAR8 c_end_sign;			// 1 byte; ½áÊø±êÖ¾
+	UINT16 s_syn;				// 2 byte åŒæ­¥æ ‡å¿—
+	UCHAR8 c_protocol_ver;		// 1 byte åè®®ç‰ˆæœ¬å·
+	UCHAR8 c_machine_no;			// 1 byte æ•´æœºç¼–å·
+	UCHAR8 c_module_addr;		// 1 byte æ¨¡å—åœ°å€
+	UCHAR8 c_cmd_id;				// 1 byte å‘½ä»¤å­—
+	UCHAR8 c_ack;				// 1 byte æ ¡éªŒæ ‡å¿— [7 Byte]
+	CHAR8 data;						// å‘½ä»¤æ•°æ®æŒ‡é’ˆï¼›[FPGA 1056+8]
+	UINT16 s_crc;				// 2 byte; æ ¡éªŒç 
+	UCHAR8 c_end_sign;			// 1 byte; ç»“æŸæ ‡å¿—
 }__attribute__((packed));
 typedef struct S_USB_PACKET_HEAD T_USB_PACKET_HEAD;
 

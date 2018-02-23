@@ -1,8 +1,8 @@
-#include "Header.h"
+ï»¿#include "Header.h"
 
 
-UCHAR8 clk_flag = CLK_FLAG_122_88M;	//Ê±ÖÓ±êÊ¾£º 0-122.88£¬1-125
-UCHAR8 version_number = VERSION_40M_NOIN;	//°æ±¾ÌáÊ¾£º 0-20M·ÖÌå£¬1-20MÒ»Ìå£¬ 2-40M·ÖÌå£¬ 3-40MÒ»Ìå£»
+UCHAR8 clk_flag = CLK_FLAG_122_88M;	//æ—¶é’Ÿæ ‡ç¤ºï¼š 0-122.88ï¼Œ1-125
+UCHAR8 version_number = VERSION_40M_NOIN;	//ç‰ˆæœ¬æç¤ºï¼š 0-20Måˆ†ä½“ï¼Œ1-20Mä¸€ä½“ï¼Œ 2-40Måˆ†ä½“ï¼Œ 3-40Mä¸€ä½“ï¼›
 
 
 
@@ -20,7 +20,7 @@ UCHAR8 aPllRegTbl[]={
 	HMC830_FRE_FRA_04, 
 }; 
 #if 0
-const UCHAR8 ucAd9122RegVal[7][41][2][2]={//9122ÊÇDA 6649ÊÇAD
+const UCHAR8 ucAd9122RegVal[7][41][2][2]={//9122æ˜¯DA 6649æ˜¯AD
 //GSM900 
 {      //122.88M    //125M
 	 //reg  //val  //reg  //val 
@@ -108,9 +108,9 @@ const UCHAR8 ucAd9122RegVal[7][41][2][2]={//9122ÊÇDA 6649ÊÇAD
   { {0x36, 0x01}, {0x36, 0x01} },  
   { {0x36, 0x00}, {0x36, 0x00} },
   { {0x41, 0x01}, {0x41, 0x01} }, 
-  { {0x45, 0x02}, {0x45, 0x02} },   // ÓÉ0x04¸ÄÎª0x02  20130221
-  { {0x46, 0x0E}, {0x46, 0x0e} },  //ÓÉ0xa1¸ÄÎª0x0e   20130221
-  { {0x47, 0x43}, {0x47, 0x43} },  //ÓÉ0x43¸ÄÎª0x43   20130221
+  { {0x45, 0x02}, {0x45, 0x02} },   // ç”±0x04æ”¹ä¸º0x02  20130221
+  { {0x46, 0x0E}, {0x46, 0x0e} },  //ç”±0xa1æ”¹ä¸º0x0e   20130221
+  { {0x47, 0x43}, {0x47, 0x43} },  //ç”±0x43æ”¹ä¸º0x43   20130221
     
 },
 //TD
@@ -154,9 +154,9 @@ const UCHAR8 ucAd9122RegVal[7][41][2][2]={//9122ÊÇDA 6649ÊÇAD
   { {0x36, 0x01}, {0x36, 0x01} },  
   { {0x36, 0x00}, {0x36, 0x00} },
   { {0x41, 0x01}, {0x41, 0x01} }, 
-  { {0x45, 0x02}, {0x45, 0x02} },   // ÓÉ0x04¸ÄÎª0x02  20130221
-  { {0x46, 0x0E}, {0x46, 0x0e} },  //ÓÉ0xa1¸ÄÎª0x0e   20130221
-  { {0x47, 0x43}, {0x47, 0x43} },  //ÓÉ0x43¸ÄÎª0x43   20130221
+  { {0x45, 0x02}, {0x45, 0x02} },   // ç”±0x04æ”¹ä¸º0x02  20130221
+  { {0x46, 0x0E}, {0x46, 0x0e} },  //ç”±0xa1æ”¹ä¸º0x0e   20130221
+  { {0x47, 0x43}, {0x47, 0x43} },  //ç”±0x43æ”¹ä¸º0x43   20130221
 },
 //CDMA 
 {      //122.88M               //125M
@@ -298,7 +298,7 @@ const UCHAR8 ucAd9122RegVal[7][41][2][2]={//9122ÊÇDA 6649ÊÇAD
   
  },
 
-//tetra ¼¯Èº  
+//tetra é›†ç¾¤  
 {      //122.88M               //125M
 	 //reg     //val        //reg      //val
   { {0x00, 0x00}, {0x00, 0x00} },
@@ -347,7 +347,7 @@ const UCHAR8 ucAd9122RegVal[7][41][2][2]={//9122ÊÇDA 6649ÊÇAD
 
 };
       
-// GSM900ÒÆ¶¯¶Î±¾ÕñÅäÖÃ
+// GSM900ç§»åŠ¨æ®µæœ¬æŒ¯é…ç½®
 const UINT32 GsmCnmobilePll[]=
 {
          //MIXER             //MOEND 
@@ -355,8 +355,8 @@ const UINT32 GsmCnmobilePll[]=
 	0x000002,  0x000002,   0x000002,    0x000002,   //02
 	0x002F4A,  0x002F4A,   0x002F4A,	0x002FCA,   //06
 	0x479E3D,  0x479E3D,   0x479E3D,    0x479E3D,   //09
-    0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0a -ÓÃÄ¬ÈÏÖµ
-	0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0b -ÓÃÄ¬ÈÏÖµ	
+    0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0a -ç”¨é»˜è®¤å€¼
+	0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0b -ç”¨é»˜è®¤å€¼	
 	0x00F80D,  0x00F80D,   0x00F80D,    0x00F80D,   //05
 	0x00AB95,  0x00AB95,   0x00AB95,    0x00AB95,   //05
 	0x00D11D,  0x00D11D,   0x00D11D,    0x00D11D,   //05
@@ -366,7 +366,7 @@ const UINT32 GsmCnmobilePll[]=
  
 }; 
 
-// GSM900ÁªÍ¨¶Î±¾ÕñÅäÖÃ
+// GSM900è”é€šæ®µæœ¬æŒ¯é…ç½®
 const UINT32 GsmUnicomPll[]=
 {
          //MIXER               //MOEND 
@@ -374,8 +374,8 @@ const UINT32 GsmUnicomPll[]=
 	0x000002,  0x000002,   0x000002,    0x000002,   //02
 	0x002F4A,  0x002F4A,   0x002F4A,	0x002F4A,   //06
 	0x479E3D,  0x479E3D,   0x479E3D,    0x479E3D,   //09
-    0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0a -ÓÃÄ¬ÈÏÖµ
-	0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0b -ÓÃÄ¬ÈÏÖµ	
+    0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0a -ç”¨é»˜è®¤å€¼
+	0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0b -ç”¨é»˜è®¤å€¼	
 	0x00F80D,  0x00F80D,   0x00F80D,    0x00F80D,   //05
 	0x00AB95,  0x00AB95,   0x00AB95,    0x00AB95,   //05
 	0x00D11D,  0x00D11D,   0x00D11D,    0x00D11D,   //05
@@ -385,7 +385,7 @@ const UINT32 GsmUnicomPll[]=
 
 };
 
-// DCS1800ÒÆ¶¯¶Î±¾ÕñÅäÖÃ
+// DCS1800ç§»åŠ¨æ®µæœ¬æŒ¯é…ç½®
 const UINT32 DcsCnmobilePll[]=
 {
          //MIXER                                 //MOEND 
@@ -393,8 +393,8 @@ const UINT32 DcsCnmobilePll[]=
 	0x000002,  0x000002,   0x000002,    0x000002,   //02
 	0x002F4A,  0x002F4A,   0x002F4A,	0x002F4A,   //06
 	0x479E3D,  0x479020,   0x479E3D,    0x479020,   //09
-    0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0a -ÓÃÄ¬ÈÏÖµ
-	0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0b -ÓÃÄ¬ÈÏÖµ	
+    0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0a -ç”¨é»˜è®¤å€¼
+	0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0b -ç”¨é»˜è®¤å€¼	
 	0x00E80D,  0x00E80D,   0x00E80D,    0x00E80D,   //05
 	0x00AB95,  0x00AB95,   0x00AB95,    0x00AB95,   //05
 	0x00D11D,  0x00D11D,   0x00D11D,    0x00D11D,   //05
@@ -403,7 +403,7 @@ const UINT32 DcsCnmobilePll[]=
 	0x148000,  0x941205,   0xA00000,    0x30BE0D,  //04
 };
 
-// DCS1800ÁªÍ¨¶Î±¾ÕñÅäÖÃ
+// DCS1800è”é€šæ®µæœ¬æŒ¯é…ç½®
 const UINT32 DcsUnicomPll[]=
 {
          //MIXER                                 //MOEND 
@@ -411,8 +411,8 @@ const UINT32 DcsUnicomPll[]=
 	0x000002,  0x000002,   0x000002,    0x000002,   //02
 	0x002F4A,  0x002F4A,   0x002F4A,	0x002F4A,   //06
 	0x479E3D,  0x479020,   0x479E3D,    0x479020,   //09
-    0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0a -ÓÃÄ¬ÈÏÖµ
-	0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0b -ÓÃÄ¬ÈÏÖµ	
+    0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0a -ç”¨é»˜è®¤å€¼
+	0xFAAAFFFF,0xFAAAFFFF, 0xFAAAFFFF,  0xFAAAFFFF, //0b -ç”¨é»˜è®¤å€¼	
 	0x00E80D,  0x00E80D,   0x00E80D,    0x00E80D,   //05
 	0x00AB95,  0x00AB95,   0x00AB95,    0x00AB95,   //05
 	0x00D11D,  0x00D11D,   0x00D11D,    0x00D11D,   //05
@@ -422,8 +422,8 @@ const UINT32 DcsUnicomPll[]=
     
 };
 
-//Mixer»ìÆµÆ÷µÄ¼Ä´æÆ÷ÅäÖÃ
-//ÐÐ±íÊ¾´ÓÍøÂçÖÆÊ½£¬ÁÐ±íÊ¾¼Ä´æÆ÷Öµ£¬×îºó±íÊ¾122.88ºÍ125MµÄÇø±ð£¬ÆäÖÐ122.88ÔÚÁÐÖÐµÄµÚÒ»ÁÐ
+//Mixeræ··é¢‘å™¨çš„å¯„å­˜å™¨é…ç½®
+//è¡Œè¡¨ç¤ºä»Žç½‘ç»œåˆ¶å¼ï¼Œåˆ—è¡¨ç¤ºå¯„å­˜å™¨å€¼ï¼Œæœ€åŽè¡¨ç¤º122.88å’Œ125Mçš„åŒºåˆ«ï¼Œå…¶ä¸­122.88åœ¨åˆ—ä¸­çš„ç¬¬ä¸€åˆ—
 UINT32  auiPllRegVlaue[7][11][2][2]={   
 //GSM900 
             //MIXER                                     //MOEND
@@ -449,8 +449,8 @@ UINT32  auiPllRegVlaue[7][11][2][2]={
 	{ {0x02,    	0x02},	      	{0x02,      	0x02},      },   	//02
 	{ {0x2F4A,  	0x2F4A},      	{0x2F4A,		0x2F4A},    },     	//06
 	{ {0x479E3D,	0x479020},    	{0x479E3D,  	0x479020},  },     	//09
-    { {0xFAAAFFFF,	0xFAAAFFFF},	{0xFAAAFFFF,	0xFAAAFFFF},}, 		//0a -ÓÃÄ¬ÈÏÖµ
-	{ {0xFAAAFFFF,	0xFAAAFFFF},	{0xFAAAFFFF, 	0xFAAAFFFF},},  	//0b -ÓÃÄ¬ÈÏÖµ	
+    { {0xFAAAFFFF,	0xFAAAFFFF},	{0xFAAAFFFF,	0xFAAAFFFF},}, 		//0a -ç”¨é»˜è®¤å€¼
+	{ {0xFAAAFFFF,	0xFAAAFFFF},	{0xFAAAFFFF, 	0xFAAAFFFF},},  	//0b -ç”¨é»˜è®¤å€¼	
 	{ {0xE80D,  	0xE80D},      	{0xE80D,    	0xE80D},    },    	//05
 	{ {0xAB95,  	0xAB95},      	{0xAB95,    	0xAB95},    },   	//05
 	{ {0xD11D,  	0xD11D},      	{0xD11D,    	0xD11D},    }, 		//05
@@ -466,8 +466,8 @@ UINT32  auiPllRegVlaue[7][11][2][2]={
 	{ {0x02,    0x02},	      {0x04,      0x02},      		},        //02
 	{ {0x2F4A,  0x2F4A},      {0x04,	  0x2F4A},   		},        //06
 	{ {0x479E3D,0x479020},    {0x479E3D,  0x479020},  		},        //09
-    { {0xFAAAFFFF,0xFAAAFFFF},{0xFAAAFFFF,  0xFAAAFFFF}, 	},//0a -ÓÃÄ¬ÈÏÖµ
-	{ {0xFAAAFFFF,0xFAAAFFFF},{0xFAAAFFFF,  0xFAAAFFFF}, 	}, //0b -ÓÃÄ¬ÈÏÖµ	
+    { {0xFAAAFFFF,0xFAAAFFFF},{0xFAAAFFFF,  0xFAAAFFFF}, 	},//0a -ç”¨é»˜è®¤å€¼
+	{ {0xFAAAFFFF,0xFAAAFFFF},{0xFAAAFFFF,  0xFAAAFFFF}, 	}, //0b -ç”¨é»˜è®¤å€¼	
 	{ {0xE80D,  0xE80D},      {0xE80D,    0xE80D},    		},        //05
 	{ {0xAB95,  0xAB95},      {0xAB95,    0xAB95},    		},        //05
 	{ {0xD11D,  0xD11D},      {0xD11D,    0xD11D},    		},        //05
@@ -527,7 +527,7 @@ UINT32  auiPllRegVlaue[7][11][2][2]={
 	{ {0x4CAAAA,0xCCCCCC},    {0x200000,  0xA3D70},   },        //04
 },
 
-//Tetra¼¯Èº
+//Tetraé›†ç¾¤
            //MIXER                                    //MOEND
     //122.88            //125M                    //122.88           //125M
 {
@@ -550,14 +550,14 @@ UINT32  auiPllRegVlaue[7][11][2][2]={
 
 /*************************************************************
 Name:LoadGsmPllRegTbl           
-Description:³õÊ¼»¯PLL
+Description:åˆå§‹åŒ–PLL
 Input:
-	fb_flag: Ç°ºó¶Ë±êÖ¾
-	ab_flag: AB¶Î±êÖ¾
+	fb_flag: å‰åŽç«¯æ ‡å¿—
+	ab_flag: ABæ®µæ ‡å¿—
 Output:void       
 Return:
-	b_FALSE: Ê§°Ü
-	b_TRUE:  ³É¹¦             
+	b_FALSE: å¤±è´¥
+	b_TRUE:  æˆåŠŸ             
 **************************************************************/
  void LoadGsmPllRegTbl(u8 G2Tpye)
  {
@@ -573,14 +573,14 @@ Return:
  
 /*************************************************************
 Name:Init_Local_Pll           
-Description:³õÊ¼»¯PLL
+Description:åˆå§‹åŒ–PLL
 Input:
-	fb_flag: Ç°ºó¶Ë±êÖ¾
-	ab_flag: AB¶Î±êÖ¾
+	fb_flag: å‰åŽç«¯æ ‡å¿—
+	ab_flag: ABæ®µæ ‡å¿—
 Output:void       
 Return:
-	b_FALSE: Ê§°Ü
-	b_TRUE:  ³É¹¦             
+	b_FALSE: å¤±è´¥
+	b_TRUE:  æˆåŠŸ             
 **************************************************************/
  void LoadDcsPllRegTbl(u8 G2Tpye)
  {
@@ -600,14 +600,14 @@ Return:
 
 /*************************************************************
 Name:Init_Local_Pll           
-Description:³õÊ¼»¯PLL
+Description:åˆå§‹åŒ–PLL
 Input:
-	fb_flag: Ç°ºó¶Ë±êÖ¾
-	ab_flag: AB¶Î±êÖ¾
+	fb_flag: å‰åŽç«¯æ ‡å¿—
+	ab_flag: ABæ®µæ ‡å¿—
 Output:void       
 Return:
-	b_FALSE: Ê§°Ü
-	b_TRUE:  ³É¹¦             
+	b_FALSE: å¤±è´¥
+	b_TRUE:  æˆåŠŸ             
 **************************************************************/
 BOOL Init_Local_Pll(UCHAR8 ucPll)//822 U PLL
 {
@@ -659,11 +659,11 @@ BOOL Init_Local_Pll(UCHAR8 ucPll)//822 U PLL
 
 /*************************************************************
 Name: TdSysCalcFreqWord
-Description: ¸ù¾ÝÆµµãºÅ¼ÆËãÆµÂÊ×Ö£¬RE°´ÉÏÐÐµÄ¹«Ê½¼ÆËã
+Description: æ ¹æ®é¢‘ç‚¹å·è®¡ç®—é¢‘çŽ‡å­—ï¼ŒREæŒ‰ä¸Šè¡Œçš„å…¬å¼è®¡ç®—
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
-Return:ÆµÂÊ×Ö¼Ä´æÆ÷µÄÖµ
+Return:é¢‘çŽ‡å­—å¯„å­˜å™¨çš„å€¼
 **************************************************************/
 INT32 SearchFpCalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT32 *down_fre_word )
 {
@@ -710,12 +710,12 @@ INT32 SearchFpCalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT3
 		case NET_TYPE_GSM900:   
 			if ( ((freq_code>=0)&& (freq_code<=95)) ||((freq_code>=1000)&& (freq_code<=1023)) )
 			{
-           		//PllOutfreq =  clk_flag ? GSM_PLL_DL_OUT_150M_CNMOBILE : GSM_PLL_DL_OUT_122M_CNMOBILE; //ÉÏÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+           		//PllOutfreq =  clk_flag ? GSM_PLL_DL_OUT_150M_CNMOBILE : GSM_PLL_DL_OUT_122M_CNMOBILE; //ä¸Šè¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 				down_fre= GSM_PLL_DL_OUT_150M_CNMOBILE;	
 				up_fre= GSM_PLL_UL_OUT_150M_CNMOBILE;
 			}
 			else
-            	;//PllOutfreq =  clk_flag ? GSM_PLL_DL_OUT_125M_UNICOM : GSM_PLL_DL_OUT_122M_UNICOM; //ÉÏÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+            	;//PllOutfreq =  clk_flag ? GSM_PLL_DL_OUT_125M_UNICOM : GSM_PLL_DL_OUT_122M_UNICOM; //ä¸Šè¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 
 			
 			//freq_word  =  SearchFpCalcGsmFreqWord( freq_code, up_fre, down_fre , up_fre_word,down_fre_word );	
@@ -726,19 +726,19 @@ INT32 SearchFpCalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT3
 
 			if ((freq_code>=DCS_MIN_FRE_CODE_CNMOBILE)&& (freq_code<=DCS_MAX_FRE_CODE_CNMOBILE))
 			{
-				down_fre =   DCS_PLL_DL_OUT_150M_CNMOBILE;  //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
-				up_fre =   DCS_PLL_UL_OUT_150M_CNMOBILE;  //ÉÏÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+				down_fre =   DCS_PLL_DL_OUT_150M_CNMOBILE;  //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
+				up_fre =   DCS_PLL_UL_OUT_150M_CNMOBILE;  //ä¸Šè¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 			}else if ((freq_code>=DCS_MIN_FRE_CODE_UNICOM)&& (freq_code<=DCS_MAX_FRE_CODE_UNICOM))
 			{
-				down_fre =   DCS_PLL_DL_OUT_150M_UNICOM;  //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
-				up_fre =   DCS_PLL_UL_OUT_150M_UNICOM;  //ÉÏÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+				down_fre =   DCS_PLL_DL_OUT_150M_UNICOM;  //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
+				up_fre =   DCS_PLL_UL_OUT_150M_UNICOM;  //ä¸Šè¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 			}
 			CalcDcsFreqWord( freq_code,fpga_data_clk, up_fre, down_fre, up_fre_word,down_fre_word );
 
 		break; 
 				
 		case NET_TYPE_WCDMA2100:
-            		CalcWcdmaPLLoutputFreq(&up_fre,&down_fre); //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ           
+            		CalcWcdmaPLLoutputFreq(&up_fre,&down_fre); //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡           
 			CalcWcdmaFreqWord( freq_code, fpga_data_clk,up_fre,down_fre, up_fre_word,down_fre_word);
 			TRACE_INFO("WCDMA2100 (PllOutfreq=%f)---------------------freq_word= %04X,freq_code= %04X\r\n",PllOutfreq,freq_word,freq_code);
 			WcdmaFreqWordConfigureTxRxPll( up_fre,down_fre );
@@ -747,8 +747,8 @@ INT32 SearchFpCalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT3
 		 
 		case NET_TYPE_TD: 
 			clk_flag=1;
-			down_fre=  clk_flag ? TD_SCDMA_PLL_DL_OUT_150M : TD_SCDMA_PLL_DL_OUT_122M; //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
-			up_fre 	=  clk_flag ? TD_SCDMA_PLL_UL_OUT_150M : TD_SCDMA_PLL_DL_OUT_122M; //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+			down_fre=  clk_flag ? TD_SCDMA_PLL_DL_OUT_150M : TD_SCDMA_PLL_DL_OUT_122M; //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
+			up_fre 	=  clk_flag ? TD_SCDMA_PLL_UL_OUT_150M : TD_SCDMA_PLL_DL_OUT_122M; //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 			*up_fre_word	=   SearchFpCalcTDFreqWord( freq_code, up_fre);
 			*down_fre_word  =   SearchFpCalcTDFreqWord( freq_code, down_fre);
 			//*up_fre_word =*down_fre_word= freq_word;
@@ -764,7 +764,7 @@ INT32 SearchFpCalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT3
 		break; 	 
 		
 	    case NET_TYPE_TETRA:   
-			//PllOutfreq =  clk_flag ? TETRA_PLL_DL_OUT_125M : TETRA_PLL_DL_OUT_122M; //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+			//PllOutfreq =  clk_flag ? TETRA_PLL_DL_OUT_125M : TETRA_PLL_DL_OUT_122M; //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 			//freq_word  =  CalcTetraFreqWord( freq_code, PllOutfreq );	
 			down_fre =  TETRA_PLL_DL_FRQ;
 			up_fre = TETRA_PLL_UL_FRQ;
@@ -772,13 +772,13 @@ INT32 SearchFpCalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT3
 		break; 
 
 	    case NET_TYPE_LTE_TD:   
-            		PllOutfreq =   CalcLteTdPLLoutputFreq(Flag); //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+            		PllOutfreq =   CalcLteTdPLLoutputFreq(Flag); //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 			freq_word  =  CalcLteTdFreqWord( freq_code, PllOutfreq );	 
 			LteTdFreqWordConfigureTxRxPll( PllOutfreq,Flag);
 		break; 
 		
 	    case NET_TYPE_LTE_FDD:   
-            		PllOutfreq =   CalcLteFddPLLoutputFreq(Flag); //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ           
+            		PllOutfreq =   CalcLteFddPLLoutputFreq(Flag); //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡           
 			freq_word  = CalcLteFddFreqWord( freq_code, PllOutfreq );	
 			TRACE_INFO("CalcLteFdd (PllOutfreq=%f)---------------------freq_word= %04X,freq_code= %04X\r\n",PllOutfreq,freq_word,freq_code);
 			LteFddFreqWordConfigureTxRxPll( PllOutfreq,Flag);
@@ -800,11 +800,11 @@ INT32 SearchFpCalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT3
 
 /*************************************************************
 Name: CalcFreqWord
-Description: ¸ù¾ÝÆµµãºÅ¼ÆËãÆµÂÊ×Ö£¬RE°´ÉÏÐÐµÄ¹«Ê½¼ÆËã
+Description: æ ¹æ®é¢‘ç‚¹å·è®¡ç®—é¢‘çŽ‡å­—ï¼ŒREæŒ‰ä¸Šè¡Œçš„å…¬å¼è®¡ç®—
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
-Return:ÆµÂÊ×Ö¼Ä´æÆ÷µÄÖµ
+Return:é¢‘çŽ‡å­—å¯„å­˜å™¨çš„å€¼
 **************************************************************/
 INT32 CalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT32 *down_fre_word )
 {
@@ -861,17 +861,17 @@ INT32 CalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT32 *down_
 				 
 		case NET_TYPE_DCS1800: 
 
-			//PllOutfreq =   DCS_PLL_DL_OUT_150M_UNICOM;  //ÉÏÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+			//PllOutfreq =   DCS_PLL_DL_OUT_150M_UNICOM;  //ä¸Šè¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 			//freq_word  =  CalcDcsFreqWord( freq_code, PllOutfreq );
 			if(G2_TYPE_CNMOBILE== G2Tpye)
 			{				
-				down_fre =   DCS_PLL_DL_OUT_150M_CNMOBILE;  //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
-				up_fre =   DCS_PLL_UL_OUT_150M_CNMOBILE;  //ÉÏÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+				down_fre =   DCS_PLL_DL_OUT_150M_CNMOBILE;  //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
+				up_fre =   DCS_PLL_UL_OUT_150M_CNMOBILE;  //ä¸Šè¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 				
 			}else if (G2_TYPE_UNICOM== G2Tpye)
 			{
-				down_fre =   DCS_PLL_DL_OUT_150M_UNICOM;  //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
-				up_fre =   DCS_PLL_UL_OUT_150M_UNICOM;  //ÉÏÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+				down_fre =   DCS_PLL_DL_OUT_150M_UNICOM;  //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
+				up_fre =   DCS_PLL_UL_OUT_150M_UNICOM;  //ä¸Šè¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 			}
 			
 			CalcDcsFreqWord( freq_code, fpga_data_clk,up_fre, down_fre, up_fre_word,down_fre_word );
@@ -879,7 +879,7 @@ INT32 CalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT32 *down_
 		break; 
 				
 		case NET_TYPE_WCDMA2100:
-           		CalcWcdmaPLLoutputFreq(&up_fre,&down_fre); //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ           
+           		CalcWcdmaPLLoutputFreq(&up_fre,&down_fre); //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡           
 			//CalcWcdmaFreqWord( freq_code, fpga_data_clk,up_fre,down_fre, up_fre_word,down_fre_word);
 			CalcWCDMAFreqWordNew( freq_code, fpga_data_clk,up_fre,down_fre, up_fre_word,down_fre_word);
 //			TRACE_INFO("WCDMA2100 (PllOutfreq=%f)---------------------freq_word= %04X,freq_code= %04X\r\n",PllOutfreq,freq_word,freq_code);
@@ -888,8 +888,8 @@ INT32 CalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT32 *down_
 		break; 
 		 
 		case NET_TYPE_TD:  
-			down_fre=  TD_SCDMA_PLL_DL_OUT_150M; //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
-			up_fre 	=  TD_SCDMA_PLL_UL_OUT_150M; //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+			down_fre=  TD_SCDMA_PLL_DL_OUT_150M; //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
+			up_fre 	=  TD_SCDMA_PLL_UL_OUT_150M; //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 			//*up_fre_word	= CalcTDFreqWord( freq_code, up_fre);
 			//*down_fre_word  =  CalcTDFreqWord( freq_code, down_fre);
 
@@ -908,7 +908,7 @@ INT32 CalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT32 *down_
 		
 		case NET_TYPE_TETRA:  
 			//clk_flag=1;
-            		//PllOutfreq =  clk_flag ? TETRA_PLL_DL_OUT_125M : TETRA_PLL_DL_OUT_122M; //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+            		//PllOutfreq =  clk_flag ? TETRA_PLL_DL_OUT_125M : TETRA_PLL_DL_OUT_122M; //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
             		down_fre =  TETRA_PLL_DL_FRQ;
 			up_fre = TETRA_PLL_UL_FRQ;
 			//*down_fre_word  =  CalcTetraFreqWord( freq_code, down_fre );	
@@ -917,7 +917,7 @@ INT32 CalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT32 *down_
 		break; 
 
 		case NET_TYPE_LTE_TD:   
-            		//PllOutfreq =   CalcLteTdPLLoutputFreq(Flag); //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+            		//PllOutfreq =   CalcLteTdPLLoutputFreq(Flag); //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 			//freq_word  =  CalcLteTdFreqWord( freq_code, PllOutfreq );	
 			
 			up_fre = LTE_TDD_PLL_UL_OUT;
@@ -927,7 +927,7 @@ INT32 CalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT32 *down_
 		break; 
 		
 		case NET_TYPE_LTE_FDD:   
-            		//PllOutfreq =   CalcLteFddPLLoutputFreq(Flag); //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ           
+            		//PllOutfreq =   CalcLteFddPLLoutputFreq(Flag); //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡           
 			//freq_word  = CalcLteFddFreqWord( freq_code, PllOutfreq );	
 			#if defined CLIENT_ERRICSON2
 				up_fre = LTE_FDD_PLL_UL_OUT;
@@ -957,11 +957,11 @@ INT32 CalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT32 *down_
 #if 0
 /*************************************************************
 Name: CalcFreqWord
-Description: ¸ù¾ÝÆµµãºÅ¼ÆËãÆµÂÊ×Ö£¬RE°´ÉÏÐÐµÄ¹«Ê½¼ÆËã
+Description: æ ¹æ®é¢‘ç‚¹å·è®¡ç®—é¢‘çŽ‡å­—ï¼ŒREæŒ‰ä¸Šè¡Œçš„å…¬å¼è®¡ç®—
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
-Return:ÆµÂÊ×Ö¼Ä´æÆ÷µÄÖµ
+Return:é¢‘çŽ‡å­—å¯„å­˜å™¨çš„å€¼
 **************************************************************/
 UINT16 CalcFreqWord( INT32 freq_code, UCHAR8 Flag)
 {
@@ -991,29 +991,29 @@ UINT16 CalcFreqWord( INT32 freq_code, UCHAR8 Flag)
 	{
 	    case NET_TYPE_GSM900:   
 	     if ( G2Tpye== G2_TYPE_CNMOBILE)
-            PllOutfreq =  clk_flag ? GSM_PLL_DL_OUT_125M_CNMOBILE : GSM_PLL_DL_OUT_122M_CNMOBILE; //ÉÏÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+            PllOutfreq =  clk_flag ? GSM_PLL_DL_OUT_125M_CNMOBILE : GSM_PLL_DL_OUT_122M_CNMOBILE; //ä¸Šè¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
          else
-            PllOutfreq =  clk_flag ? GSM_PLL_DL_OUT_125M_UNICOM : GSM_PLL_DL_OUT_122M_UNICOM; //ÉÏÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+            PllOutfreq =  clk_flag ? GSM_PLL_DL_OUT_125M_UNICOM : GSM_PLL_DL_OUT_122M_UNICOM; //ä¸Šè¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
       
 			freq_word  =  CalcGsmFreqWord( freq_code, PllOutfreq );	
 		break;       
 				 
 	    case NET_TYPE_DCS1800: 
 	       if ( G2Tpye== G2_TYPE_CNMOBILE) 
-             PllOutfreq =  clk_flag ? DCS_PLL_DL_OUT_125M_CNMOBILE : DCS_PLL_DL_OUT_122M_CNMOBILE; //ÉÏÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+             PllOutfreq =  clk_flag ? DCS_PLL_DL_OUT_125M_CNMOBILE : DCS_PLL_DL_OUT_122M_CNMOBILE; //ä¸Šè¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
            else
-             PllOutfreq =  clk_flag ? DCS_PLL_DL_OUT_125M_UNICOM : DCS_PLL_DL_OUT_122M_UNICOM; //ÉÏÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+             PllOutfreq =  clk_flag ? DCS_PLL_DL_OUT_125M_UNICOM : DCS_PLL_DL_OUT_122M_UNICOM; //ä¸Šè¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
           
 			freq_word  =  CalcDcsFreqWord( freq_code, PllOutfreq );
 		break; 
 				
 	    case NET_TYPE_WCDMA2100:
-            PllOutfreq =  clk_flag ? WCDMA_PLL_DL_OUT_125M : WCDMA_PLL_DL_OUT_122M; //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+            PllOutfreq =  clk_flag ? WCDMA_PLL_DL_OUT_125M : WCDMA_PLL_DL_OUT_122M; //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 			freq_word  =  CalcWcdmaFreqWord( freq_code, PllOutfreq );		  	
 		break; 
 		 
 	    case NET_TYPE_TD:  
-			PllOutfreq =  clk_flag ? TD_SCDMA_PLL_DL_OUT_125M : TD_SCDMA_PLL_DL_OUT_122M; //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+			PllOutfreq =  clk_flag ? TD_SCDMA_PLL_DL_OUT_125M : TD_SCDMA_PLL_DL_OUT_122M; //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 			freq_word  =  CalcTDFreqWord( freq_code, PllOutfreq );
 		  	
 		break; 
@@ -1027,17 +1027,17 @@ UINT16 CalcFreqWord( INT32 freq_code, UCHAR8 Flag)
 		break; 	 
 		
 	    case NET_TYPE_TETRA:   
-            PllOutfreq =  clk_flag ? TETRA_PLL_DL_OUT_125M : TETRA_PLL_DL_OUT_122M; //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+            PllOutfreq =  clk_flag ? TETRA_PLL_DL_OUT_125M : TETRA_PLL_DL_OUT_122M; //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 			freq_word  =  CalcTetraFreqWord( freq_code, PllOutfreq );			
 		break; 
 
 	    case NET_TYPE_LTE_TD:   
-            PllOutfreq =  clk_flag ? LTE_TD_PLL_DL_OUT_125M : LTE_TD_PLL_DL_OUT_122M; //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+            PllOutfreq =  clk_flag ? LTE_TD_PLL_DL_OUT_125M : LTE_TD_PLL_DL_OUT_122M; //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 			freq_word  =  CalcLTEFreqWord( freq_code, PllOutfreq );			
 		break; 
 		
 	    case NET_TYPE_LTE_FDD:   
-            PllOutfreq =  clk_flag ? LTE_FDD_PLL_DL_OUT_125M : LTE_FDD_PLL_DL_OUT_122M; //ÏÂÐÐÊäÈëµÄ±¾ÕñÊä³öÆµÂÊ
+            PllOutfreq =  clk_flag ? LTE_FDD_PLL_DL_OUT_125M : LTE_FDD_PLL_DL_OUT_122M; //ä¸‹è¡Œè¾“å…¥çš„æœ¬æŒ¯è¾“å‡ºé¢‘çŽ‡
 			freq_word  =  CalcLTEFreqWord( freq_code, PllOutfreq );			
 		break;
 		
@@ -1057,51 +1057,51 @@ void SetClkFlag( UCHAR8 val )
 	clk_flag = val;
 }
 
-// ¸ù¾ÝnsÖÃ¼ÆËãÑÓÊ±Ê±¼ä¼Ä´æÆ÷Öµ£¬ns£ºÄÉÃëÖµ
+// æ ¹æ®nsç½®è®¡ç®—å»¶æ—¶æ—¶é—´å¯„å­˜å™¨å€¼ï¼Œnsï¼šçº³ç§’å€¼
 UINT32 _CalcDelayReg( UINT32 ns )
 {
 	if(0==clk_flag)
-	{	// 122.88MÊ±ÖÓ
+	{	// 122.88Mæ—¶é’Ÿ
 		return (ns*122.88+500)/1000;
 	}
 	else
-	{	// 125MÊ±ÖÓ
+	{	// 125Mæ—¶é’Ÿ
 		return (ns*125+500)/1000;
 	}
 }
 
 
 
-// ¸ù¾Ý¼Ä´æÆ÷¼ÆËã»°ÎñÁ¿Õ¼ÓÃÊ±¼äus
+// æ ¹æ®å¯„å­˜å™¨è®¡ç®—è¯åŠ¡é‡å ç”¨æ—¶é—´us
 UINT32 _CalcBusyTime( UINT32 reg_val, UINT32 ch_count )
 {
 	if(0==clk_flag)
-	{	// 122.88MÊ±ÖÓ 
+	{	// 122.88Mæ—¶é’Ÿ 
 		return (UINT32)( (reg_val)*((FLOAT32)((ch_count+1)*4*64/122.88))+0.5 );
 	}
 	else
-	{	// 125MÊ±ÖÓ
+	{	// 125Mæ—¶é’Ÿ
 		return (UINT32)( (reg_val)*((FLOAT32)((ch_count+1)*4*64/125))+0.5 );
 	}
 }
 
-// ¼ÆËãÆµÂÊ×Ö£¬df£ºÊý×ÖÆµÂÊ(KHz)
+// è®¡ç®—é¢‘çŽ‡å­—ï¼Œdfï¼šæ•°å­—é¢‘çŽ‡(KHz)
 INT32 _CalcFpgaFw( INT32 df )
 {
-	INT32 sign = 1;	// ·ûºÅ
+	INT32 sign = 1;	// ç¬¦å·
 	
-	df *= 10;	// ±ä»»³É10Hzµ¥Î»
+	df *= 10;	// å˜æ¢æˆ10Hzå•ä½
 	if ( df<0 )
 	{
-		sign = -1;	// ËÄÉáÎåÈë
+		sign = -1;	// å››èˆäº”å…¥
 	}
 
 	if(0==clk_flag)
-	{	// 122.88MÊ±ÖÓ
+	{	// 122.88Mæ—¶é’Ÿ
 		df = (df + ( sign*100 ))/200;	// 20K
 	}
 	else
-	{	// 125MÊ±ÖÓ
+	{	// 125Mæ—¶é’Ÿ
 		df = (df+(sign*62))/125;	// 12.5K
 	}
 
@@ -1109,44 +1109,44 @@ INT32 _CalcFpgaFw( INT32 df )
 
 }
 
-// ÆµÂÊ×ÖÊýÖµµ÷Õû
+// é¢‘çŽ‡å­—æ•°å€¼è°ƒæ•´
 UINT32 _AdjustFpgaFw(INT32 df)
 {
 	if ( df<0 ) 
 	{
 		if(0==clk_flag)
-		{	// 122.88MÊ±ÖÓ
+		{	// 122.88Mæ—¶é’Ÿ
 			df+= 3072;
 		}
 		else
-		{	// 125MÊ±ÖÓ
+		{	// 125Mæ—¶é’Ÿ
 			df+= 5000;
 		}
 	}
 	return (UINT32)df;
 }
 
-// ¸ù¾ÝÆµÂÊ×Ö¼ÆËãFPGAÆµµã¼Ä´æÆ÷µÄÖµ
+// æ ¹æ®é¢‘çŽ‡å­—è®¡ç®—FPGAé¢‘ç‚¹å¯„å­˜å™¨çš„å€¼
 UINT16 _CalcFpgaFwReg( UINT32 fw )
 {
 	UINT16 qw,rw; 
 	
 	if(0==clk_flag)
-	{	// 122.88MÊ±ÖÓ
-		qw = fw/384;	// ÉÌ
-		rw = fw%384;	// ÓàÊý
+	{	// 122.88Mæ—¶é’Ÿ
+		qw = fw/384;	// å•†
+		rw = fw%384;	// ä½™æ•°
 		return (UINT16)(((qw&0x07)<<9)|(rw&0x01FF));
 	}
 	else
-	{	// 125MÊ±ÖÓ
-		qw = fw/625;	// ÉÌ
-		rw = fw%625;	// ÓàÊý
+	{	// 125Mæ—¶é’Ÿ
+		qw = fw/625;	// å•†
+		rw = fw%625;	// ä½™æ•°
 		return (UINT16)(((qw&0x07)<<10)|(rw&0x03FF));
 	}   
 }
 
-////////////////////////////// TDº¯Êý ////////////////////////////////
-// TDÊ±¼ä¼ÆËã
+////////////////////////////// TDå‡½æ•° ////////////////////////////////
+// TDæ—¶é—´è®¡ç®—
 UINT16 _CalcTdTimeParam( UINT32 tm )
 {
 	CHAR8 flag=0;
@@ -1189,11 +1189,11 @@ UINT16 _CalcTdTimeParam( UINT32 tm )
 
 /*************************************************************
 Name:         CalcGsmdfu
-Description:  ¼ÆËãGSMÊäÈëÂß¼­µÄÆµÂÊ
-Input:        freq_point -  ÊäÈëµÄRFÆµÂÊ
-              fu_local   -  ±¾ÕñµÄÊä³öÆµÂÊ
+Description:  è®¡ç®—GSMè¾“å…¥é€»è¾‘çš„é¢‘çŽ‡
+Input:        freq_point -  è¾“å…¥çš„RFé¢‘çŽ‡
+              fu_local   -  æœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 Output:       void         
-Return:	 GSMÊäÈëÂß¼­µÄÆµÂÊ
+Return:	 GSMè¾“å…¥é€»è¾‘çš„é¢‘çŽ‡
 **************************************************************/
 FLOAT32 CalcGsmdfu( FLOAT32 freq_point, FLOAT32 fd_local )
 {
@@ -1227,11 +1227,11 @@ FLOAT32 CalcGsmdfu( FLOAT32 freq_point, FLOAT32 fd_local )
 
 /*************************************************************
 Name:         CalcGsmdfu
-Description:  ¼ÆËãGSMÊäÈëÂß¼­µÄÆµÂÊ
-Input:        freq_point -  ÊäÈëµÄRFÆµÂÊ
-              fu_local   -  ±¾ÕñµÄÊä³öÆµÂÊ
+Description:  è®¡ç®—GSMè¾“å…¥é€»è¾‘çš„é¢‘çŽ‡
+Input:        freq_point -  è¾“å…¥çš„RFé¢‘çŽ‡
+              fu_local   -  æœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 Output:       void         
-Return:	 GSMÊäÈëÂß¼­µÄÆµÂÊ
+Return:	 GSMè¾“å…¥é€»è¾‘çš„é¢‘çŽ‡
 **************************************************************/
 FLOAT32 CalcDcsfu( FLOAT32 freq_point, FLOAT32 fd_local )
 {
@@ -1250,11 +1250,11 @@ FLOAT32 CalcDcsfu( FLOAT32 freq_point, FLOAT32 fd_local )
 #if 0
 /*************************************************************
 Name:         CalcGsmdfu
-Description:  ¼ÆËãGSMÊäÈëÂß¼­µÄÆµÂÊ
-Input:        freq_point -  ÊäÈëµÄRFÆµÂÊ
-              fu_local   -  ±¾ÕñµÄÊä³öÆµÂÊ
+Description:  è®¡ç®—GSMè¾“å…¥é€»è¾‘çš„é¢‘çŽ‡
+Input:        freq_point -  è¾“å…¥çš„RFé¢‘çŽ‡
+              fu_local   -  æœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 Output:       void         
-Return:	 GSMÊäÈëÂß¼­µÄÆµÂÊ
+Return:	 GSMè¾“å…¥é€»è¾‘çš„é¢‘çŽ‡
 **************************************************************/
 FLOAT32 CalcDcsfu( FLOAT32 freq_point, FLOAT32 fd_local )
 {
@@ -1280,11 +1280,11 @@ FLOAT32 CalcDcsfu( FLOAT32 freq_point, FLOAT32 fd_local )
 
 /*************************************************************
 Name:         CalcGsmdfu
-Description:  ¼ÆËãGSMÊäÈëÂß¼­µÄÆµÂÊ
-Input:        freq_point -  ÊäÈëµÄRFÆµÂÊ
-              fu_local   -  ±¾ÕñµÄÊä³öÆµÂÊ
+Description:  è®¡ç®—GSMè¾“å…¥é€»è¾‘çš„é¢‘çŽ‡
+Input:        freq_point -  è¾“å…¥çš„RFé¢‘çŽ‡
+              fu_local   -  æœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 Output:       void         
-Return:	 GSMÊäÈëÂß¼­µÄÆµÂÊ
+Return:	 GSMè¾“å…¥é€»è¾‘çš„é¢‘çŽ‡
 **************************************************************/
 FLOAT32 CalcWcdmafu( FLOAT32 freq_point, FLOAT32 fd_local )
 {
@@ -1304,11 +1304,11 @@ FLOAT32 CalcWcdmafu( FLOAT32 freq_point, FLOAT32 fd_local )
 
 /*************************************************************
 Name:         CalcGsmdfu
-Description:  ¼ÆËãGSMÊäÈëÂß¼­µÄÆµÂÊ
-Input:        freq_point -  ÊäÈëµÄRFÆµÂÊ
-              fu_local   -  ±¾ÕñµÄÊä³öÆµÂÊ
+Description:  è®¡ç®—GSMè¾“å…¥é€»è¾‘çš„é¢‘çŽ‡
+Input:        freq_point -  è¾“å…¥çš„RFé¢‘çŽ‡
+              fu_local   -  æœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 Output:       void         
-Return:	 GSMÊäÈëÂß¼­µÄÆµÂÊ
+Return:	 GSMè¾“å…¥é€»è¾‘çš„é¢‘çŽ‡
 **************************************************************/
 FLOAT32 CalcWcdmafu( FLOAT32 freq_point, FLOAT32 fd_local )
 {
@@ -1331,11 +1331,11 @@ FLOAT32 CalcWcdmafu( FLOAT32 freq_point, FLOAT32 fd_local )
 }
 /*************************************************************
 Name:         CalcGsmdfu
-Description:  ¼ÆËãGSMÊäÈëÂß¼­µÄÆµÂÊ
-Input:        freq_point -  ÊäÈëµÄRFÆµÂÊ
-              fu_local   -  ±¾ÕñµÄÊä³öÆµÂÊ
+Description:  è®¡ç®—GSMè¾“å…¥é€»è¾‘çš„é¢‘çŽ‡
+Input:        freq_point -  è¾“å…¥çš„RFé¢‘çŽ‡
+              fu_local   -  æœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 Output:       void         
-Return:	 GSMÊäÈëÂß¼­µÄÆµÂÊ
+Return:	 GSMè¾“å…¥é€»è¾‘çš„é¢‘çŽ‡
 **************************************************************/
 FLOAT32 CalcTetrafu( FLOAT32 freq_point, FLOAT32 fu_local )
 {
@@ -1350,11 +1350,11 @@ FLOAT32 CalcTetrafu( FLOAT32 freq_point, FLOAT32 fu_local )
 #endif
 /*************************************************************
 Name:         CalcTdLtefu
-Description:  ¼ÆËãGSMÊäÈëÂß¼­µÄÆµÂÊ
-Input:        freq_point -  ÊäÈëµÄRFÆµÂÊ
-              fu_local   -  ±¾ÕñµÄÊä³öÆµÂÊ
+Description:  è®¡ç®—GSMè¾“å…¥é€»è¾‘çš„é¢‘çŽ‡
+Input:        freq_point -  è¾“å…¥çš„RFé¢‘çŽ‡
+              fu_local   -  æœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 Output:       void         
-Return:	 GSMÊäÈëÂß¼­µÄÆµÂÊ
+Return:	 GSMè¾“å…¥é€»è¾‘çš„é¢‘çŽ‡
 **************************************************************/
 FLOAT32 CalcTdLtefu( FLOAT32 freq_point, FLOAT32 fd_local )
 {
@@ -1375,10 +1375,10 @@ FLOAT32 CalcTdLtefu( FLOAT32 freq_point, FLOAT32 fd_local )
 #if  0
 /*************************************************************
 Name:         CalcFpgaFw
-Description:  ¼ÆËãGSMÊäÈëÂß¼­µÄÊý×ÖÆµÂÊ×Ö
-Input:        fDf -  ÊäÈëµÄÂß¼­ÆµÂÊ
+Description:  è®¡ç®—GSMè¾“å…¥é€»è¾‘çš„æ•°å­—é¢‘çŽ‡å­—
+Input:        fDf -  è¾“å…¥çš„é€»è¾‘é¢‘çŽ‡
 Output:       void         
-Return:	 Âß¼­µÄÊý×ÖÆµÂÊ×Ö
+Return:	 é€»è¾‘çš„æ•°å­—é¢‘çŽ‡å­—
 **************************************************************/
 INT32 CalcFpgaFw( FLOAT32 fDf )	
 {
@@ -1390,10 +1390,10 @@ INT32 CalcFpgaFw( FLOAT32 fDf )
 #endif
 /*************************************************************
 Name:         CalcFpgaFw
-Description:  ¼ÆËãGSMÊäÈëÂß¼­µÄÊý×ÖÆµÂÊ×Ö
-Input:        fDf -  ÊäÈëµÄÂß¼­ÆµÂÊ
+Description:  è®¡ç®—GSMè¾“å…¥é€»è¾‘çš„æ•°å­—é¢‘çŽ‡å­—
+Input:        fDf -  è¾“å…¥çš„é€»è¾‘é¢‘çŽ‡
 Output:       void         
-Return:	 Âß¼­µÄÊý×ÖÆµÂÊ×Ö
+Return:	 é€»è¾‘çš„æ•°å­—é¢‘çŽ‡å­—
 **************************************************************/
 INT32 CalcFpgaFw_AB( FLOAT32 fDf )	
 {  
@@ -1413,10 +1413,10 @@ INT32 CalcFpgaFw_AB( FLOAT32 fDf )
 
 /*************************************************************
 Name:         CalcFpgaFw_A
-Description:  ¼ÆËãGSMÊäÈëÂß¼­µÄÊý×ÖÆµÂÊ×Ö
-Input:        fDf -  ÊäÈëµÄÂß¼­ÆµÂÊ
+Description:  è®¡ç®—GSMè¾“å…¥é€»è¾‘çš„æ•°å­—é¢‘çŽ‡å­—
+Input:        fDf -  è¾“å…¥çš„é€»è¾‘é¢‘çŽ‡
 Output:       void         
-Return:	 Âß¼­µÄÊý×ÖÆµÂÊ×Ö
+Return:	 é€»è¾‘çš„æ•°å­—é¢‘çŽ‡å­—
 **************************************************************/
 INT32 CalcFpgaFw_A( FLOAT32 fDf )	
 {  
@@ -1425,10 +1425,10 @@ INT32 CalcFpgaFw_A( FLOAT32 fDf )
 
 /*************************************************************
 Name:         CalcFpgaFw
-Description:  ¼ÆËãGSMÊäÈëÂß¼­µÄÊý×ÖÆµÂÊ×Ö
-Input:        fDf -  ÊäÈëµÄÂß¼­ÆµÂÊ
+Description:  è®¡ç®—GSMè¾“å…¥é€»è¾‘çš„æ•°å­—é¢‘çŽ‡å­—
+Input:        fDf -  è¾“å…¥çš„é€»è¾‘é¢‘çŽ‡
 Output:       void         
-Return:	 Âß¼­µÄÊý×ÖÆµÂÊ×Ö
+Return:	 é€»è¾‘çš„æ•°å­—é¢‘çŽ‡å­—
 **************************************************************/
 INT32 CalcFpgaFw_B( FLOAT32 fDf )	
 {  
@@ -1436,7 +1436,7 @@ INT32 CalcFpgaFw_B( FLOAT32 fDf )
 		|| (version_number == VERSION_40M_IN_D)
 	)
 		return (INT32)( (FLOAT32)pow(2,13)*1024*8*fDf*(7/156.25/4));
-	else if((version_number == VERSION_40M_IN_E) || (version_number == VERSION_40M_IN_C))// 2015-2-6 v3cÓÉ75¸ÄÎª62.5
+	else if((version_number == VERSION_40M_IN_E) || (version_number == VERSION_40M_IN_C))// 2015-2-6 v3cç”±75æ”¹ä¸º62.5
 		return (INT32)( (FLOAT32)pow(2,13)*1024*8*fDf*62.5);
 	else if((version_number == VERSION_20M_NOIN) || (version_number == VERSION_20M_IN))
 		return (INT32)( (FLOAT32)pow(2,13)*1024*8*fDf*1/75);
@@ -1454,16 +1454,16 @@ INT32 CalcFpgaFw_B( FLOAT32 fDf )
 
 /*************************************************************
 Name:         CalcFpgaFw
-Description:  ¼ÆËãGSMÊäÈëÂß¼­µÄÊý×ÖÆµÂÊ×Ö
-Input:        fDf -  ÊäÈëµÄÂß¼­ÆµÂÊ
+Description:  è®¡ç®—GSMè¾“å…¥é€»è¾‘çš„æ•°å­—é¢‘çŽ‡å­—
+Input:        fDf -  è¾“å…¥çš„é€»è¾‘é¢‘çŽ‡
 Output:       void         
-Return:	 Âß¼­µÄÊý×ÖÆµÂÊ×Ö
+Return:	 é€»è¾‘çš„æ•°å­—é¢‘çŽ‡å­—
 **************************************************************/
 INT32 CalcFpgaFw_CD( FLOAT32 fDf )	
 {
 	if(version_number == VERSION_40M_IN_C)
 	{
-		return (INT32)( (FLOAT32)pow(2,13)*1024*8*fDf*1/62.5);// 2015-2-6 v3cÓÉ50¸ÄÎª62.5
+		return (INT32)( (FLOAT32)pow(2,13)*1024*8*fDf*1/62.5);// 2015-2-6 v3cç”±50æ”¹ä¸º62.5
 	}
 	else if( version_number==VERSION_40M_IN_D)
 	{
@@ -1479,7 +1479,7 @@ INT32 CalcFpgaFw_CD( FLOAT32 fDf )
 	}
 	else if(version_number == VERSION_50M_IN_F ||version_number == VERSION_50M_IN_V4)
 	{
-		return (INT32)( (FLOAT32)pow(2,13)*1024*8*fDf*1/62.5);// 2015-2-6 v3cÓÉ50¸ÄÎª62.5
+		return (INT32)( (FLOAT32)pow(2,13)*1024*8*fDf*1/62.5);// 2015-2-6 v3cç”±50æ”¹ä¸º62.5
 	}
 	else if(version_number == VERSION_50M_IN_V5)
 	{
@@ -1508,10 +1508,10 @@ INT32 CalcTypeFddFpgaFw_CD( FLOAT32 fDf )
 
 /*************************************************************
 Name:         AdjustFpgaFw
-Description:  µ÷ÕûGSMÊäÈëÂß¼­µÄÊý×ÖÆµÂÊ×Ö
-Input:        fDf -  GSMÊäÈëÂß¼­µÄÊý×ÖÆµÂÊ×Ö
+Description:  è°ƒæ•´GSMè¾“å…¥é€»è¾‘çš„æ•°å­—é¢‘çŽ‡å­—
+Input:        fDf -  GSMè¾“å…¥é€»è¾‘çš„æ•°å­—é¢‘çŽ‡å­—
 Output:       void         
-Return:	µ÷ÖÆºóµÄGSMÊý×ÖÆµÂÊ×Ö
+Return:	è°ƒåˆ¶åŽçš„GSMæ•°å­—é¢‘çŽ‡å­—
 **************************************************************/
 INT32  AdjustFpgaFw(INT32 iDf)	
 { 
@@ -1530,25 +1530,25 @@ INT32  AdjustFpgaFw(INT32 iDf)
 #if 0
 /*************************************************************
 Name:         CalcFpgaFwReg  
-Description:  Éú³ÉÂß¼­µÄÊý×ÖÆµÂÊ¼Ä´æÆ÷×Ö   
-Input:        fDf -  GSMÊäÈëÂß¼­µÄÊý×ÖÆµÂÊ×Ö   
+Description:  ç”Ÿæˆé€»è¾‘çš„æ•°å­—é¢‘çŽ‡å¯„å­˜å™¨å­—   
+Input:        fDf -  GSMè¾“å…¥é€»è¾‘çš„æ•°å­—é¢‘çŽ‡å­—   
 Output:       void         
-Return:	Âß¼­¼Ä´æÆ÷Öµ
+Return:	é€»è¾‘å¯„å­˜å™¨å€¼
 **************************************************************/
 UINT16 CalcFpgaFwReg( UINT32 fw )
 {
 	UINT16 iQw,iRw;
 
 	if(0==clk_flag) 
-	{	// 122.88MÊ±ÖÓ
-		iQw = fw/384;	// ÉÌ
-		iRw = fw%384;	// ÓàÊý
+	{	// 122.88Mæ—¶é’Ÿ
+		iQw = fw/384;	// å•†
+		iRw = fw%384;	// ä½™æ•°
 		return (UINT16)(((iQw&0x07)<<9)|(iRw&0x01FF));
 	}
 	else
-	{	// 125MÊ±ÖÓ
-		iQw = fw/625;	// ÉÌ
-		iRw = fw%625;	// ÓàÊý
+	{	// 125Mæ—¶é’Ÿ
+		iQw = fw/625;	// å•†
+		iRw = fw%625;	// ä½™æ•°
 		return (UINT16)(((iQw&0x07)<<10)|(iRw&0x03FF));
 	} 
 }
@@ -1556,36 +1556,36 @@ UINT16 CalcFpgaFwReg( UINT32 fw )
 
 /*************************************************************
 Name:         CalcFpgaFwReg  
-Description:  Éú³ÉÂß¼­µÄÊý×ÖÆµÂÊ¼Ä´æÆ÷×Ö   
-Input:        fDf -  GSMÊäÈëÂß¼­µÄÊý×ÖÆµÂÊ×Ö   
+Description:  ç”Ÿæˆé€»è¾‘çš„æ•°å­—é¢‘çŽ‡å¯„å­˜å™¨å­—   
+Input:        fDf -  GSMè¾“å…¥é€»è¾‘çš„æ•°å­—é¢‘çŽ‡å­—   
 Output:       void         
-Return:	Âß¼­¼Ä´æÆ÷Öµ
+Return:	é€»è¾‘å¯„å­˜å™¨å€¼
 **************************************************************/
 UINT16 CalcFpgaFwReg( UINT32 fw )
 {
 	UINT16 iQw,iRw;
 	clk_flag=1;
 	if(0==clk_flag) 
-	{	// 122.88MÊ±ÖÓ
-		iQw = fw/384;	// ÉÌ
-		iRw = fw%384;	// ÓàÊý
+	{	// 122.88Mæ—¶é’Ÿ
+		iQw = fw/384;	// å•†
+		iRw = fw%384;	// ä½™æ•°
 		return (UINT16)(((iQw&0x07)<<9)|(iRw&0x01FF));
 	}
 	else
-	{	// 125MÊ±ÖÓ
-		iQw = fw/625;	// ÉÌ
-		iRw = fw%625;	// ÓàÊý
+	{	// 125Mæ—¶é’Ÿ
+		iQw = fw/625;	// å•†
+		iRw = fw%625;	// ä½™æ•°
 		return (UINT16)(((iQw&0x07)<<10)|(iRw&0x03FF));
 	} 
 }
 
 /*************************************************************
 Name: ConvGsmFcToFreqDL
-Description: ¸ù¾ÝGSMÆµµãºÅ¼ÆËãÏÂÐÐÐÅºÅÆµÂÊ
+Description: æ ¹æ®GSMé¢‘ç‚¹å·è®¡ç®—ä¸‹è¡Œä¿¡å·é¢‘çŽ‡
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
-Return:	ÆµÂÊ(KHz)
+Return:	é¢‘çŽ‡(KHz)
 **************************************************************/
 FLOAT32 ConvDcsFcToFreqDL( INT32 freq_code )
 {
@@ -1609,11 +1609,11 @@ FLOAT32 ConvDcsFcToFreqDL( INT32 freq_code )
 
 /*************************************************************
 Name: ConvGsmFcToFreqDL
-Description: ¸ù¾ÝGSMÆµµãºÅ¼ÆËãÏÂÐÐÐÅºÅÆµÂÊ
+Description: æ ¹æ®GSMé¢‘ç‚¹å·è®¡ç®—ä¸‹è¡Œä¿¡å·é¢‘çŽ‡
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
-Return:	ÆµÂÊ(KHz)
+Return:	é¢‘çŽ‡(KHz)
 **************************************************************/
 FLOAT32 ConvGsmFcToFreqDL( INT32 freq_code )
 {
@@ -1636,11 +1636,11 @@ FLOAT32 ConvGsmFcToFreqDL( INT32 freq_code )
 
 /*************************************************************
 Name: ConvGsmFcToFreqDL
-Description: ¸ù¾ÝGSMÆµµãºÅ¼ÆËãÏÂÐÐÐÅºÅÆµÂÊ
+Description: æ ¹æ®GSMé¢‘ç‚¹å·è®¡ç®—ä¸‹è¡Œä¿¡å·é¢‘çŽ‡
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
-Return:	ÆµÂÊ(KHz)
+Return:	é¢‘çŽ‡(KHz)
 **************************************************************/
 FLOAT32 ConvGsmFcToFreqUL( INT32 freq_code )
 {
@@ -1663,11 +1663,11 @@ FLOAT32 ConvGsmFcToFreqUL( INT32 freq_code )
  
 /*************************************************************
 Name: ConvGsmFcToFreqDL
-Description: ¸ù¾ÝGSMÆµµãºÅ¼ÆËãÏÂÐÐÐÅºÅÆµÂÊ
+Description: æ ¹æ®GSMé¢‘ç‚¹å·è®¡ç®—ä¸‹è¡Œä¿¡å·é¢‘çŽ‡
 Input:
-	freq_code: ÆµµãºÅ
+	freq_code: é¢‘ç‚¹å·
 Output:void         
-Return:	ÆµÂÊ(KHz)
+Return:	é¢‘çŽ‡(KHz)
 **************************************************************/
 INT32 CalcFreqPointToFreq(UCHAR8 ucNetTye,INT32 freq_code) 
 {
@@ -1711,13 +1711,13 @@ INT32 CalcFreqPointToFreq(UCHAR8 ucNetTye,INT32 freq_code)
 
 
 /*************************************************************
-º¯ÊýÃû:	    MenCpy   
-¹¦ÄÜÃèÊö:   ÄÚ´æ¿½±´
-ÊäÈë²ÎÊý:	void
-Êä³ö²ÎÊý£º  ÎÞ 
-·µ»ØÖµ: 	void   
-µ÷ÓÃº¯Êý£º  
-±»µ÷º¯Êý£º  
+å‡½æ•°å:	    MenCpy   
+åŠŸèƒ½æè¿°:   å†…å­˜æ‹·è´
+è¾“å…¥å‚æ•°:	void
+è¾“å‡ºå‚æ•°ï¼š  æ—  
+è¿”å›žå€¼: 	void   
+è°ƒç”¨å‡½æ•°ï¼š  
+è¢«è°ƒå‡½æ•°ï¼š  
 **************************************************************/
 void MenCpy(void *pvDst,const void * pvSrc, UINT usLen)
 {

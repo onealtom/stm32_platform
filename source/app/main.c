@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 * 
 * FileName    :main.c
-* Description :ÏµÍ³Ö÷º¯Êı
+* Description :ç³»ç»Ÿä¸»å‡½æ•°
 * Version     :v0.1
 * Author      :RJ
 * Date        :2010-03-10
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*RJ		2010-03-10		v0.1			³õÊ¼°æ±¾
+*RJ		2010-03-10		v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #include "Header.h"
    
@@ -20,15 +20,15 @@ extern _T_PARAM_4B  sys_param_4b[];
 extern _T_PARAM_ASC sys_param_asc[];
 extern UCHAR8 usbBuffer[DATABUFFERSIZE];
 extern UCHAR8 str_pri_mcu_date[];
-extern UINT32 module_param_chg_flag;		//ÏµÍ³¹¤×÷²ÎÊıĞŞ¸Ä±êÖ¾
+extern UINT32 module_param_chg_flag;		//ç³»ç»Ÿå·¥ä½œå‚æ•°ä¿®æ”¹æ ‡å¿—
 extern UINT32 fpga_load_status;
 extern _T_FP_INFO fp_inf[FP_MAX];
 UCHAR8 * p_mcu_date; 
 UCHAR8  p_mcu_date_GUOREN[11]={'S','e','p',' ','2','9',' ','2','0','1','4'};
 
 UCHAR8 usb_time_out;  
-UCHAR8 traffic_start = 0;//¿ªÊ¼»°ÎñÁ¿Í³¼Æ
-// AD6649°æ±¾
+UCHAR8 traffic_start = 0;//å¼€å§‹è¯åŠ¡é‡ç»Ÿè®¡
+// AD6649ç‰ˆæœ¬
  
 
 unsigned int traceLevel = TRACE_LEVEL_DEBUG;
@@ -59,7 +59,7 @@ UCHAR8 GetMcuNetType( UCHAR8 net_type )
 		case NET_TYPE_CDMA800:
 			return 'C';
 			
-		case NET_TYPE_TETRA:   //¼¯ÈºTetra
+		case NET_TYPE_TETRA:   //é›†ç¾¤Tetra
 			return 'T'; 
 			
 		case NET_TYPE_LTE_TD:
@@ -84,7 +84,7 @@ void GetMcuWaterPrint()
 	UINT32 i;
 	UINT32 tmp=0;
 	
-	//MCU±àÒëÈÕÆÚºÍË®Ó¡
+	//MCUç¼–è¯‘æ—¥æœŸå’Œæ°´å°
 	str_pri_mcu_date[tmp++] = 'A';
 	str_pri_mcu_date[tmp++] = 'U';
 	str_pri_mcu_date[tmp++] = '1';
@@ -163,10 +163,10 @@ void main()
 	//UCHAR8 p_msg_dat[]={0x01,0x01,0x00,0x00,0x00,0x00,0xdf,0xff,0x00,0x00,'t','e','s','k','o','k','.','f','r','o','m','.','r','e','c','.','.','.','.','.','.','.','.','.'};
 	//UCHAR8 p_msg_dat1[]={0xC2,0x01,0x01,0x69,0x82,0x02,0x00,0x00};
 	
-	// ÏµÍ³³õÊ¼»¯
+	// ç³»ç»Ÿåˆå§‹åŒ–
 	InitSystem();
 
-	// ¶ÁMCUË®Ó¡
+	// è¯»MCUæ°´å°
 	GetMcuWaterPrint();	
 	WTD_CLR;
 
@@ -180,15 +180,15 @@ void main()
 	
 		WTD_CLR;
 
-		// USB×´Ì¬×ª»» 
+		// USBçŠ¶æ€è½¬æ¢ 
 		USBChgStatus();  
 
 		if ( 1 == IsUsbConfigured() )
 		{
-			// ÓĞUSBÊı¾İ°üÎ´·¢³ö
+			// æœ‰USBæ•°æ®åŒ…æœªå‘å‡º
 			if ( SYSTEM_FLAG_USB_PKT_UNSEND != (sys_work_info & SYSTEM_FLAG_USB_PKT_UNSEND) )
 			{
-				// Êı¾İ·¢³öºó²Å´¦ÀíĞÂµÄÊı¾İ
+				// æ•°æ®å‘å‡ºåæ‰å¤„ç†æ–°çš„æ•°æ®
 				if ( 0!=(sys_work_info & SYSTEM_FLAG_USB_RX_END) )
 				{
 					UsbGetReceivedData();
@@ -200,7 +200,7 @@ void main()
 				}  
 			}
 
-			// ½ÓÊÕÍê³É£¬Ê¹ÄÜĞÂµÄÊı¾İ½ÓÊÕ
+			// æ¥æ”¶å®Œæˆï¼Œä½¿èƒ½æ–°çš„æ•°æ®æ¥æ”¶
 			if ( 0 == (sys_work_info & SYSTEM_FLAG_USB_WAIT_RX) )
 			{
 				UsbStartReceive();
@@ -209,7 +209,7 @@ void main()
 
 		if (0 != (sys_work_info & SYSTEM_FLAG_232_RECE) )
 		{
-			// ´¦Àí485Êı¾İ°ü
+			// å¤„ç†485æ•°æ®åŒ…
 			//TRACE_INFO("Handle 485\r\n");	
 			printf("Handle 485\r\n");	
 			UartReceHandle();
@@ -219,7 +219,7 @@ void main()
 
 		
 
-		// 1ÃëÊÂ¼ş
+		// 1ç§’äº‹ä»¶
 		if ( SYSTEM_FLAG_1S_EVENT == (sys_work_info & SYSTEM_FLAG_1S_EVENT ))
 		{
 			TRACE_INFO("Handle 1S\r\n");
@@ -244,29 +244,29 @@ void main()
 				}
 			}
  
-			// ¸üĞÂREĞÅÏ¢
+			// æ›´æ–°REä¿¡æ¯
 			UpdateReInfo(); 
 
 			#if( (defined  CLIENT_ERRICSON)||(defined  CLIENT_ERRICSON2)||(defined CLIENT_ERRICSON_W))
-			//²éÑ¯ÉèÖÃEU µÄ²ÎÊı
+			//æŸ¥è¯¢è®¾ç½®EU çš„å‚æ•°
 			MAUGetParamFromMEU();
 			#endif
 			
 
 #if 1		
-			// »ñÈ¡ÊäÈëºÍÊä³ö¹¦ÂÊ
+			// è·å–è¾“å…¥å’Œè¾“å‡ºåŠŸç‡
 			FpgaGetDlUlPowerA();
 			//FpgaGetDlUlPowerB();
 			//FpgaGetDlUlPowerC();
 			//FpgaGetDlUlPowerD();			
 			
-			// ÆµµãËÑË÷
+			// é¢‘ç‚¹æœç´¢
 			#if defined  CLIENT_ERRICSON
 			FPS_MainFunc();
 			#endif
 #endif	
 			
-			// ÊÍ·Å´óÊı¾İ»º³å 
+			// é‡Šæ”¾å¤§æ•°æ®ç¼“å†² 
 			CheckBigBuffTimeOut();
  
 		    WTD_CLR;  
@@ -277,7 +277,7 @@ void main()
 
  
 #if 1
-		// 3ÃëÊÂ¼ş
+		// 3ç§’äº‹ä»¶
 		if ( SYSTEM_FLAG_3S_EVENT == (sys_work_info & SYSTEM_FLAG_3S_EVENT))
 		{
 			TRACE_INFO("Handle 3S\r\n");
@@ -315,18 +315,18 @@ void main()
 			
 //			MoveBenZhenTo2340();
 
-			//ÎÂ¶È
+			//æ¸©åº¦
 			sys_param_1b[MADD_BOARD_TEMP].val =  GetTemperature();
-			// ÎÂ¶È²¹³¥
+			// æ¸©åº¦è¡¥å¿
 			TempGainCompensate( 0 );
 #endif
-			/*ADC´¦Àí*/
+			/*ADCå¤„ç†*/
 			AdcHandle();	
-			//ÎÂ¶È
+			//æ¸©åº¦
 			sys_param_1b[MADD_BOARD_TEMP].val =  GetTemperature();
 		}
 		
-		// 5ÃëÊÂ¼ş
+		// 5ç§’äº‹ä»¶
 		if (SYSTEM_FLAG_5S_EVENT==(sys_work_info & SYSTEM_FLAG_5S_EVENT))
 		{
 			sys_work_info &= (~SYSTEM_FLAG_5S_EVENT);
@@ -335,7 +335,7 @@ void main()
 			TRACE_INFO("Handle 5S\r\n");
 			//FpgaSendMsgPkt( 0x00000100, 0x00000000, 28, p_msg_dat );
 			//FpgaSendThrDat(); 
-			//1197 ²»ÄÜÆµ·±¶ÁÈ¡
+			//1197 ä¸èƒ½é¢‘ç¹è¯»å–
 			//sys_param_1b[MADD_A_1197_LOCK_ST].val = (HMC_1197_LOCK_ST==(UCHAR8)ReadHmc1197(HMC_1197_REG_ADD) ? 0 : 1);
 		}
  		WTD_CLR;
@@ -355,33 +355,33 @@ void main()
 		//}
 
 		WTD_CLR;	        
-		// ¼ì²éÍØÆË×´Ì¬
+		// æ£€æŸ¥æ‹“æ‰‘çŠ¶æ€
 		//TaskManageTopo();
 	
-		// ¸üĞÂÍâÉè×´Ì¬
+		// æ›´æ–°å¤–è®¾çŠ¶æ€
 		GetPeripheralStatus();  
 
 		 
 	  
-		// ´¦Àí¹âÏËÊı¾İÍ¨Ñ¶
+		// å¤„ç†å…‰çº¤æ•°æ®é€šè®¯
 		WTD_CLR;
 		FpgaGetMsgPkt();  
 		
 
 #if defined CLIENT_JIZHUN
-		// °ÑÂß¼­FIFOÖĞ½ÓÊÜµ½µÄÍ¸´«Êı¾İ£¬Í¨¹ıÍ¸´«¿Ú·¢³öÈ¥
+		// æŠŠé€»è¾‘FIFOä¸­æ¥å—åˆ°çš„é€ä¼ æ•°æ®ï¼Œé€šè¿‡é€ä¼ å£å‘å‡ºå»
 		WTD_CLR;
 		if ( 1 == uart_thr_tx_end )  
 		{
 			UartTransThrDat(); 
 		}    
 		
-		//ÍùFPGAÖĞ·¢ËÍÍ¸´«Êı¾İ
+		//å¾€FPGAä¸­å‘é€é€ä¼ æ•°æ®
 		WTD_CLR;
 		FpgaSendThrDat(); 
 
 	        
-		//´ÓFPGAÖĞ¶ÁÈ¡Í¸´«Êı¾İ  
+		//ä»FPGAä¸­è¯»å–é€ä¼ æ•°æ®  
 		WTD_CLR;  
 		FpgaReadThrDat();  
 #endif	

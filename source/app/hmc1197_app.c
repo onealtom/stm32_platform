@@ -1,4 +1,4 @@
-#include "Header.h"
+﻿#include "Header.h"
 
  #if 0
  const UINT32 HMC1197_RegVal_cnmobile[][2]={  
@@ -191,7 +191,7 @@ const UINT32 HMC1197_RegVal_telecom_cmda800[][2]={
 
 /*************************************************************
 Name:InitHmc1197        
-Description: ϵͳ��ʼ��
+Description: 系统初始化
 Input:void
 Output:void      
 Return:void

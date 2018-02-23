@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :update_app.h
-* Description :Èí¼şÉı¼¶´¦ÀíÏà¹Øº¯ÊıÍ·ÎÄ¼ş
+* Description :è½¯ä»¶å‡çº§å¤„ç†ç›¸å…³å‡½æ•°å¤´æ–‡ä»¶
 * Version     :v0.1
 * Author      :RJ
 * Date        :2010-03-10
@@ -10,20 +10,20 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*RJ		2010-03-10		v0.1			³õÊ¼°æ±¾
+*RJ		2010-03-10		v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #ifndef _UPDATE_APP_H_
 #define _UPDATE_APP_H_
 
 #define UPDATE_TYPE_FPGA		0
-#define FPGA_FW_MAX_LEN		4*1024*1024		// FPGA³ÌĞò×î´ó³¤¶È:4MB
-#define FPGA_FW_MAX_PKT		7400			// FPGAÉı¼¶Êı¾İ°ü×î´ó¸öÊı: 4096 = FPGA_FW_MAX_LEN / FLASH_PAGE_SIZE
+#define FPGA_FW_MAX_LEN		4*1024*1024		// FPGAç¨‹åºæœ€å¤§é•¿åº¦:4MB
+#define FPGA_FW_MAX_PKT		7400			// FPGAå‡çº§æ•°æ®åŒ…æœ€å¤§ä¸ªæ•°: 4096 = FPGA_FW_MAX_LEN / FLASH_PAGE_SIZE
 
 #define UPDATE_TYPE_MCU		1
-#define MCU_FW_MAX_LEN		(256-32)*1024	// ×ÜÈİÁ¿256KB, bootÕ¼ÓÃ32k
-#define MCU_FW_MAX_PKT		512				// MCUÉı¼¶Êı¾İ°ü×î´ó¸öÊı: 4096 = FPGA_FW_MAX_LEN / FLASH_PAGE_SIZE
+#define MCU_FW_MAX_LEN		(256-32)*1024	// æ€»å®¹é‡256KB, bootå ç”¨32k
+#define MCU_FW_MAX_PKT		512				// MCUå‡çº§æ•°æ®åŒ…æœ€å¤§ä¸ªæ•°: 4096 = FPGA_FW_MAX_LEN / FLASH_PAGE_SIZE
 
-#define UPDATE_PKT_MAX_LEN	update_pak_max_len//1056			// Ò»¸öÉı¼¶°ü´«ÊäµÄ×î´ó×Ö½ÚÊı
+#define UPDATE_PKT_MAX_LEN	update_pak_max_len//1056			// ä¸€ä¸ªå‡çº§åŒ…ä¼ è¾“çš„æœ€å¤§å­—èŠ‚æ•°
 extern UINT16 update_pak_max_len;
 extern UINT32 erase_start_page;
 

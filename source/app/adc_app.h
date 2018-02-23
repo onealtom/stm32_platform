@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :adc.h
-* Description :AD×ª»»´¦Àí
+* Description :ADè½¬æ¢å¤„ç†
 * Version     :v0.1
 * Author      :shiyang
 * Date        :2008-01-29
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*shiyang		2008-01-29	v0.1			³õÊ¼°æ±¾
+*shiyang		2008-01-29	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #ifndef _ADC_H
 #define _ADC_H

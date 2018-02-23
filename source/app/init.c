@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :init.c
-* Description :¸ÃÎÄ¼ş´æ·ÅÖÜ±ß³õÊ¼»¯º¯Êı
+* Description :è¯¥æ–‡ä»¶å­˜æ”¾å‘¨è¾¹åˆå§‹åŒ–å‡½æ•°
 * Version     :v0.1
 * Author      :shiyang
 * Date        :2008-01-29
@@ -10,21 +10,21 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*shiyang		2008-01-29	v0.1			³õÊ¼°æ±¾
+*shiyang		2008-01-29	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #include "Header.h"
 
-extern UINT32 ex_adc_cs;		// Íâ²¿²ÉÑùÔ´Ñ¡Ôñ
+extern UINT32 ex_adc_cs;		// å¤–éƒ¨é‡‡æ ·æºé€‰æ‹©
 extern UINT32 fpga_load_status;
 extern _T_BIG_PKT_BUFF msg_big_buff[MSG_BIG_PKT_COUNT];
-extern FLOAT32 freq_ul_a_mixer;			// A¶Îºó¶ËÉÏĞĞ»ìÆµÆ÷ÆµÂÊ
-extern FLOAT32 freq_dl_b_mixer;		// B¶ÎÇ°¶ËÏÂĞĞ»ìÆµÆ÷ÆµÂÊ
-extern FLOAT32 freq_ul_b_mixer;		// B¶Îºó¶ËÉÏĞĞ»ìÆµÆ÷ÆµÂÊ
+extern FLOAT32 freq_ul_a_mixer;			// Aæ®µåç«¯ä¸Šè¡Œæ··é¢‘å™¨é¢‘ç‡
+extern FLOAT32 freq_dl_b_mixer;		// Bæ®µå‰ç«¯ä¸‹è¡Œæ··é¢‘å™¨é¢‘ç‡
+extern FLOAT32 freq_ul_b_mixer;		// Bæ®µåç«¯ä¸Šè¡Œæ··é¢‘å™¨é¢‘ç‡
 extern _T_FPGA_CFG fpga_cfg;
-extern UCHAR8 gsm_type_a;	// gsmÄ£Ê½
-extern UCHAR8 gsm_type_b;	// gsmÄ£Ê½
+extern UCHAR8 gsm_type_a;	// gsmæ¨¡å¼
+extern UCHAR8 gsm_type_b;	// gsmæ¨¡å¼
 extern _T_MODULE_CFG mod_cfg_a, mod_cfg_b;
-extern UINT32 module_param_chg_flag;		//ÏµÍ³¹¤×÷²ÎÊıĞŞ¸Ä±êÖ¾
+extern UINT32 module_param_chg_flag;		//ç³»ç»Ÿå·¥ä½œå‚æ•°ä¿®æ”¹æ ‡å¿—
 
 
 #if(FPGA_TYPE == CYCLONE5)
@@ -224,7 +224,7 @@ const UINT16 ucClkRegVal[][2]={
 
 /*************************************************************
 Name:InitSystemTimer          
-Description:³õÊ¼»¯ÏµÍ³¶¨Ê±Æ÷    
+Description:åˆå§‹åŒ–ç³»ç»Ÿå®šæ—¶å™¨    
 Input:void          
 Output:void         
 Return:void         
@@ -237,10 +237,10 @@ void InitSystemTimer(void)
 
 /*************************************************************
 Name       :InitClkChip         
-Description:³õÊ¼»¯Ê±ÖÓ 
+Description:åˆå§‹åŒ–æ—¶é’Ÿ 
 Input:void
 Output:void      
-Return:-1:Ê§°Ü£¬0: ³É¹¦             
+Return:-1:å¤±è´¥ï¼Œ0: æˆåŠŸ             
 **************************************************************/
 BOOL InitClkChip(void)
 {
@@ -384,10 +384,10 @@ const UINT16 ucClkRegVal_50M_V4B[][2][2]={
 
 /*************************************************************
 Name:InitAD9627         
-Description:³õÊ¼»¯AD9627 
+Description:åˆå§‹åŒ–AD9627 
 Input:void
 Output:void      
-Return:-1:Ê§°Ü£¬0: ³É¹¦            
+Return:-1:å¤±è´¥ï¼Œ0: æˆåŠŸ            
 **************************************************************/
 BOOL InitAD(void)
 {
@@ -409,9 +409,9 @@ BOOL InitAD(void)
 
 void InitKeyDev(void)
 {
-	// ³õÊ¼»¯9524 
+	// åˆå§‹åŒ–9524 
 	sys_param_1b[MADD_INIT_CLK_ST].val = (b_FALSE==InitClkChip()) ? 1 : 0 ;
-	// ³õÊ¼»¯6643  
+	// åˆå§‹åŒ–6643  
 	//sys_param_1b[MADD_INIT_AD_ST].val = (b_FALSE==InitAD() ? 1 : 0);
 	//InitDA_A();  
 	//InitDA_B();
@@ -421,10 +421,10 @@ void InitKeyDev(void)
 BOOL InitAllKeyDev(void)
 {
 	InitKeyDev(); 
-	Init_Local_Pll(A_MIXER); //822 U PLL  A¶ÎÉÏĞĞ±¾Õğ ,REÎª»ìÆµ
-    Init_Local_Pll(A_MODEN); //839 D PLL  A¶ÎÏÂĞĞ±¾Õğ  REÎªµ÷ÖÆ
-	Init_Local_Pll(B_MIXER); //822 U PLL  A¶ÎÉÏĞĞ±¾Õğ ,REÎª»ìÆµ
-    Init_Local_Pll(B_MODEN); //839 D PLL  A¶ÎÏÂĞĞ±¾Õğ  REÎªµ÷ÖÆ   
+	Init_Local_Pll(A_MIXER); //822 U PLL  Aæ®µä¸Šè¡Œæœ¬éœ‡ ,REä¸ºæ··é¢‘
+    Init_Local_Pll(A_MODEN); //839 D PLL  Aæ®µä¸‹è¡Œæœ¬éœ‡  REä¸ºè°ƒåˆ¶
+	Init_Local_Pll(B_MIXER); //822 U PLL  Aæ®µä¸Šè¡Œæœ¬éœ‡ ,REä¸ºæ··é¢‘
+    Init_Local_Pll(B_MODEN); //839 D PLL  Aæ®µä¸‹è¡Œæœ¬éœ‡  REä¸ºè°ƒåˆ¶   
     return b_TRUE;
 }
 #endif
@@ -505,24 +505,24 @@ UINT16 GetStrIntVal( UCHAR8 * str_int, INT16 str_len )
 
 /*************************************************************
 Name:ConvStrToDate         
-Description: ¼ì²é×Ö·û´®ÖĞµÄÈÕÆÚÓë¸ø¶¨ÈÕÆÚµÄÇ°ºó¹ØÏµ
+Description: æ£€æŸ¥å­—ç¬¦ä¸²ä¸­çš„æ—¥æœŸä¸ç»™å®šæ—¥æœŸçš„å‰åå…³ç³»
 Input:
-	p_str: °üº¬ÈÕÆÚµÄ×Ö·û´®£¬¸ñÊ½[M D Y],MÕ¼3×Ö½Ú[Jan.Feb.Mar.Apr.May Jun.Jul.Aug.Sep.Oct.Nov.Dec.]Ö®Ò»£¬DÕ¼2×Ö½Ú1~31£¬YÕ¼4×Ö½Ú£¬Äê·İ
-	day: 	¸ø¶¨ÈÕÆÚ-ºÅ
-	month: 	¸ø¶¨ÈÕÆÚ-ÔÂ
-	year:	¸ø¶¨ÈÕÆÚ-Äê
+	p_str: åŒ…å«æ—¥æœŸçš„å­—ç¬¦ä¸²ï¼Œæ ¼å¼[M D Y],Må 3å­—èŠ‚[Jan.Feb.Mar.Apr.May Jun.Jul.Aug.Sep.Oct.Nov.Dec.]ä¹‹ä¸€ï¼ŒDå 2å­—èŠ‚1~31ï¼ŒYå 4å­—èŠ‚ï¼Œå¹´ä»½
+	day: 	ç»™å®šæ—¥æœŸ-å·
+	month: 	ç»™å®šæ—¥æœŸ-æœˆ
+	year:	ç»™å®šæ—¥æœŸ-å¹´
 Output:void      
 Return:
-	0:Í¬Ò»Ìì
-	1:×Ö·û´®±íÊ¾µÄÈÕÆÚÔÚ¸ø¶¨ÈÕÆÚÖ®ºó
-	-1:×Ö·û´®±íÊ¾µÄÈÕÆÚÔÚ¸ø¶¨ÈÕÆÚÖ®Ç°
-	-2:´íÎóµÄÈÕÆÚ×Ö·û´®
+	0:åŒä¸€å¤©
+	1:å­—ç¬¦ä¸²è¡¨ç¤ºçš„æ—¥æœŸåœ¨ç»™å®šæ—¥æœŸä¹‹å
+	-1:å­—ç¬¦ä¸²è¡¨ç¤ºçš„æ—¥æœŸåœ¨ç»™å®šæ—¥æœŸä¹‹å‰
+	-2:é”™è¯¯çš„æ—¥æœŸå­—ç¬¦ä¸²
 **************************************************************/
 CHAR8 CheckStrDate( UCHAR8* p_str, UINT16 day, UINT16 month, UINT16 year )
 {
 	UINT16 tmp;
 	//[MMM_DD_YYYY]
-	tmp = GetStrIntVal(p_str+7, 4);		// Äê
+	tmp = GetStrIntVal(p_str+7, 4);		// å¹´
 	if (0==tmp) return -2;
 	if ( tmp<year )
 	{
@@ -570,7 +570,7 @@ CHAR8 CheckStrDate( UCHAR8* p_str, UINT16 day, UINT16 month, UINT16 year )
 //#if 0//20130621
 /*************************************************************
 Name:ThrUartConfig         
-Description: ÅäÖÃÍ¸´«¶Ë¿Ú
+Description: é…ç½®é€ä¼ ç«¯å£
 Input:void
 Output:void      
 Return:void
@@ -587,7 +587,7 @@ void ThrUartConfig()
 
 /*************************************************************
 Name:CtrlUartConfig         
-Description: ÅäÖÃ¿ØÖÆ¶Ë¿Ú
+Description: é…ç½®æ§åˆ¶ç«¯å£
 Input:void
 Output:void      
 Return:void
@@ -612,7 +612,7 @@ void CtrlUartConfig()
 
 /*************************************************************
 Name:InitSystem         
-Description: ÏµÍ³³õÊ¼»¯
+Description: ç³»ç»Ÿåˆå§‹åŒ–
 Input:void
 Output:void      
 Return:void
@@ -621,7 +621,7 @@ void InitSystem()
 {
 	UINT32 i;
 
-	// AB¶ÎÍ¨ĞÅÖÆÊ½
+	// ABæ®µé€šä¿¡åˆ¶å¼
 	fpga_cfg.a_net_type = A_NETWORK_TYPE;
 	fpga_cfg.b_net_type = B_NETWORK_TYPE;
 	fpga_cfg.c_net_type = C_NETWORK_TYPE;
@@ -637,21 +637,21 @@ void InitSystem()
 	fpga_cfg.c_9363 = TF_C;
 	fpga_cfg.d_9363 = TF_D;
 
-	#if ((defined CLIENT_ERRICSON2) ||(defined CLIENT_ERRICSON_W))//C¶ÎÊ¹ÓÃ9363A;
+	#if ((defined CLIENT_ERRICSON2) ||(defined CLIENT_ERRICSON_W))//Cæ®µä½¿ç”¨9363A;
 	fpga_cfg.c_9363 = TF_A;
 	#endif
 	
-	// ³õÊ¼»¯ÏµÍ³ºÍÊ±ÖÓ
+	// åˆå§‹åŒ–ç³»ç»Ÿå’Œæ—¶é’Ÿ
 	SystemInit();  
 
-	// ÖØÖÃÖĞ¶ÏÏòÁ¿±í /* Set the Vector Table base location at 0x08008000 */ 
+	// é‡ç½®ä¸­æ–­å‘é‡è¡¨ /* Set the Vector Table base location at 0x08008000 */ 
 	NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0x8000);
 
-	InitGpio();	// ÅäÖÃIO¿Ú
+	InitGpio();	// é…ç½®IOå£
 	WTD_CLR;
 	UsbDisConnect();  
 
-	// ¹Ø¶Ïµ÷ÖÆÆ÷Êä³ö
+	// å…³æ–­è°ƒåˆ¶å™¨è¾“å‡º
 //	EnableModulatorA(0);
 //	EnableModulatorB(0);
 //	EnableModulatorC(0);
@@ -659,58 +659,58 @@ void InitSystem()
 
 
 #ifndef NOTRACE	
-	//InitDebugUart( DEBUG_UART_BAUD  );		// ÅäÖÃµ÷ÊÔ´®¿Ú
+	//InitDebugUart( DEBUG_UART_BAUD  );		// é…ç½®è°ƒè¯•ä¸²å£
 #endif 
-	InitDebugUart( DEBUG_UART_BAUD	);		// ÅäÖÃµ÷ÊÔ´®¿Ú
+	InitDebugUart( DEBUG_UART_BAUD	);		// é…ç½®è°ƒè¯•ä¸²å£
 
 	//Uart1_Init(DEBUG_UART_BAUD);
 	TRACE_INFO("Init APP SPI\r\n");
-	InitSpi();	// ³õÊ¼»¯SPI×ÜÏß 
+	InitSpi();	// åˆå§‹åŒ–SPIæ€»çº¿ 
 	
 //	TRACE_INFO("Init Sys Time Tick\r\n");
-	InitSystemTimer();		// ³õÊ¼»¯ÏµÍ³½ÚÅÄ¶¨Ê±Æ÷
+	InitSystemTimer();		// åˆå§‹åŒ–ç³»ç»ŸèŠ‚æ‹å®šæ—¶å™¨
 
 //	TRACE_INFO("Get Flash Page Size\r\n");
-	GetFlashPageSize();		// ¶ÁÈ¡FlashÒ³´óĞ¡
+	GetFlashPageSize();		// è¯»å–Flashé¡µå¤§å°
 
 	InitUsb();
 
 
 	WTD_CLR;
-	//ÉÏµçºó³õÊ¼»¯Ä¬ÈÏ²ÎÊı
+	//ä¸Šç”µååˆå§‹åŒ–é»˜è®¤å‚æ•°
 	ParamResetDefault();
 
-	//´ÓÍâ²¿FLASHÖĞ¶ÁÈ¡ÏµÍ³²ÎÊı 
+	//ä»å¤–éƒ¨FLASHä¸­è¯»å–ç³»ç»Ÿå‚æ•° 
 	GetSysParamFromFlash();  
 
-	// ¶ÁÈ¡²ÎÊıºóÖØĞÂ³õÊ¼»¯²¿·Ö²ÎÊı
+	// è¯»å–å‚æ•°åé‡æ–°åˆå§‹åŒ–éƒ¨åˆ†å‚æ•°
 	ParamPreInit();  
 
 	InitKeyDev(); 
 	TRACE_INFO("InitKeyDev OK\r\n");
 
 	WTD_CLR;  
-	//InitExtentBus_8();	// ³õÊ¼»¯8Î»×ÜÏß
-	FpgaLoad();			// ¼ÓÔØFPGA 
-	InitExtentBus_16();	// ³õÊ¼»¯16Î»×ÜÏß 
+	//InitExtentBus_8();	// åˆå§‹åŒ–8ä½æ€»çº¿
+	FpgaLoad();			// åŠ è½½FPGA 
+	InitExtentBus_16();	// åˆå§‹åŒ–16ä½æ€»çº¿ 
 
 	if ( FPGA_LDST_OK== fpga_load_status )
 	{
-		if ( 0!=FpgaTest() )	// ¼Ä´æÆ÷¶ÁĞ´²âÊÔ³É¹¦
+		if ( 0!=FpgaTest() )	// å¯„å­˜å™¨è¯»å†™æµ‹è¯•æˆåŠŸ
 		{
 			
-			// È·¶¨ÏµÍ³Ê±ÖÓÄ£Ê½²¢ÅäÖÃÊ±ÖÓĞ¾Æ¬
+			// ç¡®å®šç³»ç»Ÿæ—¶é’Ÿæ¨¡å¼å¹¶é…ç½®æ—¶é’ŸèŠ¯ç‰‡
 			//CheckClkMode();     
-			// ÅäÖÃFPGA¼Ä´æÆ÷
+			// é…ç½®FPGAå¯„å­˜å™¨
 			AfterFpgaLoad();
 			
-			sys_param_1b[MADD_LOAD_FPGA_ST].val = 0;	// ¼ÓÔØ³É¹¦
-			printf("FPGA test ³É¹¦\r\n");
+			sys_param_1b[MADD_LOAD_FPGA_ST].val = 0;	// åŠ è½½æˆåŠŸ
+			printf("FPGA test æˆåŠŸ\r\n");
 		}
 		else
 		{
-			sys_param_1b[MADD_LOAD_FPGA_ST].val = 1;	// ¼ÓÔØÊ§°Ü
-			printf("FPGA test ¼ÓÔØÊ§°Ü\r\n");
+			sys_param_1b[MADD_LOAD_FPGA_ST].val = 1;	// åŠ è½½å¤±è´¥
+			printf("FPGA test åŠ è½½å¤±è´¥\r\n");
 			fpga_load_status = FPGA_LDST_INIT_ERR;
 			FpgaSetErrInfo(FPGA_ERR_PROG);
 		}
@@ -718,9 +718,9 @@ void InitSystem()
 	else
 	{
 		TRACE_ERROR("Fpga load Fail\r\n");
-		sys_param_1b[MADD_LOAD_FPGA_ST].val = 2;	// ¼ÓÔØÊ§°Ü
+		sys_param_1b[MADD_LOAD_FPGA_ST].val = 2;	// åŠ è½½å¤±è´¥
 		FpgaSetErrInfo(FPGA_ERR_PROG);
-		printf("FPGA¼ÓÔØÊ§°Ü2\r\n");
+		printf("FPGAåŠ è½½å¤±è´¥2\r\n");
 	}
 	WTD_CLR; 
 	//InitKeyDev();
@@ -760,49 +760,49 @@ void InitSystem()
 	
 	
 	
-	// ÅäÖÃÍ¸´«¶Ë¿Ú
+	// é…ç½®é€ä¼ ç«¯å£
 	ThrUartConfig(); 
 
-	//ÅäÖÃ¿ØÖÆ¶Ë¿Ú 
+	//é…ç½®æ§åˆ¶ç«¯å£ 
 	CtrlUartConfig();
 
-	// ³õÊ¼»¯ÄÚ²¿AD£¬¿ªÊ¼¼à¿ØµçÑ¹
+	// åˆå§‹åŒ–å†…éƒ¨ADï¼Œå¼€å§‹ç›‘æ§ç”µå‹
 	InitAdc();
 	AdcStartConv();
 	
 #if 0	
 	WTD_CLR; 
-	//³õÊ¼»¯Ö¸¶¨ÓÃ»§µÄÒ»Ğ©²ÎÊıÉèÖÃ 
+	//åˆå§‹åŒ–æŒ‡å®šç”¨æˆ·çš„ä¸€äº›å‚æ•°è®¾ç½® 
 	InitUserInterface(); 
    
-	// ÅäÖÃÍ¸´«¶Ë¿Ú
+	// é…ç½®é€ä¼ ç«¯å£
 	ThrUartConfig(); 
-	//ÅäÖÃ¿ØÖÆ¶Ë¿Ú 
+	//é…ç½®æ§åˆ¶ç«¯å£ 
 	CtrlUartConfig();
 #ifndef NOTRACE	
-	//InitDebugUart( DEBUG_UART_BAUD  );		// ÅäÖÃµ÷ÊÔ´®¿Ú
+	//InitDebugUart( DEBUG_UART_BAUD  );		// é…ç½®è°ƒè¯•ä¸²å£
 #endif 	
 	//	InitPhyIo();
 	//	HardResetPhy(PHY5_KSZ9031);
 
-	// ÅäÖÃUSB
+	// é…ç½®USB
 	InitUsb();
 	
 	WTD_CLR;
-	// ³õÊ¼»¯ÆäËûÅäÖÃ
+	// åˆå§‹åŒ–å…¶ä»–é…ç½®
 	InitRec();
 
-	// ³õÊ¼»¯ÄÚ²¿AD£¬¿ªÊ¼¼à¿ØµçÑ¹
+	// åˆå§‹åŒ–å†…éƒ¨ADï¼Œå¼€å§‹ç›‘æ§ç”µå‹
 	InitAdc();
 	AdcStartConv();
 
-	//Ê¹ÄÜ¶ÔÓ¦µÄ¹â¿Ú
-	EnableOpt();		// ¹â¿ÚÊ¹ÄÜ
+	//ä½¿èƒ½å¯¹åº”çš„å…‰å£
+	EnableOpt();		// å…‰å£ä½¿èƒ½
 
 	WTD_CLR;
-	//ÆµµãËÑË÷³õÊ¼»¯
+	//é¢‘ç‚¹æœç´¢åˆå§‹åŒ–
 	FPS_Init(); 
-	// ÉÏµçºó£¬½«Êı×Ö°æÉÏµç×´Ì¬ÖÃ1
+	// ä¸Šç”µåï¼Œå°†æ•°å­—ç‰ˆä¸Šç”µçŠ¶æ€ç½®1
 	sys_param_1b[MADD_POWERUP_ST].val = 1;
 	WTD_CLR;
 	
@@ -813,10 +813,10 @@ void InitSystem()
 #endif
 
 #if defined CLIENT_ERRICSON
-	//ÆµµãËÑË÷³õÊ¼»¯
+	//é¢‘ç‚¹æœç´¢åˆå§‹åŒ–
 	FPS_Init();
 #endif
-	// ÖØĞÂ¸ù¾İ²ÎÊıÅäÖÃFPGA¼Ä´æÆ÷
+	// é‡æ–°æ ¹æ®å‚æ•°é…ç½®FPGAå¯„å­˜å™¨
 	module_param_chg_flag = 0xFFFFFFFF;
 	
 	

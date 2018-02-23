@@ -1,22 +1,22 @@
-/************************************************************
+ï»¿/************************************************************
 
-     Copyright (C), 2011-2111, ¸ñÀ¼Ì©¿Ë¿Æ¼¼ÓĞÏŞ¹«Ë¾
+     Copyright (C), 2011-2111, æ ¼å…°æ³°å…‹ç§‘æŠ€æœ‰é™å…¬å¸
 
 *************************************************************
-ÎÄ¼şÃû£º   GPIO_DRV_H_
-°æ±¾ºÅ£º   V03
-×÷Õß£º     Î¤Èğ½õ 
-Éú³ÉÈÕÆÚ£º 2010Äê08ÔÂ05ÈÕ
-×î½üĞŞ¸Ä£º 
-¹¦ÄÜÃèÊö£º GPIOµÄÍ·ÎÄ¼ş
-º¯ÊıÁĞ±í£º 
-ĞŞ¸ÄÈÕÆÚ£º 
-        1.ÈÕÆÚ:      2010Äê08ÔÂ05ÈÕ  
-          ×÷Õß£º     Î¤Èğ½õ 
-          ĞŞ¸ÄÄÚÈİ£º Ô­°æ
-        2.ÈÕÆÚ:      2012Äê04ÔÂ17ÈÕ  
-          ×÷Õß£º     µË×ÓÇ«
-          ĞŞ¸ÄÄÚÈİ£º Î¢ĞÍ¹âÇ¥V02 
+æ–‡ä»¶åï¼š   GPIO_DRV_H_
+ç‰ˆæœ¬å·ï¼š   V03
+ä½œè€…ï¼š     éŸ¦ç‘é”¦ 
+ç”Ÿæˆæ—¥æœŸï¼š 2010å¹´08æœˆ05æ—¥
+æœ€è¿‘ä¿®æ”¹ï¼š 
+åŠŸèƒ½æè¿°ï¼š GPIOçš„å¤´æ–‡ä»¶
+å‡½æ•°åˆ—è¡¨ï¼š 
+ä¿®æ”¹æ—¥æœŸï¼š 
+        1.æ—¥æœŸ:      2010å¹´08æœˆ05æ—¥  
+          ä½œè€…ï¼š     éŸ¦ç‘é”¦ 
+          ä¿®æ”¹å†…å®¹ï¼š åŸç‰ˆ
+        2.æ—¥æœŸ:      2012å¹´04æœˆ17æ—¥  
+          ä½œè€…ï¼š     é‚“å­è°¦
+          ä¿®æ”¹å†…å®¹ï¼š å¾®å‹å…‰é’V02 
 **************************************************************/
  
 #include "Header.h" 
@@ -24,7 +24,7 @@
 
 /*************************************************************
 Name:            InitGpio          
-Description:     ³õÊ¼»¯MCU¹Ü½Å
+Description:     åˆå§‹åŒ–MCUç®¡è„š
 Input:           void          
 Output:          void         
 Return:          void         
@@ -39,7 +39,7 @@ void InitGpio()
 	 GPIO_InitTypeDef gpio_cfg_d[] = { GPIO_CFG_D };
 	 GPIO_InitTypeDef gpio_cfg_e[] = { GPIO_CFG_E };
 
-	//GPIOÊ±ÖÓ
+	//GPIOæ—¶é’Ÿ
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB |RCC_APB2Periph_AFIO|
                          RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOD |
                          RCC_APB2Periph_GPIOE, ENABLE);
@@ -50,7 +50,7 @@ void InitGpio()
 	GPIO_DeInit(GPIOD);
 	GPIO_DeInit(GPIOE);
 
-	// ÖØÓ³ÉäIO£¬½ûÖ¹ÓÃ×öJTAGµ÷ÊÔ
+	// é‡æ˜ å°„IOï¼Œç¦æ­¢ç”¨åšJTAGè°ƒè¯•
 	GPIO_PinRemapConfig( GPIO_Remap_SWJ_Disable, ENABLE );
 
 	//GPIO_PinRemapConfig( GPIO_PartialRemap_USART3, ENABLE );
@@ -84,8 +84,8 @@ void InitGpio()
 //	HardResetPhy(PHY4_VCS8662);
 //	HardResetPhy(PHY5_KSZ9031);
 	LedOn();
-	EnablePower5V5;        //´ò¿ª5VµçÔ´
-	SET_FPGA_NCS1_PIN;  //¿ØÖÆ»òÃÅ£¬Ê¹¼ÓÔØÊ±Êä³öµÄnWEÎª¸ß
+	EnablePower5V5;        //æ‰“å¼€5Vç”µæº
+	SET_FPGA_NCS1_PIN;  //æ§åˆ¶æˆ–é—¨ï¼Œä½¿åŠ è½½æ—¶è¾“å‡ºçš„nWEä¸ºé«˜
 	CLR_FPGA_NCONFIG;
 	//ENABLE_AD9524_SYNC;
 	CLK_PD_HIGH;  
@@ -95,7 +95,7 @@ void InitGpio()
 
 /*************************************************************
 Name:            LedFlash          
-Description:     LEDÖ¸Ê¾µÆÉÁË¸
+Description:     LEDæŒ‡ç¤ºç¯é—ªçƒ
 Input:           void          
 Output:          void         
 Return:          void         
@@ -115,7 +115,7 @@ void LedFlash()
 
 /*************************************************************
 Name:            LedOn         
-Description:     LEDÖ¸Ê¾µÆ³£ÁÁ
+Description:     LEDæŒ‡ç¤ºç¯å¸¸äº®
 Input:           void          
 Output:          void         
 Return:          void         
@@ -128,7 +128,7 @@ void LedOn()
 
 /*************************************************************
 Name:            LedOff         
-Description:     LEDÖ¸Ê¾µÆÏ¨Ãğ
+Description:     LEDæŒ‡ç¤ºç¯ç†„ç­
 Input:           void          
 Output:          void         
 Return:          void         
@@ -140,7 +140,7 @@ void LedOff()
 
 /*************************************************************
 Name:ClrWtd          
-Description:Î¹¹·
+Description:å–‚ç‹—
 Input:void          
 Output:void         
 Return:void         
@@ -160,7 +160,7 @@ void ClrWtd(void)
 
 /*************************************************************
 Name:HardResetClkChip          
-Description:¸´Î»Ê±ÖÓĞ¾Æ¬ 
+Description:å¤ä½æ—¶é’ŸèŠ¯ç‰‡ 
 Input:          
 Output:void         
 Return:void         
@@ -171,18 +171,18 @@ void HardResetClkChip(void)
 	GPIO_InitTypeDef gpio_ad9524_sp = 
 		{GPIO_Pin_14|GPIO_Pin_15, GPIO_Speed_50MHz, GPIO_Mode_Out_PP};
 		
-	// SP0ºÍSP1ÅäÖÃÎªÊä³öÄ£Ê½
+	// SP0å’ŒSP1é…ç½®ä¸ºè¾“å‡ºæ¨¡å¼
 	GPIO_Init( GPIOA, &gpio_ad9524_sp );	
-	// SP0ºÍSP1ÅäÖÃÎªµÍµçÆ½£¬½øÈëSPIÄ£Ê½
+	// SP0å’ŒSP1é…ç½®ä¸ºä½ç”µå¹³ï¼Œè¿›å…¥SPIæ¨¡å¼
 	GPIO_ResetBits( GPIOA, GPIO_Pin_14);
 	GPIO_ResetBits( GPIOA, GPIO_Pin_15);
-	// À­µÍ¸´Î»½Å
+	// æ‹‰ä½å¤ä½è„š
 	GPIO_ResetBits( GPIOB, GPIO_Pin_5);
 	UsNopDelay(1000);
-	// À­¸ß¸´Î»½Å
+	// æ‹‰é«˜å¤ä½è„š
 	GPIO_SetBits( GPIOB, GPIO_Pin_5); 
 	UsNopDelay(10); 
-	// SP0ºÍSP1»Ö¸´ÎªÉÏÀ­ÊäÈëÄ£Ê½£¬ÓÃÓÚËø¶¨¼ì²â
+	// SP0å’ŒSP1æ¢å¤ä¸ºä¸Šæ‹‰è¾“å…¥æ¨¡å¼ï¼Œç”¨äºé”å®šæ£€æµ‹
 	gpio_ad9524_sp.GPIO_Mode = GPIO_Mode_IPU;
 	GPIO_Init( GPIOA, &gpio_ad9524_sp );
 #endif
@@ -199,7 +199,7 @@ void HardResetClkChip(void)
 
 /*************************************************************
 Name:            HardReset9122A         
-Description:     A¶Î9122Ó²¼ş¸´Î»
+Description:     Aæ®µ9122ç¡¬ä»¶å¤ä½
 Input:           void          
 Output:          void         
 Return:          void         
@@ -217,7 +217,7 @@ void HardReset9122A()
 
 /*************************************************************
 Name:            HardReset9122B       
-Description:     B¶Î9122Ó²¼ş¸´Î»
+Description:     Bæ®µ9122ç¡¬ä»¶å¤ä½
 Input:           void          
 Output:          void         
 Return:          void         
@@ -234,7 +234,7 @@ void HardReset9122B()
 
 /*************************************************************
 Name:EnableModulatorA          
-Description:¿ØÖÆA¶Îµ÷ÖÆÆ÷Ê¹ÄÜ
+Description:æ§åˆ¶Aæ®µè°ƒåˆ¶å™¨ä½¿èƒ½
 Input:enable: 1-on, 0-off          
 Output:void         
 Return:void         
@@ -255,7 +255,7 @@ void EnableModulatorA(UCHAR8 enable)
 
 /*************************************************************
 Name:EnableModulatorB          
-Description:¿ØÖÆB¶Îµ÷ÖÆÆ÷Ê¹ÄÜ
+Description:æ§åˆ¶Bæ®µè°ƒåˆ¶å™¨ä½¿èƒ½
 Input:enable: 1-on, 0-off          
 Output:void         
 Return:void         
@@ -274,7 +274,7 @@ void EnableModulatorB(UCHAR8 enable)
 
 /*************************************************************
 Name:EnableModulatorC         
-Description:¿ØÖÆA¶Îµ÷ÖÆÆ÷Ê¹ÄÜ
+Description:æ§åˆ¶Aæ®µè°ƒåˆ¶å™¨ä½¿èƒ½
 Input:enable: 1-on, 0-off          
 Output:void         
 Return:void         
@@ -295,7 +295,7 @@ void EnableModulatorC(UCHAR8 enable)
 
 /*************************************************************
 Name:EnableModulatorD          
-Description:¿ØÖÆB¶Îµ÷ÖÆÆ÷Ê¹ÄÜ
+Description:æ§åˆ¶Bæ®µè°ƒåˆ¶å™¨ä½¿èƒ½
 Input:enable: 1-on, 0-off          
 Output:void         
 Return:void         
@@ -316,8 +316,8 @@ void EnableModulatorD(UCHAR8 enable)
 
 /*************************************************************
 Name:Hmc1197CsEnalbe
-Description:HMC1197Æ¬Ñ¡Ê¹ÄÜ   enable 0:½ûÄÜ£¬1:Ê¹ÄÜ
-Input:Æ¬Ñ¡
+Description:HMC1197ç‰‡é€‰ä½¿èƒ½   enable 0:ç¦èƒ½ï¼Œ1:ä½¿èƒ½
+Input:ç‰‡é€‰
 Output:void         
 Return:void   
 **************************************************************/

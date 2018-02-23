@@ -1,4 +1,4 @@
-/******************** (C) COPYRIGHT 2010 STMicroelectronics ********************
+ï»¿/******************** (C) COPYRIGHT 2010 STMicroelectronics ********************
 * File Name          : hw_config.c
 * Author             : MCD Application Team
 * Version            : V3.2.1
@@ -50,7 +50,7 @@ static void IntToUnicode (uint32_t value , uint8_t *pbuf , uint8_t len);
 extern LINE_CODING linecoding;
 /*******************************************************************************
 * Function Name  : Set_USBClock
-* Description    : ÅäÖÃUSBÊ±ÖÓÎª48MHz
+* Description    : é…ç½®USBæ—¶é’Ÿä¸º48MHz
 * Input          : None.
 * Return         : None.
 *******************************************************************************/
@@ -331,14 +331,14 @@ static void IntToUnicode (uint32_t value , uint8_t *pbuf , uint8_t len)
 
 /*******************************************************************************
 * Function Name  : CDCDSerialDriver_Write.
-* Description    : USBĞéÄâ´®¿Ú·¢ËÍº¯Êı
+* Description    : USBè™šæ‹Ÿä¸²å£å‘é€å‡½æ•°
 * Input          : 	
-* 				data-Êı¾İÖ¸Õë
-*				size-Êı¾İ×Ö½Ú³¤¶È
-*				callback-»Øµ÷º¯Êı
-*				argument-×Ô¶¨Òå»Øµ÷²ÎÊı
+* 				data-æ•°æ®æŒ‡é’ˆ
+*				size-æ•°æ®å­—èŠ‚é•¿åº¦
+*				callback-å›è°ƒå‡½æ•°
+*				argument-è‡ªå®šä¹‰å›è°ƒå‚æ•°
 * Output         : None.
-* Return         : 0-³É¹¦,1-Ê§°Ü
+* Return         : 0-æˆåŠŸ,1-å¤±è´¥
 *******************************************************************************/
 unsigned char CDCDSerialDriver_Write(void * pData,
                                      unsigned int dLength,
@@ -445,7 +445,7 @@ void UsbDisConnect()
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USB, DISABLE);
 }
 
-// ¼ì²éUSBÊÇ·ñÁ¬½Ó
+// æ£€æŸ¥USBæ˜¯å¦è¿æ¥
 UCHAR8 IsUsbConnected()
 {
 	if ( 1==GPIO_ReadInputDataBit( GPIOA, GPIO_Pin_13))
@@ -458,7 +458,7 @@ UCHAR8 IsUsbConnected()
 	}
 }
 
-// ¼ì²éUSBÊÇ·ñÒÑÃ¶¾ÙÍê³É£¬¿ÉÒÔ¿ªÊ¼Ê¹ÓÃ
+// æ£€æŸ¥USBæ˜¯å¦å·²æšä¸¾å®Œæˆï¼Œå¯ä»¥å¼€å§‹ä½¿ç”¨
 UCHAR8 IsUsbConfigured()
 {
 	if ( bDeviceState != CONFIGURED ) 

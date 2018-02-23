@@ -1,4 +1,4 @@
-/******************** (C) COPYRIGHT 2010 STMicroelectronics ********************
+﻿/******************** (C) COPYRIGHT 2010 STMicroelectronics ********************
 * File Name          : stm32f10x_it.c
 * Author             : MCD Application Team
 * Version            : V3.2.1

@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    : param_dat.c
-* Description : ÏµÍ³²ÎÊý´¦ÀíÏà¹Øº¯Êý
+* Description : ç³»ç»Ÿå‚æ•°å¤„ç†ç›¸å…³å‡½æ•°
 * Version     : v0.1
 * Author      : RJ
 * Date        : 2010-03-10
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*RJ		2010-03-10		v0.1			³õÊ¼°æ±¾
+*RJ		2010-03-10		v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #include "Header.h"
 
@@ -25,1312 +25,1312 @@ const UCHAR8 calc_type[]=
 _T_PARAM_1B sys_param_1b[]=
 {
 	
-	{	PARA_A_CHANNEL_COUNT	,PT_AP_G_EX|PT_US,	0,},	//	A¶ÎÖ§³ÖµÄÍ¨µÀÊý
-	{	PARA_A_DL_WORK_EN	,PT_AP_G_EX|PT_US,	0,},	//	A¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ
-	{	PARA_A_UL_WORK_EN	,PT_AP_G_EX|PT_US,	0,},	//	A¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ
-	{	PARA_A_DPOW_MODE	,PT_NC,	0,},	//	A¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-	{	PARA_A_UPOW_MODE	,PT_NC,	0,},	//	A¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-	{	PARA_A_LTHR_EN	,PT_AP_G_EX|PT_US,	1,},	//	A¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ
-	{	PARA_A_LTHR_UP	,PT_AP_G_EX|PT_NC,	1,},	//	A¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ
-	{	PARA_A_LTHR_DN	,PT_AP_G_EX|PT_SI,	1,},	//	A¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ
-	{	PARA_A_DCH_EN1	,PT_AP|PT_US,	1,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-	{	PARA_A_DCH_EN2	,PT_AP|PT_US,	0,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-	{	PARA_A_DCH_EN3	,PT_AP|PT_US,	0,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-	{	PARA_A_DCH_EN4	,PT_AP|PT_US,	0,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-	{	PARA_A_DCH_EN5	,PT_AP|PT_US,	0,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-	{	PARA_A_DCH_EN6	,PT_AP|PT_US,	0,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-	{	PARA_A_DCH_EN7	,PT_AP|PT_US,	0,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-	{	PARA_A_DCH_EN8	,PT_AP|PT_US,	0,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-	{	PARA_A_DCH_EN9	,PT_AP|PT_US,	0,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-	{	PARA_A_DCH_EN10	,PT_AP|PT_US,	0,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-	{	PARA_A_DCH_EN11	,PT_AP|PT_US,	0,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-	{	PARA_A_DCH_EN12	,PT_AP|PT_US,	0,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-	{	PARA_A_DCH_EN13	,PT_AP|PT_US,	0,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-	{	PARA_A_DCH_EN14	,PT_AP|PT_US,	0,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-	{	PARA_A_DCH_EN15	,PT_AP|PT_US,	0,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-	{	PARA_A_DCH_EN16	,PT_AP|PT_US,	0,},	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-	{	PARA_A_UCH_EN1	,PT_NC,	1,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-	{	PARA_A_UCH_EN2	,PT_NC,	0,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-	{	PARA_A_UCH_EN3	,PT_NC,	0,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-	{	PARA_A_UCH_EN4	,PT_NC,	0,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-	{	PARA_A_UCH_EN5	,PT_NC,	0,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-	{	PARA_A_UCH_EN6	,PT_NC,	0,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-	{	PARA_A_UCH_EN7	,PT_NC,	0,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-	{	PARA_A_UCH_EN8	,PT_NC,	0,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-	{	PARA_A_UCH_EN9	,PT_NC,	0,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-	{	PARA_A_UCH_EN10	,PT_NC,	0,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-	{	PARA_A_UCH_EN11	,PT_NC,	0,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-	{	PARA_A_UCH_EN12	,PT_NC,	0,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-	{	PARA_A_UCH_EN13	,PT_NC,	0,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-	{	PARA_A_UCH_EN14	,PT_NC,	0,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-	{	PARA_A_UCH_EN15	,PT_NC,	0,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-	{	PARA_A_UCH_EN16	,PT_NC,	0,},	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-	{	PARA_A_DCH_GAIN1	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-	{	PARA_A_DCH_GAIN2	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-	{	PARA_A_DCH_GAIN3	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-	{	PARA_A_DCH_GAIN4	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-	{	PARA_A_DCH_GAIN5	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-	{	PARA_A_DCH_GAIN6	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-	{	PARA_A_DCH_GAIN7	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-	{	PARA_A_DCH_GAIN8	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-	{	PARA_A_DCH_GAIN9	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-	{	PARA_A_DCH_GAIN10	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-	{	PARA_A_DCH_GAIN11	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-	{	PARA_A_DCH_GAIN12	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-	{	PARA_A_DCH_GAIN13	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-	{	PARA_A_DCH_GAIN14	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-	{	PARA_A_DCH_GAIN15	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-	{	PARA_A_DCH_GAIN16	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-	{	PARA_A_UCH_GAIN1	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-	{	PARA_A_UCH_GAIN2	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-	{	PARA_A_UCH_GAIN3	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-	{	PARA_A_UCH_GAIN4	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-	{	PARA_A_UCH_GAIN5	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-	{	PARA_A_UCH_GAIN6	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-	{	PARA_A_UCH_GAIN7	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-	{	PARA_A_UCH_GAIN8	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-	{	PARA_A_UCH_GAIN9	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-	{	PARA_A_UCH_GAIN10	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-	{	PARA_A_UCH_GAIN11	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-	{	PARA_A_UCH_GAIN12	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-	{	PARA_A_UCH_GAIN13	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-	{	PARA_A_UCH_GAIN14	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-	{	PARA_A_UCH_GAIN15	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-	{	PARA_A_UCH_GAIN16	,PT_AP_G_EX|PT_US,	40,},	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-	{	PARA_A_DCH_ATT1	,PT_AP_G_EX|PT_US,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿1
-	{	PARA_A_DCH_ATT2	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿2
-	{	PARA_A_DCH_ATT3	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿3
-	{	PARA_A_DCH_ATT4	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿4
-	{	PARA_A_DCH_ATT5	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿5
-	{	PARA_A_DCH_ATT6	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿6
-	{	PARA_A_DCH_ATT7	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿7
-	{	PARA_A_DCH_ATT8	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿8
-	{	PARA_A_DCH_ATT9	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿9
-	{	PARA_A_DCH_ATT10	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿10
-	{	PARA_A_DCH_ATT11	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿11
-	{	PARA_A_DCH_ATT12	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿12
-	{	PARA_A_DCH_ATT13	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿13
-	{	PARA_A_DCH_ATT14	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿14
-	{	PARA_A_DCH_ATT15	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿15
-	{	PARA_A_DCH_ATT16	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿16
-	{	PARA_A_UCH_ATT1	,PT_AP|PT_US,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿1
-	{	PARA_A_UCH_ATT2	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿2
-	{	PARA_A_UCH_ATT3	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿3
-	{	PARA_A_UCH_ATT4	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿4
-	{	PARA_A_UCH_ATT5	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿5
-	{	PARA_A_UCH_ATT6	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿6
-	{	PARA_A_UCH_ATT7	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿7
-	{	PARA_A_UCH_ATT8	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿8
-	{	PARA_A_UCH_ATT9	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿9
-	{	PARA_A_UCH_ATT10	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿10
-	{	PARA_A_UCH_ATT11	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿11
-	{	PARA_A_UCH_ATT12	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿12
-	{	PARA_A_UCH_ATT13	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿13
-	{	PARA_A_UCH_ATT14	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿14
-	{	PARA_A_UCH_ATT15	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿15
-	{	PARA_A_UCH_ATT16	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿16
-	{	PARA_A_DL_PA_GAIN	,PT_NC,	0,},	//	A¶ÎÏÂÐÐ¹¦·ÅÔöÒæ
-	{	PARA_A_UL_PA_GAIN	,PT_NC,	0,},	//	A¶ÎÉÏÐÐ¹¦·ÅÔöÒæ
-	{	PARA_A_TX_PLL_ST	,PT_AP|PT_RO|PT_US,	0,},	//	A¶ÎÏÂÐÐPLL×´Ì¬,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-	{	PARA_A_RX_PLL_ST	,PT_AP|PT_RO|PT_US,	0,},	//	A¶ÎÉÏÐÐPLL×´Ì¬,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-	{	PARA_A_INIT_DA_ST	,PT_AP_G_EX|PT_NC,	0,},	//	³õÊ¼»¯A¶ÎDA×´Ì¬,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£
-	{	PARA_A_BB_PLL_LOCK	,PT_AP_G_EX|PT_NC,	0,},	//	A¶ÎDA PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-	{	PARA_A_FSAT	,PT_NC,	0,},	//	A¶ÎÇ°¶ËADÊäÈë×´Ì¬
-	{	PARA_A_DSAT	,PT_NC,	0,},	//	A¶Îºó¶ËDAÊä³ö×´Ì¬
-	{	PARA_A_PA_VG_EN	,PT_NC,	0,},	//	A¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-	{	PARA_A_PA_VT	,PT_NC,	0,},	//	A¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾
-	{	PARA_A_Modulator_EN	,PT_NC,	0,},	//	A¶Îµ÷ÖÆÆ÷×´Ì¬
-	{	PARA_A_LNA_VT	,PT_NC,	0,},	//	A¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹
-	{	PARA_A_LNA1_ST	,PT_RO|PT_US,	0,},	//	ÉÏÐÐLNA1×´Ì¬
-	{	PARA_A_LNA2_ST	,PT_RO|PT_US,	0,},	//	ÉÏÐÐLNA2×´Ì¬
-	{	PARA_A_BUSY_TIME	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_SI,	0,},	//	A¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ
-	{	PARA_A_PRI_ADD,		PT_AP_G_EX|PT_RO|PT_US,	1,},	//	A¶ÎÄ£¿éµØÖ·
-	{	PARA_A_UL_POW_1B, 	PT_AP_G|PT_SI, 	0,},	//	A¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ
-	{	PARA_A_DL_POW_1B, 	PT_AP_G_EX|PT_RO|PT_SI, 	0,},	//	A¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-	{	PARA_A_DCH_REC_RF_ATT1,		PT_AP_G_EX|PT_US, 	0},	 // REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿ RF 
-	{	PARA_A_UCH_REC_RF_ATT1,		PT_AP_G_EX|PT_US, 	0},	 // REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿ RF 
-	{	PARA_B_CHANNEL_COUNT	, PT_BP_G_EX|PT_US,	0,},	//	B¶ÎÖ§³ÖµÄÍ¨µÀÊý
-	{	PARA_B_DL_WORK_EN	,PT_BP_G_EX|PT_US,	1,},	//	B¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ
-	{	PARA_B_UL_WORK_EN	,PT_BP_G_EX|PT_US,	1,},	//	B¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ
-	{	PARA_B_DPOW_MODE	,PT_NC,	0,},	//	B¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-	{	PARA_B_UPOW_MODE	,PT_NC,	0,},	//	B¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-	{	PARA_B_LTHR_EN	,PT_BP_G_EX|PT_US,	0,},	//	B¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ
-	{	PARA_B_LTHR_UP	,PT_BP_G_EX|PT_NC,	0,},	//	B¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ
-	{	PARA_B_LTHR_DN	,PT_BP_G_EX|PT_SI,	0,},	//	B¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ
-	{	PARA_B_DCH_EN1		,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-	{	PARA_B_DCH_EN2		,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-	{	PARA_B_DCH_EN3		,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-	{	PARA_B_DCH_EN4		,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-	{	PARA_B_DCH_EN5		,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-	{	PARA_B_DCH_EN6		,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-	{	PARA_B_DCH_EN7		,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-	{	PARA_B_DCH_EN8		,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-	{	PARA_B_DCH_EN9		,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-	{	PARA_B_DCH_EN10	,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-	{	PARA_B_DCH_EN11	,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-	{	PARA_B_DCH_EN12	,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-	{	PARA_B_DCH_EN13	,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-	{	PARA_B_DCH_EN14	,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-	{	PARA_B_DCH_EN15	,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-	{	PARA_B_DCH_EN16	,PT_BP|PT_US,	1,},	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-	{	PARA_B_UCH_EN1		,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-	{	PARA_B_UCH_EN2		,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-	{	PARA_B_UCH_EN3		,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-	{	PARA_B_UCH_EN4		,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-	{	PARA_B_UCH_EN5		,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-	{	PARA_B_UCH_EN6		,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-	{	PARA_B_UCH_EN7		,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-	{	PARA_B_UCH_EN8		,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-	{	PARA_B_UCH_EN9		,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-	{	PARA_B_UCH_EN10	,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-	{	PARA_B_UCH_EN11	,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-	{	PARA_B_UCH_EN12	,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-	{	PARA_B_UCH_EN13	,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-	{	PARA_B_UCH_EN14	,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-	{	PARA_B_UCH_EN15	,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-	{	PARA_B_UCH_EN16	,PT_US,	1,},	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-	{	PARA_B_DCH_GAIN1	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-	{	PARA_B_DCH_GAIN2	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-	{	PARA_B_DCH_GAIN3	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-	{	PARA_B_DCH_GAIN4	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-	{	PARA_B_DCH_GAIN5	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-	{	PARA_B_DCH_GAIN6	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-	{	PARA_B_DCH_GAIN7	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-	{	PARA_B_DCH_GAIN8	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-	{	PARA_B_DCH_GAIN9	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-	{	PARA_B_DCH_GAIN10	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-	{	PARA_B_DCH_GAIN11	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-	{	PARA_B_DCH_GAIN12	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-	{	PARA_B_DCH_GAIN13	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-	{	PARA_B_DCH_GAIN14	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-	{	PARA_B_DCH_GAIN15	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-	{	PARA_B_DCH_GAIN16	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-	{	PARA_B_UCH_GAIN1	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-	{	PARA_B_UCH_GAIN2	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-	{	PARA_B_UCH_GAIN3	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-	{	PARA_B_UCH_GAIN4	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-	{	PARA_B_UCH_GAIN5	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-	{	PARA_B_UCH_GAIN6	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-	{	PARA_B_UCH_GAIN7	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-	{	PARA_B_UCH_GAIN8	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-	{	PARA_B_UCH_GAIN9	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-	{	PARA_B_UCH_GAIN10	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-	{	PARA_B_UCH_GAIN11	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-	{	PARA_B_UCH_GAIN12	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-	{	PARA_B_UCH_GAIN13	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-	{	PARA_B_UCH_GAIN14	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-	{	PARA_B_UCH_GAIN15	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-	{	PARA_B_UCH_GAIN16	,PT_BP_G_EX|PT_US,	40,},	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-	{	PARA_B_DCH_ATT1	,PT_BP_G_EX|PT_US,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿1
-	{	PARA_B_DCH_ATT2	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿2
-	{	PARA_B_DCH_ATT3	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿3
-	{	PARA_B_DCH_ATT4	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿4
-	{	PARA_B_DCH_ATT5	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿5
-	{	PARA_B_DCH_ATT6	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿6
-	{	PARA_B_DCH_ATT7	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿7
-	{	PARA_B_DCH_ATT8	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿8
-	{	PARA_B_DCH_ATT9	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿9
-	{	PARA_B_DCH_ATT10	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿10
-	{	PARA_B_DCH_ATT11	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿11
-	{	PARA_B_DCH_ATT12	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿12
-	{	PARA_B_DCH_ATT13	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿13
-	{	PARA_B_DCH_ATT14	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿14
-	{	PARA_B_DCH_ATT15	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿15
-	{	PARA_B_DCH_ATT16	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿16
-	{	PARA_B_UCH_ATT1	,PT_BP|PT_US,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿1(ÉÏÐÐÊý¿Ø×ÜË¥¼õÁ¿)
-	{	PARA_B_UCH_ATT2	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿2
-	{	PARA_B_UCH_ATT3	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿3
-	{	PARA_B_UCH_ATT4	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿4
-	{	PARA_B_UCH_ATT5	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿5
-	{	PARA_B_UCH_ATT6	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿6
-	{	PARA_B_UCH_ATT7	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿7
-	{	PARA_B_UCH_ATT8	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿8
-	{	PARA_B_UCH_ATT9	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿9
-	{	PARA_B_UCH_ATT10	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿10
-	{	PARA_B_UCH_ATT11	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿11
-	{	PARA_B_UCH_ATT12	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿12
-	{	PARA_B_UCH_ATT13	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿13
-	{	PARA_B_UCH_ATT14	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿14
-	{	PARA_B_UCH_ATT15	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿15
-	{	PARA_B_UCH_ATT16	,PT_BP_G_EX|PT_NC,	0,},	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿16
-	{	PARA_B_DL_PA_GAIN	,PT_NC,	0,},	//	B¶ÎÏÂÐÐ¹¦·ÅÔöÒæ
-	{	PARA_B_UL_PA_GAIN	,PT_NC,	0,},	//	B¶ÎÉÏÐÐ¹¦·ÅÔöÒæ
-	{	PARA_B_TX_PLL_ST	,PT_BP|PT_RO|PT_US,	0,},	//	B¶ÎÏÂÐÐPLL×´Ì¬,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-	{	PARA_B_RX_PLL_ST	,PT_BP|PT_RO|PT_US,	0,},	//	B¶ÎÉÏÐÐPLL×´Ì¬,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-	{	PARA_B_INIT_DA_ST	,PT_NC,	0,},	//	³õÊ¼»¯B¶ÎDA×´Ì¬,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£
-	{	PARA_B_BB_PLL_LOCK	,PT_NC,	0,},	//	B¶ÎDA PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-	{	PARA_B_FSAT	,PT_NC,	0,},	//	B¶ÎÇ°¶ËADÊäÈë×´Ì¬
-	{	PARA_B_DSAT	,PT_NC,	0,},	//	B¶Îºó¶ËDAÊä³ö×´Ì¬
-	{	PARA_B_PA_VG_EN	,PT_NC,	0,},	//	B¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-	{	PARA_B_PA_VT	,PT_NC,	0,},	//	B¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾
-	{	PARA_B_Modulator_EN	,PT_NC,	0,},	//	B¶Îµ÷ÖÆÆ÷×´Ì¬
-	{	PARA_B_LNA_VT	,PT_NC,	0,},	//	B¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹
-	{	PARA_B_LNA1_ST	,PT_RO|PT_US,	0,},	//	ÉÏÐÐLNA1×´Ì¬
-	{	PARA_B_LNA2_ST	,PT_RO|PT_US,	0,},	//	ÉÏÐÐLNA2×´Ì¬
-	{	PARA_B_BUSY_TIME	,PT_RO|PT_SI,	0,},	//	B¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ
-	{	PARA_B_PRI_ADD,		PT_BP_G_EX|PT_RO|PT_US,	2,},	//	B¶ÎÄ£¿éµØÖ·
-	{	PARA_B_UL_POW_1B, 	/*PT_BP_G|*/PT_SI, 	0,},	//	B¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ
-	{	PARA_B_DL_POW_1B, 	PT_BP_G_EX|PT_RO|PT_SI, 	0,},	//	B¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-	{	PARA_B_DCH_REC_RF_ATT1,		PT_BP_G_EX|PT_US, 	0},	 // REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿ RF 
-	{	PARA_B_UCH_REC_RF_ATT1,		PT_BP_G_EX|PT_US, 	0},	 // REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿ RF 
-	{	PARA_C_CHANNEL_COUNT	, PT_CP_G_EX|PT_US,	0,},	//	C¶ÎÖ§³ÖµÄÍ¨µÀÊý
-	{	PARA_C_DL_WORK_EN	,PT_CP_G_EX|PT_US,	1,},	//	C¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ
-	{	PARA_C_UL_WORK_EN	,PT_CP_G_EX|PT_US,	1,},	//	C¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ
-	{	PARA_C_DPOW_MODE	,PT_NC,	0,},	//	C¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-	{	PARA_C_UPOW_MODE	,PT_NC,	0,},	//	C¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-	{	PARA_C_LTHR_EN	,PT_CP_G_EX|PT_US,	0,},	//	C¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ
-	{	PARA_C_LTHR_UP	,PT_CP_G_EX|PT_NC,	0,},	//	C¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ
-	{	PARA_C_LTHR_DN	,PT_CP_G_EX|PT_SI,	0,},	//	C¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ
-	{	PARA_C_DCH_EN1  ,PT_CP|PT_US, 1,}, // C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-	{	PARA_C_DCH_EN2  ,PT_CP|PT_US, 1,}, // C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-	{	PARA_C_DCH_EN3  ,PT_CP|PT_US, 1,}, // C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-	{	PARA_C_DCH_EN4  ,PT_CP|PT_US, 1,}, // C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-	{	PARA_C_DCH_EN5  ,PT_CP|PT_US, 1,}, // C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-	{	PARA_C_DCH_EN6  ,PT_CP|PT_US, 1,}, // C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-	{	PARA_C_DCH_EN7  ,PT_CP|PT_US, 1,}, // C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-	{	PARA_C_DCH_EN8  ,PT_CP|PT_US, 1,}, // C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-	{	PARA_C_DCH_EN9  ,PT_CP|PT_US, 1,}, // C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-	{	PARA_C_DCH_EN10  ,PT_CP|PT_US, 1,}, // C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-	{	PARA_C_UCH_EN1		,PT_US,	1,},	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-	{	PARA_C_UCH_EN2		,PT_US,	1,},	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-	{	PARA_C_UCH_EN3		,PT_US,	1,},	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-	{	PARA_C_UCH_EN4		,PT_US,	1,},	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-	{	PARA_C_UCH_EN5		,PT_US,	1,},	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-	{	PARA_C_UCH_EN6		,PT_US,	1,},	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-	{	PARA_C_UCH_EN7		,PT_US,	1,},	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-	{	PARA_C_UCH_EN8		,PT_US,	1,},	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-	{	PARA_C_UCH_EN9		,PT_US,	1,},	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-	{	PARA_C_UCH_EN10		,PT_US,	1,},	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-	{	PARA_C_DCH_GAIN1	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-	{	PARA_C_DCH_GAIN2	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-	{	PARA_C_DCH_GAIN3	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-	{	PARA_C_DCH_GAIN4	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-	{	PARA_C_DCH_GAIN5	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-	{	PARA_C_DCH_GAIN6	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-	{	PARA_C_DCH_GAIN7	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-	{	PARA_C_DCH_GAIN8	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-	{	PARA_C_DCH_GAIN9	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-	{	PARA_C_DCH_GAIN10	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-	{	PARA_C_DCH_GAIN11	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-	{	PARA_C_DCH_GAIN12	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-	{	PARA_C_DCH_GAIN13	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-	{	PARA_C_DCH_GAIN14	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-	{	PARA_C_DCH_GAIN15	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-	{	PARA_C_DCH_GAIN16	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-	{	PARA_C_UCH_GAIN1	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-	{	PARA_C_UCH_GAIN2	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-	{	PARA_C_UCH_GAIN3	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-	{	PARA_C_UCH_GAIN4	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-	{	PARA_C_UCH_GAIN5	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-	{	PARA_C_UCH_GAIN6	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-	{	PARA_C_UCH_GAIN7	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-	{	PARA_C_UCH_GAIN8	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-	{	PARA_C_UCH_GAIN9	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-	{	PARA_C_UCH_GAIN10	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-	{	PARA_C_UCH_GAIN11	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-	{	PARA_C_UCH_GAIN12	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-	{	PARA_C_UCH_GAIN13	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-	{	PARA_C_UCH_GAIN14	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-	{	PARA_C_UCH_GAIN15	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-	{	PARA_C_UCH_GAIN16	,PT_CP_G_EX|PT_US,	40,},	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-	{	PARA_C_DCH_ATT1	,PT_CP_G_EX|PT_US,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿1
-	{	PARA_C_DCH_ATT2	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿2
-	{	PARA_C_DCH_ATT3	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿3
-	{	PARA_C_DCH_ATT4	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿4
-	{	PARA_C_DCH_ATT5	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿5
-	{	PARA_C_DCH_ATT6	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿6
-	{	PARA_C_DCH_ATT7	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿7
-	{	PARA_C_DCH_ATT8	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿8
-	{	PARA_C_DCH_ATT9	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿9
-	{	PARA_C_DCH_ATT10	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿10
-	{	PARA_C_DCH_ATT11	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿11
-	{	PARA_C_DCH_ATT12	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿12
-	{	PARA_C_DCH_ATT13	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿13
-	{	PARA_C_DCH_ATT14	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿14
-	{	PARA_C_DCH_ATT15	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿15
-	{	PARA_C_DCH_ATT16	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿16
-	{	PARA_C_UCH_ATT1	,PT_CP|PT_US,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿1
-	{	PARA_C_UCH_ATT2	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿2
-	{	PARA_C_UCH_ATT3	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿3
-	{	PARA_C_UCH_ATT4	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿4
-	{	PARA_C_UCH_ATT5	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿5
-	{	PARA_C_UCH_ATT6	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿6
-	{	PARA_C_UCH_ATT7	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿7
-	{	PARA_C_UCH_ATT8	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿8
-	{	PARA_C_UCH_ATT9	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿9
-	{	PARA_C_UCH_ATT10	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿10
-	{	PARA_C_UCH_ATT11	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿11
-	{	PARA_C_UCH_ATT12	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿12
-	{	PARA_C_UCH_ATT13	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿13
-	{	PARA_C_UCH_ATT14	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿14
-	{	PARA_C_UCH_ATT15	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿15
-	{	PARA_C_UCH_ATT16	,PT_CP_G_EX|PT_NC,	0,},	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿16
-	{	PARA_C_DL_PA_GAIN	,PT_NC,	0,},	//	C¶ÎÏÂÐÐ¹¦·ÅÔöÒæ
-	{	PARA_C_UL_PA_GAIN	,PT_NC,	0,},	//	C¶ÎÉÏÐÐ¹¦·ÅÔöÒæ
-	{	PARA_C_TX_PLL_ST	,PT_CP|PT_RO|PT_US,	0,},	//	C¶ÎÏÂÐÐPLL×´Ì¬,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-	{	PARA_C_RX_PLL_ST	,PT_CP|PT_RO|PT_US,	0,},	//	C¶ÎÉÏÐÐPLL×´Ì¬,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-	{	PARA_C_INIT_DA_ST	,PT_NC,	0,},	//	³õÊ¼»¯B¶ÎDA×´Ì¬,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£
-	{	PARA_C_BB_PLL_LOCK	,PT_NC,	0,},	//	C¶ÎDA PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-	{	PARA_C_FSAT	,PT_NC,	0,},	//	C¶ÎÇ°¶ËADÊäÈë×´Ì¬
-	{	PARA_C_DSAT	,PT_NC,	0,},	//	C¶Îºó¶ËDAÊä³ö×´Ì¬
-	{	PARA_C_PA_VG_EN	,PT_NC,	0,},	//	C¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-	{	PARA_C_PA_VT	,PT_NC,	0,},	//	C¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾
-	{	PARA_C_Modulator_EN	,PT_NC,	0,},	//	C¶Îµ÷ÖÆÆ÷×´Ì¬
-	{	PARA_C_LNA_VT	,PT_NC,	0,},	//	C¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹
-	{	PARA_C_LNA1_ST	,PT_RO|PT_US,	0,},	//	ÉÏÐÐLNA1×´Ì¬
-	{	PARA_C_LNA2_ST	,PT_RO|PT_US,	0,},	//	ÉÏÐÐLNA2×´Ì¬
-	{	PARA_C_BUSY_TIME	,PT_RO|PT_SI,	0,},	//	C¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ
-	{	PARA_C_PRI_ADD,  PT_CP_G_EX|PT_RO|PT_US, 3,}, // C¶ÎÄ£¿éµØÖ·
-	{	PARA_C_UL_POW_1B, 	/*PT_BP_G|*/PT_SI, 	0,},	//	C¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ
-	{	PARA_C_DL_POW_1B, 	PT_CP_G_EX|PT_RO|PT_SI, 	0,},	//	C¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-	{	PARA_C_DCH_REC_RF_ATT1,		PT_CP_G_EX|PT_US, 	0},	 // REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿ RF 
-	{	PARA_C_UCH_REC_RF_ATT1,		PT_CP_G_EX|PT_US, 	0},	 // REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿ RF 
-	{	PARA_D_CHANNEL_COUNT	, PT_DP_G_EX|PT_US,	0,},	//	D¶ÎÖ§³ÖµÄÍ¨µÀÊý
-	{	PARA_D_DL_WORK_EN	,PT_DP_G_EX|PT_US,	1,},	//	D¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ
-	{	PARA_D_UL_WORK_EN	,PT_DP_G_EX|PT_US,	1,},	//	D¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ
-	{	PARA_D_DPOW_MODE	,PT_NC,	0,},	//	D¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-	{	PARA_D_UPOW_MODE	,PT_NC,	0,},	//	D¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-	{	PARA_D_LTHR_EN	,PT_DP_G_EX|PT_US,	0,},	//	D¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ
-	{	PARA_D_LTHR_UP	,PT_DP_G_EX|PT_NC,	0,},	//	D¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ
-	{	PARA_D_LTHR_DN	,PT_DP_G_EX|PT_SI,	0,},	//	D¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ
-	{	PARA_D_DCH_EN1  ,PT_DP|PT_US, 1,}, // D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-	{	PARA_D_DCH_EN2  ,PT_DP|PT_US, 1,}, // D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-	{	PARA_D_DCH_EN3  ,PT_DP|PT_US, 1,}, // D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-	{	PARA_D_DCH_EN4  ,PT_DP|PT_US, 1,}, // D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-	{	PARA_D_DCH_EN5  ,PT_DP|PT_US, 1,}, // D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-	{	PARA_D_DCH_EN6  ,PT_DP|PT_US, 1,}, // D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-	{	PARA_D_DCH_EN7  ,PT_DP|PT_US, 1,}, // D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-	{	PARA_D_DCH_EN8  ,PT_DP|PT_US, 1,}, // D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-	{	PARA_D_DCH_EN9  ,PT_DP|PT_US, 1,}, // D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-	{	PARA_D_DCH_EN10  ,PT_DP|PT_US, 1,}, // D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-	{	PARA_D_UCH_EN1		,PT_US, 1,},	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-	{	PARA_D_UCH_EN2		,PT_US, 1,},	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-	{	PARA_D_UCH_EN3		,PT_US, 1,},	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-	{	PARA_D_UCH_EN4		,PT_US, 1,},	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-	{	PARA_D_UCH_EN5		,PT_US, 1,},	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-	{	PARA_D_UCH_EN6		,PT_US, 1,},	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-	{	PARA_D_UCH_EN7		,PT_US, 1,},	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-	{	PARA_D_UCH_EN8		,PT_US, 1,},	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-	{	PARA_D_UCH_EN9		,PT_US, 1,},	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-	{	PARA_D_UCH_EN10 	,PT_US, 1,},	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-	{	PARA_D_DCH_GAIN1	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-	{	PARA_D_DCH_GAIN2	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-	{	PARA_D_DCH_GAIN3	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-	{	PARA_D_DCH_GAIN4	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-	{	PARA_D_DCH_GAIN5	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-	{	PARA_D_DCH_GAIN6	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-	{	PARA_D_DCH_GAIN7	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-	{	PARA_D_DCH_GAIN8	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-	{	PARA_D_DCH_GAIN9	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-	{	PARA_D_DCH_GAIN10	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-	{	PARA_D_DCH_GAIN11	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-	{	PARA_D_DCH_GAIN12	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-	{	PARA_D_DCH_GAIN13	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-	{	PARA_D_DCH_GAIN14	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-	{	PARA_D_DCH_GAIN15	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-	{	PARA_D_DCH_GAIN16	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-	{	PARA_D_UCH_GAIN1	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-	{	PARA_D_UCH_GAIN2	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-	{	PARA_D_UCH_GAIN3	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-	{	PARA_D_UCH_GAIN4	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-	{	PARA_D_UCH_GAIN5	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-	{	PARA_D_UCH_GAIN6	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-	{	PARA_D_UCH_GAIN7	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-	{	PARA_D_UCH_GAIN8	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-	{	PARA_D_UCH_GAIN9	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-	{	PARA_D_UCH_GAIN10	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-	{	PARA_D_UCH_GAIN11	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-	{	PARA_D_UCH_GAIN12	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-	{	PARA_D_UCH_GAIN13	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-	{	PARA_D_UCH_GAIN14	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-	{	PARA_D_UCH_GAIN15	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-	{	PARA_D_UCH_GAIN16	,PT_DP_G_EX|PT_US,	40,},	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-	{	PARA_D_DCH_ATT1	,PT_DP_G_EX|PT_US,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿1
-	{	PARA_D_DCH_ATT2	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿2
-	{	PARA_D_DCH_ATT3	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿3
-	{	PARA_D_DCH_ATT4	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿4
-	{	PARA_D_DCH_ATT5	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿5
-	{	PARA_D_DCH_ATT6	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿6
-	{	PARA_D_DCH_ATT7	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿7
-	{	PARA_D_DCH_ATT8	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿8
-	{	PARA_D_DCH_ATT9	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿9
-	{	PARA_D_DCH_ATT10	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿10
-	{	PARA_D_DCH_ATT11	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿11
-	{	PARA_D_DCH_ATT12	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿12
-	{	PARA_D_DCH_ATT13	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿13
-	{	PARA_D_DCH_ATT14	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿14
-	{	PARA_D_DCH_ATT15	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿15
-	{	PARA_D_DCH_ATT16	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿16
-	{	PARA_D_UCH_ATT1	,PT_DP|PT_US,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿1
-	{	PARA_D_UCH_ATT2	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿2
-	{	PARA_D_UCH_ATT3	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿3
-	{	PARA_D_UCH_ATT4	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿4
-	{	PARA_D_UCH_ATT5	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿5
-	{	PARA_D_UCH_ATT6	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿6
-	{	PARA_D_UCH_ATT7	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿7
-	{	PARA_D_UCH_ATT8	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿8
-	{	PARA_D_UCH_ATT9	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿9
-	{	PARA_D_UCH_ATT10	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿10
-	{	PARA_D_UCH_ATT11	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿11
-	{	PARA_D_UCH_ATT12	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿12
-	{	PARA_D_UCH_ATT13	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿13
-	{	PARA_D_UCH_ATT14	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿14
-	{	PARA_D_UCH_ATT15	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿15
-	{	PARA_D_UCH_ATT16	,PT_DP_G_EX|PT_NC,	0,},	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿16
-	{	PARA_D_DL_PA_GAIN	,PT_NC,	0,},	//	D¶ÎÏÂÐÐ¹¦·ÅÔöÒæ
-	{	PARA_D_UL_PA_GAIN	,PT_NC,	0,},	//	D¶ÎÉÏÐÐ¹¦·ÅÔöÒæ
-	{	PARA_D_TX_PLL_ST	,PT_DP|PT_RO|PT_US,	0,},	//	D¶ÎÏÂÐÐPLL×´Ì¬,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-	{	PARA_D_RX_PLL_ST	,PT_DP|PT_RO|PT_US,	0,},	//	D¶ÎÉÏÐÐPLL×´Ì¬,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-	{	PARA_D_INIT_DA_ST	,PT_NC,	0,},	//	³õÊ¼»¯B¶ÎDA×´Ì¬,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£
-	{	PARA_D_BB_PLL_LOCK	,PT_NC,	0,},	//	D¶ÎDA PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-	{	PARA_D_FSAT	,PT_NC,	0,},	//	D¶ÎÇ°¶ËADÊäÈë×´Ì¬
-	{	PARA_D_DSAT	,PT_NC,	0,},	//	D¶Îºó¶ËDAÊä³ö×´Ì¬
-	{	PARA_D_PA_VG_EN	,PT_NC,	0,},	//	D¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-	{	PARA_D_PA_VT	,PT_NC,	0,},	//	D¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾
-	{	PARA_D_Modulator_EN	,PT_NC,	0,},	//	D¶Îµ÷ÖÆÆ÷×´Ì¬
-	{	PARA_D_LNA_VT	,PT_NC,	0,},	//	D¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹
-	{	PARA_D_LNA1_ST	,PT_RO|PT_US,	0,},	//	ÉÏÐÐLNA1×´Ì¬
-	{	PARA_D_LNA2_ST	,PT_RO|PT_US,	0,},	//	ÉÏÐÐLNA2×´Ì¬
-	{	PARA_D_BUSY_TIME	,PT_RO|PT_SI,	0,},	//	D¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ
-	{ 	PARA_D_PRI_ADD,  PT_DP_G_EX|PT_RO|PT_US, 4,}, // D¶ÎÄ£¿éµØÖ·
-	{	PARA_D_UL_POW_1B, 	/*PT_DP_G|*/PT_SI, 	0,},	//	D¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ
-	{	PARA_D_DL_POW_1B, 	PT_DP_G_EX|PT_RO|PT_SI, 	0,},	//	D¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-	{	PARA_D_DCH_REC_RF_ATT1,		PT_DP_G_EX|PT_US, 	0},	 // REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿ RF 
-	{	PARA_D_UCH_REC_RF_ATT1,		PT_DP_G_EX|PT_US, 	0},	 // REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿ RF 
-	{	PARA_FP1_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ1
-	{	PARA_FP2_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ2
-	{	PARA_FP3_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ3
-	{	PARA_FP4_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ4
-	{	PARA_FP5_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ5
-	{	PARA_FP6_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ6
-	{	PARA_FP7_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ7
-	{	PARA_FP8_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ8
-	{	PARA_FP9_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ9
-	{	PARA_FP10_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ10
-	{	PARA_FP11_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ11
-	{	PARA_FP12_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ12
-	{	PARA_FP13_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ13
-	{	PARA_FP14_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ14
-	{	PARA_FP15_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ15
-	{	PARA_FP16_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	¹â¿Ú·¢ËÍÊ¹ÄÜ16
-	{	PARA_FP1_ON_POS	,PT_AP|PT_BP_G_EX|PT_US,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬1, 0-ÔÚÎ»
-	{	PARA_FP2_ON_POS	,PT_AP|PT_BP_G_EX|PT_US,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬2, 0-ÔÚÎ»
-	{	PARA_FP3_ON_POS	,PT_AP|PT_BP_G_EX|PT_US,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬3, 0-ÔÚÎ»
-	{	PARA_FP4_ON_POS	,PT_AP|PT_BP_G_EX|PT_US,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬4, 0-ÔÚÎ»
-	{	PARA_FP5_ON_POS	,PT_AP|PT_BP_G_EX|PT_US,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬5, 0-ÔÚÎ»
-	{	PARA_FP6_ON_POS	,PT_AP|PT_BP_G_EX|PT_US,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬6, 0-ÔÚÎ»
-	{	PARA_FP7_ON_POS	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬7, 0-ÔÚÎ»
-	{	PARA_FP8_ON_POS	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬8, 0-ÔÚÎ»
-	{	PARA_FP9_ON_POS	,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬9, 0-ÔÚÎ»
-	{	PARA_FP10_ON_POS,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬10, 0-ÔÚÎ»
-	{	PARA_FP11_ON_POS,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬11, 0-ÔÚÎ»
-	{	PARA_FP12_ON_POS,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬12, 0-ÔÚÎ»
-	{	PARA_FP13_ON_POS,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬13, 0-ÔÚÎ»
-	{	PARA_FP14_ON_POS,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬14, 0-ÔÚÎ»
-	{	PARA_FP15_ON_POS,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬15, 0-ÔÚÎ»
-	{	PARA_FP16_ON_POS,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	¹â¿ÚÔÚÎ»×´Ì¬16, 0-ÔÚÎ»
-	{	PARA_FP1_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú1ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP2_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú2ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP3_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú3ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP4_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú4ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP5_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú5ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP6_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú6ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP7_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú7ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP8_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú8ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP9_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú9ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP10_LOS,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú10ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP11_LOS,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú11ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP12_LOS,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú12ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP13_LOS,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú13ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP14_LOS,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú14ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP15_LOS,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú15ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP16_LOS,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú16ÐÅºÅ¶ªÊ§×´Ì¬
-	{	PARA_FP1_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú1Ö¡¶ªÊ§×´Ì¬
-	{	PARA_FP2_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú2Ö¡¶ªÊ§×´Ì¬
-	{	PARA_FP3_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú3Ö¡¶ªÊ§×´Ì¬
-	{	PARA_FP4_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú4Ö¡¶ªÊ§×´Ì¬
-	{	PARA_FP5_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú5Ö¡¶ªÊ§×´Ì¬
-	{	PARA_FP6_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú6Ö¡¶ªÊ§×´Ì¬
-	{	PARA_FP7_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú7Ö¡¶ªÊ§×´Ì¬
-	{	PARA_FP8_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú8Ö¡¶ªÊ§×´Ì¬
-	{	PARA_FP9_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú9Ö¡¶ªÊ§×´Ì¬
-	{	PARA_FP10_LOF,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú10Ö¡¶ªÊ§×´Ì¬
-	{	PARA_FP11_LOF,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú11Ö¡¶ªÊ§×´Ì¬
-	{	PARA_FP12_LOF,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú12Ö¡¶ªÊ§×´Ì¬
-	{	PARA_FP13_LOF,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú13Ö¡¶ªÊ§×´Ì¬
-	{	PARA_FP14_LOF,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú14Ö¡¶ªÊ§×´Ì¬
-	{	PARA_FP15_LOF,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú15Ö¡¶ªÊ§×´Ì¬
-	{	PARA_FP16_LOF,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¹â¿Ú16Ö¡¶ªÊ§×´Ì¬
-	{	PARA_OPT_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	Ö¡¶ªÊ§×´Ì¬
-	{	PARA_SERDES1_PLL_ST	,PT_AP_G|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬1
-	{	PARA_SERDES2_PLL_ST	,PT_AP_G|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬2
-	{	PARA_SERDES3_PLL_ST	,PT_AP_G|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬3
-	{	PARA_SERDES4_PLL_ST	,PT_AP_G|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬4
-	{	PARA_SERDES5_PLL_ST	,PT_AP_G|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬5
-	{	PARA_SERDES6_PLL_ST	,PT_AP_G|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬6
-	{	PARA_SERDES7_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬7
-	{	PARA_SERDES8_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬8
-	{	PARA_SERDES9_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬9
-	{	PARA_SERDES10_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬10
-	{	PARA_SERDES11_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬11
-	{	PARA_SERDES12_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬12
-	{	PARA_SERDES13_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬13
-	{	PARA_SERDES14_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬14
-	{	PARA_SERDES15_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬15
-	{	PARA_SERDES16_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesÐ¾Æ¬PLL×´Ì¬16
-	{	PARA_TOPO_CHG_ALM	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	»·Â·×´Ì¬¸æ¾¯
-	{	PARA_BER_ALARM		,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	ÎóÂëÂÊÆ«¸ß¸æ¾¯
-	{	PARA_LOAD_FPGA_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	¼ÓÔØFPGA×´Ì¬
-	{	PARA_FPGA_CLK_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	FPGA±¾Õñ×´Ì¬
-	{	PARA_INIT_CLK_ST	,PT_NC,	0,},	//	³õÊ¼»¯Ê±ÖÓ×´Ì¬
-	{	PARA_INIT_AD_ST		,PT_NC,	0,},	//	³õÊ¼»¯AD×´Ì¬
-	{	PARA_INIT_FB_AD_ST	,PT_NC,	0,},	//	³õÊ¼»¯·´À¡AD×´Ì¬
-	{	PARA_CLK_PLL_ST	,	PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	CLK PLL×´Ì¬
-	{	PARA_CLK_REF_ST	,	PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	CLK ²Î¿¼×´Ì¬
-	{	PARA_RE_NODE_MODE,	PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	RE½ÚµãÄ£Ê½
-	{	PARA_BOARD_TEMP,	PT_AP_G|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	µ¥°åÎÂ¶È
-	{	PARA_CLK_VCO_VT,	PT_NC,	0,},	//	Ê±ÖÓVCOµçÑ¹
-	{	PARA_PWR_9V0_VT,	PT_NC,	0,},	//	9VµçÔ´µçÑ¹
-	{	PARA_PWR_5V5_VT,	PT_NC,	0,},	//	5.5VµçÔ´µçÑ¹
-	{	PARA_PWR_3V6_VT,	PT_NC,	0,},	//	3.6VµçÔ´µçÑ¹
-	{	PARA_PWR_1V2_VT,	PT_NC,	0,},	//	1.2VµçÔ´µçÑ¹
-	{	PARA_PWR_2V5_VT,	PT_NC,	0,},	//	1.2VµçÔ´µçÑ¹
-	{	PARA_PRI_PROTOCAL_V	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	Ð­Òé°æ±¾
+	{	PARA_A_CHANNEL_COUNT	,PT_AP_G_EX|PT_US,	0,},	//	Aæ®µæ”¯æŒçš„é€šé“æ•°
+	{	PARA_A_DL_WORK_EN	,PT_AP_G_EX|PT_US,	0,},	//	Aæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½
+	{	PARA_A_UL_WORK_EN	,PT_AP_G_EX|PT_US,	0,},	//	Aæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½
+	{	PARA_A_DPOW_MODE	,PT_NC,	0,},	//	Aæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+	{	PARA_A_UPOW_MODE	,PT_NC,	0,},	//	Aæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+	{	PARA_A_LTHR_EN	,PT_AP_G_EX|PT_US,	1,},	//	Aæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½
+	{	PARA_A_LTHR_UP	,PT_AP_G_EX|PT_NC,	1,},	//	Aæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™
+	{	PARA_A_LTHR_DN	,PT_AP_G_EX|PT_SI,	1,},	//	Aæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
+	{	PARA_A_DCH_EN1	,PT_AP|PT_US,	1,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+	{	PARA_A_DCH_EN2	,PT_AP|PT_US,	0,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+	{	PARA_A_DCH_EN3	,PT_AP|PT_US,	0,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+	{	PARA_A_DCH_EN4	,PT_AP|PT_US,	0,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+	{	PARA_A_DCH_EN5	,PT_AP|PT_US,	0,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+	{	PARA_A_DCH_EN6	,PT_AP|PT_US,	0,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+	{	PARA_A_DCH_EN7	,PT_AP|PT_US,	0,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+	{	PARA_A_DCH_EN8	,PT_AP|PT_US,	0,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+	{	PARA_A_DCH_EN9	,PT_AP|PT_US,	0,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+	{	PARA_A_DCH_EN10	,PT_AP|PT_US,	0,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+	{	PARA_A_DCH_EN11	,PT_AP|PT_US,	0,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½11
+	{	PARA_A_DCH_EN12	,PT_AP|PT_US,	0,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½12
+	{	PARA_A_DCH_EN13	,PT_AP|PT_US,	0,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½13
+	{	PARA_A_DCH_EN14	,PT_AP|PT_US,	0,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½14
+	{	PARA_A_DCH_EN15	,PT_AP|PT_US,	0,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½15
+	{	PARA_A_DCH_EN16	,PT_AP|PT_US,	0,},	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½16
+	{	PARA_A_UCH_EN1	,PT_NC,	1,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+	{	PARA_A_UCH_EN2	,PT_NC,	0,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+	{	PARA_A_UCH_EN3	,PT_NC,	0,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+	{	PARA_A_UCH_EN4	,PT_NC,	0,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+	{	PARA_A_UCH_EN5	,PT_NC,	0,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+	{	PARA_A_UCH_EN6	,PT_NC,	0,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+	{	PARA_A_UCH_EN7	,PT_NC,	0,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+	{	PARA_A_UCH_EN8	,PT_NC,	0,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+	{	PARA_A_UCH_EN9	,PT_NC,	0,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+	{	PARA_A_UCH_EN10	,PT_NC,	0,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+	{	PARA_A_UCH_EN11	,PT_NC,	0,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½11
+	{	PARA_A_UCH_EN12	,PT_NC,	0,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½12
+	{	PARA_A_UCH_EN13	,PT_NC,	0,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½13
+	{	PARA_A_UCH_EN14	,PT_NC,	0,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½14
+	{	PARA_A_UCH_EN15	,PT_NC,	0,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½15
+	{	PARA_A_UCH_EN16	,PT_NC,	0,},	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½16
+	{	PARA_A_DCH_GAIN1	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+	{	PARA_A_DCH_GAIN2	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+	{	PARA_A_DCH_GAIN3	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+	{	PARA_A_DCH_GAIN4	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+	{	PARA_A_DCH_GAIN5	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+	{	PARA_A_DCH_GAIN6	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+	{	PARA_A_DCH_GAIN7	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+	{	PARA_A_DCH_GAIN8	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+	{	PARA_A_DCH_GAIN9	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+	{	PARA_A_DCH_GAIN10	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+	{	PARA_A_DCH_GAIN11	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+	{	PARA_A_DCH_GAIN12	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+	{	PARA_A_DCH_GAIN13	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+	{	PARA_A_DCH_GAIN14	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+	{	PARA_A_DCH_GAIN15	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+	{	PARA_A_DCH_GAIN16	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+	{	PARA_A_UCH_GAIN1	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+	{	PARA_A_UCH_GAIN2	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+	{	PARA_A_UCH_GAIN3	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+	{	PARA_A_UCH_GAIN4	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+	{	PARA_A_UCH_GAIN5	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+	{	PARA_A_UCH_GAIN6	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+	{	PARA_A_UCH_GAIN7	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+	{	PARA_A_UCH_GAIN8	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+	{	PARA_A_UCH_GAIN9	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+	{	PARA_A_UCH_GAIN10	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+	{	PARA_A_UCH_GAIN11	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+	{	PARA_A_UCH_GAIN12	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+	{	PARA_A_UCH_GAIN13	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+	{	PARA_A_UCH_GAIN14	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+	{	PARA_A_UCH_GAIN15	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+	{	PARA_A_UCH_GAIN16	,PT_AP_G_EX|PT_US,	40,},	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+	{	PARA_A_DCH_ATT1	,PT_AP_G_EX|PT_US,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡1
+	{	PARA_A_DCH_ATT2	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡2
+	{	PARA_A_DCH_ATT3	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡3
+	{	PARA_A_DCH_ATT4	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡4
+	{	PARA_A_DCH_ATT5	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡5
+	{	PARA_A_DCH_ATT6	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡6
+	{	PARA_A_DCH_ATT7	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡7
+	{	PARA_A_DCH_ATT8	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡8
+	{	PARA_A_DCH_ATT9	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡9
+	{	PARA_A_DCH_ATT10	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡10
+	{	PARA_A_DCH_ATT11	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡11
+	{	PARA_A_DCH_ATT12	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡12
+	{	PARA_A_DCH_ATT13	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡13
+	{	PARA_A_DCH_ATT14	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡14
+	{	PARA_A_DCH_ATT15	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡15
+	{	PARA_A_DCH_ATT16	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡16
+	{	PARA_A_UCH_ATT1	,PT_AP|PT_US,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡1
+	{	PARA_A_UCH_ATT2	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡2
+	{	PARA_A_UCH_ATT3	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡3
+	{	PARA_A_UCH_ATT4	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡4
+	{	PARA_A_UCH_ATT5	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡5
+	{	PARA_A_UCH_ATT6	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡6
+	{	PARA_A_UCH_ATT7	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡7
+	{	PARA_A_UCH_ATT8	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡8
+	{	PARA_A_UCH_ATT9	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡9
+	{	PARA_A_UCH_ATT10	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡10
+	{	PARA_A_UCH_ATT11	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡11
+	{	PARA_A_UCH_ATT12	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡12
+	{	PARA_A_UCH_ATT13	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡13
+	{	PARA_A_UCH_ATT14	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡14
+	{	PARA_A_UCH_ATT15	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡15
+	{	PARA_A_UCH_ATT16	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡16
+	{	PARA_A_DL_PA_GAIN	,PT_NC,	0,},	//	Aæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š
+	{	PARA_A_UL_PA_GAIN	,PT_NC,	0,},	//	Aæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š
+	{	PARA_A_TX_PLL_ST	,PT_AP|PT_RO|PT_US,	0,},	//	Aæ®µä¸‹è¡ŒPLLçŠ¶æ€,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+	{	PARA_A_RX_PLL_ST	,PT_AP|PT_RO|PT_US,	0,},	//	Aæ®µä¸Šè¡ŒPLLçŠ¶æ€,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+	{	PARA_A_INIT_DA_ST	,PT_AP_G_EX|PT_NC,	0,},	//	åˆå§‹åŒ–Aæ®µDAçŠ¶æ€,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸
+	{	PARA_A_BB_PLL_LOCK	,PT_AP_G_EX|PT_NC,	0,},	//	Aæ®µDA PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+	{	PARA_A_FSAT	,PT_NC,	0,},	//	Aæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€
+	{	PARA_A_DSAT	,PT_NC,	0,},	//	Aæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€
+	{	PARA_A_PA_VG_EN	,PT_NC,	0,},	//	Aæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+	{	PARA_A_PA_VT	,PT_NC,	0,},	//	Aæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º
+	{	PARA_A_Modulator_EN	,PT_NC,	0,},	//	Aæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+	{	PARA_A_LNA_VT	,PT_NC,	0,},	//	Aæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹
+	{	PARA_A_LNA1_ST	,PT_RO|PT_US,	0,},	//	ä¸Šè¡ŒLNA1çŠ¶æ€
+	{	PARA_A_LNA2_ST	,PT_RO|PT_US,	0,},	//	ä¸Šè¡ŒLNA2çŠ¶æ€
+	{	PARA_A_BUSY_TIME	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_SI,	0,},	//	Aæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡
+	{	PARA_A_PRI_ADD,		PT_AP_G_EX|PT_RO|PT_US,	1,},	//	Aæ®µæ¨¡å—åœ°å€
+	{	PARA_A_UL_POW_1B, 	PT_AP_G|PT_SI, 	0,},	//	Aæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡
+	{	PARA_A_DL_POW_1B, 	PT_AP_G_EX|PT_RO|PT_SI, 	0,},	//	Aæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+	{	PARA_A_DCH_REC_RF_ATT1,		PT_AP_G_EX|PT_US, 	0},	 // RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡ RF 
+	{	PARA_A_UCH_REC_RF_ATT1,		PT_AP_G_EX|PT_US, 	0},	 // RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡ RF 
+	{	PARA_B_CHANNEL_COUNT	, PT_BP_G_EX|PT_US,	0,},	//	Bæ®µæ”¯æŒçš„é€šé“æ•°
+	{	PARA_B_DL_WORK_EN	,PT_BP_G_EX|PT_US,	1,},	//	Bæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½
+	{	PARA_B_UL_WORK_EN	,PT_BP_G_EX|PT_US,	1,},	//	Bæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½
+	{	PARA_B_DPOW_MODE	,PT_NC,	0,},	//	Bæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+	{	PARA_B_UPOW_MODE	,PT_NC,	0,},	//	Bæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+	{	PARA_B_LTHR_EN	,PT_BP_G_EX|PT_US,	0,},	//	Bæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½
+	{	PARA_B_LTHR_UP	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™
+	{	PARA_B_LTHR_DN	,PT_BP_G_EX|PT_SI,	0,},	//	Bæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
+	{	PARA_B_DCH_EN1		,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+	{	PARA_B_DCH_EN2		,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+	{	PARA_B_DCH_EN3		,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+	{	PARA_B_DCH_EN4		,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+	{	PARA_B_DCH_EN5		,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+	{	PARA_B_DCH_EN6		,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+	{	PARA_B_DCH_EN7		,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+	{	PARA_B_DCH_EN8		,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+	{	PARA_B_DCH_EN9		,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+	{	PARA_B_DCH_EN10	,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+	{	PARA_B_DCH_EN11	,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½11
+	{	PARA_B_DCH_EN12	,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½12
+	{	PARA_B_DCH_EN13	,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½13
+	{	PARA_B_DCH_EN14	,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½14
+	{	PARA_B_DCH_EN15	,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½15
+	{	PARA_B_DCH_EN16	,PT_BP|PT_US,	1,},	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½16
+	{	PARA_B_UCH_EN1		,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+	{	PARA_B_UCH_EN2		,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+	{	PARA_B_UCH_EN3		,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+	{	PARA_B_UCH_EN4		,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+	{	PARA_B_UCH_EN5		,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+	{	PARA_B_UCH_EN6		,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+	{	PARA_B_UCH_EN7		,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+	{	PARA_B_UCH_EN8		,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+	{	PARA_B_UCH_EN9		,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+	{	PARA_B_UCH_EN10	,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+	{	PARA_B_UCH_EN11	,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½11
+	{	PARA_B_UCH_EN12	,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½12
+	{	PARA_B_UCH_EN13	,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½13
+	{	PARA_B_UCH_EN14	,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½14
+	{	PARA_B_UCH_EN15	,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½15
+	{	PARA_B_UCH_EN16	,PT_US,	1,},	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½16
+	{	PARA_B_DCH_GAIN1	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+	{	PARA_B_DCH_GAIN2	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+	{	PARA_B_DCH_GAIN3	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+	{	PARA_B_DCH_GAIN4	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+	{	PARA_B_DCH_GAIN5	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+	{	PARA_B_DCH_GAIN6	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+	{	PARA_B_DCH_GAIN7	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+	{	PARA_B_DCH_GAIN8	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+	{	PARA_B_DCH_GAIN9	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+	{	PARA_B_DCH_GAIN10	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+	{	PARA_B_DCH_GAIN11	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+	{	PARA_B_DCH_GAIN12	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+	{	PARA_B_DCH_GAIN13	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+	{	PARA_B_DCH_GAIN14	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+	{	PARA_B_DCH_GAIN15	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+	{	PARA_B_DCH_GAIN16	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+	{	PARA_B_UCH_GAIN1	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+	{	PARA_B_UCH_GAIN2	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+	{	PARA_B_UCH_GAIN3	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+	{	PARA_B_UCH_GAIN4	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+	{	PARA_B_UCH_GAIN5	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+	{	PARA_B_UCH_GAIN6	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+	{	PARA_B_UCH_GAIN7	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+	{	PARA_B_UCH_GAIN8	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+	{	PARA_B_UCH_GAIN9	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+	{	PARA_B_UCH_GAIN10	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+	{	PARA_B_UCH_GAIN11	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+	{	PARA_B_UCH_GAIN12	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+	{	PARA_B_UCH_GAIN13	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+	{	PARA_B_UCH_GAIN14	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+	{	PARA_B_UCH_GAIN15	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+	{	PARA_B_UCH_GAIN16	,PT_BP_G_EX|PT_US,	40,},	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+	{	PARA_B_DCH_ATT1	,PT_BP_G_EX|PT_US,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡1
+	{	PARA_B_DCH_ATT2	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡2
+	{	PARA_B_DCH_ATT3	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡3
+	{	PARA_B_DCH_ATT4	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡4
+	{	PARA_B_DCH_ATT5	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡5
+	{	PARA_B_DCH_ATT6	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡6
+	{	PARA_B_DCH_ATT7	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡7
+	{	PARA_B_DCH_ATT8	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡8
+	{	PARA_B_DCH_ATT9	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡9
+	{	PARA_B_DCH_ATT10	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡10
+	{	PARA_B_DCH_ATT11	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡11
+	{	PARA_B_DCH_ATT12	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡12
+	{	PARA_B_DCH_ATT13	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡13
+	{	PARA_B_DCH_ATT14	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡14
+	{	PARA_B_DCH_ATT15	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡15
+	{	PARA_B_DCH_ATT16	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡16
+	{	PARA_B_UCH_ATT1	,PT_BP|PT_US,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡1(ä¸Šè¡Œæ•°æŽ§æ€»è¡°å‡é‡)
+	{	PARA_B_UCH_ATT2	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡2
+	{	PARA_B_UCH_ATT3	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡3
+	{	PARA_B_UCH_ATT4	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡4
+	{	PARA_B_UCH_ATT5	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡5
+	{	PARA_B_UCH_ATT6	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡6
+	{	PARA_B_UCH_ATT7	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡7
+	{	PARA_B_UCH_ATT8	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡8
+	{	PARA_B_UCH_ATT9	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡9
+	{	PARA_B_UCH_ATT10	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡10
+	{	PARA_B_UCH_ATT11	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡11
+	{	PARA_B_UCH_ATT12	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡12
+	{	PARA_B_UCH_ATT13	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡13
+	{	PARA_B_UCH_ATT14	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡14
+	{	PARA_B_UCH_ATT15	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡15
+	{	PARA_B_UCH_ATT16	,PT_BP_G_EX|PT_NC,	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡16
+	{	PARA_B_DL_PA_GAIN	,PT_NC,	0,},	//	Bæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š
+	{	PARA_B_UL_PA_GAIN	,PT_NC,	0,},	//	Bæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š
+	{	PARA_B_TX_PLL_ST	,PT_BP|PT_RO|PT_US,	0,},	//	Bæ®µä¸‹è¡ŒPLLçŠ¶æ€,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+	{	PARA_B_RX_PLL_ST	,PT_BP|PT_RO|PT_US,	0,},	//	Bæ®µä¸Šè¡ŒPLLçŠ¶æ€,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+	{	PARA_B_INIT_DA_ST	,PT_NC,	0,},	//	åˆå§‹åŒ–Bæ®µDAçŠ¶æ€,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸
+	{	PARA_B_BB_PLL_LOCK	,PT_NC,	0,},	//	Bæ®µDA PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+	{	PARA_B_FSAT	,PT_NC,	0,},	//	Bæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€
+	{	PARA_B_DSAT	,PT_NC,	0,},	//	Bæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€
+	{	PARA_B_PA_VG_EN	,PT_NC,	0,},	//	Bæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+	{	PARA_B_PA_VT	,PT_NC,	0,},	//	Bæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º
+	{	PARA_B_Modulator_EN	,PT_NC,	0,},	//	Bæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+	{	PARA_B_LNA_VT	,PT_NC,	0,},	//	Bæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹
+	{	PARA_B_LNA1_ST	,PT_RO|PT_US,	0,},	//	ä¸Šè¡ŒLNA1çŠ¶æ€
+	{	PARA_B_LNA2_ST	,PT_RO|PT_US,	0,},	//	ä¸Šè¡ŒLNA2çŠ¶æ€
+	{	PARA_B_BUSY_TIME	,PT_RO|PT_SI,	0,},	//	Bæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡
+	{	PARA_B_PRI_ADD,		PT_BP_G_EX|PT_RO|PT_US,	2,},	//	Bæ®µæ¨¡å—åœ°å€
+	{	PARA_B_UL_POW_1B, 	/*PT_BP_G|*/PT_SI, 	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡
+	{	PARA_B_DL_POW_1B, 	PT_BP_G_EX|PT_RO|PT_SI, 	0,},	//	Bæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+	{	PARA_B_DCH_REC_RF_ATT1,		PT_BP_G_EX|PT_US, 	0},	 // RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡ RF 
+	{	PARA_B_UCH_REC_RF_ATT1,		PT_BP_G_EX|PT_US, 	0},	 // RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡ RF 
+	{	PARA_C_CHANNEL_COUNT	, PT_CP_G_EX|PT_US,	0,},	//	Cæ®µæ”¯æŒçš„é€šé“æ•°
+	{	PARA_C_DL_WORK_EN	,PT_CP_G_EX|PT_US,	1,},	//	Cæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½
+	{	PARA_C_UL_WORK_EN	,PT_CP_G_EX|PT_US,	1,},	//	Cæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½
+	{	PARA_C_DPOW_MODE	,PT_NC,	0,},	//	Cæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+	{	PARA_C_UPOW_MODE	,PT_NC,	0,},	//	Cæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+	{	PARA_C_LTHR_EN	,PT_CP_G_EX|PT_US,	0,},	//	Cæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½
+	{	PARA_C_LTHR_UP	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™
+	{	PARA_C_LTHR_DN	,PT_CP_G_EX|PT_SI,	0,},	//	Cæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
+	{	PARA_C_DCH_EN1  ,PT_CP|PT_US, 1,}, // Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+	{	PARA_C_DCH_EN2  ,PT_CP|PT_US, 1,}, // Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+	{	PARA_C_DCH_EN3  ,PT_CP|PT_US, 1,}, // Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+	{	PARA_C_DCH_EN4  ,PT_CP|PT_US, 1,}, // Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+	{	PARA_C_DCH_EN5  ,PT_CP|PT_US, 1,}, // Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+	{	PARA_C_DCH_EN6  ,PT_CP|PT_US, 1,}, // Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+	{	PARA_C_DCH_EN7  ,PT_CP|PT_US, 1,}, // Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+	{	PARA_C_DCH_EN8  ,PT_CP|PT_US, 1,}, // Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+	{	PARA_C_DCH_EN9  ,PT_CP|PT_US, 1,}, // Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+	{	PARA_C_DCH_EN10  ,PT_CP|PT_US, 1,}, // Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+	{	PARA_C_UCH_EN1		,PT_US,	1,},	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+	{	PARA_C_UCH_EN2		,PT_US,	1,},	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+	{	PARA_C_UCH_EN3		,PT_US,	1,},	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+	{	PARA_C_UCH_EN4		,PT_US,	1,},	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+	{	PARA_C_UCH_EN5		,PT_US,	1,},	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+	{	PARA_C_UCH_EN6		,PT_US,	1,},	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+	{	PARA_C_UCH_EN7		,PT_US,	1,},	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+	{	PARA_C_UCH_EN8		,PT_US,	1,},	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+	{	PARA_C_UCH_EN9		,PT_US,	1,},	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+	{	PARA_C_UCH_EN10		,PT_US,	1,},	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+	{	PARA_C_DCH_GAIN1	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+	{	PARA_C_DCH_GAIN2	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+	{	PARA_C_DCH_GAIN3	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+	{	PARA_C_DCH_GAIN4	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+	{	PARA_C_DCH_GAIN5	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+	{	PARA_C_DCH_GAIN6	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+	{	PARA_C_DCH_GAIN7	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+	{	PARA_C_DCH_GAIN8	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+	{	PARA_C_DCH_GAIN9	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+	{	PARA_C_DCH_GAIN10	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+	{	PARA_C_DCH_GAIN11	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+	{	PARA_C_DCH_GAIN12	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+	{	PARA_C_DCH_GAIN13	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+	{	PARA_C_DCH_GAIN14	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+	{	PARA_C_DCH_GAIN15	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+	{	PARA_C_DCH_GAIN16	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+	{	PARA_C_UCH_GAIN1	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+	{	PARA_C_UCH_GAIN2	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+	{	PARA_C_UCH_GAIN3	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+	{	PARA_C_UCH_GAIN4	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+	{	PARA_C_UCH_GAIN5	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+	{	PARA_C_UCH_GAIN6	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+	{	PARA_C_UCH_GAIN7	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+	{	PARA_C_UCH_GAIN8	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+	{	PARA_C_UCH_GAIN9	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+	{	PARA_C_UCH_GAIN10	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+	{	PARA_C_UCH_GAIN11	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+	{	PARA_C_UCH_GAIN12	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+	{	PARA_C_UCH_GAIN13	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+	{	PARA_C_UCH_GAIN14	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+	{	PARA_C_UCH_GAIN15	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+	{	PARA_C_UCH_GAIN16	,PT_CP_G_EX|PT_US,	40,},	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+	{	PARA_C_DCH_ATT1	,PT_CP_G_EX|PT_US,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡1
+	{	PARA_C_DCH_ATT2	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡2
+	{	PARA_C_DCH_ATT3	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡3
+	{	PARA_C_DCH_ATT4	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡4
+	{	PARA_C_DCH_ATT5	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡5
+	{	PARA_C_DCH_ATT6	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡6
+	{	PARA_C_DCH_ATT7	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡7
+	{	PARA_C_DCH_ATT8	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡8
+	{	PARA_C_DCH_ATT9	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡9
+	{	PARA_C_DCH_ATT10	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡10
+	{	PARA_C_DCH_ATT11	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡11
+	{	PARA_C_DCH_ATT12	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡12
+	{	PARA_C_DCH_ATT13	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡13
+	{	PARA_C_DCH_ATT14	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡14
+	{	PARA_C_DCH_ATT15	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡15
+	{	PARA_C_DCH_ATT16	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡16
+	{	PARA_C_UCH_ATT1	,PT_CP|PT_US,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡1
+	{	PARA_C_UCH_ATT2	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡2
+	{	PARA_C_UCH_ATT3	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡3
+	{	PARA_C_UCH_ATT4	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡4
+	{	PARA_C_UCH_ATT5	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡5
+	{	PARA_C_UCH_ATT6	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡6
+	{	PARA_C_UCH_ATT7	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡7
+	{	PARA_C_UCH_ATT8	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡8
+	{	PARA_C_UCH_ATT9	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡9
+	{	PARA_C_UCH_ATT10	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡10
+	{	PARA_C_UCH_ATT11	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡11
+	{	PARA_C_UCH_ATT12	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡12
+	{	PARA_C_UCH_ATT13	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡13
+	{	PARA_C_UCH_ATT14	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡14
+	{	PARA_C_UCH_ATT15	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡15
+	{	PARA_C_UCH_ATT16	,PT_CP_G_EX|PT_NC,	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡16
+	{	PARA_C_DL_PA_GAIN	,PT_NC,	0,},	//	Cæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š
+	{	PARA_C_UL_PA_GAIN	,PT_NC,	0,},	//	Cæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š
+	{	PARA_C_TX_PLL_ST	,PT_CP|PT_RO|PT_US,	0,},	//	Cæ®µä¸‹è¡ŒPLLçŠ¶æ€,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+	{	PARA_C_RX_PLL_ST	,PT_CP|PT_RO|PT_US,	0,},	//	Cæ®µä¸Šè¡ŒPLLçŠ¶æ€,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+	{	PARA_C_INIT_DA_ST	,PT_NC,	0,},	//	åˆå§‹åŒ–Bæ®µDAçŠ¶æ€,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸
+	{	PARA_C_BB_PLL_LOCK	,PT_NC,	0,},	//	Cæ®µDA PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+	{	PARA_C_FSAT	,PT_NC,	0,},	//	Cæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€
+	{	PARA_C_DSAT	,PT_NC,	0,},	//	Cæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€
+	{	PARA_C_PA_VG_EN	,PT_NC,	0,},	//	Cæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+	{	PARA_C_PA_VT	,PT_NC,	0,},	//	Cæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º
+	{	PARA_C_Modulator_EN	,PT_NC,	0,},	//	Cæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+	{	PARA_C_LNA_VT	,PT_NC,	0,},	//	Cæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹
+	{	PARA_C_LNA1_ST	,PT_RO|PT_US,	0,},	//	ä¸Šè¡ŒLNA1çŠ¶æ€
+	{	PARA_C_LNA2_ST	,PT_RO|PT_US,	0,},	//	ä¸Šè¡ŒLNA2çŠ¶æ€
+	{	PARA_C_BUSY_TIME	,PT_RO|PT_SI,	0,},	//	Cæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡
+	{	PARA_C_PRI_ADD,  PT_CP_G_EX|PT_RO|PT_US, 3,}, // Cæ®µæ¨¡å—åœ°å€
+	{	PARA_C_UL_POW_1B, 	/*PT_BP_G|*/PT_SI, 	0,},	//	Cæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡
+	{	PARA_C_DL_POW_1B, 	PT_CP_G_EX|PT_RO|PT_SI, 	0,},	//	Cæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+	{	PARA_C_DCH_REC_RF_ATT1,		PT_CP_G_EX|PT_US, 	0},	 // RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡ RF 
+	{	PARA_C_UCH_REC_RF_ATT1,		PT_CP_G_EX|PT_US, 	0},	 // RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡ RF 
+	{	PARA_D_CHANNEL_COUNT	, PT_DP_G_EX|PT_US,	0,},	//	Dæ®µæ”¯æŒçš„é€šé“æ•°
+	{	PARA_D_DL_WORK_EN	,PT_DP_G_EX|PT_US,	1,},	//	Dæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½
+	{	PARA_D_UL_WORK_EN	,PT_DP_G_EX|PT_US,	1,},	//	Dæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½
+	{	PARA_D_DPOW_MODE	,PT_NC,	0,},	//	Dæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+	{	PARA_D_UPOW_MODE	,PT_NC,	0,},	//	Dæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+	{	PARA_D_LTHR_EN	,PT_DP_G_EX|PT_US,	0,},	//	Dæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½
+	{	PARA_D_LTHR_UP	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™
+	{	PARA_D_LTHR_DN	,PT_DP_G_EX|PT_SI,	0,},	//	Dæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
+	{	PARA_D_DCH_EN1  ,PT_DP|PT_US, 1,}, // Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+	{	PARA_D_DCH_EN2  ,PT_DP|PT_US, 1,}, // Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+	{	PARA_D_DCH_EN3  ,PT_DP|PT_US, 1,}, // Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+	{	PARA_D_DCH_EN4  ,PT_DP|PT_US, 1,}, // Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+	{	PARA_D_DCH_EN5  ,PT_DP|PT_US, 1,}, // Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+	{	PARA_D_DCH_EN6  ,PT_DP|PT_US, 1,}, // Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+	{	PARA_D_DCH_EN7  ,PT_DP|PT_US, 1,}, // Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+	{	PARA_D_DCH_EN8  ,PT_DP|PT_US, 1,}, // Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+	{	PARA_D_DCH_EN9  ,PT_DP|PT_US, 1,}, // Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+	{	PARA_D_DCH_EN10  ,PT_DP|PT_US, 1,}, // Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+	{	PARA_D_UCH_EN1		,PT_US, 1,},	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+	{	PARA_D_UCH_EN2		,PT_US, 1,},	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+	{	PARA_D_UCH_EN3		,PT_US, 1,},	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+	{	PARA_D_UCH_EN4		,PT_US, 1,},	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+	{	PARA_D_UCH_EN5		,PT_US, 1,},	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+	{	PARA_D_UCH_EN6		,PT_US, 1,},	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+	{	PARA_D_UCH_EN7		,PT_US, 1,},	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+	{	PARA_D_UCH_EN8		,PT_US, 1,},	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+	{	PARA_D_UCH_EN9		,PT_US, 1,},	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+	{	PARA_D_UCH_EN10 	,PT_US, 1,},	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+	{	PARA_D_DCH_GAIN1	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+	{	PARA_D_DCH_GAIN2	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+	{	PARA_D_DCH_GAIN3	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+	{	PARA_D_DCH_GAIN4	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+	{	PARA_D_DCH_GAIN5	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+	{	PARA_D_DCH_GAIN6	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+	{	PARA_D_DCH_GAIN7	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+	{	PARA_D_DCH_GAIN8	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+	{	PARA_D_DCH_GAIN9	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+	{	PARA_D_DCH_GAIN10	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+	{	PARA_D_DCH_GAIN11	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+	{	PARA_D_DCH_GAIN12	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+	{	PARA_D_DCH_GAIN13	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+	{	PARA_D_DCH_GAIN14	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+	{	PARA_D_DCH_GAIN15	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+	{	PARA_D_DCH_GAIN16	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+	{	PARA_D_UCH_GAIN1	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+	{	PARA_D_UCH_GAIN2	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+	{	PARA_D_UCH_GAIN3	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+	{	PARA_D_UCH_GAIN4	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+	{	PARA_D_UCH_GAIN5	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+	{	PARA_D_UCH_GAIN6	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+	{	PARA_D_UCH_GAIN7	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+	{	PARA_D_UCH_GAIN8	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+	{	PARA_D_UCH_GAIN9	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+	{	PARA_D_UCH_GAIN10	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+	{	PARA_D_UCH_GAIN11	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+	{	PARA_D_UCH_GAIN12	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+	{	PARA_D_UCH_GAIN13	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+	{	PARA_D_UCH_GAIN14	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+	{	PARA_D_UCH_GAIN15	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+	{	PARA_D_UCH_GAIN16	,PT_DP_G_EX|PT_US,	40,},	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+	{	PARA_D_DCH_ATT1	,PT_DP_G_EX|PT_US,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡1
+	{	PARA_D_DCH_ATT2	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡2
+	{	PARA_D_DCH_ATT3	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡3
+	{	PARA_D_DCH_ATT4	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡4
+	{	PARA_D_DCH_ATT5	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡5
+	{	PARA_D_DCH_ATT6	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡6
+	{	PARA_D_DCH_ATT7	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡7
+	{	PARA_D_DCH_ATT8	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡8
+	{	PARA_D_DCH_ATT9	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡9
+	{	PARA_D_DCH_ATT10	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡10
+	{	PARA_D_DCH_ATT11	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡11
+	{	PARA_D_DCH_ATT12	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡12
+	{	PARA_D_DCH_ATT13	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡13
+	{	PARA_D_DCH_ATT14	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡14
+	{	PARA_D_DCH_ATT15	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡15
+	{	PARA_D_DCH_ATT16	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡16
+	{	PARA_D_UCH_ATT1	,PT_DP|PT_US,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡1
+	{	PARA_D_UCH_ATT2	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡2
+	{	PARA_D_UCH_ATT3	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡3
+	{	PARA_D_UCH_ATT4	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡4
+	{	PARA_D_UCH_ATT5	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡5
+	{	PARA_D_UCH_ATT6	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡6
+	{	PARA_D_UCH_ATT7	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡7
+	{	PARA_D_UCH_ATT8	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡8
+	{	PARA_D_UCH_ATT9	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡9
+	{	PARA_D_UCH_ATT10	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡10
+	{	PARA_D_UCH_ATT11	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡11
+	{	PARA_D_UCH_ATT12	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡12
+	{	PARA_D_UCH_ATT13	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡13
+	{	PARA_D_UCH_ATT14	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡14
+	{	PARA_D_UCH_ATT15	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡15
+	{	PARA_D_UCH_ATT16	,PT_DP_G_EX|PT_NC,	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡16
+	{	PARA_D_DL_PA_GAIN	,PT_NC,	0,},	//	Dæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š
+	{	PARA_D_UL_PA_GAIN	,PT_NC,	0,},	//	Dæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š
+	{	PARA_D_TX_PLL_ST	,PT_DP|PT_RO|PT_US,	0,},	//	Dæ®µä¸‹è¡ŒPLLçŠ¶æ€,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+	{	PARA_D_RX_PLL_ST	,PT_DP|PT_RO|PT_US,	0,},	//	Dæ®µä¸Šè¡ŒPLLçŠ¶æ€,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+	{	PARA_D_INIT_DA_ST	,PT_NC,	0,},	//	åˆå§‹åŒ–Bæ®µDAçŠ¶æ€,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸
+	{	PARA_D_BB_PLL_LOCK	,PT_NC,	0,},	//	Dæ®µDA PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+	{	PARA_D_FSAT	,PT_NC,	0,},	//	Dæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€
+	{	PARA_D_DSAT	,PT_NC,	0,},	//	Dæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€
+	{	PARA_D_PA_VG_EN	,PT_NC,	0,},	//	Dæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+	{	PARA_D_PA_VT	,PT_NC,	0,},	//	Dæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º
+	{	PARA_D_Modulator_EN	,PT_NC,	0,},	//	Dæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+	{	PARA_D_LNA_VT	,PT_NC,	0,},	//	Dæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹
+	{	PARA_D_LNA1_ST	,PT_RO|PT_US,	0,},	//	ä¸Šè¡ŒLNA1çŠ¶æ€
+	{	PARA_D_LNA2_ST	,PT_RO|PT_US,	0,},	//	ä¸Šè¡ŒLNA2çŠ¶æ€
+	{	PARA_D_BUSY_TIME	,PT_RO|PT_SI,	0,},	//	Dæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡
+	{ 	PARA_D_PRI_ADD,  PT_DP_G_EX|PT_RO|PT_US, 4,}, // Dæ®µæ¨¡å—åœ°å€
+	{	PARA_D_UL_POW_1B, 	/*PT_DP_G|*/PT_SI, 	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡
+	{	PARA_D_DL_POW_1B, 	PT_DP_G_EX|PT_RO|PT_SI, 	0,},	//	Dæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+	{	PARA_D_DCH_REC_RF_ATT1,		PT_DP_G_EX|PT_US, 	0},	 // RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡ RF 
+	{	PARA_D_UCH_REC_RF_ATT1,		PT_DP_G_EX|PT_US, 	0},	 // RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡ RF 
+	{	PARA_FP1_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½1
+	{	PARA_FP2_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½2
+	{	PARA_FP3_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½3
+	{	PARA_FP4_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½4
+	{	PARA_FP5_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½5
+	{	PARA_FP6_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½6
+	{	PARA_FP7_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½7
+	{	PARA_FP8_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½8
+	{	PARA_FP9_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½9
+	{	PARA_FP10_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½10
+	{	PARA_FP11_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½11
+	{	PARA_FP12_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½12
+	{	PARA_FP13_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½13
+	{	PARA_FP14_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½14
+	{	PARA_FP15_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½15
+	{	PARA_FP16_EN	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	1,},	//	å…‰å£å‘é€ä½¿èƒ½16
+	{	PARA_FP1_ON_POS	,PT_AP|PT_BP_G_EX|PT_US,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€1, 0-åœ¨ä½
+	{	PARA_FP2_ON_POS	,PT_AP|PT_BP_G_EX|PT_US,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€2, 0-åœ¨ä½
+	{	PARA_FP3_ON_POS	,PT_AP|PT_BP_G_EX|PT_US,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€3, 0-åœ¨ä½
+	{	PARA_FP4_ON_POS	,PT_AP|PT_BP_G_EX|PT_US,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€4, 0-åœ¨ä½
+	{	PARA_FP5_ON_POS	,PT_AP|PT_BP_G_EX|PT_US,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€5, 0-åœ¨ä½
+	{	PARA_FP6_ON_POS	,PT_AP|PT_BP_G_EX|PT_US,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€6, 0-åœ¨ä½
+	{	PARA_FP7_ON_POS	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€7, 0-åœ¨ä½
+	{	PARA_FP8_ON_POS	,PT_AP_G_EX|PT_BP_G_EX|PT_US,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€8, 0-åœ¨ä½
+	{	PARA_FP9_ON_POS	,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€9, 0-åœ¨ä½
+	{	PARA_FP10_ON_POS,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€10, 0-åœ¨ä½
+	{	PARA_FP11_ON_POS,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€11, 0-åœ¨ä½
+	{	PARA_FP12_ON_POS,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€12, 0-åœ¨ä½
+	{	PARA_FP13_ON_POS,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€13, 0-åœ¨ä½
+	{	PARA_FP14_ON_POS,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€14, 0-åœ¨ä½
+	{	PARA_FP15_ON_POS,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€15, 0-åœ¨ä½
+	{	PARA_FP16_ON_POS,PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	//	å…‰å£åœ¨ä½çŠ¶æ€16, 0-åœ¨ä½
+	{	PARA_FP1_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£1ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP2_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£2ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP3_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£3ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP4_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£4ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP5_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£5ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP6_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£6ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP7_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£7ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP8_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£8ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP9_LOS	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£9ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP10_LOS,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£10ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP11_LOS,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£11ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP12_LOS,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£12ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP13_LOS,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£13ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP14_LOS,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£14ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP15_LOS,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£15ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP16_LOS,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£16ä¿¡å·ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP1_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£1å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP2_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£2å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP3_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£3å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP4_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£4å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP5_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£5å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP6_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£6å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP7_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£7å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP8_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£8å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP9_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£9å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP10_LOF,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£10å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP11_LOF,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£11å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP12_LOF,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£12å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP13_LOF,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£13å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP14_LOF,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£14å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP15_LOF,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£15å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_FP16_LOF,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å…‰å£16å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_OPT_LOF	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å¸§ä¸¢å¤±çŠ¶æ€
+	{	PARA_SERDES1_PLL_ST	,PT_AP_G|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€1
+	{	PARA_SERDES2_PLL_ST	,PT_AP_G|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€2
+	{	PARA_SERDES3_PLL_ST	,PT_AP_G|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€3
+	{	PARA_SERDES4_PLL_ST	,PT_AP_G|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€4
+	{	PARA_SERDES5_PLL_ST	,PT_AP_G|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€5
+	{	PARA_SERDES6_PLL_ST	,PT_AP_G|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€6
+	{	PARA_SERDES7_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€7
+	{	PARA_SERDES8_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€8
+	{	PARA_SERDES9_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€9
+	{	PARA_SERDES10_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€10
+	{	PARA_SERDES11_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€11
+	{	PARA_SERDES12_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€12
+	{	PARA_SERDES13_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€13
+	{	PARA_SERDES14_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€14
+	{	PARA_SERDES15_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€15
+	{	PARA_SERDES16_PLL_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€16
+	{	PARA_TOPO_CHG_ALM	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	çŽ¯è·¯çŠ¶æ€å‘Šè­¦
+	{	PARA_BER_ALARM		,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	è¯¯ç çŽ‡åé«˜å‘Šè­¦
+	{	PARA_LOAD_FPGA_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	åŠ è½½FPGAçŠ¶æ€
+	{	PARA_FPGA_CLK_ST	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	FPGAæœ¬æŒ¯çŠ¶æ€
+	{	PARA_INIT_CLK_ST	,PT_NC,	0,},	//	åˆå§‹åŒ–æ—¶é’ŸçŠ¶æ€
+	{	PARA_INIT_AD_ST		,PT_NC,	0,},	//	åˆå§‹åŒ–ADçŠ¶æ€
+	{	PARA_INIT_FB_AD_ST	,PT_NC,	0,},	//	åˆå§‹åŒ–åé¦ˆADçŠ¶æ€
+	{	PARA_CLK_PLL_ST	,	PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	CLK PLLçŠ¶æ€
+	{	PARA_CLK_REF_ST	,	PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	CLK å‚è€ƒçŠ¶æ€
+	{	PARA_RE_NODE_MODE,	PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	REèŠ‚ç‚¹æ¨¡å¼
+	{	PARA_BOARD_TEMP,	PT_AP_G|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	å•æ¿æ¸©åº¦
+	{	PARA_CLK_VCO_VT,	PT_NC,	0,},	//	æ—¶é’ŸVCOç”µåŽ‹
+	{	PARA_PWR_9V0_VT,	PT_NC,	0,},	//	9Vç”µæºç”µåŽ‹
+	{	PARA_PWR_5V5_VT,	PT_NC,	0,},	//	5.5Vç”µæºç”µåŽ‹
+	{	PARA_PWR_3V6_VT,	PT_NC,	0,},	//	3.6Vç”µæºç”µåŽ‹
+	{	PARA_PWR_1V2_VT,	PT_NC,	0,},	//	1.2Vç”µæºç”µåŽ‹
+	{	PARA_PWR_2V5_VT,	PT_NC,	0,},	//	1.2Vç”µæºç”µåŽ‹
+	{	PARA_PRI_PROTOCAL_V	,PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US,	0,},	//	åè®®ç‰ˆæœ¬
 	{	PARA_MODULE_HRI_ID,	PT_NC,	0,},	//	ID
-	{	PARA_WORK_ERROR,	PT_NC,	0,},	// ÏµÍ³¹¤×÷×´Ì¬£¬1-ÓÐ¹ÊÕÏ
-	{	PARA_TRAFFIC_END, 	PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	// ÏµÍ³¹¤×÷×´Ì¬£¬1-ÓÐ¹ÊÕÏ
-	{	PARA_DELAY_MODE,	PT_AP_G|PT_BP_G|PT_US, 	1},		// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯
-	{	PARA_TD_SYNC_ST,		PT_BP|PT_RO|PT_US, 		0},		// TDÍ¬²½×´Ì¬: 0-ÒÑÍ¬²½£¬1-Î´Í¬²½
-	{	PARA_TD_WORK_MODE, PT_BP|PT_US, 0 },		// [WR]TD:TD_SCDMA¿ØÖÆÄ£Ê½£¬00Õý³£Ä£Ê½£¬01ÉÏÐÐ³£¿ª£¬10ÊÇÏÂÐÐ³£¿ª, Ã¿´ÎÉÏµçºóÇåÁã
-	{	PARA_TD_T0_UD,		PT_BP_G_EX|PT_US, 	1},	// TDÊ±Ï¶0ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ
-	{	PARA_TD_T1_UD,		PT_BP_G_EX|PT_US, 	1},	// TDÊ±Ï¶1ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ
-	{	PARA_TD_T2_UD,		PT_BP_G_EX|PT_US, 	1},	// TDÊ±Ï¶2ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ
-	{	PARA_TD_T3_UD,		PT_BP_G_EX|PT_US, 	1},	// TDÊ±Ï¶3ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ
-	{	PARA_TD_T4_UD,		PT_BP_G_EX|PT_US, 	0},	// TDÊ±Ï¶4ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ
-	{	PARA_TD_T5_UD,		PT_BP_G_EX|PT_US, 	0},	// TDÊ±Ï¶5ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ
-	{	PARA_TD_T6_UD,		PT_BP_G_EX|PT_US, 	0},	// TDÊ±Ï¶6ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ
-	{	PARA_POWERUP_ST,	PT_AP_G_EX|PT_SI},	// 	Êý×Ö°åÉÏµç×´Ì¬,Ã¿´ÎÆô¶¯Ê±ÖÃ1
-	{	PARA_LOW_POWER,	PT_AP|PT_BP|PT_CP|PT_DP|PT_SI,	0 },	//	µÍ¹¦ºÄÄ£Ê½:1-µÍ¹¦ºÄ;	0-Õý³£
-	{	PARA_THR_PORT,		PT_NC,	PARAM_INIT_THR_PORT},	// 	Í¸´«¶Ë¿ÚÑ¡Ôñ0-485B, 1-RS232
-	{	PARA_THR_BAUD,		PT_NC,	PARAM_INIT_THR_BAUD},	//	Í¸´«¶Ë¿Ú²¨ÌØÂÊ 0-9600, 1-19200, 2-38400, 3-57600, 4-115200
-	{	PARA_CTRL_BAUD,	PT_NC,	PARAM_INIT_CTRL_BAUD},	//	¿ØÖÆ¶Ë¿Ú²¨ÌØÂÊ 0-9600, 1-19200, 2-38400, 4-57600, 5-115200
-	{	PARA_WLAN_CONN_ST1,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},	// WLAN¿Ú×´Ì¬1: 0-Õý³££¬1-Òì³£
-	{	PARA_WLAN_CONN_ST2,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},	// WLAN¿Ú×´Ì¬2: 0-Õý³££¬1-Òì³£
-	{	PARA_WLAN_CONN_ST3,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},	// WLAN¿Ú×´Ì¬3: 0-Õý³££¬1-Òì³£
-	{	PARA_WLAN_CONN_ST4,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},	// WLAN¿Ú×´Ì¬4: 0-Õý³££¬1-Òì³£
-	{	PARA_WLAN_SPEED1,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},	// WLAN¿ÚËÙ¶È1: 0£º10M  1£º100M  2£º1000M
-	{	PARA_WLAN_SPEED2,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},		// WLAN¿ÚËÙ¶È1: 0£º10M  1£º100M  2£º1000M
-	{	PARA_WLAN_SPEED3,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},		// WLAN¿ÚËÙ¶È1: 0£º10M  1£º100M  2£º1000M
-	{	PARA_WLAN_SPEED4,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},		// WLAN¿ÚËÙ¶È1: 0£º10M  1£º100M  2£º1000M
-	{	PARA_GSM_BW_SEL,		PT_RO|PT_US,			0},		// ¿í´ø°æ±¾GSM´ø¿íÑ¡Ôñ: 0-6M, 1-20M, 2-24M, 3-25M, ÆäËûÎÞÐ§
-	{	PARA_HX_DET_UADDR,		PT_NC,		0x31 }, // ºçÐÅDETÄ£¿éÉÏÐÐµØÖ·, ¸ß4Î»ÎªB¶Î, µÍËÄÎ»ÎªA¶Î
-	{	PARA_HX_LNA_UADDR,		PT_NC,		0x31 }, // ºçÐÅLNAÄ£¿éÉÏÐÐµØÖ·, ¸ß4Î»ÎªB¶Î, µÍËÄÎ»ÎªA¶Î
-	{	PARA_HX_DET_DADDR,		PT_NC,		0x42 }, // ºçÐÅDETÄ£¿éÏÂÐÐµØÖ·, ¸ß4Î»ÎªB¶Î, µÍËÄÎ»ÎªA¶Î
-	{	PARA_HX_LNA_DADDR,		PT_NC,		0x42 }, // ºçÐÅLNAÄ£¿éÏÂÐÐµØÖ·, ¸ß4Î»ÎªB¶Î, µÍËÄÎ»ÎªA¶Î
-	{	PARA_FPS_AUTO_SCAN,	PT_AP_G|PT_US,		0 },			// ×Ô¶¯ÆµµãËÑË÷¹¦ÄÜÊ¹ÄÜ:1-×Ô¶¯ËÑË÷ºÍÉèÖÃÆµµã, 0-ÊÖ¶¯ËÑË÷
-	{	PARA_FPS_SWITCH_THD,	PT_NC, 		0 },			// ×Ô¶¯ÆµµãËÑË÷µÄBCCH¹¦ÂÊÇÐ»»ÃÅÏÞ
-	{	PARA_FPS_MOSVC_SEL,	PT_AP_G|PT_US, 		0 },	// ÆµµãËÑË÷: ÔËÓªÉÌÑ¡Ôñ: 0-ÖÐÒÆ¶¯, 1-ÖÐÁªÍ¨, 2-ÖÐÒÆ¶¯, 255-×Ô¶¯Ñ¡Ôñ
-	{	PARA_FPS_RFRANGE_SEL,	PT_AP_G|PT_US, 		0 },	// ÆµµãËÑË÷: Æµ¿íÑ¡Ôñ(ºöÂÔ,ÒÔÄ£¿éÖÆÊ½Îª×¼): 0-È«Æµ¶Î, 1-900MHz, 2-1800MHz
-	{	PARA_FPS_BS_ID,		PT_AP_G|PT_RO|PT_US, 		0 },	// ÆµµãËÑË÷: »ùÕ¾Ê¶±ðÂë
-	{	PARA_FPS_CA_COUNT,		PT_AP_G|PT_RO|PT_US, 		0 },	// ÆµµãËÑË÷: ÓÐÐ§ÐÅµÀÊý
-	{	PARA_FPS_BCCH_LK_ST,	PT_AP_G|PT_RO|PT_US, 		0 },	// ÆµµãËÑË÷: Ëø¶¨BCCH×´Ì¬: 1-Ëø¶¨, 0-Ê§°Ü
-	{	PARA_FPS_MOSVC_LK_ST,	PT_AP_G|PT_RO|PT_US, 		0 },	// ÆµµãËÑË÷: Ëø¶¨ÔËÓªÉÌ×´Ì¬: 1-Ëø¶¨, 0-Ê§°Ü
-	{	PARA_FPS_RFRANGE_LK_ST,	PT_AP_G|PT_RO|PT_US, 		0 },	// ÆµµãËÑË÷: Ëø¶¨Æµ´ø×´Ì¬: 1-Ëø¶¨, 0-Ê§°Ü
-	{	PARA_FPS_BCCH_POW_M,	PT_AP_G_EX|PT_RO|PT_US, 	(UCHAR8)(-120) },	// ÆµµãËÑË÷: Ö÷Ð¡ÇøBCCH½ÓÊÕÇ¿¶È
-	{	PARA_FPS_BCCH_POW_1,	PT_AP_G_EX|PT_RO|PT_US, 	(UCHAR8)(-120) },	// ÆµµãËÑË÷: ÁÚÐ¡Çø1BCCH½ÓÊÕÇ¿¶È
-	{	PARA_FPS_BCCH_POW_2,	PT_AP_G_EX|PT_RO|PT_US, 	(UCHAR8)(-120) },	// ÆµµãËÑË÷: ÁÚÐ¡Çø2BCCH½ÓÊÕÇ¿¶È
-	{	PARA_FPS_BCCH_POW_3,	PT_AP_G_EX|PT_RO|PT_US, 	(UCHAR8)(-120) },	// ÆµµãËÑË÷: ÁÚÐ¡Çø3BCCH½ÓÊÕÇ¿¶È
-	{	PARA_FPS_BCCH_POW_4,	PT_AP_G_EX|PT_RO|PT_US, 	(UCHAR8)(-120) },	// ÆµµãËÑË÷: ÁÚÐ¡Çø4BCCH½ÓÊÕÇ¿¶È
-	{	PARA_FPS_BCCH_POW_5,	PT_AP_G_EX|PT_RO|PT_US, 	(UCHAR8)(-120) },	// ÆµµãËÑË÷: ÁÚÐ¡Çø5BCCH½ÓÊÕÇ¿¶È
-	{	PARA_FPS_BCCH_POW_6,	PT_AP_G_EX|PT_RO|PT_US, 	(UCHAR8)(-120) },	// ÆµµãËÑË÷: ÁÚÐ¡Çø6BCCH½ÓÊÕÇ¿¶È
-	{	PARA_A_EXPA_WORK_EN,	PT_AP_G_EX|PT_US, 	0 },		// [WR]Î¢¹¦·Å: ÉäÆµÐÅºÅ¿ª¹Ø
-	{	PARA_A_EXPA_DL_ATT,		PT_AP_G_EX|PT_US, 	0 },		// [WR]Î¢¹¦·Å: ÏÂÐÐË¥¼õÖµ
-	{	PARA_A_EXPA_TEMP,		PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]Î¢¹¦·Å: ÎÂ¶È
-	{	PARA_A_EXPA_DL_POW,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]Î¢¹¦·Å: ÏÂÐÐÊä³ö¹¦ÂÊµçÆ½
-	{	PARA_A_EXPA_SWR,		PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]Î¢¹¦·Å: ÏÂÐÐ×¤²¨±ÈÖµ
-	{	PARA_A_EXPA_POWER_DN,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]Î¢¹¦·Å: µçÔ´µôµç¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)
-	{	PARA_A_EXPA_POWER_ERR,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]Î¢¹¦·Å: µçÔ´¹ÊÕÏ¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)
-	{	PARA_A_EXPA_BATT_ERR,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]Î¢¹¦·Å: ¼à¿ØÄ£¿éµç³Ø¹ÊÕÏ¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)
-	{	PARA_A_EXPA_POS_ALM,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]Î¢¹¦·Å: Î»ÖÃ¸æ¾¯
-	{	PARA_A_EXPA_DOOR_ALM,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]Î¢¹¦·Å: ÃÅ½û¸æ¾¯
-	{	PARA_A_EXPA_WROK_ALM,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]Î¢¹¦·Å: ÏÂÐÐ¹¦·Å¹ÊÕÏ¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)
-	{	PARA_A_EXPA_EXT1_ALM,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]Î¢¹¦·Å: Íâ²¿¸æ¾¯1
-	{	PARA_A_EXPA_EXT2_ALM,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]Î¢¹¦·Å: Íâ²¿¸æ¾¯2
-	{	PARA_A_EXPA_EXT3_ALM,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]Î¢¹¦·Å: Íâ²¿¸æ¾¯3
-	{	PARA_A_EXPA_MAX_GAIN,	PT_NC, 	0 },		// Î¢¹¦·Å: ÁãË¥¼õÔöÒæ£¬¼´×î´óÔöÒæ
-	{	PARA_A_EXPA_GAIN_THD,	PT_NC, 	0 },		// Î¢¹¦·Å: ÔöÒæÃÅÏÞ£¬¼´ÔÊÐí¹¤×÷µÄÔöÒæ×î´óÖµ
-	{	PARA_A_EXPA_POW_THD,	PT_NC, 	0 },		// Î¢¹¦·Å: ¹¦·ÅÊä³ö¹¦ÂÊÃÅÏÞ
-	{	PARA_A_EXPA_POD_CMP,	PT_NC,	0 },		// Î¢¹¦·Å: ¼ì²¨¹Ü¹¦ÂÊ¼ì²â²¹³¥Öµ,1×Ö½ÚÓÐ·ûºÅÊý,×îÖÕ¹¦ÂÊÎª¼ì²¨¹Ü¹¦ÂÊ¼ÓÉÏ²¹³¥Öµ
-	{	PARA_MONITOR_VOL_OVER_THR, 				PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0},			 // ¼à¿ØµçÑ¹¹ýÃÅÏÞ
-	{	PARA_MONITOR_VOL_OWE_THR,				PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0},			 // ¼à¿ØµçÑ¹Ç·ÃÅÏÞ
-	{	PARA_DIGITAL_SINGNAL_ALARM,    			PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // Êý×ÖÐÅºÅÒì³£¸æ¾¯
-	{	PARA_HOST_DEVICE_LINK_SINGNAL_ALARM,    PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // Ö÷´Ó¼à¿ØÁ´Â·¸æ¾¯
-	{	PARA_MONITOR_BATTERY_ALARM,    			PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // ¼à¿ØÄ£¿éµç³Ø¹ÊÕÏ¸æ¾¯
-	{	PARA_LOW_POWER_ALARM,    				PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 //// µçÔ´µôµç¸æ¾¯
-	{	PARA_BATTERY_BREAKDOWN_ALARM,    		PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 //// µçÔ´¹ÊÕÏ¸æ¾¯
-	{	PARA_POSITION_MOVE_ALARM,    			PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0},			 // Î»ÖÃ¸æ¾¯
-	{	PARA_A_INPUT_OVER_DPOW_THR_ALARM,    	PT_AP_G_EX|PT_US, 	0},			 // AÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯
-	{	PARA_A_INPUT_OWE_DPOW_THR_ALARM,    	PT_AP_G_EX|PT_US, 	0},			 // AÏÂÐÐÊäÈëÇ·¹¦ÂÊ¸æ¾¯
-	{	PARA_B_INPUT_OVER_DPOW_THR_ALARM,    	PT_BP_G_EX|PT_US, 	0},			 // BÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯
-	{	PARA_B_INPUT_OWE_DPOW_THR_ALARM,    	PT_BP_G_EX|PT_US, 	0},			 // BÏÂÐÐÊäÈëÇ·¹¦ÂÊ¸æ¾¯
-	{	PARA_C_INPUT_OVER_DPOW_THR_ALARM,    	PT_CP_G_EX|PT_US, 	0},			 // CÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯
-	{	PARA_C_INPUT_OWE_DPOW_THR_ALARM,    	PT_CP_G_EX|PT_US, 	0},			 // CÏÂÐÐÊäÈëÇ·¹¦ÂÊ¸æ¾¯
-	{	PARA_D_INPUT_OVER_DPOW_THR_ALARM,    	PT_DP_G_EX|PT_US, 	0},			 // DÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯
-	{	PARA_D_INPUT_OWE_DPOW_THR_ALARM,    	PT_DP_G_EX|PT_US, 	0},			 // DÏÂÐÐÊäÈëÇ·¹¦ÂÊ¸æ¾¯
-	{	PARA_TD_D_OVER_SLOT1_THR_ALARM,    		PT_BP_G_EX|PT_US, 	0}, 			 // TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯
-	{	PARA_TD_D_OWE_SLOT1_THR_ALARM,    		PT_BP_G_EX|PT_US, 	0}, 			 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯
-	{	PARA_RE_DATA_LAN_ST1,    			PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯
-	{	PARA_RE_CASCADE_LAN_ST1,    		PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯
-	{	PARA_RE_DATA_LAN_SYS_ST1,    		PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯
-	{	PARA_RE_CASCADE_LAN_SYS_ST1,    		PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯
-	{	PARA_A_RF_POW_SWR,				PT_AP_G_EX|PT_US, 	0},	 //A¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È
-	{	PARA_A_RF_OUT_POW_H_THR,		PT_AP_G_EX|PT_US, 	0},	 //A¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ
-	{	PARA_A_RF_OUT_POW_L_THR,		PT_AP_G_EX|PT_US, 	0},	 //A¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ
-	{	PARA_B_RF_POW_SWR,				PT_BP_G_EX|PT_US, 	0},	 //B¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È
-	{	PARA_B_RF_OUT_POW_H_THR,		PT_BP_G_EX|PT_US, 	0},	 //B¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ 
-	{	PARA_B_RF_OUT_POW_L_THR,		PT_BP_G_EX|PT_US, 	0},	 //B¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ
-	{	PARA_C_RF_POW_SWR,				PT_CP_G_EX|PT_US, 	0},	 //C¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È
-	{	PARA_C_RF_OUT_POW_H_THR,		PT_CP_G_EX|PT_US, 	0},	 //C¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ 
-	{	PARA_C_RF_OUT_POW_L_THR,		PT_CP_G_EX|PT_US, 	0},	 //C¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ
-	{	PARA_D_RF_POW_SWR,				PT_DP_G_EX|PT_US, 	0},	 //D¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È
-	{	PARA_D_RF_OUT_POW_H_THR,		PT_DP_G_EX|PT_US, 	0},	 //D¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ 
-	{	PARA_D_RF_OUT_POW_L_THR,		PT_DP_G_EX|PT_US, 	0},	 //D¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ
-	{	PARA_PWR_3V3_1_VT  ,    		PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 		// 3.3VµçÔ´µçÑ¹
-	{	PARA_PWR_3V3_2_VT  ,    		PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 		//	3.3VµçÔ´µçÑ¹
-	{	PARA_PWR_1V8_VT  ,    			PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			// 1.8VµçÔ´µçÑ¹
-	{	PARA_PWR_1V5_VT  ,    			PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // 1.5VµçÔ´µçÑ¹
-	{	PARA_A_DL_RF_EN	,		PT_AP|PT_US,		1,},	// 	A¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ
-	{	PARA_A_UL_RF_EN	,		PT_AP|PT_US,		1,},	// 	A¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ
-	{	PARA_B_DL_RF_EN	,		PT_BP|PT_US,		1,},	// 	B¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ
-	{	PARA_B_UL_RF_EN	,		PT_BP|PT_US,		1,},	// 	B¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ
-	{	PARA_C_DL_RF_EN	,		PT_CP|PT_US,		1,},	// 	C¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ
-	{	PARA_C_UL_RF_EN	,		PT_CP|PT_US,		1,},	// 	C¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ
-	{	PARA_D_DL_RF_EN	,		PT_DP|PT_US,		1,},	// 	D¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ
-	{	PARA_D_UL_RF_EN	,		PT_DP|PT_US,		1,},	// 	D¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ
-	{	PARA_METER_OFFSET  ,    		PT_AP_G_EX|PT_US, 	0}, 			 //	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-	{	PARA_METER_OFFSET_B  ,    		PT_BP_G_EX|PT_US, 	0}, 			 //	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-	{	PARA_METER_OFFSET_C  ,    		PT_CP_G_EX|PT_US, 	0}, 			 //	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-	{	PARA_METER_OFFSET_D  ,    		PT_DP_G_EX|PT_US, 	0}, 			 //	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-	{	PARA_C_TD_TYPE_SELECT  ,    		PT_CP|PT_US, 	0},//686	// TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯					
-	{	PARA_C_TD_NORMAL_CP	  ,    		PT_CP|PT_US, 	0},//716	//	TDDÌØÊâÊ±Ï¶ NORMAL_CP
-	{	PARA_C_TD_EXTENDED_CP	  ,    		PT_CP_G_EX|PT_US, 	0},//717	//	TDDÌØÊâÊ±Ï¶ NORMAL_CP
-	{	PARA_C_TD_SYNC_ST  ,    		PT_CP|PT_US, 	0},	//687  	//TDÍ¬²½×´Ì¬:	0-ÒÑÍ¬²½£¬1-Î´Í¬²½			
-	{	PARA_C_TD_WORK_MODE  ,    		PT_CP|PT_US, 	0},	//688  	//[WR]TD:TD_SCDMA¿ØÖÆÄ£Ê½£¬00Õý³£Ä£Ê½£¬01ÉÏÐÐ³£¿ª£¬10ÊÇÏÂÐÐ³£¿ª,	Ã¿´ÎÉÏµçºóÇåÁã			
-	{	PARA_C_TD_DL_OVER_SLOT1_THR_ALARM  ,    		PT_CP_G_EX|PT_US, 	0},	//689  // TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯					
-	{	PARA_C_TD_DL_OWE_SLOT1_THR_ALARM  ,    		PT_CP_G_EX|PT_US, 	0},	//690	 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯					
-	{	PARA_D_TD_TYPE_SELECT  ,    		PT_DP|PT_US, 	0},	//691  // TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯					
-	{	PARA_D_TD_NORMAL_CP	  ,    		PT_DP|PT_US, 	0},//718	//	TDDÌØÊâÊ±Ï¶ NORMAL_CP
-	{	PARA_D_TD_EXTENDED_CP	  ,    		PT_DP_G_EX|PT_US, 	0},//719	//	TDDÌØÊâÊ±Ï¶ NORMAL_CP
-	{	PARA_D_TD_SYNC_ST  ,    		PT_DP|PT_US, 	0},	//692  	//TDÍ¬²½×´Ì¬:	0-ÒÑÍ¬²½£¬1-Î´Í¬²½			
-	{	PARA_D_TD_WORK_MODE  ,    		PT_DP|PT_US, 	0},	//693  	//[WR]TD:TD_SCDMA¿ØÖÆÄ£Ê½£¬00Õý³£Ä£Ê½£¬01ÉÏÐÐ³£¿ª£¬10ÊÇÏÂÐÐ³£¿ª,	Ã¿´ÎÉÏµçºóÇåÁã			
-	{	PARA_D_TD_DL_OVER_SLOT1_THR_ALARM  ,    		PT_DP_G_EX|PT_US, 	0},	//694  	// TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯					
-	{	PARA_D_TD_DL_OWE_SLOT1_THR_ALARM  ,    		PT_DP_G_EX|PT_US, 	0},	//695	 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯					
-	{	PARA_C_TD_T0_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//696  	//TDÊ±Ï¶0ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_C_TD_T1_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//697  	//TDÊ±Ï¶1ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_C_TD_T2_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//698  	//TDÊ±Ï¶2ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_C_TD_T3_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//699  	//TDÊ±Ï¶3ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_C_TD_T4_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//700  	//TDÊ±Ï¶4ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_C_TD_T5_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//701  	//TDÊ±Ï¶5ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_C_TD_T6_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//702  	//TDÊ±Ï¶6ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_C_TD_T7_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//703  	//TDÊ±Ï¶7ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_C_TD_T8_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//704  	//TDÊ±Ï¶8ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_C_TD_T9_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//705  	//TDÊ±Ï¶9ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_D_TD_T0_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//706  	//TDÊ±Ï¶0ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_D_TD_T1_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//707  	//TDÊ±Ï¶1ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_D_TD_T2_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//708  	//TDÊ±Ï¶2ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_D_TD_T3_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//709  	//TDÊ±Ï¶3ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_D_TD_T4_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//710  	//TDÊ±Ï¶4ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_D_TD_T5_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//711  	//TDÊ±Ï¶5ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_D_TD_T6_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//712  	//TDÊ±Ï¶6ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_D_TD_T7_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//713  	//TDÊ±Ï¶7ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_D_TD_T8_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//714  	//TDÊ±Ï¶8ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-	{	PARA_D_TD_T9_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//715  	//TDÊ±Ï¶9ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ
-	{	PARA_NOISE_TEST_EN	  ,    	PT_AP_G_EX|PT_US, 	0},	//	ÔëÉù²âÊÔ¿ª¹Ø	
-	{	PARA_FREQ_MODIF_VAL_D	  ,    	PT_DP_G_EX|PT_US, 	0},	//	ÆµµãÐÞÕý	
-	{	PARA_FREQ_MODIF_VAL_B	  ,    	PT_BP_G_EX|PT_US, 	0},	//	ÆµµãÐÞÕý	
-	{	PARA_FREQ_MODIF_VAL_A	  ,    	PT_AP_G_EX|PT_US, 	0},	//	ÆµµãÐÞÕý	
-	{	PARA_B_TDS_2TH_BREAKING_POINT_SET	  ,    	PT_BP|PT_US, 	0},	//	TDS µÚ¶þ×ª»»µãÉèÖÃ	
-	{	PARA_DELAY_MODE_A	,PT_AP|PT_US, 	0},		//0x8660	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯		
-	{	PARA_DELAY_MODE_B	,PT_BP|PT_US, 	0},		//0x8660	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯					
-	{	PARA_DELAY_MODE_C	,PT_CP|PT_US, 	0},		//0x8660	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯					
-	{	PARA_DELAY_MODE_D	,PT_DP|PT_US, 	0},		//0x8660	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯					
-	{	PARA_REE_CIRCUIT_ALARM	,	   PT_AP|PT_US,  0},					//	0x803f		// À©Õ¹µ¥ÔªµçÂ·¹ÊÕÏ¸æ¾¯16
-	{	PARA_REE_WLAN_CONN_ST			,	   PT_AP|PT_US,  0},			//	0x87d0	//	316 //	WLAN¿Ú×´Ì¬1:	0-Õý³££¬1-Òì³£
-	{	PARA_DL_POWER_MAX ,PT_NC, 0}, 	//ÇóÏÂÐÐÄ£¿é¹¦ÂÊ×î´óÖµ			
-	{	PARA_SLOT_TIME_EN_B	,PT_BP,	0}, 	//Ê±Ï¶Åä±È×Ô¶¯¼ì²â¿ª¹Ø				
-	{	PARA_SLOT_TIME_DISTRI_B ,PT_BP, 0}, 	//Ê±Ï¶Åä±È·Ö²¼				
-	{	PARA_VERSION_FLAG ,PT_NC, 0}, 	//°æ±¾Ê¶±ð		
-	{	PARA_SLOT_TIME_EN_C ,PT_BP, 0}, 	//Ê±Ï¶Åä±È×Ô¶¯¼ì²â¿ª¹Ø				
-	{	PARA_SLOT_TIME_DISTRI_C ,PT_BP, 0}, 	//Ê±Ï¶Åä±È·Ö²¼				
-	{	PARA_A_1197_LOCK_ST ,PT_AP, 0}, //A¶Î1197Ëø¶¨×´Ì¬		
-	{	PARA_A_IF_ST ,PT_AP, 0},	//A¶ÎÖÐÆµÆµÂÊ,0/1---300M/500M				
-	{	PARA_ENCRYPTION_ST ,PT_AP, 0},	//¼ÓÃÜ×´Ì¬,0/1---²»¼ÓÃÜ/¼ÓÃÜ				
-	{	PARA_PWR_1V6_VT ,PT_AP, 0},         //     //1.6vµçÔ´		
-	{	PARA_A_90_VALUE ,PT_AP, 0xff}, //A¶Î9363 90¼Ä´æÆ÷µÄÖµ
-	{	PARA_A_91_VALUE ,PT_AP, 0xff}, //A¶Î9363 91¼Ä´æÆ÷µÄÖµ
-	{	PARA_A_94_VALUE ,PT_AP, 0xff}, //A¶Î9363 94¼Ä´æÆ÷µÄÖµ
-	{	PARA_A_95_VALUE ,PT_AP, 0xff}, //A¶Î9363 95¼Ä´æÆ÷µÄÖµ
-	{	PARA_B_90_VALUE ,PT_AP, 0xff}, //B¶Î9363 90¼Ä´æÆ÷µÄÖµ
-	{	PARA_B_91_VALUE ,PT_AP, 0xff}, //B¶Î9363 91¼Ä´æÆ÷µÄÖµ
-	{	PARA_B_94_VALUE ,PT_AP, 0xff}, //B¶Î9363 94¼Ä´æÆ÷µÄÖµ
-	{	PARA_B_95_VALUE ,PT_AP, 0xff}, //B¶Î9363 95¼Ä´æÆ÷µÄÖµ
-	{	PARA_C_90_VALUE ,PT_AP, 0xff}, //C¶Î9363 90¼Ä´æÆ÷µÄÖµ
-	{	PARA_C_91_VALUE ,PT_AP, 0xff}, //C¶Î9363 91¼Ä´æÆ÷µÄÖµ
-	{	PARA_C_94_VALUE ,PT_AP, 0xff}, //C¶Î9363 94¼Ä´æÆ÷µÄÖµ
-	{	PARA_C_95_VALUE ,PT_AP, 0xff}, //C¶Î9363 95¼Ä´æÆ÷µÄÖµ
-	{	PARA_D_90_VALUE ,PT_AP, 0xff}, //D¶Î9363 90¼Ä´æÆ÷µÄÖµ
-	{	PARA_D_91_VALUE ,PT_AP, 0xff}, //D¶Î9363 91¼Ä´æÆ÷µÄÖµ
-	{	PARA_D_94_VALUE ,PT_AP, 0xff}, //D¶Î9363 94¼Ä´æÆ÷µÄÖµ
-	{	PARA_D_95_VALUE ,PT_AP, 0xff}, //D¶Î9363 95¼Ä´æÆ÷µÄÖµ
-	{	PARA_PASSTHROUGH_EN ,PT_AP, 0x00}, //Í¸´«Ê¹ÄÜ¿ª¹Ø
+	{	PARA_WORK_ERROR,	PT_NC,	0,},	// ç³»ç»Ÿå·¥ä½œçŠ¶æ€ï¼Œ1-æœ‰æ•…éšœ
+	{	PARA_TRAFFIC_END, 	PT_AP_G_EX|PT_BP_G_EX|PT_NC,	0,},	// ç³»ç»Ÿå·¥ä½œçŠ¶æ€ï¼Œ1-æœ‰æ•…éšœ
+	{	PARA_DELAY_MODE,	PT_AP_G|PT_BP_G|PT_US, 	1},		// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨
+	{	PARA_TD_SYNC_ST,		PT_BP|PT_RO|PT_US, 		0},		// TDåŒæ­¥çŠ¶æ€: 0-å·²åŒæ­¥ï¼Œ1-æœªåŒæ­¥
+	{	PARA_TD_WORK_MODE, PT_BP|PT_US, 0 },		// [WR]TD:TD_SCDMAæŽ§åˆ¶æ¨¡å¼ï¼Œ00æ­£å¸¸æ¨¡å¼ï¼Œ01ä¸Šè¡Œå¸¸å¼€ï¼Œ10æ˜¯ä¸‹è¡Œå¸¸å¼€, æ¯æ¬¡ä¸Šç”µåŽæ¸…é›¶
+	{	PARA_TD_T0_UD,		PT_BP_G_EX|PT_US, 	1},	// TDæ—¶éš™0ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ
+	{	PARA_TD_T1_UD,		PT_BP_G_EX|PT_US, 	1},	// TDæ—¶éš™1ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ
+	{	PARA_TD_T2_UD,		PT_BP_G_EX|PT_US, 	1},	// TDæ—¶éš™2ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ
+	{	PARA_TD_T3_UD,		PT_BP_G_EX|PT_US, 	1},	// TDæ—¶éš™3ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ
+	{	PARA_TD_T4_UD,		PT_BP_G_EX|PT_US, 	0},	// TDæ—¶éš™4ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ
+	{	PARA_TD_T5_UD,		PT_BP_G_EX|PT_US, 	0},	// TDæ—¶éš™5ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ
+	{	PARA_TD_T6_UD,		PT_BP_G_EX|PT_US, 	0},	// TDæ—¶éš™6ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ
+	{	PARA_POWERUP_ST,	PT_AP_G_EX|PT_SI},	// 	æ•°å­—æ¿ä¸Šç”µçŠ¶æ€,æ¯æ¬¡å¯åŠ¨æ—¶ç½®1
+	{	PARA_LOW_POWER,	PT_AP|PT_BP|PT_CP|PT_DP|PT_SI,	0 },	//	ä½ŽåŠŸè€—æ¨¡å¼:1-ä½ŽåŠŸè€—;	0-æ­£å¸¸
+	{	PARA_THR_PORT,		PT_NC,	PARAM_INIT_THR_PORT},	// 	é€ä¼ ç«¯å£é€‰æ‹©0-485B, 1-RS232
+	{	PARA_THR_BAUD,		PT_NC,	PARAM_INIT_THR_BAUD},	//	é€ä¼ ç«¯å£æ³¢ç‰¹çŽ‡ 0-9600, 1-19200, 2-38400, 3-57600, 4-115200
+	{	PARA_CTRL_BAUD,	PT_NC,	PARAM_INIT_CTRL_BAUD},	//	æŽ§åˆ¶ç«¯å£æ³¢ç‰¹çŽ‡ 0-9600, 1-19200, 2-38400, 4-57600, 5-115200
+	{	PARA_WLAN_CONN_ST1,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},	// WLANå£çŠ¶æ€1: 0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸
+	{	PARA_WLAN_CONN_ST2,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},	// WLANå£çŠ¶æ€2: 0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸
+	{	PARA_WLAN_CONN_ST3,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},	// WLANå£çŠ¶æ€3: 0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸
+	{	PARA_WLAN_CONN_ST4,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},	// WLANå£çŠ¶æ€4: 0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸
+	{	PARA_WLAN_SPEED1,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},	// WLANå£é€Ÿåº¦1: 0ï¼š10M  1ï¼š100M  2ï¼š1000M
+	{	PARA_WLAN_SPEED2,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},		// WLANå£é€Ÿåº¦1: 0ï¼š10M  1ï¼š100M  2ï¼š1000M
+	{	PARA_WLAN_SPEED3,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},		// WLANå£é€Ÿåº¦1: 0ï¼š10M  1ï¼š100M  2ï¼š1000M
+	{	PARA_WLAN_SPEED4,		PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0},		// WLANå£é€Ÿåº¦1: 0ï¼š10M  1ï¼š100M  2ï¼š1000M
+	{	PARA_GSM_BW_SEL,		PT_RO|PT_US,			0},		// å®½å¸¦ç‰ˆæœ¬GSMå¸¦å®½é€‰æ‹©: 0-6M, 1-20M, 2-24M, 3-25M, å…¶ä»–æ— æ•ˆ
+	{	PARA_HX_DET_UADDR,		PT_NC,		0x31 }, // è™¹ä¿¡DETæ¨¡å—ä¸Šè¡Œåœ°å€, é«˜4ä½ä¸ºBæ®µ, ä½Žå››ä½ä¸ºAæ®µ
+	{	PARA_HX_LNA_UADDR,		PT_NC,		0x31 }, // è™¹ä¿¡LNAæ¨¡å—ä¸Šè¡Œåœ°å€, é«˜4ä½ä¸ºBæ®µ, ä½Žå››ä½ä¸ºAæ®µ
+	{	PARA_HX_DET_DADDR,		PT_NC,		0x42 }, // è™¹ä¿¡DETæ¨¡å—ä¸‹è¡Œåœ°å€, é«˜4ä½ä¸ºBæ®µ, ä½Žå››ä½ä¸ºAæ®µ
+	{	PARA_HX_LNA_DADDR,		PT_NC,		0x42 }, // è™¹ä¿¡LNAæ¨¡å—ä¸‹è¡Œåœ°å€, é«˜4ä½ä¸ºBæ®µ, ä½Žå››ä½ä¸ºAæ®µ
+	{	PARA_FPS_AUTO_SCAN,	PT_AP_G|PT_US,		0 },			// è‡ªåŠ¨é¢‘ç‚¹æœç´¢åŠŸèƒ½ä½¿èƒ½:1-è‡ªåŠ¨æœç´¢å’Œè®¾ç½®é¢‘ç‚¹, 0-æ‰‹åŠ¨æœç´¢
+	{	PARA_FPS_SWITCH_THD,	PT_NC, 		0 },			// è‡ªåŠ¨é¢‘ç‚¹æœç´¢çš„BCCHåŠŸçŽ‡åˆ‡æ¢é—¨é™
+	{	PARA_FPS_MOSVC_SEL,	PT_AP_G|PT_US, 		0 },	// é¢‘ç‚¹æœç´¢: è¿è¥å•†é€‰æ‹©: 0-ä¸­ç§»åŠ¨, 1-ä¸­è”é€š, 2-ä¸­ç§»åŠ¨, 255-è‡ªåŠ¨é€‰æ‹©
+	{	PARA_FPS_RFRANGE_SEL,	PT_AP_G|PT_US, 		0 },	// é¢‘ç‚¹æœç´¢: é¢‘å®½é€‰æ‹©(å¿½ç•¥,ä»¥æ¨¡å—åˆ¶å¼ä¸ºå‡†): 0-å…¨é¢‘æ®µ, 1-900MHz, 2-1800MHz
+	{	PARA_FPS_BS_ID,		PT_AP_G|PT_RO|PT_US, 		0 },	// é¢‘ç‚¹æœç´¢: åŸºç«™è¯†åˆ«ç 
+	{	PARA_FPS_CA_COUNT,		PT_AP_G|PT_RO|PT_US, 		0 },	// é¢‘ç‚¹æœç´¢: æœ‰æ•ˆä¿¡é“æ•°
+	{	PARA_FPS_BCCH_LK_ST,	PT_AP_G|PT_RO|PT_US, 		0 },	// é¢‘ç‚¹æœç´¢: é”å®šBCCHçŠ¶æ€: 1-é”å®š, 0-å¤±è´¥
+	{	PARA_FPS_MOSVC_LK_ST,	PT_AP_G|PT_RO|PT_US, 		0 },	// é¢‘ç‚¹æœç´¢: é”å®šè¿è¥å•†çŠ¶æ€: 1-é”å®š, 0-å¤±è´¥
+	{	PARA_FPS_RFRANGE_LK_ST,	PT_AP_G|PT_RO|PT_US, 		0 },	// é¢‘ç‚¹æœç´¢: é”å®šé¢‘å¸¦çŠ¶æ€: 1-é”å®š, 0-å¤±è´¥
+	{	PARA_FPS_BCCH_POW_M,	PT_AP_G_EX|PT_RO|PT_US, 	(UCHAR8)(-120) },	// é¢‘ç‚¹æœç´¢: ä¸»å°åŒºBCCHæŽ¥æ”¶å¼ºåº¦
+	{	PARA_FPS_BCCH_POW_1,	PT_AP_G_EX|PT_RO|PT_US, 	(UCHAR8)(-120) },	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº1BCCHæŽ¥æ”¶å¼ºåº¦
+	{	PARA_FPS_BCCH_POW_2,	PT_AP_G_EX|PT_RO|PT_US, 	(UCHAR8)(-120) },	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº2BCCHæŽ¥æ”¶å¼ºåº¦
+	{	PARA_FPS_BCCH_POW_3,	PT_AP_G_EX|PT_RO|PT_US, 	(UCHAR8)(-120) },	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº3BCCHæŽ¥æ”¶å¼ºåº¦
+	{	PARA_FPS_BCCH_POW_4,	PT_AP_G_EX|PT_RO|PT_US, 	(UCHAR8)(-120) },	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº4BCCHæŽ¥æ”¶å¼ºåº¦
+	{	PARA_FPS_BCCH_POW_5,	PT_AP_G_EX|PT_RO|PT_US, 	(UCHAR8)(-120) },	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº5BCCHæŽ¥æ”¶å¼ºåº¦
+	{	PARA_FPS_BCCH_POW_6,	PT_AP_G_EX|PT_RO|PT_US, 	(UCHAR8)(-120) },	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº6BCCHæŽ¥æ”¶å¼ºåº¦
+	{	PARA_A_EXPA_WORK_EN,	PT_AP_G_EX|PT_US, 	0 },		// [WR]å¾®åŠŸæ”¾: å°„é¢‘ä¿¡å·å¼€å…³
+	{	PARA_A_EXPA_DL_ATT,		PT_AP_G_EX|PT_US, 	0 },		// [WR]å¾®åŠŸæ”¾: ä¸‹è¡Œè¡°å‡å€¼
+	{	PARA_A_EXPA_TEMP,		PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]å¾®åŠŸæ”¾: æ¸©åº¦
+	{	PARA_A_EXPA_DL_POW,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]å¾®åŠŸæ”¾: ä¸‹è¡Œè¾“å‡ºåŠŸçŽ‡ç”µå¹³
+	{	PARA_A_EXPA_SWR,		PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]å¾®åŠŸæ”¾: ä¸‹è¡Œé©»æ³¢æ¯”å€¼
+	{	PARA_A_EXPA_POWER_DN,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]å¾®åŠŸæ”¾: ç”µæºæŽ‰ç”µå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)
+	{	PARA_A_EXPA_POWER_ERR,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]å¾®åŠŸæ”¾: ç”µæºæ•…éšœå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)
+	{	PARA_A_EXPA_BATT_ERR,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]å¾®åŠŸæ”¾: ç›‘æŽ§æ¨¡å—ç”µæ± æ•…éšœå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)
+	{	PARA_A_EXPA_POS_ALM,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]å¾®åŠŸæ”¾: ä½ç½®å‘Šè­¦
+	{	PARA_A_EXPA_DOOR_ALM,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]å¾®åŠŸæ”¾: é—¨ç¦å‘Šè­¦
+	{	PARA_A_EXPA_WROK_ALM,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]å¾®åŠŸæ”¾: ä¸‹è¡ŒåŠŸæ”¾æ•…éšœå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)
+	{	PARA_A_EXPA_EXT1_ALM,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]å¾®åŠŸæ”¾: å¤–éƒ¨å‘Šè­¦1
+	{	PARA_A_EXPA_EXT2_ALM,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]å¾®åŠŸæ”¾: å¤–éƒ¨å‘Šè­¦2
+	{	PARA_A_EXPA_EXT3_ALM,	PT_AP_G_EX|PT_RO|PT_US, 	0 },		// [RO]å¾®åŠŸæ”¾: å¤–éƒ¨å‘Šè­¦3
+	{	PARA_A_EXPA_MAX_GAIN,	PT_NC, 	0 },		// å¾®åŠŸæ”¾: é›¶è¡°å‡å¢žç›Šï¼Œå³æœ€å¤§å¢žç›Š
+	{	PARA_A_EXPA_GAIN_THD,	PT_NC, 	0 },		// å¾®åŠŸæ”¾: å¢žç›Šé—¨é™ï¼Œå³å…è®¸å·¥ä½œçš„å¢žç›Šæœ€å¤§å€¼
+	{	PARA_A_EXPA_POW_THD,	PT_NC, 	0 },		// å¾®åŠŸæ”¾: åŠŸæ”¾è¾“å‡ºåŠŸçŽ‡é—¨é™
+	{	PARA_A_EXPA_POD_CMP,	PT_NC,	0 },		// å¾®åŠŸæ”¾: æ£€æ³¢ç®¡åŠŸçŽ‡æ£€æµ‹è¡¥å¿å€¼,1å­—èŠ‚æœ‰ç¬¦å·æ•°,æœ€ç»ˆåŠŸçŽ‡ä¸ºæ£€æ³¢ç®¡åŠŸçŽ‡åŠ ä¸Šè¡¥å¿å€¼
+	{	PARA_MONITOR_VOL_OVER_THR, 				PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0},			 // ç›‘æŽ§ç”µåŽ‹è¿‡é—¨é™
+	{	PARA_MONITOR_VOL_OWE_THR,				PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0},			 // ç›‘æŽ§ç”µåŽ‹æ¬ é—¨é™
+	{	PARA_DIGITAL_SINGNAL_ALARM,    			PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // æ•°å­—ä¿¡å·å¼‚å¸¸å‘Šè­¦
+	{	PARA_HOST_DEVICE_LINK_SINGNAL_ALARM,    PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // ä¸»ä»Žç›‘æŽ§é“¾è·¯å‘Šè­¦
+	{	PARA_MONITOR_BATTERY_ALARM,    			PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // ç›‘æŽ§æ¨¡å—ç”µæ± æ•…éšœå‘Šè­¦
+	{	PARA_LOW_POWER_ALARM,    				PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 //// ç”µæºæŽ‰ç”µå‘Šè­¦
+	{	PARA_BATTERY_BREAKDOWN_ALARM,    		PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 //// ç”µæºæ•…éšœå‘Šè­¦
+	{	PARA_POSITION_MOVE_ALARM,    			PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0},			 // ä½ç½®å‘Šè­¦
+	{	PARA_A_INPUT_OVER_DPOW_THR_ALARM,    	PT_AP_G_EX|PT_US, 	0},			 // Aä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦
+	{	PARA_A_INPUT_OWE_DPOW_THR_ALARM,    	PT_AP_G_EX|PT_US, 	0},			 // Aä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡å‘Šè­¦
+	{	PARA_B_INPUT_OVER_DPOW_THR_ALARM,    	PT_BP_G_EX|PT_US, 	0},			 // Bä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦
+	{	PARA_B_INPUT_OWE_DPOW_THR_ALARM,    	PT_BP_G_EX|PT_US, 	0},			 // Bä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡å‘Šè­¦
+	{	PARA_C_INPUT_OVER_DPOW_THR_ALARM,    	PT_CP_G_EX|PT_US, 	0},			 // Cä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦
+	{	PARA_C_INPUT_OWE_DPOW_THR_ALARM,    	PT_CP_G_EX|PT_US, 	0},			 // Cä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡å‘Šè­¦
+	{	PARA_D_INPUT_OVER_DPOW_THR_ALARM,    	PT_DP_G_EX|PT_US, 	0},			 // Dä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦
+	{	PARA_D_INPUT_OWE_DPOW_THR_ALARM,    	PT_DP_G_EX|PT_US, 	0},			 // Dä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡å‘Šè­¦
+	{	PARA_TD_D_OVER_SLOT1_THR_ALARM,    		PT_BP_G_EX|PT_US, 	0}, 			 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦
+	{	PARA_TD_D_OWE_SLOT1_THR_ALARM,    		PT_BP_G_EX|PT_US, 	0}, 			 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦
+	{	PARA_RE_DATA_LAN_ST1,    			PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦
+	{	PARA_RE_CASCADE_LAN_ST1,    		PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦
+	{	PARA_RE_DATA_LAN_SYS_ST1,    		PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦
+	{	PARA_RE_CASCADE_LAN_SYS_ST1,    		PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦
+	{	PARA_A_RF_POW_SWR,				PT_AP_G_EX|PT_US, 	0},	 //Aæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”
+	{	PARA_A_RF_OUT_POW_H_THR,		PT_AP_G_EX|PT_US, 	0},	 //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™
+	{	PARA_A_RF_OUT_POW_L_THR,		PT_AP_G_EX|PT_US, 	0},	 //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™
+	{	PARA_B_RF_POW_SWR,				PT_BP_G_EX|PT_US, 	0},	 //Bæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”
+	{	PARA_B_RF_OUT_POW_H_THR,		PT_BP_G_EX|PT_US, 	0},	 //Bæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™ 
+	{	PARA_B_RF_OUT_POW_L_THR,		PT_BP_G_EX|PT_US, 	0},	 //Bæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™
+	{	PARA_C_RF_POW_SWR,				PT_CP_G_EX|PT_US, 	0},	 //Cæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”
+	{	PARA_C_RF_OUT_POW_H_THR,		PT_CP_G_EX|PT_US, 	0},	 //Cæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™ 
+	{	PARA_C_RF_OUT_POW_L_THR,		PT_CP_G_EX|PT_US, 	0},	 //Cæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™
+	{	PARA_D_RF_POW_SWR,				PT_DP_G_EX|PT_US, 	0},	 //Dæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”
+	{	PARA_D_RF_OUT_POW_H_THR,		PT_DP_G_EX|PT_US, 	0},	 //Dæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™ 
+	{	PARA_D_RF_OUT_POW_L_THR,		PT_DP_G_EX|PT_US, 	0},	 //Dæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™
+	{	PARA_PWR_3V3_1_VT  ,    		PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 		// 3.3Vç”µæºç”µåŽ‹
+	{	PARA_PWR_3V3_2_VT  ,    		PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 		//	3.3Vç”µæºç”µåŽ‹
+	{	PARA_PWR_1V8_VT  ,    			PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			// 1.8Vç”µæºç”µåŽ‹
+	{	PARA_PWR_1V5_VT  ,    			PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0}, 			 // 1.5Vç”µæºç”µåŽ‹
+	{	PARA_A_DL_RF_EN	,		PT_AP|PT_US,		1,},	// 	Aæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½
+	{	PARA_A_UL_RF_EN	,		PT_AP|PT_US,		1,},	// 	Aæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½
+	{	PARA_B_DL_RF_EN	,		PT_BP|PT_US,		1,},	// 	Bæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½
+	{	PARA_B_UL_RF_EN	,		PT_BP|PT_US,		1,},	// 	Bæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½
+	{	PARA_C_DL_RF_EN	,		PT_CP|PT_US,		1,},	// 	Cæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½
+	{	PARA_C_UL_RF_EN	,		PT_CP|PT_US,		1,},	// 	Cæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½
+	{	PARA_D_DL_RF_EN	,		PT_DP|PT_US,		1,},	// 	Dæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½
+	{	PARA_D_UL_RF_EN	,		PT_DP|PT_US,		1,},	// 	Dæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½
+	{	PARA_METER_OFFSET  ,    		PT_AP_G_EX|PT_US, 	0}, 			 //	ä»ªå™¨åå·®å€¼è®¾ç½®
+	{	PARA_METER_OFFSET_B  ,    		PT_BP_G_EX|PT_US, 	0}, 			 //	ä»ªå™¨åå·®å€¼è®¾ç½®
+	{	PARA_METER_OFFSET_C  ,    		PT_CP_G_EX|PT_US, 	0}, 			 //	ä»ªå™¨åå·®å€¼è®¾ç½®
+	{	PARA_METER_OFFSET_D  ,    		PT_DP_G_EX|PT_US, 	0}, 			 //	ä»ªå™¨åå·®å€¼è®¾ç½®
+	{	PARA_C_TD_TYPE_SELECT  ,    		PT_CP|PT_US, 	0},//686	// TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦					
+	{	PARA_C_TD_NORMAL_CP	  ,    		PT_CP|PT_US, 	0},//716	//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP
+	{	PARA_C_TD_EXTENDED_CP	  ,    		PT_CP_G_EX|PT_US, 	0},//717	//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP
+	{	PARA_C_TD_SYNC_ST  ,    		PT_CP|PT_US, 	0},	//687  	//TDåŒæ­¥çŠ¶æ€:	0-å·²åŒæ­¥ï¼Œ1-æœªåŒæ­¥			
+	{	PARA_C_TD_WORK_MODE  ,    		PT_CP|PT_US, 	0},	//688  	//[WR]TD:TD_SCDMAæŽ§åˆ¶æ¨¡å¼ï¼Œ00æ­£å¸¸æ¨¡å¼ï¼Œ01ä¸Šè¡Œå¸¸å¼€ï¼Œ10æ˜¯ä¸‹è¡Œå¸¸å¼€,	æ¯æ¬¡ä¸Šç”µåŽæ¸…é›¶			
+	{	PARA_C_TD_DL_OVER_SLOT1_THR_ALARM  ,    		PT_CP_G_EX|PT_US, 	0},	//689  // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦					
+	{	PARA_C_TD_DL_OWE_SLOT1_THR_ALARM  ,    		PT_CP_G_EX|PT_US, 	0},	//690	 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦					
+	{	PARA_D_TD_TYPE_SELECT  ,    		PT_DP|PT_US, 	0},	//691  // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦					
+	{	PARA_D_TD_NORMAL_CP	  ,    		PT_DP|PT_US, 	0},//718	//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP
+	{	PARA_D_TD_EXTENDED_CP	  ,    		PT_DP_G_EX|PT_US, 	0},//719	//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP
+	{	PARA_D_TD_SYNC_ST  ,    		PT_DP|PT_US, 	0},	//692  	//TDåŒæ­¥çŠ¶æ€:	0-å·²åŒæ­¥ï¼Œ1-æœªåŒæ­¥			
+	{	PARA_D_TD_WORK_MODE  ,    		PT_DP|PT_US, 	0},	//693  	//[WR]TD:TD_SCDMAæŽ§åˆ¶æ¨¡å¼ï¼Œ00æ­£å¸¸æ¨¡å¼ï¼Œ01ä¸Šè¡Œå¸¸å¼€ï¼Œ10æ˜¯ä¸‹è¡Œå¸¸å¼€,	æ¯æ¬¡ä¸Šç”µåŽæ¸…é›¶			
+	{	PARA_D_TD_DL_OVER_SLOT1_THR_ALARM  ,    		PT_DP_G_EX|PT_US, 	0},	//694  	// TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦					
+	{	PARA_D_TD_DL_OWE_SLOT1_THR_ALARM  ,    		PT_DP_G_EX|PT_US, 	0},	//695	 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦					
+	{	PARA_C_TD_T0_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//696  	//TDæ—¶éš™0ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_C_TD_T1_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//697  	//TDæ—¶éš™1ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_C_TD_T2_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//698  	//TDæ—¶éš™2ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_C_TD_T3_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//699  	//TDæ—¶éš™3ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_C_TD_T4_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//700  	//TDæ—¶éš™4ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_C_TD_T5_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//701  	//TDæ—¶éš™5ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_C_TD_T6_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//702  	//TDæ—¶éš™6ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_C_TD_T7_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//703  	//TDæ—¶éš™7ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_C_TD_T8_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//704  	//TDæ—¶éš™8ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_C_TD_T9_UD	  ,    		PT_CP_G_EX|PT_US, 	0},	//705  	//TDæ—¶éš™9ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_D_TD_T0_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//706  	//TDæ—¶éš™0ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_D_TD_T1_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//707  	//TDæ—¶éš™1ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_D_TD_T2_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//708  	//TDæ—¶éš™2ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_D_TD_T3_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//709  	//TDæ—¶éš™3ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_D_TD_T4_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//710  	//TDæ—¶éš™4ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_D_TD_T5_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//711  	//TDæ—¶éš™5ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_D_TD_T6_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//712  	//TDæ—¶éš™6ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_D_TD_T7_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//713  	//TDæ—¶éš™7ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_D_TD_T8_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//714  	//TDæ—¶éš™8ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+	{	PARA_D_TD_T9_UD	  ,    		PT_DP_G_EX|PT_US, 	0},	//715  	//TDæ—¶éš™9ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ
+	{	PARA_NOISE_TEST_EN	  ,    	PT_AP_G_EX|PT_US, 	0},	//	å™ªå£°æµ‹è¯•å¼€å…³	
+	{	PARA_FREQ_MODIF_VAL_D	  ,    	PT_DP_G_EX|PT_US, 	0},	//	é¢‘ç‚¹ä¿®æ­£	
+	{	PARA_FREQ_MODIF_VAL_B	  ,    	PT_BP_G_EX|PT_US, 	0},	//	é¢‘ç‚¹ä¿®æ­£	
+	{	PARA_FREQ_MODIF_VAL_A	  ,    	PT_AP_G_EX|PT_US, 	0},	//	é¢‘ç‚¹ä¿®æ­£	
+	{	PARA_B_TDS_2TH_BREAKING_POINT_SET	  ,    	PT_BP|PT_US, 	0},	//	TDS ç¬¬äºŒè½¬æ¢ç‚¹è®¾ç½®	
+	{	PARA_DELAY_MODE_A	,PT_AP|PT_US, 	0},		//0x8660	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨		
+	{	PARA_DELAY_MODE_B	,PT_BP|PT_US, 	0},		//0x8660	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨					
+	{	PARA_DELAY_MODE_C	,PT_CP|PT_US, 	0},		//0x8660	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨					
+	{	PARA_DELAY_MODE_D	,PT_DP|PT_US, 	0},		//0x8660	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨					
+	{	PARA_REE_CIRCUIT_ALARM	,	   PT_AP|PT_US,  0},					//	0x803f		// æ‰©å±•å•å…ƒç”µè·¯æ•…éšœå‘Šè­¦16
+	{	PARA_REE_WLAN_CONN_ST			,	   PT_AP|PT_US,  0},			//	0x87d0	//	316 //	WLANå£çŠ¶æ€1:	0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸
+	{	PARA_DL_POWER_MAX ,PT_NC, 0}, 	//æ±‚ä¸‹è¡Œæ¨¡å—åŠŸçŽ‡æœ€å¤§å€¼			
+	{	PARA_SLOT_TIME_EN_B	,PT_BP,	0}, 	//æ—¶éš™é…æ¯”è‡ªåŠ¨æ£€æµ‹å¼€å…³				
+	{	PARA_SLOT_TIME_DISTRI_B ,PT_BP, 0}, 	//æ—¶éš™é…æ¯”åˆ†å¸ƒ				
+	{	PARA_VERSION_FLAG ,PT_NC, 0}, 	//ç‰ˆæœ¬è¯†åˆ«		
+	{	PARA_SLOT_TIME_EN_C ,PT_BP, 0}, 	//æ—¶éš™é…æ¯”è‡ªåŠ¨æ£€æµ‹å¼€å…³				
+	{	PARA_SLOT_TIME_DISTRI_C ,PT_BP, 0}, 	//æ—¶éš™é…æ¯”åˆ†å¸ƒ				
+	{	PARA_A_1197_LOCK_ST ,PT_AP, 0}, //Aæ®µ1197é”å®šçŠ¶æ€		
+	{	PARA_A_IF_ST ,PT_AP, 0},	//Aæ®µä¸­é¢‘é¢‘çŽ‡,0/1---300M/500M				
+	{	PARA_ENCRYPTION_ST ,PT_AP, 0},	//åŠ å¯†çŠ¶æ€,0/1---ä¸åŠ å¯†/åŠ å¯†				
+	{	PARA_PWR_1V6_VT ,PT_AP, 0},         //     //1.6vç”µæº		
+	{	PARA_A_90_VALUE ,PT_AP, 0xff}, //Aæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+	{	PARA_A_91_VALUE ,PT_AP, 0xff}, //Aæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+	{	PARA_A_94_VALUE ,PT_AP, 0xff}, //Aæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+	{	PARA_A_95_VALUE ,PT_AP, 0xff}, //Aæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+	{	PARA_B_90_VALUE ,PT_AP, 0xff}, //Bæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+	{	PARA_B_91_VALUE ,PT_AP, 0xff}, //Bæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+	{	PARA_B_94_VALUE ,PT_AP, 0xff}, //Bæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+	{	PARA_B_95_VALUE ,PT_AP, 0xff}, //Bæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+	{	PARA_C_90_VALUE ,PT_AP, 0xff}, //Cæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+	{	PARA_C_91_VALUE ,PT_AP, 0xff}, //Cæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+	{	PARA_C_94_VALUE ,PT_AP, 0xff}, //Cæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+	{	PARA_C_95_VALUE ,PT_AP, 0xff}, //Cæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+	{	PARA_D_90_VALUE ,PT_AP, 0xff}, //Dæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+	{	PARA_D_91_VALUE ,PT_AP, 0xff}, //Dæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+	{	PARA_D_94_VALUE ,PT_AP, 0xff}, //Dæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+	{	PARA_D_95_VALUE ,PT_AP, 0xff}, //Dæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+	{	PARA_PASSTHROUGH_EN ,PT_AP, 0x00}, //é€ä¼ ä½¿èƒ½å¼€å…³
 	{	PARA_A_DL_POW_ADJ ,PT_AP, 0}, 
 	{	PARA_B_DL_POW_ADJ ,PT_BP, 0}, 
 	{	PARA_C_DL_POW_ADJ ,PT_CP, 0}, 
 	{	PARA_D_DL_POW_ADJ ,PT_DP, 0}, 
 	{	PARA_SoftwareLoadTimes ,PT_NC, 0}, 
-	{	PARA_A_LNA_EN_ST	,PT_AP, 0}, 			//9363³õÊ¼»¯ÅäÖÃ£¬0Îªa1£¬01Îªa2
+	{	PARA_A_LNA_EN_ST	,PT_AP, 0}, 			//9363åˆå§‹åŒ–é…ç½®ï¼Œ0ä¸ºa1ï¼Œ01ä¸ºa2
 		
 
 };
 
 
 _T_PARAM_2B sys_param_2b[]={
-	{	PARA_A_DL_CHANNEL1	, PT_AP|PT_US, 	45,}, 	//	A¶ÎÏÂÐÐÐÅµÀºÅ1
-	{	PARA_A_DL_CHANNEL2	, PT_AP|PT_US, 	45,},	//	A¶ÎÏÂÐÐÐÅµÀºÅ2
-	{	PARA_A_DL_CHANNEL3	, PT_AP|PT_US, 	45,},	//	A¶ÎÏÂÐÐÐÅµÀºÅ3
-	{	PARA_A_DL_CHANNEL4	, PT_AP|PT_US, 	45,},	//	A¶ÎÏÂÐÐÐÅµÀºÅ4
-	{	PARA_A_DL_CHANNEL5	, PT_AP|PT_US, 	45,},	//	A¶ÎÏÂÐÐÐÅµÀºÅ5
-	{	PARA_A_DL_CHANNEL6	, PT_AP|PT_US, 	45,},	//	A¶ÎÏÂÐÐÐÅµÀºÅ6
-	{	PARA_A_DL_CHANNEL7	, PT_AP|PT_US, 	45,},	//	A¶ÎÏÂÐÐÐÅµÀºÅ7
-	{	PARA_A_DL_CHANNEL8	, PT_AP|PT_US, 	45,},	//	A¶ÎÏÂÐÐÐÅµÀºÅ8
-	{	PARA_A_DL_CHANNEL9	, PT_AP|PT_US, 	45,},	//	A¶ÎÏÂÐÐÐÅµÀºÅ9
-	{	PARA_A_DL_CHANNEL10	, PT_AP|PT_US, 	45,},	//	A¶ÎÏÂÐÐÐÅµÀºÅ10
-	{	PARA_A_DL_CHANNEL11	, PT_AP|PT_US, 	45,},	//	A¶ÎÏÂÐÐÐÅµÀºÅ11
-	{	PARA_A_DL_CHANNEL12	, PT_AP|PT_US, 	45,},	//	A¶ÎÏÂÐÐÐÅµÀºÅ12
-	{	PARA_A_DL_CHANNEL13	, PT_AP|PT_US, 	45,},	//	A¶ÎÏÂÐÐÐÅµÀºÅ13
-	{	PARA_A_DL_CHANNEL14	, PT_AP|PT_US, 	45,},	//	A¶ÎÏÂÐÐÐÅµÀºÅ14
-	{	PARA_A_DL_CHANNEL15	, PT_AP|PT_US, 	45,},	//	A¶ÎÏÂÐÐÐÅµÀºÅ15
-	{	PARA_A_DL_CHANNEL16	, PT_AP|PT_US, 	45,},	//	A¶ÎÏÂÐÐÐÅµÀºÅ16
-	{	PARA_A_UL_CHANNEL1		, PT_US, 	45,}, 	//	A¶ÎÉÏÐÐÐÅµÀºÅ1
-	{	PARA_A_UL_CHANNEL2		, PT_US, 	45,},	//	A¶ÎÉÏÐÐÐÅµÀºÅ2
-	{	PARA_A_UL_CHANNEL3		, PT_US, 	45,},	//	A¶ÎÉÏÐÐÐÅµÀºÅ3
-	{	PARA_A_UL_CHANNEL4		, PT_US, 	45,},	//	A¶ÎÉÏÐÐÐÅµÀºÅ4
-	{	PARA_A_UL_CHANNEL5		, PT_US, 	45,},	//	A¶ÎÉÏÐÐÐÅµÀºÅ5
-	{	PARA_A_UL_CHANNEL6		, PT_US, 	45,},	//	A¶ÎÉÏÐÐÐÅµÀºÅ6
-	{	PARA_A_UL_CHANNEL7		, PT_US, 	45,},	//	A¶ÎÉÏÐÐÐÅµÀºÅ7
-	{	PARA_A_UL_CHANNEL8		, PT_US, 	45,},	//	A¶ÎÉÏÐÐÐÅµÀºÅ8
-	{	PARA_A_UL_CHANNEL9		, PT_US, 	45,},	//	A¶ÎÉÏÐÐÐÅµÀºÅ9
-	{	PARA_A_UL_CHANNEL10	, PT_US, 	45,},	//	A¶ÎÉÏÐÐÐÅµÀºÅ10
-	{	PARA_A_UL_CHANNEL11	, PT_US, 	45,},	//	A¶ÎÉÏÐÐÐÅµÀºÅ11
-	{	PARA_A_UL_CHANNEL12	, PT_US, 	45,},	//	A¶ÎÉÏÐÐÐÅµÀºÅ12
-	{	PARA_A_UL_CHANNEL13	, PT_US, 	45,},	//	A¶ÎÉÏÐÐÐÅµÀºÅ13
-	{	PARA_A_UL_CHANNEL14	, PT_US, 	45,},	//	A¶ÎÉÏÐÐÐÅµÀºÅ14
-	{	PARA_A_UL_CHANNEL15	, PT_US, 	45,},	//	A¶ÎÉÏÐÐÐÅµÀºÅ15
-	{	PARA_A_UL_CHANNEL16	, PT_US, 	45,},	//	A¶ÎÉÏÐÐÐÅµÀºÅ16
-	{	PARA_A_DCH_MAX_POW1	, PT_AP_G_EX|PT_SI, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1
-	{	PARA_A_DCH_MAX_POW2	, PT_AP_G_EX|PT_NC, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2
-	{	PARA_A_DCH_MAX_POW3	, PT_AP_G_EX|PT_NC, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3
-	{	PARA_A_DCH_MAX_POW4	, PT_AP_G_EX|PT_NC, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4
-	{	PARA_A_DCH_MAX_POW5	, PT_AP_G_EX|PT_NC, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5
-	{	PARA_A_DCH_MAX_POW6	, PT_AP_G_EX|PT_NC, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6
-	{	PARA_A_DCH_MAX_POW7	, PT_AP_G_EX|PT_NC, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7
-	{	PARA_A_DCH_MAX_POW8	, PT_AP_G_EX|PT_NC, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8
-	{	PARA_A_DCH_MAX_POW9	, PT_AP_G_EX|PT_NC, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9
-	{	PARA_A_DCH_MAX_POW10	, PT_AP_G_EX|PT_NC, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10
-	{	PARA_A_DCH_MAX_POW11	, PT_AP_G_EX|PT_NC, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11
-	{	PARA_A_DCH_MAX_POW12	, PT_AP_G_EX|PT_NC, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12
-	{	PARA_A_DCH_MAX_POW13	, PT_AP_G_EX|PT_NC, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13
-	{	PARA_A_DCH_MAX_POW14	, PT_AP_G_EX|PT_NC, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14
-	{	PARA_A_DCH_MAX_POW15	, PT_AP_G_EX|PT_NC, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15
-	{	PARA_A_DCH_MAX_POW16	, PT_AP_G_EX|PT_NC, 	27,},	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16
-	{	PARA_A_UCH_MAX_POW1	, PT_AP|PT_SI, 		-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1
-	{	PARA_A_UCH_MAX_POW2	, PT_AP|PT_SI, 	-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2
-	{	PARA_A_UCH_MAX_POW3	, PT_AP_G_EX|PT_NC, 	-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3
-	{	PARA_A_UCH_MAX_POW4	, PT_AP_G_EX|PT_NC, 	-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4
-	{	PARA_A_UCH_MAX_POW5	, PT_AP_G_EX|PT_NC, 	-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5
-	{	PARA_A_UCH_MAX_POW6	, PT_AP_G_EX|PT_NC, 	-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6
-	{	PARA_A_UCH_MAX_POW7	, PT_AP_G_EX|PT_NC, 	-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7
-	{	PARA_A_UCH_MAX_POW8	, PT_AP_G_EX|PT_NC, 	-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8
-	{	PARA_A_UCH_MAX_POW9	, PT_AP_G_EX|PT_NC, 	-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9
-	{	PARA_A_UCH_MAX_POW10	, PT_AP_G_EX|PT_NC, 	-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10
-	{	PARA_A_UCH_MAX_POW11	, PT_AP_G_EX|PT_NC, 	-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11
-	{	PARA_A_UCH_MAX_POW12	, PT_AP_G_EX|PT_NC, 	-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12
-	{	PARA_A_UCH_MAX_POW13	, PT_AP_G_EX|PT_NC, 	-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13
-	{	PARA_A_UCH_MAX_POW14	, PT_AP_G_EX|PT_NC, 	-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14
-	{	PARA_A_UCH_MAX_POW15	, PT_AP_G_EX|PT_NC, 	-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15
-	{	PARA_A_UCH_MAX_POW16	, PT_AP_G_EX|PT_NC, 	-10,},	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16
-	{	PARA_A_DCH_POW1	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1
-	{	PARA_A_DCH_POW2	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2
-	{	PARA_A_DCH_POW3	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3
-	{	PARA_A_DCH_POW4	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4
-	{	PARA_A_DCH_POW5	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5
-	{	PARA_A_DCH_POW6	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6
-	{	PARA_A_DCH_POW7	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7
-	{	PARA_A_DCH_POW8	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8
-	{	PARA_A_DCH_POW9	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9
-	{	PARA_A_DCH_POW10	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10
-	{	PARA_A_DCH_POW11	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11
-	{	PARA_A_DCH_POW12	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12
-	{	PARA_A_DCH_POW13	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13
-	{	PARA_A_DCH_POW14	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14
-	{	PARA_A_DCH_POW15	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15
-	{	PARA_A_DCH_POW16	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16
-	{	PARA_A_UCH_POW1	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1
-	{	PARA_A_UCH_POW2	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2
-	{	PARA_A_UCH_POW3	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3
-	{	PARA_A_UCH_POW4	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4
-	{	PARA_A_UCH_POW5	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5
-	{	PARA_A_UCH_POW6	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6
-	{	PARA_A_UCH_POW7	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7
-	{	PARA_A_UCH_POW8	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8
-	{	PARA_A_UCH_POW9	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9
-	{	PARA_A_UCH_POW10	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-	{	PARA_A_UCH_POW11	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ11
-	{	PARA_A_UCH_POW12	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ12
-	{	PARA_A_UCH_POW13	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ13
-	{	PARA_A_UCH_POW14	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ14
-	{	PARA_A_UCH_POW15	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ15
-	{	PARA_A_UCH_POW16	, PT_NC, 	0,},	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ16
-	{	PARA_A_UDPX_IN_GAIN	, PT_AP_G_EX|PT_NC, 	0,},	//	A¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ
-	{	PARA_A_UDPX_OUT_GAIN, PT_AP_G_EX|PT_NC, 	0,},	//	A¶ÎÊä³öË«¹¤Æ÷ÔöÒæ
-	{	PARA_A_DL_TOTAL_POW	, PT_AP|PT_RO|PT_SI, 	0,},	//	A¶ÎÏÂÐÐ×Ü¹¦ÂÊ
-	{	PARA_A_UL_TOTAL_POW	, PT_AP|PT_RO|PT_SI, 	0,},	//	A¶ÎÉÏÐÐ×Ü¹¦ÂÊ
-	{	PARA_A_REC_DPX_IG	, PT_NC, 	0,},	//	RECµÄA¶ÎÊäÈëË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,	
-	{	PARA_A_REC_DPX_OG	, PT_NC, 	0,},	//	RECµÄA¶ÎÊä³öË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,	
-	{	PARA_B_DL_CHANNEL1		, PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ1
-	{	PARA_B_DL_CHANNEL2		, PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ2
-	{	PARA_B_DL_CHANNEL3		, PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ3
-	{	PARA_B_DL_CHANNEL4		, PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ4
-	{	PARA_B_DL_CHANNEL5		, PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ5
-	{	PARA_B_DL_CHANNEL6		, PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ6
-	{	PARA_B_DL_CHANNEL7		, PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ7
-	{	PARA_B_DL_CHANNEL8		, PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ8
-	{	PARA_B_DL_CHANNEL9		, PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ9
-	{	PARA_B_DL_CHANNEL10 , PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ10
-	{	PARA_B_DL_CHANNEL11 , PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ11
-	{	PARA_B_DL_CHANNEL12 , PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ12
-	{	PARA_B_DL_CHANNEL13 , PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ13
-	{	PARA_B_DL_CHANNEL14 , PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ14
-	{	PARA_B_DL_CHANNEL15 , PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ15
-	{	PARA_B_DL_CHANNEL16 , PT_BP|PT_US,	10688,},	//	B¶ÎÏÂÐÐÐÅµÀºÅ16
-	{	PARA_B_UL_CHANNEL1	, PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ1
-	{	PARA_B_UL_CHANNEL2	, PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ2
-	{	PARA_B_UL_CHANNEL3	, PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ3
-	{	PARA_B_UL_CHANNEL4	, PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ4
-	{	PARA_B_UL_CHANNEL5	, PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ5
-	{	PARA_B_UL_CHANNEL6	, PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ6
-	{	PARA_B_UL_CHANNEL7	, PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ7
-	{	PARA_B_UL_CHANNEL8	, PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ8
-	{	PARA_B_UL_CHANNEL9	, PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ9
-	{	PARA_B_UL_CHANNEL10 , PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ10
-	{	PARA_B_UL_CHANNEL11 , PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ11
-	{	PARA_B_UL_CHANNEL12 , PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ12
-	{	PARA_B_UL_CHANNEL13 , PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ13
-	{	PARA_B_UL_CHANNEL14 , PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ14
-	{	PARA_B_UL_CHANNEL15 , PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ15
-	{	PARA_B_UL_CHANNEL16 , PT_US,	10688,},	//	B¶ÎÉÏÐÐÐÅµÀºÅ16
-	{	PARA_B_DCH_MAX_POW1	, PT_BP_G_EX|PT_SI, 		27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1
-	{	PARA_B_DCH_MAX_POW2	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2
-	{	PARA_B_DCH_MAX_POW3	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3
-	{	PARA_B_DCH_MAX_POW4	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4
-	{	PARA_B_DCH_MAX_POW5	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5
-	{	PARA_B_DCH_MAX_POW6	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6
-	{	PARA_B_DCH_MAX_POW7	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7
-	{	PARA_B_DCH_MAX_POW8	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8
-	{	PARA_B_DCH_MAX_POW9	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9
-	{	PARA_B_DCH_MAX_POW10	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10
-	{	PARA_B_DCH_MAX_POW11	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11
-	{	PARA_B_DCH_MAX_POW12	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12
-	{	PARA_B_DCH_MAX_POW13	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13
-	{	PARA_B_DCH_MAX_POW14	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14
-	{	PARA_B_DCH_MAX_POW15	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15
-	{	PARA_B_DCH_MAX_POW16	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16
-	{	PARA_B_UCH_MAX_POW1		, PT_BP|PT_SI, 	-10,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1
-	{	PARA_B_UCH_MAX_POW2		, PT_BP|PT_SI, 	-10,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2
-	{	PARA_B_UCH_MAX_POW3		, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3
-	{	PARA_B_UCH_MAX_POW4		, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4
-	{	PARA_B_UCH_MAX_POW5		, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5
-	{	PARA_B_UCH_MAX_POW6		, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6
-	{	PARA_B_UCH_MAX_POW7		, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7
-	{	PARA_B_UCH_MAX_POW8		, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8
-	{	PARA_B_UCH_MAX_POW9		, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9
-	{	PARA_B_UCH_MAX_POW10	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10
-	{	PARA_B_UCH_MAX_POW11	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11
-	{	PARA_B_UCH_MAX_POW12	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12
-	{	PARA_B_UCH_MAX_POW13	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13
-	{	PARA_B_UCH_MAX_POW14	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14
-	{	PARA_B_UCH_MAX_POW15	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15
-	{	PARA_B_UCH_MAX_POW16	, PT_BP_G_EX|PT_NC, 	27,},	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16
-	{	PARA_B_DCH_POW1	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1
-	{	PARA_B_DCH_POW2	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2
-	{	PARA_B_DCH_POW3	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3
-	{	PARA_B_DCH_POW4	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4
-	{	PARA_B_DCH_POW5	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5
-	{	PARA_B_DCH_POW6	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6
-	{	PARA_B_DCH_POW7	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7
-	{	PARA_B_DCH_POW8	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8
-	{	PARA_B_DCH_POW9	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9
-	{	PARA_B_DCH_POW10	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10
-	{	PARA_B_DCH_POW11	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11
-	{	PARA_B_DCH_POW12	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12
-	{	PARA_B_DCH_POW13	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13
-	{	PARA_B_DCH_POW14	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14
-	{	PARA_B_DCH_POW15	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15
-	{	PARA_B_DCH_POW16	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16
-	{	PARA_B_UCH_POW1	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1
-	{	PARA_B_UCH_POW2	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2
-	{	PARA_B_UCH_POW3	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3
-	{	PARA_B_UCH_POW4	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4
-	{	PARA_B_UCH_POW5	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5
-	{	PARA_B_UCH_POW6	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6
-	{	PARA_B_UCH_POW7	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7
-	{	PARA_B_UCH_POW8	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8
-	{	PARA_B_UCH_POW9	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9
-	{	PARA_B_UCH_POW10	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-	{	PARA_B_UCH_POW11	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ11
-	{	PARA_B_UCH_POW12	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ12
-	{	PARA_B_UCH_POW13	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ13
-	{	PARA_B_UCH_POW14	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ14
-	{	PARA_B_UCH_POW15	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ15
-	{	PARA_B_UCH_POW16	, PT_NC, 	0,},	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ16
-	{	PARA_B_UDPX_IN_GAIN	, PT_BP_G_EX|PT_NC, 	0,},	//	B¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ
-	{	PARA_B_UDPX_OUT_GAIN, PT_BP_G_EX|PT_NC, 	0,},	//	B¶ÎÊä³öË«¹¤Æ÷ÔöÒæ
-	{	PARA_B_DL_TOTAL_POW	, PT_BP|PT_RO|PT_SI, 	0,},	//	B¶ÎÏÂÐÐÊä³ö×Ü¹¦ÂÊ/*PT_BP_EX*/
-	{	PARA_B_UL_TOTAL_POW	, PT_BP|PT_RO|PT_SI, 	0,},	//	B¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ/*PT_BP_EX*/
-	{	PARA_B_REC_DPX_IG	, PT_NC, 	0,},	//	RECµÄB¶ÎÊäÈëË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,	
-	{	PARA_B_REC_DPX_OG	, PT_NC, 	0,},	//	RECµÄB¶ÎÊä³öË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,	
-	{ 	PARA_C_DL_CHANNEL1 , PT_CP|PT_US,  39100,},  // C¶ÎÏÂÐÐÐÅµÀºÅ1
-	{ 	PARA_C_DL_CHANNEL2 , PT_CP|PT_US,  39100,},	// C¶ÎÏÂÐÐÐÅµÀºÅ2
-	{ 	PARA_C_DL_CHANNEL3 , PT_CP|PT_US,  39210,},	// C¶ÎÏÂÐÐÐÅµÀºÅ3
-	{ 	PARA_C_DL_CHANNEL4 , PT_CP|PT_US,  39210,},	// C¶ÎÏÂÐÐÐÅµÀºÅ4
-	{ 	PARA_C_DL_CHANNEL5 , PT_CP|PT_US,  39210,},	// C¶ÎÏÂÐÐÐÅµÀºÅ5
-	{ 	PARA_C_DL_CHANNEL6 , PT_CP|PT_US,  39210,},	// C¶ÎÏÂÐÐÐÅµÀºÅ6
-	{ 	PARA_C_DL_CHANNEL7 , PT_CP|PT_US,  39210,},	// C¶ÎÏÂÐÐÐÅµÀºÅ7
-	{ 	PARA_C_DL_CHANNEL8 , PT_CP|PT_US,  39210,},	// C¶ÎÏÂÐÐÐÅµÀºÅ8
-	{ 	PARA_C_DL_CHANNEL9 , PT_CP|PT_US,  39210,},	// C¶ÎÏÂÐÐÐÅµÀºÅ9
-	{ 	PARA_C_DL_CHANNEL10 , PT_CP|PT_US,  39210,},  // C¶ÎÏÂÐÐÐÅµÀºÅ10
-	{	PARA_C_UL_CHANNEL1		, PT_US, 	39210,}, 	//	C¶ÎÉÏÐÐÐÅµÀºÅ1
-	{	PARA_C_UL_CHANNEL2		, PT_US, 	39210,},	//	C¶ÎÉÏÐÐÐÅµÀºÅ2
-	{	PARA_C_UL_CHANNEL3		, PT_US, 	39210,},	//	C¶ÎÉÏÐÐÐÅµÀºÅ3
-	{	PARA_C_UL_CHANNEL4		, PT_US, 	39210,},	//	C¶ÎÉÏÐÐÐÅµÀºÅ4
-	{	PARA_C_UL_CHANNEL5		, PT_US, 	39210,},	//	C¶ÎÉÏÐÐÐÅµÀºÅ5
-	{	PARA_C_UL_CHANNEL6		, PT_US, 	39210,},	//	C¶ÎÉÏÐÐÐÅµÀºÅ6
-	{	PARA_C_UL_CHANNEL7		, PT_US, 	39210,},	//	C¶ÎÉÏÐÐÐÅµÀºÅ7
-	{	PARA_C_UL_CHANNEL8		, PT_US, 	39210,},	//	C¶ÎÉÏÐÐÐÅµÀºÅ8
-	{	PARA_C_UL_CHANNEL9		, PT_US, 	39210,},	//	C¶ÎÉÏÐÐÐÅµÀºÅ9
-	{	PARA_C_UL_CHANNEL10		, PT_US, 	39210,},	//	C¶ÎÉÏÐÐÐÅµÀºÅ10
-	{	PARA_C_DCH_MAX_POW1	, PT_CP_G_EX|PT_SI, 		27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1
-	{	PARA_C_DCH_MAX_POW2	, PT_CP_G_EX|PT_SI, 		27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2
-	{	PARA_C_DCH_MAX_POW3	, PT_CP_G_EX|PT_NC, 	27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3
-	{	PARA_C_DCH_MAX_POW4	, PT_CP_G_EX|PT_NC, 	27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4
-	{	PARA_C_DCH_MAX_POW5	, PT_CP_G_EX|PT_NC, 	27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5
-	{	PARA_C_DCH_MAX_POW6	, PT_CP_G_EX|PT_NC, 	27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6
-	{	PARA_C_DCH_MAX_POW7	, PT_CP_G_EX|PT_NC, 	27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7
-	{	PARA_C_DCH_MAX_POW8	, PT_CP_G_EX|PT_NC, 	27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8
-	{	PARA_C_DCH_MAX_POW9	, PT_CP_G_EX|PT_NC, 	27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9
-	{	PARA_C_DCH_MAX_POW10	, PT_CP_G_EX|PT_NC, 	27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10
-	{	PARA_C_DCH_MAX_POW11	, PT_CP_G_EX|PT_NC, 	27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11
-	{	PARA_C_DCH_MAX_POW12	, PT_CP_G_EX|PT_NC, 	27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12
-	{	PARA_C_DCH_MAX_POW13	, PT_CP_G_EX|PT_NC, 	27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13
-	{	PARA_C_DCH_MAX_POW14	, PT_CP_G_EX|PT_NC, 	27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14
-	{	PARA_C_DCH_MAX_POW15	, PT_CP_G_EX|PT_NC, 	27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15
-	{	PARA_C_DCH_MAX_POW16	, PT_CP_G_EX|PT_NC, 	27,},	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16
-	{	PARA_C_UCH_MAX_POW1	, PT_CP|PT_SI, 		-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1
-	{	PARA_C_UCH_MAX_POW2	, PT_CP_G_EX|PT_NC, 	-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2
-	{	PARA_C_UCH_MAX_POW3	, PT_CP_G_EX|PT_NC, 	-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3
-	{	PARA_C_UCH_MAX_POW4	, PT_CP_G_EX|PT_NC, 	-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4
-	{	PARA_C_UCH_MAX_POW5	, PT_CP_G_EX|PT_NC, 	-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5
-	{	PARA_C_UCH_MAX_POW6	, PT_CP_G_EX|PT_NC, 	-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6
-	{	PARA_C_UCH_MAX_POW7	, PT_CP_G_EX|PT_NC, 	-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7
-	{	PARA_C_UCH_MAX_POW8	, PT_CP_G_EX|PT_NC, 	-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8
-	{	PARA_C_UCH_MAX_POW9	, PT_CP_G_EX|PT_NC, 	-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9
-	{	PARA_C_UCH_MAX_POW10	, PT_CP_G_EX|PT_NC, 	-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10
-	{	PARA_C_UCH_MAX_POW11	, PT_CP_G_EX|PT_NC, 	-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11
-	{	PARA_C_UCH_MAX_POW12	, PT_CP_G_EX|PT_NC, 	-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12
-	{	PARA_C_UCH_MAX_POW13	, PT_CP_G_EX|PT_NC, 	-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13
-	{	PARA_C_UCH_MAX_POW14	, PT_CP_G_EX|PT_NC, 	-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14
-	{	PARA_C_UCH_MAX_POW15	, PT_CP_G_EX|PT_NC, 	-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15
-	{	PARA_C_UCH_MAX_POW16	, PT_CP_G_EX|PT_NC, 	-5,},	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16
-	{	PARA_C_DCH_POW1	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1
-	{	PARA_C_DCH_POW2	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2
-	{	PARA_C_DCH_POW3	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3
-	{	PARA_C_DCH_POW4	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4
-	{	PARA_C_DCH_POW5	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5
-	{	PARA_C_DCH_POW6	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6
-	{	PARA_C_DCH_POW7	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7
-	{	PARA_C_DCH_POW8	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8
-	{	PARA_C_DCH_POW9	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9
-	{	PARA_C_DCH_POW10	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10
-	{	PARA_C_DCH_POW11	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11
-	{	PARA_C_DCH_POW12	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12
-	{	PARA_C_DCH_POW13	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13
-	{	PARA_C_DCH_POW14	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14
-	{	PARA_C_DCH_POW15	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15
-	{	PARA_C_DCH_POW16	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16
-	{	PARA_C_UCH_POW1	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1
-	{	PARA_C_UCH_POW2	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2
-	{	PARA_C_UCH_POW3	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3
-	{	PARA_C_UCH_POW4	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4
-	{	PARA_C_UCH_POW5	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5
-	{	PARA_C_UCH_POW6	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6
-	{	PARA_C_UCH_POW7	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7
-	{	PARA_C_UCH_POW8	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8
-	{	PARA_C_UCH_POW9	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9
-	{	PARA_C_UCH_POW10	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-	{	PARA_C_UCH_POW11	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ11
-	{	PARA_C_UCH_POW12	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ12
-	{	PARA_C_UCH_POW13	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ13
-	{	PARA_C_UCH_POW14	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ14
-	{	PARA_C_UCH_POW15	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ15
-	{	PARA_C_UCH_POW16	, PT_NC, 	0,},	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ16
-	{	PARA_C_UDPX_IN_GAIN	, PT_CP_G_EX|PT_NC, 	0,},	//	C¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ
-	{	PARA_C_UDPX_OUT_GAIN, PT_CP_G_EX|PT_NC, 	0,},	//	C¶ÎÊä³öË«¹¤Æ÷ÔöÒæ
-	{	PARA_C_DL_TOTAL_POW	, PT_CP|PT_RO|PT_SI, 	0,},	//	C¶ÎÏÂÐÐ×Ü¹¦ÂÊ
-	{	PARA_C_UL_TOTAL_POW	, PT_CP_G_EX|PT_RO|PT_SI, 	0,},	//	C¶ÎÉÏÐÐ×Ü¹¦ÂÊ
-	{	PARA_C_REC_DPX_IG	, PT_NC, 	0,},	//	RECµÄC¶ÎÊäÈëË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,	
-	{	PARA_C_REC_DPX_OG	, PT_NC, 	0,},	//	RECµÄC¶ÎÊä³öË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,	
-	{ 	PARA_D_DL_CHANNEL1  , PT_DP|PT_US,  39100,},	// D¶ÎÏÂÐÐÐÅµÀºÅ1
-	{ 	PARA_D_DL_CHANNEL2  , PT_DP|PT_US,  39100,},	// D¶ÎÏÂÐÐÐÅµÀºÅ2
-	{ 	PARA_D_DL_CHANNEL3  , PT_DP|PT_US,  39210,},	// D¶ÎÏÂÐÐÐÅµÀºÅ3
-	{ 	PARA_D_DL_CHANNEL4  , PT_DP|PT_US,  39210,},	// D¶ÎÏÂÐÐÐÅµÀºÅ4
-	{ 	PARA_D_DL_CHANNEL5  , PT_DP|PT_US,  39210,},	// D¶ÎÏÂÐÐÐÅµÀºÅ5
-	{	PARA_D_DL_CHANNEL6  , PT_DP|PT_US,  39210,},	// D¶ÎÏÂÐÐÐÅµÀºÅ6
-	{ 	PARA_D_DL_CHANNEL7  , PT_DP|PT_US,  39210,},	// D¶ÎÏÂÐÐÐÅµÀºÅ7
-	{ 	PARA_D_DL_CHANNEL8  , PT_DP|PT_US,  39210,},	// D¶ÎÏÂÐÐÐÅµÀºÅ8
-	{ 	PARA_D_DL_CHANNEL9  , PT_DP|PT_US,  39210,},	// D¶ÎÏÂÐÐÐÅµÀºÅ9
-	{ 	PARA_D_DL_CHANNEL10  , PT_DP|PT_US,  39210,},  // D¶ÎÏÂÐÐÐÅµÀºÅ10
-	{	PARA_D_UL_CHANNEL1	, PT_US, 	39210,}, 	//	D¶ÎÉÏÐÐÐÅµÀºÅ1
-	{	PARA_D_UL_CHANNEL2	, PT_US, 	39210,},	//	D¶ÎÉÏÐÐÐÅµÀºÅ2
-	{	PARA_D_UL_CHANNEL3	, PT_US, 	39210,},	//	D¶ÎÉÏÐÐÐÅµÀºÅ3
-	{	PARA_D_UL_CHANNEL4	, PT_US, 	39210,},	//	D¶ÎÉÏÐÐÐÅµÀºÅ4
-	{	PARA_D_UL_CHANNEL5	, PT_US, 	39210,},	//	D¶ÎÉÏÐÐÐÅµÀºÅ5
-	{	PARA_D_UL_CHANNEL6	, PT_US, 	39210,},	//	D¶ÎÉÏÐÐÐÅµÀºÅ6
-	{	PARA_D_UL_CHANNEL7	, PT_US, 	39210,},	//	D¶ÎÉÏÐÐÐÅµÀºÅ7
-	{	PARA_D_UL_CHANNEL8	, PT_US, 	39210,},	//	D¶ÎÉÏÐÐÐÅµÀºÅ8
-	{	PARA_D_UL_CHANNEL9	, PT_US, 	39210,},	//	D¶ÎÉÏÐÐÐÅµÀºÅ9
-	{	PARA_D_UL_CHANNEL10	, PT_US, 	39210,},	//	D¶ÎÉÏÐÐÐÅµÀºÅ10
-	{	PARA_D_DCH_MAX_POW1	, PT_DP_G_EX|PT_SI, 		27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1
-	{	PARA_D_DCH_MAX_POW2	, PT_DP_G_EX|PT_NC, 	27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2
-	{	PARA_D_DCH_MAX_POW3	, PT_DP_G_EX|PT_NC, 	27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3
-	{	PARA_D_DCH_MAX_POW4	, PT_DP_G_EX|PT_NC, 	27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4
-	{	PARA_D_DCH_MAX_POW5	, PT_DP_G_EX|PT_NC, 	27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5
-	{	PARA_D_DCH_MAX_POW6	, PT_DP_G_EX|PT_NC, 	27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6
-	{	PARA_D_DCH_MAX_POW7	, PT_DP_G_EX|PT_NC, 	27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7
-	{	PARA_D_DCH_MAX_POW8	, PT_DP_G_EX|PT_NC, 	27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8
-	{	PARA_D_DCH_MAX_POW9	, PT_DP_G_EX|PT_NC, 	27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9
-	{	PARA_D_DCH_MAX_POW10	, PT_DP_G_EX|PT_NC, 	27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10
-	{	PARA_D_DCH_MAX_POW11	, PT_DP_G_EX|PT_NC, 	27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11
-	{	PARA_D_DCH_MAX_POW12	, PT_DP_G_EX|PT_NC, 	27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12
-	{	PARA_D_DCH_MAX_POW13	, PT_DP_G_EX|PT_NC, 	27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13
-	{	PARA_D_DCH_MAX_POW14	, PT_DP_G_EX|PT_NC, 	27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14
-	{	PARA_D_DCH_MAX_POW15	, PT_DP_G_EX|PT_NC, 	27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15
-	{	PARA_D_DCH_MAX_POW16	, PT_DP_G_EX|PT_NC, 	27,},	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16
-	{	PARA_D_UCH_MAX_POW1	, PT_DP|PT_SI, 		-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1
-	{	PARA_D_UCH_MAX_POW2	, PT_DP_G_EX|PT_NC, 	-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2
-	{	PARA_D_UCH_MAX_POW3	, PT_DP_G_EX|PT_NC, 	-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3
-	{	PARA_D_UCH_MAX_POW4	, PT_DP_G_EX|PT_NC, 	-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4
-	{	PARA_D_UCH_MAX_POW5	, PT_DP_G_EX|PT_NC, 	-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5
-	{	PARA_D_UCH_MAX_POW6	, PT_DP_G_EX|PT_NC, 	-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6
-	{	PARA_D_UCH_MAX_POW7	, PT_DP_G_EX|PT_NC, 	-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7
-	{	PARA_D_UCH_MAX_POW8	, PT_DP_G_EX|PT_NC, 	-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8
-	{	PARA_D_UCH_MAX_POW9	, PT_DP_G_EX|PT_NC, 	-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9
-	{	PARA_D_UCH_MAX_POW10	, PT_DP_G_EX|PT_NC, 	-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10
-	{	PARA_D_UCH_MAX_POW11	, PT_DP_G_EX|PT_NC, 	-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11
-	{	PARA_D_UCH_MAX_POW12	, PT_DP_G_EX|PT_NC, 	-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12
-	{	PARA_D_UCH_MAX_POW13	, PT_DP_G_EX|PT_NC, 	-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13
-	{	PARA_D_UCH_MAX_POW14	, PT_DP_G_EX|PT_NC, 	-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14
-	{	PARA_D_UCH_MAX_POW15	, PT_DP_G_EX|PT_NC, 	-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15
-	{	PARA_D_UCH_MAX_POW16	, PT_DP_G_EX|PT_NC, 	-5,},	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16
-	{	PARA_D_DCH_POW1	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1
-	{	PARA_D_DCH_POW2	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2
-	{	PARA_D_DCH_POW3	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3
-	{	PARA_D_DCH_POW4	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4
-	{	PARA_D_DCH_POW5	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5
-	{	PARA_D_DCH_POW6	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6
-	{	PARA_D_DCH_POW7	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7
-	{	PARA_D_DCH_POW8	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8
-	{	PARA_D_DCH_POW9	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9
-	{	PARA_D_DCH_POW10	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10
-	{	PARA_D_DCH_POW11	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11
-	{	PARA_D_DCH_POW12	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12
-	{	PARA_D_DCH_POW13	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13
-	{	PARA_D_DCH_POW14	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14
-	{	PARA_D_DCH_POW15	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15
-	{	PARA_D_DCH_POW16	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16
-	{	PARA_D_UCH_POW1	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1
-	{	PARA_D_UCH_POW2	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2
-	{	PARA_D_UCH_POW3	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3
-	{	PARA_D_UCH_POW4	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4
-	{	PARA_D_UCH_POW5	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5
-	{	PARA_D_UCH_POW6	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6
-	{	PARA_D_UCH_POW7	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7
-	{	PARA_D_UCH_POW8	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8
-	{	PARA_D_UCH_POW9	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9
-	{	PARA_D_UCH_POW10	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-	{	PARA_D_UCH_POW11	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ11
-	{	PARA_D_UCH_POW12	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ12
-	{	PARA_D_UCH_POW13	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ13
-	{	PARA_D_UCH_POW14	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ14
-	{	PARA_D_UCH_POW15	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ15
-	{	PARA_D_UCH_POW16	, PT_NC, 	0,},	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ16
-	{	PARA_D_UDPX_IN_GAIN	, PT_DP_G_EX|PT_NC, 	0,},	//	D¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ
-	{	PARA_D_UDPX_OUT_GAIN, PT_DP_G_EX|PT_NC, 	0,},	//	D¶ÎÊä³öË«¹¤Æ÷ÔöÒæ
-	{	PARA_D_DL_TOTAL_POW	, PT_DP|PT_RO|PT_SI, 	0,},	//	D¶ÎÏÂÐÐÊä³ö×Ü¹¦ÂÊ/*PT_BP_EX*/
-	{	PARA_D_UL_TOTAL_POW	, PT_DP_G_EX|PT_RO|PT_SI, 	0,},	//	D¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ/*PT_BP_EX*/
-	{	PARA_D_REC_DPX_IG	, PT_DP_G_EX|PT_NC, 	0,},	//	RECµÄD¶ÎÊäÈëË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,	
-	{	PARA_D_REC_DPX_OG	, PT_DP_G_EX|PT_NC, 	0,},	//	RECµÄD¶ÎÊä³öË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,	
-	{	PARA_REC_TO_RE_DELAY,	PT_AP_G_EX|PT_BP_G_EX|PT_US,	0},	// RECµ½REµÄ¹âÏËÑÓÊ±
-	{	PARA_RE_RF_DELAY,		PT_AP_G_EX|PT_BP_G_EX|PT_US,	0},	// REµÄÉäÆµÑÓÊ±
-	{	PARA_MAX_T14	, PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0,},	//	¹â¿Ú×î´óÑÓÊ±
-	{	PARA_DL_DELAY_OFFSET	, PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0,},	//	ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿
-	{	PARA_UL_DELAY_OFFSET	, PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0,},	//	ÉÏÐÐÑÓÊ±Æ«ÒÆÁ¿
-	{	PARA_PRI_SOFT_V	, PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0,},	//	³ÌÐò°æ±¾ºÅ£¨ÓÃASCIIÂë£©
-	{	PARA_PRI_HARD_V	, PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0,},	//	PCB°æ±¾ºÅ(ÓÃASCIIÂë)
-	{	PARA_TD_1ST_CP_TIME,	PT_BP_EX|PT_US,	0},	// TDµÚ1×ª»»µãÊ±¼äns, ÓÐ·ûºÅÊý
-	{	PARA_TD_2ND_CP_TIME,	PT_BP_EX|PT_US,	0},	// TDµÚ2×ª»»µãÊ±¼äns, ÓÐ·ûºÅÊý
-	{	PARA_TD_LNA_ON_TIME,	PT_BP_EX|PT_US,	0},	// LNA¿ªÆô³ÙºóDN_PA¹Ø±ÕµÄ±£»¤Ê±¼äns
-	{	PARA_TD_LNA_OFF_TIME,	PT_BP_EX|PT_US,	0},	// LNA¹Ø±Õ³¬Ç°DN_PA¿ªÆôµÄ±£»¤Ê±¼äns
-	{	PARA_TD_SLOT1_UPOW,	PT_BP_G_EX|PT_SI,	0},	// TDÊ±Ï¶1ÉÏÐÐ¼ì²â¹¦ÂÊ
-	{	PARA_TD_SLOT2_UPOW,	PT_BP_G_EX|PT_SI,	0},	// TDÊ±Ï¶2ÉÏÐÐ¼ì²â¹¦ÂÊ
-	{	PARA_TD_SLOT3_UPOW,	PT_BP_G_EX|PT_SI,	0},	// TDÊ±Ï¶3ÉÏÐÐ¼ì²â¹¦ÂÊ
-	{	PARA_TD_SLOT4_UPOW,	PT_BP_G_EX|PT_SI,	0},	// TDÊ±Ï¶4ÉÏÐÐ¼ì²â¹¦ÂÊ
-	{	PARA_TD_SLOT5_UPOW,	PT_BP_G_EX|PT_SI,	0},	// TDÊ±Ï¶5ÉÏÐÐ¼ì²â¹¦ÂÊ
-	{	PARA_TD_SLOT6_UPOW,	PT_BP_G_EX|PT_SI,	0},	// TDÊ±Ï¶6ÉÏÐÐ¼ì²â¹¦ÂÊ
-	{	PARA_TD_SLOT7_UPOW,	PT_BP_G_EX|PT_SI,	0},	// TDÊ±Ï¶7ÉÏÐÐ¼ì²â¹¦ÂÊ
-	{	PARA_TD_SLOT1_DPOW,	PT_BP_G_EX|PT_SI,	0},	// TDÊ±Ï¶1ÏÂÐÐ¼ì²â¹¦ÂÊ
-	{	PARA_TD_SLOT2_DPOW,	PT_BP_G_EX|PT_SI,	0},	// TDÊ±Ï¶2ÏÂÐÐ¼ì²â¹¦ÂÊ
-	{	PARA_TD_SLOT3_DPOW,	PT_BP_G_EX|PT_SI,	0},	// TDÊ±Ï¶3ÏÂÐÐ¼ì²â¹¦ÂÊ
-	{	PARA_TD_SLOT4_DPOW,	PT_BP_G_EX|PT_SI,	0},	// TDÊ±Ï¶4ÏÂÐÐ¼ì²â¹¦ÂÊ
-	{	PARA_TD_SLOT5_DPOW,	PT_BP_G_EX|PT_SI,	0},	// TDÊ±Ï¶5ÏÂÐÐ¼ì²â¹¦ÂÊ
-	{	PARA_TD_SLOT6_DPOW,	PT_BP_G_EX|PT_SI,	0},	// TDÊ±Ï¶6ÏÂÐÐ¼ì²â¹¦ÂÊ
-	{	PARA_TD_SLOT7_DPOW,	PT_BP_G_EX|PT_SI,	0},	// TDÊ±Ï¶7ÏÂÐÐ¼ì²â¹¦ÂÊ
-	{	PARA_FPS_S1,	PT_SI,	0},	// ÆµµãËÑËØ·¶Î§1ÆðÊ¼Æµµã
-	{	PARA_FPS_E1,	PT_SI,	0},	// ÆµµãËÑËØ·¶Î§1½áÊøÆµµã
-	{	PARA_FPS_S2,	PT_SI,	0},	// ÆµµãËÑËØ·¶Î§2ÆðÊ¼Æµµã
-	{	PARA_FPS_E2,	PT_SI,	0},	// ÆµµãËÑËØ·¶Î§2½áÊøÆµµã
-	{	PARA_FPS_BCCH_LK_SET,	PT_AP_G|PT_US,	65535},	// ÆµµãËÑË÷: ËøÆµÐÅµÀºÅ: ±ê×¼ÐÅµÀºÅ, 65535-ÍË³öËøÆµ
-	{	PARA_FPS_CID_LK_SET	,	PT_AP_G|PT_US,	0},	// ÆµµãËÑË÷: Ð¡ÇøÊ¶±ðÂë²Î¿¼Öµ, 0-ÍË³öÐ¡ÇøËø¶¨¹¦ÄÜ
-	{	PARA_FPS_BCCH_FC_M	,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: Ö÷Ð¡ÇøBCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-	{	PARA_FPS_CA_FC_0,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨0ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_CA_FC_1,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨1ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_CA_FC_2,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨2ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_CA_FC_3,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨3ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_CA_FC_4,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨4ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_CA_FC_5,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨5ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_CA_FC_6,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨6ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_CA_FC_7,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨7ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_CA_FC_8,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨8ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_CA_FC_9,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨9ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_CA_FC_10,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨10ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_CA_FC_11,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨11ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_CA_FC_12,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨12ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_CA_FC_13,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨13ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_CA_FC_14,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨14ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_CA_FC_15,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: CAÔØ²¨15ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-	{	PARA_FPS_BCCH_FC_1,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: ÁÚÐ¡Çø1 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-	{	PARA_FPS_BCCH_FC_2,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: ÁÚÐ¡Çø2 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-	{	PARA_FPS_BCCH_FC_3,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: ÁÚÐ¡Çø3 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-	{	PARA_FPS_BCCH_FC_4,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: ÁÚÐ¡Çø4 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-	{	PARA_FPS_BCCH_FC_5,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: ÁÚÐ¡Çø5 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-	{	PARA_FPS_BCCH_FC_6,	PT_AP_G|PT_RO|PT_US,	65535},	// ÆµµãËÑË÷: ÁÚÐ¡Çø6 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-	{	PARA_FPS_AREA_ID,	PT_AP_G_EX|PT_RO|PT_US,	0},	// ÆµµãËÑË÷: Î»ÖÃÇø±àÂë
-	{	PARA_FPS_CID,	PT_AP_G_EX|PT_RO|PT_US,	0},	// ÆµµãËÑË÷: Ð¡ÇøÊ¶±ðÂëÊµÊ±Öµ
-	{	PARA_FPS_CID_1,		PT_NC,	0}, // ÆµµãËÑË÷: ÁÚÐ¡Çø1 CIDÐ¡ÇøÊ¶±ðÂë
-	{	PARA_FPS_CID_2,		PT_NC,	0}, // ÆµµãËÑË÷: ÁÚÐ¡Çø2 CIDÐ¡ÇøÊ¶±ðÂë
-	{	PARA_FPS_CID_3,		PT_NC,	0}, // ÆµµãËÑË÷: ÁÚÐ¡Çø3 CIDÐ¡ÇøÊ¶±ðÂë
-	{	PARA_FPS_CID_4,		PT_NC,	0}, // ÆµµãËÑË÷: ÁÚÐ¡Çø4 CIDÐ¡ÇøÊ¶±ðÂë
-	{	PARA_FPS_CID_5,		PT_NC,	0}, // ÆµµãËÑË÷: ÁÚÐ¡Çø5 CIDÐ¡ÇøÊ¶±ðÂë
-	{	PARA_FPS_CID_6,		PT_NC,	0}, // ÆµµãËÑË÷: ÁÚÐ¡Çø6 CIDÐ¡ÇøÊ¶±ðÂë
-	{	PARA_A_EXPA_IDRAIN_SET,	PT_NC,	0},	// Î¢¹¦·Å: Â©¼«µçÁ÷ÉèÖÃ,mA
-	{	PARA_TD_SLOT1_DPOW_OVER_THR,    PT_BP_G_EX|PT_US, 	0},       //ÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊÃÅÏÞ
-	{	PARA_TD_SLOT1_DPOW_OWE_THR,    	PT_BP_G_EX|PT_US, 	0},       //ÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊÃÅÏÞ
-	{	PARA_A_INPUT_TOTAL_DPOW_OVER_THR,				PT_AP_G_EX|PT_US,	0},//ÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊÃÅÏÞ
-	{	PARA_A_INPUT_TOTAL_DPOW_OWE_THR,				PT_AP_G_EX|PT_US,	0},//ÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊÃÅÏÞ
-	{	PARA_B_INPUT_TOTAL_DPOW_OVER_THR,				PT_BP_G_EX|PT_US,	0},//ÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊÃÅÏÞ
-	{	PARA_B_INPUT_TOTAL_DPOW_OWE_THR,				PT_BP_G_EX|PT_US,	0},//ÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊÃÅÏÞ
-	{	PARA_C_INPUT_TOTAL_DPOW_OVER_THR,				PT_CP_G_EX|PT_US,	0},//ÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊÃÅÏÞ
-	{	PARA_C_INPUT_TOTAL_DPOW_OWE_THR,				PT_CP_G_EX|PT_US,	0},//ÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊÃÅÏÞ
-	{	PARA_D_INPUT_TOTAL_DPOW_OVER_THR,				PT_DP_G_EX|PT_US,	0},//ÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊÃÅÏÞ
-	{	PARA_D_INPUT_TOTAL_DPOW_OWE_THR,				PT_DP_G_EX|PT_US,	0},//ÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊÃÅÏÞ
-	{	PARA_REE_A_DL_OUT_TOTAL_POW_DETECT,		PT_AP_G_EX|PT_US,	0},//A¶ÎREEÏÂÐÐÊä³ö×Ü¹¦ÂÊ
-	{	PARA_A_RE_LOCAL_ST_ALARM,					PT_AP_G_EX|PT_BP_G_EX|PT_US,	0},//¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬
-	{	PARA_REE_B_DL_OUT_TOTAL_POW_DETECT ,		PT_BP_G_EX|PT_US,	0}, //B¶ÎREEÏÂÐÐÊä³ö×Ü¹¦ÂÊ
-	{	PARA_B_RE_LOCAL_ST_ALARM,	PT_BP_G_EX|PT_US,	0},//¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬
-	{	PARA_REE_C_DL_OUT_TOTAL_POW_DETECT,		PT_CP_G_EX|PT_US,	0},//C¶ÎREEÏÂÐÐÊä³ö×Ü¹¦ÂÊ
-	{	PARA_C_RE_LOCAL_ST_ALARM,					PT_CP_G_EX|PT_US,	0},//¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬
-	{	PARA_REE_D_DL_OUT_TOTAL_POW_DETECT ,		PT_DP_G_EX|PT_US,	0}, //D¶ÎREEÏÂÐÐÊä³ö×Ü¹¦ÂÊ
-	{	PARA_D_RE_LOCAL_ST_ALARM,	PT_DP_G_EX|PT_US,	0},//¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬
-	{	PARA_C_TD_1ST_CP_TIME,	PT_CP_G_EX|PT_US,	0},		//465		//		TDµÚ1×ª»»µãÊ±¼ä,ns,	
-	{	PARA_C_TD_2ND_CP_TIME,	PT_CP_G_EX|PT_US,	0},		//466		//		TDµÚ2×ª»»µãÊ±¼ä,ns,	
-	{	PARA_C_TD_LNA_ON_TIME,	PT_CP_G_EX|PT_US,	0},		//467		//		LNA¿ªÆô³ÙºóDN_PA¹Ø±ÕµÄ±£»¤Ê±¼äns	
-	{	PARA_C_TD_LNA_OFF_TIME,	PT_CP_G_EX|PT_US,	0},		//468		//		LNA¹Ø±Õ³¬Ç°DN_PA¿ªÆôµÄ±£»¤Ê±¼äns	
-	{	PARA_C_TD_SLOT1_DPOW_OVER_THR,	PT_CP_G_EX|PT_US,	0},		//469		//625		//ÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊÃÅÏÞ	
-	{	PARA_C_TD_SLOT1_DPOW_OWE_THR,	PT_CP_G_EX|PT_US,	0},		//470		//626		//ÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊÃÅÏÞ	
-	{	PARA_D_TD_1ST_CP_TIME,	PT_DP_G_EX|PT_US,	0},		//471		//		TDµÚ1×ª»»µãÊ±¼ä,ns,	
-	{	PARA_D_TD_2ND_CP_TIME,	PT_DP_G_EX|PT_US,	0},		//472		//		TDµÚ2×ª»»µãÊ±¼ä,ns,	
-	{	PARA_D_TD_LNA_ON_TIME,	PT_DP_G_EX|PT_US,	0},		//473		//		LNA¿ªÆô³ÙºóDN_PA¹Ø±ÕµÄ±£»¤Ê±¼äns	
-	{	PARA_D_TD_LNA_OFF_TIME,	PT_DP_G_EX|PT_US,	0},		//474		//		LNA¹Ø±Õ³¬Ç°DN_PA¿ªÆôµÄ±£»¤Ê±¼äns	
-	{	PARA_D_TD_SLOT1_DPOW_OVER_THR,	PT_DP_G_EX|PT_US,	0},		//475		//625		//ÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊÃÅÏÞ	
-	{	PARA_D_TD_SLOT1_DPOW_OWE_THR,	PT_DP_G_EX|PT_US,	0},		//476		//626		//ÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊÃÅÏÞ	
-	{	PARA_C_TD_SLOT1_POW,	PT_CP_G_EX|PT_US,	0},		//477		//		TDÊ±Ï¶1ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT2_POW,	PT_CP_G_EX|PT_US,	0},		//478		//		TDÊ±Ï¶2ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT3_POW,	PT_CP_G_EX|PT_US,	0},		//479		//		TDÊ±Ï¶3ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT4_POW,	PT_CP_G_EX|PT_US,	0},		//480		//		TDÊ±Ï¶4ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT5_POW,	PT_CP_G_EX|PT_US,	0},		//481		//		TDÊ±Ï¶5ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT6_POW,	PT_CP_G_EX|PT_US,	0},		//482		//		TDÊ±Ï¶6ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT7_POW,	PT_CP_G_EX|PT_US,	0},		//483		//		TDÊ±Ï¶7ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT8_POW,	PT_CP_G_EX|PT_US,	0},		//484		//		TDÊ±Ï¶8ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT9_POW,	PT_CP_G_EX|PT_US,	0},		//485		//		TDÊ±Ï¶9ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT10_POW,	PT_CP_G_EX|PT_US,	0},		//486		//		TDÊ±Ï¶10ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT11_POW,	PT_CP_G_EX|PT_US,	0},		//487		//		TDÊ±Ï¶11ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT12_POW,	PT_CP_G_EX|PT_US,	0},		//488		//		TDÊ±Ï¶12ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT13_POW,	PT_CP_G_EX|PT_US,	0},		//489		//		TDÊ±Ï¶13ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT14_POW,	PT_CP_G_EX|PT_US,	0},		//490		//		TDÊ±Ï¶14ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT15_POW,	PT_CP_G_EX|PT_US,	0},		//491		//		TDÊ±Ï¶15ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT16_POW,	PT_CP_G_EX|PT_US,	0},		//492		//		TDÊ±Ï¶16ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT17_POW,	PT_CP_G_EX|PT_US,	0},		//493		//		TDÊ±Ï¶17ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT18_POW,	PT_CP_G_EX|PT_US,	0},		//494		//		TDÊ±Ï¶18ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT19_POW,	PT_CP_G_EX|PT_US,	0},		//495		//		TDÊ±Ï¶19ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_C_TD_SLOT20_POW,	PT_CP_G_EX|PT_US,	0},		//496		//		TDÊ±Ï¶20ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT1_POW,	PT_DP_G_EX|PT_US,	0},		//497		//		TDÊ±Ï¶1ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT2_POW,	PT_DP_G_EX|PT_US,	0},		//498		//		TDÊ±Ï¶2ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT3_POW,	PT_DP_G_EX|PT_US,	0},		//499		//		TDÊ±Ï¶3ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT4_POW,	PT_DP_G_EX|PT_US,	0},		//500		//		TDÊ±Ï¶4ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT5_POW,	PT_DP_G_EX|PT_US,	0},		//501		//		TDÊ±Ï¶5ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT6_POW,	PT_DP_G_EX|PT_US,	0},		//502		//		TDÊ±Ï¶6ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT7_POW,	PT_DP_G_EX|PT_US,	0},		//503		//		TDÊ±Ï¶7ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT8_POW,	PT_DP_G_EX|PT_US,	0},		//504		//		TDÊ±Ï¶8ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT9_POW,	PT_DP_G_EX|PT_US,	0},		//505		//		TDÊ±Ï¶9ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT10_POW,	PT_DP_G_EX|PT_US,	0},		//506		//		TDÊ±Ï¶10ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT11_POW,	PT_DP_G_EX|PT_US,	0},		//507		//		TDÊ±Ï¶11ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT12_POW,	PT_DP_G_EX|PT_US,	0},		//508		//		TDÊ±Ï¶12ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT13_POW,	PT_DP_G_EX|PT_US,	0},		//509		//		TDÊ±Ï¶13ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT14_POW,	PT_DP_G_EX|PT_US,	0},		//510		//		TDÊ±Ï¶14ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT15_POW,	PT_DP_G_EX|PT_US,	0},		//511		//		TDÊ±Ï¶15ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT16_POW,	PT_DP_G_EX|PT_US,	0},		//512		//		TDÊ±Ï¶16ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT17_POW,	PT_DP_G_EX|PT_US,	0},		//513		//		TDÊ±Ï¶17ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT18_POW,	PT_DP_G_EX|PT_US,	0},		//514		//		TDÊ±Ï¶18ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT19_POW,	PT_DP_G_EX|PT_US,	0},		//515		//		TDÊ±Ï¶19ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_D_TD_SLOT20_POW,	PT_DP_G_EX|PT_US,	0},		//516		//		TDÊ±Ï¶20ÊäÈë¼ì²â¹¦ÂÊ	
-	{	PARA_DL_DELAY_OFFSET_B	,PT_BP|PT_US, 	0},		//0x8660	//		ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿					
-	{	PARA_DL_DELAY_OFFSET_C	,PT_CP|PT_US, 	0},		//0x8660	//		ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿					
-	{	PARA_DL_DELAY_OFFSET_D	,PT_DP|PT_US, 	0},		//0x8660	//		ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿					
-	{	PARA_VGS_A	,PT_AP|PT_US,	0}, 	//A¶ÎÕ¤Ñ¹
-	{	PARA_VGS_B	,PT_BP|PT_US,	0}, 	//B¶ÎÕ¤Ñ¹
-	{	PARA_VGS_C	,PT_CP|PT_US,	0}, 	//C¶ÎÕ¤Ñ¹
-	{	PARA_VGS_D	,PT_DP|PT_US,	0}, 	//D¶ÎÕ¤Ñ¹
-	{	PARA_VGS_COMP_A ,PT_AP|PT_US,	0}, 	//A¶ÎÕ¤Ñ¹
-	{	PARA_VGS_COMP_B ,PT_BP|PT_US,	0}, 	//B¶ÎÕ¤Ñ¹
-	{	PARA_VGS_COMP_C ,PT_CP|PT_US,	0}, 	//C¶ÎÕ¤Ñ¹
-	{	PARA_VGS_COMP_D ,PT_DP|PT_US,	0}, 	//D¶ÎÕ¤Ñ¹
-	{	PARA_ATT_DATA_COMP_A	,PT_AP|PT_US,	0}, //ATT²¹³¥Êý¾Ý
-	{	PARA_ATT_DATA_COMP_B	,PT_BP|PT_US,	0}, //ATT²¹³¥Êý¾Ý
-	{	PARA_ATT_DATA_COMP_C	,PT_CP|PT_US,	0}, //ATT²¹³¥Êý¾Ý
-	{	PARA_ATT_DATA_COMP_D	,PT_DP|PT_US,	0}, //ATT²¹³¥Êý¾Ý//PARA_MAX_T14_A
-	{	PARA_MAX_T14_A	,PT_AP|PT_US,	0}, //ATT²¹³¥Êý¾Ý
-	{	PARA_MAX_T14_B	,PT_BP|PT_US,	0}, //ATT²¹³¥Êý¾Ý
-	{	PARA_MAX_T14_C	,PT_CP|PT_US,	0}, //ATT²¹³¥Êý¾Ý
-	{	PARA_MAX_T14_D	,PT_DP|PT_US,	0}, //ATT²¹³¥Êý
+	{	PARA_A_DL_CHANNEL1	, PT_AP|PT_US, 	45,}, 	//	Aæ®µä¸‹è¡Œä¿¡é“å·1
+	{	PARA_A_DL_CHANNEL2	, PT_AP|PT_US, 	45,},	//	Aæ®µä¸‹è¡Œä¿¡é“å·2
+	{	PARA_A_DL_CHANNEL3	, PT_AP|PT_US, 	45,},	//	Aæ®µä¸‹è¡Œä¿¡é“å·3
+	{	PARA_A_DL_CHANNEL4	, PT_AP|PT_US, 	45,},	//	Aæ®µä¸‹è¡Œä¿¡é“å·4
+	{	PARA_A_DL_CHANNEL5	, PT_AP|PT_US, 	45,},	//	Aæ®µä¸‹è¡Œä¿¡é“å·5
+	{	PARA_A_DL_CHANNEL6	, PT_AP|PT_US, 	45,},	//	Aæ®µä¸‹è¡Œä¿¡é“å·6
+	{	PARA_A_DL_CHANNEL7	, PT_AP|PT_US, 	45,},	//	Aæ®µä¸‹è¡Œä¿¡é“å·7
+	{	PARA_A_DL_CHANNEL8	, PT_AP|PT_US, 	45,},	//	Aæ®µä¸‹è¡Œä¿¡é“å·8
+	{	PARA_A_DL_CHANNEL9	, PT_AP|PT_US, 	45,},	//	Aæ®µä¸‹è¡Œä¿¡é“å·9
+	{	PARA_A_DL_CHANNEL10	, PT_AP|PT_US, 	45,},	//	Aæ®µä¸‹è¡Œä¿¡é“å·10
+	{	PARA_A_DL_CHANNEL11	, PT_AP|PT_US, 	45,},	//	Aæ®µä¸‹è¡Œä¿¡é“å·11
+	{	PARA_A_DL_CHANNEL12	, PT_AP|PT_US, 	45,},	//	Aæ®µä¸‹è¡Œä¿¡é“å·12
+	{	PARA_A_DL_CHANNEL13	, PT_AP|PT_US, 	45,},	//	Aæ®µä¸‹è¡Œä¿¡é“å·13
+	{	PARA_A_DL_CHANNEL14	, PT_AP|PT_US, 	45,},	//	Aæ®µä¸‹è¡Œä¿¡é“å·14
+	{	PARA_A_DL_CHANNEL15	, PT_AP|PT_US, 	45,},	//	Aæ®µä¸‹è¡Œä¿¡é“å·15
+	{	PARA_A_DL_CHANNEL16	, PT_AP|PT_US, 	45,},	//	Aæ®µä¸‹è¡Œä¿¡é“å·16
+	{	PARA_A_UL_CHANNEL1		, PT_US, 	45,}, 	//	Aæ®µä¸Šè¡Œä¿¡é“å·1
+	{	PARA_A_UL_CHANNEL2		, PT_US, 	45,},	//	Aæ®µä¸Šè¡Œä¿¡é“å·2
+	{	PARA_A_UL_CHANNEL3		, PT_US, 	45,},	//	Aæ®µä¸Šè¡Œä¿¡é“å·3
+	{	PARA_A_UL_CHANNEL4		, PT_US, 	45,},	//	Aæ®µä¸Šè¡Œä¿¡é“å·4
+	{	PARA_A_UL_CHANNEL5		, PT_US, 	45,},	//	Aæ®µä¸Šè¡Œä¿¡é“å·5
+	{	PARA_A_UL_CHANNEL6		, PT_US, 	45,},	//	Aæ®µä¸Šè¡Œä¿¡é“å·6
+	{	PARA_A_UL_CHANNEL7		, PT_US, 	45,},	//	Aæ®µä¸Šè¡Œä¿¡é“å·7
+	{	PARA_A_UL_CHANNEL8		, PT_US, 	45,},	//	Aæ®µä¸Šè¡Œä¿¡é“å·8
+	{	PARA_A_UL_CHANNEL9		, PT_US, 	45,},	//	Aæ®µä¸Šè¡Œä¿¡é“å·9
+	{	PARA_A_UL_CHANNEL10	, PT_US, 	45,},	//	Aæ®µä¸Šè¡Œä¿¡é“å·10
+	{	PARA_A_UL_CHANNEL11	, PT_US, 	45,},	//	Aæ®µä¸Šè¡Œä¿¡é“å·11
+	{	PARA_A_UL_CHANNEL12	, PT_US, 	45,},	//	Aæ®µä¸Šè¡Œä¿¡é“å·12
+	{	PARA_A_UL_CHANNEL13	, PT_US, 	45,},	//	Aæ®µä¸Šè¡Œä¿¡é“å·13
+	{	PARA_A_UL_CHANNEL14	, PT_US, 	45,},	//	Aæ®µä¸Šè¡Œä¿¡é“å·14
+	{	PARA_A_UL_CHANNEL15	, PT_US, 	45,},	//	Aæ®µä¸Šè¡Œä¿¡é“å·15
+	{	PARA_A_UL_CHANNEL16	, PT_US, 	45,},	//	Aæ®µä¸Šè¡Œä¿¡é“å·16
+	{	PARA_A_DCH_MAX_POW1	, PT_AP_G_EX|PT_SI, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1
+	{	PARA_A_DCH_MAX_POW2	, PT_AP_G_EX|PT_NC, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2
+	{	PARA_A_DCH_MAX_POW3	, PT_AP_G_EX|PT_NC, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3
+	{	PARA_A_DCH_MAX_POW4	, PT_AP_G_EX|PT_NC, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4
+	{	PARA_A_DCH_MAX_POW5	, PT_AP_G_EX|PT_NC, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5
+	{	PARA_A_DCH_MAX_POW6	, PT_AP_G_EX|PT_NC, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6
+	{	PARA_A_DCH_MAX_POW7	, PT_AP_G_EX|PT_NC, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7
+	{	PARA_A_DCH_MAX_POW8	, PT_AP_G_EX|PT_NC, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8
+	{	PARA_A_DCH_MAX_POW9	, PT_AP_G_EX|PT_NC, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9
+	{	PARA_A_DCH_MAX_POW10	, PT_AP_G_EX|PT_NC, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10
+	{	PARA_A_DCH_MAX_POW11	, PT_AP_G_EX|PT_NC, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11
+	{	PARA_A_DCH_MAX_POW12	, PT_AP_G_EX|PT_NC, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12
+	{	PARA_A_DCH_MAX_POW13	, PT_AP_G_EX|PT_NC, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13
+	{	PARA_A_DCH_MAX_POW14	, PT_AP_G_EX|PT_NC, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14
+	{	PARA_A_DCH_MAX_POW15	, PT_AP_G_EX|PT_NC, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15
+	{	PARA_A_DCH_MAX_POW16	, PT_AP_G_EX|PT_NC, 	27,},	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16
+	{	PARA_A_UCH_MAX_POW1	, PT_AP|PT_SI, 		-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1
+	{	PARA_A_UCH_MAX_POW2	, PT_AP|PT_SI, 	-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2
+	{	PARA_A_UCH_MAX_POW3	, PT_AP_G_EX|PT_NC, 	-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3
+	{	PARA_A_UCH_MAX_POW4	, PT_AP_G_EX|PT_NC, 	-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4
+	{	PARA_A_UCH_MAX_POW5	, PT_AP_G_EX|PT_NC, 	-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5
+	{	PARA_A_UCH_MAX_POW6	, PT_AP_G_EX|PT_NC, 	-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6
+	{	PARA_A_UCH_MAX_POW7	, PT_AP_G_EX|PT_NC, 	-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7
+	{	PARA_A_UCH_MAX_POW8	, PT_AP_G_EX|PT_NC, 	-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8
+	{	PARA_A_UCH_MAX_POW9	, PT_AP_G_EX|PT_NC, 	-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9
+	{	PARA_A_UCH_MAX_POW10	, PT_AP_G_EX|PT_NC, 	-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10
+	{	PARA_A_UCH_MAX_POW11	, PT_AP_G_EX|PT_NC, 	-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11
+	{	PARA_A_UCH_MAX_POW12	, PT_AP_G_EX|PT_NC, 	-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12
+	{	PARA_A_UCH_MAX_POW13	, PT_AP_G_EX|PT_NC, 	-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13
+	{	PARA_A_UCH_MAX_POW14	, PT_AP_G_EX|PT_NC, 	-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14
+	{	PARA_A_UCH_MAX_POW15	, PT_AP_G_EX|PT_NC, 	-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15
+	{	PARA_A_UCH_MAX_POW16	, PT_AP_G_EX|PT_NC, 	-10,},	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16
+	{	PARA_A_DCH_POW1	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1
+	{	PARA_A_DCH_POW2	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2
+	{	PARA_A_DCH_POW3	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3
+	{	PARA_A_DCH_POW4	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4
+	{	PARA_A_DCH_POW5	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5
+	{	PARA_A_DCH_POW6	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6
+	{	PARA_A_DCH_POW7	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7
+	{	PARA_A_DCH_POW8	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8
+	{	PARA_A_DCH_POW9	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9
+	{	PARA_A_DCH_POW10	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10
+	{	PARA_A_DCH_POW11	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11
+	{	PARA_A_DCH_POW12	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12
+	{	PARA_A_DCH_POW13	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13
+	{	PARA_A_DCH_POW14	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14
+	{	PARA_A_DCH_POW15	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15
+	{	PARA_A_DCH_POW16	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16
+	{	PARA_A_UCH_POW1	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1
+	{	PARA_A_UCH_POW2	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2
+	{	PARA_A_UCH_POW3	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3
+	{	PARA_A_UCH_POW4	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4
+	{	PARA_A_UCH_POW5	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5
+	{	PARA_A_UCH_POW6	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6
+	{	PARA_A_UCH_POW7	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7
+	{	PARA_A_UCH_POW8	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8
+	{	PARA_A_UCH_POW9	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9
+	{	PARA_A_UCH_POW10	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+	{	PARA_A_UCH_POW11	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡11
+	{	PARA_A_UCH_POW12	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡12
+	{	PARA_A_UCH_POW13	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡13
+	{	PARA_A_UCH_POW14	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡14
+	{	PARA_A_UCH_POW15	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡15
+	{	PARA_A_UCH_POW16	, PT_NC, 	0,},	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡16
+	{	PARA_A_UDPX_IN_GAIN	, PT_AP_G_EX|PT_NC, 	0,},	//	Aæ®µè¾“å…¥åŒå·¥å™¨å¢žç›Š
+	{	PARA_A_UDPX_OUT_GAIN, PT_AP_G_EX|PT_NC, 	0,},	//	Aæ®µè¾“å‡ºåŒå·¥å™¨å¢žç›Š
+	{	PARA_A_DL_TOTAL_POW	, PT_AP|PT_RO|PT_SI, 	0,},	//	Aæ®µä¸‹è¡Œæ€»åŠŸçŽ‡
+	{	PARA_A_UL_TOTAL_POW	, PT_AP|PT_RO|PT_SI, 	0,},	//	Aæ®µä¸Šè¡Œæ€»åŠŸçŽ‡
+	{	PARA_A_REC_DPX_IG	, PT_NC, 	0,},	//	RECçš„Aæ®µè¾“å…¥åŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,	
+	{	PARA_A_REC_DPX_OG	, PT_NC, 	0,},	//	RECçš„Aæ®µè¾“å‡ºåŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,	
+	{	PARA_B_DL_CHANNEL1		, PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·1
+	{	PARA_B_DL_CHANNEL2		, PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·2
+	{	PARA_B_DL_CHANNEL3		, PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·3
+	{	PARA_B_DL_CHANNEL4		, PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·4
+	{	PARA_B_DL_CHANNEL5		, PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·5
+	{	PARA_B_DL_CHANNEL6		, PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·6
+	{	PARA_B_DL_CHANNEL7		, PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·7
+	{	PARA_B_DL_CHANNEL8		, PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·8
+	{	PARA_B_DL_CHANNEL9		, PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·9
+	{	PARA_B_DL_CHANNEL10 , PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·10
+	{	PARA_B_DL_CHANNEL11 , PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·11
+	{	PARA_B_DL_CHANNEL12 , PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·12
+	{	PARA_B_DL_CHANNEL13 , PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·13
+	{	PARA_B_DL_CHANNEL14 , PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·14
+	{	PARA_B_DL_CHANNEL15 , PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·15
+	{	PARA_B_DL_CHANNEL16 , PT_BP|PT_US,	10688,},	//	Bæ®µä¸‹è¡Œä¿¡é“å·16
+	{	PARA_B_UL_CHANNEL1	, PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·1
+	{	PARA_B_UL_CHANNEL2	, PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·2
+	{	PARA_B_UL_CHANNEL3	, PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·3
+	{	PARA_B_UL_CHANNEL4	, PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·4
+	{	PARA_B_UL_CHANNEL5	, PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·5
+	{	PARA_B_UL_CHANNEL6	, PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·6
+	{	PARA_B_UL_CHANNEL7	, PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·7
+	{	PARA_B_UL_CHANNEL8	, PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·8
+	{	PARA_B_UL_CHANNEL9	, PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·9
+	{	PARA_B_UL_CHANNEL10 , PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·10
+	{	PARA_B_UL_CHANNEL11 , PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·11
+	{	PARA_B_UL_CHANNEL12 , PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·12
+	{	PARA_B_UL_CHANNEL13 , PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·13
+	{	PARA_B_UL_CHANNEL14 , PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·14
+	{	PARA_B_UL_CHANNEL15 , PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·15
+	{	PARA_B_UL_CHANNEL16 , PT_US,	10688,},	//	Bæ®µä¸Šè¡Œä¿¡é“å·16
+	{	PARA_B_DCH_MAX_POW1	, PT_BP_G_EX|PT_SI, 		27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1
+	{	PARA_B_DCH_MAX_POW2	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2
+	{	PARA_B_DCH_MAX_POW3	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3
+	{	PARA_B_DCH_MAX_POW4	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4
+	{	PARA_B_DCH_MAX_POW5	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5
+	{	PARA_B_DCH_MAX_POW6	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6
+	{	PARA_B_DCH_MAX_POW7	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7
+	{	PARA_B_DCH_MAX_POW8	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8
+	{	PARA_B_DCH_MAX_POW9	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9
+	{	PARA_B_DCH_MAX_POW10	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10
+	{	PARA_B_DCH_MAX_POW11	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11
+	{	PARA_B_DCH_MAX_POW12	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12
+	{	PARA_B_DCH_MAX_POW13	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13
+	{	PARA_B_DCH_MAX_POW14	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14
+	{	PARA_B_DCH_MAX_POW15	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15
+	{	PARA_B_DCH_MAX_POW16	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16
+	{	PARA_B_UCH_MAX_POW1		, PT_BP|PT_SI, 	-10,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1
+	{	PARA_B_UCH_MAX_POW2		, PT_BP|PT_SI, 	-10,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2
+	{	PARA_B_UCH_MAX_POW3		, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3
+	{	PARA_B_UCH_MAX_POW4		, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4
+	{	PARA_B_UCH_MAX_POW5		, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5
+	{	PARA_B_UCH_MAX_POW6		, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6
+	{	PARA_B_UCH_MAX_POW7		, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7
+	{	PARA_B_UCH_MAX_POW8		, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8
+	{	PARA_B_UCH_MAX_POW9		, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9
+	{	PARA_B_UCH_MAX_POW10	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10
+	{	PARA_B_UCH_MAX_POW11	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11
+	{	PARA_B_UCH_MAX_POW12	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12
+	{	PARA_B_UCH_MAX_POW13	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13
+	{	PARA_B_UCH_MAX_POW14	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14
+	{	PARA_B_UCH_MAX_POW15	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15
+	{	PARA_B_UCH_MAX_POW16	, PT_BP_G_EX|PT_NC, 	27,},	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16
+	{	PARA_B_DCH_POW1	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1
+	{	PARA_B_DCH_POW2	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2
+	{	PARA_B_DCH_POW3	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3
+	{	PARA_B_DCH_POW4	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4
+	{	PARA_B_DCH_POW5	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5
+	{	PARA_B_DCH_POW6	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6
+	{	PARA_B_DCH_POW7	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7
+	{	PARA_B_DCH_POW8	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8
+	{	PARA_B_DCH_POW9	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9
+	{	PARA_B_DCH_POW10	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10
+	{	PARA_B_DCH_POW11	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11
+	{	PARA_B_DCH_POW12	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12
+	{	PARA_B_DCH_POW13	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13
+	{	PARA_B_DCH_POW14	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14
+	{	PARA_B_DCH_POW15	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15
+	{	PARA_B_DCH_POW16	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16
+	{	PARA_B_UCH_POW1	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1
+	{	PARA_B_UCH_POW2	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2
+	{	PARA_B_UCH_POW3	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3
+	{	PARA_B_UCH_POW4	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4
+	{	PARA_B_UCH_POW5	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5
+	{	PARA_B_UCH_POW6	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6
+	{	PARA_B_UCH_POW7	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7
+	{	PARA_B_UCH_POW8	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8
+	{	PARA_B_UCH_POW9	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9
+	{	PARA_B_UCH_POW10	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+	{	PARA_B_UCH_POW11	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡11
+	{	PARA_B_UCH_POW12	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡12
+	{	PARA_B_UCH_POW13	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡13
+	{	PARA_B_UCH_POW14	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡14
+	{	PARA_B_UCH_POW15	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡15
+	{	PARA_B_UCH_POW16	, PT_NC, 	0,},	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡16
+	{	PARA_B_UDPX_IN_GAIN	, PT_BP_G_EX|PT_NC, 	0,},	//	Bæ®µè¾“å…¥åŒå·¥å™¨å¢žç›Š
+	{	PARA_B_UDPX_OUT_GAIN, PT_BP_G_EX|PT_NC, 	0,},	//	Bæ®µè¾“å‡ºåŒå·¥å™¨å¢žç›Š
+	{	PARA_B_DL_TOTAL_POW	, PT_BP|PT_RO|PT_SI, 	0,},	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡/*PT_BP_EX*/
+	{	PARA_B_UL_TOTAL_POW	, PT_BP|PT_RO|PT_SI, 	0,},	//	Bæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡/*PT_BP_EX*/
+	{	PARA_B_REC_DPX_IG	, PT_NC, 	0,},	//	RECçš„Bæ®µè¾“å…¥åŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,	
+	{	PARA_B_REC_DPX_OG	, PT_NC, 	0,},	//	RECçš„Bæ®µè¾“å‡ºåŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,	
+	{ 	PARA_C_DL_CHANNEL1 , PT_CP|PT_US,  39100,},  // Cæ®µä¸‹è¡Œä¿¡é“å·1
+	{ 	PARA_C_DL_CHANNEL2 , PT_CP|PT_US,  39100,},	// Cæ®µä¸‹è¡Œä¿¡é“å·2
+	{ 	PARA_C_DL_CHANNEL3 , PT_CP|PT_US,  39210,},	// Cæ®µä¸‹è¡Œä¿¡é“å·3
+	{ 	PARA_C_DL_CHANNEL4 , PT_CP|PT_US,  39210,},	// Cæ®µä¸‹è¡Œä¿¡é“å·4
+	{ 	PARA_C_DL_CHANNEL5 , PT_CP|PT_US,  39210,},	// Cæ®µä¸‹è¡Œä¿¡é“å·5
+	{ 	PARA_C_DL_CHANNEL6 , PT_CP|PT_US,  39210,},	// Cæ®µä¸‹è¡Œä¿¡é“å·6
+	{ 	PARA_C_DL_CHANNEL7 , PT_CP|PT_US,  39210,},	// Cæ®µä¸‹è¡Œä¿¡é“å·7
+	{ 	PARA_C_DL_CHANNEL8 , PT_CP|PT_US,  39210,},	// Cæ®µä¸‹è¡Œä¿¡é“å·8
+	{ 	PARA_C_DL_CHANNEL9 , PT_CP|PT_US,  39210,},	// Cæ®µä¸‹è¡Œä¿¡é“å·9
+	{ 	PARA_C_DL_CHANNEL10 , PT_CP|PT_US,  39210,},  // Cæ®µä¸‹è¡Œä¿¡é“å·10
+	{	PARA_C_UL_CHANNEL1		, PT_US, 	39210,}, 	//	Cæ®µä¸Šè¡Œä¿¡é“å·1
+	{	PARA_C_UL_CHANNEL2		, PT_US, 	39210,},	//	Cæ®µä¸Šè¡Œä¿¡é“å·2
+	{	PARA_C_UL_CHANNEL3		, PT_US, 	39210,},	//	Cæ®µä¸Šè¡Œä¿¡é“å·3
+	{	PARA_C_UL_CHANNEL4		, PT_US, 	39210,},	//	Cæ®µä¸Šè¡Œä¿¡é“å·4
+	{	PARA_C_UL_CHANNEL5		, PT_US, 	39210,},	//	Cæ®µä¸Šè¡Œä¿¡é“å·5
+	{	PARA_C_UL_CHANNEL6		, PT_US, 	39210,},	//	Cæ®µä¸Šè¡Œä¿¡é“å·6
+	{	PARA_C_UL_CHANNEL7		, PT_US, 	39210,},	//	Cæ®µä¸Šè¡Œä¿¡é“å·7
+	{	PARA_C_UL_CHANNEL8		, PT_US, 	39210,},	//	Cæ®µä¸Šè¡Œä¿¡é“å·8
+	{	PARA_C_UL_CHANNEL9		, PT_US, 	39210,},	//	Cæ®µä¸Šè¡Œä¿¡é“å·9
+	{	PARA_C_UL_CHANNEL10		, PT_US, 	39210,},	//	Cæ®µä¸Šè¡Œä¿¡é“å·10
+	{	PARA_C_DCH_MAX_POW1	, PT_CP_G_EX|PT_SI, 		27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1
+	{	PARA_C_DCH_MAX_POW2	, PT_CP_G_EX|PT_SI, 		27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2
+	{	PARA_C_DCH_MAX_POW3	, PT_CP_G_EX|PT_NC, 	27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3
+	{	PARA_C_DCH_MAX_POW4	, PT_CP_G_EX|PT_NC, 	27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4
+	{	PARA_C_DCH_MAX_POW5	, PT_CP_G_EX|PT_NC, 	27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5
+	{	PARA_C_DCH_MAX_POW6	, PT_CP_G_EX|PT_NC, 	27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6
+	{	PARA_C_DCH_MAX_POW7	, PT_CP_G_EX|PT_NC, 	27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7
+	{	PARA_C_DCH_MAX_POW8	, PT_CP_G_EX|PT_NC, 	27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8
+	{	PARA_C_DCH_MAX_POW9	, PT_CP_G_EX|PT_NC, 	27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9
+	{	PARA_C_DCH_MAX_POW10	, PT_CP_G_EX|PT_NC, 	27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10
+	{	PARA_C_DCH_MAX_POW11	, PT_CP_G_EX|PT_NC, 	27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11
+	{	PARA_C_DCH_MAX_POW12	, PT_CP_G_EX|PT_NC, 	27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12
+	{	PARA_C_DCH_MAX_POW13	, PT_CP_G_EX|PT_NC, 	27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13
+	{	PARA_C_DCH_MAX_POW14	, PT_CP_G_EX|PT_NC, 	27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14
+	{	PARA_C_DCH_MAX_POW15	, PT_CP_G_EX|PT_NC, 	27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15
+	{	PARA_C_DCH_MAX_POW16	, PT_CP_G_EX|PT_NC, 	27,},	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16
+	{	PARA_C_UCH_MAX_POW1	, PT_CP|PT_SI, 		-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1
+	{	PARA_C_UCH_MAX_POW2	, PT_CP_G_EX|PT_NC, 	-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2
+	{	PARA_C_UCH_MAX_POW3	, PT_CP_G_EX|PT_NC, 	-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3
+	{	PARA_C_UCH_MAX_POW4	, PT_CP_G_EX|PT_NC, 	-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4
+	{	PARA_C_UCH_MAX_POW5	, PT_CP_G_EX|PT_NC, 	-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5
+	{	PARA_C_UCH_MAX_POW6	, PT_CP_G_EX|PT_NC, 	-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6
+	{	PARA_C_UCH_MAX_POW7	, PT_CP_G_EX|PT_NC, 	-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7
+	{	PARA_C_UCH_MAX_POW8	, PT_CP_G_EX|PT_NC, 	-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8
+	{	PARA_C_UCH_MAX_POW9	, PT_CP_G_EX|PT_NC, 	-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9
+	{	PARA_C_UCH_MAX_POW10	, PT_CP_G_EX|PT_NC, 	-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10
+	{	PARA_C_UCH_MAX_POW11	, PT_CP_G_EX|PT_NC, 	-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11
+	{	PARA_C_UCH_MAX_POW12	, PT_CP_G_EX|PT_NC, 	-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12
+	{	PARA_C_UCH_MAX_POW13	, PT_CP_G_EX|PT_NC, 	-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13
+	{	PARA_C_UCH_MAX_POW14	, PT_CP_G_EX|PT_NC, 	-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14
+	{	PARA_C_UCH_MAX_POW15	, PT_CP_G_EX|PT_NC, 	-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15
+	{	PARA_C_UCH_MAX_POW16	, PT_CP_G_EX|PT_NC, 	-5,},	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16
+	{	PARA_C_DCH_POW1	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1
+	{	PARA_C_DCH_POW2	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2
+	{	PARA_C_DCH_POW3	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3
+	{	PARA_C_DCH_POW4	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4
+	{	PARA_C_DCH_POW5	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5
+	{	PARA_C_DCH_POW6	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6
+	{	PARA_C_DCH_POW7	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7
+	{	PARA_C_DCH_POW8	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8
+	{	PARA_C_DCH_POW9	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9
+	{	PARA_C_DCH_POW10	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10
+	{	PARA_C_DCH_POW11	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11
+	{	PARA_C_DCH_POW12	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12
+	{	PARA_C_DCH_POW13	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13
+	{	PARA_C_DCH_POW14	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14
+	{	PARA_C_DCH_POW15	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15
+	{	PARA_C_DCH_POW16	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16
+	{	PARA_C_UCH_POW1	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1
+	{	PARA_C_UCH_POW2	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2
+	{	PARA_C_UCH_POW3	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3
+	{	PARA_C_UCH_POW4	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4
+	{	PARA_C_UCH_POW5	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5
+	{	PARA_C_UCH_POW6	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6
+	{	PARA_C_UCH_POW7	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7
+	{	PARA_C_UCH_POW8	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8
+	{	PARA_C_UCH_POW9	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9
+	{	PARA_C_UCH_POW10	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+	{	PARA_C_UCH_POW11	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡11
+	{	PARA_C_UCH_POW12	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡12
+	{	PARA_C_UCH_POW13	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡13
+	{	PARA_C_UCH_POW14	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡14
+	{	PARA_C_UCH_POW15	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡15
+	{	PARA_C_UCH_POW16	, PT_NC, 	0,},	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡16
+	{	PARA_C_UDPX_IN_GAIN	, PT_CP_G_EX|PT_NC, 	0,},	//	Cæ®µè¾“å…¥åŒå·¥å™¨å¢žç›Š
+	{	PARA_C_UDPX_OUT_GAIN, PT_CP_G_EX|PT_NC, 	0,},	//	Cæ®µè¾“å‡ºåŒå·¥å™¨å¢žç›Š
+	{	PARA_C_DL_TOTAL_POW	, PT_CP|PT_RO|PT_SI, 	0,},	//	Cæ®µä¸‹è¡Œæ€»åŠŸçŽ‡
+	{	PARA_C_UL_TOTAL_POW	, PT_CP_G_EX|PT_RO|PT_SI, 	0,},	//	Cæ®µä¸Šè¡Œæ€»åŠŸçŽ‡
+	{	PARA_C_REC_DPX_IG	, PT_NC, 	0,},	//	RECçš„Cæ®µè¾“å…¥åŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,	
+	{	PARA_C_REC_DPX_OG	, PT_NC, 	0,},	//	RECçš„Cæ®µè¾“å‡ºåŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,	
+	{ 	PARA_D_DL_CHANNEL1  , PT_DP|PT_US,  39100,},	// Dæ®µä¸‹è¡Œä¿¡é“å·1
+	{ 	PARA_D_DL_CHANNEL2  , PT_DP|PT_US,  39100,},	// Dæ®µä¸‹è¡Œä¿¡é“å·2
+	{ 	PARA_D_DL_CHANNEL3  , PT_DP|PT_US,  39210,},	// Dæ®µä¸‹è¡Œä¿¡é“å·3
+	{ 	PARA_D_DL_CHANNEL4  , PT_DP|PT_US,  39210,},	// Dæ®µä¸‹è¡Œä¿¡é“å·4
+	{ 	PARA_D_DL_CHANNEL5  , PT_DP|PT_US,  39210,},	// Dæ®µä¸‹è¡Œä¿¡é“å·5
+	{	PARA_D_DL_CHANNEL6  , PT_DP|PT_US,  39210,},	// Dæ®µä¸‹è¡Œä¿¡é“å·6
+	{ 	PARA_D_DL_CHANNEL7  , PT_DP|PT_US,  39210,},	// Dæ®µä¸‹è¡Œä¿¡é“å·7
+	{ 	PARA_D_DL_CHANNEL8  , PT_DP|PT_US,  39210,},	// Dæ®µä¸‹è¡Œä¿¡é“å·8
+	{ 	PARA_D_DL_CHANNEL9  , PT_DP|PT_US,  39210,},	// Dæ®µä¸‹è¡Œä¿¡é“å·9
+	{ 	PARA_D_DL_CHANNEL10  , PT_DP|PT_US,  39210,},  // Dæ®µä¸‹è¡Œä¿¡é“å·10
+	{	PARA_D_UL_CHANNEL1	, PT_US, 	39210,}, 	//	Dæ®µä¸Šè¡Œä¿¡é“å·1
+	{	PARA_D_UL_CHANNEL2	, PT_US, 	39210,},	//	Dæ®µä¸Šè¡Œä¿¡é“å·2
+	{	PARA_D_UL_CHANNEL3	, PT_US, 	39210,},	//	Dæ®µä¸Šè¡Œä¿¡é“å·3
+	{	PARA_D_UL_CHANNEL4	, PT_US, 	39210,},	//	Dæ®µä¸Šè¡Œä¿¡é“å·4
+	{	PARA_D_UL_CHANNEL5	, PT_US, 	39210,},	//	Dæ®µä¸Šè¡Œä¿¡é“å·5
+	{	PARA_D_UL_CHANNEL6	, PT_US, 	39210,},	//	Dæ®µä¸Šè¡Œä¿¡é“å·6
+	{	PARA_D_UL_CHANNEL7	, PT_US, 	39210,},	//	Dæ®µä¸Šè¡Œä¿¡é“å·7
+	{	PARA_D_UL_CHANNEL8	, PT_US, 	39210,},	//	Dæ®µä¸Šè¡Œä¿¡é“å·8
+	{	PARA_D_UL_CHANNEL9	, PT_US, 	39210,},	//	Dæ®µä¸Šè¡Œä¿¡é“å·9
+	{	PARA_D_UL_CHANNEL10	, PT_US, 	39210,},	//	Dæ®µä¸Šè¡Œä¿¡é“å·10
+	{	PARA_D_DCH_MAX_POW1	, PT_DP_G_EX|PT_SI, 		27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1
+	{	PARA_D_DCH_MAX_POW2	, PT_DP_G_EX|PT_NC, 	27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2
+	{	PARA_D_DCH_MAX_POW3	, PT_DP_G_EX|PT_NC, 	27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3
+	{	PARA_D_DCH_MAX_POW4	, PT_DP_G_EX|PT_NC, 	27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4
+	{	PARA_D_DCH_MAX_POW5	, PT_DP_G_EX|PT_NC, 	27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5
+	{	PARA_D_DCH_MAX_POW6	, PT_DP_G_EX|PT_NC, 	27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6
+	{	PARA_D_DCH_MAX_POW7	, PT_DP_G_EX|PT_NC, 	27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7
+	{	PARA_D_DCH_MAX_POW8	, PT_DP_G_EX|PT_NC, 	27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8
+	{	PARA_D_DCH_MAX_POW9	, PT_DP_G_EX|PT_NC, 	27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9
+	{	PARA_D_DCH_MAX_POW10	, PT_DP_G_EX|PT_NC, 	27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10
+	{	PARA_D_DCH_MAX_POW11	, PT_DP_G_EX|PT_NC, 	27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11
+	{	PARA_D_DCH_MAX_POW12	, PT_DP_G_EX|PT_NC, 	27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12
+	{	PARA_D_DCH_MAX_POW13	, PT_DP_G_EX|PT_NC, 	27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13
+	{	PARA_D_DCH_MAX_POW14	, PT_DP_G_EX|PT_NC, 	27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14
+	{	PARA_D_DCH_MAX_POW15	, PT_DP_G_EX|PT_NC, 	27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15
+	{	PARA_D_DCH_MAX_POW16	, PT_DP_G_EX|PT_NC, 	27,},	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16
+	{	PARA_D_UCH_MAX_POW1	, PT_DP|PT_SI, 		-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1
+	{	PARA_D_UCH_MAX_POW2	, PT_DP_G_EX|PT_NC, 	-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2
+	{	PARA_D_UCH_MAX_POW3	, PT_DP_G_EX|PT_NC, 	-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3
+	{	PARA_D_UCH_MAX_POW4	, PT_DP_G_EX|PT_NC, 	-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4
+	{	PARA_D_UCH_MAX_POW5	, PT_DP_G_EX|PT_NC, 	-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5
+	{	PARA_D_UCH_MAX_POW6	, PT_DP_G_EX|PT_NC, 	-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6
+	{	PARA_D_UCH_MAX_POW7	, PT_DP_G_EX|PT_NC, 	-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7
+	{	PARA_D_UCH_MAX_POW8	, PT_DP_G_EX|PT_NC, 	-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8
+	{	PARA_D_UCH_MAX_POW9	, PT_DP_G_EX|PT_NC, 	-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9
+	{	PARA_D_UCH_MAX_POW10	, PT_DP_G_EX|PT_NC, 	-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10
+	{	PARA_D_UCH_MAX_POW11	, PT_DP_G_EX|PT_NC, 	-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11
+	{	PARA_D_UCH_MAX_POW12	, PT_DP_G_EX|PT_NC, 	-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12
+	{	PARA_D_UCH_MAX_POW13	, PT_DP_G_EX|PT_NC, 	-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13
+	{	PARA_D_UCH_MAX_POW14	, PT_DP_G_EX|PT_NC, 	-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14
+	{	PARA_D_UCH_MAX_POW15	, PT_DP_G_EX|PT_NC, 	-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15
+	{	PARA_D_UCH_MAX_POW16	, PT_DP_G_EX|PT_NC, 	-5,},	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16
+	{	PARA_D_DCH_POW1	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1
+	{	PARA_D_DCH_POW2	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2
+	{	PARA_D_DCH_POW3	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3
+	{	PARA_D_DCH_POW4	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4
+	{	PARA_D_DCH_POW5	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5
+	{	PARA_D_DCH_POW6	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6
+	{	PARA_D_DCH_POW7	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7
+	{	PARA_D_DCH_POW8	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8
+	{	PARA_D_DCH_POW9	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9
+	{	PARA_D_DCH_POW10	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10
+	{	PARA_D_DCH_POW11	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11
+	{	PARA_D_DCH_POW12	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12
+	{	PARA_D_DCH_POW13	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13
+	{	PARA_D_DCH_POW14	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14
+	{	PARA_D_DCH_POW15	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15
+	{	PARA_D_DCH_POW16	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16
+	{	PARA_D_UCH_POW1	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1
+	{	PARA_D_UCH_POW2	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2
+	{	PARA_D_UCH_POW3	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3
+	{	PARA_D_UCH_POW4	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4
+	{	PARA_D_UCH_POW5	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5
+	{	PARA_D_UCH_POW6	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6
+	{	PARA_D_UCH_POW7	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7
+	{	PARA_D_UCH_POW8	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8
+	{	PARA_D_UCH_POW9	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9
+	{	PARA_D_UCH_POW10	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+	{	PARA_D_UCH_POW11	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡11
+	{	PARA_D_UCH_POW12	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡12
+	{	PARA_D_UCH_POW13	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡13
+	{	PARA_D_UCH_POW14	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡14
+	{	PARA_D_UCH_POW15	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡15
+	{	PARA_D_UCH_POW16	, PT_NC, 	0,},	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡16
+	{	PARA_D_UDPX_IN_GAIN	, PT_DP_G_EX|PT_NC, 	0,},	//	Dæ®µè¾“å…¥åŒå·¥å™¨å¢žç›Š
+	{	PARA_D_UDPX_OUT_GAIN, PT_DP_G_EX|PT_NC, 	0,},	//	Dæ®µè¾“å‡ºåŒå·¥å™¨å¢žç›Š
+	{	PARA_D_DL_TOTAL_POW	, PT_DP|PT_RO|PT_SI, 	0,},	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡/*PT_BP_EX*/
+	{	PARA_D_UL_TOTAL_POW	, PT_DP_G_EX|PT_RO|PT_SI, 	0,},	//	Dæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡/*PT_BP_EX*/
+	{	PARA_D_REC_DPX_IG	, PT_DP_G_EX|PT_NC, 	0,},	//	RECçš„Dæ®µè¾“å…¥åŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,	
+	{	PARA_D_REC_DPX_OG	, PT_DP_G_EX|PT_NC, 	0,},	//	RECçš„Dæ®µè¾“å‡ºåŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,	
+	{	PARA_REC_TO_RE_DELAY,	PT_AP_G_EX|PT_BP_G_EX|PT_US,	0},	// RECåˆ°REçš„å…‰çº¤å»¶æ—¶
+	{	PARA_RE_RF_DELAY,		PT_AP_G_EX|PT_BP_G_EX|PT_US,	0},	// REçš„å°„é¢‘å»¶æ—¶
+	{	PARA_MAX_T14	, PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0,},	//	å…‰å£æœ€å¤§å»¶æ—¶
+	{	PARA_DL_DELAY_OFFSET	, PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0,},	//	ä¸‹è¡Œå»¶æ—¶åç§»é‡
+	{	PARA_UL_DELAY_OFFSET	, PT_AP_G_EX|PT_BP_G_EX|PT_US, 	0,},	//	ä¸Šè¡Œå»¶æ—¶åç§»é‡
+	{	PARA_PRI_SOFT_V	, PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0,},	//	ç¨‹åºç‰ˆæœ¬å·ï¼ˆç”¨ASCIIç ï¼‰
+	{	PARA_PRI_HARD_V	, PT_AP_G_EX|PT_BP_G_EX|PT_RO|PT_US, 	0,},	//	PCBç‰ˆæœ¬å·(ç”¨ASCIIç )
+	{	PARA_TD_1ST_CP_TIME,	PT_BP_EX|PT_US,	0},	// TDç¬¬1è½¬æ¢ç‚¹æ—¶é—´ns, æœ‰ç¬¦å·æ•°
+	{	PARA_TD_2ND_CP_TIME,	PT_BP_EX|PT_US,	0},	// TDç¬¬2è½¬æ¢ç‚¹æ—¶é—´ns, æœ‰ç¬¦å·æ•°
+	{	PARA_TD_LNA_ON_TIME,	PT_BP_EX|PT_US,	0},	// LNAå¼€å¯è¿ŸåŽDN_PAå…³é—­çš„ä¿æŠ¤æ—¶é—´ns
+	{	PARA_TD_LNA_OFF_TIME,	PT_BP_EX|PT_US,	0},	// LNAå…³é—­è¶…å‰DN_PAå¼€å¯çš„ä¿æŠ¤æ—¶é—´ns
+	{	PARA_TD_SLOT1_UPOW,	PT_BP_G_EX|PT_SI,	0},	// TDæ—¶éš™1ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+	{	PARA_TD_SLOT2_UPOW,	PT_BP_G_EX|PT_SI,	0},	// TDæ—¶éš™2ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+	{	PARA_TD_SLOT3_UPOW,	PT_BP_G_EX|PT_SI,	0},	// TDæ—¶éš™3ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+	{	PARA_TD_SLOT4_UPOW,	PT_BP_G_EX|PT_SI,	0},	// TDæ—¶éš™4ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+	{	PARA_TD_SLOT5_UPOW,	PT_BP_G_EX|PT_SI,	0},	// TDæ—¶éš™5ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+	{	PARA_TD_SLOT6_UPOW,	PT_BP_G_EX|PT_SI,	0},	// TDæ—¶éš™6ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+	{	PARA_TD_SLOT7_UPOW,	PT_BP_G_EX|PT_SI,	0},	// TDæ—¶éš™7ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+	{	PARA_TD_SLOT1_DPOW,	PT_BP_G_EX|PT_SI,	0},	// TDæ—¶éš™1ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+	{	PARA_TD_SLOT2_DPOW,	PT_BP_G_EX|PT_SI,	0},	// TDæ—¶éš™2ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+	{	PARA_TD_SLOT3_DPOW,	PT_BP_G_EX|PT_SI,	0},	// TDæ—¶éš™3ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+	{	PARA_TD_SLOT4_DPOW,	PT_BP_G_EX|PT_SI,	0},	// TDæ—¶éš™4ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+	{	PARA_TD_SLOT5_DPOW,	PT_BP_G_EX|PT_SI,	0},	// TDæ—¶éš™5ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+	{	PARA_TD_SLOT6_DPOW,	PT_BP_G_EX|PT_SI,	0},	// TDæ—¶éš™6ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+	{	PARA_TD_SLOT7_DPOW,	PT_BP_G_EX|PT_SI,	0},	// TDæ—¶éš™7ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+	{	PARA_FPS_S1,	PT_SI,	0},	// é¢‘ç‚¹æœç´ èŒƒå›´1èµ·å§‹é¢‘ç‚¹
+	{	PARA_FPS_E1,	PT_SI,	0},	// é¢‘ç‚¹æœç´ èŒƒå›´1ç»“æŸé¢‘ç‚¹
+	{	PARA_FPS_S2,	PT_SI,	0},	// é¢‘ç‚¹æœç´ èŒƒå›´2èµ·å§‹é¢‘ç‚¹
+	{	PARA_FPS_E2,	PT_SI,	0},	// é¢‘ç‚¹æœç´ èŒƒå›´2ç»“æŸé¢‘ç‚¹
+	{	PARA_FPS_BCCH_LK_SET,	PT_AP_G|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: é”é¢‘ä¿¡é“å·: æ ‡å‡†ä¿¡é“å·, 65535-é€€å‡ºé”é¢‘
+	{	PARA_FPS_CID_LK_SET	,	PT_AP_G|PT_US,	0},	// é¢‘ç‚¹æœç´¢: å°åŒºè¯†åˆ«ç å‚è€ƒå€¼, 0-é€€å‡ºå°åŒºé”å®šåŠŸèƒ½
+	{	PARA_FPS_BCCH_FC_M	,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: ä¸»å°åŒºBCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+	{	PARA_FPS_CA_FC_0,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢0ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_CA_FC_1,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢1ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_CA_FC_2,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢2ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_CA_FC_3,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢3ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_CA_FC_4,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢4ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_CA_FC_5,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢5ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_CA_FC_6,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢6ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_CA_FC_7,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢7ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_CA_FC_8,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢8ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_CA_FC_9,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢9ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_CA_FC_10,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢10ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_CA_FC_11,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢11ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_CA_FC_12,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢12ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_CA_FC_13,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢13ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_CA_FC_14,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢14ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_CA_FC_15,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢15ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+	{	PARA_FPS_BCCH_FC_1,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº1 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+	{	PARA_FPS_BCCH_FC_2,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº2 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+	{	PARA_FPS_BCCH_FC_3,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº3 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+	{	PARA_FPS_BCCH_FC_4,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº4 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+	{	PARA_FPS_BCCH_FC_5,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº5 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+	{	PARA_FPS_BCCH_FC_6,	PT_AP_G|PT_RO|PT_US,	65535},	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº6 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+	{	PARA_FPS_AREA_ID,	PT_AP_G_EX|PT_RO|PT_US,	0},	// é¢‘ç‚¹æœç´¢: ä½ç½®åŒºç¼–ç 
+	{	PARA_FPS_CID,	PT_AP_G_EX|PT_RO|PT_US,	0},	// é¢‘ç‚¹æœç´¢: å°åŒºè¯†åˆ«ç å®žæ—¶å€¼
+	{	PARA_FPS_CID_1,		PT_NC,	0}, // é¢‘ç‚¹æœç´¢: é‚»å°åŒº1 CIDå°åŒºè¯†åˆ«ç 
+	{	PARA_FPS_CID_2,		PT_NC,	0}, // é¢‘ç‚¹æœç´¢: é‚»å°åŒº2 CIDå°åŒºè¯†åˆ«ç 
+	{	PARA_FPS_CID_3,		PT_NC,	0}, // é¢‘ç‚¹æœç´¢: é‚»å°åŒº3 CIDå°åŒºè¯†åˆ«ç 
+	{	PARA_FPS_CID_4,		PT_NC,	0}, // é¢‘ç‚¹æœç´¢: é‚»å°åŒº4 CIDå°åŒºè¯†åˆ«ç 
+	{	PARA_FPS_CID_5,		PT_NC,	0}, // é¢‘ç‚¹æœç´¢: é‚»å°åŒº5 CIDå°åŒºè¯†åˆ«ç 
+	{	PARA_FPS_CID_6,		PT_NC,	0}, // é¢‘ç‚¹æœç´¢: é‚»å°åŒº6 CIDå°åŒºè¯†åˆ«ç 
+	{	PARA_A_EXPA_IDRAIN_SET,	PT_NC,	0},	// å¾®åŠŸæ”¾: æ¼æžç”µæµè®¾ç½®,mA
+	{	PARA_TD_SLOT1_DPOW_OVER_THR,    PT_BP_G_EX|PT_US, 	0},       //ä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡é—¨é™
+	{	PARA_TD_SLOT1_DPOW_OWE_THR,    	PT_BP_G_EX|PT_US, 	0},       //ä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡é—¨é™
+	{	PARA_A_INPUT_TOTAL_DPOW_OVER_THR,				PT_AP_G_EX|PT_US,	0},//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡é—¨é™
+	{	PARA_A_INPUT_TOTAL_DPOW_OWE_THR,				PT_AP_G_EX|PT_US,	0},//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡é—¨é™
+	{	PARA_B_INPUT_TOTAL_DPOW_OVER_THR,				PT_BP_G_EX|PT_US,	0},//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡é—¨é™
+	{	PARA_B_INPUT_TOTAL_DPOW_OWE_THR,				PT_BP_G_EX|PT_US,	0},//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡é—¨é™
+	{	PARA_C_INPUT_TOTAL_DPOW_OVER_THR,				PT_CP_G_EX|PT_US,	0},//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡é—¨é™
+	{	PARA_C_INPUT_TOTAL_DPOW_OWE_THR,				PT_CP_G_EX|PT_US,	0},//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡é—¨é™
+	{	PARA_D_INPUT_TOTAL_DPOW_OVER_THR,				PT_DP_G_EX|PT_US,	0},//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡é—¨é™
+	{	PARA_D_INPUT_TOTAL_DPOW_OWE_THR,				PT_DP_G_EX|PT_US,	0},//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡é—¨é™
+	{	PARA_REE_A_DL_OUT_TOTAL_POW_DETECT,		PT_AP_G_EX|PT_US,	0},//Aæ®µREEä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡
+	{	PARA_A_RE_LOCAL_ST_ALARM,					PT_AP_G_EX|PT_BP_G_EX|PT_US,	0},//è¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€
+	{	PARA_REE_B_DL_OUT_TOTAL_POW_DETECT ,		PT_BP_G_EX|PT_US,	0}, //Bæ®µREEä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡
+	{	PARA_B_RE_LOCAL_ST_ALARM,	PT_BP_G_EX|PT_US,	0},//è¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€
+	{	PARA_REE_C_DL_OUT_TOTAL_POW_DETECT,		PT_CP_G_EX|PT_US,	0},//Cæ®µREEä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡
+	{	PARA_C_RE_LOCAL_ST_ALARM,					PT_CP_G_EX|PT_US,	0},//è¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€
+	{	PARA_REE_D_DL_OUT_TOTAL_POW_DETECT ,		PT_DP_G_EX|PT_US,	0}, //Dæ®µREEä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡
+	{	PARA_D_RE_LOCAL_ST_ALARM,	PT_DP_G_EX|PT_US,	0},//è¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€
+	{	PARA_C_TD_1ST_CP_TIME,	PT_CP_G_EX|PT_US,	0},		//465		//		TDç¬¬1è½¬æ¢ç‚¹æ—¶é—´,ns,	
+	{	PARA_C_TD_2ND_CP_TIME,	PT_CP_G_EX|PT_US,	0},		//466		//		TDç¬¬2è½¬æ¢ç‚¹æ—¶é—´,ns,	
+	{	PARA_C_TD_LNA_ON_TIME,	PT_CP_G_EX|PT_US,	0},		//467		//		LNAå¼€å¯è¿ŸåŽDN_PAå…³é—­çš„ä¿æŠ¤æ—¶é—´ns	
+	{	PARA_C_TD_LNA_OFF_TIME,	PT_CP_G_EX|PT_US,	0},		//468		//		LNAå…³é—­è¶…å‰DN_PAå¼€å¯çš„ä¿æŠ¤æ—¶é—´ns	
+	{	PARA_C_TD_SLOT1_DPOW_OVER_THR,	PT_CP_G_EX|PT_US,	0},		//469		//625		//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡é—¨é™	
+	{	PARA_C_TD_SLOT1_DPOW_OWE_THR,	PT_CP_G_EX|PT_US,	0},		//470		//626		//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡é—¨é™	
+	{	PARA_D_TD_1ST_CP_TIME,	PT_DP_G_EX|PT_US,	0},		//471		//		TDç¬¬1è½¬æ¢ç‚¹æ—¶é—´,ns,	
+	{	PARA_D_TD_2ND_CP_TIME,	PT_DP_G_EX|PT_US,	0},		//472		//		TDç¬¬2è½¬æ¢ç‚¹æ—¶é—´,ns,	
+	{	PARA_D_TD_LNA_ON_TIME,	PT_DP_G_EX|PT_US,	0},		//473		//		LNAå¼€å¯è¿ŸåŽDN_PAå…³é—­çš„ä¿æŠ¤æ—¶é—´ns	
+	{	PARA_D_TD_LNA_OFF_TIME,	PT_DP_G_EX|PT_US,	0},		//474		//		LNAå…³é—­è¶…å‰DN_PAå¼€å¯çš„ä¿æŠ¤æ—¶é—´ns	
+	{	PARA_D_TD_SLOT1_DPOW_OVER_THR,	PT_DP_G_EX|PT_US,	0},		//475		//625		//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡é—¨é™	
+	{	PARA_D_TD_SLOT1_DPOW_OWE_THR,	PT_DP_G_EX|PT_US,	0},		//476		//626		//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡é—¨é™	
+	{	PARA_C_TD_SLOT1_POW,	PT_CP_G_EX|PT_US,	0},		//477		//		TDæ—¶éš™1è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT2_POW,	PT_CP_G_EX|PT_US,	0},		//478		//		TDæ—¶éš™2è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT3_POW,	PT_CP_G_EX|PT_US,	0},		//479		//		TDæ—¶éš™3è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT4_POW,	PT_CP_G_EX|PT_US,	0},		//480		//		TDæ—¶éš™4è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT5_POW,	PT_CP_G_EX|PT_US,	0},		//481		//		TDæ—¶éš™5è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT6_POW,	PT_CP_G_EX|PT_US,	0},		//482		//		TDæ—¶éš™6è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT7_POW,	PT_CP_G_EX|PT_US,	0},		//483		//		TDæ—¶éš™7è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT8_POW,	PT_CP_G_EX|PT_US,	0},		//484		//		TDæ—¶éš™8è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT9_POW,	PT_CP_G_EX|PT_US,	0},		//485		//		TDæ—¶éš™9è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT10_POW,	PT_CP_G_EX|PT_US,	0},		//486		//		TDæ—¶éš™10è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT11_POW,	PT_CP_G_EX|PT_US,	0},		//487		//		TDæ—¶éš™11è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT12_POW,	PT_CP_G_EX|PT_US,	0},		//488		//		TDæ—¶éš™12è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT13_POW,	PT_CP_G_EX|PT_US,	0},		//489		//		TDæ—¶éš™13è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT14_POW,	PT_CP_G_EX|PT_US,	0},		//490		//		TDæ—¶éš™14è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT15_POW,	PT_CP_G_EX|PT_US,	0},		//491		//		TDæ—¶éš™15è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT16_POW,	PT_CP_G_EX|PT_US,	0},		//492		//		TDæ—¶éš™16è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT17_POW,	PT_CP_G_EX|PT_US,	0},		//493		//		TDæ—¶éš™17è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT18_POW,	PT_CP_G_EX|PT_US,	0},		//494		//		TDæ—¶éš™18è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT19_POW,	PT_CP_G_EX|PT_US,	0},		//495		//		TDæ—¶éš™19è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_C_TD_SLOT20_POW,	PT_CP_G_EX|PT_US,	0},		//496		//		TDæ—¶éš™20è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT1_POW,	PT_DP_G_EX|PT_US,	0},		//497		//		TDæ—¶éš™1è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT2_POW,	PT_DP_G_EX|PT_US,	0},		//498		//		TDæ—¶éš™2è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT3_POW,	PT_DP_G_EX|PT_US,	0},		//499		//		TDæ—¶éš™3è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT4_POW,	PT_DP_G_EX|PT_US,	0},		//500		//		TDæ—¶éš™4è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT5_POW,	PT_DP_G_EX|PT_US,	0},		//501		//		TDæ—¶éš™5è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT6_POW,	PT_DP_G_EX|PT_US,	0},		//502		//		TDæ—¶éš™6è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT7_POW,	PT_DP_G_EX|PT_US,	0},		//503		//		TDæ—¶éš™7è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT8_POW,	PT_DP_G_EX|PT_US,	0},		//504		//		TDæ—¶éš™8è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT9_POW,	PT_DP_G_EX|PT_US,	0},		//505		//		TDæ—¶éš™9è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT10_POW,	PT_DP_G_EX|PT_US,	0},		//506		//		TDæ—¶éš™10è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT11_POW,	PT_DP_G_EX|PT_US,	0},		//507		//		TDæ—¶éš™11è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT12_POW,	PT_DP_G_EX|PT_US,	0},		//508		//		TDæ—¶éš™12è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT13_POW,	PT_DP_G_EX|PT_US,	0},		//509		//		TDæ—¶éš™13è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT14_POW,	PT_DP_G_EX|PT_US,	0},		//510		//		TDæ—¶éš™14è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT15_POW,	PT_DP_G_EX|PT_US,	0},		//511		//		TDæ—¶éš™15è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT16_POW,	PT_DP_G_EX|PT_US,	0},		//512		//		TDæ—¶éš™16è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT17_POW,	PT_DP_G_EX|PT_US,	0},		//513		//		TDæ—¶éš™17è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT18_POW,	PT_DP_G_EX|PT_US,	0},		//514		//		TDæ—¶éš™18è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT19_POW,	PT_DP_G_EX|PT_US,	0},		//515		//		TDæ—¶éš™19è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_D_TD_SLOT20_POW,	PT_DP_G_EX|PT_US,	0},		//516		//		TDæ—¶éš™20è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+	{	PARA_DL_DELAY_OFFSET_B	,PT_BP|PT_US, 	0},		//0x8660	//		ä¸‹è¡Œå»¶æ—¶åç§»é‡					
+	{	PARA_DL_DELAY_OFFSET_C	,PT_CP|PT_US, 	0},		//0x8660	//		ä¸‹è¡Œå»¶æ—¶åç§»é‡					
+	{	PARA_DL_DELAY_OFFSET_D	,PT_DP|PT_US, 	0},		//0x8660	//		ä¸‹è¡Œå»¶æ—¶åç§»é‡					
+	{	PARA_VGS_A	,PT_AP|PT_US,	0}, 	//Aæ®µæ …åŽ‹
+	{	PARA_VGS_B	,PT_BP|PT_US,	0}, 	//Bæ®µæ …åŽ‹
+	{	PARA_VGS_C	,PT_CP|PT_US,	0}, 	//Cæ®µæ …åŽ‹
+	{	PARA_VGS_D	,PT_DP|PT_US,	0}, 	//Dæ®µæ …åŽ‹
+	{	PARA_VGS_COMP_A ,PT_AP|PT_US,	0}, 	//Aæ®µæ …åŽ‹
+	{	PARA_VGS_COMP_B ,PT_BP|PT_US,	0}, 	//Bæ®µæ …åŽ‹
+	{	PARA_VGS_COMP_C ,PT_CP|PT_US,	0}, 	//Cæ®µæ …åŽ‹
+	{	PARA_VGS_COMP_D ,PT_DP|PT_US,	0}, 	//Dæ®µæ …åŽ‹
+	{	PARA_ATT_DATA_COMP_A	,PT_AP|PT_US,	0}, //ATTè¡¥å¿æ•°æ®
+	{	PARA_ATT_DATA_COMP_B	,PT_BP|PT_US,	0}, //ATTè¡¥å¿æ•°æ®
+	{	PARA_ATT_DATA_COMP_C	,PT_CP|PT_US,	0}, //ATTè¡¥å¿æ•°æ®
+	{	PARA_ATT_DATA_COMP_D	,PT_DP|PT_US,	0}, //ATTè¡¥å¿æ•°æ®//PARA_MAX_T14_A
+	{	PARA_MAX_T14_A	,PT_AP|PT_US,	0}, //ATTè¡¥å¿æ•°æ®
+	{	PARA_MAX_T14_B	,PT_BP|PT_US,	0}, //ATTè¡¥å¿æ•°æ®
+	{	PARA_MAX_T14_C	,PT_CP|PT_US,	0}, //ATTè¡¥å¿æ•°æ®
+	{	PARA_MAX_T14_D	,PT_DP|PT_US,	0}, //ATTè¡¥å¿æ•°
 	{	PARA_ERL_JG_A,PT_AP|PT_US,	0}, 
 	{	PARA_ERL_JG_C,PT_CP|PT_US,	0}, 
 	{	PARA_ERL_JG_D,PT_DP|PT_US,	0}, 
@@ -1340,44 +1340,44 @@ _T_PARAM_2B sys_param_2b[]={
 
 
 _T_PARAM_4B sys_param_4b[]={
-	{ 	PARA_DEV_ADDR , PT_AP|PT_BP|PT_CP|PT_DP|PT_RO|PT_US,	0	 },		//	Éè±¸Â·ÓÉµÇ¼ÇµØÖ·
-	{	PARA_BIT_ERR_COUNT, PT_NC, 0 },		// Êý¾Ý°ü´íÎóÍ³¼Æ
-	{	PARA_TOPO_CHG_COUNT, PT_NC, 0 },		// Êý¾Ý°ü´íÎóÍ³¼Æ
-	{	PARA_FPGA_PKT_COUNT, PT_NC, 0 },		// FPGAÊý¾Ý°ü¸öÊýÍ³¼Æ
-	{	PARA_OPT_RE_COUNT1, PT_AP_EX|PT_BP_EX|PT_CP|PT_DP|PT_US, 0 },		// Ô¶¶Ë»ú½Úµã¼ÆÊý1
-	{	PARA_OPT_RE_COUNT2, PT_AP_EX|PT_BP_EX|PT_CP|PT_DP|PT_US, 0 },		// Ô¶¶Ë»ú½Úµã¼ÆÊý2
-	{	PARA_OPS_PORT, PT_AP_EX|PT_BP_EX|PT_CP|PT_DP|PT_US, 0 },		// ¹â¿ÚµÄ¶Ô¶Ë¹â¿ÚºÅ
+	{ 	PARA_DEV_ADDR , PT_AP|PT_BP|PT_CP|PT_DP|PT_RO|PT_US,	0	 },		//	è®¾å¤‡è·¯ç”±ç™»è®°åœ°å€
+	{	PARA_BIT_ERR_COUNT, PT_NC, 0 },		// æ•°æ®åŒ…é”™è¯¯ç»Ÿè®¡
+	{	PARA_TOPO_CHG_COUNT, PT_NC, 0 },		// æ•°æ®åŒ…é”™è¯¯ç»Ÿè®¡
+	{	PARA_FPGA_PKT_COUNT, PT_NC, 0 },		// FPGAæ•°æ®åŒ…ä¸ªæ•°ç»Ÿè®¡
+	{	PARA_OPT_RE_COUNT1, PT_AP_EX|PT_BP_EX|PT_CP|PT_DP|PT_US, 0 },		// è¿œç«¯æœºèŠ‚ç‚¹è®¡æ•°1
+	{	PARA_OPT_RE_COUNT2, PT_AP_EX|PT_BP_EX|PT_CP|PT_DP|PT_US, 0 },		// è¿œç«¯æœºèŠ‚ç‚¹è®¡æ•°2
+	{	PARA_OPS_PORT, PT_AP_EX|PT_BP_EX|PT_CP|PT_DP|PT_US, 0 },		// å…‰å£çš„å¯¹ç«¯å…‰å£å·
 };
 
-// Ä£¿éÊ¶±ðIDºÅ(ÓÃASCIIÂë)			REC/RE
+// æ¨¡å—è¯†åˆ«IDå·(ç”¨ASCIIç )			REC/RE
 UCHAR8 str_pri_id[PRI_ID_LEN]={'R', 'E', 'C', ' ', ' ', ' ', ' ', ' ', ' ', '\0'};
-// Ä£¿éÀàÐÍ(ÓÃASCIIÂë)				REC/RE
+// æ¨¡å—ç±»åž‹(ç”¨ASCIIç )				REC/RE
 UCHAR8 str_pri_type[PRI_TYPE_LEN]={'R', 'E', 'C', ' ', ' ', ' ', ' ', '\0'};
-// Éú²úÐòÁÐºÅ(ÓÃASCIIÂë)			20101030001
+// ç”Ÿäº§åºåˆ—å·(ç”¨ASCIIç )			20101030001
 UCHAR8 str_pri_seq[PRI_SEQ_LEN]={'2', '0', '1', '0', '1', '0', '3', '0', '0', '0', '1', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '\0'};
-// ³§¼Ò²úÆ·±àºÅ(ÓÃASCIIÂë)			DOF-FFFFFFFW21400302
+// åŽ‚å®¶äº§å“ç¼–å·(ç”¨ASCIIç )			DOF-FFFFFFFW21400302
 UCHAR8 str_pri_gl_product[PRI_GL_PRODUCT_LEN]={'D', 'O', 'N', '-', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'W', '2', '1', '4', '0', '0', '3', '0', '2'};
-// ³§¼ÒÉú²úÐòÁÐºÅ(ÓÃASCIIÂë)		20101030001
+// åŽ‚å®¶ç”Ÿäº§åºåˆ—å·(ç”¨ASCIIç )		20101030001
 UCHAR8 str_pri_gl_seq[PRI_GL_SEQ_LEN]={'2', '0', '1', '0', '1', '0', '3', '0', '0', '0', '1', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '\0'};
-// Î¨Ò»Ê¶±ðID(ÓÃASCIIÂë)			REC/RE
+// å”¯ä¸€è¯†åˆ«ID(ç”¨ASCIIç )			REC/RE
 UCHAR8 str_pri_gl_rom_id[PRI_GL_ROM_ID_LEN]={'R', 'E', 'C', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '\0'};
-// MCU³ÌÐòÈÕÆÚ(ÓÃASCIIÂë)
+// MCUç¨‹åºæ—¥æœŸ(ç”¨ASCIIç )
 UCHAR8 str_pri_mcu_date[PRI_MCU_DATE_LEN]={0};
-// FPGA³ÌÐòÈÕÆÚ(ÓÃASCIIÂë)
+// FPGAç¨‹åºæ—¥æœŸ(ç”¨ASCIIç )
 UCHAR8 str_pri_fpga_date[PRI_FPGA_DATE_LEN]={0};
-// FPGA2³ÌÐòÈÕÆÚ(ÓÃASCIIÂë)
+// FPGA2ç¨‹åºæ—¥æœŸ(ç”¨ASCIIç )
 UCHAR8 str_pri_fpga2_date[PRI_FPGA_DATE_LEN]={0};
-// IDÊ¶±ð×Ö·û´®(ÓÃASCIIÂë)			REC/RE
+// IDè¯†åˆ«å­—ç¬¦ä¸²(ç”¨ASCIIç )			REC/RE
 UCHAR8 str_module_hri_str[MODULE_HRI_STR_LEN]={'R', 'E', 'C', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '\0'};
-//	9363_AÅäÖÃÎÄ¼þ¸üÐÂÈÕÆÚ(ÓÃASCIIÂë)
+//	9363_Aé…ç½®æ–‡ä»¶æ›´æ–°æ—¥æœŸ(ç”¨ASCIIç )
 UCHAR8 str_a_pri_9363_date[PRI_9363_UPDATA_DATE_LEN]={0};
-//	9363_BÅäÖÃÎÄ¼þ¸üÐÂÈÕÆÚ(ÓÃASCIIÂë)
+//	9363_Bé…ç½®æ–‡ä»¶æ›´æ–°æ—¥æœŸ(ç”¨ASCIIç )
 UCHAR8 str_b_pri_9363_date[PRI_9363_UPDATA_DATE_LEN]={0};
-//	9363_CÅäÖÃÎÄ¼þ¸üÐÂÈÕÆÚ(ÓÃASCIIÂë)
+//	9363_Cé…ç½®æ–‡ä»¶æ›´æ–°æ—¥æœŸ(ç”¨ASCIIç )
 UCHAR8 str_c_pri_9363_date[PRI_9363_UPDATA_DATE_LEN]={0};
-//	reeÉè±¸Î»ÖÃÐÅÏ¢
+//	reeè®¾å¤‡ä½ç½®ä¿¡æ¯
 UCHAR8 str_mau_position_inf[PRI_MAU_POSITION_INF_LEN]={0};
-// MCU³ÌÐò°æ±¾(ÓÃASCIIÂë)
+// MCUç¨‹åºç‰ˆæœ¬(ç”¨ASCIIç )
 UCHAR8 str_pri_mcu_version_new[MCU_VERSION_NEW_LEN]={'M', 'A', 'U', ' ', ' ', ' ', ' ', ' ', ' ',};
 
 
@@ -1404,34 +1404,34 @@ _T_PARAM_ASC sys_param_asc[]={
 
 
 _T_PARAM_1B sys_param_eu_1b[]={
-	{	PARA_EU_ALARM_FLAG1     			,PT_AP|PT_BP|PT_US, 	0},      	//EU1¸æ¾¯Ö¸Ê¾
-	{	PARA_EU_ALARM_FLAG2     			,PT_AP|PT_BP|PT_US, 	0},      	//EU2¸æ¾¯Ö¸Ê¾
-	{	PARA_EU_ALARM_FLAG3     			,PT_AP|PT_BP|PT_US, 	0},      	//EU3¸æ¾¯Ö¸Ê¾
-	{	PARA_EU_ALARM_FLAG4     			,PT_AP|PT_BP|PT_US, 	0},     	//EU4¸æ¾¯Ö¸Ê¾
-	{	PARA_EU_ALARM_FLAG5     			,PT_AP|PT_BP|PT_US, 	0},      	//EU5¸æ¾¯Ö¸Ê¾
-	{	PARA_EU_ALARM_FLAG6     			,PT_AP|PT_BP|PT_US, 	0},     	//EU6¸æ¾¯Ö¸Ê¾
-	{	PARA_EU_ALARM_FLAG7     			,PT_AP|PT_BP|PT_US, 	0},      	//EU7¸æ¾¯Ö¸Ê¾
-	{	PARA_EU_ALARM_FLAG8     			,PT_AP|PT_BP|PT_US, 	0},      	//EU8¸æ¾¯Ö¸Ê¾
+	{	PARA_EU_ALARM_FLAG1     			,PT_AP|PT_BP|PT_US, 	0},      	//EU1å‘Šè­¦æŒ‡ç¤º
+	{	PARA_EU_ALARM_FLAG2     			,PT_AP|PT_BP|PT_US, 	0},      	//EU2å‘Šè­¦æŒ‡ç¤º
+	{	PARA_EU_ALARM_FLAG3     			,PT_AP|PT_BP|PT_US, 	0},      	//EU3å‘Šè­¦æŒ‡ç¤º
+	{	PARA_EU_ALARM_FLAG4     			,PT_AP|PT_BP|PT_US, 	0},     	//EU4å‘Šè­¦æŒ‡ç¤º
+	{	PARA_EU_ALARM_FLAG5     			,PT_AP|PT_BP|PT_US, 	0},      	//EU5å‘Šè­¦æŒ‡ç¤º
+	{	PARA_EU_ALARM_FLAG6     			,PT_AP|PT_BP|PT_US, 	0},     	//EU6å‘Šè­¦æŒ‡ç¤º
+	{	PARA_EU_ALARM_FLAG7     			,PT_AP|PT_BP|PT_US, 	0},      	//EU7å‘Šè­¦æŒ‡ç¤º
+	{	PARA_EU_ALARM_FLAG8     			,PT_AP|PT_BP|PT_US, 	0},      	//EU8å‘Šè­¦æŒ‡ç¤º
 	
 };
 
 _T_PARAM_2B sys_param_eu_2b[]={
 
-	{	PARA_EU_ALARM_CONTENT1 ,		PT_AP|PT_BP|PT_US,	0},//EU1¸æ¾¯ÄÚÈÝ
-	{	PARA_EU_ALARM_CONTENT2,		PT_AP|PT_BP|PT_US,	0},//EU2¸æ¾¯ÄÚÈÝ
-	{	PARA_EU_ALARM_CONTENT3 ,		PT_AP|PT_BP|PT_US, 	0},//EU3¸æ¾¯ÄÚÈÝ
-	{	PARA_EU_ALARM_CONTENT4 ,		PT_AP|PT_BP|PT_US, 	0},//EU4¸æ¾¯ÄÚÈÝ	
-	{	PARA_EU_ALARM_CONTENT5 ,		PT_AP|PT_BP|PT_US,	0},//EU5¸æ¾¯ÄÚÈÝ
-	{	PARA_EU_ALARM_CONTENT6,		PT_AP|PT_BP|PT_US,	0},//EU6¸æ¾¯ÄÚÈÝ
-	{	PARA_EU_ALARM_CONTENT7 ,		PT_AP|PT_BP|PT_US, 	0},//EU7¸æ¾¯ÄÚÈÝ
-	{	PARA_EU_ALARM_CONTENT8 ,		PT_AP|PT_BP|PT_US, 	0},//EU8¸æ¾¯ÄÚÈÝ
-	{	PARA_EU_RUALARM_FLAG1 ,		PT_AP|PT_BP|PT_US, 	0},//EU1ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾
-	{	PARA_EU_RUALARM_FLAG2 ,		PT_AP|PT_BP|PT_US, 	0},//EU2ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾
-	{	PARA_EU_RUALARM_FLAG3 ,		PT_AP|PT_BP|PT_US, 	0},//EU3ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾
-	{	PARA_EU_RUALARM_FLAG4 ,		PT_AP|PT_BP|PT_US, 	0},//EU4ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾
-	{	PARA_EU_RUALARM_FLAG5 ,		PT_AP|PT_BP|PT_US, 	0},//EU5ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾
-	{	PARA_EU_RUALARM_FLAG6 ,		PT_AP|PT_BP|PT_US, 	0},//EU6ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾
-	{	PARA_EU_RUALARM_FLAG7 ,		PT_AP|PT_BP|PT_US, 	0},//EU7ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾
-	{	PARA_EU_RUALARM_FLAG8 ,		PT_AP|PT_BP|PT_US, 	0},//EU8ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾
+	{	PARA_EU_ALARM_CONTENT1 ,		PT_AP|PT_BP|PT_US,	0},//EU1å‘Šè­¦å†…å®¹
+	{	PARA_EU_ALARM_CONTENT2,		PT_AP|PT_BP|PT_US,	0},//EU2å‘Šè­¦å†…å®¹
+	{	PARA_EU_ALARM_CONTENT3 ,		PT_AP|PT_BP|PT_US, 	0},//EU3å‘Šè­¦å†…å®¹
+	{	PARA_EU_ALARM_CONTENT4 ,		PT_AP|PT_BP|PT_US, 	0},//EU4å‘Šè­¦å†…å®¹	
+	{	PARA_EU_ALARM_CONTENT5 ,		PT_AP|PT_BP|PT_US,	0},//EU5å‘Šè­¦å†…å®¹
+	{	PARA_EU_ALARM_CONTENT6,		PT_AP|PT_BP|PT_US,	0},//EU6å‘Šè­¦å†…å®¹
+	{	PARA_EU_ALARM_CONTENT7 ,		PT_AP|PT_BP|PT_US, 	0},//EU7å‘Šè­¦å†…å®¹
+	{	PARA_EU_ALARM_CONTENT8 ,		PT_AP|PT_BP|PT_US, 	0},//EU8å‘Šè­¦å†…å®¹
+	{	PARA_EU_RUALARM_FLAG1 ,		PT_AP|PT_BP|PT_US, 	0},//EU1ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º
+	{	PARA_EU_RUALARM_FLAG2 ,		PT_AP|PT_BP|PT_US, 	0},//EU2ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º
+	{	PARA_EU_RUALARM_FLAG3 ,		PT_AP|PT_BP|PT_US, 	0},//EU3ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º
+	{	PARA_EU_RUALARM_FLAG4 ,		PT_AP|PT_BP|PT_US, 	0},//EU4ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º
+	{	PARA_EU_RUALARM_FLAG5 ,		PT_AP|PT_BP|PT_US, 	0},//EU5ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º
+	{	PARA_EU_RUALARM_FLAG6 ,		PT_AP|PT_BP|PT_US, 	0},//EU6ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º
+	{	PARA_EU_RUALARM_FLAG7 ,		PT_AP|PT_BP|PT_US, 	0},//EU7ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º
+	{	PARA_EU_RUALARM_FLAG8 ,		PT_AP|PT_BP|PT_US, 	0},//EU8ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º
 };
 

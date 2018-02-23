@@ -1,8 +1,8 @@
-
+ï»¿
 #ifndef _PHY_DRV_H_
 #define _PHY_DRV_H_
 extern UINT16 Phy4_Serdes_St;
-/* ¸²¸Çµ¥ÔªPHY Ğ¾Æ¬*/
+/* è¦†ç›–å•å…ƒPHY èŠ¯ç‰‡*/
 #if 0
 #define PHY1_MDC_GPIO			GPIOB
 #define PHY1_MDC_PIN			GPIO_Pin_15
@@ -50,14 +50,14 @@ extern UINT16 Phy4_Serdes_St;
 #define PHY5_INT_GPIO		GPIOA
 #define PHY5_INT_PIN			GPIO_Pin_7
 
-//À©Õ¹µ¥ÔªPHYĞ¾Æ¬
+//æ‰©å±•å•å…ƒPHYèŠ¯ç‰‡
 #define PHY1_VCS8224_1			0
 #define PHY2_VCS8224_2			1
 #define PHY3_VCS8601			2
 #define PHY4_VCS8662			3
 #define PHY5_KSZ9031			5
 
-//º¯Êı
+//å‡½æ•°
 void InitPhyIo(void);
 void InitPhyfFisrtIo(void);
 void InitPhySecondIo(void);

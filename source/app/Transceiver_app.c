@@ -2,7 +2,7 @@
 *Shenzhen Grandtelco Technology Co.,Ltd All rights reserved
 *
 * FileName    :Transceiver_app.c
-* Description :ÊÕ·¢Æ÷Ğ¾Æ¬´¦Àíº¯Êı
+* Description :æ”¶å‘å™¨èŠ¯ç‰‡å¤„ç†å‡½æ•°
 * Version     :v0.1
 * Author      :shiyang
 * Date        :2012-06-01
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*shiyang		2008-01-29	v0.1			³õÊ¼°æ±¾
+*shiyang		2008-01-29	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #include "Header.h"
 
@@ -27,10 +27,10 @@ UCHAR8 sys_rece_buf[RECE_MAX];
 
 /*************************************************************
 Name:CmdHandleSpiWrite
-Description:ÊÕ·¢Æ÷Ğ¾Æ¬ÃüÁî´¦Àí
-Input:Æ¬Ñ¡£¬µØÖ·£¬Êı¾İ
+Description:æ”¶å‘å™¨èŠ¯ç‰‡å‘½ä»¤å¤„ç†
+Input:ç‰‡é€‰ï¼Œåœ°å€ï¼Œæ•°æ®
 Output:void         
-Return:0:Ê§°Ü£¬1£¬³É¹¦   
+Return:0:å¤±è´¥ï¼Œ1ï¼ŒæˆåŠŸ   
 **************************************************************/
 UCHAR8 CmdHandleSpiWrite(UCHAR8 npcs,UINT16 addr,UCHAR8 data)
 {
@@ -61,10 +61,10 @@ UCHAR8 CmdHandleSpiWrite(UCHAR8 npcs,UINT16 addr,UCHAR8 data)
 }
 /*************************************************************
 Name:CmdHandleWait
-Description:ÊÕ·¢Æ÷Ğ¾Æ¬ÃüÁî´¦Àí
-Input:µÈ´ıÊ±¼äms
+Description:æ”¶å‘å™¨èŠ¯ç‰‡å‘½ä»¤å¤„ç†
+Input:ç­‰å¾…æ—¶é—´ms
 Output:void         
-Return:0:Ê§°Ü£¬1£¬³É¹¦   
+Return:0:å¤±è´¥ï¼Œ1ï¼ŒæˆåŠŸ   
 **************************************************************/
 UCHAR8 CmdHandleWait(UINT16 time_ms)
 {
@@ -79,10 +79,10 @@ UCHAR8 CmdHandleWait(UINT16 time_ms)
 }
 /*************************************************************
 Name:CmdHandleWaitCaldone
-Description:ÊÕ·¢Æ÷Ğ¾Æ¬ÃüÁî´¦Àí
-Input:Æ¬Ñ¡£¬×ÓÃüÁî£¬³¬Ê±Ê±¼äms
+Description:æ”¶å‘å™¨èŠ¯ç‰‡å‘½ä»¤å¤„ç†
+Input:ç‰‡é€‰ï¼Œå­å‘½ä»¤ï¼Œè¶…æ—¶æ—¶é—´ms
 Output:void         
-Return:0:Ê§°Ü£¬1£¬³É¹¦   
+Return:0:å¤±è´¥ï¼Œ1ï¼ŒæˆåŠŸ   
 **************************************************************/
 UCHAR8 CmdHandleWaitCaldone(UCHAR8 npcs,UCHAR8 cld_id,UINT16 time_out)
 {
@@ -204,10 +204,10 @@ UCHAR8 CmdHandleWaitCaldone(UCHAR8 npcs,UCHAR8 cld_id,UINT16 time_out)
 }
 /*************************************************************
 Name:SaveInitData
-Description:±£´æ³õÊ¼»¯ĞòÁĞµ½FLASH
+Description:ä¿å­˜åˆå§‹åŒ–åºåˆ—åˆ°FLASH
 Input:
 Output:void         
-Return:0:Ê§°Ü£¬1£¬³É¹¦   
+Return:0:å¤±è´¥ï¼Œ1ï¼ŒæˆåŠŸ   
 **************************************************************/
 UCHAR8 SaveInitData(UCHAR8 npcs,UINT16 current_p, UCHAR8  total_p,UCHAR8 * p_data,UINT16 len)
 {
@@ -239,7 +239,7 @@ UCHAR8 SaveInitData(UCHAR8 npcs,UINT16 current_p, UCHAR8  total_p,UCHAR8 * p_dat
 	
 	if (current_p == 0)
 	{	
-		//µÚÒ»±ÊÊı¾İ
+		//ç¬¬ä¸€ç¬”æ•°æ®
 		p_init_data->init_flag = 0xEB90|npcs;
 		p_init_data->a_packet = 0;	
 	}
@@ -253,7 +253,7 @@ UCHAR8 SaveInitData(UCHAR8 npcs,UINT16 current_p, UCHAR8  total_p,UCHAR8 * p_dat
 
 	
 	page += current_p*( (UPDATE_PKT_MAX_LEN+FLASH_PAGE_SIZE-1)/FLASH_PAGE_SIZE );
-	p_init_data->packet_len[current_p] = len;//°üÊÇ´Ó1¿ªÊ¼µÄ
+	p_init_data->packet_len[current_p] = len;//åŒ…æ˜¯ä»1å¼€å§‹çš„
 	p_init_data->a_packet++;
 
 #if 0
@@ -261,7 +261,7 @@ UCHAR8 SaveInitData(UCHAR8 npcs,UINT16 current_p, UCHAR8  total_p,UCHAR8 * p_dat
 	{
 		page +=(p_init_data->packet_len[i]+FLASH_PAGE_SIZE-1)/FLASH_PAGE_SIZE;
 	}
-	p_init_data->packet_len[current_p] = len;//°üÊÇ´Ó1¿ªÊ¼µÄ
+	p_init_data->packet_len[current_p] = len;//åŒ…æ˜¯ä»1å¼€å§‹çš„
 	p_init_data->a_packet++;
 #endif
 	
@@ -269,14 +269,14 @@ UCHAR8 SaveInitData(UCHAR8 npcs,UINT16 current_p, UCHAR8  total_p,UCHAR8 * p_dat
 	while ( len )
 	{	
 		wr_len = (len>FLASH_PAGE_SIZE) ? FLASH_PAGE_SIZE : len;
-		FlashWrite( page,0, p_data, wr_len,1);	// Ğ´ÈëÊı¾İ
+		FlashWrite( page,0, p_data, wr_len,1);	// å†™å…¥æ•°æ®
 
 		page++;
-		p_data+= wr_len;		// Ö¸ÕëºóÒÆ
-		len -= wr_len;		// ¼ÆËãÊ£Óà³¤¶È						
+		p_data+= wr_len;		// æŒ‡é’ˆåç§»
+		len -= wr_len;		// è®¡ç®—å‰©ä½™é•¿åº¦						
 	}
 
-	//×îºóÒ»±ÊÊı¾İ£¬Ğ´Èë±êÖ¾ºÍ³¤¶È
+	//æœ€åä¸€ç¬”æ•°æ®ï¼Œå†™å…¥æ ‡å¿—å’Œé•¿åº¦
 	if((current_p + 1 ) == total_p)
 	//if(cmd_cnt<250)
 	{
@@ -295,7 +295,7 @@ UCHAR8 SaveInitData(UCHAR8 npcs,UINT16 current_p, UCHAR8  total_p,UCHAR8 * p_dat
 		}
 #if 0
      
-		FlashDisableWriteProtect();					//È¥³ıĞ´±£»¤
+		FlashDisableWriteProtect();					//å»é™¤å†™ä¿æŠ¤
 		FlashWriteOnepage(page,(UCHAR8 *)p_init_data,sizeof(SYSTEM_INIT_DATA_T),1);
 		FlashEnableWriteProtect();
 
@@ -313,13 +313,13 @@ UCHAR8 SaveInitData(UCHAR8 npcs,UINT16 current_p, UCHAR8  total_p,UCHAR8 * p_dat
 		{	
 
 			wr_len = (len>FLASH_PAGE_SIZE) ? FLASH_PAGE_SIZE : len;
-			FlashWrite( page,0,p_init, wr_len,1);	// Ğ´ÈëÊı¾İ
+			FlashWrite( page,0,p_init, wr_len,1);	// å†™å…¥æ•°æ®
 
 			page++;
-			p_init += wr_len;		// Ö¸ÕëºóÒÆ
-			len -= wr_len;		// ¼ÆËãÊ£Óà³¤¶È						
+			p_init += wr_len;		// æŒ‡é’ˆåç§»
+			len -= wr_len;		// è®¡ç®—å‰©ä½™é•¿åº¦						
 		}
-		//FlashWriteWithinpage( page,0, (UCHAR8 *)p_init_data, sizeof(SYSTEM_INIT_DATA_T),1);	// Ğ´ÈëÊı¾İ
+		//FlashWriteWithinpage( page,0, (UCHAR8 *)p_init_data, sizeof(SYSTEM_INIT_DATA_T),1);	// å†™å…¥æ•°æ®
 
 
 
@@ -339,7 +339,7 @@ UCHAR8 SaveInitData(UCHAR8 npcs,UINT16 current_p, UCHAR8  total_p,UCHAR8 * p_dat
 
 			page++;
 			p_init+=  wr_len;	
-			len -= wr_len;		// ¼ÆËãÊ£Óà³¤¶È	
+			len -= wr_len;		// è®¡ç®—å‰©ä½™é•¿åº¦	
 		}
 	
 		p_init = (UCHAR8 *)p_init_data;
@@ -362,10 +362,10 @@ UCHAR8 SaveInitData(UCHAR8 npcs,UINT16 current_p, UCHAR8  total_p,UCHAR8 * p_dat
 
 /*************************************************************
 Name:SaveInitData
-Description:»ñÈ¡ÅäÖÃ°æ±¾¸üĞÂÊ±¼ä
+Description:è·å–é…ç½®ç‰ˆæœ¬æ›´æ–°æ—¶é—´
 Input:
 Output:void         
-Return:0:Ê§°Ü£¬1£¬³É¹¦   
+Return:0:å¤±è´¥ï¼Œ1ï¼ŒæˆåŠŸ   
 **************************************************************/
 UCHAR8 GetUpdateData(UCHAR8 npcs,UCHAR8 * p_data,UCHAR8 *len)
 {
@@ -421,10 +421,10 @@ UCHAR8 GetUpdateData(UCHAR8 npcs,UCHAR8 * p_data,UCHAR8 *len)
 
 /*************************************************************
 Name:InitTransceiver
-Description:´ÓFLASHÖĞ»ñÈ¡³õÊ¼»¯ĞòÁĞ£¬²¢³õÊ¼»¯ÊÕ·¢Æ÷
+Description:ä»FLASHä¸­è·å–åˆå§‹åŒ–åºåˆ—ï¼Œå¹¶åˆå§‹åŒ–æ”¶å‘å™¨
 Input:A,B
 Output:void         
-Return:<0 ´íÎó£¬0:³É¹¦
+Return:<0 é”™è¯¯ï¼Œ0:æˆåŠŸ
 **************************************************************/
 CHAR8 InitTransceiver(UCHAR8 abcd)
 {
@@ -514,8 +514,8 @@ CHAR8 InitTransceiver(UCHAR8 abcd)
 		FlashRead(flag_page, 0, p_init ,FLASH_PAGE_SIZE);
 
 		flag_page++;
-		p_init +=  wr_len;		// Ö¸ÕëºóÒÆ
-		len -= wr_len;		// ¼ÆËãÊ£Óà³¤¶È	
+		p_init +=  wr_len;		// æŒ‡é’ˆåç§»
+		len -= wr_len;		// è®¡ç®—å‰©ä½™é•¿åº¦	
 	}
 	//FlashRead(flag_page, 0, data ,FLASH_PAGE_SIZE);
 	
@@ -533,13 +533,13 @@ CHAR8 InitTransceiver(UCHAR8 abcd)
 		return -1;		
 	}
 
-	//³õÊ¼»¯
+	//åˆå§‹åŒ–
 
 	TRACE_INFO("!!!p_init_data->a_packet===%d\r\n",p_init_data->a_packet);
 	
 	for (packet=0; packet<p_init_data->a_packet; packet++)
 	{
-		//Êı¾İ³¤¶È,´ÓÃüÁî×Ü¸öÊı(2byte)¿ªÊ¼£¬---Ã¿¸öÃüÁî
+		//æ•°æ®é•¿åº¦,ä»å‘½ä»¤æ€»ä¸ªæ•°(2byte)å¼€å§‹ï¼Œ---æ¯ä¸ªå‘½ä»¤
 		len = p_init_data->packet_len[packet];
 
 		
@@ -550,7 +550,7 @@ CHAR8 InitTransceiver(UCHAR8 abcd)
 			
 			return -2;
 		}
-		//¶ÁÈ¡Êı¾İ	
+		//è¯»å–æ•°æ®	
 		data = sys_rece_buf;
 
 				
@@ -586,13 +586,13 @@ CHAR8 InitTransceiver(UCHAR8 abcd)
 
 		
 			count = 0;
-			cmd_cnt = (data[0]<<8)|data[1];	//°üÖĞ°üº¬µÄÃüÁî¸öÊı
+			cmd_cnt = (data[0]<<8)|data[1];	//åŒ…ä¸­åŒ…å«çš„å‘½ä»¤ä¸ªæ•°
 
 			TRACE_INFO("packet=%d,cmd_cnt===%d,ReadNums:%d\r\n",packet,cmd_cnt,ReadNums);
 			data += 2;
 			count += 2;
 	
-			//Ö´ĞĞÃüÁî
+			//æ‰§è¡Œå‘½ä»¤
 			for (i=0; i<cmd_cnt; i++)
 			{
 				//#if 0
@@ -654,7 +654,7 @@ CHAR8 InitTransceiver(UCHAR8 abcd)
 					UsNopDelay(1);
 					if(0==k%1000)
 						WTD_CLR;
-					//µÈ´ıMCU¶ÁĞ´SPIÖ¸Ê¾ĞÅºÅÏĞ
+					//ç­‰å¾…MCUè¯»å†™SPIæŒ‡ç¤ºä¿¡å·é—²
 					if(0x01==(0x01&(FpgaReadRegister(0x7a)>>15))	)
 					{
 						continue;
@@ -664,7 +664,7 @@ CHAR8 InitTransceiver(UCHAR8 abcd)
 
 					if((k<10000)&&(TF_C==npcs)&&(AD9369)&&(	0x00==(0x01&(FpgaReadRegister(0x7a)>>14)))	)
 					{
-						//ÇĞ»»³ÉFPGA ROM SPIÄ£Ê½
+						//åˆ‡æ¢æˆFPGA ROM SPIæ¨¡å¼
 						mcuFpgaSpiStaus=FpgaReadRegister(0x8000|0x7b);
 						mcuFpgaSpiStaus&=0x3fff;
 						mcuFpgaSpiStaus|=(0x02<<14);
@@ -672,7 +672,7 @@ CHAR8 InitTransceiver(UCHAR8 abcd)
 						FPGA_ENABLE_WRITE;
 						FpgaWriteRegister(0x8000|0x7b,mcuFpgaSpiStaus);
 						FPGA_DISABLE_WRITE;
-						//FPGA SPI Êı¾İÊ¹ÄÜ
+						//FPGA SPI æ•°æ®ä½¿èƒ½
 						mcuFpgaSpiStaus=FpgaReadRegister(0x8000|0x7b);
 						mcuFpgaSpiStaus&=0xdfff;
 						mcuFpgaSpiStaus|=(0x1<<13);
@@ -680,7 +680,7 @@ CHAR8 InitTransceiver(UCHAR8 abcd)
 						FPGA_ENABLE_WRITE;
 						FpgaWriteRegister(0x8000|0x7b,mcuFpgaSpiStaus);
 						FPGA_DISABLE_WRITE; 
-						//µÈ´ıFPGA ROM Ğ´SPI Êı¾İÍê³É
+						//ç­‰å¾…FPGA ROM å†™SPI æ•°æ®å®Œæˆ
 						j=0;
 						while((j<5000)&&(0x00==(0x01&(FpgaReadRegister(0x7a)>>14))	))
 						{
@@ -689,7 +689,7 @@ CHAR8 InitTransceiver(UCHAR8 abcd)
 							WTD_CLR;
 						}
 						
-						//µÈ´ıMCU¶ÁĞ´SPIÖ¸Ê¾ĞÅºÅÏĞ
+						//ç­‰å¾…MCUè¯»å†™SPIæŒ‡ç¤ºä¿¡å·é—²
 						j=0;
 						while((j<5000)&&(0x01==(0x01&(FpgaReadRegister(0x7a)>>15))	))
 						{
@@ -698,7 +698,7 @@ CHAR8 InitTransceiver(UCHAR8 abcd)
 							WTD_CLR;
 						}
 
-						//ÇĞ»»³ÉMCUÄ£Äâ¿ØSPI
+						//åˆ‡æ¢æˆMCUæ¨¡æ‹Ÿæ§SPI
 						mcuFpgaSpiStaus=FpgaReadRegister(0x8000|0x7b);
 						mcuFpgaSpiStaus &= (~((1<<14)|(1<<15)));
 						TRACE_INFO("3FpgaWriteRegister(0x8000|0x7b,mcuFpgaSpiStaus):%x\r\n",mcuFpgaSpiStaus);
@@ -713,7 +713,7 @@ CHAR8 InitTransceiver(UCHAR8 abcd)
 
 			default:
 					TRACE_DEBUG("error__________9363_order[%04x]\r\n");
-					//´íÎóÃüÁî
+					//é”™è¯¯å‘½ä»¤
 					return -3;			
 				break;//	TRACE_DEBUG("p_init_data_struction[%04x]\r\n",p_init_data->init_flag);
 			}
@@ -771,9 +771,9 @@ CHAR8 InitTransceiver(UCHAR8 abcd)
 				break;
 
 				default:
-					//´íÎóÃüÁî				
+					//é”™è¯¯å‘½ä»¤				
 			//		PcPacketTransHead(0xdf,0x01,0x01,0x01,0xab,0x01);
-					TRACE_INFO("9363_´íÎóÃüÁî\r\n");
+					TRACE_INFO("9363_é”™è¯¯å‘½ä»¤\r\n");
 					* tx_p++ = 0;
 					pc_trans_info.tx_len++;
 			
@@ -796,8 +796,8 @@ exit:
 //#if 0
 /*************************************************************
 Name:SetAtt3
-Description:ÉèÖÃÊä³ö¶ËË¥¼õÖµ
-Input:A,B,ATTÖµ*2
+Description:è®¾ç½®è¾“å‡ºç«¯è¡°å‡å€¼
+Input:A,B,ATTå€¼*2
 Output:void         
 Return:void
 **************************************************************/
@@ -824,25 +824,25 @@ void SetAtt3(UCHAR8 abcd,UCHAR8 att)
 			break;
 	}
 
-	//077[D6] ÉèÖÃÎª0£¬Ê¹µÃ7C[D6]Îª×ÔÇå0.
+	//077[D6] è®¾ç½®ä¸º0ï¼Œä½¿å¾—7C[D6]ä¸ºè‡ªæ¸…0.
 	reg_read = ReadWriteTF(npcs,0,0x0077,0);
 	reg_read &= ~0x40;
 	ReadWriteTF(npcs,1,0x0077,reg_read);
 
-	//075[D6~D1]ÖĞĞ´ÈëÏàÓ¦µÄË¥¼õÖµ
+	//075[D6~D1]ä¸­å†™å…¥ç›¸åº”çš„è¡°å‡å€¼
 	att <<= 1;
 	att &= 0x7e;
 	ReadWriteTF(npcs,1,0x0075,att);
 
-	//7C[D6]Ğ´1À´¸üĞÂË¥¼õÖµÊ¹ÆäÉúĞ§¡£
+	//7C[D6]å†™1æ¥æ›´æ–°è¡°å‡å€¼ä½¿å…¶ç”Ÿæ•ˆã€‚
 	ReadWriteTF(npcs,1,0x007c,0x40);
 
 }
 
 /*************************************************************
 Name:SetAtt1
-Description:ÉèÖÃÊä³ö¶ËË¥¼õÖµ
-Input:A,B,ATTÖ
+Description:è®¾ç½®è¾“å‡ºç«¯è¡°å‡å€¼
+Input:A,B,ATT?
 Output:void         
 Return:void
 **************************************************************/
@@ -890,29 +890,29 @@ void SetAtt1(UCHAR8 abcd,UCHAR8 att)
 
 /*************************************************************
 Name:SetAtt3Tx
-Description:TXÕı½»Ğ£×¼¹ı³Ì
+Description:TXæ­£äº¤æ ¡å‡†è¿‡ç¨‹
 Input:A,B,ATT
 Output:void         
-Return:0:Ê§°Ü£¬1£¬³É¹¦   
+Return:0:å¤±è´¥ï¼Œ1ï¼ŒæˆåŠŸ   
 **************************************************************/
 UCHAR8 SetAtt3Tx(UCHAR8 npcs,UCHAR8 att)
 {
 	
-	ReadWriteTF(npcs,1,0x169,0xCC);  //¹Ø±ÕRXÊµÊ±Õı½»Ğ£×¼£»
-	ReadWriteTF(npcs,1,0x18B,0x8D);   //¹Ø±ÕRX BBDCÊµÊ±Ğ£×¼£»
-	ReadWriteTF(npcs,1,0x014,0x03);    //Ğ¾Æ¬½øÈëµÈ´ıÄ£Ê½£¨´ËÊ±Ğ¾Æ¬ÎŞÊä³ö£©
-	ReadWriteTF(npcs,1,0x0AC,att);   //½«¸Õ²ÅµÄATT3ÖµĞ´Èë£¨ÕâÀïÎª0.5dB²½½ø£©£¨±ÈÈçATT3ÉèÖÃÎª10dB£©
-	ReadWriteTF(npcs,1,0x016,0x10);   // ¿ªÊ¼TXÕı½»Ğ£×¼£»
-	ReadWriteTF(npcs,1,0x169,0xCE);   //Æô¶¯RXÊµÊ±Õı½»Ğ£×¼£»
-	ReadWriteTF(npcs,1,0x18B,0xAD);   //Æô¶¯RX BBDCÊµÊ±Ğ£×¼£»
-	ReadWriteTF(npcs,1,0x014,0x23);    //Ğ¾Æ¬½øÈëÕı³£¹¤×÷×´Ì¬¡£
+	ReadWriteTF(npcs,1,0x169,0xCC);  //å…³é—­RXå®æ—¶æ­£äº¤æ ¡å‡†ï¼›
+	ReadWriteTF(npcs,1,0x18B,0x8D);   //å…³é—­RX BBDCå®æ—¶æ ¡å‡†ï¼›
+	ReadWriteTF(npcs,1,0x014,0x03);    //èŠ¯ç‰‡è¿›å…¥ç­‰å¾…æ¨¡å¼ï¼ˆæ­¤æ—¶èŠ¯ç‰‡æ— è¾“å‡ºï¼‰
+	ReadWriteTF(npcs,1,0x0AC,att);   //å°†åˆšæ‰çš„ATT3å€¼å†™å…¥ï¼ˆè¿™é‡Œä¸º0.5dBæ­¥è¿›ï¼‰ï¼ˆæ¯”å¦‚ATT3è®¾ç½®ä¸º10dBï¼‰
+	ReadWriteTF(npcs,1,0x016,0x10);   // å¼€å§‹TXæ­£äº¤æ ¡å‡†ï¼›
+	ReadWriteTF(npcs,1,0x169,0xCE);   //å¯åŠ¨RXå®æ—¶æ­£äº¤æ ¡å‡†ï¼›
+	ReadWriteTF(npcs,1,0x18B,0xAD);   //å¯åŠ¨RX BBDCå®æ—¶æ ¡å‡†ï¼›
+	ReadWriteTF(npcs,1,0x014,0x23);    //èŠ¯ç‰‡è¿›å…¥æ­£å¸¸å·¥ä½œçŠ¶æ€ã€‚
 
 	UsNopDelay(100*1000);	
 }
 /*************************************************************
 Name:TransSetPll
-Description:ÅäÖÃ±¾Õñ
-Input:ÉÏÏÂĞĞ ,±¾ÕñÖµ
+Description:é…ç½®æœ¬æŒ¯
+Input:ä¸Šä¸‹è¡Œ ,æœ¬æŒ¯å€¼
 Output:void         
 Return:  
 **************************************************************/
@@ -928,34 +928,34 @@ void TransSetPll(UCHAR8 up_down_flag, FLOAT32 pll)
 	pll_frac = (UINT32)(8388593*(n-pll_int));
 	
 	
-	//¹ØÊä³ö
+	//å…³è¾“å‡º
 	ReadWriteTF(TF_A,1,0x014,0x03);
 	ReadWriteTF(TF_B,1,0x014,0x03);
 
-	//ÉèÖÃRX¶Ë
+	//è®¾ç½®RXç«¯
 	ReadWriteTF(up_down_flag?TF_B:TF_A,1,0x233,(UCHAR8)(pll_frac));		// Write Rx Synth Fractional Freq Word[7:0]
 	ReadWriteTF(up_down_flag?TF_B:TF_A,1,0x234,(UCHAR8)(pll_frac>>8));		// Write Rx Synth Fractional Freq Word[15:8]
 	ReadWriteTF(up_down_flag?TF_B:TF_A,1,0x235,(UCHAR8)(pll_frac>>16));	// Write Rx Synth Fractional Freq Word[22:16]
 	ReadWriteTF(up_down_flag?TF_B:TF_A,1,0x232,(UCHAR8)(pll_int>>8));		// Write Rx Synth Integer Freq Word[10:8]
-	ReadWriteTF(up_down_flag?TF_B:TF_A,1,0x231,(UCHAR8)(pll_int));			// Write Rx Synth Integer Freq Word[7:0] Í¬Ê±Æô¶¯VCOĞ£×¼
+	ReadWriteTF(up_down_flag?TF_B:TF_A,1,0x231,(UCHAR8)(pll_int));			// Write Rx Synth Integer Freq Word[7:0] åŒæ—¶å¯åŠ¨VCOæ ¡å‡†
 	ReadWriteTF(up_down_flag?TF_B:TF_A,1,0x005,0x11);					// Set LO divider setting
 
-	//ÉèÖÃTX¶Ë
+	//è®¾ç½®TXç«¯
 	ReadWriteTF(up_down_flag?TF_A:TF_B,1,0x273,(UCHAR8)(pll_frac));		// Write Tx Synth Fractional Freq Word[7:0]
 	ReadWriteTF(up_down_flag?TF_A:TF_B,1,0x274,(UCHAR8)(pll_frac>>8));		// Write Tx Synth Fractional Freq Word[15:8]
 	ReadWriteTF(up_down_flag?TF_A:TF_B,1,0x275,(UCHAR8)(pll_frac>>16));	// Write Tx Synth Fractional Freq Word[22:16]
 	ReadWriteTF(up_down_flag?TF_A:TF_B,1,0x272,(UCHAR8)(pll_int>>8));		// Write Tx Synth Integer Freq Word[10:8]
-	ReadWriteTF(up_down_flag?TF_A:TF_B,1,0x271,(UCHAR8)(pll_int));			// Write Tx Synth Integer Freq Word[7:0] Í¬Ê±Æô¶¯VCOĞ£×¼
+	ReadWriteTF(up_down_flag?TF_A:TF_B,1,0x271,(UCHAR8)(pll_int));			// Write Tx Synth Integer Freq Word[7:0] åŒæ—¶å¯åŠ¨VCOæ ¡å‡†
 	ReadWriteTF(up_down_flag?TF_A:TF_B,1,0x005,0x11);					// Set LO divider setting
 
-	//¿ªÊä³ö
+	//å¼€è¾“å‡º
 	ReadWriteTF(TF_A,1,0x014,0x23);
 	ReadWriteTF(TF_B,1,0x014,0x23);	
 }
 /*************************************************************
 Name:TransGetPllRXStatus
-Description:²éÑ¯±¾Õñ×´Ì¬
-Input:ÉÏÏÂĞĞ ,±¾ÕñÖµ
+Description:æŸ¥è¯¢æœ¬æŒ¯çŠ¶æ€
+Input:ä¸Šä¸‹è¡Œ ,æœ¬æŒ¯å€¼
 Output:void         
 Return:  
 **************************************************************/
@@ -965,7 +965,7 @@ UCHAR8 TransGetRxPllStatus(UCHAR8 up_down_flag)
 
 	pll_rx = ReadWriteTF(up_down_flag?TF_B:TF_A,0,0x247,0x00);
 
-	//ÊÕ·¢ÓĞÈÎºÎÒ»¸öÊ§Ëø¾Í¸æ¾¯
+	//æ”¶å‘æœ‰ä»»ä½•ä¸€ä¸ªå¤±é”å°±å‘Šè­¦
 	if ((pll_rx&0x02) == 0)
 		return 0;
 	else 
@@ -973,8 +973,8 @@ UCHAR8 TransGetRxPllStatus(UCHAR8 up_down_flag)
 }
 /*************************************************************
 Name:TransGetPllTXStatus
-Description:²éÑ¯±¾Õñ×´Ì¬
-Input:ÉÏÏÂĞĞ ,±¾ÕñÖµ
+Description:æŸ¥è¯¢æœ¬æŒ¯çŠ¶æ€
+Input:ä¸Šä¸‹è¡Œ ,æœ¬æŒ¯å€¼
 Output:void         
 Return:  
 **************************************************************/
@@ -984,7 +984,7 @@ UCHAR8 TransGetTxPllStatus(UCHAR8 up_down_flag)
 
 	pll_tx = ReadWriteTF(up_down_flag?TF_A:TF_B,0,0x287,0x00);
 
-	//ÊÕ·¢ÓĞÈÎºÎÒ»¸öÊ§Ëø¾Í¸æ¾¯
+	//æ”¶å‘æœ‰ä»»ä½•ä¸€ä¸ªå¤±é”å°±å‘Šè­¦
 	if ((pll_tx&0x02) == 0)
 		return 0;
 	else 
@@ -992,8 +992,8 @@ UCHAR8 TransGetTxPllStatus(UCHAR8 up_down_flag)
 }
 /*************************************************************
 Name:TransGetPllStatus
-Description:²éÑ¯±¾Õñ×´Ì¬
-Input:ÉÏÏÂĞĞ ,±¾ÕñÖµ
+Description:æŸ¥è¯¢æœ¬æŒ¯çŠ¶æ€
+Input:ä¸Šä¸‹è¡Œ ,æœ¬æŒ¯å€¼
 Output:void         
 Return:  
 **************************************************************/
@@ -1004,7 +1004,7 @@ UCHAR8 TransGetClkStatus(void)
 	clk_a = ReadWriteTF(TF_A,0,0x05e,0x00);
 	clk_b = ReadWriteTF(TF_B,0,0x05e,0x00);
 
-	//ÊÕ·¢ÓĞÈÎºÎÒ»¸öÊ§Ëø¾Í¸æ¾¯
+	//æ”¶å‘æœ‰ä»»ä½•ä¸€ä¸ªå¤±é”å°±å‘Šè­¦
 	if ((clk_a&clk_b&0x80) == 0)
 		return 0;
 	else 

@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :adc.c
-* Description :AD×ª»»´¦Àí
+* Description :ADè½¬æ¢å¤„ç†
 * Version     :v0.1
 * Author      :shiyang
 * Date        :2008-01-29
@@ -10,26 +10,26 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*shiyang		2008-01-29	v0.1			³õÊ¼°æ±¾
+*shiyang		2008-01-29	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #include "Header.h"
 
 
 extern _T_PARAM_1B sys_param_1b[];
 
-UINT32 ex_adc_cs  = 0;		    // Íâ²¿²ÉÑùÔ´Ñ¡Ôñ  
+UINT32 ex_adc_cs  = 0;		    // å¤–éƒ¨é‡‡æ ·æºé€‰æ‹©  
 
-UINT16 pd_counter = 0;			// ¹¦ÂÊ¼ì²âÑ¡Ôñ      
+UINT16 pd_counter = 0;			// åŠŸç‡æ£€æµ‹é€‰æ‹©      
  
 UINT16 adc_sample[ADC_DERICT_CH_COUNT+ADC_EX_CH_COUNT+1];
 
  
 /*************************************************************
 Name:AdcVoltage          
-Description:µçÑ¹ÀàĞÍµÄADC´¦Àí
-Input:R1ÉÏµç×èÖµK,R2:ÏÂµç×èÖµ£¬fs:ADC²ÉÑùÖµ          
+Description:ç”µå‹ç±»å‹çš„ADCå¤„ç†
+Input:R1ä¸Šç”µé˜»å€¼K,R2:ä¸‹ç”µé˜»å€¼ï¼Œfs:ADCé‡‡æ ·å€¼          
 Output:void        
-Return:²âÁ¿µÃµ½µÄÊµ¼ÊµçÑ¹Öµ
+Return:æµ‹é‡å¾—åˆ°çš„å®é™…ç”µå‹å€¼
 **************************************************************/
 FLOAT32 AdcVoltage(FLOAT32 r1,FLOAT32 r2,UINT16 fs)
 {
@@ -38,7 +38,7 @@ FLOAT32 AdcVoltage(FLOAT32 r1,FLOAT32 r2,UINT16 fs)
 
 /*************************************************************
 Name:AdcHandle 
-Description:ÖĞ¶Ï»ñÈ¡ËùÓĞ²ÉÑùÖµºóµÄ´¦Àí
+Description:ä¸­æ–­è·å–æ‰€æœ‰é‡‡æ ·å€¼åçš„å¤„ç†
 Input :void           
 Output:void         
 Return:void 
@@ -65,77 +65,77 @@ void AdcHandle(void)
 	}
 //	TRACE_INFO_WP("\r\n"); 
 
-	//¸ù¾İADC²ÉÑùÖµÉèÖÃÏµÍ³ĞÅÏ¢
-	// A¶ÎÏÂĞĞVCOµçÑ¹
+	//æ ¹æ®ADCé‡‡æ ·å€¼è®¾ç½®ç³»ç»Ÿä¿¡æ¯
+	// Aæ®µä¸‹è¡ŒVCOç”µå‹
 	temp = AdcVoltage(200,200,adc_sample[VAD_A_DL_VCO]);
 	i = temp * 10;
 //	sys_param_1b[MADD_A_DL_VCO_VT].val= i;
 
-	// A¶ÎÉÏĞĞVCOµçÑ¹ 
+	// Aæ®µä¸Šè¡ŒVCOç”µå‹ 
 	temp = AdcVoltage(200,200,adc_sample[VAD_A_UL_VCO]);
 	i = temp * 10;   
 //	sys_param_1b[MADD_A_UL_VCO_VT].val = i;    
 
-	// Ê±ÖÓVCOµçÑ¹
+	// æ—¶é’ŸVCOç”µå‹
 	temp = AdcVoltage(200,200,adc_sample[VAD_CLK_VCO]);
 	i = temp * 10;
 	sys_param_1b[MADD_CLK_VCO_VT].val = i;
 
-	// B¶ÎÏÂĞĞVCOµçÑ¹
+	// Bæ®µä¸‹è¡ŒVCOç”µå‹
 	temp = AdcVoltage(200,200,adc_sample[VAD_B_DL_VCO]);
 	i = temp * 10;
 //	sys_param_1b[MADD_B_DL_VCO_VT].val= i;
 
-	// B¶ÎÉÏĞĞVCOµçÑ¹
+	// Bæ®µä¸Šè¡ŒVCOç”µå‹
 	temp = AdcVoltage(200,200,adc_sample[VAD_B_UL_VCO]);
 	i = temp * 10;
 //	sys_param_1b[MADD_B_UL_VCO_VT].val = i;
 
-	// A¶ÎÉÏĞĞLNA1µçÑ¹
+	// Aæ®µä¸Šè¡ŒLNA1ç”µå‹
 	temp = AdcVoltage(10,10,adc_sample[VAD_A_UL_LNA1]);
 	i = temp * 10;
 //	sys_param_1b[MADD_A_UL_LNA_VT].val = 0;//i;
 	sys_param_1b[MADD_A_LNA1_ST].val = 0;// (VAL_IN_RANGE( temp, V_LNA_MIN, V_LNA_MAX ) ) ? 0 : 1;
 
-	// A¶ÎÉÏĞĞLNA2µçÑ¹
+	// Aæ®µä¸Šè¡ŒLNA2ç”µå‹
 	temp = AdcVoltage(10,10,adc_sample[VAD_A_UL_LNA2]);
 	i = temp * 10;
 //	sys_param_1b[MADD_A_UL_LNA_VT2].val = 0;//i;
 	sys_param_1b[MADD_A_LNA2_ST].val = 0;// (VAL_IN_RANGE( temp, V_LNA_MIN, V_LNA_MAX ) ) ? 0 : 1;
 
-	// B¶ÎÉÏĞĞLNA1µçÑ¹
+	// Bæ®µä¸Šè¡ŒLNA1ç”µå‹
 	temp = AdcVoltage(10,10,adc_sample[VAD_B_UL_LNA1]);
 	i = temp * 10;
 //	sys_param_1b[MADD_B_UL_LNA_VT].val= 0;//i;
 	sys_param_1b[MADD_B_LNA1_ST].val = 0;// (VAL_IN_RANGE( temp, V_LNA_MIN, V_LNA_MAX ) ) ? 0 : 1;
 
-	// B¶ÎÉÏĞĞLNA2µçÑ¹
+	// Bæ®µä¸Šè¡ŒLNA2ç”µå‹
 	temp = AdcVoltage(10,10,adc_sample[VAD_B_UL_LNA2]);
 	i = temp * 10;
 //	sys_param_1b[MADD_B_UL_LNA_VT2].val= 0;//i;
 	sys_param_1b[MADD_B_LNA2_ST].val = 0;// (VAL_IN_RANGE( temp, V_LNA_MIN, V_LNA_MAX ) ) ? 0 : 1;
 
-	// µçÔ´9VµçÑ¹
+	// ç”µæº9Vç”µå‹
 	temp = AdcVoltage( 28.7, 10, adc_sample[VAD_POWER_9V]);
 	i = temp * 10;
 	sys_param_1b[MADD_PWR_9V0_VT].val = i;
 
-	// µçÔ´5.5VµçÑ¹
+	// ç”µæº5.5Vç”µå‹
 	temp = AdcVoltage( 12.7, 10, adc_sample[VAD_POWER_5V5]);
 	i = temp * 10;
 	sys_param_1b[MADD_PWR_5V5_VT].val = i;
 
-	// µçÔ´3.6VµçÑ¹
+	// ç”µæº3.6Vç”µå‹
 	temp = AdcVoltage( 2.49, 10, adc_sample[VAD_POWER_3V6]);
 	i = temp * 10;
 	sys_param_1b[MADD_PWR_3V6_VT].val = i;
 
-	// µçÔ´1.2VµçÑ¹
+	// ç”µæº1.2Vç”µå‹
 	temp = AdcVoltage( 0, 10, adc_sample[VAD_POWER_1V2]);
 	i = temp * 10;
 	sys_param_1b[MADD_PWR_1V2_VT].val = i;
 
-	// µçÔ´2.5VµçÑ¹
+	// ç”µæº2.5Vç”µå‹
 	temp = AdcVoltage( 0, 10, adc_sample[VAD_POWER_2V5]);
 	i = temp * 10;
 	sys_param_1b[MADD_PWR_2V5_VT].val = i;

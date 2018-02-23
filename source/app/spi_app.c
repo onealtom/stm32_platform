@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :spi.c
-* Description :SPI´¦Àíº¯Êı
+* Description :SPIå¤„ç†å‡½æ•°
 * Version     :v0.1
 * Author      :shiyang
 * Date        :2008-01-29
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*shiyang		2008-01-29	v0.1			³õÊ¼°æ±¾
+*shiyang		2008-01-29	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #include "Header.h"
 
@@ -22,10 +22,10 @@ UCHAR8 flash_parr2=0;
 
 /*************************************************************
 Name:FlashReadId          
-Description:¶ÁÈ¡FLASH ID
+Description:è¯»å–FLASH ID
 Input:void            
 Output:void         
-Return:·µ»Ø32Î»IDÂëĞÅÏ¢,[31~24]µÚ1×Ö¶Î,[23~16]µÚ¶ş×Ö¶Î,ÒÔ´ËÀàÍÆ
+Return:è¿”å›32ä½IDç ä¿¡æ¯,[31~24]ç¬¬1å­—æ®µ,[23~16]ç¬¬äºŒå­—æ®µ,ä»¥æ­¤ç±»æ¨
 **************************************************************/
 UINT32 FlashReadId1(void)
 {
@@ -49,7 +49,7 @@ UINT32 FlashReadId1(void)
 		TURN_ON_LED;
 	}		
 
-	// [31~24]µÚ1×Ö¶Î,[23~16]µÚ2×Ö¶Î,[15~8]µÚ3×Ö¶Î,[7~0]µÚ4×Ö¶Î
+	// [31~24]ç¬¬1å­—æ®µ,[23~16]ç¬¬2å­—æ®µ,[15~8]ç¬¬3å­—æ®µ,[7~0]ç¬¬4å­—æ®µ
 	return (UINT32)( (op_data[1]<<24)|(op_data[2]<<16)|(op_data[3]<<8)|(op_data[4]<<0) );
 	
 	//return op_data[2];
@@ -57,7 +57,7 @@ UINT32 FlashReadId1(void)
 }
 /*************************************************************
 Name:FlashReadStatus         
-Description:¶ÁÈ¡FLASH×´Ì¬
+Description:è¯»å–FLASHçŠ¶æ€
 Input:void            
 Output:void         
 Return: status        
@@ -118,8 +118,8 @@ void FlashWaitReady1()
 
 /*************************************************************
 Name:FlashEraseSectors          
-Description:²Á³ı²¿·ÖBlock
-Input:ÆğÊ¼block            
+Description:æ“¦é™¤éƒ¨åˆ†Block
+Input:èµ·å§‹block            
 Output:void         
 Return:         
 **************************************************************/
@@ -219,7 +219,7 @@ CHAR8 FlashEraseSectors1(UINT32 from,UINT32 to)
 
 /*************************************************************
 Name:FlashRead          
-Description:¶ÁÈ¡Ò»Ò³Êı¾İ
+Description:è¯»å–ä¸€é¡µæ•°æ®
 Input:void            
 Output:void         
 Return:void         
@@ -289,7 +289,7 @@ void  FlashRead1(INT32 page,INT16 offset,UCHAR8 *data,INT32 len)
 
 /*************************************************************
 Name:FlashWriteOnepage          
-Description:Ğ´Ò»Ò³Êı¾İ
+Description:å†™ä¸€é¡µæ•°æ®
 Input:page address,data pointer,len           
 Output:void         
 Return:void         
@@ -317,7 +317,7 @@ CHAR8 FlashWrite1(UINT32 page,INT16 offset,UCHAR8 *data,UINT16 len,UINT16 option
 			}
 		}
 
-		if(option==2)//Éı¼¶MCUÓëFGPA³ÌĞò×¨ÓÃ¡£²Á³ı¿é½ÚÊ¡Ê±¼ä
+		if(option==2)//å‡çº§MCUä¸FGPAç¨‹åºä¸“ç”¨ã€‚æ“¦é™¤å—èŠ‚çœæ—¶é—´
 		{
 			if(page< (erase_start_page/FLASH_PAGE_NUM_PER_BLOCK1+1)*FLASH_PAGE_NUM_PER_BLOCK1 )//30080)
 			{
@@ -420,8 +420,8 @@ CHAR8 FlashWrite1(UINT32 page,INT16 offset,UCHAR8 *data,UINT16 len,UINT16 option
 #if 0
 /*************************************************************
 Name:FlashEraseSpeBlock          
-Description:²Á³ı²¿·ÖBlock
-Input:ÆğÊ¼block            
+Description:æ“¦é™¤éƒ¨åˆ†Block
+Input:èµ·å§‹block            
 Output:void         
 Return:         
 **************************************************************/
@@ -483,8 +483,8 @@ CHAR8 FlashEraseSpeBlock1(UINT16 from,UINT16 to)
 
 /*************************************************************
 Name:FlashEraseSpeBlock2        
-Description:²Á³ı²¿·ÖBlock,64K
-Input:ÆğÊ¼block            
+Description:æ“¦é™¤éƒ¨åˆ†Block,64K
+Input:èµ·å§‹block            
 Output:void         
 Return:         
 **************************************************************/
@@ -530,8 +530,8 @@ CHAR8 FlashEraseSpeBlock2(UINT16 from,UINT16 to)
 /*************************************************************
 Name: FlashErasePage         
 
-Description: ÏûÏ¢°üÃüÁî:²Á³ıÍâ²¿FLASHÒ»¸öpageµÄÄÚÈİ
-Input: page  :flash Ò³
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:æ“¦é™¤å¤–éƒ¨FLASHä¸€ä¸ªpageçš„å†…å®¹
+Input: page  :flash é¡µ
 
 Return: void
 **************************************************************/
@@ -570,12 +570,12 @@ UINT32 FlashPageChang ( UINT32 page )
 
 /*************************************************************
 Name: GetFlashPageInfo       
-Description: µÃµ½Flash Ò³ĞÅÏ¢
+Description: å¾—åˆ°Flash é¡µä¿¡æ¯
 
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void GetFlashPageInfo( UINT16 length, UCHAR8 * p_dat, UCHAR8 * p_tx_buff )
@@ -876,8 +876,8 @@ void GetFlashPageInfo( UINT16 length, UCHAR8 * p_dat, UCHAR8 * p_tx_buff )
 
 /*************************************************************
 Name:Ad9122Write
-Description: DAC AD9788SPIĞ´Êı¾İ
-Input:addr:SPIµØÖ·£¬byte_len:Êı¾İµÄ³¤¶È£¬val:Ğ´ÈëµÄÊı¾İ£¬main_dive_flagÖ÷ÓÃ·Ö¼¯Ñ¡Ôñ          
+Description: DAC AD9788SPIå†™æ•°æ®
+Input:addr:SPIåœ°å€ï¼Œbyte_len:æ•°æ®çš„é•¿åº¦ï¼Œval:å†™å…¥çš„æ•°æ®ï¼Œmain_dive_flagä¸»ç”¨åˆ†é›†é€‰æ‹©          
 Output:         
 Return:  
 *************************************************************/
@@ -895,10 +895,10 @@ void Ad9122Write(UCHAR8 addr, UCHAR8 val,UCHAR8 ab_flag)
 
 /*************************************************************
 Name:Ad9122Read
-Description: DAC AD9788SPI¶ÁÊı¾İ
-Input:addr:SPIµØÖ·£¬byte_len:Êı¾İµÄ³¤¶È£¬main_dive_flagÖ÷ÓÃ·Ö¼¯Ñ¡Ôñ     
+Description: DAC AD9788SPIè¯»æ•°æ®
+Input:addr:SPIåœ°å€ï¼Œbyte_len:æ•°æ®çš„é•¿åº¦ï¼Œmain_dive_flagä¸»ç”¨åˆ†é›†é€‰æ‹©     
 Output:         
-Return:¶ÁÈ¡µÄÊı¾İ  
+Return:è¯»å–çš„æ•°æ®  
 *************************************************************/
 UCHAR8 Ad9122Read(UCHAR8 addr, UCHAR8 ab_flag)
 {
@@ -925,7 +925,7 @@ UCHAR8 Ad9122Read(UCHAR8 addr, UCHAR8 ab_flag)
 
 /*************************************************************
 Name:Ad9524Write          
-Description: Ê±ÖÓ AD9517¼Ä´æÆ÷Ğ´Êı¾İ
+Description: æ—¶é’Ÿ AD9517å¯„å­˜å™¨å†™æ•°æ®
 Input:address,data            
 Output:void         
 Return:void    
@@ -949,10 +949,10 @@ void Ad9524Write(UINT16 add, UCHAR8 data)
 
 /*************************************************************
 Name:Ad9524Read           
-Description: Ê±ÖÓ AD9517¼Ä´æÆ÷¶ÁÊı¾İ 
+Description: æ—¶é’Ÿ AD9517å¯„å­˜å™¨è¯»æ•°æ® 
 Input:address            
 Output:void         
-Return:¶Áµ½µÄÊı¾İ  
+Return:è¯»åˆ°çš„æ•°æ®  
 **************************************************************/
 UCHAR8 Ad9524Read(UINT16 add)
 {
@@ -984,7 +984,7 @@ UCHAR8 Ad9524Read(UINT16 add)
 
 /*************************************************************
 Name:Ad6649Write          
-Description:ÏòAd6655¼Ä´æÆ÷Ğ´Êı¾İ
+Description:å‘Ad6655å¯„å­˜å™¨å†™æ•°æ®
 Input:address,data            
 Output:void         
 Return:void    
@@ -1002,10 +1002,10 @@ void Ad6649Write(UINT16 add,UCHAR8  data)
 
 /*************************************************************
 Name:Ad6655Read          
-Description:ÏòAd6655¼Ä´æÆ÷¶ÁÊı¾İ
+Description:å‘Ad6655å¯„å­˜å™¨è¯»æ•°æ®
 Input:address            
 Output:void         
-Return:¶Áµ½µÄÊı¾İ  
+Return:è¯»åˆ°çš„æ•°æ®  
 **************************************************************/
 UCHAR8 Ad6643Read(UINT16 add)
 {
@@ -1026,7 +1026,7 @@ UCHAR8 Ad6643Read(UINT16 add)
 
 /*************************************************************
 Name:FlashReadStatus         
-Description:¶ÁÈ¡FLASH×´Ì¬
+Description:è¯»å–FLASHçŠ¶æ€
 Input:void            
 Output:void         
 Return: status        
@@ -1060,8 +1060,8 @@ void FlashWaitReady2(void)
 
 /*************************************************************
 Name:FlashEraseSectors          
-Description:²Á³ı²¿·ÖBlock
-Input:ÆğÊ¼block            
+Description:æ“¦é™¤éƒ¨åˆ†Block
+Input:èµ·å§‹block            
 Output:void         
 Return:         
 **************************************************************/
@@ -1101,7 +1101,7 @@ CHAR8 FlashEraseSectors2(UINT32 from,UINT32 to)
 
 /*************************************************************
 Name:FlashWritePage          
-Description:Ğ´Ò»Ò³Êı¾İ
+Description:å†™ä¸€é¡µæ•°æ®
 Input:page address,data pointer,len           
 Output:void         
 Return:void         
@@ -1137,7 +1137,7 @@ void FlashWrite2(UINT32 page,INT16 offset,UCHAR8 *data,UINT16 len,UINT16 option)
 
 /*************************************************************
 Name:FlashRead          
-Description:¶ÁÈ¡Ò»Ò³Êı¾İ
+Description:è¯»å–ä¸€é¡µæ•°æ®
 Input:void            
 Output:void         
 Return:void         
@@ -1157,10 +1157,10 @@ void  FlashRead2(INT32 page,INT16 offset,UCHAR8 *data,INT32 len)
 
 /*************************************************************
 Name:FlashReadId          
-Description:¶ÁÈ¡FLASH ID
+Description:è¯»å–FLASH ID
 Input:void            
 Output:void         
-Return:·µ»Ø32Î»IDÂëĞÅÏ¢,[31~24]µÚ1×Ö¶Î,[23~16]µÚ¶ş×Ö¶Î,ÒÔ´ËÀàÍÆ
+Return:è¿”å›32ä½IDç ä¿¡æ¯,[31~24]ç¬¬1å­—æ®µ,[23~16]ç¬¬äºŒå­—æ®µ,ä»¥æ­¤ç±»æ¨
 **************************************************************/
 UINT32 FlashReadId2(void)
 {
@@ -1177,7 +1177,7 @@ UINT32 FlashReadId2(void)
 
 	SpiReadBuf(SPI_CS_AT45,op_data,5,NULL,0);
 
-	// [31~24]µÚ1×Ö¶Î,[23~16]µÚ2×Ö¶Î,[15~8]µÚ3×Ö¶Î,[7~0]µÚ4×Ö¶Î
+	// [31~24]ç¬¬1å­—æ®µ,[23~16]ç¬¬2å­—æ®µ,[15~8]ç¬¬3å­—æ®µ,[7~0]ç¬¬4å­—æ®µ
 	 (id=(UINT32)( (op_data[1]<<24)|(op_data[2]<<16)|(op_data[3]<<8)|(op_data[4]<<0) ));
 	return id;
 }
@@ -1198,7 +1198,7 @@ UINT32 FlashReadId(void)
 }
 /*************************************************************
 Name:GetFlashPageSize          
-Description: ¶ÁÈ¡FlashÒ³´óĞ¡
+Description: è¯»å–Flashé¡µå¤§å°
 Input:void            
 Output:void         
 Return:         
@@ -1263,7 +1263,7 @@ void GetFlashPageSize()
 	 }
 	TRACE_INFO("flash_page_size=[%04x],FLASH_PAGE_SIZE=[%04x]\r\n",flash_page_size,FLASH_PAGE_SIZE);	
 
-//ACDUÉı¼¶°ü´óĞ¡¸ù¾İflashÀàĞÍÀ´ÅĞ¶Ï£¬MDAS V2 V3µÄ¹Ì¶¨Îª1056
+//ACDUå‡çº§åŒ…å¤§å°æ ¹æ®flashç±»å‹æ¥åˆ¤æ–­ï¼ŒMDAS V2 V3çš„å›ºå®šä¸º1056
 #ifdef FPGA_ACDU_16M_FLASH
 	switch(flash_page_size)
 	{
@@ -1282,8 +1282,8 @@ void GetFlashPageSize()
 
 /*************************************************************
 Name:FlashEraseSectors          
-Description:²Á³ı²¿·ÖBlock
-Input:ÆğÊ¼block            
+Description:æ“¦é™¤éƒ¨åˆ†Block
+Input:èµ·å§‹block            
 Output:void         
 Return:         
 **************************************************************/

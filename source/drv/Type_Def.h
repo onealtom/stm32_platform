@@ -1,14 +1,14 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandtelco Technology Co.,Ltd All rights reserved
 *
 * FileName    :type_def.h
-* Description :±äÁ¿ÀàĞÍÉùÃ÷
+* Description :å˜é‡ç±»å‹å£°æ˜
 * Version     :v0.1
 * Author      :rj
 * Date        :2010-10-26
 * History     :
 * <author>		<time>		<version>		<desc>
-*	rj			2010-10-26	v0.1			³õÊ¼°æ±¾
+*	rj			2010-10-26	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #ifndef _TYPE_DEF_H_
 #define _TYPE_DEF_H_

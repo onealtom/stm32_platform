@@ -1,4 +1,4 @@
-#ifndef _HEADER_H_
+ï»¿#ifndef _HEADER_H_
 #define _HEADER_H_
 
 #include <string.h>
@@ -60,7 +60,7 @@ extern void *memset(void *s,int ch,size_t n);
 #define flash
 #define BOARD_FLASH_EEFC
 
-// Ñ¡Ôñ´®¿Ú0×÷Îªµ÷ÊÔ´®¿Ú;
+// é€‰æ‹©ä¸²å£0ä½œä¸ºè°ƒè¯•ä¸²å£;
 //#define DEBUG_USART0
 
 void LowPowerMode(void);

@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :usbTxRx.h
-* Description :USB ÊÕ·¢Êı¾İÏà¹Øº¯Êı¼°½á¹¹;
+* Description :USB æ”¶å‘æ•°æ®ç›¸å…³å‡½æ•°åŠç»“æ„;
 * Version     :v0.1
 * Author      :gaochanggang
 * Date        :2009-07-15
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*gaochanggang		2009-07-15	v0.1			³õÊ¼°æ±¾
+*gaochanggang		2009-07-15	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #ifndef _USBTXRX_H
 #define _USBTXRX_H
@@ -24,16 +24,16 @@
 // packet head define.
 struct S_USB_PACKET_HEAD
 {
-	UINT16 s_syn;				// 2 byte Í¬²½±êÖ¾
-	UCHAR8 c_protocol_ver;		// 1 byte Ğ­Òé°æ±¾ºÅ
-	UCHAR8 c_machine_no;			// 1 byte Õû»ú±àºÅ
-	UCHAR8 c_module_addr;		// 1 byte Ä£¿éµØÖ·
-	UCHAR8 c_cmd_id;				// 1 byte ÃüÁî×Ö
-	UCHAR8 c_ack;				// 1 byte Ğ£Ñé±êÖ¾ [7 Byte]
+	UINT16 s_syn;				// 2 byte åŒæ­¥æ ‡å¿—
+	UCHAR8 c_protocol_ver;		// 1 byte åè®®ç‰ˆæœ¬å·
+	UCHAR8 c_machine_no;			// 1 byte æ•´æœºç¼–å·
+	UCHAR8 c_module_addr;		// 1 byte æ¨¡å—åœ°å€
+	UCHAR8 c_cmd_id;				// 1 byte å‘½ä»¤å­—
+	UCHAR8 c_ack;				// 1 byte æ ¡éªŒæ ‡å¿— [7 Byte]
 
-	CHAR8 data;						// ÃüÁîÊı¾İÖ¸Õë£»[FPGA 1056+8]
-	UINT16 s_crc;				// 2 byte; Ğ£ÑéÂë
-	UCHAR8 c_end_sign;			// 1 byte; ½áÊø±êÖ¾
+	CHAR8 data;						// å‘½ä»¤æ•°æ®æŒ‡é’ˆï¼›[FPGA 1056+8]
+	UINT16 s_crc;				// 2 byte; æ ¡éªŒç 
+	UCHAR8 c_end_sign;			// 1 byte; ç»“æŸæ ‡å¿—
 }__attribute__((packed));
 typedef struct S_USB_PACKET_HEAD T_USB_PACKET_HEAD;
 

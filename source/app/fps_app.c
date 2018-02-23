@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    : Rfc_scan.c
-* Description : GSMÆµµãËÑË÷
+* Description : GSMé¢‘ç‚¹æœç´¢
 * Version     : v1.0
 * Author      : RJ
 * Date        : 2011-08-31
@@ -10,20 +10,20 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*RJ		2011-08-31		v0.1			³õÊ¼°æ±¾
+*RJ		2011-08-31		v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #include "Header.h"
 
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
-// Íâ²¿±äÁ¿
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
+// å¤–éƒ¨å˜é‡
 extern volatile UINT32 sys_work_info;
 extern FLOAT32 fpga_dgcic_a;
-extern UINT32 module_param_chg_flag;		//ÏµÍ³¹¤×÷²ÎÊıĞŞ¸Ä±êÖ¾
+extern UINT32 module_param_chg_flag;		//ç³»ç»Ÿå·¥ä½œå‚æ•°ä¿®æ”¹æ ‡å¿—
 extern _T_MODULE_CFG mod_cfg_a;
 extern _T_MODULE_CFG mod_cfg_b;
 
-// ÎÄ¼şÄÚ±äÁ¿
-static UCHAR8 fps_report_head[MSG_PKT_HEAD_SIZE];	// ÏûÏ¢Í·, ÈôÆğÊ¼2×Ö½ÚÎª0xEE, 0xEE±íÊ¾ÏûÏ¢Í·ÎŞĞ§
+// æ–‡ä»¶å†…å˜é‡
+static UCHAR8 fps_report_head[MSG_PKT_HEAD_SIZE];	// æ¶ˆæ¯å¤´, è‹¥èµ·å§‹2å­—èŠ‚ä¸º0xEE, 0xEEè¡¨ç¤ºæ¶ˆæ¯å¤´æ— æ•ˆ
 
 _T_FPS_REPORT fps_report = { 0, 0, fps_report_head };
 _T_FPS_STATUS fps_st;
@@ -31,12 +31,12 @@ _T_PBCCH_INFO pbcch_inf;
 #endif
 
 /*************************************************************
-// ÕûÊıÇóÄ££¬vaÎª±»³ıÊı£¬vbÎª³ıÊı£¬·µ»ØÖµÎªva³ıÒÔvbµÄÓàÊı
-// va¿ÉÎªÈÎÒâÕûÊı£¬vbÖ»ÄÜÎªÕıÊı
+// æ•´æ•°æ±‚æ¨¡ï¼Œvaä¸ºè¢«é™¤æ•°ï¼Œvbä¸ºé™¤æ•°ï¼Œè¿”å›å€¼ä¸ºvaé™¤ä»¥vbçš„ä½™æ•°
+// vaå¯ä¸ºä»»æ„æ•´æ•°ï¼Œvbåªèƒ½ä¸ºæ­£æ•°
 *************************************************************/
 int FPS_CalcMod( int va, int vb )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 
 	if ( va<0 )
 	{
@@ -58,31 +58,31 @@ int FPS_CalcMod( int va, int vb )
 
 /*************************************************************
 Name:FPS_GetBitStream          
-Description: ´ÓÎ»Á÷ÌáÈ¡Ò»¶ÎÊı¾İ, Î»Á÷Êı¾İ¸ñÊ½:ÆğÊ¼Î»-> B0[7:0]-B1[7:0]-B2[7:0]...Bn[7:0] <-½áÊøÎ»
-Input: [bit_start: Êı¾İÎ»µÄÆğÊ¼Î»ÖÃ,0¿ªÊ¼] [bit_len:½ØÈ¡Î»³¤¶È,×î³¤32Î»] [p_bitstream:Î»Á÷Êı¾İÖ¸Õë]
-Return: [ÌáÈ¡µÄÊı¾İÖµ]
+Description: ä»ä½æµæå–ä¸€æ®µæ•°æ®, ä½æµæ•°æ®æ ¼å¼:èµ·å§‹ä½-> B0[7:0]-B1[7:0]-B2[7:0]...Bn[7:0] <-ç»“æŸä½
+Input: [bit_start: æ•°æ®ä½çš„èµ·å§‹ä½ç½®,0å¼€å§‹] [bit_len:æˆªå–ä½é•¿åº¦,æœ€é•¿32ä½] [p_bitstream:ä½æµæ•°æ®æŒ‡é’ˆ]
+Return: [æå–çš„æ•°æ®å€¼]
 **************************************************************/
 UINT32 FPS_GetBitStream( UINT16 bit_start, UCHAR8 bit_len, UCHAR8 * p_bitstream )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UCHAR8 bit_offset;
 	UCHAR8 tmp;
 	UINT32 ret_val = 0;
 
-	p_bitstream += (bit_start/8);	// È¡µÃÎ»ÆğÊ¼ËùÔÚµÄ×Ö½ÚÎ»ÖÃ
+	p_bitstream += (bit_start/8);	// å–å¾—ä½èµ·å§‹æ‰€åœ¨çš„å­—èŠ‚ä½ç½®
 	tmp = *p_bitstream++;
 	
-	bit_offset = bit_start%8;		// ¶¨Î»µ½Î»ÆğÊ¼Î»ÖÃ
+	bit_offset = bit_start%8;		// å®šä½åˆ°ä½èµ·å§‹ä½ç½®
 	tmp <<= bit_offset;
 	while ( bit_len-- )
 	{
-		// ¶ÁÈ¡Î»Öµ
+		// è¯»å–ä½å€¼
 		ret_val <<= 1;
 		if ( 0!=(tmp&0x80) )
 		{
 			ret_val++;
 		}
-		// ÏÂÒ»Î»
+		// ä¸‹ä¸€ä½
 		bit_offset++;
 		if ( bit_offset>= 8 )
 		{
@@ -104,23 +104,23 @@ UINT32 FPS_GetBitStream( UINT16 bit_start, UCHAR8 bit_len, UCHAR8 * p_bitstream 
 
 /*************************************************************
 Name:DecodeFn          
-Description: TCH Bitmap N ¸ñÊ½½âÂë
+Description: TCH Bitmap N æ ¼å¼è§£ç 
 Input: 
-	num:ÒªÇóµÄÆµµãĞòºÅ(0~15)
-	format: ±àÂë¸ñÊ½
-	w_list: TCHĞ¯´øµÄW1µ½W16¹²16¸ö¼ÆËã²ÎÊı
+	num:è¦æ±‚çš„é¢‘ç‚¹åºå·(0~15)
+	format: ç¼–ç æ ¼å¼
+	w_list: TCHæºå¸¦çš„W1åˆ°W16å…±16ä¸ªè®¡ç®—å‚æ•°
 Return:
-	¸ÃĞòºÅ¶ÔÓ¦µÄFN
+	è¯¥åºå·å¯¹åº”çš„FN
 **************************************************************/
 UINT16 FPS_DecodeFn( UCHAR8 num, UINT16 format, UINT16 * w_list )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UCHAR8 index = num+1;
-	INT16 j=1;		// ²»´óÓÚindexµÄ2µÄÕû´ÎÃİµÄ×î´óÖµ
+	INT16 j=1;		// ä¸å¤§äºindexçš„2çš„æ•´æ¬¡å¹‚çš„æœ€å¤§å€¼
 	INT32 tmp = w_list[index-1];
 	INT32 v_parent;
 
-	// ¼ÆËãJµÄÖµ
+	// è®¡ç®—Jçš„å€¼
 	while ( j*2 <= index )
 	{
 		j *= 2;
@@ -154,17 +154,17 @@ UINT16 FPS_DecodeFn( UCHAR8 num, UINT16 format, UINT16 * w_list )
 
 /*************************************************************
 Name:FPS_TchDecFmt0          
-Description: TCH Bitmap 0¸ñÊ½½âÂë
-	16×Ö½ÚµÄTCHÊı¾İ£¬´Ótch_buff[0]×Ö½ÚµÄbit3¿ªÊ¼µ½tch_buff[15]µÄbit0£¬ÒÀ´Î±íÊ¾ÆµµãµÄ¿ª¹Ø×´Ì¬£¬ÖÃÎ»±íÊ¾ÆµµãÊ¹ÄÜ
+Description: TCH Bitmap 0æ ¼å¼è§£ç 
+	16å­—èŠ‚çš„TCHæ•°æ®ï¼Œä»tch_buff[0]å­—èŠ‚çš„bit3å¼€å§‹åˆ°tch_buff[15]çš„bit0ï¼Œä¾æ¬¡è¡¨ç¤ºé¢‘ç‚¹çš„å¼€å…³çŠ¶æ€ï¼Œç½®ä½è¡¨ç¤ºé¢‘ç‚¹ä½¿èƒ½
 Input: 
-	tch_buff: TCHµÄ16×Ö½ÚÊı¾İ£¬Ë³Ğò´æ·Å
-	fc_list: ÆµµãÊı¾İ£¬´æ·ÅÊ¹ÄÜµÄÆµµãºÅ
+	tch_buff: TCHçš„16å­—èŠ‚æ•°æ®ï¼Œé¡ºåºå­˜æ”¾
+	fc_list: é¢‘ç‚¹æ•°æ®ï¼Œå­˜æ”¾ä½¿èƒ½çš„é¢‘ç‚¹å·
 Return:
-	Ê¹ÄÜÆµµã¸öÊı
+	ä½¿èƒ½é¢‘ç‚¹ä¸ªæ•°
 **************************************************************/
 UCHAR8 FPS_TchDecFmt0( UCHAR8 * tch_buff, UINT16 * fc_list )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 fc_mask;
 	UCHAR8 offset;
 	UINT16 fc;
@@ -192,18 +192,18 @@ UCHAR8 FPS_TchDecFmt0( UCHAR8 * tch_buff, UINT16 * fc_list )
 
 /*************************************************************
 Name: FPS_TchDecFmtVariable          
-Description: TCH Bitmap Variable¸ñÊ½½âÂë
-	16×Ö½ÚµÄTCHÊı¾İ£¬´Ótch_buff[2].0µ½tch_buff[2].7Îª10Î»µÄÆµµã¼ÆËãÆ«ÒÆ»ùÖ·
-	´Ótch_buff[2]×Ö½ÚµÄbit6¿ªÊ¼µ½tch_buff[15]µÄbit0£¬ÒÀ´Î±íÊ¾ÆµµãµÄ¿ª¹Ø×´Ì¬£¬ÖÃÎ»±íÊ¾ÆµµãÊ¹ÄÜ
+Description: TCH Bitmap Variableæ ¼å¼è§£ç 
+	16å­—èŠ‚çš„TCHæ•°æ®ï¼Œä»tch_buff[2].0åˆ°tch_buff[2].7ä¸º10ä½çš„é¢‘ç‚¹è®¡ç®—åç§»åŸºå€
+	ä»tch_buff[2]å­—èŠ‚çš„bit6å¼€å§‹åˆ°tch_buff[15]çš„bit0ï¼Œä¾æ¬¡è¡¨ç¤ºé¢‘ç‚¹çš„å¼€å…³çŠ¶æ€ï¼Œç½®ä½è¡¨ç¤ºé¢‘ç‚¹ä½¿èƒ½
 Input: 
-	tch_buff: TCHµÄ16×Ö½ÚÊı¾İ£¬Ë³Ğò´æ·Å
-	fc_list: ÆµµãÊı¾İ£¬´æ·ÅÊ¹ÄÜµÄÆµµãºÅ
+	tch_buff: TCHçš„16å­—èŠ‚æ•°æ®ï¼Œé¡ºåºå­˜æ”¾
+	fc_list: é¢‘ç‚¹æ•°æ®ï¼Œå­˜æ”¾ä½¿èƒ½çš„é¢‘ç‚¹å·
 Return:
-	Ê¹ÄÜÆµµã¸öÊı
+	ä½¿èƒ½é¢‘ç‚¹ä¸ªæ•°
 **************************************************************/
 UCHAR8 FPS_TchDecFmtVariable( UCHAR8 * tch_buff, UINT16 * fc_list )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 fc_mask;
 	UCHAR8 offset;
 	UINT16 fc;
@@ -238,16 +238,16 @@ UCHAR8 FPS_TchDecFmtVariable( UCHAR8 * tch_buff, UINT16 * fc_list )
 
 /*************************************************************
 Name:FPS_TchDecFmt1024          
-Description: TCH Bitmap 1024 ¸ñÊ½½âÂë
+Description: TCH Bitmap 1024 æ ¼å¼è§£ç 
 Input: 
-	tch_buff: TCHµÄ16×Ö½ÚÊı¾İ£¬Ë³Ğò´æ·Å
-	fc_list: ÆµµãÊı¾İ£¬´æ·ÅÊ¹ÄÜµÄÆµµãºÅ
+	tch_buff: TCHçš„16å­—èŠ‚æ•°æ®ï¼Œé¡ºåºå­˜æ”¾
+	fc_list: é¢‘ç‚¹æ•°æ®ï¼Œå­˜æ”¾ä½¿èƒ½çš„é¢‘ç‚¹å·
 Return:
-	Ê¹ÄÜÆµµã¸öÊı
+	ä½¿èƒ½é¢‘ç‚¹ä¸ªæ•°
 **************************************************************/
 UCHAR8 FPS_TchDecFmt1024( UCHAR8 * tch_buff, UINT16 * fc_list )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 w[17];
 	UINT16 i;
 	UCHAR8 count = 0;
@@ -273,13 +273,13 @@ UCHAR8 FPS_TchDecFmt1024( UCHAR8 * tch_buff, UINT16 * fc_list )
 	w[15] = FPS_GetBitStream( offset, 7, tch_buff );	offset+=7; 		// 7
 	w[16] = FPS_GetBitStream( offset, 6, tch_buff );	offset+=6; 		// 6
 
-	if ( w[0] == 1 )	// F0=1, 0ºÅÆµµãÊÇTCHÆµµã·¶Î§ÖĞµÄÒ»¸ö
+	if ( w[0] == 1 )	// F0=1, 0å·é¢‘ç‚¹æ˜¯TCHé¢‘ç‚¹èŒƒå›´ä¸­çš„ä¸€ä¸ª
 	{
 		fc_list[count++] = 0;
 	}
 	for ( i=1; i<16; i++ )
 	{
-		if ( w[i]==0 ) break;					// Óöµ½WÎª0£¬±íÊ¾ÓàÏÂÆµµã¶¼ÎŞĞ§
+		if ( w[i]==0 ) break;					// é‡åˆ°Wä¸º0ï¼Œè¡¨ç¤ºä½™ä¸‹é¢‘ç‚¹éƒ½æ— æ•ˆ
 		fc_list[count++] = FPS_DecodeFn( (i-1), 1024, &w[1] );
 	}
 	return count;
@@ -291,16 +291,16 @@ UCHAR8 FPS_TchDecFmt1024( UCHAR8 * tch_buff, UINT16 * fc_list )
 
 /*************************************************************
 Name:FPS_TchDecFmt512          
-Description: TCH Bitmap 512 ¸ñÊ½½âÂë
+Description: TCH Bitmap 512 æ ¼å¼è§£ç 
 Input: 
-	tch_buff: TCHµÄ16×Ö½ÚÊı¾İ£¬Ë³Ğò´æ·Å
-	fc_list: ÆµµãÊı¾İ£¬´æ·ÅÊ¹ÄÜµÄÆµµãºÅ
+	tch_buff: TCHçš„16å­—èŠ‚æ•°æ®ï¼Œé¡ºåºå­˜æ”¾
+	fc_list: é¢‘ç‚¹æ•°æ®ï¼Œå­˜æ”¾ä½¿èƒ½çš„é¢‘ç‚¹å·
 Return:
-	Ê¹ÄÜÆµµã¸öÊı
+	ä½¿èƒ½é¢‘ç‚¹ä¸ªæ•°
 **************************************************************/
 UCHAR8 FPS_TchDecFmt512( UCHAR8 * tch_buff, UINT16 * fc_list )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 w[18];
 	UINT16 i;
 	UCHAR8 offset;
@@ -308,7 +308,7 @@ UCHAR8 FPS_TchDecFmt512( UCHAR8 * tch_buff, UINT16 * fc_list )
 	//TRACE_INFO("TCH Decode Format 512:\r\n");
 	offset = 7;
 	w[0] = FPS_GetBitStream( offset, 10, tch_buff );	offset+=10; 		// 10
-	if ( w[0]==0 ) 	// W0Îª0£¬ÎŞÆµµãÊı¾İ
+	if ( w[0]==0 ) 	// W0ä¸º0ï¼Œæ— é¢‘ç‚¹æ•°æ®
 	{
 		return 0;
 	}
@@ -333,7 +333,7 @@ UCHAR8 FPS_TchDecFmt512( UCHAR8 * tch_buff, UINT16 * fc_list )
 	fc_list[0] = w[0];
 	for ( i=1; i<17; i++ )
 	{
-		if ( w[i]==0 ) break;					// Óöµ½WÎª0£¬±íÊ¾ÓàÏÂÆµµã¶¼ÎŞĞ§
+		if ( w[i]==0 ) break;					// é‡åˆ°Wä¸º0ï¼Œè¡¨ç¤ºä½™ä¸‹é¢‘ç‚¹éƒ½æ— æ•ˆ
 		fc_list[i] = (w[0] + FPS_DecodeFn( (i-1), DCS_MIN_FRE_CODE_CNMOBILE, &w[1] )) % 1024;
 		//TRACE_INFO("fp%d:%d\r\n", i, fc_list[i]);
 	}
@@ -346,16 +346,16 @@ UCHAR8 FPS_TchDecFmt512( UCHAR8 * tch_buff, UINT16 * fc_list )
 
 /*************************************************************
 Name:FPS_TchDecFmt256          
-Description: TCH Bitmap 256 ¸ñÊ½½âÂë
+Description: TCH Bitmap 256 æ ¼å¼è§£ç 
 Input: 
-	tch_buff: TCHµÄ16×Ö½ÚÊı¾İ£¬Ë³Ğò´æ·Å
-	fc_list: ÆµµãÊı¾İ£¬´æ·ÅÊ¹ÄÜµÄÆµµãºÅ
+	tch_buff: TCHçš„16å­—èŠ‚æ•°æ®ï¼Œé¡ºåºå­˜æ”¾
+	fc_list: é¢‘ç‚¹æ•°æ®ï¼Œå­˜æ”¾ä½¿èƒ½çš„é¢‘ç‚¹å·
 Return:
-	Ê¹ÄÜÆµµã¸öÊı
+	ä½¿èƒ½é¢‘ç‚¹ä¸ªæ•°
 **************************************************************/
 UCHAR8 FPS_TchDecFmt256( UCHAR8 * tch_buff, UINT16 * fc_list )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 w[22];
 	UINT16 i;
 	UCHAR8 offset;
@@ -364,7 +364,7 @@ UCHAR8 FPS_TchDecFmt256( UCHAR8 * tch_buff, UINT16 * fc_list )
 
 	offset = 7;
 	w[0] = FPS_GetBitStream( offset, 10, tch_buff );	offset+=10; 		// 10
-	if ( w[0]==0 ) 	// W0Îª0£¬ÎŞÆµµãÊı¾İ
+	if ( w[0]==0 ) 	// W0ä¸º0ï¼Œæ— é¢‘ç‚¹æ•°æ®
 	{
 		return 0;
 	}
@@ -395,7 +395,7 @@ UCHAR8 FPS_TchDecFmt256( UCHAR8 * tch_buff, UINT16 * fc_list )
 	for ( i=1; i<21; i++ )
 	{
 // printf("W%d=%d", i, w[i]);
-		if ( w[i]==0 ) break;					// Óöµ½WÎª0£¬±íÊ¾ÓàÏÂÆµµã¶¼ÎŞĞ§
+		if ( w[i]==0 ) break;					// é‡åˆ°Wä¸º0ï¼Œè¡¨ç¤ºä½™ä¸‹é¢‘ç‚¹éƒ½æ— æ•ˆ
 		fc_list[i] = ( w[0] + FPS_DecodeFn( (i-1), 256, &w[1] ) ) % 1024;
 		//TRACE_INFO("fp%d:%d\r\n", i, fc_list[i]);
 // printf(", Fc%d=%d\r\n", i, fc_list[i]);
@@ -410,16 +410,16 @@ UCHAR8 FPS_TchDecFmt256( UCHAR8 * tch_buff, UINT16 * fc_list )
 
 /*************************************************************
 Name:FPS_TchDecFmt128          
-Description: TCH Bitmap 128 ¸ñÊ½½âÂë
+Description: TCH Bitmap 128 æ ¼å¼è§£ç 
 Input: 
-	tch_buff: TCHµÄ16×Ö½ÚÊı¾İ£¬Ë³Ğò´æ·Å
-	fc_list: ÆµµãÊı¾İ£¬´æ·ÅÊ¹ÄÜµÄÆµµãºÅ
+	tch_buff: TCHçš„16å­—èŠ‚æ•°æ®ï¼Œé¡ºåºå­˜æ”¾
+	fc_list: é¢‘ç‚¹æ•°æ®ï¼Œå­˜æ”¾ä½¿èƒ½çš„é¢‘ç‚¹å·
 Return:
-	Ê¹ÄÜÆµµã¸öÊı
+	ä½¿èƒ½é¢‘ç‚¹ä¸ªæ•°
 **************************************************************/
 UCHAR8 FPS_TchDecFmt128( UCHAR8 * tch_buff, UINT16 * fc_list )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 w[29];
 	UINT16 i;
 	UCHAR8 offset;
@@ -428,7 +428,7 @@ UCHAR8 FPS_TchDecFmt128( UCHAR8 * tch_buff, UINT16 * fc_list )
 	
 	offset = 7;
 	w[0] = FPS_GetBitStream( offset, 10, tch_buff );	offset+=10; 		// 10
-	if ( w[0]==0 ) 	// W0Îª0£¬ÎŞÆµµãÊı¾İ
+	if ( w[0]==0 ) 	// W0ä¸º0ï¼Œæ— é¢‘ç‚¹æ•°æ®
 	{
 		return 0;
 	}
@@ -464,7 +464,7 @@ UCHAR8 FPS_TchDecFmt128( UCHAR8 * tch_buff, UINT16 * fc_list )
 	fc_list[0] = w[0];
 	for ( i=1; i<28; i++ )
 	{
-		if ( w[i]==0 ) break;					// Óöµ½WÎª0£¬±íÊ¾ÓàÏÂÆµµã¶¼ÎŞĞ§
+		if ( w[i]==0 ) break;					// é‡åˆ°Wä¸º0ï¼Œè¡¨ç¤ºä½™ä¸‹é¢‘ç‚¹éƒ½æ— æ•ˆ
 		fc_list[i] = ( w[0] + FPS_DecodeFn( (i-1), 128, &w[1] ) ) % 1024;
 		//TRACE_INFO("fp%d:%d\r\n", i, fc_list[i]);
 	}
@@ -477,13 +477,13 @@ UCHAR8 FPS_TchDecFmt128( UCHAR8 * tch_buff, UINT16 * fc_list )
 
 /*************************************************************
 Name:FPS_TchDecode          
-Description: ½âÎöTCHÊı¾İ,»ñÈ¡ÆµµãºÅ
-Input: [tch_buff: 16×Ö½ÚTCHÊı¾İÖ¸Õë]
+Description: è§£æTCHæ•°æ®,è·å–é¢‘ç‚¹å·
+Input: [tch_buff: 16å­—èŠ‚TCHæ•°æ®æŒ‡é’ˆ]
 Return: void
 **************************************************************/
 void FPS_TchDecode(UCHAR8 * tch_buff)
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UCHAR8 tch_type;
 	UCHAR8 rfc_cnt = 0;
 	
@@ -522,18 +522,18 @@ void FPS_TchDecode(UCHAR8 * tch_buff)
 
 /*************************************************************
 Name:FPS_PbcchDecode          
-Description: ½âÎöTCHÊı¾İ,»ñÈ¡ÆµµãºÅ
-Input: [tch_buff: 16×Ö½ÚTCHÊı¾İÖ¸Õë]
+Description: è§£æTCHæ•°æ®,è·å–é¢‘ç‚¹å·
+Input: [tch_buff: 16å­—èŠ‚TCHæ•°æ®æŒ‡é’ˆ]
 Return: void
 **************************************************************/
 void FPS_PbcchDecode(UCHAR8 * pbcch_buff)
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UCHAR8 bit_offset; 
 	UCHAR8 val;
 	UCHAR8 tmp;
 
-	// ³õÊ¼»¯PBCCH×´Ì¬
+	// åˆå§‹åŒ–PBCCHçŠ¶æ€
 	pbcch_inf.valid = 0;
 	pbcch_inf.gprs_support = 0;
 	pbcch_inf.pbcch_support = 0;
@@ -541,133 +541,133 @@ void FPS_PbcchDecode(UCHAR8 * pbcch_buff)
 	pbcch_inf.pbcch_fc_valid = 0;
 	pbcch_inf.edge_support = 0;
 
-	// ¿ªÊ¼½âÎöÊı¾İÁ÷
+	// å¼€å§‹è§£ææ•°æ®æµ
 	bit_offset = 0; 
-	val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// ¶ÁÈ¡µÚ1Î»Êı¾İ
+	val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// è¯»å–ç¬¬1ä½æ•°æ®
 	bit_offset ++;
 	if ( 0==val )
 	{
-		return;		// µÚ1Î»Îª0,ÎŞĞ§ĞÅÏ¢,·µ»Ø
+		return;		// ç¬¬1ä½ä¸º0,æ— æ•ˆä¿¡æ¯,è¿”å›
 	}
-	pbcch_inf.valid = 1;	// ĞÅÏ¢ÓĞĞ§
+	pbcch_inf.valid = 1;	// ä¿¡æ¯æœ‰æ•ˆ
 
-	bit_offset+=7;		// Ìø¹ı 3Î»µÄBCCH_CHANGE_MARK + 4Î»µÄSI_CHANGE_FILED
+	bit_offset+=7;		// è·³è¿‡ 3ä½çš„BCCH_CHANGE_MARK + 4ä½çš„SI_CHANGE_FILED
 
-	val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1Î»·ÖÖ§
+	val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1ä½åˆ†æ”¯
 	bit_offset++;
-	if ( 1==val )		// =1,ÓĞGPRSÆµµãĞÅÏ¢
+	if ( 1==val )		// =1,æœ‰GPRSé¢‘ç‚¹ä¿¡æ¯
 	{
-		pbcch_inf.gprs_support = 1;	// ÖÃ±êÖ¾Î»
-		bit_offset += 2;		// Ìø¹ı2Î»µÄSI13_CHANGE_MARK
+		pbcch_inf.gprs_support = 1;	// ç½®æ ‡å¿—ä½
+		bit_offset += 2;		// è·³è¿‡2ä½çš„SI13_CHANGE_MARK
 		// ---- GPRS Mobile Allocation IE ----
-		bit_offset += 6;		// Ìø¹ı6Î»µÄHSN
-		val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1Î»·ÖÖ§
+		bit_offset += 6;		// è·³è¿‡6ä½çš„HSN
+		val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1ä½åˆ†æ”¯
 		bit_offset++;
-		if ( 1==val ) // =1,ÓĞRFL number listÆµµãĞÅÏ¢
+		if ( 1==val ) // =1,æœ‰RFL number listé¢‘ç‚¹ä¿¡æ¯
 		{
 			pbcch_inf.rfl_lst_support = 1;
 			pbcch_inf.rfl_count = 0;
 			do
 			{
-				val = FPS_GetBitStream( bit_offset, 4, pbcch_buff );	// ¶ÁÈ¡4Î»RFL_NUMBER
+				val = FPS_GetBitStream( bit_offset, 4, pbcch_buff );	// è¯»å–4ä½RFL_NUMBER
 				bit_offset += 4;
 				pbcch_inf.rfl_lst[pbcch_inf.rfl_count++] = val;
-				val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1Î»·ÖÖ§
+				val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1ä½åˆ†æ”¯
 				bit_offset++;
-			}while ( 1==val );		// =0½áÊøÑ­»·
+			}while ( 1==val );		// =0ç»“æŸå¾ªç¯
 		}
 
-		val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1Î»·ÖÖ§
+		val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1ä½åˆ†æ”¯
 		bit_offset++;
-		if ( 0==val )	// =0, Î»Ó³ÉäTCHÆµµãĞÅÏ¢
+		if ( 0==val )	// =0, ä½æ˜ å°„TCHé¢‘ç‚¹ä¿¡æ¯
 		{
-			pbcch_inf.arfcn_lst_mode = 0;	// Î»Ó³ÉäÄ£Ê½
-			val = pbcch_inf.ma_len = FPS_GetBitStream( bit_offset, 6, pbcch_buff )+1;		// ¶ÁÈ¡6Î»MA_LENGTH
+			pbcch_inf.arfcn_lst_mode = 0;	// ä½æ˜ å°„æ¨¡å¼
+			val = pbcch_inf.ma_len = FPS_GetBitStream( bit_offset, 6, pbcch_buff )+1;		// è¯»å–6ä½MA_LENGTH
 			bit_offset += 6;
 			tmp = 0;
-			while ( val>0 )	// ¶ÁÈ¡BITMAPĞÅÏ¢
+			while ( val>0 )	// è¯»å–BITMAPä¿¡æ¯
 			{
 				if ( val>8 )
 				{
-					pbcch_inf.ma_bm[tmp++]= FPS_GetBitStream( bit_offset, 8, pbcch_buff );		// ¶ÁÈ¡8Î»BITMAPĞÅÏ¢
+					pbcch_inf.ma_bm[tmp++]= FPS_GetBitStream( bit_offset, 8, pbcch_buff );		// è¯»å–8ä½BITMAPä¿¡æ¯
 					bit_offset += 8;
 					val -= 8;
 				}
 				else
 				{
-					pbcch_inf.ma_bm[tmp] = FPS_GetBitStream( bit_offset, val, pbcch_buff );	// ¶ÁÈ¡nÎ»BITMAPĞÅÏ¢
-					pbcch_inf.ma_bm[tmp] <<= (8-val);		// MSB¶ÔÆë
+					pbcch_inf.ma_bm[tmp] = FPS_GetBitStream( bit_offset, val, pbcch_buff );	// è¯»å–nä½BITMAPä¿¡æ¯
+					pbcch_inf.ma_bm[tmp] <<= (8-val);		// MSBå¯¹é½
 					bit_offset += val;
 					val = 0;
 				}
 			}
 		}
-		else		// =1, ÁĞ±íÄ£Ê½TCHÆµµãĞÅÏ¢
+		else		// =1, åˆ—è¡¨æ¨¡å¼TCHé¢‘ç‚¹ä¿¡æ¯
 		{
-			pbcch_inf.arfcn_lst_mode = 1;	// ÁĞ±íË÷ÒıÄ£Ê½
-			pbcch_inf.arfcn_count = 0;		// Ë÷Òı¸öÊıÇåÁã
-			val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1Î»·ÖÖ§
+			pbcch_inf.arfcn_lst_mode = 1;	// åˆ—è¡¨ç´¢å¼•æ¨¡å¼
+			pbcch_inf.arfcn_count = 0;		// ç´¢å¼•ä¸ªæ•°æ¸…é›¶
+			val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1ä½åˆ†æ”¯
 			bit_offset++;
-			while ( 1==val )	// =0½áÊøÑ­»·
+			while ( 1==val )	// =0ç»“æŸå¾ªç¯
 			{
-				val = FPS_GetBitStream( bit_offset, 6, pbcch_buff );	// ¶ÁÈ¡6Î»ARFCN_INDEX
+				val = FPS_GetBitStream( bit_offset, 6, pbcch_buff );	// è¯»å–6ä½ARFCN_INDEX
 				bit_offset += 6;
 				pbcch_inf.arfcn_lst[pbcch_inf.arfcn_count++] = val;
-				val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1Î»·ÖÖ§
+				val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1ä½åˆ†æ”¯
 				bit_offset++;
 			}
 		}
 		// ---- End: GPRS Mobile Allocation IE ----
-	}// ´¦ÀíGPRSÆµµãĞÅÏ¢½áÊø
+	}// å¤„ç†GPRSé¢‘ç‚¹ä¿¡æ¯ç»“æŸ
 
-	val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1Î»·ÖÖ§
+	val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1ä½åˆ†æ”¯
 	bit_offset++;
-	if ( 1==val )	// =1, °üº¬PBCCHÆµµã
+	if ( 1==val )	// =1, åŒ…å«PBCCHé¢‘ç‚¹
 	{
-		pbcch_inf.pbcch_support = 1;	// Ö§³ÖPBCCHÆµµã
-		bit_offset += 4;	// Ìø¹ı4Î»PS11_REPEAT_PERIOD
-		bit_offset += 4;	// Ìø¹ı4Î»Pb
-		bit_offset += 5;	// Ìø¹ı4Î»TSC
-		bit_offset += 6;	// Ìø¹ı4Î»TN
-		val = FPS_GetBitStream( bit_offset, 2, pbcch_buff );	// 2Î»·ÖÖ§
+		pbcch_inf.pbcch_support = 1;	// æ”¯æŒPBCCHé¢‘ç‚¹
+		bit_offset += 4;	// è·³è¿‡4ä½PS11_REPEAT_PERIOD
+		bit_offset += 4;	// è·³è¿‡4ä½Pb
+		bit_offset += 5;	// è·³è¿‡4ä½TSC
+		bit_offset += 6;	// è·³è¿‡4ä½TN
+		val = FPS_GetBitStream( bit_offset, 2, pbcch_buff );	// 2ä½åˆ†æ”¯
 		bit_offset += 2;
-		if ( 1==val )	// =01, ±íÊ¾ÓĞPBCCHÆµµãARFCN
+		if ( 1==val )	// =01, è¡¨ç¤ºæœ‰PBCCHé¢‘ç‚¹ARFCN
 		{
-			pbcch_inf.pbcch_fc_valid = 1;	// PBCCHµÄÆµµãÓĞĞ§
-			pbcch_inf.pbcch_arfcn = FPS_GetBitStream( bit_offset, 10, pbcch_buff );	// ¶ÁÈ¡10Î»ARFCN
+			pbcch_inf.pbcch_fc_valid = 1;	// PBCCHçš„é¢‘ç‚¹æœ‰æ•ˆ
+			pbcch_inf.pbcch_arfcn = FPS_GetBitStream( bit_offset, 10, pbcch_buff );	// è¯»å–10ä½ARFCN
 			bit_offset += 10;
 		}
 	}
-	else		// =0, ²»°üº¬PBCCHÆµµã, ½â¶ÁEDGEĞÅÏ¢
+	else		// =0, ä¸åŒ…å«PBCCHé¢‘ç‚¹, è§£è¯»EDGEä¿¡æ¯
 	{
-		bit_offset += 8;	// Ìø¹ı4Î»RAC
-		bit_offset += 1;	// Ìø¹ı1Î»SPGC_CCCH_SUP
-		bit_offset += 3;	// Ìø¹ı3Î»PRIORITY_ACCESS_THR
-		bit_offset += 2;	// Ìø¹ı2Î»NETWORK_CONTROL_ORDER
+		bit_offset += 8;	// è·³è¿‡4ä½RAC
+		bit_offset += 1;	// è·³è¿‡1ä½SPGC_CCCH_SUP
+		bit_offset += 3;	// è·³è¿‡3ä½PRIORITY_ACCESS_THR
+		bit_offset += 2;	// è·³è¿‡2ä½NETWORK_CONTROL_ORDER
 		// ---- GPRS Cell Options IE ----
-		bit_offset += 2;	// Ìø¹ı2Î»NMO
-		bit_offset += 3;	// Ìø¹ı3Î»T3168
-		bit_offset += 3;	// Ìø¹ı3Î»T3192
-		bit_offset += 3;	// Ìø¹ı3Î»DRX_TIMER_MAX
-		bit_offset += 1;	// Ìø¹ı1Î»ACCESS_BURST_TYPE
-		bit_offset += 1;	// Ìø¹ı1Î»CONTROL_ACK_TYPE
-		bit_offset += 4;	// Ìø¹ı4Î»BS_CV_MAX
-		val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1Î»·ÖÖ§
+		bit_offset += 2;	// è·³è¿‡2ä½NMO
+		bit_offset += 3;	// è·³è¿‡3ä½T3168
+		bit_offset += 3;	// è·³è¿‡3ä½T3192
+		bit_offset += 3;	// è·³è¿‡3ä½DRX_TIMER_MAX
+		bit_offset += 1;	// è·³è¿‡1ä½ACCESS_BURST_TYPE
+		bit_offset += 1;	// è·³è¿‡1ä½CONTROL_ACK_TYPE
+		bit_offset += 4;	// è·³è¿‡4ä½BS_CV_MAX
+		val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1ä½åˆ†æ”¯
 		bit_offset ++;
-		if ( 1==val )	// =1, PANĞÅÏ¢, Ìø¹ı
+		if ( 1==val )	// =1, PANä¿¡æ¯, è·³è¿‡
 		{
-			bit_offset += 9;	// Ìø¹ı3Î»PAN_DEC + 3Î»PAN_INC + 3Î»PAN_MAX
+			bit_offset += 9;	// è·³è¿‡3ä½PAN_DEC + 3ä½PAN_INC + 3ä½PAN_MAX
 		}
-		val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1Î»·ÖÖ§
+		val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1ä½åˆ†æ”¯
 		bit_offset ++;
-		if ( 1==val )	// =1, °üº¬EDGEĞÅÏ¢
+		if ( 1==val )	// =1, åŒ…å«EDGEä¿¡æ¯
 		{
-			bit_offset += 6;	// Ìø¹ı6Î»Extension Length
-			val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1Î»·ÖÖ§
+			bit_offset += 6;	// è·³è¿‡6ä½Extension Length
+			val = FPS_GetBitStream( bit_offset, 1, pbcch_buff );	// 1ä½åˆ†æ”¯
 			bit_offset ++;
-			if ( 1==val )	// =1, °üº¬EDGEĞÅÏ¢
+			if ( 1==val )	// =1, åŒ…å«EDGEä¿¡æ¯
 			{
-				pbcch_inf.edge_support = 1;	// Ö§³ÖEDGEÆµµã
+				pbcch_inf.edge_support = 1;	// æ”¯æŒEDGEé¢‘ç‚¹
 			}
 		}
 	}
@@ -676,14 +676,14 @@ void FPS_PbcchDecode(UCHAR8 * pbcch_buff)
 
 /*************************************************************
 Name:FPS_CheckParam          
-Description: ¼ì²éÉ¨Ãè·¶Î§, ²¢¼ÆËãËÑË÷µÄÆµµã¸öÊı
-Input: [p_mo_cfg:Ä£¿éÅäÖÃÖ¸Õë,¹©¼ÆËãÆµÂÊÓÃ]
-Return: TRUE-²ÎÊıÓĞĞ§, FALSE-²ÎÊıÎŞĞ§
+Description: æ£€æŸ¥æ‰«æèŒƒå›´, å¹¶è®¡ç®—æœç´¢çš„é¢‘ç‚¹ä¸ªæ•°
+Input: [p_mo_cfg:æ¨¡å—é…ç½®æŒ‡é’ˆ,ä¾›è®¡ç®—é¢‘ç‡ç”¨]
+Return: TRUE-å‚æ•°æœ‰æ•ˆ, FALSE-å‚æ•°æ— æ•ˆ
 **************************************************************/
 #if 1 
 BOOL FPS_CheckParam( UCHAR8 ab_flag )  //edasion
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 fc_start, fc_end; 
 	UINT16 tmp;
 	INT32  freq;
@@ -698,20 +698,20 @@ BOOL FPS_CheckParam( UCHAR8 ab_flag )  //edasion
     ucNetTpy = ((SYS_A_FLAG == ab_flag)? fpga_cfg.a_net_type : fpga_cfg.b_net_type);
 
 	
-	sys_param_1b[MADD_FPS_MOSVC_LK_ST].val = 0;	    // Ëø¶¨ÔËÓªÉÌÊ§°Ü
-	sys_param_1b[MADD_FPS_RFRANGE_LK_ST].val = 0;	// Ëø¶¨Æµ¶ÎÊ§°Ü
+	sys_param_1b[MADD_FPS_MOSVC_LK_ST].val = 0;	    // é”å®šè¿è¥å•†å¤±è´¥
+	sys_param_1b[MADD_FPS_RFRANGE_LK_ST].val = 0;	// é”å®šé¢‘æ®µå¤±è´¥
 
-#ifdef FPS_LOCK_RANGE	// Ëø¶¨ËÑË÷·¶Î§
+#ifdef FPS_LOCK_RANGE	// é”å®šæœç´¢èŒƒå›´
 	sys_param_2b[MADD_FPS_S1].val = FPS_RANGE_S1; 
 	sys_param_2b[MADD_FPS_E1].val = FPS_RANGE_E1; 
 	sys_param_2b[MADD_FPS_S2].val = FPS_RANGE_S2; 
 	sys_param_2b[MADD_FPS_E2].val = FPS_RANGE_E2;  
 #else   
-	if ( 128==sys_param_1b[MADD_FPS_MOSVC_SEL].val )	// ÊÖ¶¯Ö¸¶¨ËÑË÷ÆµµãºÅ
+	if ( 128==sys_param_1b[MADD_FPS_MOSVC_SEL].val )	// æ‰‹åŠ¨æŒ‡å®šæœç´¢é¢‘ç‚¹å·
 	{
 		;
 	}
-	else if ( 1==sys_param_1b[MADD_FPS_MOSVC_SEL].val )	// ÁªÍ¨Æµ¶Î
+	else if ( 1==sys_param_1b[MADD_FPS_MOSVC_SEL].val )	// è”é€šé¢‘æ®µ
 	{
 	#if ( A_NETWORK_TYPE==NET_TYPE_GSM900 )		// GSM900
 		if ( 1==sys_param_1b[MADD_FPS_RFRANGE_SEL].val )
@@ -737,7 +737,7 @@ BOOL FPS_CheckParam( UCHAR8 ab_flag )  //edasion
 			return b_FALSE;
 		}
 	}
-	else // ÒÆ¶¯Æµ¶Î
+	else // ç§»åŠ¨é¢‘æ®µ
 	{
 	#if ( A_NETWORK_TYPE==NET_TYPE_GSM900 )		// GSM900
 		if ( 1==sys_param_1b[MADD_FPS_RFRANGE_SEL].val )
@@ -764,15 +764,15 @@ BOOL FPS_CheckParam( UCHAR8 ab_flag )  //edasion
 	}
 #endif
 
-	fps_st.fc_count = 0;		// ÇåÁãÆµµã¼ÆÊı
+	fps_st.fc_count = 0;		// æ¸…é›¶é¢‘ç‚¹è®¡æ•°
 
-	// ¶ÁÈ¡É¨Ãè¶Î1Æµµã·¶Î§,ÔÚ²ÎÊıÉèÖÃÊ±,±£Ö¤fc_start<fc_end
+	// è¯»å–æ‰«ææ®µ1é¢‘ç‚¹èŒƒå›´,åœ¨å‚æ•°è®¾ç½®æ—¶,ä¿è¯fc_start<fc_end
 	fc_start = sys_param_2b[MADD_FPS_S1].val;
 	fc_end = sys_param_2b[MADD_FPS_E1].val;
 	
 	TRACE_INFO("fc_start=[%d],fc_end=[%d].FPS_CheckParam\r\n ",fc_start,fc_end);	
 
-	// Öğ¸ö¼ì²éÆµµãºÅÊÇ·ñÓĞĞ§,²¢È¡µÃ×î´óÆµÂÊºÍ×îĞ¡ÆµÂÊ
+	// é€ä¸ªæ£€æŸ¥é¢‘ç‚¹å·æ˜¯å¦æœ‰æ•ˆ,å¹¶å–å¾—æœ€å¤§é¢‘ç‡å’Œæœ€å°é¢‘ç‡
 	for ( ; fc_start<=fc_end; fc_start++ )
 	{
          
@@ -782,7 +782,7 @@ BOOL FPS_CheckParam( UCHAR8 ab_flag )  //edasion
 		if ( freq<0 )
 		{
 			TRACE_INFO("FPS_CheckParam err3\r\n ");	
-			return b_FALSE;	// ÎŞĞ§ÆµµãºÅ
+			return b_FALSE;	// æ— æ•ˆé¢‘ç‚¹å·
 		}
 		if (( 0==freq_min )||( freq<freq_min ))
 		{
@@ -799,13 +799,13 @@ BOOL FPS_CheckParam( UCHAR8 ab_flag )  //edasion
 		
 	}
 		TRACE_INFO("1freq_max=[%d],freq_min=[%d].FPS_CheckParam err6\r\n ",freq_max,freq_min);	
-	// µÚ¶şÉ¨Ãè¶ÎÆğÊ¼ÆµµãºÅ²»Îª0,±íÊ¾Ê¹ÓÃµÚ¶şÉ¨Ãè¶Î
+	// ç¬¬äºŒæ‰«ææ®µèµ·å§‹é¢‘ç‚¹å·ä¸ä¸º0,è¡¨ç¤ºä½¿ç”¨ç¬¬äºŒæ‰«ææ®µ
 	if ( sys_param_2b[MADD_FPS_S2].val>0 )
 	{
-		// ¶ÁÈ¡É¨Ãè¶Î2Æµµã·¶Î§,ÔÚ²ÎÊıÉèÖÃÊ±,±£Ö¤fc_start<fc_end
+		// è¯»å–æ‰«ææ®µ2é¢‘ç‚¹èŒƒå›´,åœ¨å‚æ•°è®¾ç½®æ—¶,ä¿è¯fc_start<fc_end
 		fc_start = sys_param_2b[MADD_FPS_S2].val;
 		fc_end = sys_param_2b[MADD_FPS_E2].val;
-		// Öğ¸ö¼ì²éÆµµãºÅÊÇ·ñÓĞĞ§,²¢È¡µÃ×î´óÆµÂÊºÍ×îĞ¡ÆµÂÊ
+		// é€ä¸ªæ£€æŸ¥é¢‘ç‚¹å·æ˜¯å¦æœ‰æ•ˆ,å¹¶å–å¾—æœ€å¤§é¢‘ç‡å’Œæœ€å°é¢‘ç‡
 		for ( ; fc_start<=fc_end; fc_start++ )
 		{
 			freq = CalcFreqPointToFreq( ucNetTpy,fc_start );  // edasion
@@ -814,7 +814,7 @@ BOOL FPS_CheckParam( UCHAR8 ab_flag )  //edasion
 			if ( freq<0 )
 			{
 							TRACE_INFO("FPS_CheckParam err4\r\n ");	
-				return b_FALSE;	// ÎŞĞ§ÆµµãºÅ
+				return b_FALSE;	// æ— æ•ˆé¢‘ç‚¹å·
 			} 
 			if (( 0==freq_min )||( freq<freq_min ))
 			{
@@ -833,7 +833,7 @@ BOOL FPS_CheckParam( UCHAR8 ab_flag )  //edasion
 	TRACE_INFO("freq_max=[%d],freq_min=[%d].FPS_CheckParam err6\r\n ",freq_max,freq_min);
 if(NET_TYPE_GSM900==ucNetTpy)
 {
-	// Èô×î´óÆµÂÊÎª0,»ò×îĞ¡ÆµÂÊÎª0,»òÆµÂÊ¿ç¶È³¬¹ıÔÊĞíµÄ´ø¿í,·µ»ØFALSE
+	// è‹¥æœ€å¤§é¢‘ç‡ä¸º0,æˆ–æœ€å°é¢‘ç‡ä¸º0,æˆ–é¢‘ç‡è·¨åº¦è¶…è¿‡å…è®¸çš„å¸¦å®½,è¿”å›FALSE
 	if ( (0==freq_max) || (0==freq_min) || ((freq_max-freq_min)>PLL_RANGE) )
 	{
 					TRACE_INFO("FPS_CheckParam err6\r\n ");	
@@ -842,14 +842,14 @@ if(NET_TYPE_GSM900==ucNetTpy)
 }
 else if(NET_TYPE_DCS1800==ucNetTpy)
 {
-	// Èô×î´óÆµÂÊÎª0,»ò×îĞ¡ÆµÂÊÎª0,»òÆµÂÊ¿ç¶È³¬¹ıÔÊĞíµÄ´ø¿í,·µ»ØFALSE
+	// è‹¥æœ€å¤§é¢‘ç‡ä¸º0,æˆ–æœ€å°é¢‘ç‡ä¸º0,æˆ–é¢‘ç‡è·¨åº¦è¶…è¿‡å…è®¸çš„å¸¦å®½,è¿”å›FALSE
 	if ( (0==freq_max) || (0==freq_min) || ((freq_max-freq_min)>DCS_PLL_RANGE) )
 	{
 					TRACE_INFO("FPS_CheckParam err6\r\n ");	
 		return b_FALSE;
 	}
 }	
-	// ¼ÆËã¶ÔÓ¦µÄ±¾ÕñÆµÂÊ
+	// è®¡ç®—å¯¹åº”çš„æœ¬æŒ¯é¢‘ç‡
 	#if 0   //edasion
 	if ( b_FALSE == p_mo_cfg->lpf_CheckLocalPll( fc_max, fc_min, &(p_mo_cfg->dl_pcf), &(p_mo_cfg->ul_pcf) ) )
 	{
@@ -859,19 +859,19 @@ else if(NET_TYPE_DCS1800==ucNetTpy)
 	}
 	#endif
 	
-	// ÉèÖÃ4153¸üĞÂ±êÖ¾,ÇĞ»»µ½ĞÂµÄ±¾Õñ     
+	// è®¾ç½®4153æ›´æ–°æ ‡å¿—,åˆ‡æ¢åˆ°æ–°çš„æœ¬æŒ¯     
 	SET_BIT_FLAG(module_param_chg_flag, PCHG_A_FL_CHG);
 
 #if ( B_NETWORK_TYPE==NET_DIVE )
 	//mod_cfg_b.dl_pcf.ftoset = mod_cfg_a.dl_pcf.ftoset;
 	//mod_cfg_b.ul_pcf.ftoset = mod_cfg_a.ul_pcf.ftoset;
-	// ÉèÖÃ4153¸üĞÂ±êÖ¾,ÇĞ»»µ½ĞÂµÄ±¾Õñ 
+	// è®¾ç½®4153æ›´æ–°æ ‡å¿—,åˆ‡æ¢åˆ°æ–°çš„æœ¬æŒ¯ 
 	SET_BIT_FLAG(module_param_chg_flag, PCHG_B_FL_CHG);
 #endif
 
-	fps_st.fc_count = fc_count;		// ±£´æÆµµã¸öÊı
-	sys_param_1b[MADD_FPS_MOSVC_LK_ST].val = 1;	// Ëø¶¨ÔËÓªÉÌ³É¹¦
-	sys_param_1b[MADD_FPS_RFRANGE_LK_ST].val = 1;	// Ëø¶¨Æµ¶Î³É¹¦
+	fps_st.fc_count = fc_count;		// ä¿å­˜é¢‘ç‚¹ä¸ªæ•°
+	sys_param_1b[MADD_FPS_MOSVC_LK_ST].val = 1;	// é”å®šè¿è¥å•†æˆåŠŸ
+	sys_param_1b[MADD_FPS_RFRANGE_LK_ST].val = 1;	// é”å®šé¢‘æ®µæˆåŠŸ
 				TRACE_INFO("FPS_CheckParam 0K1\r\n ");	
 	return b_TRUE;
 	
@@ -883,7 +883,7 @@ else if(NET_TYPE_DCS1800==ucNetTpy)
 #else
 BOOL FPS_CheckParam( _T_PMODULE_CFG p_mo_cfg )  //edasion
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 fc_start, fc_end;
 	UINT16 tmp;
 	INT32 freq;
@@ -893,20 +893,20 @@ BOOL FPS_CheckParam( _T_PMODULE_CFG p_mo_cfg )  //edasion
 	UINT16 fc_max = 0;
 	UCHAR8 fc_count = 0;
 	
-	sys_param_1b[MADD_FPS_MOSVC_LK_ST].val = 0;	// Ëø¶¨ÔËÓªÉÌÊ§°Ü
-	sys_param_1b[MADD_FPS_RFRANGE_LK_ST].val = 0;	// Ëø¶¨Æµ¶ÎÊ§°Ü
+	sys_param_1b[MADD_FPS_MOSVC_LK_ST].val = 0;	// é”å®šè¿è¥å•†å¤±è´¥
+	sys_param_1b[MADD_FPS_RFRANGE_LK_ST].val = 0;	// é”å®šé¢‘æ®µå¤±è´¥
 
-#ifdef FPS_LOCK_RANGE	// Ëø¶¨ËÑË÷·¶Î§
+#ifdef FPS_LOCK_RANGE	// é”å®šæœç´¢èŒƒå›´
 	sys_param_2b[MADD_FPS_S1].val = FPS_RANGE_S1;
 	sys_param_2b[MADD_FPS_E1].val = FPS_RANGE_E1;
 	sys_param_2b[MADD_FPS_S2].val = FPS_RANGE_S2;
 	sys_param_2b[MADD_FPS_E2].val = FPS_RANGE_E2;
 #else
-	if ( 128==sys_param_1b[MADD_FPS_MOSVC_SEL].val )	// ÊÖ¶¯Ö¸¶¨ËÑË÷ÆµµãºÅ
+	if ( 128==sys_param_1b[MADD_FPS_MOSVC_SEL].val )	// æ‰‹åŠ¨æŒ‡å®šæœç´¢é¢‘ç‚¹å·
 	{
 		;
 	}
-	else if ( 1==sys_param_1b[MADD_FPS_MOSVC_SEL].val )	// ÁªÍ¨Æµ¶Î
+	else if ( 1==sys_param_1b[MADD_FPS_MOSVC_SEL].val )	// è”é€šé¢‘æ®µ
 	{
 	#if ( A_NETWORK_TYPE==NET_TYPE_GSM900 )		// GSM900
 		if ( 1==sys_param_1b[MADD_FPS_RFRANGE_SEL].val )
@@ -930,7 +930,7 @@ BOOL FPS_CheckParam( _T_PMODULE_CFG p_mo_cfg )  //edasion
 			return b_FALSE;
 		}
 	}
-	else // ÒÆ¶¯Æµ¶Î
+	else // ç§»åŠ¨é¢‘æ®µ
 	{
 	#if ( A_NETWORK_TYPE==NET_TYPE_GSM900 )		// GSM900
 		if ( 1==sys_param_1b[MADD_FPS_RFRANGE_SEL].val )
@@ -956,19 +956,19 @@ BOOL FPS_CheckParam( _T_PMODULE_CFG p_mo_cfg )  //edasion
 	}
 #endif
 
-	fps_st.fc_count = 0;		// ÇåÁãÆµµã¼ÆÊı
+	fps_st.fc_count = 0;		// æ¸…é›¶é¢‘ç‚¹è®¡æ•°
 
-	// ¶ÁÈ¡É¨Ãè¶Î1Æµµã·¶Î§,ÔÚ²ÎÊıÉèÖÃÊ±,±£Ö¤fc_start<fc_end
+	// è¯»å–æ‰«ææ®µ1é¢‘ç‚¹èŒƒå›´,åœ¨å‚æ•°è®¾ç½®æ—¶,ä¿è¯fc_start<fc_end
 	fc_start = sys_param_2b[MADD_FPS_S1].val;
 	fc_end = sys_param_2b[MADD_FPS_E1].val;
-	// Öğ¸ö¼ì²éÆµµãºÅÊÇ·ñÓĞĞ§,²¢È¡µÃ×î´óÆµÂÊºÍ×îĞ¡ÆµÂÊ
+	// é€ä¸ªæ£€æŸ¥é¢‘ç‚¹å·æ˜¯å¦æœ‰æ•ˆ,å¹¶å–å¾—æœ€å¤§é¢‘ç‡å’Œæœ€å°é¢‘ç‡
 	for ( ; fc_start<=fc_end; fc_start++ )
 	{
 		//freq = p_mo_cfg->lpf_ConvFcToFreq( fc_start );  // edasion
 		
 		if ( freq<0 )
 		{
-			return b_FALSE;	// ÎŞĞ§ÆµµãºÅ
+			return b_FALSE;	// æ— æ•ˆé¢‘ç‚¹å·
 		}
 		if (( 0==freq_min )||( freq<freq_min ))
 		{
@@ -982,20 +982,20 @@ BOOL FPS_CheckParam( _T_PMODULE_CFG p_mo_cfg )  //edasion
 		}
 		fc_count++;
 	}
-	// µÚ¶şÉ¨Ãè¶ÎÆğÊ¼ÆµµãºÅ²»Îª0,±íÊ¾Ê¹ÓÃµÚ¶şÉ¨Ãè¶Î
+	// ç¬¬äºŒæ‰«ææ®µèµ·å§‹é¢‘ç‚¹å·ä¸ä¸º0,è¡¨ç¤ºä½¿ç”¨ç¬¬äºŒæ‰«ææ®µ
 	if ( sys_param_2b[MADD_FPS_S2].val>0 )
 	{
-		// ¶ÁÈ¡É¨Ãè¶Î2Æµµã·¶Î§,ÔÚ²ÎÊıÉèÖÃÊ±,±£Ö¤fc_start<fc_end
+		// è¯»å–æ‰«ææ®µ2é¢‘ç‚¹èŒƒå›´,åœ¨å‚æ•°è®¾ç½®æ—¶,ä¿è¯fc_start<fc_end
 		fc_start = sys_param_2b[MADD_FPS_S2].val;
 		fc_end = sys_param_2b[MADD_FPS_E2].val;
-		// Öğ¸ö¼ì²éÆµµãºÅÊÇ·ñÓĞĞ§,²¢È¡µÃ×î´óÆµÂÊºÍ×îĞ¡ÆµÂÊ
+		// é€ä¸ªæ£€æŸ¥é¢‘ç‚¹å·æ˜¯å¦æœ‰æ•ˆ,å¹¶å–å¾—æœ€å¤§é¢‘ç‡å’Œæœ€å°é¢‘ç‡
 		for ( ; fc_start<=fc_end; fc_start++ )
 		{
 			//freq = p_mo_cfg->lpf_ConvFcToFreq( fc_start );  edasion
 			
 			if ( freq<0 )
 			{
-				return b_FALSE;	// ÎŞĞ§ÆµµãºÅ
+				return b_FALSE;	// æ— æ•ˆé¢‘ç‚¹å·
 			}
 			if (( 0==freq_min )||( freq<freq_min ))
 			{
@@ -1011,12 +1011,12 @@ BOOL FPS_CheckParam( _T_PMODULE_CFG p_mo_cfg )  //edasion
 			fc_count++;
 		}
 	}
-	// Èô×î´óÆµÂÊÎª0,»ò×îĞ¡ÆµÂÊÎª0,»òÆµÂÊ¿ç¶È³¬¹ıÔÊĞíµÄ´ø¿í,·µ»ØFALSE
+	// è‹¥æœ€å¤§é¢‘ç‡ä¸º0,æˆ–æœ€å°é¢‘ç‡ä¸º0,æˆ–é¢‘ç‡è·¨åº¦è¶…è¿‡å…è®¸çš„å¸¦å®½,è¿”å›FALSE
 	if ( (0==freq_max) || (0==freq_min) || ((freq_max-freq_min)>PLL_RANGE) )
 	{
 		return b_FALSE;
 	}
-	// ¼ÆËã¶ÔÓ¦µÄ±¾ÕñÆµÂÊ
+	// è®¡ç®—å¯¹åº”çš„æœ¬æŒ¯é¢‘ç‡
 	#if 0   //edasion
 	if ( b_FALSE == p_mo_cfg->lpf_CheckLocalPll( fc_max, fc_min, &(p_mo_cfg->dl_pcf), &(p_mo_cfg->ul_pcf) ) )
 	{
@@ -1026,19 +1026,19 @@ BOOL FPS_CheckParam( _T_PMODULE_CFG p_mo_cfg )  //edasion
 	}
 	#endif
 	
-	// ÉèÖÃ4153¸üĞÂ±êÖ¾,ÇĞ»»µ½ĞÂµÄ±¾Õñ
+	// è®¾ç½®4153æ›´æ–°æ ‡å¿—,åˆ‡æ¢åˆ°æ–°çš„æœ¬æŒ¯
 	SET_BIT_FLAG(module_param_chg_flag, PCHG_A_FL_CHG);
 
 #if ( B_NETWORK_TYPE==NET_DIVE )
 	mod_cfg_b.dl_pcf.ftoset = mod_cfg_a.dl_pcf.ftoset;
 	mod_cfg_b.ul_pcf.ftoset = mod_cfg_a.ul_pcf.ftoset;
-	// ÉèÖÃ4153¸üĞÂ±êÖ¾,ÇĞ»»µ½ĞÂµÄ±¾Õñ
+	// è®¾ç½®4153æ›´æ–°æ ‡å¿—,åˆ‡æ¢åˆ°æ–°çš„æœ¬æŒ¯
 	SET_BIT_FLAG(module_param_chg_flag, PCHG_B_FL_CHG);
 #endif
 
-	fps_st.fc_count = fc_count;		// ±£´æÆµµã¸öÊı
-	sys_param_1b[MADD_FPS_MOSVC_LK_ST].val = 1;	// Ëø¶¨ÔËÓªÉÌ³É¹¦
-	sys_param_1b[MADD_FPS_RFRANGE_LK_ST].val = 1;	// Ëø¶¨Æµ¶Î³É¹¦
+	fps_st.fc_count = fc_count;		// ä¿å­˜é¢‘ç‚¹ä¸ªæ•°
+	sys_param_1b[MADD_FPS_MOSVC_LK_ST].val = 1;	// é”å®šè¿è¥å•†æˆåŠŸ
+	sys_param_1b[MADD_FPS_RFRANGE_LK_ST].val = 1;	// é”å®šé¢‘æ®µæˆåŠŸ
 	return b_TRUE;
 	
 #else
@@ -1048,14 +1048,14 @@ BOOL FPS_CheckParam( _T_PMODULE_CFG p_mo_cfg )  //edasion
 #endif
 /*************************************************************
 Name: _CalcFpgaFreqWord
-Description:  ¸ù¾İÆµµãºÅ¼ÆËãÉ¨ÃèÆµµãµÄFPGAÆµÂÊ×Ö¼Ä´æÆ÷Öµ
-Input: [p_mo_cfg:Ä£¿éÅäÖÃÖ¸Õë,¹©¼ÆËãÆµÂÊÓÃ] [freq_code: ÆµµãºÅ]
-Return: ÆµÂÊ×Ö¼Ä´æÆ÷µÄÖµ
+Description:  æ ¹æ®é¢‘ç‚¹å·è®¡ç®—æ‰«æé¢‘ç‚¹çš„FPGAé¢‘ç‡å­—å¯„å­˜å™¨å€¼
+Input: [p_mo_cfg:æ¨¡å—é…ç½®æŒ‡é’ˆ,ä¾›è®¡ç®—é¢‘ç‡ç”¨] [freq_code: é¢‘ç‚¹å·]
+Return: é¢‘ç‡å­—å¯„å­˜å™¨çš„å€¼
 **************************************************************/
 #if 1
 UINT32 FPS_CalcFpgaFreqWord( UCHAR8 ab_flag, UINT16 freq_code )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 
 	UINT32 reg_val;
 	INT32 up_fre_word, down_fre_word;
@@ -1064,8 +1064,8 @@ UINT32 FPS_CalcFpgaFreqWord( UCHAR8 ab_flag, UINT16 freq_code )
 	down_fre_word = 0;
 
     #if 0
-		INT32  freq_point = -1;	// ÆµÂÊ
-		INT32  digit_freq;	    // Êı×ÖÆµÂÊ 
+		INT32  freq_point = -1;	// é¢‘ç‡
+		INT32  digit_freq;	    // æ•°å­—é¢‘ç‡ 
 		INT32  freq_word;
 		UINT32 fw; 
 	 
@@ -1078,11 +1078,11 @@ UINT32 FPS_CalcFpgaFreqWord( UCHAR8 ab_flag, UINT16 freq_code )
 		{
 			return 0;
 		}
-		//digit_freq = p_mo_cfg->lpf_CalcDf( freq_point, &(p_mo_cfg->dl_pcf) );		// ¼ÆËãÊı×ÖÆµÂÊ
-		freq_word = _CalcFpgaFw( digit_freq );	// ¼ÆËãÆµÂÊ×Ö
-		fw = _AdjustFpgaFw(freq_word);		// ÆµÂÊ×Öµ÷Õû
+		//digit_freq = p_mo_cfg->lpf_CalcDf( freq_point, &(p_mo_cfg->dl_pcf) );		// è®¡ç®—æ•°å­—é¢‘ç‡
+		freq_word = _CalcFpgaFw( digit_freq );	// è®¡ç®—é¢‘ç‡å­—
+		fw = _AdjustFpgaFw(freq_word);		// é¢‘ç‡å­—è°ƒæ•´
 
-		return _CalcFpgaFwReg(fw);			// ×ª»»³ÉÆµÂÊ×Ö¼Ä´æÆ÷µÄÖµ	
+		return _CalcFpgaFwReg(fw);			// è½¬æ¢æˆé¢‘ç‡å­—å¯„å­˜å™¨çš„å€¼	
     #endif
 //	TRACE_INFO("FPS_CalcFpgaFreqWord---------FPS_CalcFpgaFreqWord---------reg_val= %04X,freq_code= %04X\r\n",reg_val,freq_code);
 	
@@ -1104,9 +1104,9 @@ UINT32 FPS_CalcFpgaFreqWord( UCHAR8 ab_flag, UINT16 freq_code )
 
 UINT16 FPS_CalcFpgaFreqWord( _T_PMODULE_CFG p_mo_cfg, UINT16 freq_code )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
-	INT32  freq_point = -1;	// ÆµÂÊ
-	INT32  digit_freq;	    // Êı×ÖÆµÂÊ 
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
+	INT32  freq_point = -1;	// é¢‘ç‡
+	INT32  digit_freq;	    // æ•°å­—é¢‘ç‡ 
 	INT32  freq_word;
 	UINT32 fw; 
  
@@ -1118,11 +1118,11 @@ UINT16 FPS_CalcFpgaFreqWord( _T_PMODULE_CFG p_mo_cfg, UINT16 freq_code )
 	{
 		return 0;
 	}
-	//digit_freq = p_mo_cfg->lpf_CalcDf( freq_point, &(p_mo_cfg->dl_pcf) );		// ¼ÆËãÊı×ÖÆµÂÊ
-	freq_word = _CalcFpgaFw( digit_freq );	// ¼ÆËãÆµÂÊ×Ö
-	fw = _AdjustFpgaFw(freq_word);		// ÆµÂÊ×Öµ÷Õû
+	//digit_freq = p_mo_cfg->lpf_CalcDf( freq_point, &(p_mo_cfg->dl_pcf) );		// è®¡ç®—æ•°å­—é¢‘ç‡
+	freq_word = _CalcFpgaFw( digit_freq );	// è®¡ç®—é¢‘ç‡å­—
+	fw = _AdjustFpgaFw(freq_word);		// é¢‘ç‡å­—è°ƒæ•´
 
-	return _CalcFpgaFwReg(fw);			// ×ª»»³ÉÆµÂÊ×Ö¼Ä´æÆ÷µÄÖµ	
+	return _CalcFpgaFwReg(fw);			// è½¬æ¢æˆé¢‘ç‡å­—å¯„å­˜å™¨çš„å€¼	
 	
 #else
 	return 0;
@@ -1131,51 +1131,51 @@ UINT16 FPS_CalcFpgaFreqWord( _T_PMODULE_CFG p_mo_cfg, UINT16 freq_code )
 #endif
 /*************************************************************
 Name:FPS_SetScanFc          
-Description: Ğ´ÈëÉ¨ÃèÆµµãºÅµ½FPGAÖĞ
-Input: [p_mo_cfg:Ä£¿éÅäÖÃÖ¸Õë,¹©¼ÆËãÆµÂÊÓÃ] 
+Description: å†™å…¥æ‰«æé¢‘ç‚¹å·åˆ°FPGAä¸­
+Input: [p_mo_cfg:æ¨¡å—é…ç½®æŒ‡é’ˆ,ä¾›è®¡ç®—é¢‘ç‡ç”¨] 
 Return: void  
 **************************************************************/
 #if 1
 void FPS_SetScanFc( UCHAR8 ab_flag )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 fc;
 	UINT32 reg;
 
 	FPGA_ENABLE_WRITE;
 	
-	// ÏòFpgaĞ´ÈëÒªÉ¨ÃèµÄÆµµã¸öÊı
+	// å‘Fpgaå†™å…¥è¦æ‰«æçš„é¢‘ç‚¹ä¸ªæ•°
 	FpgaWriteRegister( FPGA_REG_RFC_SCAN_CNT, fps_st.fc_count );
 
 	for ( fc=sys_param_2b[MADD_FPS_S1].val; fc<=sys_param_2b[MADD_FPS_E1].val; fc++ )
 	{
 		reg = FPS_CalcFpgaFreqWord(ab_flag, fc);
-//		printf("1ÆµµãËÑË÷ÆµÂÊ×Ö%x\r\n",reg);
-		FpgaWriteRegister( FPGA_REG_RFC_SCAN_DF_1, (UINT16)(((reg>>12)&0x3FFF)|((reg&0x80000000)>>16)));//Ğ´ÆµÂÊ×ÖµÄ[25:12]Î»
-		FpgaWriteRegister( FPGA_REG_RFC_SCAN_DF_2, (UINT16)(reg&0xFFF));//Ğ´ÆµÂÊ×ÖµÄ[11:0]Î»
+//		printf("1é¢‘ç‚¹æœç´¢é¢‘ç‡å­—%x\r\n",reg);
+		FpgaWriteRegister( FPGA_REG_RFC_SCAN_DF_1, (UINT16)(((reg>>12)&0x3FFF)|((reg&0x80000000)>>16)));//å†™é¢‘ç‡å­—çš„[25:12]ä½
+		FpgaWriteRegister( FPGA_REG_RFC_SCAN_DF_2, (UINT16)(reg&0xFFF));//å†™é¢‘ç‡å­—çš„[11:0]ä½
 		//FpgaWriteRegister( FPGA_REG_RFC_SCAN_DF, reg );
 	}
 
-	// µÚ¶şÉ¨Ãè¶ÎÆğÊ¼ÆµµãºÅ²»Îª0,±íÊ¾Ê¹ÓÃµÚ¶şÉ¨Ãè¶Î
+	// ç¬¬äºŒæ‰«ææ®µèµ·å§‹é¢‘ç‚¹å·ä¸ä¸º0,è¡¨ç¤ºä½¿ç”¨ç¬¬äºŒæ‰«ææ®µ
 	if ( sys_param_2b[MADD_FPS_S2].val>0 )
 	{
 		for ( fc=sys_param_2b[MADD_FPS_S2].val; fc<=sys_param_2b[MADD_FPS_E2].val; fc++ )
 		{
 			reg = FPS_CalcFpgaFreqWord(ab_flag, fc);
-//			printf("2ÆµµãËÑË÷ÆµÂÊ×Ö%x\r\n",reg);
+//			printf("2é¢‘ç‚¹æœç´¢é¢‘ç‡å­—%x\r\n",reg);
 			//FpgaWriteRegister( FPGA_REG_RFC_SCAN_DF, reg );
-			FpgaWriteRegister( FPGA_REG_RFC_SCAN_DF_1, (UINT16)(((reg>>12)&0x3FFF)|((reg&0x80000000)>>16)));//Ğ´ÆµÂÊ×ÖµÄ[25:12]Î»
-			FpgaWriteRegister( FPGA_REG_RFC_SCAN_DF_2, (UINT16)(reg&0xFFF));//Ğ´ÆµÂÊ×ÖµÄ[11:0]Î»
+			FpgaWriteRegister( FPGA_REG_RFC_SCAN_DF_1, (UINT16)(((reg>>12)&0x3FFF)|((reg&0x80000000)>>16)));//å†™é¢‘ç‡å­—çš„[25:12]ä½
+			FpgaWriteRegister( FPGA_REG_RFC_SCAN_DF_2, (UINT16)(reg&0xFFF));//å†™é¢‘ç‡å­—çš„[11:0]ä½
 
 		}
 	}
 
-	if ( 1==fps_st.auto_scan_en )	// ×Ô¶¯ËÑË÷×´Ì¬ÏÂ,¸üĞÂÁËËÑË÷·¶Î§,ÖØÖÃËÑË÷×´Ì¬
+	if ( 1==fps_st.auto_scan_en )	// è‡ªåŠ¨æœç´¢çŠ¶æ€ä¸‹,æ›´æ–°äº†æœç´¢èŒƒå›´,é‡ç½®æœç´¢çŠ¶æ€
 	{
-		fps_st.fps_run = 0;		// Í£Ö¹µ±Ç°ËÑË÷
-		fps_st.scan_st = FPS_SCAN_ST_DONE;	// ĞŞ¸Ä×´Ì¬±êÖ¾ÎªÍê³É
-		fps_st.err_st  = FPS_ERR_NONE;		// Çå³ı´íÎó±êÖ¾
-		fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// ¸´Î»×Ô¶¯ËÑË÷×´Ì¬»ú
+		fps_st.fps_run = 0;		// åœæ­¢å½“å‰æœç´¢
+		fps_st.scan_st = FPS_SCAN_ST_DONE;	// ä¿®æ”¹çŠ¶æ€æ ‡å¿—ä¸ºå®Œæˆ
+		fps_st.err_st  = FPS_ERR_NONE;		// æ¸…é™¤é”™è¯¯æ ‡å¿—
+		fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// å¤ä½è‡ªåŠ¨æœç´¢çŠ¶æ€æœº
 	}
 
 	FPGA_DISABLE_WRITE;
@@ -1186,13 +1186,13 @@ void FPS_SetScanFc( UCHAR8 ab_flag )
 
 void FPS_SetScanFc( _T_PMODULE_CFG p_mo_cfg )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 fc;
 	UINT16 reg;
 
 	FPGA_ENABLE_WRITE;
 	
-	// ÏòFpgaĞ´ÈëÒªÉ¨ÃèµÄÆµµã¸öÊı
+	// å‘Fpgaå†™å…¥è¦æ‰«æçš„é¢‘ç‚¹ä¸ªæ•°
 	FpgaWriteRegister( FPGA_REG_RFC_SCAN_CNT, fps_st.fc_count );
 
 	for ( fc=sys_param_2b[MADD_FPS_S1].val; fc<=sys_param_2b[MADD_FPS_E1].val; fc++ )
@@ -1201,7 +1201,7 @@ void FPS_SetScanFc( _T_PMODULE_CFG p_mo_cfg )
 		FpgaWriteRegister( FPGA_REG_RFC_SCAN_DF, reg );
 	}
 
-	// µÚ¶şÉ¨Ãè¶ÎÆğÊ¼ÆµµãºÅ²»Îª0,±íÊ¾Ê¹ÓÃµÚ¶şÉ¨Ãè¶Î
+	// ç¬¬äºŒæ‰«ææ®µèµ·å§‹é¢‘ç‚¹å·ä¸ä¸º0,è¡¨ç¤ºä½¿ç”¨ç¬¬äºŒæ‰«ææ®µ
 	if ( sys_param_2b[MADD_FPS_S2].val>0 )
 	{
 		for ( fc=sys_param_2b[MADD_FPS_S2].val; fc<=sys_param_2b[MADD_FPS_E2].val; fc++ )
@@ -1211,12 +1211,12 @@ void FPS_SetScanFc( _T_PMODULE_CFG p_mo_cfg )
 		}
 	}
 
-	if ( 1==fps_st.auto_scan_en )	// ×Ô¶¯ËÑË÷×´Ì¬ÏÂ,¸üĞÂÁËËÑË÷·¶Î§,ÖØÖÃËÑË÷×´Ì¬
+	if ( 1==fps_st.auto_scan_en )	// è‡ªåŠ¨æœç´¢çŠ¶æ€ä¸‹,æ›´æ–°äº†æœç´¢èŒƒå›´,é‡ç½®æœç´¢çŠ¶æ€
 	{
-		fps_st.fps_run = 0;		// Í£Ö¹µ±Ç°ËÑË÷
-		fps_st.scan_st = FPS_SCAN_ST_DONE;	// ĞŞ¸Ä×´Ì¬±êÖ¾ÎªÍê³É
-		fps_st.err_st = FPS_ERR_NONE;		// Çå³ı´íÎó±êÖ¾
-		fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// ¸´Î»×Ô¶¯ËÑË÷×´Ì¬»ú
+		fps_st.fps_run = 0;		// åœæ­¢å½“å‰æœç´¢
+		fps_st.scan_st = FPS_SCAN_ST_DONE;	// ä¿®æ”¹çŠ¶æ€æ ‡å¿—ä¸ºå®Œæˆ
+		fps_st.err_st = FPS_ERR_NONE;		// æ¸…é™¤é”™è¯¯æ ‡å¿—
+		fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// å¤ä½è‡ªåŠ¨æœç´¢çŠ¶æ€æœº
 	}
 
 	FPGA_DISABLE_WRITE;
@@ -1225,64 +1225,64 @@ void FPS_SetScanFc( _T_PMODULE_CFG p_mo_cfg )
 #endif
 /*************************************************************
 Name:        FPS_BcchScanRun          
-Description: Æô¶¯BCCHËÑË÷
+Description: å¯åŠ¨BCCHæœç´¢
 Input:       void
 Return:      void
 **************************************************************/
 void FPS_BcchScanRun( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
-	fps_st.cur_mode = FPS_MODE_BCCH;	// Ä£Ê½:BCCH
-	fps_st.fps_run = 1;					// Æô¶¯ËÑË÷
-   //fps_st.bcch_count = 0;					     // ½á¹ûÇåÁã
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
+	fps_st.cur_mode = FPS_MODE_BCCH;	// æ¨¡å¼:BCCH
+	fps_st.fps_run = 1;					// å¯åŠ¨æœç´¢
+   //fps_st.bcch_count = 0;					     // ç»“æœæ¸…é›¶
 	if ( fps_st.fc_count > 0 )
 	{
-		fps_st.scan_st = FPS_SCAN_ST_BCCH;	    // ×´Ì¬:ËÑË÷BCCH
-		fps_st.err_st  = FPS_ERR_NONE;			// ´íÎó×´Ì¬¸´Î»
+		fps_st.scan_st = FPS_SCAN_ST_BCCH;	    // çŠ¶æ€:æœç´¢BCCH
+		fps_st.err_st  = FPS_ERR_NONE;			// é”™è¯¯çŠ¶æ€å¤ä½
 		FPGA_ENABLE_WRITE; 
-		FpgaWriteRegister( FPGA_REG_RFC_SCAN_START, 1 );	// Æô¶¯BCCHÉ¨Ãè
+		FpgaWriteRegister( FPGA_REG_RFC_SCAN_START, 1 );	// å¯åŠ¨BCCHæ‰«æ
 		FPGA_DISABLE_WRITE;
 	}
 	else
 	{ 
-		fps_st.scan_st = FPS_SCAN_ST_DONE;	// ×´Ì¬:ËÑË÷Íê³É
-		fps_st.err_st  = FPS_ERR_BCCH_RANGE;	// ´íÎó:ËÑË÷·¶Î§²»¶Ô
+		fps_st.scan_st = FPS_SCAN_ST_DONE;	// çŠ¶æ€:æœç´¢å®Œæˆ
+		fps_st.err_st  = FPS_ERR_BCCH_RANGE;	// é”™è¯¯:æœç´¢èŒƒå›´ä¸å¯¹
 	}
 #endif
 }
 
 /*************************************************************
 Name:FPS_SetScanFc          
-Description: Ğ´ÈëÉ¨ÃèÆµµãºÅµ½FPGAÖĞ
-Input: [p_mo_cfg:Ä£¿éÅäÖÃÖ¸Õë,¹©¼ÆËãÆµÂÊÓÃ]
+Description: å†™å…¥æ‰«æé¢‘ç‚¹å·åˆ°FPGAä¸­
+Input: [p_mo_cfg:æ¨¡å—é…ç½®æŒ‡é’ˆ,ä¾›è®¡ç®—é¢‘ç‡ç”¨]
 Return: void
 **************************************************************/
 void FPS_TchScanRun( UINT16 bcch_fc, UINT16 time_out )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
     UINT32 reg;
-	fps_st.cur_mode = FPS_MODE_TCH;	// Ä£Ê½:TCH
-	fps_st.tch_count = 0;		// ¸´Î»:TCHÆµµã¸öÊı
-	fps_st.edge_count = 0;		// ¸´Î»:EDGEÆµµã¸öÊı
-	pbcch_inf.valid = 0;		// ¸´Î»:PBCCHĞÅÏ¢ÓĞĞ§±êÖ¾
-	fps_st.err_st = FPS_ERR_NONE;			// ¸´Î»:´íÎó×´Ì¬
-	fps_st.bcch_fc_sel = bcch_fc;			// ¼ÇÂ¼BCCHÆµµãºÅ
-	fps_st.scan_st = FPS_SCAN_ST_TCH;		// ×´Ì¬:ËÑË÷TCH
+	fps_st.cur_mode = FPS_MODE_TCH;	// æ¨¡å¼:TCH
+	fps_st.tch_count = 0;		// å¤ä½:TCHé¢‘ç‚¹ä¸ªæ•°
+	fps_st.edge_count = 0;		// å¤ä½:EDGEé¢‘ç‚¹ä¸ªæ•°
+	pbcch_inf.valid = 0;		// å¤ä½:PBCCHä¿¡æ¯æœ‰æ•ˆæ ‡å¿—
+	fps_st.err_st = FPS_ERR_NONE;			// å¤ä½:é”™è¯¯çŠ¶æ€
+	fps_st.bcch_fc_sel = bcch_fc;			// è®°å½•BCCHé¢‘ç‚¹å·
+	fps_st.scan_st = FPS_SCAN_ST_TCH;		// çŠ¶æ€:æœç´¢TCH
 	if ( 0==time_out )
 	{
-		fps_st.time_out = 90;				// ³¬Ê±:90Ãëµ÷ÊÔÊ±Ä¬ÈÏ²»¿ÉĞŞ¸Ä)
+		fps_st.time_out = 90;				// è¶…æ—¶:90ç§’è°ƒè¯•æ—¶é»˜è®¤ä¸å¯ä¿®æ”¹)
 	}
 	else
 	{
-		fps_st.time_out = time_out;		// ³¬Ê±
+		fps_st.time_out = time_out;		// è¶…æ—¶
 	}
-	fps_st.fps_run = 1;					// Æô¶¯ËÑË÷
+	fps_st.fps_run = 1;					// å¯åŠ¨æœç´¢
 		
 	FPGA_ENABLE_WRITE;
-	//FpgaWriteRegister(FPGA_REG_BCCH_DF, FPS_CalcFpgaFreqWord( SYS_A_FLAG, bcch_fc));	// Ğ´TCHÆµµã,Æô¶¯ËÑË÷
+	//FpgaWriteRegister(FPGA_REG_BCCH_DF, FPS_CalcFpgaFreqWord( SYS_A_FLAG, bcch_fc));	// å†™TCHé¢‘ç‚¹,å¯åŠ¨æœç´¢
 	reg = FPS_CalcFpgaFreqWord( SYS_A_FLAG, bcch_fc);
-	FpgaWriteRegister(FPGA_REG_BCCH_DF_1, (UINT16)(((reg>>12)&0x3FFF)|((reg&0x80000000)>>16)));	// Ğ´TCHÆµµã[25:12]Î»,Æô¶¯ËÑË÷
-	FpgaWriteRegister(FPGA_REG_BCCH_DF_2, (UINT16)(reg&0xFFF));	// Ğ´TCHÆµµã[11:0]Î»,Æô¶¯ËÑË÷	
+	FpgaWriteRegister(FPGA_REG_BCCH_DF_1, (UINT16)(((reg>>12)&0x3FFF)|((reg&0x80000000)>>16)));	// å†™TCHé¢‘ç‚¹[25:12]ä½,å¯åŠ¨æœç´¢
+	FpgaWriteRegister(FPGA_REG_BCCH_DF_2, (UINT16)(reg&0xFFF));	// å†™TCHé¢‘ç‚¹[11:0]ä½,å¯åŠ¨æœç´¢	
 
 	FPGA_DISABLE_WRITE;
 #endif
@@ -1290,24 +1290,24 @@ void FPS_TchScanRun( UINT16 bcch_fc, UINT16 time_out )
 
 /*************************************************************
 Name:FPS_CidScanRun          
-Description: Ğ´ÈëÉ¨ÃèÆµµãºÅµ½FPGAÖĞ
-Input: [p_mo_cfg:Ä£¿éÅäÖÃÖ¸Õë,¹©¼ÆËãÆµÂÊÓÃ]
+Description: å†™å…¥æ‰«æé¢‘ç‚¹å·åˆ°FPGAä¸­
+Input: [p_mo_cfg:æ¨¡å—é…ç½®æŒ‡é’ˆ,ä¾›è®¡ç®—é¢‘ç‡ç”¨]
 Return: void
 **************************************************************/
 void FPS_CidScanRun( UINT16 bcch_fc )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
     UINT32 reg;
-	fps_st.cur_mode = FPS_MODE_CID;	// Ä£Ê½:CID
-	fps_st.bcch_fc_sel = bcch_fc;			// ¼ÇÂ¼BCCHÆµµãºÅ
-	fps_st.scan_st = FPS_SCAN_ST_CID;		// ×´Ì¬:ËÑË÷CID
-	fps_st.time_out = 30;				// ³¬Ê±:30Ãë(µ÷ÊÔÊ±Ä¬ÈÏ²»¿ÉĞŞ¸Ä)
+	fps_st.cur_mode = FPS_MODE_CID;	// æ¨¡å¼:CID
+	fps_st.bcch_fc_sel = bcch_fc;			// è®°å½•BCCHé¢‘ç‚¹å·
+	fps_st.scan_st = FPS_SCAN_ST_CID;		// çŠ¶æ€:æœç´¢CID
+	fps_st.time_out = 30;				// è¶…æ—¶:30ç§’(è°ƒè¯•æ—¶é»˜è®¤ä¸å¯ä¿®æ”¹)
 		
 	FPGA_ENABLE_WRITE;
-	//FpgaWriteRegister(FPGA_REG_BCCH_DF, FPS_CalcFpgaFreqWord( SYS_A_FLAG, bcch_fc));	// Ğ´TCHÆµµã,Æô¶¯ËÑË÷
+	//FpgaWriteRegister(FPGA_REG_BCCH_DF, FPS_CalcFpgaFreqWord( SYS_A_FLAG, bcch_fc));	// å†™TCHé¢‘ç‚¹,å¯åŠ¨æœç´¢
 	reg = FPS_CalcFpgaFreqWord( SYS_A_FLAG, bcch_fc);
-	FpgaWriteRegister(FPGA_REG_BCCH_DF_1, (UINT16)(((reg>>12)&0x3FFF)|((reg&0x80000000)>>16)));	// Ğ´TCHÆµµã[25:12]Î»,Æô¶¯ËÑË÷
-	FpgaWriteRegister(FPGA_REG_BCCH_DF_2, (UINT16)(reg&0xFFF));	// Ğ´TCHÆµµã[11:0]Î»,Æô¶¯ËÑË÷	
+	FpgaWriteRegister(FPGA_REG_BCCH_DF_1, (UINT16)(((reg>>12)&0x3FFF)|((reg&0x80000000)>>16)));	// å†™TCHé¢‘ç‚¹[25:12]ä½,å¯åŠ¨æœç´¢
+	FpgaWriteRegister(FPGA_REG_BCCH_DF_2, (UINT16)(reg&0xFFF));	// å†™TCHé¢‘ç‚¹[11:0]ä½,å¯åŠ¨æœç´¢	
 
 	FPGA_DISABLE_WRITE;
 #endif
@@ -1316,13 +1316,13 @@ void FPS_CidScanRun( UINT16 bcch_fc )
 
 /*************************************************************
 Name:FPS_ConvBcchIndex2Fc          
-Description: ½«BCCHËÑË÷½á¹ûÖĞµÄBCCHÆµµãĞòºÅ×ª»»ÎªÆµµãºÅ
-Input: [bcch_id:BCCHÆµµãĞòºÅ]
-Return: ÆµµãºÅ, 0xFFFF±íÊ¾ÎŞĞ§ĞòºÅ
+Description: å°†BCCHæœç´¢ç»“æœä¸­çš„BCCHé¢‘ç‚¹åºå·è½¬æ¢ä¸ºé¢‘ç‚¹å·
+Input: [bcch_id:BCCHé¢‘ç‚¹åºå·]
+Return: é¢‘ç‚¹å·, 0xFFFFè¡¨ç¤ºæ— æ•ˆåºå·
 **************************************************************/
 UINT16 FPS_ConvBcchIndex2Fc( UINT16 bcch_id )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 count;
 
 	count = sys_param_2b[MADD_FPS_E1].val - sys_param_2b[MADD_FPS_S1].val + 1;
@@ -1353,15 +1353,15 @@ UINT16 FPS_ConvBcchIndex2Fc( UINT16 bcch_id )
 
 /*************************************************************
 Name:FcScanStartBCCH          
-Description: Æô¶¯BCCHÉ¨Ãè
+Description: å¯åŠ¨BCCHæ‰«æ
 Input: 
-	force_run: 1-Ç¿ÖÆÖ´ĞĞ
-	wait_time: ³¬Ê±ÉèÖÃ
-Return: ½á¹û:0-Æô¶¯³É¹¦£¬1-ÕıÔÚÖ´ĞĞBCCHÉ¨Ãè£¬2-ÕıÔÚÖ´ĞĞTCHÉ¨Ãè£¬3-ÓĞ´íÎó
+	force_run: 1-å¼ºåˆ¶æ‰§è¡Œ
+	wait_time: è¶…æ—¶è®¾ç½®
+Return: ç»“æœ:0-å¯åŠ¨æˆåŠŸï¼Œ1-æ­£åœ¨æ‰§è¡ŒBCCHæ‰«æï¼Œ2-æ­£åœ¨æ‰§è¡ŒTCHæ‰«æï¼Œ3-æœ‰é”™è¯¯
 **************************************************************/
 void FPS_AutoStartBcch( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	fps_st.time_out = (fps_st.fc_count+1)*5;
 	FPS_BcchScanRun();
 #endif
@@ -1369,17 +1369,17 @@ void FPS_AutoStartBcch( void )
 
 /*************************************************************
 Name:FPS_CompositorBcchLst          
-Description: ¶ÔBCCHÁĞ±í°´¹¦ÂÊÖµ´Ó´óµ½Ğ¡½øĞĞÅÅĞò
+Description: å¯¹BCCHåˆ—è¡¨æŒ‰åŠŸç‡å€¼ä»å¤§åˆ°å°è¿›è¡Œæ’åº
 Input: void
 Return: void
 **************************************************************/
 void FPS_CompositorBcchLst( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	_T_FPS_BCCH_INFO bcch_tmp;
 	UCHAR8 i, k;
 
-	if ( fps_st.bcch_count < 1 )	// Ö»ÓĞBCCH¸öÊı³¬¹ı1¸ö²ÅĞèÒªÅÅĞò
+	if ( fps_st.bcch_count < 1 )	// åªæœ‰BCCHä¸ªæ•°è¶…è¿‡1ä¸ªæ‰éœ€è¦æ’åº
 	{
 		return;
 	}
@@ -1388,18 +1388,18 @@ void FPS_CompositorBcchLst( void )
 	{
 		for ( k=i+1; k<fps_st.bcch_count; k++ )
 		{
-			if ( fps_st.bcch_lst[k].power < fps_st.bcch_lst[i].power )	// ¹¦ÂÊĞ¡µÄÖ±½ÓÌø¹ı
+			if ( fps_st.bcch_lst[k].power < fps_st.bcch_lst[i].power )	// åŠŸç‡å°çš„ç›´æ¥è·³è¿‡
 			{
 				continue;
 			}
-			else if ( fps_st.bcch_lst[k].power == fps_st.bcch_lst[i].power )	// Èô¹¦ÂÊÖµÏàµÈ
+			else if ( fps_st.bcch_lst[k].power == fps_st.bcch_lst[i].power )	// è‹¥åŠŸç‡å€¼ç›¸ç­‰
 			{
-				if ( fps_st.bcch_lst[k].precision <= fps_st.bcch_lst[i].precision )	// ÕıÈ·ÂÊĞ¡µÄÖ±½ÓÌø¹ı
+				if ( fps_st.bcch_lst[k].precision <= fps_st.bcch_lst[i].precision )	// æ­£ç¡®ç‡å°çš„ç›´æ¥è·³è¿‡
 				{
 					continue;
 				}
 			}
-			// ½»»»Á½¸öBCCH
+			// äº¤æ¢ä¸¤ä¸ªBCCH
 			bcch_tmp.fc = fps_st.bcch_lst[i].fc;
 			bcch_tmp.power = fps_st.bcch_lst[i].power;
 			bcch_tmp.precision = fps_st.bcch_lst[i].precision; 
@@ -1420,92 +1420,92 @@ void FPS_CompositorBcchLst( void )
 
 /*************************************************************
 Name:FPS_HandleBcchScan          
-Description: ´¦ÀíBCCHËÑË÷½á¹û
+Description: å¤„ç†BCCHæœç´¢ç»“æœ
 Input: void
 Return: void
 **************************************************************/
 void FPS_HandleBcch( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
-	UCHAR8 count;	// BCCH¸öÊı
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
+	UCHAR8 count;	// BCCHä¸ªæ•°
 	UCHAR8 i, j;
 	UINT16 tmp;
 	UINT32 pow_min= 0xFFFFFFFF;
 	_T_FPS_BCCH_INFO bcch_inf;
 
-	// ³õÊ¼»¯×´Ì¬
+	// åˆå§‹åŒ–çŠ¶æ€
 	fps_st.err_st = FPS_ERR_BCCH_RESULT;
 		
-	count = FpgaReadRegister(FPGA_REG_BCCH_CNT);	// ¶ÁBCCH¸öÊı
-	if ( count>fps_st.fc_count )	// BCCH¸öÊı³¬¹ı×ÜµÄËÑË÷¸öÊı
+	count = FpgaReadRegister(FPGA_REG_BCCH_CNT);	// è¯»BCCHä¸ªæ•°
+	if ( count>fps_st.fc_count )	// BCCHä¸ªæ•°è¶…è¿‡æ€»çš„æœç´¢ä¸ªæ•°
 	{
 		return;
 	}
 
-	// ¶ÁÈ¡BCCHĞÅÏ¢
+	// è¯»å–BCCHä¿¡æ¯
 	i = 0;
 	while( count-- )
 	{
-		tmp = FpgaReadRegister(FPGA_REG_BCCH_INFO);	// ¸ß8Î»ÆµµãĞòºÅ, µÍ8Î»ÕıÈ·ÂÊ
+		tmp = FpgaReadRegister(FPGA_REG_BCCH_INFO);	// é«˜8ä½é¢‘ç‚¹åºå·, ä½8ä½æ­£ç¡®ç‡
 		bcch_inf.precision = tmp&0xFF;
 		tmp>>=8;
 		bcch_inf.fc = FPS_ConvBcchIndex2Fc( tmp );
 		if ( bcch_inf.fc == 0xFFFF )
 		{
-			return;	// ÎŞĞ§ÆµµãĞòºÅ,·µ»Ø
+			return;	// æ— æ•ˆé¢‘ç‚¹åºå·,è¿”å›
 		}
-		// 48Î»¹¦ÂÊ,µÍ16ÎªÉáÆú,±£Áô¸ß32Î»
+		// 48ä½åŠŸç‡,ä½16ä¸ºèˆå¼ƒ,ä¿ç•™é«˜32ä½
 		bcch_inf.power = (UINT32)FpgaReadRegister(FPGA_REG_BCCH_INFO)<<16;
 		bcch_inf.power |= FpgaReadRegister(FPGA_REG_BCCH_INFO);
 		tmp = FpgaReadRegister(FPGA_REG_BCCH_INFO);
 
-		if ( bcch_inf.fc == fps_st.bcch_use.fc )	// ¸üĞÂµ±Ç°ÔÚÓÃµÄBCCH×´Ì¬
+		if ( bcch_inf.fc == fps_st.bcch_use.fc )	// æ›´æ–°å½“å‰åœ¨ç”¨çš„BCCHçŠ¶æ€
 		{
 			fps_st.bcch_use.power = bcch_inf.power;
 			fps_st.bcch_use.precision = bcch_inf.precision;
 		}
 		
-		// ¹¦ÂÊ¹ıĞ¡ÔòÖ±½Ó¶ªÆú
+		// åŠŸç‡è¿‡å°åˆ™ç›´æ¥ä¸¢å¼ƒ
 		if ( bcch_inf.power > 0 )
 		{
 			fps_st.bcch_lst[i].fc = bcch_inf.fc;
 			fps_st.bcch_lst[i].power = bcch_inf.power;
 			fps_st.bcch_lst[i].precision = bcch_inf.precision;
-			if ( i<FPS_BCCH_MAX )		// Ç°FPS_BCCH_MAX¸öBCCHÖ±½Ó±£´æ
+			if ( i<FPS_BCCH_MAX )		// å‰FPS_BCCH_MAXä¸ªBCCHç›´æ¥ä¿å­˜
 			{
-				if ( bcch_inf.power<pow_min ) 	// ÔÚÇ°¼¸¸öÖĞ¼ÇÂ¼¹¦ÂÊ×îĞ¡Öµ
+				if ( bcch_inf.power<pow_min ) 	// åœ¨å‰å‡ ä¸ªä¸­è®°å½•åŠŸç‡æœ€å°å€¼
 				{
 					pow_min = bcch_inf.power;
 				}
 				i++;
 			}
-			else		// ¿ªÊ¼±È½Ï
+			else		// å¼€å§‹æ¯”è¾ƒ
 			{
-				if ( bcch_inf.power>=pow_min ) 	// ¶Á³öµÄBCCH¹¦ÂÊ±ÈÒÑ±£´æµÄBCCHÁĞ±íÖĞµÄÄ³¸öBCCH¹¦ÂÊÇ¿
+				if ( bcch_inf.power>=pow_min ) 	// è¯»å‡ºçš„BCCHåŠŸç‡æ¯”å·²ä¿å­˜çš„BCCHåˆ—è¡¨ä¸­çš„æŸä¸ªBCCHåŠŸç‡å¼º
 				{
-					// ²éÕÒÁĞ±íÖĞ¹¦ÂÊÖµ×îĞ¡µÄBCCH
+					// æŸ¥æ‰¾åˆ—è¡¨ä¸­åŠŸç‡å€¼æœ€å°çš„BCCH
 					for ( j=0; j<FPS_BCCH_MAX; j++ )
 					{
-						if ( pow_min == fps_st.bcch_lst[j].power )		// ¶¨Î»µ½BCCH
+						if ( pow_min == fps_st.bcch_lst[j].power )		// å®šä½åˆ°BCCH
 						{
-							if ( fps_st.bcch_lst[j].power == bcch_inf.power )	// Èô¹¦ÂÊÖµÏàµÈ
+							if ( fps_st.bcch_lst[j].power == bcch_inf.power )	// è‹¥åŠŸç‡å€¼ç›¸ç­‰
 							{
-								// ±È½ÏÕıÈ·ÂÊ
+								// æ¯”è¾ƒæ­£ç¡®ç‡
 								if ( fps_st.bcch_lst[j].precision >= bcch_inf.precision )
 								{
-									continue;		// ¶Á³öµÄBCCHÕıÈ·ÂÊĞ¡ÓÚÁĞ±íÖĞBCCHµÄÕıÈ·ÂÊ,²»Ìæ»»
+									continue;		// è¯»å‡ºçš„BCCHæ­£ç¡®ç‡å°äºåˆ—è¡¨ä¸­BCCHçš„æ­£ç¡®ç‡,ä¸æ›¿æ¢
 								}
 							}	
-							// ¶Á³öµÄBCCH¹¦ÂÊ´óÓÚÁĞ±íÖĞBCCHµÄ¹¦ÂÊÖ±½ÓÌæ»»
+							// è¯»å‡ºçš„BCCHåŠŸç‡å¤§äºåˆ—è¡¨ä¸­BCCHçš„åŠŸç‡ç›´æ¥æ›¿æ¢
 							fps_st.bcch_lst[j].fc = bcch_inf.fc;
 							fps_st.bcch_lst[j].power = bcch_inf.power;
 							fps_st.bcch_lst[j].precision = bcch_inf.precision;
 							break;
 						}
 					}
-					if ( j<FPS_BCCH_MAX )		// ÁĞ±í±»¸üĞÂ
+					if ( j<FPS_BCCH_MAX )		// åˆ—è¡¨è¢«æ›´æ–°
 					{
-						// ÖØĞÂÇóÁĞ±íÖĞ¹¦ÂÊ×îĞ¡Öµ
+						// é‡æ–°æ±‚åˆ—è¡¨ä¸­åŠŸç‡æœ€å°å€¼
 						pow_min = bcch_inf.power;
 						for ( j=0; j<FPS_BCCH_MAX; j++ )
 						{
@@ -1520,10 +1520,10 @@ void FPS_HandleBcch( void )
 		}
 	}
 
-	fps_st.bcch_count = i;		// ¸üĞÂBCCH¸öÊı
-	fps_st.err_st = FPS_ERR_NONE;	// ÉèÖÃ×´Ì¬
+	fps_st.bcch_count = i;		// æ›´æ–°BCCHä¸ªæ•°
+	fps_st.err_st = FPS_ERR_NONE;	// è®¾ç½®çŠ¶æ€
 	
-	// ½«BCCH°´¹¦ÂÊ´óĞ¡ÅÅĞò
+	// å°†BCCHæŒ‰åŠŸç‡å¤§å°æ’åº
 	FPS_CompositorBcchLst();
 	
 #endif	
@@ -1531,13 +1531,13 @@ void FPS_HandleBcch( void )
 
 /*************************************************************
 Name:FPS_HandleTch          
-Description: ´¦ÀíTCHËÑË÷½á¹û
+Description: å¤„ç†TCHæœç´¢ç»“æœ
 Input: void
 Return: void
 **************************************************************/
 void FPS_HandleTch( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 tmp = 0;
 	UINT16 i;
 	UCHAR8 tch_buf[16];
@@ -1549,21 +1549,21 @@ void FPS_HandleTch( void )
 		tch_buf[i++] = (UCHAR8)(tmp>>8);
 	}
 
-	// ½âÂëTCH
+	// è§£ç TCH
 	FPS_TchDecode( tch_buf );
-	fps_st.err_st = FPS_ERR_NONE;	// ÉèÖÃ×´Ì¬
+	fps_st.err_st = FPS_ERR_NONE;	// è®¾ç½®çŠ¶æ€
 #endif	
 }
 
 /*************************************************************
 Name:FPS_HandlePbcch          
-Description: ´¦ÀíTCHËÑË÷½á¹û
+Description: å¤„ç†TCHæœç´¢ç»“æœ
 Input: void
 Return: void
 **************************************************************/
 void FPS_HandlePbcch( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 tmp = 0;
 	UINT16 i;
 	UCHAR8 pbcch_buf[20];
@@ -1575,21 +1575,21 @@ void FPS_HandlePbcch( void )
 		pbcch_buf[i++] = (UCHAR8)(tmp>>8);
 	}
 	
-	// ½âÂëPBCH
+	// è§£ç PBCH
 	FPS_PbcchDecode( pbcch_buf );
-	fps_st.err_st = FPS_ERR_NONE;	// ÉèÖÃ×´Ì¬
+	fps_st.err_st = FPS_ERR_NONE;	// è®¾ç½®çŠ¶æ€
 #endif	
 }
 
 /*************************************************************
 Name:FPS_HandleEdge          
-Description: ´¦ÀíTCHËÑË÷½á¹û
+Description: å¤„ç†TCHæœç´¢ç»“æœ
 Input: void
 Return: void
 **************************************************************/
 void FPS_HandleEdge( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 count = 0;
 	UINT16 i;
 
@@ -1603,41 +1603,41 @@ void FPS_HandleEdge( void )
 
 /*************************************************************
 Name:FPS_GetBcchResult          
-Description: ÉÏÎ»»ú»ñÈ¡BCCHËÑË÷½á¹û
+Description: ä¸Šä½æœºè·å–BCCHæœç´¢ç»“æœ
 Input: void
 Return: void
 **************************************************************/
 UINT16 FPS_GetBcchResult( UCHAR8 * p_ret )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 len = 0;
 	UINT16 i;
-	FLOAT32 gain_in;		// Ç°¶ËÄ£ÄâÔöÒæ = Ç°¶Ë±ê³ÆÔöÒæ-ÊäÈëÂË²¨Æ÷ÔöÒæGcic-Ç°¶Ë²¹³¥ÔöÒæGcmps
+	FLOAT32 gain_in;		// å‰ç«¯æ¨¡æ‹Ÿå¢ç›Š = å‰ç«¯æ ‡ç§°å¢ç›Š-è¾“å…¥æ»¤æ³¢å™¨å¢ç›ŠGcic-å‰ç«¯è¡¥å¿å¢ç›ŠGcmps
 	INT32 fc_power;
 	UINT32 tmp;
 
-	gain_in = CALC_GAIN(FpgaReadRegister(FPGA_REG_A_FG_CMPS));	// Ç°¶Ë²¹³¥ÔöÒæGcmps
-	gain_in = FPGA_REC_GFNOM - fpga_dgcic_a - gain_in;	// Ç°¶ËÄ£ÄâÔöÒæ
+	gain_in = CALC_GAIN(FpgaReadRegister(FPGA_REG_A_FG_CMPS));	// å‰ç«¯è¡¥å¿å¢ç›ŠGcmps
+	gain_in = FPGA_REC_GFNOM - fpga_dgcic_a - gain_in;	// å‰ç«¯æ¨¡æ‹Ÿå¢ç›Š
 
 	p_ret[len++] = fps_st.bcch_count;
 	for ( i=0; i<fps_st.bcch_count; i++ )
 	{
-		// ÆµµãºÅ
+		// é¢‘ç‚¹å·
 		p_ret[len++] = (UCHAR8)(fps_st.bcch_lst[i].fc&0xff);
 		p_ret[len++] = (UCHAR8)((fps_st.bcch_lst[i].fc>>8)&0xff);
 		
-		// ¹¦ÂÊ
-		fc_power = (INT32)( 1000 * (CALC_POWER( fps_st.bcch_lst[i].power ) - gain_in) );	// ÇóÊäÈë¹¦ÂÊdbm = AD¹¦ÂÊ-Ç°¶ËÄ£ÄâÔöÒæG_in, x1000±£Áô3Î»Ğ¡Êı
+		// åŠŸç‡
+		fc_power = (INT32)( 1000 * (CALC_POWER( fps_st.bcch_lst[i].power ) - gain_in) );	// æ±‚è¾“å…¥åŠŸç‡dbm = ADåŠŸç‡-å‰ç«¯æ¨¡æ‹Ÿå¢ç›ŠG_in, x1000ä¿ç•™3ä½å°æ•°
 		tmp = (UINT32)fc_power;
 		p_ret[len++] = (UCHAR8)(tmp&0xff);
 		p_ret[len++] = (UCHAR8)((tmp>>8)&0xff);
 		p_ret[len++] = (UCHAR8)((tmp>>16)&0xff);
 		p_ret[len++] = (UCHAR8)((tmp>>24)&0xff);
 		
-		// ÎóÂëÂÊ
+		// è¯¯ç ç‡
 		p_ret[len++] = fps_st.bcch_lst[i].precision;
 
-		// CIDĞ¡ÇøÊ¶±ğÂë
+		// CIDå°åŒºè¯†åˆ«ç 
 		p_ret[len++] = (UCHAR8)(fps_st.bcch_lst[i].cid&0xff);
 		p_ret[len++] = (UCHAR8)((fps_st.bcch_lst[i].cid>>8)&0xff);
 	}
@@ -1651,34 +1651,34 @@ UINT16 FPS_GetBcchResult( UCHAR8 * p_ret )
 
 /*************************************************************
 Name:FPS_GetTchResult          
-Description: ÉÏÎ»»ú»ñÈ¡TCHËÑË÷½á¹û
+Description: ä¸Šä½æœºè·å–TCHæœç´¢ç»“æœ
 Input: void
 Return: void
 **************************************************************/
 UINT16 FPS_GetTchResult( UCHAR8 * p_ret )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 len = 0;
 	UINT16 tmp;
 	UINT16 i;
 
-	// ÓÃÀ´½âÎöTCHµÄBCCHÆµµãºÅ
+	// ç”¨æ¥è§£æTCHçš„BCCHé¢‘ç‚¹å·
 	tmp = fps_st.bcch_fc_sel;
 	p_ret[len++] = (UCHAR8)(fps_st.bcch_fc_sel&0xff);
 	p_ret[len++] = (UCHAR8)((fps_st.bcch_fc_sel>>8)&0xff);
 	
-	// TCHÆµµãÊıÁ¿
+	// TCHé¢‘ç‚¹æ•°é‡
 	p_ret[len++] = fps_st.tch_count;
-	// TCHÆµµãÁĞ±í
+	// TCHé¢‘ç‚¹åˆ—è¡¨
 	for ( i=0; i<fps_st.tch_count; i++ )
 	{
 		p_ret[len++] = (UCHAR8)(fps_st.tch_lst[i]&0xff);
 		p_ret[len++] = (UCHAR8)((fps_st.tch_lst[i]>>8)&0xff);
 	}
 	
-	// EDGEÆµµãÊıÁ¿
+	// EDGEé¢‘ç‚¹æ•°é‡
 	p_ret[len++] = fps_st.edge_count;
-	// EDGEÆµµãÁĞ±í
+	// EDGEé¢‘ç‚¹åˆ—è¡¨
 	for ( i=0; i<fps_st.edge_count; i++ )
 	{
 		p_ret[len++] = (UCHAR8)(fps_st.edge_lst[i]&0xff);
@@ -1727,51 +1727,51 @@ UINT16 FPS_GetTchResult( UCHAR8 * p_ret )
 
 /*************************************************************
 Name:FPS_GetAutoScanStaus          
-Description: ÉÏÎ»»ú»ñÈ¡×Ô¶¯É¨Ãè×´Ì¬
+Description: ä¸Šä½æœºè·å–è‡ªåŠ¨æ‰«æçŠ¶æ€
 Input: void
 Return: void
 **************************************************************/
 UINT16 FPS_GetAutoScanStaus( UCHAR8 * p_ret )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 len = 0;
 	UINT16 i;
-	FLOAT32 gain_in;		// Ç°¶ËÄ£ÄâÔöÒæ = Ç°¶Ë±ê³ÆÔöÒæ-ÊäÈëÂË²¨Æ÷ÔöÒæGcic-Ç°¶Ë²¹³¥ÔöÒæGcmps
+	FLOAT32 gain_in;		// å‰ç«¯æ¨¡æ‹Ÿå¢ç›Š = å‰ç«¯æ ‡ç§°å¢ç›Š-è¾“å…¥æ»¤æ³¢å™¨å¢ç›ŠGcic-å‰ç«¯è¡¥å¿å¢ç›ŠGcmps
 	INT32 fc_power;
 	UINT32 tmp;
 
-	if ( 0==fps_st.auto_scan_en )	// µ±Ç°´¦ÓÚÊÖ¶¯ËÑË÷Ä£Ê½
+	if ( 0==fps_st.auto_scan_en )	// å½“å‰å¤„äºæ‰‹åŠ¨æœç´¢æ¨¡å¼
 	{
-		p_ret[len++] = 3;		// ³ö´í
-		p_ret[len++] = FPS_ERR_MANUAL_MODE;	// ´íÎó´úÂë:Ä£Ê½´íÎó
+		p_ret[len++] = 3;		// å‡ºé”™
+		p_ret[len++] = FPS_ERR_MANUAL_MODE;	// é”™è¯¯ä»£ç :æ¨¡å¼é”™è¯¯
 		return len;
 	}
-	p_ret[len++] = 0;		// ÎŞ´íÎó
+	p_ret[len++] = 0;		// æ— é”™è¯¯
 
-	gain_in = CALC_GAIN(FpgaReadRegister(FPGA_REG_A_FG_CMPS));	// Ç°¶Ë²¹³¥ÔöÒæGcmps
-	gain_in = FPGA_REC_GFNOM - fpga_dgcic_a - gain_in;	// Ç°¶ËÄ£ÄâÔöÒæ
+	gain_in = CALC_GAIN(FpgaReadRegister(FPGA_REG_A_FG_CMPS));	// å‰ç«¯è¡¥å¿å¢ç›ŠGcmps
+	gain_in = FPGA_REC_GFNOM - fpga_dgcic_a - gain_in;	// å‰ç«¯æ¨¡æ‹Ÿå¢ç›Š
 
-	// ×Ô¶¯ËÑË÷×´Ì¬
+	// è‡ªåŠ¨æœç´¢çŠ¶æ€
 	p_ret[len++] = fps_st.auto_state;
-	// BCCHÇĞ»»´ÎÊı
+	// BCCHåˆ‡æ¢æ¬¡æ•°
 	p_ret[len++] = fps_st.switch_count;
-	// ×Ô¶¯ËÑË÷Ñ¡¶¨µÄBCCHÆµµãºÅ
+	// è‡ªåŠ¨æœç´¢é€‰å®šçš„BCCHé¢‘ç‚¹å·
 	p_ret[len++] = (UCHAR8)(fps_st.bcch_use.fc&0xff);
 	p_ret[len++] = (UCHAR8)((fps_st.bcch_use.fc>>8)&0xff);
-	// ×Ô¶¯ËÑË÷Ñ¡¶¨µÄBCCH¹¦ÂÊ
-	fc_power = (INT32)( 1000 * (CALC_POWER(fps_st.bcch_use.power) - gain_in) );	// ÇóÊäÈë¹¦ÂÊdbm = AD¹¦ÂÊ-Ç°¶ËÄ£ÄâÔöÒæG_in, x1000±£Áô3Î»Ğ¡Êı
+	// è‡ªåŠ¨æœç´¢é€‰å®šçš„BCCHåŠŸç‡
+	fc_power = (INT32)( 1000 * (CALC_POWER(fps_st.bcch_use.power) - gain_in) );	// æ±‚è¾“å…¥åŠŸç‡dbm = ADåŠŸç‡-å‰ç«¯æ¨¡æ‹Ÿå¢ç›ŠG_in, x1000ä¿ç•™3ä½å°æ•°
 	tmp = (UINT32)fc_power;
 	p_ret[len++] = (UCHAR8)(tmp&0xff);
 	p_ret[len++] = (UCHAR8)((tmp>>8)&0xff);
 	p_ret[len++] = (UCHAR8)((tmp>>16)&0xff);
 	p_ret[len++] = (UCHAR8)((tmp>>24)&0xff);
-	// ×Ô¶¯ËÑË÷Ñ¡¶¨µÄBCCHÕıÈ·ÂÊ
+	// è‡ªåŠ¨æœç´¢é€‰å®šçš„BCCHæ­£ç¡®ç‡
 	p_ret[len++] = fps_st.bcch_use.precision;
-	// µ±Ç°ËÑË÷Ä£Ê½
+	// å½“å‰æœç´¢æ¨¡å¼
 	p_ret[len++] = ( 1==fps_st.cur_mode ) ? 1 : 0;
-	// µ±Ç°ËÑË÷×´Ì¬
+	// å½“å‰æœç´¢çŠ¶æ€
 	p_ret[len++] = fps_st.scan_st;
-	// µ±Ç°ËÑË÷´íÎóĞÅÏ¢
+	// å½“å‰æœç´¢é”™è¯¯ä¿¡æ¯
 	p_ret[len++] = fps_st.err_st;	
 
 	len += FPS_GetBcchResult( p_ret+len );
@@ -1786,50 +1786,50 @@ UINT16 FPS_GetAutoScanStaus( UCHAR8 * p_ret )
 
 /*************************************************************
 Name:FPS_SendReport          
-Description: ÊÖ¶¯É¨Ãè½áÊø£¬·¢ËÍÉ¨Ãè½á¹û
+Description: æ‰‹åŠ¨æ‰«æç»“æŸï¼Œå‘é€æ‰«æç»“æœ
 Input: void
 Return: void
 **************************************************************/
 void FPS_SendReport( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UCHAR8 * p_txbuff = sys_temp_buff;
 	UINT16 tx_len=0;
 	UINT16 i;
 	UINT32 tmp;
 
-	if ( (0xEE==fps_report_head[0]) && (0xEE==	fps_report_head[1]) )	// ÎŞĞ§ÏûÏ¢Í·
+	if ( (0xEE==fps_report_head[0]) && (0xEE==	fps_report_head[1]) )	// æ— æ•ˆæ¶ˆæ¯å¤´
 	{
 		return;
 	}
 
-	// ÏûÏ¢Í·
+	// æ¶ˆæ¯å¤´
 	for ( i=0; i<MSG_PKT_HEAD_SIZE; i++ )
 	{
 		p_txbuff[tx_len++] = fps_report_head[i];
 	}
 	
-	// Ä£Ê½
+	// æ¨¡å¼
 	p_txbuff[tx_len++] = fps_report.cmd_mode;
 	
-	// ¸½¼ÓÄ£Ê½
+	// é™„åŠ æ¨¡å¼
 	p_txbuff[tx_len++] = fps_report.ext_mode;
 
-	// ×´Ì¬
+	// çŠ¶æ€
 	if ( FPS_ERR_NONE != fps_st.err_st )	
 	{
-		p_txbuff[tx_len++] = FPS_RESULT_ERROR;			// ÓĞ´íÎó
+		p_txbuff[tx_len++] = FPS_RESULT_ERROR;			// æœ‰é”™è¯¯
 		p_txbuff[tx_len++] = fps_st.err_st;
 	}
 	else
 	{
 		if ( FPS_SCAN_ST_DONE==fps_st.scan_st )
 		{
-			p_txbuff[tx_len++] = FPS_RESULT_OK;			// ÎŞ´íÎó£¬É¨ÃèÍê³É
+			p_txbuff[tx_len++] = FPS_RESULT_OK;			// æ— é”™è¯¯ï¼Œæ‰«æå®Œæˆ
 		}
 		else
 		{
-			p_txbuff[tx_len++] = FPS_RESULT_WORK;			// ÕıÔÚÉ¨ÃèÖĞ
+			p_txbuff[tx_len++] = FPS_RESULT_WORK;			// æ­£åœ¨æ‰«æä¸­
 		}
 		//if ( FPS_MODE_BCCH==fps_st.cur_mode )
 		if ( 1==fps_report.cmd_mode )
@@ -1847,13 +1847,13 @@ void FPS_SendReport( void )
 
 /*************************************************************
 Name: FPS_MakeAckMsgHead          
-Description: Éú³ÉÓ¦´ğÊı¾İ°üµÄĞÅÏ¢Í·
+Description: ç”Ÿæˆåº”ç­”æ•°æ®åŒ…çš„ä¿¡æ¯å¤´
 Input: void
 Return: void
 **************************************************************/
 void FPS_MakeAckMsgHead( UCHAR8 cmd_mode, UCHAR8 ext_mode, UCHAR8 head_len, UCHAR8 * p_head)
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UCHAR8 i;
 	
 	for ( i=0; i<head_len; i++ )
@@ -1867,7 +1867,7 @@ void FPS_MakeAckMsgHead( UCHAR8 cmd_mode, UCHAR8 ext_mode, UCHAR8 head_len, UCHA
 
 /*************************************************************
 Name: FPS_ResetResultParam          
-Description: ¸´Î»ËÑË÷½á¹û
+Description: å¤ä½æœç´¢ç»“æœ
 Input: void
 Return: void
 **************************************************************/
@@ -1876,35 +1876,35 @@ void FPS_ResetResultParam( void )
 	UCHAR8 i;
 	CHAR8 tmp = -120;
 
-	// Ëø¶¨µÄBCCHĞÅÏ¢
-	sys_param_2b[MADD_FPS_BCCH_FC_M].val = 65535;	// Ëø¶¨µÄBCCH, ÎŞĞ§
-	sys_param_1b[MADD_FPS_BCCH_POW_M].val = (UCHAR8)tmp;		// Ëø¶¨µÄBCCH¹¦ÂÊ£¬ -120
-	// ÁÚÇøBCCHĞÅÏ¢
+	// é”å®šçš„BCCHä¿¡æ¯
+	sys_param_2b[MADD_FPS_BCCH_FC_M].val = 65535;	// é”å®šçš„BCCH, æ— æ•ˆ
+	sys_param_1b[MADD_FPS_BCCH_POW_M].val = (UCHAR8)tmp;		// é”å®šçš„BCCHåŠŸç‡ï¼Œ -120
+	// é‚»åŒºBCCHä¿¡æ¯
 	for ( i=0; i<6; i++ )
 	{
-		sys_param_2b[MADD_FPS_BCCH_FC_1+i].val = 65535;	// ÎŞĞ§BCCH
-		sys_param_1b[MADD_FPS_BCCH_POW_1+i].val = (UCHAR8)tmp;		// ÁÚÇøBCCH¹¦ÂÊ
-		sys_param_2b[MADD_FPS_CID_1+i].val = 0;	// ÎŞĞ§CID
+		sys_param_2b[MADD_FPS_BCCH_FC_1+i].val = 65535;	// æ— æ•ˆBCCH
+		sys_param_1b[MADD_FPS_BCCH_POW_1+i].val = (UCHAR8)tmp;		// é‚»åŒºBCCHåŠŸç‡
+		sys_param_2b[MADD_FPS_CID_1+i].val = 0;	// æ— æ•ˆCID
 	}
-	// CAĞÅÏ¢
-	sys_param_1b[MADD_FPS_CA_COUNT].val = 0;		// ÓĞĞ§ĞÅµÀÊı:0
+	// CAä¿¡æ¯
+	sys_param_1b[MADD_FPS_CA_COUNT].val = 0;		// æœ‰æ•ˆä¿¡é“æ•°:0
 	
 	for ( i=0; i<16; i++ )
 	{
-		sys_param_2b[MADD_FPS_CA_FC_0+i].val = 65535;		// ÎŞĞ§CA
+		sys_param_2b[MADD_FPS_CA_FC_0+i].val = 65535;		// æ— æ•ˆCA
 	}
-	// »ùÕ¾ĞÅÏ¢
+	// åŸºç«™ä¿¡æ¯
 	sys_param_2b[MADD_FPS_CID].val = 0;
 	sys_param_2b[MADD_FPS_AREA_ID].val = 0;
 	sys_param_1b[MADD_FPS_BS_ID].val = 0;
-	// ËÑË÷½á¹û×´Ì¬
-	sys_param_1b[MADD_FPS_BCCH_LK_ST].val = 0;		// Ëø¶¨BCCHÊ§°Ü
+	// æœç´¢ç»“æœçŠ¶æ€
+	sys_param_1b[MADD_FPS_BCCH_LK_ST].val = 0;		// é”å®šBCCHå¤±è´¥
 	
 }
 
 /*************************************************************
 Name: FPS_SetResultToSysFc          
-Description: ½«½á¹ûÓ¦ÓÃµ½ÏµÍ³¹¤×÷Æµµã
+Description: å°†ç»“æœåº”ç”¨åˆ°ç³»ç»Ÿå·¥ä½œé¢‘ç‚¹
 Input: void
 Return: void
 **************************************************************/
@@ -1912,13 +1912,13 @@ void FPS_SetResultToSysFc( void )
 {
 #ifdef FUNC_FREQ_POINT_SEARCH_EN
 
-#ifdef FUNC_FPS_AUTO_SET	// ¶¨ÒåºêÔò×Ô¶¯½«ËÑË÷½á¹ûÉèÖÃÎª¹¤×÷ÆµµãºÅ
+#ifdef FUNC_FPS_AUTO_SET	// å®šä¹‰å®åˆ™è‡ªåŠ¨å°†æœç´¢ç»“æœè®¾ç½®ä¸ºå·¥ä½œé¢‘ç‚¹å·
 
 	UINT16 fc_count;
 	UINT16 i, tmp;
 	UINT16 fc;
 	UCHAR8 fpssaveflashflag;
-	fc_count = sys_param_1b[MADD_FPS_CA_COUNT].val;		// ÆµµãÊı
+	fc_count = sys_param_1b[MADD_FPS_CA_COUNT].val;		// é¢‘ç‚¹æ•°
 	
 	if ( fc_count > 16 ) fc_count = 16;
 
@@ -1930,15 +1930,15 @@ void FPS_SetResultToSysFc( void )
 		sys_param_1b[MADD_A_UCH_EN1+i].val = 0;
 	}
 
-#ifdef FUNC_FPS_AVG_FP		// ¶¨ÒåºêÔò½«Æµµã°´Í¨µÀÊı¶Ô°ë·Ö
+#ifdef FUNC_FPS_AVG_FP		// å®šä¹‰å®åˆ™å°†é¢‘ç‚¹æŒ‰é€šé“æ•°å¯¹åŠåˆ†
 
 	tmp = (fc_count+1)/2;
 
 	for ( i=0; i<sys_param_1b[MADD_A_CHANNEL_COUNT].val/2; i++ )
 	{
-		if ( i >= tmp )		// ËÑË÷½á¹û×î¶àÖ§³Ö16Í¨µÀ£¬Èô³¬³öÔò¹Ø±ÕÍ¨µÀÊ¹ÄÜ
+		if ( i >= tmp )		// æœç´¢ç»“æœæœ€å¤šæ”¯æŒ16é€šé“ï¼Œè‹¥è¶…å‡ºåˆ™å…³é—­é€šé“ä½¿èƒ½
 		{
-			if ( (1==sys_param_1b[MADD_A_DCH_EN1+i].val) || (1==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// Ê¹ÄÜ×´Ì¬¸Ä±ä
+			if ( (1==sys_param_1b[MADD_A_DCH_EN1+i].val) || (1==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// ä½¿èƒ½çŠ¶æ€æ”¹å˜
 			{
 				sys_param_1b[MADD_A_DCH_EN1+i].val = 0;
 				sys_param_1b[MADD_A_UCH_EN1+i].val = 0;
@@ -1948,9 +1948,9 @@ void FPS_SetResultToSysFc( void )
 			continue;
 		}
 		
-		// È¡µÃËÑË÷½á¹ûµÄCAÆµµãºÅ
+		// å–å¾—æœç´¢ç»“æœçš„CAé¢‘ç‚¹å·
 		fc = sys_param_2b[MADD_FPS_CA_FC_0+i].val;
-		// A¶ÎÆµµãºÅ£¬Óëµ±Ç°¹¤×÷ĞÅµÀºÅ²»Ò»ÖÂÔòÖØĞÂÉèÖÃ
+		// Aæ®µé¢‘ç‚¹å·ï¼Œä¸å½“å‰å·¥ä½œä¿¡é“å·ä¸ä¸€è‡´åˆ™é‡æ–°è®¾ç½®
 		if ( (fc != sys_param_2b[MADD_A_DL_CHANNEL1+i].val) || (fc != sys_param_2b[MADD_A_UL_CHANNEL1+i].val) )
 		{
 			sys_param_2b[MADD_A_DL_CHANNEL1+i].val = fc;
@@ -1958,10 +1958,10 @@ void FPS_SetResultToSysFc( void )
 			module_param_chg_flag |= PCHG_A_CHANNEL;
 			fpssaveflashflag=1;
 		}
-		// ÆµµãÊ¹ÄÜ
+		// é¢‘ç‚¹ä½¿èƒ½
 		if ( 65535!=fc )
 		{
-			if ( (0==sys_param_1b[MADD_A_DCH_EN1+i].val) || (0==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// Ê¹ÄÜ×´Ì¬¸Ä±ä
+			if ( (0==sys_param_1b[MADD_A_DCH_EN1+i].val) || (0==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// ä½¿èƒ½çŠ¶æ€æ”¹å˜
 			{
 				sys_param_1b[MADD_A_DCH_EN1+i].val = 1;
 				sys_param_1b[MADD_A_UCH_EN1+i].val = 1;
@@ -1971,7 +1971,7 @@ void FPS_SetResultToSysFc( void )
 		}
 		else
 		{
-			if ( (1==sys_param_1b[MADD_A_DCH_EN1+i].val) || (1==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// Ê¹ÄÜ×´Ì¬¸Ä±ä
+			if ( (1==sys_param_1b[MADD_A_DCH_EN1+i].val) || (1==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// ä½¿èƒ½çŠ¶æ€æ”¹å˜
 			{
 				sys_param_1b[MADD_A_DCH_EN1+i].val = 0;
 				sys_param_1b[MADD_A_UCH_EN1+i].val = 0;
@@ -1983,9 +1983,9 @@ void FPS_SetResultToSysFc( void )
 
 	for ( i=sys_param_1b[MADD_A_CHANNEL_COUNT].val/2; i<sys_param_1b[MADD_A_CHANNEL_COUNT].val; i++, tmp++ )
 	{
-		if ( tmp >= fc_count )		// ËÑË÷½á¹û×î¶àÖ§³Ö16Í¨µÀ£¬Èô³¬³öÔò¹Ø±ÕÍ¨µÀÊ¹ÄÜ
+		if ( tmp >= fc_count )		// æœç´¢ç»“æœæœ€å¤šæ”¯æŒ16é€šé“ï¼Œè‹¥è¶…å‡ºåˆ™å…³é—­é€šé“ä½¿èƒ½
 		{
-			if ( (1==sys_param_1b[MADD_A_DCH_EN1+i].val) || (1==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// Ê¹ÄÜ×´Ì¬¸Ä±ä
+			if ( (1==sys_param_1b[MADD_A_DCH_EN1+i].val) || (1==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// ä½¿èƒ½çŠ¶æ€æ”¹å˜
 			{
 				sys_param_1b[MADD_A_DCH_EN1+i].val = 0;
 				sys_param_1b[MADD_A_UCH_EN1+i].val = 0;
@@ -1995,9 +1995,9 @@ void FPS_SetResultToSysFc( void )
 			continue;
 		}
 		
-		// È¡µÃËÑË÷½á¹ûµÄCAÆµµãºÅ
+		// å–å¾—æœç´¢ç»“æœçš„CAé¢‘ç‚¹å·
 		fc = sys_param_2b[MADD_FPS_CA_FC_0+tmp].val;
-		// A¶ÎÆµµãºÅ£¬Óëµ±Ç°¹¤×÷ĞÅµÀºÅ²»Ò»ÖÂÔòÖØĞÂÉèÖÃ
+		// Aæ®µé¢‘ç‚¹å·ï¼Œä¸å½“å‰å·¥ä½œä¿¡é“å·ä¸ä¸€è‡´åˆ™é‡æ–°è®¾ç½®
 		if ( (fc != sys_param_2b[MADD_A_DL_CHANNEL1+i].val) || (fc != sys_param_2b[MADD_A_UL_CHANNEL1+i].val) )
 		{
 			sys_param_2b[MADD_A_DL_CHANNEL1+i].val = fc;
@@ -2005,10 +2005,10 @@ void FPS_SetResultToSysFc( void )
 			module_param_chg_flag |= PCHG_A_CHANNEL;
 			fpssaveflashflag=1;
 		}
-		// ÆµµãÊ¹ÄÜ
+		// é¢‘ç‚¹ä½¿èƒ½
 		if ( 65535!=fc )
 		{
-			if ( (0==sys_param_1b[MADD_A_DCH_EN1+i].val) || (0==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// Ê¹ÄÜ×´Ì¬¸Ä±ä
+			if ( (0==sys_param_1b[MADD_A_DCH_EN1+i].val) || (0==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// ä½¿èƒ½çŠ¶æ€æ”¹å˜
 			{
 				sys_param_1b[MADD_A_DCH_EN1+i].val = 1;
 				sys_param_1b[MADD_A_UCH_EN1+i].val = 1;
@@ -2018,7 +2018,7 @@ void FPS_SetResultToSysFc( void )
 		}
 		else
 		{
-			if ( (1==sys_param_1b[MADD_A_DCH_EN1+i].val) || (1==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// Ê¹ÄÜ×´Ì¬¸Ä±ä
+			if ( (1==sys_param_1b[MADD_A_DCH_EN1+i].val) || (1==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// ä½¿èƒ½çŠ¶æ€æ”¹å˜
 			{
 				sys_param_1b[MADD_A_DCH_EN1+i].val = 0;
 				sys_param_1b[MADD_A_UCH_EN1+i].val = 0;
@@ -2028,7 +2028,7 @@ void FPS_SetResultToSysFc( void )
 		}
 	}
 
-	if ( 0 != (module_param_chg_flag&PCHG_A_CHANNEL) )	// A¶ÎÆµµãÉèÖÃÓĞ¸Ä±ä,¸ü¸ÄB¶ÎÆµµã
+	if ( 0 != (module_param_chg_flag&PCHG_A_CHANNEL) )	// Aæ®µé¢‘ç‚¹è®¾ç½®æœ‰æ”¹å˜,æ›´æ”¹Bæ®µé¢‘ç‚¹
 	{
 		for ( i=0; i<MAX_CHANNEL_COUNT; i++ )
 		{
@@ -2046,9 +2046,9 @@ void FPS_SetResultToSysFc( void )
 
 	for ( i=0; i<sys_param_1b[MADD_A_CHANNEL_COUNT].val; i++ )
 	{
-		if ( i>= fc_count )		// ËÑË÷½á¹û×î¶àÖ§³Ö16Í¨µÀ£¬Èô³¬³öÔò¹Ø±ÕÍ¨µÀÊ¹ÄÜ
+		if ( i>= fc_count )		// æœç´¢ç»“æœæœ€å¤šæ”¯æŒ16é€šé“ï¼Œè‹¥è¶…å‡ºåˆ™å…³é—­é€šé“ä½¿èƒ½
 		{
-			if ( (1==sys_param_1b[MADD_A_DCH_EN1+i].val) || (1==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// Ê¹ÄÜ×´Ì¬¸Ä±ä
+			if ( (1==sys_param_1b[MADD_A_DCH_EN1+i].val) || (1==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// ä½¿èƒ½çŠ¶æ€æ”¹å˜
 			{
 				sys_param_1b[MADD_A_DCH_EN1+i].val = 0;
 				sys_param_1b[MADD_A_UCH_EN1+i].val = 0;
@@ -2058,9 +2058,9 @@ void FPS_SetResultToSysFc( void )
 			continue;
 		}
 		
-		// È¡µÃËÑË÷½á¹ûµÄCAÆµµãºÅ
+		// å–å¾—æœç´¢ç»“æœçš„CAé¢‘ç‚¹å·
 		fc = sys_param_2b[MADD_FPS_CA_FC_0+i].val;
-		// A¶ÎÆµµãºÅ£¬Óëµ±Ç°¹¤×÷ĞÅµÀºÅ²»Ò»ÖÂÔòÖØĞÂÉèÖÃ
+		// Aæ®µé¢‘ç‚¹å·ï¼Œä¸å½“å‰å·¥ä½œä¿¡é“å·ä¸ä¸€è‡´åˆ™é‡æ–°è®¾ç½®
 		if ( (fc != sys_param_2b[MADD_A_DL_CHANNEL1+i].val) || (fc != sys_param_2b[MADD_A_UL_CHANNEL1+i].val) )
 		{
 			sys_param_2b[MADD_A_DL_CHANNEL1+i].val = fc;
@@ -2068,10 +2068,10 @@ void FPS_SetResultToSysFc( void )
 			module_param_chg_flag |= PCHG_A_CHANNEL;
 			fpssaveflashflag=1;
 		}
-		// ÆµµãÊ¹ÄÜ
+		// é¢‘ç‚¹ä½¿èƒ½
 		if ( 65535!=fc )
 		{
-			if ( (0==sys_param_1b[MADD_A_DCH_EN1+i].val) || (0==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// Ê¹ÄÜ×´Ì¬¸Ä±ä
+			if ( (0==sys_param_1b[MADD_A_DCH_EN1+i].val) || (0==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// ä½¿èƒ½çŠ¶æ€æ”¹å˜
 			{
 				sys_param_1b[MADD_A_DCH_EN1+i].val = 1;
 				sys_param_1b[MADD_A_UCH_EN1+i].val = 1;
@@ -2081,7 +2081,7 @@ void FPS_SetResultToSysFc( void )
 		}
 		else
 		{
-			if ( (1==sys_param_1b[MADD_A_DCH_EN1+i].val) || (1==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// Ê¹ÄÜ×´Ì¬¸Ä±ä
+			if ( (1==sys_param_1b[MADD_A_DCH_EN1+i].val) || (1==sys_param_1b[MADD_A_UCH_EN1+i].val) )	// ä½¿èƒ½çŠ¶æ€æ”¹å˜
 			{
 				sys_param_1b[MADD_A_DCH_EN1+i].val = 0;
 				sys_param_1b[MADD_A_UCH_EN1+i].val = 0;
@@ -2091,8 +2091,8 @@ void FPS_SetResultToSysFc( void )
 		}
 	}
 
-#if ( B_NETWORK_TYPE==NET_DIVE )	// B¶Î·Ö¼¯£¬²ÉÓÃÍ¬ÑùÉèÖÃ
-	if ( 0 != (module_param_chg_flag&PCHG_A_CHANNEL) )	// A¶ÎÆµµãÉèÖÃÓĞ¸Ä±ä
+#if ( B_NETWORK_TYPE==NET_DIVE )	// Bæ®µåˆ†é›†ï¼Œé‡‡ç”¨åŒæ ·è®¾ç½®
+	if ( 0 != (module_param_chg_flag&PCHG_A_CHANNEL) )	// Aæ®µé¢‘ç‚¹è®¾ç½®æœ‰æ”¹å˜
 	{
 		for ( i=0; i<MAX_CHANNEL_COUNT; i++ )
 		{
@@ -2110,11 +2110,11 @@ void FPS_SetResultToSysFc( void )
 #endif	// #FUNC_FPS_AVG_FP
 	if(0x01==fpssaveflashflag)
 	{
-		sys_work_info |= SYSTEM_FLAG_SET_RE_SFC;	// ÖÃ±êÖ¾Î»,¹ã²¥ÉèÖÃREµÄÆµµã		
+		sys_work_info |= SYSTEM_FLAG_SET_RE_SFC;	// ç½®æ ‡å¿—ä½,å¹¿æ’­è®¾ç½®REçš„é¢‘ç‚¹		
 		SaveSysParamToFlash();
 	}
 
-//	sys_work_info |= SYSTEM_FLAG_SET_RE_SFC;	// ÖÃ±êÖ¾Î»,¹ã²¥ÉèÖÃREµÄÆµµã
+//	sys_work_info |= SYSTEM_FLAG_SET_RE_SFC;	// ç½®æ ‡å¿—ä½,å¹¿æ’­è®¾ç½®REçš„é¢‘ç‚¹
 
 #endif	// #FUNC_FPS_AUTO_SET
 
@@ -2123,22 +2123,22 @@ void FPS_SetResultToSysFc( void )
 
 /*************************************************************
 Name: FPS_SaveResultToSysParam          
-Description: ±£´æËÑË÷½á¹ûµ½²ÎÊı±íÖĞ
+Description: ä¿å­˜æœç´¢ç»“æœåˆ°å‚æ•°è¡¨ä¸­
 Input: void
 Return: void
 **************************************************************/
 void FPS_SaveResultToSysParam( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UINT16 fc_set[16];
 	UCHAR8 fc_id=0;
 	UCHAR8 i, j;
-	FLOAT32 gain_in;		// Ç°¶ËÄ£ÄâÔöÒæ = Ç°¶Ë±ê³ÆÔöÒæ-ÊäÈëÂË²¨Æ÷ÔöÒæGcic-Ç°¶Ë²¹³¥ÔöÒæGcmps
+	FLOAT32 gain_in;		// å‰ç«¯æ¨¡æ‹Ÿå¢ç›Š = å‰ç«¯æ ‡ç§°å¢ç›Š-è¾“å…¥æ»¤æ³¢å™¨å¢ç›ŠGcic-å‰ç«¯è¡¥å¿å¢ç›ŠGcmps
 	INT32 fc_power;
 	CHAR8 tmp;
 	
-	gain_in = CALC_GAIN(FpgaReadRegister(FPGA_REG_A_FG_CMPS));	// Ç°¶Ë²¹³¥ÔöÒæGcmps
-	gain_in = FPGA_REC_GFNOM - fpga_dgcic_a - gain_in;	// Ç°¶ËÄ£ÄâÔöÒæ
+	gain_in = CALC_GAIN(FpgaReadRegister(FPGA_REG_A_FG_CMPS));	// å‰ç«¯è¡¥å¿å¢ç›ŠGcmps
+	gain_in = FPGA_REC_GFNOM - fpga_dgcic_a - gain_in;	// å‰ç«¯æ¨¡æ‹Ÿå¢ç›Š
 
 	TRACE_INFO("fps_st.tch_count=%d\r\n",fps_st.tch_count );
 	
@@ -2149,36 +2149,36 @@ void FPS_SaveResultToSysParam( void )
 		TRACE_INFO("fps_st.tch_lst[%d]= %d\r\n",i,fps_st.tch_lst[i] );
 	}
 
-	if (1==pbcch_inf.valid)	// PBCCHĞÅÏ¢ÓĞĞ§
+	if (1==pbcch_inf.valid)	// PBCCHä¿¡æ¯æœ‰æ•ˆ
 	{
-		if ( (1==pbcch_inf.pbcch_support)&&(1==pbcch_inf.pbcch_fc_valid) )		// ÓĞPBCCHÆµµã
+		if ( (1==pbcch_inf.pbcch_support)&&(1==pbcch_inf.pbcch_fc_valid) )		// æœ‰PBCCHé¢‘ç‚¹
 		{
-			for ( i=0; i<fc_id; i++ )		// ²éÕÒÓĞÎŞÖØ¸´
+			for ( i=0; i<fc_id; i++ )		// æŸ¥æ‰¾æœ‰æ— é‡å¤
 			{
 				if ( fc_set[i] == pbcch_inf.pbcch_arfcn )
 				{
 					break;
 				}
 			}
-			if ( i>=fc_id )		// ÎŞÖØ¸´Ôò¼ÓÈëµ½ÆµµãÁĞ±íÖĞ
+			if ( i>=fc_id )		// æ— é‡å¤åˆ™åŠ å…¥åˆ°é¢‘ç‚¹åˆ—è¡¨ä¸­
 			{
 				fc_set[fc_id++] = pbcch_inf.pbcch_arfcn;
 				TRACE_INFO("fc_id1 = %d\r\n",fc_id);  
 			}
 		}
 
-		if ( 1==pbcch_inf.edge_support )	// PBCCH±íÊ¾µ±Ç°Ö§³ÖEDGEÆµµã
+		if ( 1==pbcch_inf.edge_support )	// PBCCHè¡¨ç¤ºå½“å‰æ”¯æŒEDGEé¢‘ç‚¹
 		{
-			for ( i=0; (i<fps_st.edge_count)&&(fc_id<sys_param_1b[MADD_A_CHANNEL_COUNT].val); i++ )	// ´¦ÀíEDGEÆµµã
+			for ( i=0; (i<fps_st.edge_count)&&(fc_id<sys_param_1b[MADD_A_CHANNEL_COUNT].val); i++ )	// å¤„ç†EDGEé¢‘ç‚¹
 			{
-				for ( j=0; j<fc_id; j++ )	// ²éÕÒÓĞÎŞÖØ¸´
+				for ( j=0; j<fc_id; j++ )	// æŸ¥æ‰¾æœ‰æ— é‡å¤
 				{
 					if ( fc_set[j] == fps_st.edge_lst[i] )
 					{
 						break;
 					}
 				}
-				if ( j>=fc_id )		// ÎŞÖØ¸´Ôò¼ÓÈëµ½ÆµµãÁĞ±íÖĞ
+				if ( j>=fc_id )		// æ— é‡å¤åˆ™åŠ å…¥åˆ°é¢‘ç‚¹åˆ—è¡¨ä¸­
 				{
 					fc_set[fc_id++] = fps_st.edge_lst[i];
 					TRACE_INFO("fc_id2 = %d\r\n",fc_id);  
@@ -2187,9 +2187,9 @@ void FPS_SaveResultToSysParam( void )
 		}
 	}
 
-	// ½«ÆµµãĞÅÏ¢¸üĞÂµ½ËÑË÷½á¹û²ÎÊıÖĞ
-	sys_param_2b[MADD_FPS_BCCH_FC_M].val = fps_st.bcch_use.fc;	// Ëø¶¨µÄBCCH
-	fc_power = (INT32)(CALC_POWER( fps_st.bcch_use.power ) - gain_in);	// ÇóÊäÈë¹¦ÂÊdbm = AD¹¦ÂÊ-Ç°¶ËÄ£ÄâÔöÒæG_in
+	// å°†é¢‘ç‚¹ä¿¡æ¯æ›´æ–°åˆ°æœç´¢ç»“æœå‚æ•°ä¸­
+	sys_param_2b[MADD_FPS_BCCH_FC_M].val = fps_st.bcch_use.fc;	// é”å®šçš„BCCH
+	fc_power = (INT32)(CALC_POWER( fps_st.bcch_use.power ) - gain_in);	// æ±‚è¾“å…¥åŠŸç‡dbm = ADåŠŸç‡-å‰ç«¯æ¨¡æ‹Ÿå¢ç›ŠG_in
 	if ( fc_power < -120)
 	{
 		tmp = -120;
@@ -2198,34 +2198,34 @@ void FPS_SaveResultToSysParam( void )
 	{
 		tmp = fc_power;
 	}
-	sys_param_1b[MADD_FPS_BCCH_POW_M].val = (UCHAR8)tmp;		// Ëø¶¨µÄBCCH¹¦ÂÊ
-	// ÁÚÇøBCCHĞÅÏ¢
+	sys_param_1b[MADD_FPS_BCCH_POW_M].val = (UCHAR8)tmp;		// é”å®šçš„BCCHåŠŸç‡
+	// é‚»åŒºBCCHä¿¡æ¯
 	for ( i=0, j=0; (i<FPS_BCCH_MAX)&&(j<6); i++ )
 	{
-		tmp = -120;		// ³õÊ¼»¯¹¦ÂÊÖµÎª-120dbm
+		tmp = -120;		// åˆå§‹åŒ–åŠŸç‡å€¼ä¸º-120dbm
 		if ( i<fps_st.bcch_count)
 		{
-			if ( fps_st.bcch_lst[i].fc == fps_st.bcch_use.fc )	continue;	// ÁĞ±íBCCHÓëµ±Ç°ÔÚÓÃµÄBCCHÒ»ÖÂ£¬²»ÊÇÁÚÇøBCCH
+			if ( fps_st.bcch_lst[i].fc == fps_st.bcch_use.fc )	continue;	// åˆ—è¡¨BCCHä¸å½“å‰åœ¨ç”¨çš„BCCHä¸€è‡´ï¼Œä¸æ˜¯é‚»åŒºBCCH
 			
-			sys_param_2b[MADD_FPS_BCCH_FC_1+j].val = fps_st.bcch_lst[i].fc;	// ËÑË÷µ½µÄÁÚÇøBCCH
-			sys_param_2b[MADD_FPS_CID_1+j].val = fps_st.bcch_lst[i].cid;	// ÁÚÇøBCCH¶ÔÓ¦µÄCID
-			fc_power = (INT32)(CALC_POWER( fps_st.bcch_lst[i].power ) - gain_in);	// ÇóÊäÈë¹¦ÂÊdbm = AD¹¦ÂÊ-Ç°¶ËÄ£ÄâÔöÒæG_in
+			sys_param_2b[MADD_FPS_BCCH_FC_1+j].val = fps_st.bcch_lst[i].fc;	// æœç´¢åˆ°çš„é‚»åŒºBCCH
+			sys_param_2b[MADD_FPS_CID_1+j].val = fps_st.bcch_lst[i].cid;	// é‚»åŒºBCCHå¯¹åº”çš„CID
+			fc_power = (INT32)(CALC_POWER( fps_st.bcch_lst[i].power ) - gain_in);	// æ±‚è¾“å…¥åŠŸç‡dbm = ADåŠŸç‡-å‰ç«¯æ¨¡æ‹Ÿå¢ç›ŠG_in
 			if ( fc_power >= -120)
 			{
-				tmp = fc_power;	// ¹¦ÂÊÖµ¸ßÓÚ-120dbm²Å±£´æ£¬·ÀÖ¹Êı¾İÒç³ö
+				tmp = fc_power;	// åŠŸç‡å€¼é«˜äº-120dbmæ‰ä¿å­˜ï¼Œé˜²æ­¢æ•°æ®æº¢å‡º
 			}
-			sys_param_1b[MADD_FPS_BCCH_POW_1+j].val = (UCHAR8)tmp;		// ÁÚÇøBCCH¹¦ÂÊ
+			sys_param_1b[MADD_FPS_BCCH_POW_1+j].val = (UCHAR8)tmp;		// é‚»åŒºBCCHåŠŸç‡
 		}
 		else
 		{
-			sys_param_2b[MADD_FPS_BCCH_FC_1+j].val = 65535;	// ÎŞĞ§BCCH
-			sys_param_2b[MADD_FPS_CID_1+j].val = 0;				// ÁÚÇøBCCH¶ÔÓ¦µÄCIDÎŞĞ§
-			sys_param_1b[MADD_FPS_BCCH_POW_1+j].val = (UCHAR8)tmp;		// ÁÚÇøBCCH¹¦ÂÊ
+			sys_param_2b[MADD_FPS_BCCH_FC_1+j].val = 65535;	// æ— æ•ˆBCCH
+			sys_param_2b[MADD_FPS_CID_1+j].val = 0;				// é‚»åŒºBCCHå¯¹åº”çš„CIDæ— æ•ˆ
+			sys_param_1b[MADD_FPS_BCCH_POW_1+j].val = (UCHAR8)tmp;		// é‚»åŒºBCCHåŠŸç‡
 		}
-		j++;		// ÁÚĞ¡ÇøBCCH¸öÊı+1
+		j++;		// é‚»å°åŒºBCCHä¸ªæ•°+1
 	}
-	// CAĞÅÏ¢
-	sys_param_1b[MADD_FPS_CA_COUNT].val = fc_id;		// ÓĞĞ§ĞÅµÀÊı
+	// CAä¿¡æ¯
+	sys_param_1b[MADD_FPS_CA_COUNT].val = fc_id;		// æœ‰æ•ˆä¿¡é“æ•°
 	
 	TRACE_INFO("fc_id3s = %d\r\n",fc_id);  
 	
@@ -2238,10 +2238,10 @@ void FPS_SaveResultToSysParam( void )
 		}
 		else
 		{
-			sys_param_2b[MADD_FPS_CA_FC_0+i].val = 65535;		// ÎŞĞ§CA
+			sys_param_2b[MADD_FPS_CA_FC_0+i].val = 65535;		// æ— æ•ˆCA
 		}
 	}
-	sys_param_1b[MADD_FPS_BCCH_LK_ST].val = 1;		// Ëø¶¨BCCH³É¹¦
+	sys_param_1b[MADD_FPS_BCCH_LK_ST].val = 1;		// é”å®šBCCHæˆåŠŸ
 
 	FPS_SetResultToSysFc();
 #endif
@@ -2249,13 +2249,13 @@ void FPS_SaveResultToSysParam( void )
 
 /*************************************************************
 Name: FPS_AutoChkChangeBcch          
-Description: ×Ô¶¯ËÑË÷Ê±,¼ì²éÊÇ·ñĞèÒª¸ü»»µ±Ç°ÔÚÓÃµÄBCCH,¸ù¾İ¹¦ÂÊÃÅÏŞÅĞ¶Ï
+Description: è‡ªåŠ¨æœç´¢æ—¶,æ£€æŸ¥æ˜¯å¦éœ€è¦æ›´æ¢å½“å‰åœ¨ç”¨çš„BCCH,æ ¹æ®åŠŸç‡é—¨é™åˆ¤æ–­
 Input: void
-Return: FALSE-²»ĞèÒª¸ü»»BCCH, TRUE-ĞèÒª¸ü»»BCCH
+Return: FALSE-ä¸éœ€è¦æ›´æ¢BCCH, TRUE-éœ€è¦æ›´æ¢BCCH
 **************************************************************/
 BOOL FPS_AutoChkChangeBcch( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UCHAR8 i;
 	CHAR8 switch_thd;
 	FLOAT32 fc_power_use, fc_power_scan;
@@ -2267,34 +2267,34 @@ BOOL FPS_AutoChkChangeBcch( void )
 			break;
 		}
 	}
-	if ( i>=fps_st.bcch_count )	// ±éÀúÍêÕû¸öĞÂµÄBCCHÁĞ±í,¶¼Ã»ÓĞµ±Ç°ÔÚÓÃµÄBCCHÆµµã,ĞèÒª¸ü»»BCCH
+	if ( i>=fps_st.bcch_count )	// éå†å®Œæ•´ä¸ªæ–°çš„BCCHåˆ—è¡¨,éƒ½æ²¡æœ‰å½“å‰åœ¨ç”¨çš„BCCHé¢‘ç‚¹,éœ€è¦æ›´æ¢BCCH
 	{
-		return b_TRUE;		// ·µ»ØTRUE, ¸ü»»BCCH
+		return b_TRUE;		// è¿”å›TRUE, æ›´æ¢BCCH
 	}
 
-	if ( 0==i )	// µ±Ç°ÔÚÓÃµÄBCCHÆµµãÊÇ¹¦ÂÊ×îÇ¿µÄ, ²»ĞèÒª¸ü»»
+	if ( 0==i )	// å½“å‰åœ¨ç”¨çš„BCCHé¢‘ç‚¹æ˜¯åŠŸç‡æœ€å¼ºçš„, ä¸éœ€è¦æ›´æ¢
 	{
-		return b_FALSE;		// ·µ»ØFALSE, ²»Ğè¸ü»»BCCH
+		return b_FALSE;		// è¿”å›FALSE, ä¸éœ€æ›´æ¢BCCH
 	}
 
-	// µ±Ç°BCCH¹¦ÂÊ²»ÊÇ×îÇ¿µÄ, ±È½Ï¹¦ÂÊ²îÖµ
+	// å½“å‰BCCHåŠŸç‡ä¸æ˜¯æœ€å¼ºçš„, æ¯”è¾ƒåŠŸç‡å·®å€¼
 	fc_power_use = CALC_POWER( fps_st.bcch_use.power );
 	fc_power_scan = CALC_POWER( fps_st.bcch_lst[0].power );
 	
-	if ( fc_power_use>fc_power_scan )	// ÔÚÓÃBCCH¹¦ÂÊ±ÈËÑµ½µÄ´ó,²»ĞèÇĞ»»
+	if ( fc_power_use>fc_power_scan )	// åœ¨ç”¨BCCHåŠŸç‡æ¯”æœåˆ°çš„å¤§,ä¸éœ€åˆ‡æ¢
 	{
 		return b_FALSE;
 	}
 	
-//	switch_thd = (CHAR8)sys_param_1b[MADD_FPS_SWITCH_THD].val;		// ¶ÁÈ¡ÇĞ»»ÃÅÏŞ
-	switch_thd = 3;		// ¹Ì¶¨ÇĞ»»ÃÅÏŞÎª3db
-	if ( (fc_power_scan-fc_power_use)>switch_thd )	// Ïà²î³¬¹ıÃÅÏŞÖµÔòÇĞ»»
+//	switch_thd = (CHAR8)sys_param_1b[MADD_FPS_SWITCH_THD].val;		// è¯»å–åˆ‡æ¢é—¨é™
+	switch_thd = 3;		// å›ºå®šåˆ‡æ¢é—¨é™ä¸º3db
+	if ( (fc_power_scan-fc_power_use)>switch_thd )	// ç›¸å·®è¶…è¿‡é—¨é™å€¼åˆ™åˆ‡æ¢
 	{
-		return b_TRUE;		// ·µ»ØTRUE, ¸ü»»BCCH
+		return b_TRUE;		// è¿”å›TRUE, æ›´æ¢BCCH
 	}
 	else
 	{
-		return b_FALSE;		// ·µ»ØFALSE, ²»Ğè¸ü»»BCCH
+		return b_FALSE;		// è¿”å›FALSE, ä¸éœ€æ›´æ¢BCCH
 	}
 	
 #else
@@ -2304,16 +2304,16 @@ BOOL FPS_AutoChkChangeBcch( void )
 
 /*************************************************************
 Name: FPS_HandleAutoScan          
-Description: ÆµµãËÑË÷Ö÷³ÌĞò
+Description: é¢‘ç‚¹æœç´¢ä¸»ç¨‹åº
 Input: void
 Return: void
 **************************************************************/
 void FPS_HandleAutoScan( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	static UCHAR8 fail_count = 0;
 	static UCHAR8 switch_chk = 0;
-	static UCHAR8 bcch_index = 0;			// ËÑË÷µÄBCCHĞòºÅ
+	static UCHAR8 bcch_index = 0;			// æœç´¢çš„BCCHåºå·
 	UCHAR8 i;
 	UINT16 tmp;
 	
@@ -2325,309 +2325,309 @@ void FPS_HandleAutoScan( void )
 	switch ( fps_st.auto_state )
 	{
 	case FPS_AUTO_ST_NEW_SCAN:
-		FPS_ResetResultParam();	// ¸´Î»ËÑË÷½á¹û
+		FPS_ResetResultParam();	// å¤ä½æœç´¢ç»“æœ
 		FPS_AutoStartBcch();
 		fail_count = 0;
 		fps_st.auto_state = FPS_AUTO_ST_BCCH;
 		break;
 
 	case FPS_AUTO_ST_BCCH:
-		if ( (0==fps_st.bcch_count)||(FPS_ERR_NONE!=fps_st.err_st) )	// ÓĞ´íÎó»òÕÒ²»µ½BCCHÆµµã
+		if ( (0==fps_st.bcch_count)||(FPS_ERR_NONE!=fps_st.err_st) )	// æœ‰é”™è¯¯æˆ–æ‰¾ä¸åˆ°BCCHé¢‘ç‚¹
 		{
-			FPS_AutoStartBcch();		// ÖØĞÂËÑË÷
+			FPS_AutoStartBcch();		// é‡æ–°æœç´¢
 		}
-		else		// BCCHËÑË÷Íê³É
+		else		// BCCHæœç´¢å®Œæˆ
 		{
 			fail_count = 0;
-			bcch_index = 0;		// ¸´Î»BCCHĞòºÅ,´Ó¹¦ÂÊ×î´óµÄµÚÒ»¸öBCCH¿ªÊ¼
+			bcch_index = 0;		// å¤ä½BCCHåºå·,ä»åŠŸç‡æœ€å¤§çš„ç¬¬ä¸€ä¸ªBCCHå¼€å§‹
 			
-			if ( 65535!=sys_param_2b[MADD_FPS_BCCH_LK_SET].val )		// Ê¹ÓÃBCCHËøÆµ¹¦ÄÜ
+			if ( 65535!=sys_param_2b[MADD_FPS_BCCH_LK_SET].val )		// ä½¿ç”¨BCCHé”é¢‘åŠŸèƒ½
 			{
-				for ( bcch_index=0; bcch_index<fps_st.bcch_count; bcch_index++ )	// ÔÚ½á¹ûÁĞ±íÖĞ²éÕÒÄ¿±êBCCH
+				for ( bcch_index=0; bcch_index<fps_st.bcch_count; bcch_index++ )	// åœ¨ç»“æœåˆ—è¡¨ä¸­æŸ¥æ‰¾ç›®æ ‡BCCH
 				{
 					if ( sys_param_2b[MADD_FPS_BCCH_LK_SET].val == fps_st.bcch_lst[bcch_index].fc )
 					{
-						break;	// ÕÒµ½ÔòÌø³öÑ­»·
+						break;	// æ‰¾åˆ°åˆ™è·³å‡ºå¾ªç¯
 					}
 				}
 				
-				if ( bcch_index >= fps_st.bcch_count )	// ÔÚBCCH½á¹ûÁĞ±íÖĞÕÒ²»µ½Ö¸¶¨ËøÆµµÄBCCH
+				if ( bcch_index >= fps_st.bcch_count )	// åœ¨BCCHç»“æœåˆ—è¡¨ä¸­æ‰¾ä¸åˆ°æŒ‡å®šé”é¢‘çš„BCCH
 				{
 					fps_st.auto_state = FPS_AUTO_ST_BCCH;
-					FPS_AutoStartBcch();		// ÖØĞÂËÑË÷BCCH
+					FPS_AutoStartBcch();		// é‡æ–°æœç´¢BCCH
 					break;
 				}
 			}
 
-			if ( 0!=sys_param_2b[MADD_FPS_CID_LK_SET].val )		// Ê¹ÓÃCIDËøÆµ¹¦ÄÜ
+			if ( 0!=sys_param_2b[MADD_FPS_CID_LK_SET].val )		// ä½¿ç”¨CIDé”é¢‘åŠŸèƒ½
 			{
-				if ( 65535!=sys_param_2b[MADD_FPS_BCCH_LK_SET].val )		// Ê¹ÓÃBCCHËøÆµ¹¦ÄÜ
+				if ( 65535!=sys_param_2b[MADD_FPS_BCCH_LK_SET].val )		// ä½¿ç”¨BCCHé”é¢‘åŠŸèƒ½
 				{
-					if ( fps_st.bcch_lst[bcch_index].cid != sys_param_2b[MADD_FPS_CID_LK_SET].val )	// Ëø¶¨µÄBCCH¶ÔÓ¦µÄCIDÖµÓëÄ¿±êCIDÖµ²»Æ¥Åä
+					if ( fps_st.bcch_lst[bcch_index].cid != sys_param_2b[MADD_FPS_CID_LK_SET].val )	// é”å®šçš„BCCHå¯¹åº”çš„CIDå€¼ä¸ç›®æ ‡CIDå€¼ä¸åŒ¹é…
 					{
 						fps_st.auto_state = FPS_AUTO_ST_BCCH;
-						FPS_AutoStartBcch();		// ÖØĞÂËÑË÷BCCH
+						FPS_AutoStartBcch();		// é‡æ–°æœç´¢BCCH
 						break;
 					}
 				}
 				else
 				{
-					for ( bcch_index=0; bcch_index<fps_st.bcch_count; bcch_index++ )	// ÔÚ½á¹ûÁĞ±íÖĞ²éÕÒÄ¿±êCID
+					for ( bcch_index=0; bcch_index<fps_st.bcch_count; bcch_index++ )	// åœ¨ç»“æœåˆ—è¡¨ä¸­æŸ¥æ‰¾ç›®æ ‡CID
 					{
 						if ( sys_param_2b[MADD_FPS_CID_LK_SET].val == fps_st.bcch_lst[bcch_index].cid )
 						{
-							break;	// ÕÒµ½ÔòÌø³öÑ­»·
+							break;	// æ‰¾åˆ°åˆ™è·³å‡ºå¾ªç¯
 						}
 					}
 
-					if ( bcch_index >= fps_st.bcch_count )	// ÔÚ½á¹ûÁĞ±íÖĞÕÒ²»µ½Ö¸¶¨ËøÆµµÄCID
+					if ( bcch_index >= fps_st.bcch_count )	// åœ¨ç»“æœåˆ—è¡¨ä¸­æ‰¾ä¸åˆ°æŒ‡å®šé”é¢‘çš„CID
 					{
 						fps_st.auto_state = FPS_AUTO_ST_BCCH;
-						FPS_AutoStartBcch();		// ÖØĞÂËÑË÷BCCH
+						FPS_AutoStartBcch();		// é‡æ–°æœç´¢BCCH
 						break;
 					}
 				}
 			}
 
-			FPS_TchScanRun(fps_st.bcch_lst[bcch_index].fc, 60);		// ²ÉÓÃÑ¡ÖĞÆµµãÆô¶¯TCHËÑË÷
-			fps_st.auto_state = FPS_AUTO_ST_TCH;	// ×´Ì¬×ª±ä: ËÑË÷TCH
+			FPS_TchScanRun(fps_st.bcch_lst[bcch_index].fc, 60);		// é‡‡ç”¨é€‰ä¸­é¢‘ç‚¹å¯åŠ¨TCHæœç´¢
+			fps_st.auto_state = FPS_AUTO_ST_TCH;	// çŠ¶æ€è½¬å˜: æœç´¢TCH
 		}
 		break;
 
 #if 0
 	case FPS_AUTO_ST_BCCH:
-		if ( (0==fps_st.bcch_count)||(FPS_ERR_NONE!=fps_st.err_st) )	// ÓĞ´íÎó»òÕÒ²»µ½BCCHÆµµã
+		if ( (0==fps_st.bcch_count)||(FPS_ERR_NONE!=fps_st.err_st) )	// æœ‰é”™è¯¯æˆ–æ‰¾ä¸åˆ°BCCHé¢‘ç‚¹
 		{
-			FPS_AutoStartBcch();		// ÖØĞÂËÑË÷
+			FPS_AutoStartBcch();		// é‡æ–°æœç´¢
 		}
-		else		// BCCHËÑË÷Íê³É
+		else		// BCCHæœç´¢å®Œæˆ
 		{
 			fail_count = 0;
-			bcch_index = 0;		// ¸´Î»BCCHĞòºÅ,´Ó¹¦ÂÊ×î´óµÄµÚÒ»¸öBCCH¿ªÊ¼
+			bcch_index = 0;		// å¤ä½BCCHåºå·,ä»åŠŸç‡æœ€å¤§çš„ç¬¬ä¸€ä¸ªBCCHå¼€å§‹
 			
-			FPS_CidScanRun(fps_st.bcch_lst[bcch_index].fc);	// ²ÉÓÃÑ¡ÖĞÆµµãÆô¶¯TCH_CIDËÑË÷
-			fps_st.auto_state = FPS_AUTO_ST_SCAN_CID;		// ×´Ì¬×ª±ä: ËÑË÷CID
+			FPS_CidScanRun(fps_st.bcch_lst[bcch_index].fc);	// é‡‡ç”¨é€‰ä¸­é¢‘ç‚¹å¯åŠ¨TCH_CIDæœç´¢
+			fps_st.auto_state = FPS_AUTO_ST_SCAN_CID;		// çŠ¶æ€è½¬å˜: æœç´¢CID
 		}
 		break;
 
-	case FPS_AUTO_ST_SCAN_CID:		// ½âÎöCID
+	case FPS_AUTO_ST_SCAN_CID:		// è§£æCID
 		fps_st.time_out--;
-		if ( 0==(BM_SCAN_AREA_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )	// ËÑË÷Î´Íê³É
+		if ( 0==(BM_SCAN_AREA_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )	// æœç´¢æœªå®Œæˆ
 		{
-			if ( fps_st.time_out>0 )	// µÈ´ı³¬Ê±½áÊø
+			if ( fps_st.time_out>0 )	// ç­‰å¾…è¶…æ—¶ç»“æŸ
 			{
 				break;
 			}
-			else		// ³¬Ê±
+			else		// è¶…æ—¶
 			{
-				fps_st.bcch_lst[bcch_index].cid = 0;		// CIDÎŞĞ§
+				fps_st.bcch_lst[bcch_index].cid = 0;		// CIDæ— æ•ˆ
 			}
 		}
-		else		// CID½âÎöÍê³É
+		else		// CIDè§£æå®Œæˆ
 		{
-			fps_st.bcch_lst[bcch_index].cid = FpgaReadRegister( FPGA_REG_AREA_INFO );	// ¶ÁÈ¡Ğ¡ÇøCIDĞÅÏ¢
+			fps_st.bcch_lst[bcch_index].cid = FpgaReadRegister( FPGA_REG_AREA_INFO );	// è¯»å–å°åŒºCIDä¿¡æ¯
 		}
 		
-		bcch_index++;	// ÇĞ»»ÏÂÒ»¸öBCCH
+		bcch_index++;	// åˆ‡æ¢ä¸‹ä¸€ä¸ªBCCH
 		if ( bcch_index < fps_st.bcch_count )	
 		{
-			FPS_CidScanRun(fps_st.bcch_lst[bcch_index].fc);		// ËÑË÷ÏÂÒ»¸öBCCHµÄCIDĞÅÏ¢
+			FPS_CidScanRun(fps_st.bcch_lst[bcch_index].fc);		// æœç´¢ä¸‹ä¸€ä¸ªBCCHçš„CIDä¿¡æ¯
 			break;
 		}
 
-		// BCCHÁĞ±íÖĞµÄCIDÈ«²¿±éÀúÍê³É
-		bcch_index = 0;	// Ä¬ÈÏ²ÉÓÃ¹¦ÂÊ×î´óµÄBCCH
+		// BCCHåˆ—è¡¨ä¸­çš„CIDå…¨éƒ¨éå†å®Œæˆ
+		bcch_index = 0;	// é»˜è®¤é‡‡ç”¨åŠŸç‡æœ€å¤§çš„BCCH
 		
-		if ( 65535!=sys_param_2b[MADD_FPS_BCCH_LK_SET].val )		// Ê¹ÓÃBCCHËøÆµ¹¦ÄÜ
+		if ( 65535!=sys_param_2b[MADD_FPS_BCCH_LK_SET].val )		// ä½¿ç”¨BCCHé”é¢‘åŠŸèƒ½
 		{
-			for ( bcch_index=0; bcch_index<fps_st.bcch_count; bcch_index++ )	// ÔÚ½á¹ûÁĞ±íÖĞ²éÕÒÄ¿±êBCCH
+			for ( bcch_index=0; bcch_index<fps_st.bcch_count; bcch_index++ )	// åœ¨ç»“æœåˆ—è¡¨ä¸­æŸ¥æ‰¾ç›®æ ‡BCCH
 			{
 				if ( sys_param_2b[MADD_FPS_BCCH_LK_SET].val == fps_st.bcch_lst[bcch_index].fc )
 				{
-					break;	// ÕÒµ½ÔòÌø³öÑ­»·
+					break;	// æ‰¾åˆ°åˆ™è·³å‡ºå¾ªç¯
 				}
 			}
 			
-			if ( bcch_index >= fps_st.bcch_count )	// ÔÚBCCH½á¹ûÁĞ±íÖĞÕÒ²»µ½Ö¸¶¨ËøÆµµÄBCCH
+			if ( bcch_index >= fps_st.bcch_count )	// åœ¨BCCHç»“æœåˆ—è¡¨ä¸­æ‰¾ä¸åˆ°æŒ‡å®šé”é¢‘çš„BCCH
 			{
 				fps_st.auto_state = FPS_AUTO_ST_BCCH;
-				FPS_AutoStartBcch();		// ÖØĞÂËÑË÷BCCH
+				FPS_AutoStartBcch();		// é‡æ–°æœç´¢BCCH
 				break;
 			}
 		}
 
-		if ( 0!=sys_param_2b[MADD_FPS_CID_LK_SET].val )		// Ê¹ÓÃCIDËøÆµ¹¦ÄÜ
+		if ( 0!=sys_param_2b[MADD_FPS_CID_LK_SET].val )		// ä½¿ç”¨CIDé”é¢‘åŠŸèƒ½
 		{
-			if ( 65535!=sys_param_2b[MADD_FPS_BCCH_LK_SET].val )		// Ê¹ÓÃBCCHËøÆµ¹¦ÄÜ
+			if ( 65535!=sys_param_2b[MADD_FPS_BCCH_LK_SET].val )		// ä½¿ç”¨BCCHé”é¢‘åŠŸèƒ½
 			{
-				if ( fps_st.bcch_lst[bcch_index].cid != sys_param_2b[MADD_FPS_CID_LK_SET].val )	// Ëø¶¨µÄBCCH¶ÔÓ¦µÄCIDÖµÓëÄ¿±êCIDÖµ²»Æ¥Åä
+				if ( fps_st.bcch_lst[bcch_index].cid != sys_param_2b[MADD_FPS_CID_LK_SET].val )	// é”å®šçš„BCCHå¯¹åº”çš„CIDå€¼ä¸ç›®æ ‡CIDå€¼ä¸åŒ¹é…
 				{
 					fps_st.auto_state = FPS_AUTO_ST_BCCH;
-					FPS_AutoStartBcch();		// ÖØĞÂËÑË÷BCCH
+					FPS_AutoStartBcch();		// é‡æ–°æœç´¢BCCH
 					break;
 				}
 			}
 			else
 			{
-				for ( bcch_index=0; bcch_index<fps_st.bcch_count; bcch_index++ )	// ÔÚ½á¹ûÁĞ±íÖĞ²éÕÒÄ¿±êCID
+				for ( bcch_index=0; bcch_index<fps_st.bcch_count; bcch_index++ )	// åœ¨ç»“æœåˆ—è¡¨ä¸­æŸ¥æ‰¾ç›®æ ‡CID
 				{
 					if ( sys_param_2b[MADD_FPS_CID_LK_SET].val == fps_st.bcch_lst[bcch_index].cid )
 					{
-						break;	// ÕÒµ½ÔòÌø³öÑ­»·
+						break;	// æ‰¾åˆ°åˆ™è·³å‡ºå¾ªç¯
 					}
 				}
 
-				if ( bcch_index >= fps_st.bcch_count )	// ÔÚ½á¹ûÁĞ±íÖĞÕÒ²»µ½Ö¸¶¨ËøÆµµÄCID
+				if ( bcch_index >= fps_st.bcch_count )	// åœ¨ç»“æœåˆ—è¡¨ä¸­æ‰¾ä¸åˆ°æŒ‡å®šé”é¢‘çš„CID
 				{
 					fps_st.auto_state = FPS_AUTO_ST_BCCH;
-					FPS_AutoStartBcch();		// ÖØĞÂËÑË÷BCCH
+					FPS_AutoStartBcch();		// é‡æ–°æœç´¢BCCH
 					break;
 				}
 			}
 		}
 
-		FPS_TchScanRun(fps_st.bcch_lst[bcch_index].fc, 0);		// ²ÉÓÃÑ¡ÖĞÆµµãÆô¶¯TCHËÑË÷
-		fps_st.auto_state = FPS_AUTO_ST_TCH;	// ×´Ì¬×ª±ä: ËÑË÷TCH
+		FPS_TchScanRun(fps_st.bcch_lst[bcch_index].fc, 0);		// é‡‡ç”¨é€‰ä¸­é¢‘ç‚¹å¯åŠ¨TCHæœç´¢
+		fps_st.auto_state = FPS_AUTO_ST_TCH;	// çŠ¶æ€è½¬å˜: æœç´¢TCH
 		break;
 #endif
 
 	case FPS_AUTO_ST_TCH:
-		if ( (FPS_ERR_NONE==fps_st.err_st)&&(fps_st.tch_count>0) )	// TCHËÑË÷³É¹¦Íê³É
+		if ( (FPS_ERR_NONE==fps_st.err_st)&&(fps_st.tch_count>0) )	// TCHæœç´¢æˆåŠŸå®Œæˆ
 		{
 			fail_count = 0;
-			fps_st.switch_count++;	// BCCHÇĞ»»¼ÆÊıÀÛ¼Ó
-			// ¼ÇÂ¼µ±Ç°Ëø¶¨µÄBCCHĞÅÏ¢
+			fps_st.switch_count++;	// BCCHåˆ‡æ¢è®¡æ•°ç´¯åŠ 
+			// è®°å½•å½“å‰é”å®šçš„BCCHä¿¡æ¯
 			fps_st.bcch_use.fc = fps_st.bcch_lst[bcch_index].fc;
 			fps_st.bcch_use.power = fps_st.bcch_lst[bcch_index].power;
 			fps_st.bcch_use.precision = fps_st.bcch_lst[bcch_index].precision;
-			// ÉèÖÃÆµµã
+			// è®¾ç½®é¢‘ç‚¹
 			FPS_SaveResultToSysParam();	
-			// ÖØĞÂÆô¶¯BCCHËÑË÷,·´¸´¼ì²â
+			// é‡æ–°å¯åŠ¨BCCHæœç´¢,åå¤æ£€æµ‹
 			fps_st.auto_state = FPS_AUTO_ST_CHK_BCCH;
 			switch_chk = 0;
 			FPS_AutoStartBcch();	
 		}
-		else		// TCHËÑË÷Ê§°Ü
+		else		// TCHæœç´¢å¤±è´¥
 		{
 			fail_count++;
-			if ( fail_count<3 )		// ÖØÊÔ3´Î,²»³É¹¦ÔòÌø¹ı´ËBCCH
+			if ( fail_count<3 )		// é‡è¯•3æ¬¡,ä¸æˆåŠŸåˆ™è·³è¿‡æ­¤BCCH
 			{
-				FPS_TchScanRun(fps_st.bcch_lst[bcch_index].fc, 0);	// ÖØĞÂËÑË÷
+				FPS_TchScanRun(fps_st.bcch_lst[bcch_index].fc, 0);	// é‡æ–°æœç´¢
 			}
 			else
 			{
-				if ( sys_param_2b[MADD_FPS_CID_LK_SET].val != 0 )		// ÒÑÆôÓÃCIDËø¶¨¹¦ÄÜ,½âÎöTCHÊ§°ÜÔòÖØĞÂËÑË÷BCCH
+				if ( sys_param_2b[MADD_FPS_CID_LK_SET].val != 0 )		// å·²å¯ç”¨CIDé”å®šåŠŸèƒ½,è§£æTCHå¤±è´¥åˆ™é‡æ–°æœç´¢BCCH
 				{
-					fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// Çå³ı×´Ì¬,ÖØĞÂËÑË÷
+					fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// æ¸…é™¤çŠ¶æ€,é‡æ–°æœç´¢
 					break;
 				}
 
-				if ( sys_param_2b[MADD_FPS_BCCH_LK_SET].val != 65535 )	// ÒÑÆôÓÃËøÆµ¹¦ÄÜ,½âÎöTCHÊ§°ÜÔòÖØĞÂËÑË÷BCCH
+				if ( sys_param_2b[MADD_FPS_BCCH_LK_SET].val != 65535 )	// å·²å¯ç”¨é”é¢‘åŠŸèƒ½,è§£æTCHå¤±è´¥åˆ™é‡æ–°æœç´¢BCCH
 				{
-					fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// Çå³ı×´Ì¬,ÖØĞÂËÑË÷
+					fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// æ¸…é™¤çŠ¶æ€,é‡æ–°æœç´¢
 					break;
 				}
 				
-				bcch_index++;	// ÇĞ»»µ½ÏÂÒ»¸öBCCH½øĞĞ½âÎö
-				if ( bcch_index >= fps_st.bcch_count )	// ÁĞ±íÖĞµÄBCCH¶¼±éÀúÒ»´Î,Ã»ÓĞÒ»¸ö¿ÉÒÔ½âÎöTCHµÄ,ÖØĞÂËÑË÷BCCH
+				bcch_index++;	// åˆ‡æ¢åˆ°ä¸‹ä¸€ä¸ªBCCHè¿›è¡Œè§£æ
+				if ( bcch_index >= fps_st.bcch_count )	// åˆ—è¡¨ä¸­çš„BCCHéƒ½éå†ä¸€æ¬¡,æ²¡æœ‰ä¸€ä¸ªå¯ä»¥è§£æTCHçš„,é‡æ–°æœç´¢BCCH
 				{
-					fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// Çå³ı×´Ì¬,ÖØĞÂËÑË÷
+					fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// æ¸…é™¤çŠ¶æ€,é‡æ–°æœç´¢
 				}
 				else		
 				{
-					FPS_TchScanRun( fps_st.bcch_lst[bcch_index].fc, 60 );	// ÖØĞÂËÑË÷
+					FPS_TchScanRun( fps_st.bcch_lst[bcch_index].fc, 60 );	// é‡æ–°æœç´¢
 				}
 			}
 		}
 		break;
 
 	case FPS_AUTO_ST_CHK_BCCH:
-		if (FPS_ERR_NONE==fps_st.err_st)	// BCCHËÑË÷ÎŞ´íÎóÍê³É
+		if (FPS_ERR_NONE==fps_st.err_st)	// BCCHæœç´¢æ— é”™è¯¯å®Œæˆ
 		{
-			fail_count = 0;	// ÇåÁã´íÎó¼ÆÊı
+			fail_count = 0;	// æ¸…é›¶é”™è¯¯è®¡æ•°
 			
-			for ( i=0; i<fps_st.bcch_count; i++ )		// ÔÚµ±Ç°BCCHËÑË÷½á¹ûÁĞ±íÖĞ²éÕÒÕıÔÚÊ¹ÓÃµÄBCCH
+			for ( i=0; i<fps_st.bcch_count; i++ )		// åœ¨å½“å‰BCCHæœç´¢ç»“æœåˆ—è¡¨ä¸­æŸ¥æ‰¾æ­£åœ¨ä½¿ç”¨çš„BCCH
 			{
-				if ( fps_st.bcch_lst[i].fc == fps_st.bcch_use.fc )	// ÔÚµ±Ç°BCCHÁĞ±íÖĞÕÒµ½ÕıÔÚÓÃµÄBCCH
+				if ( fps_st.bcch_lst[i].fc == fps_st.bcch_use.fc )	// åœ¨å½“å‰BCCHåˆ—è¡¨ä¸­æ‰¾åˆ°æ­£åœ¨ç”¨çš„BCCH
 				{
-					break;	// Ìø³öÑ­»·£¬½âÎöBCCH
+					break;	// è·³å‡ºå¾ªç¯ï¼Œè§£æBCCH
 				}
 			}
 
-			if ( i<fps_st.bcch_count )	// ÕÒµ½ÕıÔÚÊ¹ÓÃµÄBCCH£¬Æô¶¯½âÎöTCH
+			if ( i<fps_st.bcch_count )	// æ‰¾åˆ°æ­£åœ¨ä½¿ç”¨çš„BCCHï¼Œå¯åŠ¨è§£æTCH
 			{
-				fps_st.auto_state = FPS_AUTO_ST_CHK_TCH;	// ×´Ì¬»ú->ÖØĞÂ½âÎöÒµÎñĞÅµÀ
-				FPS_TchScanRun( fps_st.bcch_use.fc, 60 );	// ½âÎöÒµÎñĞÅµÀ
-				break;			// Ìø³ö
+				fps_st.auto_state = FPS_AUTO_ST_CHK_TCH;	// çŠ¶æ€æœº->é‡æ–°è§£æä¸šåŠ¡ä¿¡é“
+				FPS_TchScanRun( fps_st.bcch_use.fc, 60 );	// è§£æä¸šåŠ¡ä¿¡é“
+				break;			// è·³å‡º
 			}
 		}
-		// BCCHËÑË÷³ö´í´¦Àí
-		fail_count++;		// ´íÎó¼ÆÊıÀÛ¼Ó
-		if ( fail_count > 3 )		// Á¬Ğø3´ÎËÑË÷BCCHÊ§°Ü
+		// BCCHæœç´¢å‡ºé”™å¤„ç†
+		fail_count++;		// é”™è¯¯è®¡æ•°ç´¯åŠ 
+		if ( fail_count > 3 )		// è¿ç»­3æ¬¡æœç´¢BCCHå¤±è´¥
 		{
-			fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// Çå³ı×´Ì¬,ÖØĞÂËÑË÷
+			fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// æ¸…é™¤çŠ¶æ€,é‡æ–°æœç´¢
 		}
 		else
 		{
-			FPS_AutoStartBcch();		// ÓĞ´íÎó»òÕÒ²»µ½BCCHÆµµã,ÖØĞÂËÑË÷
+			FPS_AutoStartBcch();		// æœ‰é”™è¯¯æˆ–æ‰¾ä¸åˆ°BCCHé¢‘ç‚¹,é‡æ–°æœç´¢
 		}
 		break;
 
 	case FPS_AUTO_ST_CHK_TCH:
-		if ( (FPS_ERR_NONE==fps_st.err_st)&&(fps_st.tch_count>0) )	// TCHËÑË÷³É¹¦Íê³É
+		if ( (FPS_ERR_NONE==fps_st.err_st)&&(fps_st.tch_count>0) )	// TCHæœç´¢æˆåŠŸå®Œæˆ
 		{
-			fail_count = 0;	// ÇåÁã´íÎó¼ÆÊı
+			fail_count = 0;	// æ¸…é›¶é”™è¯¯è®¡æ•°
 			
-			FPS_SaveResultToSysParam();		// ¸üĞÂÒµÎñÆµµãĞÅÏ¢
+			FPS_SaveResultToSysParam();		// æ›´æ–°ä¸šåŠ¡é¢‘ç‚¹ä¿¡æ¯
 
 			tmp = 0;
-			if ( 0!=sys_param_2b[MADD_FPS_CID_LK_SET].val )	// ÆôÓÃCIDËø¶¨¹¦ÄÜ
+			if ( 0!=sys_param_2b[MADD_FPS_CID_LK_SET].val )	// å¯ç”¨CIDé”å®šåŠŸèƒ½
 			{
-				if ( sys_param_2b[MADD_FPS_CID].val != sys_param_2b[MADD_FPS_CID_LK_SET].val )	// µ±Ç°BCCHµÄCIDÓëÄ¿±êCID²»Ò»ÖÂ
+				if ( sys_param_2b[MADD_FPS_CID].val != sys_param_2b[MADD_FPS_CID_LK_SET].val )	// å½“å‰BCCHçš„CIDä¸ç›®æ ‡CIDä¸ä¸€è‡´
 				{
-					tmp = 1;			// ÉèÖÃĞèÒªÇĞ»»±êÖ¾
+					tmp = 1;			// è®¾ç½®éœ€è¦åˆ‡æ¢æ ‡å¿—
 				}
 			}
-			else		// Ã»ÓĞÆôÓÃCIDËø¶¨¹¦ÄÜ
+			else		// æ²¡æœ‰å¯ç”¨CIDé”å®šåŠŸèƒ½
 			{
-				if (65535==sys_param_2b[MADD_FPS_BCCH_LK_SET].val)		// Ã»ÆôÓÃBCCHËøÆµ¹¦ÄÜ, ¸ù¾İ¹¦ÂÊÅĞ¶ÏÊÇ·ñĞèÒªÇĞ»»BCCH
+				if (65535==sys_param_2b[MADD_FPS_BCCH_LK_SET].val)		// æ²¡å¯ç”¨BCCHé”é¢‘åŠŸèƒ½, æ ¹æ®åŠŸç‡åˆ¤æ–­æ˜¯å¦éœ€è¦åˆ‡æ¢BCCH
 				{
-					if ( b_TRUE == FPS_AutoChkChangeBcch() )		// ĞèÒªÇĞ»»µ½¹¦ÂÊ¸ü´óµÄBCCH
+					if ( b_TRUE == FPS_AutoChkChangeBcch() )		// éœ€è¦åˆ‡æ¢åˆ°åŠŸç‡æ›´å¤§çš„BCCH
 					{
-						tmp = 1;		// ÉèÖÃĞèÒªÇĞ»»±êÖ¾
+						tmp = 1;		// è®¾ç½®éœ€è¦åˆ‡æ¢æ ‡å¿—
 					}
 				}
 			}
 
-			if ( 0==tmp )		// ËÑË÷½á¹ûÅĞ¶Ï²»ĞèÒªÇĞ»»BCCH
+			if ( 0==tmp )		// æœç´¢ç»“æœåˆ¤æ–­ä¸éœ€è¦åˆ‡æ¢BCCH
 			{
-				switch_chk = 0;	// Çå³ıBCCHÇĞ»»ĞèÇó¼ÆÊıÖµ
+				switch_chk = 0;	// æ¸…é™¤BCCHåˆ‡æ¢éœ€æ±‚è®¡æ•°å€¼
 			}
-			else		// ËÑË÷½á¹ûÅĞ¶ÏĞèÒªÇĞ»»BCCH
+			else		// æœç´¢ç»“æœåˆ¤æ–­éœ€è¦åˆ‡æ¢BCCH
 			{
-				switch_chk++;	// ĞèÒªÇĞ»»¼ÆÊı+1
+				switch_chk++;	// éœ€è¦åˆ‡æ¢è®¡æ•°+1
 			}
 			
-			if ( switch_chk > 3 )	// Á¬Ğø3´Î¼ì²â½á¹û¶¼ÊÇĞèÒªÇĞ»», Ôò¸´Î»×´Ì¬»ú, ×¼±¸ÇĞ»»
+			if ( switch_chk > 3 )	// è¿ç»­3æ¬¡æ£€æµ‹ç»“æœéƒ½æ˜¯éœ€è¦åˆ‡æ¢, åˆ™å¤ä½çŠ¶æ€æœº, å‡†å¤‡åˆ‡æ¢
 			{
-				fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// Çå³ı×´Ì¬,ÖØĞÂËÑË÷
+				fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// æ¸…é™¤çŠ¶æ€,é‡æ–°æœç´¢
 			}
-			else		// ²»ÇĞ»»BCCH, ÖØĞÂÆô¶¯BCCHËÑË÷,·´¸´¼ì²â
+			else		// ä¸åˆ‡æ¢BCCH, é‡æ–°å¯åŠ¨BCCHæœç´¢,åå¤æ£€æµ‹
 			{
 				fps_st.auto_state = FPS_AUTO_ST_CHK_BCCH;
 				FPS_AutoStartBcch();	
 			}
 		}
-		else		// TCHËÑË÷Ê§°Ü
+		else		// TCHæœç´¢å¤±è´¥
 		{
 			fail_count++;
-			if ( fail_count<3 )		// ÖØÊÔ3´Î,²»³É¹¦ÔòÖØĞÂ¿ªÊ¼BCCHËÑË÷
+			if ( fail_count<3 )		// é‡è¯•3æ¬¡,ä¸æˆåŠŸåˆ™é‡æ–°å¼€å§‹BCCHæœç´¢
 			{
-				FPS_TchScanRun( fps_st.bcch_use.fc, 0 );	// ÖØĞÂËÑË÷
+				FPS_TchScanRun( fps_st.bcch_use.fc, 0 );	// é‡æ–°æœç´¢
 			}
 			else
 			{
-				fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// Çå³ı×´Ì¬,ÖØĞÂËÑË÷
+				fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// æ¸…é™¤çŠ¶æ€,é‡æ–°æœç´¢
 			}
 		}
 		break;
@@ -2636,7 +2636,7 @@ void FPS_HandleAutoScan( void )
 		break;
 
 	default:
-		fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// Î´Öª×´Ì¬,ÖØĞÂËÑË÷
+		fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// æœªçŸ¥çŠ¶æ€,é‡æ–°æœç´¢
 	}
 
 #endif	
@@ -2644,34 +2644,34 @@ void FPS_HandleAutoScan( void )
 
 /*************************************************************
 Name:FPS_BcchFunc          
-Description: BCCHËÑË÷Ö÷³ÌĞò
+Description: BCCHæœç´¢ä¸»ç¨‹åº
 Input: void
 Return: void
 **************************************************************/
 void FPS_BcchFunc( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	static UCHAR8 bcch_index;
 	UINT32 fpga_fw;
 	WTD_CLR;
 	switch( fps_st.scan_st )
 	{
 	case FPS_SCAN_ST_BCCH:
-		if ( 0!=(BM_SCAN_BCCH_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )		// ÅĞ¶ÏBCCHËÑË÷ÊÇ·ñÍê³É
+		if ( 0!=(BM_SCAN_BCCH_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )		// åˆ¤æ–­BCCHæœç´¢æ˜¯å¦å®Œæˆ
 		{
 			FPS_HandleBcch();
 			if ( fps_st.bcch_count>0 )
 			{
 				fps_st.scan_st = FPS_SCAN_ST_CID;
 				bcch_index = 0;
-				// Ğ´Æµµã,Æô¶¯CIDËÑË÷
+				// å†™é¢‘ç‚¹,å¯åŠ¨CIDæœç´¢
 				fpga_fw = FPS_CalcFpgaFreqWord(SYS_A_FLAG, fps_st.bcch_lst[bcch_index].fc);
 				FPGA_ENABLE_WRITE;
 				//FpgaWriteRegister(FPGA_REG_BCCH_DF, fpga_fw );	
-	            FpgaWriteRegister(FPGA_REG_BCCH_DF_1, (UINT16)(((fpga_fw>>12)&0x3FFF)|((fpga_fw&0x80000000)>>16)));// Ğ´Æµµã[25:12]Î»,Æô¶¯ËÑË÷
-	            FpgaWriteRegister(FPGA_REG_BCCH_DF_2, (UINT16)(fpga_fw&0xFFF));	// Ğ´Æµµã[11:0]Î»,Æô¶¯ËÑË÷				
+	            FpgaWriteRegister(FPGA_REG_BCCH_DF_1, (UINT16)(((fpga_fw>>12)&0x3FFF)|((fpga_fw&0x80000000)>>16)));// å†™é¢‘ç‚¹[25:12]ä½,å¯åŠ¨æœç´¢
+	            FpgaWriteRegister(FPGA_REG_BCCH_DF_2, (UINT16)(fpga_fw&0xFFF));	// å†™é¢‘ç‚¹[11:0]ä½,å¯åŠ¨æœç´¢				
 				FPGA_DISABLE_WRITE;
-				fps_st.time_out = 30;				// ³¬Ê±:30Ãë(µ÷ÊÔÊ±Ä¬ÈÏ²»¿ÉĞŞ¸Ä)
+				fps_st.time_out = 30;				// è¶…æ—¶:30ç§’(è°ƒè¯•æ—¶é»˜è®¤ä¸å¯ä¿®æ”¹)
 			}
 			else
 			{
@@ -2695,38 +2695,38 @@ void FPS_BcchFunc( void )
 		break;
 
 	case FPS_SCAN_ST_CID:
-		if ( 0==(BM_SCAN_AREA_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )	// ËÑË÷Î´Íê³É
+		if ( 0==(BM_SCAN_AREA_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )	// æœç´¢æœªå®Œæˆ
 		{
-			if ( fps_st.time_out>0 )	// µÈ´ı³¬Ê±½áÊø
+			if ( fps_st.time_out>0 )	// ç­‰å¾…è¶…æ—¶ç»“æŸ
 			{
 				fps_st.time_out--;
 				break;
 			}
-			else		// ³¬Ê±
+			else		// è¶…æ—¶
 			{
-				fps_st.bcch_lst[bcch_index].cid = 0;		// CIDÎŞĞ§
+				fps_st.bcch_lst[bcch_index].cid = 0;		// CIDæ— æ•ˆ
 			}
 		}
-		else		// CID½âÎöÍê³É
+		else		// CIDè§£æå®Œæˆ
 		{
-			fps_st.bcch_lst[bcch_index].cid = FpgaReadRegister( FPGA_REG_AREA_INFO );	// ¶ÁÈ¡Ğ¡ÇøCIDĞÅÏ¢
-			FpgaReadRegister(FPGA_REG_AREA_INFO);		// ¿Õ¶Á2´Î
+			fps_st.bcch_lst[bcch_index].cid = FpgaReadRegister( FPGA_REG_AREA_INFO );	// è¯»å–å°åŒºCIDä¿¡æ¯
+			FpgaReadRegister(FPGA_REG_AREA_INFO);		// ç©ºè¯»2æ¬¡
 			FpgaReadRegister(FPGA_REG_AREA_INFO);
 		}
 		
-		bcch_index++;	// ÇĞ»»ÏÂÒ»¸öBCCH
+		bcch_index++;	// åˆ‡æ¢ä¸‹ä¸€ä¸ªBCCH
 		if ( bcch_index < fps_st.bcch_count )	
 		{
-			// ËÑË÷ÏÂÒ»¸öBCCHµÄCIDĞÅÏ¢
+			// æœç´¢ä¸‹ä¸€ä¸ªBCCHçš„CIDä¿¡æ¯
 			fpga_fw = FPS_CalcFpgaFreqWord(SYS_A_FLAG, fps_st.bcch_lst[bcch_index].fc);
 			FPGA_ENABLE_WRITE;
-			//FpgaWriteRegister( FPGA_REG_BCCH_DF, fpga_fw );// Ğ´Æµµã,Æô¶¯ËÑË÷
-			FpgaWriteRegister(FPGA_REG_BCCH_DF_1, (UINT16)(((fpga_fw>>12)&0x3FFF)|((fpga_fw&0x80000000)>>16)));// Ğ´Æµµã[25:12]Î»,Æô¶¯ËÑË÷
-	        FpgaWriteRegister(FPGA_REG_BCCH_DF_2, (UINT16)(fpga_fw&0xFFF));	// Ğ´Æµµã[11:0]Î»,Æô¶¯ËÑË÷
+			//FpgaWriteRegister( FPGA_REG_BCCH_DF, fpga_fw );// å†™é¢‘ç‚¹,å¯åŠ¨æœç´¢
+			FpgaWriteRegister(FPGA_REG_BCCH_DF_1, (UINT16)(((fpga_fw>>12)&0x3FFF)|((fpga_fw&0x80000000)>>16)));// å†™é¢‘ç‚¹[25:12]ä½,å¯åŠ¨æœç´¢
+	        FpgaWriteRegister(FPGA_REG_BCCH_DF_2, (UINT16)(fpga_fw&0xFFF));	// å†™é¢‘ç‚¹[11:0]ä½,å¯åŠ¨æœç´¢
 			FPGA_DISABLE_WRITE;
-			fps_st.time_out = 30;				// ³¬Ê±:30Ãë(µ÷ÊÔÊ±Ä¬ÈÏ²»¿ÉĞŞ¸Ä)
+			fps_st.time_out = 30;				// è¶…æ—¶:30ç§’(è°ƒè¯•æ—¶é»˜è®¤ä¸å¯ä¿®æ”¹)
 		}
-		else		// BCCHÁĞ±íµÄCIDÈ«²¿ËÑË÷Íê³É£¬Çå³ıÎŞĞ§µÄbcchĞÅÏ¢
+		else		// BCCHåˆ—è¡¨çš„CIDå…¨éƒ¨æœç´¢å®Œæˆï¼Œæ¸…é™¤æ— æ•ˆçš„bcchä¿¡æ¯
 		{	
 			for ( ; bcch_index<FPS_BCCH_MAX; bcch_index++ )
 			{
@@ -2738,7 +2738,7 @@ void FPS_BcchFunc( void )
 		break;
 		
 	case FPS_SCAN_ST_DONE:
-		if ( 0==fps_st.auto_scan_en )	// ·Ç×Ô¶¯Ä£Ê½, ÉÏ±¨ËÑË÷½á¹û
+		if ( 0==fps_st.auto_scan_en )	// éè‡ªåŠ¨æ¨¡å¼, ä¸ŠæŠ¥æœç´¢ç»“æœ
 		{
 			FPS_SendReport();
 			fps_report_head[0] = 0xEE;
@@ -2756,17 +2756,17 @@ void FPS_BcchFunc( void )
 
 /*************************************************************
 Name:FPS_TchFunc          
-Description: TCHËÑË÷Ö÷³ÌĞò
+Description: TCHæœç´¢ä¸»ç¨‹åº
 Input: void
 Return: void
 **************************************************************/
 void FPS_TchFunc( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	UCHAR8 tmp;
 	UCHAR8 report_flag = 0;
 
-	if ( fps_st.time_out>0 )	// µ¹¼ÆÊ±
+	if ( fps_st.time_out>0 )	// å€’è®¡æ—¶
 	{
 		fps_st.time_out--;
 	}
@@ -2774,18 +2774,18 @@ void FPS_TchFunc( void )
 	switch( fps_st.scan_st )
 	{
 	case FPS_SCAN_ST_TCH:
-		if ( 0!=(BM_SCAN_TCH_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )		// ÅĞ¶ÏTCHËÑË÷ÊÇ·ñÍê³É
+		if ( 0!=(BM_SCAN_TCH_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )		// åˆ¤æ–­TCHæœç´¢æ˜¯å¦å®Œæˆ
 		{
 			FPS_HandleTch();
 			fps_st.scan_st = FPS_SCAN_ST_PBCCH;
-			if ( 0==fps_st.auto_scan_en )	// ·Ç×Ô¶¯Ä£Ê½, ÉÏ±¨ËÑË÷½á¹û
+			if ( 0==fps_st.auto_scan_en )	// éè‡ªåŠ¨æ¨¡å¼, ä¸ŠæŠ¥æœç´¢ç»“æœ
 			{
 				FPS_SendReport();
 			}
 		}
 		else
 		{
-			if ( 0==fps_st.time_out )		// ³¬Ê±, ½âÎöTCH³ö´í
+			if ( 0==fps_st.time_out )		// è¶…æ—¶, è§£æTCHå‡ºé”™
 			{
 				fps_st.err_st = FPS_ERR_TCH_TIMEOUT;
 			}
@@ -2793,11 +2793,11 @@ void FPS_TchFunc( void )
 		break;
 
 	case FPS_SCAN_ST_PBCCH:
-		if ( 0!=(BM_SCAN_PBCCH_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )		// ÅĞ¶ÏPBCCHËÑË÷ÊÇ·ñÍê³É
+		if ( 0!=(BM_SCAN_PBCCH_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )		// åˆ¤æ–­PBCCHæœç´¢æ˜¯å¦å®Œæˆ
 		{
 			FPS_HandlePbcch();
-			fps_st.scan_st = FPS_SCAN_ST_EDGE;	// PBCCH½âÂëÍê³É,×ªµ½EDGE²éÑ¯×´Ì¬
-			if ( 0==fps_st.auto_scan_en )	// ·Ç×Ô¶¯Ä£Ê½, ÉÏ±¨ËÑË÷½á¹û
+			fps_st.scan_st = FPS_SCAN_ST_EDGE;	// PBCCHè§£ç å®Œæˆ,è½¬åˆ°EDGEæŸ¥è¯¢çŠ¶æ€
+			if ( 0==fps_st.auto_scan_en )	// éè‡ªåŠ¨æ¨¡å¼, ä¸ŠæŠ¥æœç´¢ç»“æœ
 			{
 				FPS_SendReport();
 			}
@@ -2805,13 +2805,13 @@ void FPS_TchFunc( void )
 		}
 
 	case FPS_SCAN_ST_EDGE:
-		if ( 0!=(BM_SCAN_EDGE_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )	// ²é¿´ÊÇ·ñÓĞËÑË÷µ½EDGEÆµµã
+		if ( 0!=(BM_SCAN_EDGE_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )	// æŸ¥çœ‹æ˜¯å¦æœ‰æœç´¢åˆ°EDGEé¢‘ç‚¹
 		{
 			tmp = fps_st.edge_count;
 			FPS_HandleEdge();
-			if ( 0==fps_st.auto_scan_en )	// ·Ç×Ô¶¯Ä£Ê½, ÉÏ±¨ËÑË÷½á¹û
+			if ( 0==fps_st.auto_scan_en )	// éè‡ªåŠ¨æ¨¡å¼, ä¸ŠæŠ¥æœç´¢ç»“æœ
 			{
-				if ( tmp != fps_st.edge_count )	// ÓĞĞÂµÄEDGEÆµµã
+				if ( tmp != fps_st.edge_count )	// æœ‰æ–°çš„EDGEé¢‘ç‚¹
 				{
 					FPS_SendReport();
 				}
@@ -2823,15 +2823,15 @@ void FPS_TchFunc( void )
 		fps_st.scan_st = FPS_SCAN_ST_DONE;
 	}
 
-	if ( 0==fps_st.time_out )	// ÔØ²¨ÒµÎñĞÅµÀËÑË÷Ê±¼ä½áÊø
+	if ( 0==fps_st.time_out )	// è½½æ³¢ä¸šåŠ¡ä¿¡é“æœç´¢æ—¶é—´ç»“æŸ
 	{
-		// ¶ÁÈ¡EDGEÆµµãĞÅÏ¢
-		if ( 0!=(BM_SCAN_EDGE_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )	// ²é¿´ÊÇ·ñÓĞËÑË÷µ½EDGEÆµµã
+		// è¯»å–EDGEé¢‘ç‚¹ä¿¡æ¯
+		if ( 0!=(BM_SCAN_EDGE_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )	// æŸ¥çœ‹æ˜¯å¦æœ‰æœç´¢åˆ°EDGEé¢‘ç‚¹
 		{
 			FPS_HandleEdge();
 		}
 		
-		if ( 0!=(BM_SCAN_AREA_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )	// ¶ÁÈ¡µ½Ğ¡ÇøĞÅÏ¢,¸üĞÂ²ÎÊı
+		if ( 0!=(BM_SCAN_AREA_END&FpgaReadRegister(FPGA_REG_RFC_SCAN_ST)) )	// è¯»å–åˆ°å°åŒºä¿¡æ¯,æ›´æ–°å‚æ•°
 		{
 			sys_param_2b[MADD_FPS_CID].val = FpgaReadRegister( FPGA_REG_AREA_INFO );
 			sys_param_2b[MADD_FPS_AREA_ID].val = FpgaReadRegister(FPGA_REG_AREA_INFO);
@@ -2848,7 +2848,7 @@ void FPS_TchFunc( void )
 
 	if ( FPS_SCAN_ST_DONE==fps_st.scan_st )
 	{
-		if ( 0==fps_st.auto_scan_en )	// ·Ç×Ô¶¯Ä£Ê½, ÉÏ±¨ËÑË÷½á¹û
+		if ( 0==fps_st.auto_scan_en )	// éè‡ªåŠ¨æ¨¡å¼, ä¸ŠæŠ¥æœç´¢ç»“æœ
 		{
 			FPS_SendReport();
 			fps_report_head[0] = 0xEE;
@@ -2861,13 +2861,13 @@ void FPS_TchFunc( void )
 
 /*************************************************************
 Name:FcScanStartBCCH          
-Description: Æô¶¯BCCHÉ¨Ãè
-Input: [force_run: 1-Ç¿ÖÆÖ´ĞĞ] [wait_time: ³¬Ê±ÉèÖÃ] [wait_time:³¬Ê±Ê±¼ä]
-Return: ½á¹û:0-Æô¶¯³É¹¦£¬1-ÕıÔÚÖ´ĞĞBCCHÉ¨Ãè£¬2-ÕıÔÚÖ´ĞĞTCHÉ¨Ãè£¬3-ÓĞ´íÎó
+Description: å¯åŠ¨BCCHæ‰«æ
+Input: [force_run: 1-å¼ºåˆ¶æ‰§è¡Œ] [wait_time: è¶…æ—¶è®¾ç½®] [wait_time:è¶…æ—¶æ—¶é—´]
+Return: ç»“æœ:0-å¯åŠ¨æˆåŠŸï¼Œ1-æ­£åœ¨æ‰§è¡ŒBCCHæ‰«æï¼Œ2-æ­£åœ¨æ‰§è¡ŒTCHæ‰«æï¼Œ3-æœ‰é”™è¯¯
 **************************************************************/
 UCHAR8 FPS_ManualStartBcch( UCHAR8 force_run, UINT16 wait_time )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	if ( 1==fps_st.auto_scan_en )
 	{
 		fps_st.err_st = FPS_ERR_IN_AUTO_MODE;
@@ -2875,7 +2875,7 @@ UCHAR8 FPS_ManualStartBcch( UCHAR8 force_run, UINT16 wait_time )
 		return 0;
 	}
 	
-	if ( (0!=fps_st.fps_run)&&(0==force_run) )	// µ±Ç°ÕıÔÚÉ¨Ãè,·ÇÇ¿ÖÆÖ´ĞĞ
+	if ( (0!=fps_st.fps_run)&&(0==force_run) )	// å½“å‰æ­£åœ¨æ‰«æ,éå¼ºåˆ¶æ‰§è¡Œ
 	{
 		if ( FPS_MODE_BCCH == fps_st.cur_mode )
 		{
@@ -2902,13 +2902,13 @@ UCHAR8 FPS_ManualStartBcch( UCHAR8 force_run, UINT16 wait_time )
 
 /*************************************************************
 Name:FPS_ManualStartTch          
-Description: Æô¶¯TCHÉ¨Ãè
-Input: [force_run: 1-Ç¿ÖÆÖ´ĞĞ] [bcch_fc: ÆµµãºÅ] [wait_time:³¬Ê±Ê±¼ä]
-Return: ½á¹û:0-Æô¶¯³É¹¦£¬1-ÕıÔÚÖ´ĞĞBCCHÉ¨Ãè£¬2-ÕıÔÚÖ´ĞĞTCHÉ¨Ãè£¬3-ÓĞ´íÎó
+Description: å¯åŠ¨TCHæ‰«æ
+Input: [force_run: 1-å¼ºåˆ¶æ‰§è¡Œ] [bcch_fc: é¢‘ç‚¹å·] [wait_time:è¶…æ—¶æ—¶é—´]
+Return: ç»“æœ:0-å¯åŠ¨æˆåŠŸï¼Œ1-æ­£åœ¨æ‰§è¡ŒBCCHæ‰«æï¼Œ2-æ­£åœ¨æ‰§è¡ŒTCHæ‰«æï¼Œ3-æœ‰é”™è¯¯
 **************************************************************/
 UCHAR8 FPS_ManualStartTch(UINT16 bcch_fc, UCHAR8 force_run, UINT16 wait_time )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	if ( 1==fps_st.auto_scan_en )
 	{
 		fps_st.err_st = FPS_ERR_IN_AUTO_MODE;
@@ -2916,7 +2916,7 @@ UCHAR8 FPS_ManualStartTch(UINT16 bcch_fc, UCHAR8 force_run, UINT16 wait_time )
 		return 0;
 	}
 
-	if ( (0!=fps_st.fps_run)&&(0==force_run) )	// µ±Ç°ÕıÔÚÉ¨Ãè,·ÇÇ¿ÖÆÖ´ĞĞ
+	if ( (0!=fps_st.fps_run)&&(0==force_run) )	// å½“å‰æ­£åœ¨æ‰«æ,éå¼ºåˆ¶æ‰§è¡Œ
 	{
 		if ( FPS_MODE_BCCH == fps_st.cur_mode )
 		{
@@ -2950,13 +2950,13 @@ UCHAR8 FPS_ManualStartTch(UINT16 bcch_fc, UCHAR8 force_run, UINT16 wait_time )
 
 /*************************************************************
 Name:FPS_GetAutoScanEn          
-Description: ¶ÁÈ¡×Ô¶¯ËÑË÷Ê¹ÄÜ×´Ì¬
+Description: è¯»å–è‡ªåŠ¨æœç´¢ä½¿èƒ½çŠ¶æ€
 Input: void
-Return: TRUE-Ê¹ÄÜ, FALSE-½ûÄÜ
+Return: TRUE-ä½¿èƒ½, FALSE-ç¦èƒ½
 **************************************************************/
 BOOL FPS_GetAutoScanEn( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	if ( 1==fps_st.auto_scan_en )
 	{
 		return b_TRUE;
@@ -2966,81 +2966,81 @@ BOOL FPS_GetAutoScanEn( void )
 		return b_FALSE;
 	}
 #else
-	return b_FALSE;	// ²»Ê¹ÓÃÆµµãËÑË÷¹¦ÄÜ·µ»Ø½ûÄÜ×´Ì¬
+	return b_FALSE;	// ä¸ä½¿ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½è¿”å›ç¦èƒ½çŠ¶æ€
 #endif
 }
 
 /*************************************************************
 Name:FPS_EnableAutoScan          
-Description: ÉèÖÃ×Ô¶¯ËÑË÷Ê¹ÄÜ
+Description: è®¾ç½®è‡ªåŠ¨æœç´¢ä½¿èƒ½
 Input: void
 Return: void
 **************************************************************/
 void FPS_EnableAutoScan( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 
 	if (1==sys_param_1b[MADD_FPS_AUTO_SCAN].val)
 	{
-		if ( 0==fps_st.auto_scan_en )	// ÓÉÊÖ¶¯±ä³É×Ô¶¯
+		if ( 0==fps_st.auto_scan_en )	// ç”±æ‰‹åŠ¨å˜æˆè‡ªåŠ¨
 		{
-			fps_st.auto_scan_en = 1;	// ÉèÖÃ×Ô¶¯ËÑË÷Ê¹ÄÜ
-			fps_st.fps_run = 0;		    // Í£Ö¹µ±Ç°ËÑË÷   
-			fps_st.scan_st = FPS_SCAN_ST_DONE;	// ĞŞ¸Ä×´Ì¬±êÖ¾ÎªÍê³É
-			fps_st.err_st  = FPS_ERR_NONE;		// Çå³ı´íÎó±êÖ¾
-			fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// ¸´Î»×Ô¶¯ËÑË÷×´Ì¬»ú
+			fps_st.auto_scan_en = 1;	// è®¾ç½®è‡ªåŠ¨æœç´¢ä½¿èƒ½
+			fps_st.fps_run = 0;		    // åœæ­¢å½“å‰æœç´¢   
+			fps_st.scan_st = FPS_SCAN_ST_DONE;	// ä¿®æ”¹çŠ¶æ€æ ‡å¿—ä¸ºå®Œæˆ
+			fps_st.err_st  = FPS_ERR_NONE;		// æ¸…é™¤é”™è¯¯æ ‡å¿—
+			fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// å¤ä½è‡ªåŠ¨æœç´¢çŠ¶æ€æœº
             //fps_st.fc_count = 0;
-			fps_st.tch_count    = 0;		// ÇåÁãTCHÆµµã¼ÆÊı
-			fps_st.edge_count   = 0;		// ÇåÁãEDGE¼ÆÊı
-			fps_st.switch_count = 0;	    // ÇåÁãÆµµãÇĞ»»¼ÆÊı
+			fps_st.tch_count    = 0;		// æ¸…é›¶TCHé¢‘ç‚¹è®¡æ•°
+			fps_st.edge_count   = 0;		// æ¸…é›¶EDGEè®¡æ•°
+			fps_st.switch_count = 0;	    // æ¸…é›¶é¢‘ç‚¹åˆ‡æ¢è®¡æ•°
 		}
 	}
-	else  // ÓÉ×Ô¶¯±äÊÖ¶¯ 
+	else  // ç”±è‡ªåŠ¨å˜æ‰‹åŠ¨ 
 	{
 		if ( 1==fps_st.auto_scan_en )	
 		{
-			fps_st.auto_scan_en = 0;	// È¡Ïû×Ô¶¯ËÑË÷Ê¹ÄÜ
-			fps_st.fps_run = 0;		// Í£Ö¹µ±Ç°ËÑË÷
-			fps_st.scan_st = FPS_SCAN_ST_DONE;	// ĞŞ¸Ä×´Ì¬±êÖ¾ÎªÍê³É
-			fps_st.err_st = FPS_ERR_NONE;		// Çå³ı´íÎó±êÖ¾
-			fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// ¸´Î»×Ô¶¯ËÑË÷×´Ì¬»ú
+			fps_st.auto_scan_en = 0;	// å–æ¶ˆè‡ªåŠ¨æœç´¢ä½¿èƒ½
+			fps_st.fps_run = 0;		// åœæ­¢å½“å‰æœç´¢
+			fps_st.scan_st = FPS_SCAN_ST_DONE;	// ä¿®æ”¹çŠ¶æ€æ ‡å¿—ä¸ºå®Œæˆ
+			fps_st.err_st = FPS_ERR_NONE;		// æ¸…é™¤é”™è¯¯æ ‡å¿—
+			fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// å¤ä½è‡ªåŠ¨æœç´¢çŠ¶æ€æœº
 		}
 	}
-	// Ê¹ÄÜ×´Ì¬²»±äÔò±£³ÖÔ­Ñù
+	// ä½¿èƒ½çŠ¶æ€ä¸å˜åˆ™ä¿æŒåŸæ ·
 #endif
 }
 
 /*************************************************************
 Name:FPS_SetParam          
-Description: ÆµµãËÑË÷³õÊ¼»¯
-             ÉèÖÃÆµµãËÑË÷µÄÏà¹Ø²ÎÊıµ½FPGAÖĞ
+Description: é¢‘ç‚¹æœç´¢åˆå§‹åŒ–
+             è®¾ç½®é¢‘ç‚¹æœç´¢çš„ç›¸å…³å‚æ•°åˆ°FPGAä¸­
 
 Input: void
 Return: void
 **************************************************************/
 void FPS_SetParam( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
-//	if ( fps_st.range_sel != sys_param_1b[MADD_FPS_RFRANGE_SEL].val )	// ĞŞ¸ÄÁËÆµ¶Î·¶Î§
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
+//	if ( fps_st.range_sel != sys_param_1b[MADD_FPS_RFRANGE_SEL].val )	// ä¿®æ”¹äº†é¢‘æ®µèŒƒå›´
 //	{
-		fps_st.range_sel = sys_param_1b[MADD_FPS_RFRANGE_SEL].val;	// ¸üĞÂÆµ¶ÎÑ¡Ôñ·¶Î§Öµ
+		fps_st.range_sel = sys_param_1b[MADD_FPS_RFRANGE_SEL].val;	// æ›´æ–°é¢‘æ®µé€‰æ‹©èŒƒå›´å€¼
 		
 		if ( b_TRUE==FPS_CheckParam(SYS_A_FLAG) )
 		{
 			FPS_SetScanFc(SYS_A_FLAG); 
 		}
 //	}
-	if ( fps_st.bcch_lock!= sys_param_2b[MADD_FPS_BCCH_LK_SET].val )	// ĞŞ¸ÄÁËËøÆµÄ¿±êBCCHÆµµã
+	if ( fps_st.bcch_lock!= sys_param_2b[MADD_FPS_BCCH_LK_SET].val )	// ä¿®æ”¹äº†é”é¢‘ç›®æ ‡BCCHé¢‘ç‚¹
 	{
-		fps_st.bcch_lock = sys_param_2b[MADD_FPS_BCCH_LK_SET].val;	// ¸üĞÂËøÆµÄ¿±êBCCHÆµµã
+		fps_st.bcch_lock = sys_param_2b[MADD_FPS_BCCH_LK_SET].val;	// æ›´æ–°é”é¢‘ç›®æ ‡BCCHé¢‘ç‚¹
 		
 		if ( 1==fps_st.auto_scan_en )
 		{
-			// ÖØĞÂËÑË÷BCCH
-			fps_st.fps_run = 0;		// Í£Ö¹µ±Ç°ËÑË÷
-			fps_st.scan_st = FPS_SCAN_ST_DONE;	// ĞŞ¸Ä×´Ì¬±êÖ¾ÎªÍê³É
-			fps_st.err_st  = FPS_ERR_NONE;		// Çå³ı´íÎó±êÖ¾
-			fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// ¸´Î»×Ô¶¯ËÑË÷×´Ì¬»ú
+			// é‡æ–°æœç´¢BCCH
+			fps_st.fps_run = 0;		// åœæ­¢å½“å‰æœç´¢
+			fps_st.scan_st = FPS_SCAN_ST_DONE;	// ä¿®æ”¹çŠ¶æ€æ ‡å¿—ä¸ºå®Œæˆ
+			fps_st.err_st  = FPS_ERR_NONE;		// æ¸…é™¤é”™è¯¯æ ‡å¿—
+			fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;	// å¤ä½è‡ªåŠ¨æœç´¢çŠ¶æ€æœº
 		}
 	}
 
@@ -3052,42 +3052,42 @@ void FPS_SetParam( void )
 
 /*************************************************************
 Name:FPS_Init          
-Description: ÆµµãËÑË÷³õÊ¼»¯
+Description: é¢‘ç‚¹æœç´¢åˆå§‹åŒ–
 Input: void
 Return: void
 **************************************************************/
 void FPS_Init( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
-	FPS_ResetResultParam();		// ¸´Î»ËÑË÷×´Ì¬
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
+	FPS_ResetResultParam();		// å¤ä½æœç´¢çŠ¶æ€
 	fps_st.auto_scan_en = (1==sys_param_1b[MADD_FPS_AUTO_SCAN].val) ? 1 : 0;
 	fps_st.auto_state = FPS_AUTO_ST_NEW_SCAN;
 	fps_st.fps_run = 0;
 	fps_st.bcch_use.fc = 0;
 	fps_st.bcch_use.power = 0;
 	fps_st.bcch_use.precision = 0;
-	fps_st.range_sel = sys_param_1b[MADD_FPS_RFRANGE_SEL].val;	// Æµ¶Î·¶Î§Ñ¡Ôñ
+	fps_st.range_sel = sys_param_1b[MADD_FPS_RFRANGE_SEL].val;	// é¢‘æ®µèŒƒå›´é€‰æ‹©
 	FPS_CheckParam(SYS_A_FLAG);
 #endif
 }
 
 /*************************************************************
 Name:FPS_MainFunc          
-Description: ÆµµãËÑË÷Ö÷³ÌĞò£¬1ÃëÖ´ĞĞÒ»´Î
+Description: é¢‘ç‚¹æœç´¢ä¸»ç¨‹åºï¼Œ1ç§’æ‰§è¡Œä¸€æ¬¡
 Input: void
 Return: void
 **************************************************************/
 void FPS_MainFunc( void )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 
-	if ( 0==fps_st.fps_run )	// µ±Ç°ÒÑÍ£Ö¹ËÑË÷
+	if ( 0==fps_st.fps_run )	// å½“å‰å·²åœæ­¢æœç´¢
 	{
-		FPS_HandleAutoScan();	// ×Ô¶¯±ä¸ü×Ô¶¯ËÑË÷×´Ì¬
+		FPS_HandleAutoScan();	// è‡ªåŠ¨å˜æ›´è‡ªåŠ¨æœç´¢çŠ¶æ€
 		return;
 	}
 
-	// ´¦ÀíËÑË÷½á¹û
+	// å¤„ç†æœç´¢ç»“æœ
 	if ( FPS_MODE_TCH==fps_st.cur_mode )
 	{
 		FPS_TchFunc();

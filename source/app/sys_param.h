@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :sys_param.c
-* Description :ÏµÍ³²ÎÊı´¦ÀíÏà¹Øº¯Êı
+* Description :ç³»ç»Ÿå‚æ•°å¤„ç†ç›¸å…³å‡½æ•°
 * Version     :v0.1
 * Author      :RJ
 * Date        :2010-03-10
@@ -10,13 +10,13 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*RJ		2010-03-10		v0.1			³õÊ¼°æ±¾
+*RJ		2010-03-10		v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #ifndef _SYS_PARAM_H
 #define _SYS_PARAM_H
 
-// Ğ£×¼RECÊ±£»Ê¹ÓÃ±£Áô×ÖµÍ8Î»£»
-// Ğ£×¼RE Ê±£¬Ê¹ÓÃ±£Áô×Ö¸ß8Î»£»
+// æ ¡å‡†RECæ—¶ï¼›ä½¿ç”¨ä¿ç•™å­—ä½8ä½ï¼›
+// æ ¡å‡†RE æ—¶ï¼Œä½¿ç”¨ä¿ç•™å­—é«˜8ä½ï¼›
 #define SEL_REC	(1<<3)	// 0x08
 #define SEL_RE	(0<<3)	// 0x00
 #define SEL_REE	(1<<4)	// 0x16
@@ -28,63 +28,63 @@
 #define SEL_A	(0<<0)	// 0x00
 #define SEL_B	(1<<0)	// 0x01
 
-//Ä£¿é¹¤×÷¹Ø¼ü²ÎÊıĞŞ¸Ä±êÖ¾
-#define PCHG_A_CHANNEL				(1<<0)	// ĞÅµÀºÅºÍÍ¨µÀÊ¹ÄÜ
-#define PCHG_A_LTHR					(1<<1)	// µ×ÔëÒÖÖÆ
-#define PCHG_A_POW_MODE			(1<<2)	// A¶Î¹¦ÂÊ¿ØÖÆÄ£Ê½
-#define PCHG_A_WORK_EN			(1<<3)	// A¶Î¹¤×÷Ê¹ÄÜ
-#define PCHG_A_FL_CHG				(1<<4)	// A¶Î±¾Õñ¸ü¸Ä
-#define PCHG_A_POW_GAIN			(1<<5)	// ¹¦ÂÊÔöÒæ
+//æ¨¡å—å·¥ä½œå…³é”®å‚æ•°ä¿®æ”¹æ ‡å¿—
+#define PCHG_A_CHANNEL				(1<<0)	// ä¿¡é“å·å’Œé€šé“ä½¿èƒ½
+#define PCHG_A_LTHR					(1<<1)	// åº•å™ªæŠ‘åˆ¶
+#define PCHG_A_POW_MODE			(1<<2)	// Aæ®µåŠŸç‡æ§åˆ¶æ¨¡å¼
+#define PCHG_A_WORK_EN			(1<<3)	// Aæ®µå·¥ä½œä½¿èƒ½
+#define PCHG_A_FL_CHG				(1<<4)	// Aæ®µæœ¬æŒ¯æ›´æ”¹
+#define PCHG_A_POW_GAIN			(1<<5)	// åŠŸç‡å¢ç›Š
 
-#define PCHG_B_CHANNEL				(1<<6)	// ĞÅµÀºÅºÍÍ¨µÀÊ¹ÄÜ
-#define PCHG_B_LTHR					(1<<7)	// µ×ÔëÒÖÖÆ
-#define PCHG_B_POW_MODE			(1<<8)	// B¶Î¹¦ÂÊ¿ØÖÆÄ£Ê½
-#define PCHG_B_WORK_EN			(1<<9)	// B¶Î¹¤×÷Ê¹ÄÜ
-#define PCHG_B_FL_CHG				(1<<10)	// B¶Î±¾Õñ¸ü¸Ä
-#define PCHG_B_POW_GAIN			(1<<11)	// ¹¦ÂÊÔöÒæ
+#define PCHG_B_CHANNEL				(1<<6)	// ä¿¡é“å·å’Œé€šé“ä½¿èƒ½
+#define PCHG_B_LTHR					(1<<7)	// åº•å™ªæŠ‘åˆ¶
+#define PCHG_B_POW_MODE			(1<<8)	// Bæ®µåŠŸç‡æ§åˆ¶æ¨¡å¼
+#define PCHG_B_WORK_EN			(1<<9)	// Bæ®µå·¥ä½œä½¿èƒ½
+#define PCHG_B_FL_CHG				(1<<10)	// Bæ®µæœ¬æŒ¯æ›´æ”¹
+#define PCHG_B_POW_GAIN			(1<<11)	// åŠŸç‡å¢ç›Š
 
-#define PCHG_C_CHANNEL				(1<<12)	// ĞÅµÀºÅºÍÍ¨µÀÊ¹ÄÜ
-#define PCHG_C_LTHR					(1<<13)	// µ×ÔëÒÖÖÆ
-#define PCHG_C_POW_MODE			(1<<14)	// C¶Î¹¦ÂÊ¿ØÖÆÄ£Ê½
-#define PCHG_C_WORK_EN			(1<<15)	// C¶Î¹¤×÷Ê¹ÄÜ
-#define PCHG_C_FL_CHG				(1<<16)	// C¶Î±¾Õñ¸ü¸Ä
-#define PCHG_C_POW_GAIN			(1<<17)	// ¹¦ÂÊÔöÒæ
+#define PCHG_C_CHANNEL				(1<<12)	// ä¿¡é“å·å’Œé€šé“ä½¿èƒ½
+#define PCHG_C_LTHR					(1<<13)	// åº•å™ªæŠ‘åˆ¶
+#define PCHG_C_POW_MODE			(1<<14)	// Cæ®µåŠŸç‡æ§åˆ¶æ¨¡å¼
+#define PCHG_C_WORK_EN			(1<<15)	// Cæ®µå·¥ä½œä½¿èƒ½
+#define PCHG_C_FL_CHG				(1<<16)	// Cæ®µæœ¬æŒ¯æ›´æ”¹
+#define PCHG_C_POW_GAIN			(1<<17)	// åŠŸç‡å¢ç›Š
 
-#define PCHG_D_CHANNEL				(1<<18)	// ĞÅµÀºÅºÍÍ¨µÀÊ¹ÄÜ
-#define PCHG_D_LTHR					(1<<19)	// µ×ÔëÒÖÖÆ
-#define PCHG_D_POW_MODE			(1<<20)	// D¶Î¹¦ÂÊ¿ØÖÆÄ£Ê½
-#define PCHG_D_WORK_EN			(1<<21)	// D¶Î¹¤×÷Ê¹ÄÜ
-#define PCHG_D_FL_CHG				(1<<22)	// D¶Î±¾Õñ¸ü¸Ä
-#define PCHG_D_POW_GAIN			(1<<23)	// ¹¦ÂÊÔöÒæ
+#define PCHG_D_CHANNEL				(1<<18)	// ä¿¡é“å·å’Œé€šé“ä½¿èƒ½
+#define PCHG_D_LTHR					(1<<19)	// åº•å™ªæŠ‘åˆ¶
+#define PCHG_D_POW_MODE			(1<<20)	// Dæ®µåŠŸç‡æ§åˆ¶æ¨¡å¼
+#define PCHG_D_WORK_EN			(1<<21)	// Dæ®µå·¥ä½œä½¿èƒ½
+#define PCHG_D_FL_CHG				(1<<22)	// Dæ®µæœ¬æŒ¯æ›´æ”¹
+#define PCHG_D_POW_GAIN			(1<<23)	// åŠŸç‡å¢ç›Š
 
-//#define PCHG_A_GAIN				(1<<3)	// ÔöÒæ
-//#define PCHG_A_DL_POWER			(1<<2)	// Í¨µÀ¹¦ÂÊ
-//#define PCHG_A_UL_POWER			(1<<3)	// Í¨µÀ¹¦ÂÊ
-//#define PCHG_A_DL_GAIN				(1<<4)	// Õû»úÔöÒæ
-//#define PCHG_A_UL_GAIN				(1<<5)	// Õû»úÔöÒæ
-//#define PCHG_A_DL_ATT				(1<<6)	// ÏÂĞĞÊı¿ØË¥¼õÆ÷
-//#define PCHG_A_UL_ATT				(1<<7)	// ÉÏĞĞÊı¿ØË¥¼õÆ÷
-//#define PCHG_B_GAIN					(1<<19)	// ÔöÒæ
-//#define PCHG_B_DL_POWER			(1<<18)	// Í¨µÀ¹¦ÂÊ
-//#define PCHG_B_UL_POWER			(1<<19)	// Í¨µÀ¹¦ÂÊ
-//#define PCHG_B_DL_GAIN				(1<<20)	// Õû»úÔöÒæ
-//#define PCHG_B_UL_GAIN				(1<<21)	// Õû»úÔöÒæ
-//#define PCHG_B_DL_ATT				(1<<22)	// ÏÂĞĞÊı¿ØË¥¼õÆ÷
-//#define PCHG_B_UL_ATT				(1<<23)	// ÉÏĞĞÊı¿ØË¥¼õÆ÷
+//#define PCHG_A_GAIN				(1<<3)	// å¢ç›Š
+//#define PCHG_A_DL_POWER			(1<<2)	// é€šé“åŠŸç‡
+//#define PCHG_A_UL_POWER			(1<<3)	// é€šé“åŠŸç‡
+//#define PCHG_A_DL_GAIN				(1<<4)	// æ•´æœºå¢ç›Š
+//#define PCHG_A_UL_GAIN				(1<<5)	// æ•´æœºå¢ç›Š
+//#define PCHG_A_DL_ATT				(1<<6)	// ä¸‹è¡Œæ•°æ§è¡°å‡å™¨
+//#define PCHG_A_UL_ATT				(1<<7)	// ä¸Šè¡Œæ•°æ§è¡°å‡å™¨
+//#define PCHG_B_GAIN					(1<<19)	// å¢ç›Š
+//#define PCHG_B_DL_POWER			(1<<18)	// é€šé“åŠŸç‡
+//#define PCHG_B_UL_POWER			(1<<19)	// é€šé“åŠŸç‡
+//#define PCHG_B_DL_GAIN				(1<<20)	// æ•´æœºå¢ç›Š
+//#define PCHG_B_UL_GAIN				(1<<21)	// æ•´æœºå¢ç›Š
+//#define PCHG_B_DL_ATT				(1<<22)	// ä¸‹è¡Œæ•°æ§è¡°å‡å™¨
+//#define PCHG_B_UL_ATT				(1<<23)	// ä¸Šè¡Œæ•°æ§è¡°å‡å™¨
 
-//#define PCHG_SYS_CFG				(1<<24)	// ĞŞ¸ÄÏµÍ³²ÎÊıÅäÖÃ
+//#define PCHG_SYS_CFG				(1<<24)	// ä¿®æ”¹ç³»ç»Ÿå‚æ•°é…ç½®
 
-#define PCHG_CENTER_FRE_FLAG		(1<<16)	// ÉèÖÃÖĞĞÄÆµµã
+#define PCHG_CENTER_FRE_FLAG		(1<<16)	// è®¾ç½®ä¸­å¿ƒé¢‘ç‚¹
 
-#define PCHG_BENZHEN_ADJ_FLAG		(1<<24)	// ÉèÖÃ±¾ÕñĞ£×¼²ÎÊı
-#define PCHG_CTRL_BAUD				(1<<25)	// ¿ØÖÆ¶Ë¿Ú²¨ÌØÂÊÉèÖÃ
-#define PCHG_THR_CONFIG			(1<<26)	// Í¸´«¶Ë¿ÚÉèÖÃ
+#define PCHG_BENZHEN_ADJ_FLAG		(1<<24)	// è®¾ç½®æœ¬æŒ¯æ ¡å‡†å‚æ•°
+#define PCHG_CTRL_BAUD				(1<<25)	// æ§åˆ¶ç«¯å£æ³¢ç‰¹ç‡è®¾ç½®
+#define PCHG_THR_CONFIG			(1<<26)	// é€ä¼ ç«¯å£è®¾ç½®
 
-#define PCHG_FPS_RANGE				(1<<27)	// ÆµµãËÑËØ·¶Î§
-#define PCHG_LOW_POWER			(1<<28)	// µÍ¹¦ºÄÄ£Ê½
-#define PCHG_TD_PARAM				(1<<29)	// TD²ÎÊı
-#define PCHG_OPT_DELAY				(1<<30)	// ¹â¿ÚµÄ¸½¼ÓÑÓÊ±Öµ
-#define PCHG_SYS_FP_EN				(1<<31)	// ¹â¿ÚÊ¹ÄÜ
+#define PCHG_FPS_RANGE				(1<<27)	// é¢‘ç‚¹æœç´ èŒƒå›´
+#define PCHG_LOW_POWER			(1<<28)	// ä½åŠŸè€—æ¨¡å¼
+#define PCHG_TD_PARAM				(1<<29)	// TDå‚æ•°
+#define PCHG_OPT_DELAY				(1<<30)	// å…‰å£çš„é™„åŠ å»¶æ—¶å€¼
+#define PCHG_SYS_FP_EN				(1<<31)	// å…‰å£ä½¿èƒ½
 
 extern UINT16 mo_param_count_a;
 extern UINT16 mo_param_count_b;

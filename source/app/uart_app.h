@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    : uart_app.h
-* Description : RS485½Ó¿Ú²Ù×÷
+* Description : RS485æ¥å£æ“ä½œ
 * Version     :v0.1
 * Author      :RJ
 * Date        :2010-06-11
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*	RJ		2010-06-11	v0.1			³õÊ¼°æ±¾
+*	RJ		2010-06-11	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #ifndef _UART_APP_H
 #define _UART_APP_H
@@ -22,20 +22,20 @@
 #define PC_BUFF_SIZE		(1024+512)//2048
 #define MO_MSG_BODY_SIZE	70
 
-#define UART_PKT_MIN		9		// ´®¿ÚÊı¾İ°ü×îĞ¡³¤¶È
+#define UART_PKT_MIN		9		// ä¸²å£æ•°æ®åŒ…æœ€å°é•¿åº¦
 
-#define DEBUG_UART_BAUD				115200	// µ÷ÊÔ´®¿Ú²¨ÌØÂÊ
+#define DEBUG_UART_BAUD				115200	// è°ƒè¯•ä¸²å£æ³¢ç‰¹ç‡
 
 #ifdef USER_CONTROL_BAUD
-#define CONTROL_UART_BAUD				USER_CONTROL_BAUD		// ÓÃ»§¿ØÖÆ´®¿Ú²¨ÌØÂÊ
+#define CONTROL_UART_BAUD				USER_CONTROL_BAUD		// ç”¨æˆ·æ§åˆ¶ä¸²å£æ³¢ç‰¹ç‡
 #else
-#define CONTROL_UART_BAUD				9600	// Ä¬ÈÏ¿ØÖÆ´®¿Ú²¨ÌØÂÊ
+#define CONTROL_UART_BAUD				9600	// é»˜è®¤æ§åˆ¶ä¸²å£æ³¢ç‰¹ç‡
 #endif
 
 #ifdef USER_THR_BAUD
-#define THR_UART_BAUD					USER_THR_BAUD	// ÓÃ»§Í¸´«´®¿Ú²¨ÌØÂÊ
+#define THR_UART_BAUD					USER_THR_BAUD	// ç”¨æˆ·é€ä¼ ä¸²å£æ³¢ç‰¹ç‡
 #else
-#define THR_UART_BAUD					9600	// Ä¬ÈÏÍ¸´«´®¿Ú²¨ÌØÂÊ
+#define THR_UART_BAUD					9600	// é»˜è®¤é€ä¼ ä¸²å£æ³¢ç‰¹ç‡
 #endif
 
 
@@ -62,38 +62,38 @@ typedef struct _S_THR_FIFO
 	UCHAR8 p_dat[THR_FIFO_SIZE];
 }/* __attribute__((packed))*/ _T_THR_FIFO;
 
-//ºçĞÅĞ­Òé
-#define HXCT_CRC_SEED				0x0000		// CRCÒò×Ó
-#define HXCT_DDF_MODULE_NUM		0x20		//ÖĞÆµÄ£¿é±àºÅ
-#define HXCT_DET_MODULE_NUM		0x01		// DETÄ£¿é
-#define HXCT_LNA_MODULE_NUM		0x09		// LNAÄ£¿é
+//è™¹ä¿¡åè®®
+#define HXCT_CRC_SEED				0x0000		// CRCå› å­
+#define HXCT_DDF_MODULE_NUM		0x20		//ä¸­é¢‘æ¨¡å—ç¼–å·
+#define HXCT_DET_MODULE_NUM		0x01		// DETæ¨¡å—
+#define HXCT_LNA_MODULE_NUM		0x09		// LNAæ¨¡å—
 
 #define HXCT_CMD_SET_ADD			0x10
 #define HXCT_CMD_GET_STA			0x11
 #define HXCT_CMD_SET_ATT			0x20
 #define HXCT_CMD_SET_ONOFF		0x22
-#define HXCT_CMD_SET_ALC			0x23		// ALCÉèÖÃÃüÁî
+#define HXCT_CMD_SET_ALC			0x23		// ALCè®¾ç½®å‘½ä»¤
 #define HXCT_CMD_SET_NOISE_ON		0x2b
 #define HXCT_CMD_SET_NOISE_GATE	0x2c
 #define HXCT_CMD_SET_RESET		0x88
-#define HXCT_CMD_SET_DDF			0x93		// ¹âÏË×ÓÃüÁî¼¯
+#define HXCT_CMD_SET_DDF			0x93		// å…‰çº¤å­å‘½ä»¤é›†
 
-//ºçĞÅÀ©Õ¹×ÓÃüÁî
-#define HXCT_SUBCMD_SET_POWER	0x20		// ÉèÖÃÍ¨µÀÕû»ú×î´óÊä³ö¹¦ÂÊ
-#define HXCT_SUBCMD_SET_GAIN		0x21		// ÉèÖÃÕû»úÍ¨µÀ×î´óÔöÒæ
-#define HXCT_SUBCMD_SET_FRE_NUM	0x22		// ÉèÖÃĞÅµÀºÅ
-#define HXCT_SUBCMD_SET_CH_EN		0x23		// ÉèÖÃĞÅµÀ¿ª¹Ø
-#define HXCT_SUBCMD_SET_OPT_EN	0x24		// ¹âÄ£¿é¿ª¹Ø
-#define HXCT_SUBCMD_SET_DELAY		0x25		// ÉèÖÃÑÓÊ±²¹³¥Öµ
-#define HXCT_SUBCMD_SET_PD_MODE	0x25		// ÉèÖÃµÍ¹¦ºÄ¿ª¹Ø(1230Ğ­Òé)
-#define HXCT_SUBCMD_SET_PA_GAIN	0x26		// ÉèÖÃÏÂĞĞ¹¦·ÅÔöÒæ(1230Ğ­Òé)
-#define HXCT_SUBCMD_SET_DPX_IA	0x27		// ÉèÖÃÊäÈëË«¹¤Æ÷Ë¥¼õ(1230Ğ­Òé)
-#define HXCT_SUBCMD_SET_DPX_OA	0x28		// ÉèÖÃÊä³öË«¹¤Æ÷Ë¥¼õ(1230Ğ­Òé)
-#define HXCT_SUBCMD_SET_FPS_BCCH	0x29		// ÉèÖÃËøÆµĞÅµÀºÅ(1230Ğ­Òé)
-#define HXCT_SUBCMD_SET_FPS_PARA	0x2A		// ÉèÖÃÔËÓªÉÌºÍÆµ¶ÎÑ¡Ôñ(1230Ğ­Òé)
-#define HXCT_SUBCMD_SET_FPS_CID	0x2B		// ÉèÖÃËø¶¨Ğ¡ÇøÊ¶±ğÂëÊµÊ±Öµ(1230Ğ­Òé)
-#define HXCT_SUBCMD_SET_DELAY_M	0x2C		// ÉèÖÃ×Ô¶¯ÑÓÊ±¿ª¹Ø(1230Ğ­Òé)
-#define HXCT_SUBCMD_SET_RE_DELAY	0x2D		// ÉèÖÃ¹âÂ·ÑÓÊ±²¹³¥(1230Ğ­Òé)
+//è™¹ä¿¡æ‰©å±•å­å‘½ä»¤
+#define HXCT_SUBCMD_SET_POWER	0x20		// è®¾ç½®é€šé“æ•´æœºæœ€å¤§è¾“å‡ºåŠŸç‡
+#define HXCT_SUBCMD_SET_GAIN		0x21		// è®¾ç½®æ•´æœºé€šé“æœ€å¤§å¢ç›Š
+#define HXCT_SUBCMD_SET_FRE_NUM	0x22		// è®¾ç½®ä¿¡é“å·
+#define HXCT_SUBCMD_SET_CH_EN		0x23		// è®¾ç½®ä¿¡é“å¼€å…³
+#define HXCT_SUBCMD_SET_OPT_EN	0x24		// å…‰æ¨¡å—å¼€å…³
+#define HXCT_SUBCMD_SET_DELAY		0x25		// è®¾ç½®å»¶æ—¶è¡¥å¿å€¼
+#define HXCT_SUBCMD_SET_PD_MODE	0x25		// è®¾ç½®ä½åŠŸè€—å¼€å…³(1230åè®®)
+#define HXCT_SUBCMD_SET_PA_GAIN	0x26		// è®¾ç½®ä¸‹è¡ŒåŠŸæ”¾å¢ç›Š(1230åè®®)
+#define HXCT_SUBCMD_SET_DPX_IA	0x27		// è®¾ç½®è¾“å…¥åŒå·¥å™¨è¡°å‡(1230åè®®)
+#define HXCT_SUBCMD_SET_DPX_OA	0x28		// è®¾ç½®è¾“å‡ºåŒå·¥å™¨è¡°å‡(1230åè®®)
+#define HXCT_SUBCMD_SET_FPS_BCCH	0x29		// è®¾ç½®é”é¢‘ä¿¡é“å·(1230åè®®)
+#define HXCT_SUBCMD_SET_FPS_PARA	0x2A		// è®¾ç½®è¿è¥å•†å’Œé¢‘æ®µé€‰æ‹©(1230åè®®)
+#define HXCT_SUBCMD_SET_FPS_CID	0x2B		// è®¾ç½®é”å®šå°åŒºè¯†åˆ«ç å®æ—¶å€¼(1230åè®®)
+#define HXCT_SUBCMD_SET_DELAY_M	0x2C		// è®¾ç½®è‡ªåŠ¨å»¶æ—¶å¼€å…³(1230åè®®)
+#define HXCT_SUBCMD_SET_RE_DELAY	0x2D		// è®¾ç½®å…‰è·¯å»¶æ—¶è¡¥å¿(1230åè®®)
 #define HXCT_SUBCMD_GET_SETTING	0x10
 #define HXCT_SUBCMD_GET_BASE		0x11
 
@@ -103,9 +103,9 @@ typedef struct _S_THR_FIFO
 #define HXCT_ACK_SET_ERROR			0x04
 
 
-//ÆÕÍ¨Ğ­Òé
+//æ™®é€šåè®®
 
-//ÃüÁî±àÂë
+//å‘½ä»¤ç¼–ç 
 #define MONITOR_CMD_GET_PRI			0x40
 #define MONITOR_CMD_GET_ALL_PARA		0x50
 #define MONITOR_CMD_SET_PRI			0x60
@@ -114,7 +114,7 @@ typedef struct _S_THR_FIFO
 #define MONITOR_CMD_RE_TRANS			0xCE
 #define MONITOR_CMD_GET_TOPO			0xCF
 
-//·µ»Ø±êÖ¾
+//è¿”å›æ ‡å¿—
 #define MONITOR_SUCCESS			0x00
 #define MONITOR_ERROR_COM			0x01
 #define MONITOR_ERROR_VER			0x02
@@ -127,7 +127,7 @@ typedef struct _S_THR_FIFO
 #define MONITOR_ERROR_NOT_HOST	0x11
 #define MONITOR_ERROR_OTHER		0xa0
 
-//Ëã·¨
+//ç®—æ³•
 #define MONITOR_SIGNED				0x00
 #define MONITOR_UNSIGNED			0x07
 #define MONITOR_INT_10				0x08
@@ -139,12 +139,12 @@ typedef struct _S_THR_FIFO
 #define PARAM_RO			0x00
 #define PARAM_RW			0xFF
 
-extern UCHAR8 thr_utx_fifo_use;		// ±êÊ¶Í¸´«´®¿Ú·¢ËÍÊ¹ÓÃµÄFIFO£¬FPGA½ÓÊÕÊ¹ÓÃÁíÒ»¸öFIFO
-extern UCHAR8 thr_urx_fifo_use;		// ±êÊ¶Í¸´«´®¿Ú½ÓÊÕÊ¹ÓÃµÄFIFO£¬FPGA·¢ËÍÊ¹ÓÃÁíÒ»¸öFIFO
-extern UCHAR8 uart_thr_tx_end;		// ´®¿ÚÍ¸´«Êı¾İ·¢ËÍÍê³É±êÖ¾
-extern UCHAR8 fpga_thr_tx_end;		// FPGAÍ¸´«Êı¾İ·¢ËÍÍê³É±êÖ¾
-extern _T_THR_FIFO uart_thr_tx_fifo[];	// Í¸´«´®¿Ú·¢ËÍFPGA½ÓÊÕFIFO
-extern _T_THR_FIFO uart_thr_rx_fifo[];	// Í¸´«´®¿Ú½ÓÊÕFPGA·¢ËÍFIFO
+extern UCHAR8 thr_utx_fifo_use;		// æ ‡è¯†é€ä¼ ä¸²å£å‘é€ä½¿ç”¨çš„FIFOï¼ŒFPGAæ¥æ”¶ä½¿ç”¨å¦ä¸€ä¸ªFIFO
+extern UCHAR8 thr_urx_fifo_use;		// æ ‡è¯†é€ä¼ ä¸²å£æ¥æ”¶ä½¿ç”¨çš„FIFOï¼ŒFPGAå‘é€ä½¿ç”¨å¦ä¸€ä¸ªFIFO
+extern UCHAR8 uart_thr_tx_end;		// ä¸²å£é€ä¼ æ•°æ®å‘é€å®Œæˆæ ‡å¿—
+extern UCHAR8 fpga_thr_tx_end;		// FPGAé€ä¼ æ•°æ®å‘é€å®Œæˆæ ‡å¿—
+extern _T_THR_FIFO uart_thr_tx_fifo[];	// é€ä¼ ä¸²å£å‘é€FPGAæ¥æ”¶FIFO
+extern _T_THR_FIFO uart_thr_rx_fifo[];	// é€ä¼ ä¸²å£æ¥æ”¶FPGAå‘é€FIFO
 extern UCHAR8 uart_test_tx_buff[ ]; 
 extern UCHAR8 uart_index; 
 extern UCHAR8 uart_flag;

@@ -1,4 +1,4 @@
-/**
+Ôªø/**
   ******************************************************************************
   * @file    Project/Template/stm32f10x_conf.h 
   * @author  MCD Application Team
@@ -47,9 +47,9 @@
 /* #include "stm32f10x_wwdg.h" */
 #include "misc.h"  /* High level functions for NVIC and SysTick (add-on to CMSIS functions) */
 
-// ÷–∂œ”≈œ»º∂…Ë÷√
-#define UART_THR_INT_PRIORITY		0	// Õ∏¥´
-#define UART_CTL_INT_PRIORITY		1	// øÿ÷∆
+// ‰∏≠Êñ≠‰ºòÂÖàÁ∫ßËÆæÁΩÆ
+#define UART_THR_INT_PRIORITY		0	// ÈÄè‰º†
+#define UART_CTL_INT_PRIORITY		1	// ÊéßÂà∂
 #define ADC_INT_PRIORITY			2	// ADC
 
 /* Exported types ------------------------------------------------------------*/

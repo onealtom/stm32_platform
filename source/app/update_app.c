@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :update_app.c
-* Description :Èí¼şÉı¼¶´¦ÀíÏà¹Øº¯Êı
+* Description :è½¯ä»¶å‡çº§å¤„ç†ç›¸å…³å‡½æ•°
 * Version     :v0.1
 * Author      :RJ
 * Date        :2010-03-10
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*RJ		2010-03-10		v0.1			³õÊ¼°æ±¾
+*RJ		2010-03-10		v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #include "Header.h"
 
@@ -26,11 +26,11 @@ UINT32 erase_start_page=0;
 
 /*************************************************************
 Name:CheckIsMcuFw
-Description: ¼ì²éÊÇ·ñÊÇMCU³ÌĞò
+Description: æ£€æŸ¥æ˜¯å¦æ˜¯MCUç¨‹åº
 Input:
-	len: Êı¾İ³¤¶È
+	len: æ•°æ®é•¿åº¦
 Output:void
-Return:·µ»Ø·¢ËÍµÄÊı¾İ¸öÊı
+Return:è¿”å›å‘é€çš„æ•°æ®ä¸ªæ•°
 **************************************************************/
 UCHAR8 CheckIsMcuFw( UINT32 * pEntry) 
 {
@@ -40,7 +40,7 @@ UCHAR8 CheckIsMcuFw( UINT32 * pEntry)
 	if ( pEntry[9]!=0xA5C35A3C ) return 0;
 	if ( pEntry[10]!=0xFF00FF00 ) return 0;
 	
-	if ( pEntry[13]!=0xEC61EC00 ) return 0;			// REC³ÌĞòµÄÌØ±ğ±êÖ¾
+	if ( pEntry[13]!=0xEC61EC00 ) return 0;			// RECç¨‹åºçš„ç‰¹åˆ«æ ‡å¿—
 
 	return 1;
 }
@@ -48,10 +48,10 @@ UCHAR8 CheckIsMcuFw( UINT32 * pEntry)
 
 /*************************************************************
 Name:FpgaChecksum
-Description:FPGA¼ÆËãĞ£ÑéºÍ
-Input:¼ÓÔØÎÄ¼şµÄ×Ü³¤¶È          
+Description:FPGAè®¡ç®—æ ¡éªŒå’Œ
+Input:åŠ è½½æ–‡ä»¶çš„æ€»é•¿åº¦          
 Output:void         
-Return:Ğ£ÑéÖµ  
+Return:æ ¡éªŒå€¼  
 **************************************************************/
 UINT32 FpgaChecksum(UINT32 len)
 {
@@ -62,12 +62,12 @@ UINT32 FpgaChecksum(UINT32 len)
 
 	if ( update_fw_len>=(FLASH_PAGE_SIZE*FLASH_FPGA_BLOCK_COUNT) )		
 	{
-		// FPGA³ÌĞò³¬¹ıÒ»¸öÇøµÄ¿Õ¼ä£¬²»Ê¹ÓÃË«±¸·İ¹¦ÄÜ£¬Ä¬ÈÏ´æÔÚµÚÒ»Çø
+		// FPGAç¨‹åºè¶…è¿‡ä¸€ä¸ªåŒºçš„ç©ºé—´ï¼Œä¸ä½¿ç”¨åŒå¤‡ä»½åŠŸèƒ½ï¼Œé»˜è®¤å­˜åœ¨ç¬¬ä¸€åŒº
 		page_index = FLASH_FPGA_PAGE_START1+1;
 	}
 	else
 	{
-		// Ë«±¸·İ¹¦ÄÜ£¬³ÌĞò´æ´¢ÔÚ·Çµ±Ç°»î¶¯Çø
+		// åŒå¤‡ä»½åŠŸèƒ½ï¼Œç¨‹åºå­˜å‚¨åœ¨éå½“å‰æ´»åŠ¨åŒº
 		if ( FPGA_LOAD_BLOCK2 == fpga_load_block )
 		{
 			page_index = FLASH_FPGA_PAGE_START1+1;
@@ -95,15 +95,15 @@ UINT32 FpgaChecksum(UINT32 len)
 
 /*************************************************************
 Name:UpdateStart          
-Description: Éı¼¶¿ªÊ¼£¬×¼±¸ºÃÉı¼¶»·¾³
+Description: å‡çº§å¼€å§‹ï¼Œå‡†å¤‡å¥½å‡çº§ç¯å¢ƒ
 Input:
-	type: Éı¼¶ÀàĞÍ
-	len: Éı¼¶Êı¾İ×Ü³¤¶È
-	pkt_count: Éı¼¶Êı¾İ°üµÄ×Ü¸öÊı
+	type: å‡çº§ç±»å‹
+	len: å‡çº§æ•°æ®æ€»é•¿åº¦
+	pkt_count: å‡çº§æ•°æ®åŒ…çš„æ€»ä¸ªæ•°
 Output: void
 Return: 
-	1 - ×¼±¸¾ÍĞ÷
-	0 - ³ö´í
+	1 - å‡†å¤‡å°±ç»ª
+	0 - å‡ºé”™
 **************************************************************/
 UINT32 UpdateStart( UINT32 type, UINT32 len, UINT32 pkt_count )
 {
@@ -116,14 +116,14 @@ UINT32 UpdateStart( UINT32 type, UINT32 len, UINT32 pkt_count )
 	{
 		if ( (pkt_count * UPDATE_PKT_MAX_LEN) >= (FLASH_PAGE_SIZE * FLASH_FPGA_BLOCK_COUNT * 2) )
 		{
-			return 0;	// Éı¼¶Êı¾İ³¤¶È³¬¹ı´æ´¢·¶Î§
+			return 0;	// å‡çº§æ•°æ®é•¿åº¦è¶…è¿‡å­˜å‚¨èŒƒå›´
 		}
 	}
 	else
 	{
 		if ( (pkt_count * UPDATE_PKT_MAX_LEN) > MCU_FW_MAX_LEN )
 		{
-			return 0;	// Éı¼¶Êı¾İ³¤¶È³¬¹ı´æ´¢·¶Î§
+			return 0;	// å‡çº§æ•°æ®é•¿åº¦è¶…è¿‡å­˜å‚¨èŒƒå›´
 		}
 	}
 #else
@@ -131,28 +131,28 @@ UINT32 UpdateStart( UINT32 type, UINT32 len, UINT32 pkt_count )
 	{
 		if ( (pkt_count * UPDATE_PKT_MAX_LEN) >= (FLASH_PAGE_SIZE * FLASH_FPGA_BLOCK_COUNT *2) )
 		{
-			return 0;	// Éı¼¶Êı¾İ³¤¶È³¬¹ı´æ´¢·¶Î§
+			return 0;	// å‡çº§æ•°æ®é•¿åº¦è¶…è¿‡å­˜å‚¨èŒƒå›´
 		}
 	}
 	else
 	{
 		if ( (pkt_count * UPDATE_PKT_MAX_LEN) > MCU_FW_MAX_LEN )
 		{
-			return 0;	// Éı¼¶Êı¾İ³¤¶È³¬¹ı´æ´¢·¶Î§
+			return 0;	// å‡çº§æ•°æ®é•¿åº¦è¶…è¿‡å­˜å‚¨èŒƒå›´
 		}
 	}
 #endif	
-	// ÖÃÉı¼¶ÖĞ±êÖ¾
+	// ç½®å‡çº§ä¸­æ ‡å¿—
 	if ( UPDATE_TYPE_FPGA == type )
 	{
-		sys_work_info |= SYSTEM_FLAG_FPGA_UPDATE;	//ÉèÖÃFPGAÕıÔÚÉı¼¶±êÖ¾
+		sys_work_info |= SYSTEM_FLAG_FPGA_UPDATE;	//è®¾ç½®FPGAæ­£åœ¨å‡çº§æ ‡å¿—
 	}
 	else
 	{
-		sys_work_info |= SYSTEM_FLAG_MCU_UPDATE;	//ÉèÖÃFPGAÕıÔÚÉı¼¶±êÖ¾
+		sys_work_info |= SYSTEM_FLAG_MCU_UPDATE;	//è®¾ç½®FPGAæ­£åœ¨å‡çº§æ ‡å¿—
 	}
 	
-	// Éı¼¶ĞÅÏ¢
+	// å‡çº§ä¿¡æ¯
 	next_pkt_no = 1;
 	update_fw_len = len;
 	update_pkt_count = pkt_count;
@@ -162,14 +162,14 @@ UINT32 UpdateStart( UINT32 type, UINT32 len, UINT32 pkt_count )
 
 /*************************************************************
 Name:FpgaUpdateEnd          
-Description: FPGAÉı¼¶¿ªÊ¼£¬×¼±¸ºÃÉı¼¶»·¾³
+Description: FPGAå‡çº§å¼€å§‹ï¼Œå‡†å¤‡å¥½å‡çº§ç¯å¢ƒ
 Input:
-	len: Éı¼¶Êı¾İ×Ü³¤¶È
-	pkt_count: Éı¼¶Êı¾İ°üµÄ×Ü¸öÊı
+	len: å‡çº§æ•°æ®æ€»é•¿åº¦
+	pkt_count: å‡çº§æ•°æ®åŒ…çš„æ€»ä¸ªæ•°
 Output: void
 Return: 
-	1 - ×¼±¸¾ÍĞ÷
-	0 - ³ö´í
+	1 - å‡†å¤‡å°±ç»ª
+	0 - å‡ºé”™
 **************************************************************/
 UINT32 FpgaUpdateEnd( UINT32 checksum, UINT32 * p_err )
 {
@@ -185,17 +185,17 @@ UINT32 FpgaUpdateEnd( UINT32 checksum, UINT32 * p_err )
 		checksum_val = FpgaChecksum(update_fw_len);
 		if ( ( (next_pkt_no-1)==update_pkt_count )&&(checksum_val==checksum) )
 		{
-			//ÖØĞÂĞ´FPGA³ÌĞò¸üĞÂ±êÖ¾
+			//é‡æ–°å†™FPGAç¨‹åºæ›´æ–°æ ‡å¿—
 			fpga_load_info[0] = 0xEB;
 			fpga_load_info[1] = 0x90;
 			fpga_load_info[2] = update_fw_len&0xff;
 			fpga_load_info[3] = (update_fw_len>>8)&0xff;
 			fpga_load_info[4] = (update_fw_len>>16)&0xff;
 			fpga_load_info[5] = (update_fw_len>>24)&0xff;
-			// Ğ´Èë¼ÓÔØĞÅÏ¢
+			// å†™å…¥åŠ è½½ä¿¡æ¯
 			if ( update_fw_len>=(FLASH_PAGE_SIZE*FLASH_FPGA_BLOCK_COUNT) )		
 			{
-				// FPGA³ÌĞò³¬¹ıÒ»¸öÇøµÄ¿Õ¼ä£¬²»Ê¹ÓÃË«±¸·İ¹¦ÄÜ£¬Ä¬ÈÏ´æÔÚµÚÒ»Çø
+				// FPGAç¨‹åºè¶…è¿‡ä¸€ä¸ªåŒºçš„ç©ºé—´ï¼Œä¸ä½¿ç”¨åŒå¤‡ä»½åŠŸèƒ½ï¼Œé»˜è®¤å­˜åœ¨ç¬¬ä¸€åŒº
 				FlashEraseSectors(FLASH_FPGA_PAGE_START1/16,FLASH_FPGA_PAGE_START1/16);
 	
 				FlashWrite( FLASH_FPGA_PAGE_START1, 0,fpga_load_info, 8, 1);
@@ -205,14 +205,14 @@ UINT32 FpgaUpdateEnd( UINT32 checksum, UINT32 * p_err )
 			}
 			else
 			{
-				// Ë«±¸·İ¹¦ÄÜ£¬³ÌĞò´æ´¢ÔÚ·Çµ±Ç°»î¶¯Çø
+				// åŒå¤‡ä»½åŠŸèƒ½ï¼Œç¨‹åºå­˜å‚¨åœ¨éå½“å‰æ´»åŠ¨åŒº
 				if ( FPGA_LOAD_BLOCK2 == fpga_load_block )
 				{
 					printf("block2\r\n");
 					//FlashWriteOnepage( FLASH_FPGA_START1, blank_buff, 8, 1);
 					FlashEraseSectors(FLASH_FPGA_PAGE_START1/16,FLASH_FPGA_PAGE_START1/16);
 					FlashWrite( FLASH_FPGA_PAGE_START1,0, fpga_load_info, 8, 1);
-					// ²Á³ı¾ÉµÄFPGA¼ÓÔØĞÅÏ¢
+					// æ“¦é™¤æ—§çš„FPGAåŠ è½½ä¿¡æ¯
 					FlashEraseSectors(FLASH_FPGA_PAGE_START2/16,FLASH_FPGA_PAGE_START2/16);
 					FlashWrite( FLASH_FPGA_PAGE_START2, 0,blank_buff, 8, 0);
 	
@@ -225,7 +225,7 @@ UINT32 FpgaUpdateEnd( UINT32 checksum, UINT32 * p_err )
 					FlashEraseSectors(FLASH_FPGA_PAGE_START2/16,FLASH_FPGA_PAGE_START2/16);
 					//FlashWriteOnepage( FLASH_FPGA_START2, blank_buff, 8, 1);
 					FlashWrite( FLASH_FPGA_PAGE_START2,0, fpga_load_info, 8, 1);
-					// ²Á³ı¾ÉµÄFPGA¼ÓÔØĞÅÏ¢
+					// æ“¦é™¤æ—§çš„FPGAåŠ è½½ä¿¡æ¯
 					FlashEraseSectors(FLASH_FPGA_PAGE_START1/16,FLASH_FPGA_PAGE_START1/16);
 					FlashWrite( FLASH_FPGA_PAGE_START1, 0,blank_buff, 8, 0);
 	
@@ -246,14 +246,14 @@ UINT32 FpgaUpdateEnd( UINT32 checksum, UINT32 * p_err )
 
 /*************************************************************
 Name:FpgaUpdateStart          
-Description: FPGAÉı¼¶¿ªÊ¼£¬×¼±¸ºÃÉı¼¶»·¾³
+Description: FPGAå‡çº§å¼€å§‹ï¼Œå‡†å¤‡å¥½å‡çº§ç¯å¢ƒ
 Input:
-	len: Éı¼¶Êı¾İ×Ü³¤¶È
-	pkt_count: Éı¼¶Êı¾İ°üµÄ×Ü¸öÊı
+	len: å‡çº§æ•°æ®æ€»é•¿åº¦
+	pkt_count: å‡çº§æ•°æ®åŒ…çš„æ€»ä¸ªæ•°
 Output: void
 Return: 
-	1 - ×¼±¸¾ÍĞ÷
-	0 - ³ö´í
+	1 - å‡†å¤‡å°±ç»ª
+	0 - å‡ºé”™
 **************************************************************/
 UINT32 SaveFpgaUpdatePkt( UINT32 pkt_no, UINT32 len, UCHAR8* p_dat, UINT32* p_err )
 {
@@ -269,12 +269,12 @@ UINT32 SaveFpgaUpdatePkt( UINT32 pkt_no, UINT32 len, UCHAR8* p_dat, UINT32* p_er
 	{
 		if ( update_fw_len>=(FLASH_PAGE_SIZE*FLASH_FPGA_BLOCK_COUNT) )		
 		{
-			// FPGA³ÌĞò³¬¹ıÒ»¸öÇøµÄ¿Õ¼ä£¬²»Ê¹ÓÃË«±¸·İ¹¦ÄÜ£¬Ä¬ÈÏ´æÔÚµÚÒ»Çø
+			// FPGAç¨‹åºè¶…è¿‡ä¸€ä¸ªåŒºçš„ç©ºé—´ï¼Œä¸ä½¿ç”¨åŒå¤‡ä»½åŠŸèƒ½ï¼Œé»˜è®¤å­˜åœ¨ç¬¬ä¸€åŒº
 			page = FLASH_FPGA_PAGE_START1+1;
 		}
 		else
 		{
-			// Ë«±¸·İ¹¦ÄÜ£¬³ÌĞò´æ´¢ÔÚ·Çµ±Ç°»î¶¯Çø
+			// åŒå¤‡ä»½åŠŸèƒ½ï¼Œç¨‹åºå­˜å‚¨åœ¨éå½“å‰æ´»åŠ¨åŒº
 			if ( FPGA_LOAD_BLOCK2 == fpga_load_block )
 			{
 				page = FLASH_FPGA_PAGE_START1+1;
@@ -289,10 +289,10 @@ UINT32 SaveFpgaUpdatePkt( UINT32 pkt_no, UINT32 len, UCHAR8* p_dat, UINT32* p_er
 		while ( len>0 )
 		{
 			wr_len = (len>FLASH_PAGE_SIZE) ? FLASH_PAGE_SIZE : len;
-			FlashWrite( page, 0,p_dat, wr_len, 1);	// Ğ´ÈëÊı¾İ
+			FlashWrite( page, 0,p_dat, wr_len, 1);	// å†™å…¥æ•°æ®
 			page++;
-			p_dat += wr_len;		// Ö¸ÕëºóÒÆ
-			len -= wr_len;			// ¼ÆËãÊ£Óà³¤¶È
+			p_dat += wr_len;		// æŒ‡é’ˆåç§»
+			len -= wr_len;			// è®¡ç®—å‰©ä½™é•¿åº¦
 		}
 		next_pkt_no++;
 		return 1;
@@ -306,10 +306,10 @@ UINT32 SaveFpgaUpdatePkt( UINT32 pkt_no, UINT32 len, UCHAR8* p_dat, UINT32* p_er
 
 /*************************************************************
 Name:FpgaChecksum
-Description:FPGA¼ÆËãĞ£ÑéºÍ
-Input:¼ÓÔØÎÄ¼şµÄ×Ü³¤¶È          
+Description:FPGAè®¡ç®—æ ¡éªŒå’Œ
+Input:åŠ è½½æ–‡ä»¶çš„æ€»é•¿åº¦          
 Output:void         
-Return:Ğ£ÑéÖµ  
+Return:æ ¡éªŒå€¼  
 **************************************************************/
 UINT32 McuChecksum(UINT32 len)
 {
@@ -337,14 +337,14 @@ UINT32 McuChecksum(UINT32 len)
 
 /*************************************************************
 Name:McuUpdateEnd          
-Description: FPGAÉı¼¶¿ªÊ¼£¬×¼±¸ºÃÉı¼¶»·¾³
+Description: FPGAå‡çº§å¼€å§‹ï¼Œå‡†å¤‡å¥½å‡çº§ç¯å¢ƒ
 Input:
-	len: Éı¼¶Êı¾İ×Ü³¤¶È
-	pkt_count: Éı¼¶Êı¾İ°üµÄ×Ü¸öÊı
+	len: å‡çº§æ•°æ®æ€»é•¿åº¦
+	pkt_count: å‡çº§æ•°æ®åŒ…çš„æ€»ä¸ªæ•°
 Output: void
 Return: 
-	1 - ×¼±¸¾ÍĞ÷
-	0 - ³ö´í
+	1 - å‡†å¤‡å°±ç»ª
+	0 - å‡ºé”™
 **************************************************************/
 UINT32 McuUpdateEnd( UINT32 checksum, UINT32 * p_err )
 {
@@ -360,15 +360,15 @@ UINT32 McuUpdateEnd( UINT32 checksum, UINT32 * p_err )
 	checksum_val = McuChecksum(update_fw_len);
 	if ( ( next_pkt_no==(update_pkt_count+1) )&&(checksum_val==checksum) )
 	{
-		//ÖØĞÂĞ´FPGA³ÌĞò¸üĞÂ±êÖ¾
+		//é‡æ–°å†™FPGAç¨‹åºæ›´æ–°æ ‡å¿—
 		mcu_load_info[0] = 0xEB;
 		mcu_load_info[1] = 0x90;
 		mcu_load_info[2] = update_fw_len&0xff;
 		mcu_load_info[3] = (update_fw_len>>8)&0xff;
 		mcu_load_info[4] = (update_fw_len>>16)&0xff;
 		mcu_load_info[5] = (update_fw_len>>24)&0xff;
-		// Ğ´Èë¼ÓÔØĞÅÏ¢
-		// ²Á³ı¾ÉµÄFPGA¼ÓÔØĞÅÏ¢
+		// å†™å…¥åŠ è½½ä¿¡æ¯
+		// æ“¦é™¤æ—§çš„FPGAåŠ è½½ä¿¡æ¯
 		FlashEraseSectors(FLASH_MCU_SW_START_PAGE/16,FLASH_MCU_SW_START_PAGE/16);
 		//FlashWriteOnepage( FLASH_MCU_SW_START_PAGE, blank_buff, 8, 1 );
 		FlashWrite( FLASH_MCU_SW_START_PAGE,0, mcu_load_info, 8, 1 );
@@ -384,14 +384,14 @@ UINT32 McuUpdateEnd( UINT32 checksum, UINT32 * p_err )
 
 /*************************************************************
 Name:SaveMcuUpdatePkt          
-Description: FPGAÉı¼¶¿ªÊ¼£¬×¼±¸ºÃÉı¼¶»·¾³
+Description: FPGAå‡çº§å¼€å§‹ï¼Œå‡†å¤‡å¥½å‡çº§ç¯å¢ƒ
 Input:
-	len: Éı¼¶Êı¾İ×Ü³¤¶È
-	pkt_count: Éı¼¶Êı¾İ°üµÄ×Ü¸öÊı
+	len: å‡çº§æ•°æ®æ€»é•¿åº¦
+	pkt_count: å‡çº§æ•°æ®åŒ…çš„æ€»ä¸ªæ•°
 Output: void
 Return: 
-	1 - ×¼±¸¾ÍĞ÷
-	0 - ³ö´í
+	1 - å‡†å¤‡å°±ç»ª
+	0 - å‡ºé”™
 **************************************************************/
 UINT32 SaveMcuUpdatePkt( UINT32 pkt_no, UINT32 len, UCHAR8* p_dat, UCHAR8* p_err )
 {
@@ -418,10 +418,10 @@ UINT32 SaveMcuUpdatePkt( UINT32 pkt_no, UINT32 len, UCHAR8* p_dat, UCHAR8* p_err
 			WTD_CLR;
 			
 			wr_len = (len>FLASH_PAGE_SIZE) ? FLASH_PAGE_SIZE : len;
-			FlashWrite( page,0, p_dat, (UINT16)wr_len,2);	// Ğ´ÈëÊı¾İ
+			FlashWrite( page,0, p_dat, (UINT16)wr_len,2);	// å†™å…¥æ•°æ®
 			page++;
-			p_dat += wr_len;		// Ö¸ÕëºóÒÆ
-			len -= wr_len;		// ¼ÆËãÊ£Óà³¤¶È
+			p_dat += wr_len;		// æŒ‡é’ˆåç§»
+			len -= wr_len;		// è®¡ç®—å‰©ä½™é•¿åº¦
 		}
 		next_pkt_no++;
 		return 1;

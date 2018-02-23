@@ -1,19 +1,19 @@
-#include "Header.h"
+ï»¿#include "Header.h"
 
 extern UCHAR8 sys_temp_buff[];
-extern UCHAR8 gsm_type_a;	// gsmÄ£Ê½
-extern FLOAT32 fpga_dginp_a;		// A¶ÎÏÂĞĞÊä³öÂË²¨Æ÷ÔöÒæ
-extern FLOAT32 fpga_dgcic_a;		// A¶ÎÏÂĞĞÊäÈëÂË²¨Æ÷ÔöÒæ(0)
-extern FLOAT32 fpga_uginp_a;		// A¶ÎÉÏĞĞÊä³öÂË²¨Æ÷ÔöÒæ(0)
-extern FLOAT32 fpga_ugcic_a;		// A¶ÎÉÏĞĞÊäÈëÂË²¨Æ÷ÔöÒæ
-extern FLOAT32 fpga_dginp_c;		// A¶ÎÏÂĞĞÊä³öÂË²¨Æ÷ÔöÒæ
-extern FLOAT32 fpga_dgcic_c;		// A¶ÎÏÂĞĞÊäÈëÂË²¨Æ÷ÔöÒæ(0)
-extern FLOAT32 fpga_uginp_c;		// A¶ÎÉÏĞĞÊä³öÂË²¨Æ÷ÔöÒæ(0)
-extern FLOAT32 fpga_ugcic_c;		// A¶ÎÉÏĞĞÊäÈëÂË²¨Æ÷ÔöÒæ
+extern UCHAR8 gsm_type_a;	// gsmæ¨¡å¼
+extern FLOAT32 fpga_dginp_a;		// Aæ®µä¸‹è¡Œè¾“å‡ºæ»¤æ³¢å™¨å¢ç›Š
+extern FLOAT32 fpga_dgcic_a;		// Aæ®µä¸‹è¡Œè¾“å…¥æ»¤æ³¢å™¨å¢ç›Š(0)
+extern FLOAT32 fpga_uginp_a;		// Aæ®µä¸Šè¡Œè¾“å‡ºæ»¤æ³¢å™¨å¢ç›Š(0)
+extern FLOAT32 fpga_ugcic_a;		// Aæ®µä¸Šè¡Œè¾“å…¥æ»¤æ³¢å™¨å¢ç›Š
+extern FLOAT32 fpga_dginp_c;		// Aæ®µä¸‹è¡Œè¾“å‡ºæ»¤æ³¢å™¨å¢ç›Š
+extern FLOAT32 fpga_dgcic_c;		// Aæ®µä¸‹è¡Œè¾“å…¥æ»¤æ³¢å™¨å¢ç›Š(0)
+extern FLOAT32 fpga_uginp_c;		// Aæ®µä¸Šè¡Œè¾“å‡ºæ»¤æ³¢å™¨å¢ç›Š(0)
+extern FLOAT32 fpga_ugcic_c;		// Aæ®µä¸Šè¡Œè¾“å…¥æ»¤æ³¢å™¨å¢ç›Š
 
 // extern _T_FPGA_CFG fpga_cfg;
-extern UINT16 fpga_a_regbk[];		// ±¸·İĞ´Èë¼Ä´æÆ÷ginp+gcic+{ÏÂĞĞÔöÒæ,ÉÏĞĞÔöÒæ}x ch_count+busy_time+traffic_end
-extern UINT32 module_param_chg_flag;		//ÏµÍ³¹¤×÷²ÎÊıĞŞ¸Ä±êÖ¾
+extern UINT16 fpga_a_regbk[];		// å¤‡ä»½å†™å…¥å¯„å­˜å™¨ginp+gcic+{ä¸‹è¡Œå¢ç›Š,ä¸Šè¡Œå¢ç›Š}x ch_count+busy_time+traffic_end
+extern UINT32 module_param_chg_flag;		//ç³»ç»Ÿå·¥ä½œå‚æ•°ä¿®æ”¹æ ‡å¿—
 extern UINT32 fpga_load_status;
 
 
@@ -24,14 +24,14 @@ _T_MODULE_CFG mod_cfg_a;
 
 /*************************************************************
 Name:	InitPartA         
-Description:³õÊ¼»¯A¶Î
+Description:åˆå§‹åŒ–Aæ®µ
 Input:void
 Output:void      
-Return:-1:Ê§°Ü£¬1: ³É¹¦            
+Return:-1:å¤±è´¥ï¼Œ1: æˆåŠŸ            
 **************************************************************/
 void InitPartA(void) 
 {
-	// ³õÊ¼»¯4153»ìÆµÆ÷
+	// åˆå§‹åŒ–4153æ··é¢‘å™¨
 	//TRACE_INFO("Init Part-A.\r\n");
 
 	if ( fpga_cfg.a_net_type==NET_NONE )
@@ -42,13 +42,13 @@ void InitPartA(void)
 	{
 		return;		
 	}
-	ReadWriteTF(TF_A,1,0X56,0X00);//´ò¿ªÉÏĞĞ£¬Êä³öÍ¨µÀ¡¢
+	ReadWriteTF(TF_A,1,0X56,0X00);//æ‰“å¼€ä¸Šè¡Œï¼Œè¾“å‡ºé€šé“ã€
 	CheckChannelSetA();
 
-	Init_Local_Pll(A_MIXER); //822 U PLL  A¶ÎÉÏĞĞ±¾Õğ ,REÎª»ìÆµ
-	Init_Local_Pll(A_MODEN);//839 D PLL  A¶ÎÏÂĞĞ±¾Õğ  REÎªµ÷ÖÆ
+	Init_Local_Pll(A_MIXER); //822 U PLL  Aæ®µä¸Šè¡Œæœ¬éœ‡ ,REä¸ºæ··é¢‘
+	Init_Local_Pll(A_MODEN);//839 D PLL  Aæ®µä¸‹è¡Œæœ¬éœ‡  REä¸ºè°ƒåˆ¶
  
-	//Ğ´ÈëĞ£×¼±í¸ñºÍÏµÍ³ÎÂ¶È   
+	//å†™å…¥æ ¡å‡†è¡¨æ ¼å’Œç³»ç»Ÿæ¸©åº¦   
 	if ( b_FALSE==FpgaSetUlAttAdjTableA() )
 	{
 		//TRACE_ERROR("No A UL ATT Adjust Table\r\n");
@@ -66,10 +66,10 @@ void InitPartA(void)
 
 /*************************************************************
 Name:InitDA_A         
-Description:³õÊ¼»¯AD9779
-Input:main_dive_flag:1Ö÷ÓÃ£¬0:·Ö¼¯
+Description:åˆå§‹åŒ–AD9779
+Input:main_dive_flag:1ä¸»ç”¨ï¼Œ0:åˆ†é›†
 Output:void      
-Return:-1:Ê§°Ü£¬0: ³É¹¦            
+Return:-1:å¤±è´¥ï¼Œ0: æˆåŠŸ            
 **************************************************************/
 BOOL InitDA_A()
 {
@@ -80,7 +80,7 @@ BOOL InitDA_A()
 
 /*************************************************************
 Name: FpgaGetDlUlPowerA
-Description: »ñµÃÊäÈëºÍÊä³ö¹¦ÂÊ
+Description: è·å¾—è¾“å…¥å’Œè¾“å‡ºåŠŸç‡
 Input:void
 Output:void         
 Return:void
@@ -98,13 +98,13 @@ void FpgaGetDlUlPowerA()
 	}
 
 #if ((defined CLIENT_JIZHUN) ||(defined CLIENT_ERRICSON))
-	// AD¹¦ÂÊ,ÊäÈë¹¦ÂÊ
+	// ADåŠŸç‡,è¾“å…¥åŠŸç‡
 	//FpgaPowSelSlot(FPGA_REG_A_FAD_POW_H);
 	reg_val= (FpgaReadRegister(FPGA_REG_A_FAD_POW_H)<<16)|(FpgaReadRegister(FPGA_REG_A_FAD_POW_L));
 	f_pow = CALC_POWER( reg_val );
-	// Ç°¶Ë²¹³¥Gfcmps 
+	// å‰ç«¯è¡¥å¿Gfcmps 
 	f_gcmps = CALC_GAIN(FpgaReadRegister(FPGA_REG_A_FG_CMPS));
-	// ¶Ë¿ÚÊäÈë¹¦ÂÊPin = Pad + Gfcmps + Gcic - Gfnom
+	// ç«¯å£è¾“å…¥åŠŸç‡Pin = Pad + Gfcmps + Gcic - Gfnom
 	fpga_dgcic_a = 0;
 	tmp = f_pow+fpga_dgcic_a+f_gcmps - FPGA_REC_GFNOM+(CHAR8)sys_param_1b[MADD_A_DL_POW_ADJ].val/10.0+ (INT16)sys_param_2b[MADD_A_UDPX_IN_GAIN	].val/10.0;
 	if ( tmp<-123 )
@@ -119,7 +119,7 @@ void FpgaGetDlUlPowerA()
 
 
 
-	// DA¹¦ÂÊ Êä³ö¹¦ÂÊ
+	// DAåŠŸç‡ è¾“å‡ºåŠŸç‡
 	//FpgaPowSelSlot(FPGA_REG_A_BDA_POW_H);
 	reg_val= (FpgaReadRegister(FPGA_REG_A_BDA_POW_H)<<16)|(FpgaReadRegister(FPGA_REG_A_BDA_POW_L));
 //	TRACE_INFO("reg_val[%04x]\n",reg_val);
@@ -127,12 +127,12 @@ void FpgaGetDlUlPowerA()
 	f_pow = CALC_POWER_1( reg_val );
 //		TRACE_INFO("f_pow[%f]\n",f_pow);
 
-	// ºó¶Ë²¹³¥Gfcmps
+	// åç«¯è¡¥å¿Gfcmps
 	f_gcmps = CALC_GAIN(FpgaReadRegister(FPGA_REG_A_BG_CMPS));
 //		TRACE_INFO("f_gcmps[%f]\n",f_gcmps);
 //		TRACE_INFO("fpga_uginp_a[%f]\n",fpga_uginp_a);
 
-	// ¶Ë¿ÚÊä³ö¹¦ÂÊPout = Pda - Gfcmps - Gcic + Gfnom
+	// ç«¯å£è¾“å‡ºåŠŸç‡Pout = Pda - Gfcmps - Gcic + Gfnom
 	fpga_uginp_a = 0;
 	tmp = f_pow-fpga_uginp_a-f_gcmps + FPGA_REC_GDNOM+ (INT16)sys_param_2b[MADD_A_UDPX_OUT_GAIN	].val/10.0;
 	if ( tmp<-123 )
@@ -146,13 +146,13 @@ void FpgaGetDlUlPowerA()
 	sys_param_1b[MADD_A_UL_POW_1B].val = tmp;
 #elif ((defined  CLIENT_ERRICSON2) ||(defined CLIENT_ERRICSON_W))
 
-// AD¹¦ÂÊ,ÊäÈë¹¦ÂÊ
+// ADåŠŸç‡,è¾“å…¥åŠŸç‡
 	//FpgaPowSelSlot(FPGA_REG_A_FAD_POW_H);
 	reg_val= (FpgaReadRegister(FPGA_REG_C_FAD_POW_H)<<16)|(FpgaReadRegister(FPGA_REG_C_FAD_POW_L));
 	f_pow = CALC_POWER( reg_val );
-	// Ç°¶Ë²¹³¥Gfcmps 
+	// å‰ç«¯è¡¥å¿Gfcmps 
 	f_gcmps = CALC_GAIN(FpgaReadRegister(FPGA_REG_C_FG_CMPS));
-	// ¶Ë¿ÚÊäÈë¹¦ÂÊPin = Pad + Gfcmps + Gcic - Gfnom
+	// ç«¯å£è¾“å…¥åŠŸç‡Pin = Pad + Gfcmps + Gcic - Gfnom
 	fpga_dgcic_c= 0;
 	tmp = f_pow+fpga_dgcic_c+f_gcmps - FPGA_REC_GFNOM+(CHAR8)sys_param_1b[MADD_C_DL_POW_ADJ].val/10.0+ (INT16)sys_param_2b[MADD_C_UDPX_IN_GAIN	].val/10.0;
 	if ( tmp<-123 )
@@ -166,7 +166,7 @@ void FpgaGetDlUlPowerA()
 
 
 
-	// DA¹¦ÂÊ Êä³ö¹¦ÂÊ
+	// DAåŠŸç‡ è¾“å‡ºåŠŸç‡
 	//FpgaPowSelSlot(FPGA_REG_A_BDA_POW_H);
 	reg_val= (FpgaReadRegister(FPGA_REG_C_BDA_POW_H)<<16)|(FpgaReadRegister(FPGA_REG_C_BDA_POW_L));
 //	TRACE_INFO("reg_val[%04x]\n",reg_val);
@@ -174,12 +174,12 @@ void FpgaGetDlUlPowerA()
 	f_pow = CALC_POWER_1( reg_val );
 //		TRACE_INFO("f_pow[%f]\n",f_pow);
 
-	// ºó¶Ë²¹³¥Gfcmps
+	// åç«¯è¡¥å¿Gfcmps
 	f_gcmps = CALC_GAIN(FpgaReadRegister(FPGA_REG_C_BG_CMPS));
 //		TRACE_INFO("f_gcmps[%f]\n",f_gcmps);
 //		TRACE_INFO("fpga_uginp_a[%f]\n",fpga_uginp_a);
 
-	// ¶Ë¿ÚÊä³ö¹¦ÂÊPout = Pda - Gfcmps - Gcic + Gfnom
+	// ç«¯å£è¾“å‡ºåŠŸç‡Pout = Pda - Gfcmps - Gcic + Gfnom
 	fpga_uginp_c = 0;
 	tmp = f_pow-fpga_uginp_c-f_gcmps + FPGA_REC_GDNOM+ (INT16)sys_param_2b[MADD_C_UDPX_OUT_GAIN	].val/10.0;
 	if ( tmp<-123 )
@@ -202,11 +202,11 @@ void FpgaGetDlUlPowerA()
 
 /*************************************************************
 Name:PA_SetChannel
-Description:FPGAÉèÖÃÍ¨µÀÆµµã
+Description:FPGAè®¾ç½®é€šé“é¢‘ç‚¹
 Input:
-	channel: Í¨µÀºÅ
-	enable: Í¨µÀÊ¹ÄÜ
-	freq_point: ÆµµãºÅ
+	channel: é€šé“å·
+	enable: é€šé“ä½¿èƒ½
+	freq_point: é¢‘ç‚¹å·
 Output:void         
 Return:void        
 **************************************************************/
@@ -240,8 +240,8 @@ void PA_SetChannel( UCHAR8 channel, UCHAR8 enable, INT32 freq_code )
 	reg_val=down_fre_word;
 	reg_val_16 =(UINT16)reg_val&0xfff;
 	FPGA_ENABLE_WRITE;
-	FPGA_SET_CHANNEL(channel);		// ÉèÖÃÍ¨µÀºÅ
-	if ( 1 == enable )		// ÉèÖÃÆµÂÊ×Ö¼Ä´æÆ÷
+	FPGA_SET_CHANNEL(channel);		// è®¾ç½®é€šé“å·
+	if ( 1 == enable )		// è®¾ç½®é¢‘ç‡å­—å¯„å­˜å™¨
 	{
 		reg_val_16 |= SF_CHANNEL_EN;
 	}
@@ -331,8 +331,8 @@ void PA_SetChannel( UCHAR8 channel, UCHAR8 enable, INT32 freq_code )
 	reg_val=up_fre_word;
 	reg_val_16 =(UINT16)reg_val&0xfff;
 	FPGA_ENABLE_WRITE;
-	FPGA_SET_CHANNEL(channel);		// ÉèÖÃÍ¨µÀºÅ
-	if ( 1 == enable )		// ÉèÖÃÆµÂÊ×Ö¼Ä´æÆ÷
+	FPGA_SET_CHANNEL(channel);		// è®¾ç½®é€šé“å·
+	if ( 1 == enable )		// è®¾ç½®é¢‘ç‡å­—å¯„å­˜å™¨
 	{
 		reg_val_16 |= SF_CHANNEL_EN;
 	}
@@ -412,7 +412,7 @@ void PA_SetChannel( UCHAR8 channel, UCHAR8 enable, INT32 freq_code )
 
 /*************************************************************
 Name: FpgaSetOutAttValueA
-Description: ÉèÖÃA¶ÎÊä³öATTË¥¼õÁ¿
+Description: è®¾ç½®Aæ®µè¾“å‡ºATTè¡°å‡é‡
 Input:
 Output:void         
 Return:void
@@ -446,7 +446,7 @@ void FpgaSetOutAttValueA()
 	{
 	case NET_TYPE_GSM900:
 	case NET_TYPE_DCS1800:
-		if ( fpga_cfg.a_ultra_info == FPGA_A_NT_GSM_WB )	// ¿í´øGSM
+		if ( fpga_cfg.a_ultra_info == FPGA_A_NT_GSM_WB )	// å®½å¸¦GSM
 		{
 			pda = -21+FPGA_PDN;
 		}
@@ -463,7 +463,7 @@ void FpgaSetOutAttValueA()
 		break;
 
 	case NET_TYPE_TD:
-		pda = CALC_DA_MAX_POW(tmp);		// A¶ÎÃ»ÓĞ¿í´øTD°æ±¾
+		pda = CALC_DA_MAX_POW(tmp);		// Aæ®µæ²¡æœ‰å®½å¸¦TDç‰ˆæœ¬
 //	#ifdef TD_TYPE_WB
 //		pda = -21+FPGA_PDN;
 //	#else
@@ -472,7 +472,7 @@ void FpgaSetOutAttValueA()
 		break;
 
 	case NET_TYPE_CDMA:
-		if ( fpga_cfg.a_ultra_info == FPGA_A_NT_CDMA_WB)	// ¿í´øCDMA
+		if ( fpga_cfg.a_ultra_info == FPGA_A_NT_CDMA_WB)	// å®½å¸¦CDMA
 		{
 			pda = -21+FPGA_PDN;
 		}	
@@ -483,7 +483,7 @@ void FpgaSetOutAttValueA()
 		break;
 
 	case NET_TYPE_TETRA:
-		if ( fpga_cfg.a_ultra_info == FPGA_A_NT_TETRA_WB)	// ¿í´ø¼¯Èº
+		if ( fpga_cfg.a_ultra_info == FPGA_A_NT_TETRA_WB)	// å®½å¸¦é›†ç¾¤
 		{
 			pda = -21+FPGA_PDN;
 		}	
@@ -527,7 +527,7 @@ void FpgaSetOutAttValueA()
 	FlashRead(FLASH_A_UL_ATT_ADJ_TBL_PAGE, 0, p_dat,FLASH_PAGE_SIZE);
 	if ( ( p_dat[0] != 0xEC )||( p_dat[1] != 0x69 ) )
 	{
-		// ÎŞË¥¼õ±í¸ñ
+		// æ— è¡°å‡è¡¨æ ¼
 		i = (INT16)(g_dcmps*2);
 		if ( i<0 )
 		{
@@ -567,10 +567,10 @@ void FpgaSetOutAttValueA()
 
 /*************************************************************
 Name:FpgaWorkEnable
-Description: FPGAÉäÆµ²¿·ÖÊ¹ÄÜ
+Description: FPGAå°„é¢‘éƒ¨åˆ†ä½¿èƒ½
 Input:
-	ab_flag: AB¶ÎÑ¡Ôñ
-	enable: 1-Ê¹ÄÜ
+	ab_flag: ABæ®µé€‰æ‹©
+	enable: 1-ä½¿èƒ½
 Output:void         
 Return:void
 **************************************************************/
@@ -593,12 +593,12 @@ void FpgaWorkEnableA( UCHAR8 enable )
 
 	if ( 1==enable )
 	{
-		tmp |= ATT_WORK_EN;			// Ê¹ÄÜ¹¤×÷
+		tmp |= ATT_WORK_EN;			// ä½¿èƒ½å·¥ä½œ
 	}
 	else
 	{
-		EnableModulatorA(0);			// ¹Ø¶Ïµ÷ÖÆÆ÷Êä³ö
-		tmp &= (~ATT_WORK_EN);		// Í£Ö¹¹¤×÷
+		EnableModulatorA(0);			// å…³æ–­è°ƒåˆ¶å™¨è¾“å‡º
+		tmp &= (~ATT_WORK_EN);		// åœæ­¢å·¥ä½œ
 	}
 	
 	FPGA_ENABLE_WRITE;
@@ -607,8 +607,8 @@ void FpgaWorkEnableA( UCHAR8 enable )
 
 	if ( 1==enable )
 	{
-		UsNopDelay( 500000 );		// ÑÓÊ±500ms
-		EnableModulatorA(1);		// Ê¹ÄÜµ÷ÖÆÆ÷Êä³ö
+		UsNopDelay( 500000 );		// å»¶æ—¶500ms
+		EnableModulatorA(1);		// ä½¿èƒ½è°ƒåˆ¶å™¨è¾“å‡º
 		WTD_CLR;
 	}
 
@@ -616,12 +616,12 @@ void FpgaWorkEnableA( UCHAR8 enable )
 
 /*************************************************************
 Name:FpgaIsEnableA
-Description: ·µ»ØFPGAÊ¹ÄÜ×´Ì¬
+Description: è¿”å›FPGAä½¿èƒ½çŠ¶æ€
 Input:void
 Output:void         
 Return:
-	b_TRUE-ÒÑÊ¹ÄÜ
-	b_FALSE-Î´Ê¹ÄÜ
+	b_TRUE-å·²ä½¿èƒ½
+	b_FALSE-æœªä½¿èƒ½
 **************************************************************/
 BOOL FpgaIsEnableA()
 {
@@ -633,10 +633,10 @@ BOOL FpgaIsEnableA()
 
 /*************************************************************
 Name: SetFpgaFreqAdj         
-Description: ÉèÖÃFPGA ADÊäÈë,DAÊä³öÆµÂÊ²¹³¥
+Description: è®¾ç½®FPGA ADè¾“å…¥,DAè¾“å‡ºé¢‘ç‡è¡¥å¿
 Input:void
 Output:void      
-Return:-1:Ê§°Ü£¬1: ³É¹¦            
+Return:-1:å¤±è´¥ï¼Œ1: æˆåŠŸ            
 **************************************************************/
 void FpgaSetFreqAdjA(void)
 {
@@ -646,11 +646,11 @@ void FpgaSetFreqAdjA(void)
 
 /*************************************************************
 Name:	FpgaSetUlAttAdjTable
-Description:	ÏòFPGAĞ´ÈëÉÏĞĞĞ£×¼±í¸ñ
+Description:	å‘FPGAå†™å…¥ä¸Šè¡Œæ ¡å‡†è¡¨æ ¼
 Input: 
-	ab_flag: AB¶ÎÑ¡Ôñ
+	ab_flag: ABæ®µé€‰æ‹©
 Output:void
-Return:0:Ã»ÓĞ·¢ÏÖĞ£×¼±í¸ñ£¬1:³É¹¦
+Return:0:æ²¡æœ‰å‘ç°æ ¡å‡†è¡¨æ ¼ï¼Œ1:æˆåŠŸ
 **************************************************************/
 BOOL FpgaSetUlAttAdjTableA()
 {
@@ -704,11 +704,11 @@ BOOL FpgaSetUlAttAdjTableA()
 
 /*************************************************************
 Name:	FpgaSetDlAttAdjTable
-Description:	ÏòFPGAĞ´ÈëÉÏĞĞĞ£×¼±í¸ñ
+Description:	å‘FPGAå†™å…¥ä¸Šè¡Œæ ¡å‡†è¡¨æ ¼
 Input: 
-	ab_flag: AB¶ÎÑ¡Ôñ
+	ab_flag: ABæ®µé€‰æ‹©
 Output:void
-Return:0:Ã»ÓĞ·¢ÏÖĞ£×¼±í¸ñ£¬1:³É¹¦
+Return:0:æ²¡æœ‰å‘ç°æ ¡å‡†è¡¨æ ¼ï¼Œ1:æˆåŠŸ
 **************************************************************/
 BOOL FpgaSetDlAttAdjTableA()
 {
@@ -763,10 +763,10 @@ BOOL FpgaSetDlAttAdjTableA()
 
 /*************************************************************
 Name:	CheckChannelSetA
-Description:	¼ì²âÆµµãÉèÖÃÊÇ·ñºÏ·¨£¬²¢ÅĞ¶ÏÊÇ·ñĞèÒªÇĞ»»±¾Õñ
+Description:	æ£€æµ‹é¢‘ç‚¹è®¾ç½®æ˜¯å¦åˆæ³•ï¼Œå¹¶åˆ¤æ–­æ˜¯å¦éœ€è¦åˆ‡æ¢æœ¬æŒ¯
 Input: void
 Output:void
-Return: 0:²ÎÊıÓĞ´í  	1:²ÎÊıOK
+Return: 0:å‚æ•°æœ‰é”™  	1:å‚æ•°OK
 **************************************************************/
 UCHAR8 CheckChannelSetA( void )
 {
@@ -774,45 +774,45 @@ UCHAR8 CheckChannelSetA( void )
 	UCHAR8 ch;
 	UCHAR8 flag = 0;
 
-	for ( ch=0; ch<sys_param_1b[MADD_A_CHANNEL_COUNT].val; ch++ )	// ±éÀúËùÓĞÍ¨µÀ
+	for ( ch=0; ch<sys_param_1b[MADD_A_CHANNEL_COUNT].val; ch++ )	// éå†æ‰€æœ‰é€šé“
 	{
-		if ( sys_param_1b[MADD_A_DCH_EN1+ch].val==1 )	// Ö»ÓĞÍ¨µÀÊ¹ÄÜ²Å¼ì²â
+		if ( sys_param_1b[MADD_A_DCH_EN1+ch].val==1 )	// åªæœ‰é€šé“ä½¿èƒ½æ‰æ£€æµ‹
 		{
-			// ²»ÅĞ¶Ï±ßÔµÆµµã,ÒòÎªËæ±ãÒ»¸ö±¾Õñ¶¼Ö§³Ö
+			// ä¸åˆ¤æ–­è¾¹ç¼˜é¢‘ç‚¹,å› ä¸ºéšä¾¿ä¸€ä¸ªæœ¬æŒ¯éƒ½æ”¯æŒ
 		#if (A_NETWORK_TYPE == NET_TYPE_GSM900)		// GSM900
 			if ( VAL_IN_RANGE(sys_param_2b[MADD_A_DL_CHANNEL1+ch].val, 96, 124) )
 			{
-				flag |= 0x01;	// ÁªÍ¨
+				flag |= 0x01;	// è”é€š
 				continue;
 			}
 
 			if ( VAL_IN_RANGE(sys_param_2b[MADD_A_DL_CHANNEL1+ch].val, 0, 94) )
 			{
-				flag |= 0x02;	// ÒÆ¶¯
+				flag |= 0x02;	// ç§»åŠ¨
 				continue;
 			}
 			if ( VAL_IN_RANGE(sys_param_2b[MADD_A_DL_CHANNEL1+ch].val, 975, 1023) )
 			{
-				flag |= 0x02;	// ÒÆ¶¯
+				flag |= 0x02;	// ç§»åŠ¨
 				continue;
 			}
 		#elif (A_NETWORK_TYPE == NET_TYPE_DCS1800)	// DCS1800
 			if ( VAL_IN_RANGE(sys_param_2b[MADD_A_DL_CHANNEL1+ch].val, DCS_MIN_FRE_CODE_UNICOM, DCS_MAX_FRE_CODE_UNICOM) )
 			{
-				flag |= 0x01;	// ÁªÍ¨
+				flag |= 0x01;	// è”é€š
 				continue;
 			}
 
 			if ( VAL_IN_RANGE(sys_param_2b[MADD_A_DL_CHANNEL1+ch].val, DCS_MIN_FRE_CODE_CNMOBILE,DCS_MAX_FRE_CODE_CNMOBILE) )
 			{
-				flag |= 0x02;	// ÒÆ¶¯
+				flag |= 0x02;	// ç§»åŠ¨
 				continue;
 			}
 		#endif
 		}
 	}
 
-	if ( 0x03 == flag )		// Í¬Ê±ÉèÖÃÁËÒÆ¶¯ºÍÁªÍ¨Æµµã£¬³ö´í
+	if ( 0x03 == flag )		// åŒæ—¶è®¾ç½®äº†ç§»åŠ¨å’Œè”é€šé¢‘ç‚¹ï¼Œå‡ºé”™
 	{
 		return 0;
 	}
@@ -823,7 +823,7 @@ UCHAR8 CheckChannelSetA( void )
 	G2Tpye = G2_TYPE_CNMOBILE;
 #endif
 
-	// ÇĞ»»µ½ÁªÍ¨±¾Õñ
+	// åˆ‡æ¢åˆ°è”é€šæœ¬æŒ¯
 	if ( (flag==0x01)&&(G2Tpye!=G2_TYPE_UNICOM) )
 	{
     		module_param_chg_flag|=PCHG_A_FL_CHG;
@@ -840,10 +840,10 @@ UCHAR8 CheckChannelSetA( void )
 
 /*************************************************************
 Name:RFWorkEnableA
-Description: ÉäÆµ²¿·ÖÊ¹ÄÜ
+Description: å°„é¢‘éƒ¨åˆ†ä½¿èƒ½
 Input:
-	ab_flag: AB¶ÎÑ¡Ôñ
-	enable: 1-Ê¹ÄÜ
+	ab_flag: ABæ®µé€‰æ‹©
+	enable: 1-ä½¿èƒ½
 Output:void         
 Return:void
 **************************************************************/
@@ -865,27 +865,27 @@ void RFWorkEnableA( UCHAR8 enable )
 	}
 	npcs = fpga_cfg.a_9363;
 	//printf("sys_param_1b[MADD_A_DL_RF_EN].val=[%x],sys_param_1b[MADD_A_UL_RF_EN].val=[%x]\r\n",sys_param_1b[MADD_A_DL_RF_EN].val,sys_param_1b[MADD_A_UL_RF_EN].val);
-	//ÉÏĞĞ
+	//ä¸Šè¡Œ
 	tmp = ReadWriteTF(npcs,0,0x57,0);
 	if(sys_param_1b[MADD_A_UL_RF_EN].val == 0)
 	{
-		tmp = tmp&0XFD;//Ğ´0´ò¿ª
+		tmp = tmp&0XFD;//å†™0æ‰“å¼€
 	}
 	else
 	{
-		tmp = tmp|0X3f;//Ğ´1¹Ø±Õ
+		tmp = tmp|0X3f;//å†™1å…³é—­
 	}
 	ReadWriteTF(npcs,1,0x57,tmp);
 #if 0
-	//ÏÂĞĞ
+	//ä¸‹è¡Œ
 	tmp = ReadWriteTF(TF_A,0,0x53,0);
 	if(sys_param_1b[MADD_A_DL_RF_EN].val == 0)
 	{
-		tmp = tmp&0XD7;//Ğ´0´ò¿ª
+		tmp = tmp&0XD7;//å†™0æ‰“å¼€
 	}
 	else
 	{
-		tmp = tmp|0X28;//Ğ´1¹Ø±Õ
+		tmp = tmp|0X28;//å†™1å…³é—­
 	}
 	ReadWriteTF(TF_A,1,0x53, tmp);
 #endif	

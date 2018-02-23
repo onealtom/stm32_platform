@@ -1,4 +1,4 @@
-#include "Header.h"
+ï»¿#include "Header.h"
 
 _T_THR_FUNC thr_func;
 volatile UINT16 uart_ctl_ore_count = 0;
@@ -29,8 +29,8 @@ void EnableCtrlUartInt(UINT16 int_en)
 
 /*************************************************************
 Name:InitControlUart (RS1)         
-Description: ³õÊ¼»¯¿ØÖÆ´®¿Ú(485-A)
-Input:²¨ÌØÂÊ          
+Description: åˆå§‹åŒ–æ§åˆ¶ä¸²å£(485-A)
+Input:æ³¢ç‰¹ç‡          
 Output:void         
 Return:void         
 **************************************************************/
@@ -39,7 +39,7 @@ void InitControlUart(UINT32 baudrate)
 
 	UINT16 tmp;
 	USART_InitTypeDef uart_cfg;
-	// Ê¹ÄÜÊ±ÖÓ
+	// ä½¿èƒ½æ—¶é’Ÿ
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
 	
 	USART_StructInit( &uart_cfg );
@@ -54,7 +54,7 @@ void InitControlUart(UINT32 baudrate)
 	tmp = USART_ReceiveData(USART2);
 	tmp = USART_ReceiveData(USART2);
 	EnableCtrlUartInt(1); 
-	USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);	// Ê¹ÄÜ½ÓÊÕÖĞ¶Ï
+	USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);	// ä½¿èƒ½æ¥æ”¶ä¸­æ–­
 
 
 
@@ -79,12 +79,12 @@ void InitDebugUart( UINT32 baudrate )
 
 void EnableCtrlUartTxIT()
 {
-	USART_ITConfig(COM_CONTROL, USART_IT_TXE, ENABLE);	// Ê¹ÄÜ·¢ËÍÖĞ¶Ï
+	USART_ITConfig(COM_CONTROL, USART_IT_TXE, ENABLE);	// ä½¿èƒ½å‘é€ä¸­æ–­
 }
 
 void DisableCtrlUartTxIT()
 {
-	USART_ITConfig(COM_CONTROL, USART_IT_TXE, DISABLE);	// ½ûÖ¹·¢ËÍÖĞ¶Ï
+	USART_ITConfig(COM_CONTROL, USART_IT_TXE, DISABLE);	// ç¦æ­¢å‘é€ä¸­æ–­
 }
 
 void CtrlUartSendDat( UCHAR8 dat )
@@ -99,8 +99,8 @@ void ThrUartSendDat( UCHAR8 dat )
 
 /*************************************************************
 Name:EnableUartTx          
-Description:UART TXÊ¹ÄÜ    
-Input:1:Ê¹ÄÜ£¬0:½ûÄÜ            
+Description:UART TXä½¿èƒ½    
+Input:1:ä½¿èƒ½ï¼Œ0:ç¦èƒ½            
 Output:void         
 Return:void         
 **************************************************************/
@@ -118,7 +118,7 @@ void EnableUartTx(UCHAR8 flag, UCHAR8 ch_head)
 	else
 	{
 		#if 0
-		while( USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET )		// µÈ´ı·¢ËÍÍê³É
+		while( USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET )		// ç­‰å¾…å‘é€å®Œæˆ
 		{
 			UsNopDelay(1);
 			if ( ++i>1500 )
@@ -134,8 +134,8 @@ void EnableUartTx(UCHAR8 flag, UCHAR8 ch_head)
 }	
 /*************************************************************
 Name:EnableUartRx          
-Description:UART RXÊ¹ÄÜ    
-Input:1:Ê¹ÄÜ£¬0:½ûÄÜ            
+Description:UART RXä½¿èƒ½    
+Input:1:ä½¿èƒ½ï¼Œ0:ç¦èƒ½            
 Output:void         
 Return:void         
 **************************************************************/
@@ -175,7 +175,7 @@ UCHAR8 ThrUart_Init( UINT16 port_flag, UINT16 baud_set)
 	//return 0;
 	}
 	
-	if ( port_flag==0 )	// 485-B×öÍ¸´«
+	if ( port_flag==0 )	// 485-Båšé€ä¼ 
 	{
 		//thr_func.pf_init = Uart4_Init;
 		//thr_func.pf_send_byte = Uart4_SendDat;
@@ -226,16 +226,16 @@ void ThrUartIntDisable()
 	if(sys_param_1b[MADD_THR_PORT].val)
 	{
 		Uart1_EnableInterrupt(0);
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, DISABLE);	// ½ûÄÜÊ±ÖÓ
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, DISABLE);	// ç¦èƒ½æ—¶é’Ÿ
 	}
 	else
 	{
 		Uart3_EnableInterrupt(0);
-	    RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, DISABLE);	// ½ûÄÜÊ±ÖÓ
+	    RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, DISABLE);	// ç¦èƒ½æ—¶é’Ÿ
 	}
 #else
 	Uart3_EnableInterrupt(0);
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, DISABLE);	// ½ûÄÜÊ±ÖÓ
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, DISABLE);	// ç¦èƒ½æ—¶é’Ÿ
 #endif
 	
 
@@ -264,8 +264,8 @@ void Uart1_EnableInterrupt(UINT16 int_en)
 
 /*************************************************************
 Name:InitThrUart (RS0)          
-Description: ³õÊ¼»¯Í¸´«´®¿Ú(Debug Uart)
-Input:²¨ÌØÂÊ          
+Description: åˆå§‹åŒ–é€ä¼ ä¸²å£(Debug Uart)
+Input:æ³¢ç‰¹ç‡          
 Output:void         
 Return:void         
 **************************************************************/
@@ -277,7 +277,7 @@ void Uart1_Init(UINT32 baudrate)
 	USART_DeInit(USART1);
 	
 	Uart1_EnableInterrupt(0);
-	USART_ITConfig(USART1, USART_IT_RXNE, DISABLE);	// ½ûÄÜ½ÓÊÕÖĞ¶Ï
+	USART_ITConfig(USART1, USART_IT_RXNE, DISABLE);	// ç¦èƒ½æ¥æ”¶ä¸­æ–­
 
 	USART_StructInit( &uart_cfg );
 
@@ -291,64 +291,64 @@ void Uart1_Init(UINT32 baudrate)
 	
 	Uart1_EnableInterrupt(1);
 	
-	USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);	// Ê¹ÄÜ½ÓÊÕÖĞ¶Ï
+	USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);	// ä½¿èƒ½æ¥æ”¶ä¸­æ–­
 	
 }
 
 
-// ·¢ËÍ»º³å¿ÕÖĞ¶ÏÊ¹ÄÜ
+// å‘é€ç¼“å†²ç©ºä¸­æ–­ä½¿èƒ½
 void Uart1_IE_TxReady( UCHAR8 enable )
 {
 	if ( enable==0 )
 	{
-		USART_ITConfig( USART1, USART_IT_TXE, DISABLE );	// ½ûÖ¹·¢ËÍ»º³å¿ÕÖĞ¶Ï
+		USART_ITConfig( USART1, USART_IT_TXE, DISABLE );	// ç¦æ­¢å‘é€ç¼“å†²ç©ºä¸­æ–­
 	}
 	else
 	{
-		USART_ITConfig( USART1, USART_IT_TXE, ENABLE );	// Ê¹ÄÜ·¢ËÍ»º³å¿ÕÖĞ¶Ï
+		USART_ITConfig( USART1, USART_IT_TXE, ENABLE );	// ä½¿èƒ½å‘é€ç¼“å†²ç©ºä¸­æ–­
 	}
 }
 
-// ·¢ËÍÍê³ÉÖĞ¶ÏÊ¹ÄÜ
+// å‘é€å®Œæˆä¸­æ–­ä½¿èƒ½
 void Uart1_IE_TxComplete( UCHAR8 enable )
 {
 	if ( enable==0 )
 	{
-		USART_ITConfig( USART1, USART_IT_TC, DISABLE );	// ½ûÖ¹·¢ËÍÍê³ÉÖĞ¶Ï
+		USART_ITConfig( USART1, USART_IT_TC, DISABLE );	// ç¦æ­¢å‘é€å®Œæˆä¸­æ–­
 	}
 	else
 	{
-		USART_ITConfig( USART1, USART_IT_TC, ENABLE );	// Ê¹ÄÜ·¢ËÍÍê³ÉÖĞ¶Ï
+		USART_ITConfig( USART1, USART_IT_TC, ENABLE );	// ä½¿èƒ½å‘é€å®Œæˆä¸­æ–­
 	}
 }
 
-// ½ÓÊÕÖĞ¶ÏÊ¹ÄÜ
+// æ¥æ”¶ä¸­æ–­ä½¿èƒ½
 void Uart1_IE_RxDat( UCHAR8 enable )
 {
 	if ( enable==0 )
 	{
-		USART_ITConfig( USART1, USART_IT_RXNE, DISABLE );	// ½ûÖ¹·¢ËÍÖĞ¶Ï
+		USART_ITConfig( USART1, USART_IT_RXNE, DISABLE );	// ç¦æ­¢å‘é€ä¸­æ–­
 	}
 	else
 	{
-		USART_ITConfig( USART1, USART_IT_RXNE, ENABLE );	// Ê¹ÄÜ·¢ËÍÍê³ÉÖĞ¶Ï
+		USART_ITConfig( USART1, USART_IT_RXNE, ENABLE );	// ä½¿èƒ½å‘é€å®Œæˆä¸­æ–­
 	}
 }
 
-// Æô¶¯·¢ËÍ
+// å¯åŠ¨å‘é€
 void Uart1_TxStart( void )
 {
-	Uart1_IE_TxReady(1);	// Ê¹ÄÜ·¢ËÍ»º³å¿ÕÖĞ¶Ï
+	Uart1_IE_TxReady(1);	// ä½¿èƒ½å‘é€ç¼“å†²ç©ºä¸­æ–­
 }
 
-// Ğ´ÈëÊı¾İµ½·¢ËÍ»º³å
+// å†™å…¥æ•°æ®åˆ°å‘é€ç¼“å†²
 void Uart1_SendDat( UCHAR8 dat )
 {
-	USART_SendData( USART1, dat );		// ·¢ËÍÊıÊı¾İ
+	USART_SendData( USART1, dat );		// å‘é€æ•°æ•°æ®
 	Uart1_IE_TxReady(1);
 }
 
-// ·¢ËÍ½áÊø
+// å‘é€ç»“æŸ
 void Uart1_TxFinish( void )
 {
 }
@@ -377,8 +377,8 @@ void Uart3_EnableInterrupt(UINT16 int_en)
 
 /*************************************************************
 Name:InitThrUart (RS0)          
-Description: ³õÊ¼»¯Í¸´«´®¿Ú(485-B)
-Input:²¨ÌØÂÊ          
+Description: åˆå§‹åŒ–é€ä¼ ä¸²å£(485-B)
+Input:æ³¢ç‰¹ç‡          
 Output:void         
 Return:void         
 **************************************************************/
@@ -388,12 +388,12 @@ void Uart3_Init(UINT32 baudrate)
 #if 0
 	UINT16 tmp;
 	USART_InitTypeDef uart_cfg;
-	// Ê¹ÄÜÊ±ÖÓ
+	// ä½¿èƒ½æ—¶é’Ÿ
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
 	USART_DeInit(USART3);
 	
 	Uart3_EnableInterrupt(0);
-	USART_ITConfig(USART3, USART_IT_RXNE, DISABLE);	// ½ûÄÜ½ÓÊÕÖĞ¶Ï
+	USART_ITConfig(USART3, USART_IT_RXNE, DISABLE);	// ç¦èƒ½æ¥æ”¶ä¸­æ–­
 
 	USART_StructInit( &uart_cfg );
 
@@ -407,14 +407,14 @@ void Uart3_Init(UINT32 baudrate)
 	tmp = USART_ReceiveData(USART3);
 	tmp = USART_ReceiveData(USART3);
 	Uart3_EnableInterrupt(1);
-	USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);	// Ê¹ÄÜ½ÓÊÕÖĞ¶Ï
+	USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);	// ä½¿èƒ½æ¥æ”¶ä¸­æ–­
 #endif
 
 #if 0
 	UINT16 tmp;
 	USART_InitTypeDef uart_cfg;
 
-	// Ê¹ÄÜÊ±ÖÓ
+	// ä½¿èƒ½æ—¶é’Ÿ
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
 	
 	USART_StructInit( &uart_cfg );
@@ -429,17 +429,17 @@ void Uart3_Init(UINT32 baudrate)
 	tmp = USART_ReceiveData(USART3);
 	tmp = USART_ReceiveData(USART3);
 	Uart3_EnableInterrupt(1); 
-	USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);	// Ê¹ÄÜ½ÓÊÕÖĞ¶Ï
+	USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);	// ä½¿èƒ½æ¥æ”¶ä¸­æ–­
 #endif
 
 	UINT16 tmp;
 	USART_InitTypeDef uart_cfg;
-	// Ê¹ÄÜÊ±ÖÓ
+	// ä½¿èƒ½æ—¶é’Ÿ
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
 	USART_DeInit(USART3);
 	
 	Uart3_EnableInterrupt(0);
-	USART_ITConfig(USART3, USART_IT_RXNE, DISABLE);	// ½ûÄÜ½ÓÊÕÖĞ¶Ï
+	USART_ITConfig(USART3, USART_IT_RXNE, DISABLE);	// ç¦èƒ½æ¥æ”¶ä¸­æ–­
 
 	USART_StructInit( &uart_cfg );
 
@@ -453,80 +453,80 @@ void Uart3_Init(UINT32 baudrate)
 	tmp = USART_ReceiveData(USART3);
 	tmp = USART_ReceiveData(USART3);
 	Uart3_EnableInterrupt(1);
-	USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);	// Ê¹ÄÜ½ÓÊÕÖĞ¶Ï
+	USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);	// ä½¿èƒ½æ¥æ”¶ä¸­æ–­
 	
 }
 
-// ·¢ËÍ»º³å¿ÕÖĞ¶ÏÊ¹ÄÜ
+// å‘é€ç¼“å†²ç©ºä¸­æ–­ä½¿èƒ½
 void Uart3_IE_TxReady( UCHAR8 enable )
 {
 	if ( enable==0 )
 	{
-		USART_ITConfig(USART3, USART_IT_TXE, DISABLE);	// ½ûÖ¹·¢ËÍ»º³å¿ÕÖĞ¶Ï
+		USART_ITConfig(USART3, USART_IT_TXE, DISABLE);	// ç¦æ­¢å‘é€ç¼“å†²ç©ºä¸­æ–­
 	}
 	else
 	{
-		USART_ITConfig(USART3, USART_IT_TXE, ENABLE);	// Ê¹ÄÜ·¢ËÍ»º³å¿ÕÖĞ¶Ï
+		USART_ITConfig(USART3, USART_IT_TXE, ENABLE);	// ä½¿èƒ½å‘é€ç¼“å†²ç©ºä¸­æ–­
 	}
 }
 
-// ·¢ËÍÍê³ÉÖĞ¶ÏÊ¹ÄÜ
+// å‘é€å®Œæˆä¸­æ–­ä½¿èƒ½
 void Uart3_IE_TxComplete( UCHAR8 enable )
 {
 	if ( enable==0 )
 	{
-		USART_ITConfig(USART3, USART_IT_TC, DISABLE);	// ½ûÖ¹·¢ËÍÍê³ÉÖĞ¶Ï
+		USART_ITConfig(USART3, USART_IT_TC, DISABLE);	// ç¦æ­¢å‘é€å®Œæˆä¸­æ–­
 	}
 	else
 	{
-		USART_ITConfig(USART3, USART_IT_TC, ENABLE);	// Ê¹ÄÜ·¢ËÍÍê³ÉÖĞ¶Ï
+		USART_ITConfig(USART3, USART_IT_TC, ENABLE);	// ä½¿èƒ½å‘é€å®Œæˆä¸­æ–­
 	}
 }
 
-// ½ÓÊÕÖĞ¶ÏÊ¹ÄÜ
+// æ¥æ”¶ä¸­æ–­ä½¿èƒ½
 void Uart3_IE_RxDat( UCHAR8 enable )
 {
 	if ( enable==0 )
 	{
-		USART_ITConfig(USART3, USART_IT_RXNE, DISABLE);	// ½ûÖ¹·¢ËÍÖĞ¶Ï
+		USART_ITConfig(USART3, USART_IT_RXNE, DISABLE);	// ç¦æ­¢å‘é€ä¸­æ–­
 	}
 	else
 	{
-		USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);	// Ê¹ÄÜ·¢ËÍÍê³ÉÖĞ¶Ï
+		USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);	// ä½¿èƒ½å‘é€å®Œæˆä¸­æ–­
 	}
 }
 
-// Æô¶¯·¢ËÍ
+// å¯åŠ¨å‘é€
 void Uart3_TxStart( void )
 {
 	//RS485B_TX_MODE;
-	UsNopDelay(10);		// ÑÓÊ±
-	Uart3_IE_TxReady(1);	// Ê¹ÄÜ·¢ËÍ»º³å¿ÕÖĞ¶Ï
+	UsNopDelay(10);		// å»¶æ—¶
+	Uart3_IE_TxReady(1);	// ä½¿èƒ½å‘é€ç¼“å†²ç©ºä¸­æ–­
 }
 
-// Ğ´ÈëÊı¾İµ½·¢ËÍ»º³å
+// å†™å…¥æ•°æ®åˆ°å‘é€ç¼“å†²
 void Uart3_SendDat( UCHAR8 dat )
 {
-//	USART_SendData(USART3, dat);		// ·¢ËÍÊıÊı¾İ
+//	USART_SendData(USART3, dat);		// å‘é€æ•°æ•°æ®
 	//RS485B_TX_MODE;
-	UsNopDelay(5);		// ÑÓÊ±
-	USART_SendData(USART3, dat);		// ·¢ËÍÊıÊı¾İ
+	UsNopDelay(5);		// å»¶æ—¶
+	USART_SendData(USART3, dat);		// å‘é€æ•°æ•°æ®
 	Uart3_IE_TxReady(1);
 }
 
-// ·¢ËÍ½áÊø
+// å‘é€ç»“æŸ
 void Uart3_TxFinish( void )
 {
-	UsNopDelay(10);		// ÑÓÊ±
+	UsNopDelay(10);		// å»¶æ—¶
 	//RS485B_RX_MODE;
 }
 
 
 /*************************************************************
 Name:         Uart1_EnableInterrupt 
-Description:  ´®¿Ú1µÄÖĞ¶Ï¿ØÖÆ
-Input:        int_en : 0 - Ê§ÄÜ
-                       1 - Ê¹ÄÜ
+Description:  ä¸²å£1çš„ä¸­æ–­æ§åˆ¶
+Input:        int_en : 0 - å¤±èƒ½
+                       1 - ä½¿èƒ½
 Output:       void           
 Return:       void         
 **************************************************************/
@@ -551,8 +551,8 @@ void Uart4_EnableInterrupt(UINT16 int_en)
 
 /*************************************************************
 Name:InitThrUart (RS0)          
-Description: ³õÊ¼»¯Í¸´«´®¿Ú(485-B)
-Input:²¨ÌØÂÊ          
+Description: åˆå§‹åŒ–é€ä¼ ä¸²å£(485-B)
+Input:æ³¢ç‰¹ç‡          
 Output:void         
 Return:void         
 **************************************************************/
@@ -560,13 +560,13 @@ void Uart4_Init(UINT32 baudrate)
 {
 	UINT16 tmp;
 	USART_InitTypeDef uart_cfg;
-	// Ê¹ÄÜÊ±ÖÓ
+	// ä½¿èƒ½æ—¶é’Ÿ
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART4, ENABLE);
 	USART_DeInit(UART4);
 	
 	Uart4_EnableInterrupt(0);
-	USART_ITConfig(UART4, USART_IT_RXNE, DISABLE);	// ½ûÄÜ½ÓÊÕÖĞ¶Ï
-//	USART_ITConfig(UART4, USART_IT_ORE, DISABLE);	// ½ûÄÜ½ÓÊÕÖĞ¶Ï
+	USART_ITConfig(UART4, USART_IT_RXNE, DISABLE);	// ç¦èƒ½æ¥æ”¶ä¸­æ–­
+//	USART_ITConfig(UART4, USART_IT_ORE, DISABLE);	// ç¦èƒ½æ¥æ”¶ä¸­æ–­
 	
 	USART_StructInit( &uart_cfg );
 
@@ -580,17 +580,17 @@ void Uart4_Init(UINT32 baudrate)
 	tmp = USART_ReceiveData(UART4);
 	tmp = USART_ReceiveData(UART4);
 	Uart4_EnableInterrupt(1);
-	USART_ITConfig(UART4, USART_IT_RXNE, ENABLE);	// Ê¹ÄÜ½ÓÊÕÖĞ¶Ï
-//	USART_ITConfig(UART4, USART_IT_ORE, ENABLE);		// Ê¹ÄÜ½ÓÊÕÖĞ¶Ï
+	USART_ITConfig(UART4, USART_IT_RXNE, ENABLE);	// ä½¿èƒ½æ¥æ”¶ä¸­æ–­
+//	USART_ITConfig(UART4, USART_IT_ORE, ENABLE);		// ä½¿èƒ½æ¥æ”¶ä¸­æ–­
 	
 }
 
 
 /*************************************************************
 Name:         Uar4_EnableTxIT 
-Description:  ´®¿Ú4µÄ·¢ËÍÖĞ¶Ï¿ØÖÆ
-Input:        int_en : 0 - Ê§ÄÜ
-                       1 - Ê¹ÄÜ
+Description:  ä¸²å£4çš„å‘é€ä¸­æ–­æ§åˆ¶
+Input:        int_en : 0 - å¤±èƒ½
+                       1 - ä½¿èƒ½
 Output:       void           
 Return:       void         
 **************************************************************/
@@ -598,83 +598,83 @@ void Uart4_EnableTxIT( UINT16 enable )
 {
 	if ( enable==0 )
 	{
-		USART_ITConfig(UART4, USART_IT_TC, DISABLE);	// ½ûÖ¹·¢ËÍÖĞ¶Ï
+		USART_ITConfig(UART4, USART_IT_TC, DISABLE);	// ç¦æ­¢å‘é€ä¸­æ–­
 	}
 	else
 	{
 
-		USART_ITConfig(UART4, USART_IT_TC, ENABLE);	// Ê¹ÄÜ·¢ËÍÍê³ÉÖĞ¶Ï
+		USART_ITConfig(UART4, USART_IT_TC, ENABLE);	// ä½¿èƒ½å‘é€å®Œæˆä¸­æ–­
 	}
 }
 
 
 /*************************************************************
 Name:         Uart4_SendDat 
-Description:  ´®¿Ú4·¢ËÍÊı¾İ
-Input:        dat : ·¢ËÍµÄÊı¾İ 
+Description:  ä¸²å£4å‘é€æ•°æ®
+Input:        dat : å‘é€çš„æ•°æ® 
 Output:       void           
 Return:       void         
 **************************************************************/
 void Uart4_SendDat( UCHAR8 dat )
 {
 
-	RS485B_TX_MODE;	//GPIO_SetBits(GPIOC, GPIO_Pin_12);		// 485·¢ËÍÄ£Ê½
-	UsNopDelay(5);	// ÑÓÊ±
-	USART_SendData(UART4, dat);		// ·¢ËÍÊıÊı¾İ
+	RS485B_TX_MODE;	//GPIO_SetBits(GPIOC, GPIO_Pin_12);		// 485å‘é€æ¨¡å¼
+	UsNopDelay(5);	// å»¶æ—¶
+	USART_SendData(UART4, dat);		// å‘é€æ•°æ•°æ®
 	Uart4_EnableTxIT(1);
 }
 
 
-// Æô¶¯·¢ËÍ
+// å¯åŠ¨å‘é€
 void Uart4_TxStart( void )
 {
 	RS485B_TX_MODE;
-	UsNopDelay(10);		// ÑÓÊ±
-	Uart4_IE_TxReady(1);	// Ê¹ÄÜ·¢ËÍ»º³å¿ÕÖĞ¶Ï
+	UsNopDelay(10);		// å»¶æ—¶
+	Uart4_IE_TxReady(1);	// ä½¿èƒ½å‘é€ç¼“å†²ç©ºä¸­æ–­
 }
 
-// ·¢ËÍ»º³å¿ÕÖĞ¶ÏÊ¹ÄÜ
+// å‘é€ç¼“å†²ç©ºä¸­æ–­ä½¿èƒ½
 void Uart4_IE_TxReady( UCHAR8 enable )
 {
 	if ( enable==0 )
 	{
-		USART_ITConfig( UART4, USART_IT_TXE, DISABLE );	// ½ûÖ¹·¢ËÍ»º³å¿ÕÖĞ¶Ï
+		USART_ITConfig( UART4, USART_IT_TXE, DISABLE );	// ç¦æ­¢å‘é€ç¼“å†²ç©ºä¸­æ–­
 	}
 	else
 	{
-		USART_ITConfig( UART4, USART_IT_TXE, ENABLE );	// Ê¹ÄÜ·¢ËÍ»º³å¿ÕÖĞ¶Ï
+		USART_ITConfig( UART4, USART_IT_TXE, ENABLE );	// ä½¿èƒ½å‘é€ç¼“å†²ç©ºä¸­æ–­
 	}
 }
 
-// ½ÓÊÕÖĞ¶ÏÊ¹ÄÜ
+// æ¥æ”¶ä¸­æ–­ä½¿èƒ½
 void Uart4_IE_RxDat( UCHAR8 enable )
 {
 	if ( enable==0 )
 	{
-		USART_ITConfig(UART4, USART_IT_RXNE, DISABLE);	// ½ûÖ¹·¢ËÍÖĞ¶Ï
+		USART_ITConfig(UART4, USART_IT_RXNE, DISABLE);	// ç¦æ­¢å‘é€ä¸­æ–­
 	}
 	else
 	{
-		USART_ITConfig(UART4, USART_IT_RXNE, ENABLE);	// Ê¹ÄÜ·¢ËÍÍê³ÉÖĞ¶Ï
+		USART_ITConfig(UART4, USART_IT_RXNE, ENABLE);	// ä½¿èƒ½å‘é€å®Œæˆä¸­æ–­
 	}
 }
-// ·¢ËÍÍê³ÉÖĞ¶ÏÊ¹ÄÜ
+// å‘é€å®Œæˆä¸­æ–­ä½¿èƒ½
 void Uart4_IE_TxComplete( UCHAR8 enable )
 {
 	if ( enable==0 )
 	{
-		USART_ITConfig(UART4, USART_IT_TC, DISABLE);	// ½ûÖ¹·¢ËÍÍê³ÉÖĞ¶Ï
+		USART_ITConfig(UART4, USART_IT_TC, DISABLE);	// ç¦æ­¢å‘é€å®Œæˆä¸­æ–­
 	}
 	else
 	{
-		USART_ITConfig(UART4, USART_IT_TC, ENABLE);	// Ê¹ÄÜ·¢ËÍÍê³ÉÖĞ¶Ï
+		USART_ITConfig(UART4, USART_IT_TC, ENABLE);	// ä½¿èƒ½å‘é€å®Œæˆä¸­æ–­
 	}
 }
 
-// ·¢ËÍ½áÊø
+// å‘é€ç»“æŸ
 void Uart4_TxFinish( void )
 {
-	UsNopDelay(10);		// ÑÓÊ±
+	UsNopDelay(10);		// å»¶æ—¶
 	RS485B_RX_MODE;
 }
 

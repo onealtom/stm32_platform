@@ -1,22 +1,22 @@
-/************************************************************
+ï»¿/************************************************************
 
-     Copyright (C), 2011-2111, ¸ñÀ¼Ì©¿Ë¿Æ¼¼ÓÐÏÞ¹«Ë¾
+     Copyright (C), 2011-2111, æ ¼å…°æ³°å…‹ç§‘æŠ€æœ‰é™å…¬å¸
 
 *************************************************************
-ÎÄ¼þÃû£º   UART_DRV_H_
-°æ±¾ºÅ£º   V03
-×÷Õß£º     Î¤Èð½õ 
-Éú³ÉÈÕÆÚ£º 2010Äê08ÔÂ05ÈÕ
-×î½üÐÞ¸Ä£º 
-¹¦ÄÜÃèÊö£º UART_DRV_H_µÄµ×²ãÇý¶¯Í·ÎÄ¼þ 
-º¯ÊýÁÐ±í£º  
-ÐÞ¸ÄÈÕÆÚ£º 
-        1.ÈÕÆÚ:      2010Äê08ÔÂ05ÈÕ  
-          ×÷Õß£º     Î¤Èð½õ 
-          ÐÞ¸ÄÄÚÈÝ£º Ô­°æ
-        2.ÈÕÆÚ:      2012Äê04ÔÂ17ÈÕ  
-          ×÷Õß£º     µË×ÓÇ«
-          ÐÞ¸ÄÄÚÈÝ£º Î¢ÐÍ¹âÇ¥V02   
+æ–‡ä»¶åï¼š   UART_DRV_H_
+ç‰ˆæœ¬å·ï¼š   V03
+ä½œè€…ï¼š     éŸ¦ç‘žé”¦ 
+ç”Ÿæˆæ—¥æœŸï¼š 2010å¹´08æœˆ05æ—¥
+æœ€è¿‘ä¿®æ”¹ï¼š 
+åŠŸèƒ½æè¿°ï¼š UART_DRV_H_çš„åº•å±‚é©±åŠ¨å¤´æ–‡ä»¶ 
+å‡½æ•°åˆ—è¡¨ï¼š  
+ä¿®æ”¹æ—¥æœŸï¼š 
+        1.æ—¥æœŸ:      2010å¹´08æœˆ05æ—¥  
+          ä½œè€…ï¼š     éŸ¦ç‘žé”¦ 
+          ä¿®æ”¹å†…å®¹ï¼š åŽŸç‰ˆ
+        2.æ—¥æœŸ:      2012å¹´04æœˆ17æ—¥  
+          ä½œè€…ï¼š     é‚“å­è°¦
+          ä¿®æ”¹å†…å®¹ï¼š å¾®åž‹å…‰é’ŽV02   
 **************************************************************/
 
 
@@ -34,13 +34,13 @@ typedef void (*LP_THR_TX_START)(void);
 typedef void (*LP_THR_TX_FINISH)(void); 
 
 typedef struct {
-	LP_THR_INIT 			pf_init;			// ³õÊ¼»¯
-	LP_THR_SENDBYTE 		pf_send_byte;		// ·¢ËÍ1×Ö½Ú
-	LP_THR_IE_TX_READY 		pf_ie_tx_ready;		// ·¢ËÍÖÐ¶ÏÊ¹ÄÜ
-	LP_THR_IE_TX_COMPLETE 	pf_ie_tx_complete;	// ·¢ËÍÖÐ¶ÏÊ¹ÄÜ
-	LP_THR_IE_RX_DAT		pf_ie_rx_dat;		// ½ÓÊÕÖÐ¶ÏÊ¹ÄÜ
-	LP_THR_TX_START			pf_tx_start;		// ¿ªÊ¼·¢ËÍ
-	LP_THR_TX_FINISH		pf_tx_finish;		// ·¢ËÍÍê³É
+	LP_THR_INIT 			pf_init;			// åˆå§‹åŒ–
+	LP_THR_SENDBYTE 		pf_send_byte;		// å‘é€1å­—èŠ‚
+	LP_THR_IE_TX_READY 		pf_ie_tx_ready;		// å‘é€ä¸­æ–­ä½¿èƒ½
+	LP_THR_IE_TX_COMPLETE 	pf_ie_tx_complete;	// å‘é€ä¸­æ–­ä½¿èƒ½
+	LP_THR_IE_RX_DAT		pf_ie_rx_dat;		// æŽ¥æ”¶ä¸­æ–­ä½¿èƒ½
+	LP_THR_TX_START			pf_tx_start;		// å¼€å§‹å‘é€
+	LP_THR_TX_FINISH		pf_tx_finish;		// å‘é€å®Œæˆ
 } _T_THR_FUNC;
  
 #define COM_CONTROL	(USART2)

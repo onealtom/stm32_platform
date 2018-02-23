@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandtelco Technology Co.,Ltd All rights reserved
 *
 * FileName    :Transceiver_app.h
-* Description :ÊÕ·¢Æ÷Ğ¾Æ¬´¦Àíº¯Êı
+* Description :æ”¶å‘å™¨èŠ¯ç‰‡å¤„ç†å‡½æ•°
 * Version     :v0.1
 * Author      :shiyang
 * Date        :2008-01-29
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*shiyang		2012-06-01	v0.1			³õÊ¼°æ±¾
+*shiyang		2012-06-01	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #ifndef _TRANSCEIVER_H
 #define _TRANSCEIVER_H
@@ -22,16 +22,16 @@
 	#define AD9369	0
 #endif
 
-//9363ËøÏà»·
-#define AD9363_INIT_DA_ST		0x1A	// 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£
-#define AD9363_BB_PLL_LOCK		0x80	// 80ÎªBBPLLÊı×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
+//9363é”ç›¸ç¯
+#define AD9363_INIT_DA_ST		0x1A	// 1Aä¸ºé”å®š+å‘é€æ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸
+#define AD9363_BB_PLL_LOCK		0x80	// 80ä¸ºBBPLLæ•°å­—é”ç›¸ç¯é”å®šï¼Œå…¶ä»–å¤±é”
 #define AD9363_RX_PLL_ST		2	
 #define AD9363_TX_PLL_ST		2	
 #define AD9363_A_Modulator_EN		0X3C	
 #define AD9363_B_Modulator_EN		0X3C	
 
 
-// 9363ËøÏà»·
+// 9363é”ç›¸ç¯
 #define AD9363_REG_R_INIT_DA_ST	0x17		
 #define AD9363_REG_R_BB_PLL_LOCK	0x5E		
 #define AD9363_REG_R_RX_PLL_ST	0x247		
@@ -66,7 +66,7 @@
 #define CMD_RESULT_IGNORE		3
 
 
-//WAIT_CALDONE ×ÓÃüÁî
+//WAIT_CALDONE å­å‘½ä»¤
 //9363
 #define BBPLL		0X00   
 #define RXCP			0X01 

@@ -1,4 +1,4 @@
-#include "Header.h"
+ï»¿#include "Header.h"
 UINT16 Phy4_Serdes_St=-1;
 #if 0
 //8662
@@ -12,7 +12,7 @@ const UINT16 phy4RegVal[][2]={
 {0x0017,0x8131},
 {0x001f,0x0000},
 {0x001d,0x0e0a}, 		
-{0x0017,0x100c},// you 3004¸ÄÎª1004  20130325  
+{0x0017,0x100c},// you 3004æ”¹ä¸º1004  20130325  
 {0x0000,0x9140},
 {0x0000,0x1140},
 
@@ -20,7 +20,7 @@ const UINT16 phy4RegVal[][2]={
 {0x0117,0x8131},
 {0x011f,0x0000},
 {0x011d,0x0a0e}, 		
-{0x0117,0x2004},// you 3004¸ÄÎª1004  20130325   20130405 0X1004-->100C  20130703 0X100c-->2004
+{0x0117,0x2004},// you 3004æ”¹ä¸º1004  20130325   20130405 0X1004-->100C  20130703 0X100c-->2004
 {0x0100,0x8100},//20130703 0X9140-->8100
 {0x0100,0x2100},//20130703 0X1140-->2100
 	   
@@ -58,7 +58,7 @@ const UINT16 phy5RegVal[][2]={
 
 /*************************************************************
 Name:	      SmdioOutputMode          
-Description: ÉèÖÃSMDIOÎªÊä³ö¿Ú
+Description: è®¾ç½®SMDIOä¸ºè¾“å‡ºå£
 Input:	      port,pin
 Return: 	void
 **************************************************************/
@@ -73,7 +73,7 @@ void SmdioOutputMode(GPIO_TypeDef* smdio_GPIOx, uint16_t smdio_GPIO_Pin)
 }
 /*************************************************************
 Name:	      SmdioInputMode          
-Description: ÉèÖÃSMDIOÎªÊäÈë¿Ú
+Description: è®¾ç½®SMDIOä¸ºè¾“å…¥å£
 Input:	      port,pin
 Return: 	void
 **************************************************************/
@@ -90,7 +90,7 @@ void SmdioInputMode(GPIO_TypeDef* smdio_GPIOx, uint16_t smdio_GPIO_Pin)
 
 /*************************************************************
 Name:	      InitPhyIo          
-Description: ³õÊ¼»¯PHY IO
+Description: åˆå§‹åŒ–PHY IO
 Input:	      void
 Return: 	void
 **************************************************************/
@@ -339,9 +339,9 @@ void PhySmiWriteIo(GPIO_TypeDef* smc_GPIOx, uint16_t smc_GPIO_Pin,
 }
 /*************************************************************
 Name:	      PhyRead          
-Description: ´ÓPHYĞ¾Æ¬¶ÁÈ¡¼Ä´æÆ÷
-Input:	      PHYĞ¾Æ¬,PHYµØÖ·(Õë¶Ô¶à¸öPHY),¼Ä´æÆ÷µØÖ·
-Return:     ¼Ä´æÆ÷Êı¾İ
+Description: ä»PHYèŠ¯ç‰‡è¯»å–å¯„å­˜å™¨
+Input:	      PHYèŠ¯ç‰‡,PHYåœ°å€(é’ˆå¯¹å¤šä¸ªPHY),å¯„å­˜å™¨åœ°å€
+Return:     å¯„å­˜å™¨æ•°æ®
 **************************************************************/
 UINT16 PhyRead(UCHAR8 phy_id,UCHAR8 phy_addr,UCHAR8 reg_addr)
 {
@@ -378,8 +378,8 @@ UINT16 PhyRead(UCHAR8 phy_id,UCHAR8 phy_addr,UCHAR8 reg_addr)
 
 /*************************************************************
 Name:	      PhyWrite          
-Description: ÏòPHYĞ¾Æ¬Ğ´¼Ä´æÆ÷
-Input:	      PHYĞ¾Æ¬,PHYµØÖ·(Õë¶Ô¶à¸öPHY),¼Ä´æÆ÷µØÖ·£¬¼Ä´æÆ÷Êı¾İ
+Description: å‘PHYèŠ¯ç‰‡å†™å¯„å­˜å™¨
+Input:	      PHYèŠ¯ç‰‡,PHYåœ°å€(é’ˆå¯¹å¤šä¸ªPHY),å¯„å­˜å™¨åœ°å€ï¼Œå¯„å­˜å™¨æ•°æ®
 Return:     void
 **************************************************************/
 void PhyWrite(UCHAR8 phy_id,UCHAR8 phy_addr,UCHAR8 reg_addr,UINT16 reg_value)
@@ -465,7 +465,7 @@ void HardResetPhy(UCHAR8 phy_id)
 
 /*************************************************************
 Name:	      InitPhy          
-Description: ³õÊ¼»¯PHY IO
+Description: åˆå§‹åŒ–PHY IO
 Input:	      
 Return: 	void
 **************************************************************/

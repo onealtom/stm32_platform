@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :rec_app.c
-* Description :ÏµÍ³²ÎÊı´¦ÀíÏà¹Øº¯Êı
+* Description :ç³»ç»Ÿå‚æ•°å¤„ç†ç›¸å…³å‡½æ•°
 * Version     :v0.1
 * Author      :RJ
 * Date        :2010-03-10
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*RJ		2010-03-10		v0.1			³õÊ¼°æ±¾
+*RJ		2010-03-10		v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #ifndef _REC_APP_H_
 #define _REC_APP_H_
@@ -22,25 +22,25 @@
 #define B_DN_PLL_LCK   (0X01<<3)
 
 
-#define GSM_FDM		942		    // GSMÏÂĞĞÖĞĞÄÆµÂÊ 
-#define GSM_FUM		897		    // GSMÉÏĞĞÖĞĞÄÆµÂÊ 
-#define GSM_FDL_OFFSET	92.24	// ÏÂĞĞ,¸ß±¾Õñ,»ìÆµÆ÷ÆµÂÊ¼õGSMÆµÂÊµÄ²îÖµ
-#define GSM_FUL_OFFSET	93.72	// ÉÏĞĞ,¸ß±¾Õñ,»ìÆµÆ÷ÆµÂÊ¼õGSMÆµÂÊµÄ²îÖµ
+#define GSM_FDM		942		    // GSMä¸‹è¡Œä¸­å¿ƒé¢‘ç‡ 
+#define GSM_FUM		897		    // GSMä¸Šè¡Œä¸­å¿ƒé¢‘ç‡ 
+#define GSM_FDL_OFFSET	92.24	// ä¸‹è¡Œ,é«˜æœ¬æŒ¯,æ··é¢‘å™¨é¢‘ç‡å‡GSMé¢‘ç‡çš„å·®å€¼
+#define GSM_FUL_OFFSET	93.72	// ä¸Šè¡Œ,é«˜æœ¬æŒ¯,æ··é¢‘å™¨é¢‘ç‡å‡GSMé¢‘ç‡çš„å·®å€¼
 
-#define WCDMA_FDM	2140	// WCDMAÏÂĞĞÖĞĞÄÆµÂÊ 
-#define WCDMA_FUM	1950	// WCDMAÉÏĞĞÖĞĞÄÆµÂÊ 
-#define WCDMA_FDL_OFFSET	(-92)	    // ÏÂĞĞ,µÍ±¾Õñ,»ìÆµÆ÷ÆµÂÊ¼õWCDMAÆµÂÊµÄ²îÖµ
-#define WCDMA_FUL_OFFSET	(-91.44)	// ÉÏĞĞ,µÍ±¾Õñ,»ìÆµÆ÷ÆµÂÊ¼õWCDMAÆµÂÊµÄ²îÖµ
+#define WCDMA_FDM	2140	// WCDMAä¸‹è¡Œä¸­å¿ƒé¢‘ç‡ 
+#define WCDMA_FUM	1950	// WCDMAä¸Šè¡Œä¸­å¿ƒé¢‘ç‡ 
+#define WCDMA_FDL_OFFSET	(-92)	    // ä¸‹è¡Œ,ä½æœ¬æŒ¯,æ··é¢‘å™¨é¢‘ç‡å‡WCDMAé¢‘ç‡çš„å·®å€¼
+#define WCDMA_FUL_OFFSET	(-91.44)	// ä¸Šè¡Œ,ä½æœ¬æŒ¯,æ··é¢‘å™¨é¢‘ç‡å‡WCDMAé¢‘ç‡çš„å·®å€¼
  
 #define DEFAULT_GSM_FDL		    (GSM_FDM + GSM_FDL_OFFSET)
 #define DEFAULT_GSM_FUL		    (GSM_FUM + GSM_FUL_OFFSET)
 #define DEFAULT_WCDMA_FDL		(WCDMA_FDM + WCDMA_FDL_OFFSET)
 #define DEFAULT_WCDMA_FUL		(WCDMA_FUM + WCDMA_FUL_OFFSET)
 
-#define RF_DELAY_TIME_A		(13.97)//US A¶ÎÊµ¼ÊÉäÆµÁ´Â·Ê±ÑÓ
-#define RF_DELAY_TIME_B		(4.27)//US  B¶ÎÊµ¼ÊÉäÆµÁ´Â·Ê±ÑÓ
-#define RF_DELAY_TIME_C		(5.35)//US  C¶ÎÊµ¼ÊÉäÆµÁ´Â·Ê±ÑÓ
-#define RF_DELAY_TIME_D		(5.35)//US  D¶ÎÊµ¼ÊÉäÆµÁ´Â·Ê±ÑÓ
+#define RF_DELAY_TIME_A		(13.97)//US Aæ®µå®é™…å°„é¢‘é“¾è·¯æ—¶å»¶
+#define RF_DELAY_TIME_B		(4.27)//US  Bæ®µå®é™…å°„é¢‘é“¾è·¯æ—¶å»¶
+#define RF_DELAY_TIME_C		(5.35)//US  Cæ®µå®é™…å°„é¢‘é“¾è·¯æ—¶å»¶
+#define RF_DELAY_TIME_D		(5.35)//US  Dæ®µå®é™…å°„é¢‘é“¾è·¯æ—¶å»¶
 
 #define IS_OPT_ENABLE( OPT_PORT )	( 0 != ( (1<<OPT_PORT)&fp_enable ) )
 #define OPT_ENABLE( OPT_PORT )	    { fp_enable |= ( 1<<OPT_PORT ); }
@@ -48,10 +48,10 @@
 
 typedef struct _S_TOPO_STATUS 
 {
-	UINT32 IsTopoUnsteady:1;  //ÍØÆË½á¹¹ÊÇ·ñÎÈ¶¨
-	UINT32 IsSendReqPkt:1;  // ÊÇ·ñ·¢ËÍREÏûÏ¢°ü
-	UINT32 IsGetReInfOk:1;  //ÊÇ·ñ»ñµÃÓ¦´ğ
-	UINT32 ReAckTimeOut:5;  //REÓ¦´ğÊ±¼ä  
+	UINT32 IsTopoUnsteady:1;  //æ‹“æ‰‘ç»“æ„æ˜¯å¦ç¨³å®š
+	UINT32 IsSendReqPkt:1;  // æ˜¯å¦å‘é€REæ¶ˆæ¯åŒ…
+	UINT32 IsGetReInfOk:1;  //æ˜¯å¦è·å¾—åº”ç­”
+	UINT32 ReAckTimeOut:5;  //REåº”ç­”æ—¶é—´  
 	UINT32 UpdateCycDelay:5; 
 } _T_TOPO_STATUS; 
 
@@ -64,7 +64,7 @@ typedef struct _S_NOISE_TEST_STATUS
 	UCHAR8 value;
 } _T_NOISE_TEST_STATUS;
 
-extern UINT16 fp_enable;			// ¹â¿ÚµÄÊ¹ÄÜ×´Ì¬: 1-Ê¹ÄÜ
+extern UINT16 fp_enable;			// å…‰å£çš„ä½¿èƒ½çŠ¶æ€: 1-ä½¿èƒ½
 extern UINT32 topo_ok_count;
 extern UINT32 topo_err_count;
 extern _T_TOPO_ALARM_INFO topo_alarm[FP_MAX][RE_MAX];

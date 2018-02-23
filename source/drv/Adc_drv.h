@@ -1,22 +1,22 @@
-/************************************************************
+ï»¿/************************************************************
 
-     Copyright (C), 2011-2111, ¸ñÀ¼Ì©¿Ë¿Æ¼¼ÓÐÏÞ¹«Ë¾
+     Copyright (C), 2011-2111, æ ¼å…°æ³°å…‹ç§‘æŠ€æœ‰é™å…¬å¸
      
 *************************************************************
-ÎÄ¼þÃû£º   ADC_DRV_H_
-°æ±¾ºÅ£º   V03
-×÷Õß£º     Î¤Èð½õ 
-Éú³ÉÈÕÆÚ£º 2010Äê08ÔÂ05ÈÕ
-×î½üÐÞ¸Ä£º 
-¹¦ÄÜÃèÊö£º ADC_DRV_H_µÄµ×²ãÇý¶¯Í·ÎÄ¼þ 
-º¯ÊýÁÐ±í£º 
-ÐÞ¸ÄÈÕÆÚ£º 
-        1.ÈÕÆÚ:      2010Äê08ÔÂ05ÈÕ  
-          ×÷Õß£º     Î¤Èð½õ 
-          ÐÞ¸ÄÄÚÈÝ£º Ô­°æ
-        2.ÈÕÆÚ:      2012Äê04ÔÂ17ÈÕ  
-          ×÷Õß£º     µË×ÓÇ«
-          ÐÞ¸ÄÄÚÈÝ£º Î¢ÐÍ¹âÇ¥V02 
+æ–‡ä»¶åï¼š   ADC_DRV_H_
+ç‰ˆæœ¬å·ï¼š   V03
+ä½œè€…ï¼š     éŸ¦ç‘žé”¦ 
+ç”Ÿæˆæ—¥æœŸï¼š 2010å¹´08æœˆ05æ—¥
+æœ€è¿‘ä¿®æ”¹ï¼š 
+åŠŸèƒ½æè¿°ï¼š ADC_DRV_H_çš„åº•å±‚é©±åŠ¨å¤´æ–‡ä»¶ 
+å‡½æ•°åˆ—è¡¨ï¼š 
+ä¿®æ”¹æ—¥æœŸï¼š 
+        1.æ—¥æœŸ:      2010å¹´08æœˆ05æ—¥  
+          ä½œè€…ï¼š     éŸ¦ç‘žé”¦ 
+          ä¿®æ”¹å†…å®¹ï¼š åŽŸç‰ˆ
+        2.æ—¥æœŸ:      2012å¹´04æœˆ17æ—¥  
+          ä½œè€…ï¼š     é‚“å­è°¦
+          ä¿®æ”¹å†…å®¹ï¼š å¾®åž‹å…‰é’ŽV02 
 **************************************************************/
 
 #ifndef _ADC_DRV_H_
@@ -34,10 +34,10 @@
 
  
 #define ADC1_DR_Address   			 ((u32)0x4001244C)
-#define ADC_DERICT_CH_COUNT		8	// Ö±½Ó²ÉÑùÍ¨µÀÊý
-#define ADC_EX_CH_COUNT			7	// ¸´ÓÃ²ÉÑùÍ¨µÀÊý
+#define ADC_DERICT_CH_COUNT		8	// ç›´æŽ¥é‡‡æ ·é€šé“æ•°
+#define ADC_EX_CH_COUNT			7	// å¤ç”¨é‡‡æ ·é€šé“æ•°
 
-// Ö±½ÓÍ¨µÀ 
+// ç›´æŽ¥é€šé“ 
 #define ADC_A_D_VCO_VT				0
 #define ADC_B_D_VCO_VT				1
 #define ADC_CLK_VCO_VT				2
@@ -47,7 +47,7 @@
 #define ADC_BATT_VT				    6
 #define ADC_1V2_VT                  7
 
-// ¸´ÓÃÍ¨µÀ
+// å¤ç”¨é€šé“
 #define ADC_3V6_VT					9
 #define ADC_9V0_VT					10
 #define ADC_5V5_VT					11
@@ -57,7 +57,7 @@
 #define ADC_B_LNA2_VD				15
  
 
-// ADC»º³åÇø·ÃÎÊË÷Òý
+// ADCç¼“å†²åŒºè®¿é—®ç´¢å¼•
 #define VAD_CLK_VCO				    ADC_CLK_VCO_VT
 #define VAD_A_DL_VCO				ADC_A_U_VCO_VT
 #define VAD_A_UL_VCO				ADC_A_D_VCO_VT

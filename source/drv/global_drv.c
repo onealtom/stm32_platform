@@ -1,28 +1,28 @@
-/************************************************************
+ï»¿/************************************************************
 
-     Copyright (C), 2011-2111, ¸ñÀ¼Ì©¿Ë¿Æ¼¼ÓĞÏŞ¹«Ë¾
+     Copyright (C), 2011-2111, æ ¼å…°æ³°å…‹ç§‘æŠ€æœ‰é™å…¬å¸
 
 *************************************************************
-ÎÄ¼şÃû£º   GLOBAL_DRV_C_
-°æ±¾ºÅ£º   V03
-×÷Õß£º     Î¤Èğ½õ 
-Éú³ÉÈÕÆÚ£º 2010Äê08ÔÂ05ÈÕ
-×î½üĞŞ¸Ä£º 
-¹¦ÄÜÃèÊö£º GLOBAL_DRV_C_µÄµ×²ãÇı¶¯ÎÄ¼ş 
-º¯ÊıÁĞ±í£º 
-ĞŞ¸ÄÈÕÆÚ£º 
-        1.ÈÕÆÚ:      2010Äê08ÔÂ05ÈÕ  
-          ×÷Õß£º     Î¤Èğ½õ 
-          ĞŞ¸ÄÄÚÈİ£º Ô­°æ
-        2.ÈÕÆÚ:      2012Äê04ÔÂ17ÈÕ  
-          ×÷Õß£º     µË×ÓÇ«
-          ĞŞ¸ÄÄÚÈİ£º Î¢ĞÍ¹âÇ¥V02 
+æ–‡ä»¶åï¼š   GLOBAL_DRV_C_
+ç‰ˆæœ¬å·ï¼š   V03
+ä½œè€…ï¼š     éŸ¦ç‘é”¦ 
+ç”Ÿæˆæ—¥æœŸï¼š 2010å¹´08æœˆ05æ—¥
+æœ€è¿‘ä¿®æ”¹ï¼š 
+åŠŸèƒ½æè¿°ï¼š GLOBAL_DRV_C_çš„åº•å±‚é©±åŠ¨æ–‡ä»¶ 
+å‡½æ•°åˆ—è¡¨ï¼š 
+ä¿®æ”¹æ—¥æœŸï¼š 
+        1.æ—¥æœŸ:      2010å¹´08æœˆ05æ—¥  
+          ä½œè€…ï¼š     éŸ¦ç‘é”¦ 
+          ä¿®æ”¹å†…å®¹ï¼š åŸç‰ˆ
+        2.æ—¥æœŸ:      2012å¹´04æœˆ17æ—¥  
+          ä½œè€…ï¼š     é‚“å­è°¦
+          ä¿®æ”¹å†…å®¹ï¼š å¾®å‹å…‰é’V02 
 **************************************************************/
 #include "Header.h"
 
 volatile UINT32 sys_work_info = 0;
 volatile UINT32 au_send_msg = 0;
-UCHAR8 sys_temp_buff[SYS_TMP_BUFF_SIZE];	// ÏµÍ³ÁÙÊ±»º³åÇø
+UCHAR8 sys_temp_buff[SYS_TMP_BUFF_SIZE];	// ç³»ç»Ÿä¸´æ—¶ç¼“å†²åŒº
 
 volatile unsigned char * p_ext_8= (volatile unsigned char*)Bank1_SRAM1_ADDR;
 volatile unsigned short * p_ext_16 = (volatile unsigned short*)Bank1_SRAM1_ADDR;
@@ -31,7 +31,7 @@ volatile unsigned short * p_ext_16 = (volatile unsigned short*)Bank1_SRAM1_ADDR;
 
 /*************************************************************
 Name:          InitExtentBus_16      
-Description:   ÅäÖÃ16Î»×ÜÏß
+Description:   é…ç½®16ä½æ€»çº¿
 Input:         void          
 Output:        void         
 Return:        void         
@@ -76,7 +76,7 @@ void InitExtentBus_16(void)
 
 /*************************************************************
 Name:          InitExtentBus_8      
-Description:   ÅäÖÃ8Î»×ÜÏß
+Description:   é…ç½®8ä½æ€»çº¿
 Input:         void          
 Output:        void         
 Return:        void         
@@ -122,10 +122,10 @@ void InitExtentBus_8(void)
 
 /*************************************************************
 Name:FpgaLoadAll
-Description:FPGA¼ÓÔØ
-Input:¼ÓÔØÎÄ¼şµÄ×Ü³¤¶È          
+Description:FPGAåŠ è½½
+Input:åŠ è½½æ–‡ä»¶çš„æ€»é•¿åº¦          
 Output:void         
-Return:-1:Ê§°Ü£¬1: ³É¹¦         
+Return:-1:å¤±è´¥ï¼Œ1: æˆåŠŸ         
 **************************************************************/
 CHAR8 FpgaLoadAll(UINT32 len)
 {
@@ -143,20 +143,20 @@ CHAR8 FpgaLoadAll(UINT32 len)
 #ifdef FPGA_SOLO_LOAD
 	CLR_FPGA_NCS1_PIN;
 #endif 
-	// Fpga½øÈë¼ÓÔØ×´Ì¬ 
-	CLR_FPGA_NCONFIG;		    // À­µÍ nCONFIG¹Ü½Å
+	// Fpgaè¿›å…¥åŠ è½½çŠ¶æ€ 
+	CLR_FPGA_NCONFIG;		    // æ‹‰ä½ nCONFIGç®¡è„š
 	
-	UsNopDelay(20);				//ÑÓÊ± 20us
+	UsNopDelay(20);				//å»¶æ—¶ 20us
 	TRACE_DEBUG_WP("FpgaLoadAll CLR_FPGA_NCONFIG\r\n");
 
-	if ( 1 == GET_FPGA_STAUTS )	//µÈ´ı nstauts ±ä¸ß
+	if ( 1 == GET_FPGA_STAUTS )	//ç­‰å¾… nstauts å˜é«˜
 		return -1;
 	if (GET_FPGA_CONF_DONE)  
 	{ 
 		return -1;
 	}
 
-	SET_FPGA_NCONFIG;			//À­¸ß nCONFIG 
+	SET_FPGA_NCONFIG;			//æ‹‰é«˜ nCONFIG 
 	TRACE_DEBUG_WP("FpgaLoadAll SET_FPGA_NCONFIG\r\n");
 
 	for(i=0;i<20;i++)
@@ -164,21 +164,21 @@ CHAR8 FpgaLoadAll(UINT32 len)
 		WTD_CLR;
 		UsNopDelay(500);
 		WTD_CLR;	
-		//ÑÓÊ±2s  
-		if ( 1 == GET_FPGA_STAUTS )	 //µÈ´ı nstauts ±ä¸ß
+		//å»¶æ—¶2s  
+		if ( 1 == GET_FPGA_STAUTS )	 //ç­‰å¾… nstauts å˜é«˜
 		{
 			i=21;
 			break;
 		}
 	}
-		//ÑÓÊ±2s  
-	if ( 0 == GET_FPGA_STAUTS )	 //µÈ´ı nstauts ±ä¸ß
+		//å»¶æ—¶2s  
+	if ( 0 == GET_FPGA_STAUTS )	 //ç­‰å¾… nstauts å˜é«˜
 	{
 		return -1;
 	}
 	TRACE_DEBUG("FpgaLoadAll GET_FPGA_STAUTS--high\r\n");
 					
-	UsNopDelay(20);			       //ÑÓÊ± 20us
+	UsNopDelay(20);			       //å»¶æ—¶ 20us
 
 #ifndef FPGA_SOLO_LOAD
 		CLR_FPGA_NCS1_PIN;
@@ -190,7 +190,7 @@ CHAR8 FpgaLoadAll(UINT32 len)
 	UsNopDelay(1000);
 	WTD_CLR;
 	
-	TRACE_DEBUG_WP("FpgaLoad Start\r\n"); // ¶¨Î»Ò³µØÖ·
+	TRACE_DEBUG_WP("FpgaLoad Start\r\n"); // å®šä½é¡µåœ°å€
 	if( FPGA_LOAD_BLOCK2==fpga_load_block ) 
 	{
 		page_index=( FLASH_FPGA_PAGE_START2+1);
@@ -203,7 +203,7 @@ CHAR8 FpgaLoadAll(UINT32 len)
 	TRACE_INFO_WP("Start Page:%04X.\r\n", page_index);
 
 	
-	CLR_FPGA_CS_PIN;      // FPGAµÄÆ¬Ñ¡ÓĞĞ§
+	CLR_FPGA_CS_PIN;      // FPGAçš„ç‰‡é€‰æœ‰æ•ˆ
 
 	WTD_CLR;
 		
@@ -243,7 +243,7 @@ CHAR8 FpgaLoadAll(UINT32 len)
 	}
 	TRACE_INFO("load all\r\n");
 	WTD_CLR;
-    //¼ÓÔØÍê±Ï
+    //åŠ è½½å®Œæ¯•
 	UsNopDelay(1000); 			//Delay 1ms 
 	
 	if (GET_FPGA_CONF_DONE)  
@@ -261,7 +261,7 @@ CHAR8 FpgaLoadAll(UINT32 len)
 		SET_FPGA_NCS1_PIN;
 #endif
 
-        //¼ÓÔØ³É¹¦,ÑÓ³Ù1ms½øÈëuser mode 
+        //åŠ è½½æˆåŠŸ,å»¶è¿Ÿ1msè¿›å…¥user mode 
 		UsNopDelay(1000);  
 		
 		return 1; 
@@ -271,7 +271,7 @@ CHAR8 FpgaLoadAll(UINT32 len)
 	{
 		TRACE_INFO_WP("LOAD FAIL-1\r\n");
 		
-		while (serial_retry--)			  //³¢ÊÔ¶à·¢µãCLK
+		while (serial_retry--)			  //å°è¯•å¤šå‘ç‚¹CLK
 		{	
 			if (GET_FPGA_CONF_DONE)
 			{
@@ -284,7 +284,7 @@ CHAR8 FpgaLoadAll(UINT32 len)
 		SET_FPGA_NCS1_PIN;
 #endif
 
-		        //¼ÓÔØ³É¹¦,ÑÓ³Ù1ms½øÈëuser mode 
+		        //åŠ è½½æˆåŠŸ,å»¶è¿Ÿ1msè¿›å…¥user mode 
 				UsNopDelay(1000);  
 				
 				return 1; 		
@@ -319,33 +319,33 @@ CHAR8 FpgaLoadAll(UINT32 len)
 	//TRACE_DEBUG_WP("FpgaLoadAll enter\r\n");
 	WTD_CLR;
  
-	// Fpga½øÈë¼ÓÔØ×´Ì¬ 
-	CLR_FPGA_NCONFIG;		    // À­µÍ nCONFIG¹Ü½Å
+	// Fpgaè¿›å…¥åŠ è½½çŠ¶æ€ 
+	CLR_FPGA_NCONFIG;		    // æ‹‰ä½ nCONFIGç®¡è„š
 	
-	UsNopDelay(20);				//ÑÓÊ± 20us
+	UsNopDelay(20);				//å»¶æ—¶ 20us
 
-	if ( 1 == GET_FPGA_STAUTS )	//µÈ´ı nstauts ±ä¸ß
+	if ( 1 == GET_FPGA_STAUTS )	//ç­‰å¾… nstauts å˜é«˜
 		return -1;
 
-	SET_FPGA_NCONFIG;			//À­¸ß nCONFIG 
+	SET_FPGA_NCONFIG;			//æ‹‰é«˜ nCONFIG 
 
-	UsNopDelay(350);			        //ÑÓÊ±350us  
-	if ( 0 == GET_FPGA_STAUTS )	 //µÈ´ı nstauts ±ä¸ß
+	UsNopDelay(350);			        //å»¶æ—¶350us  
+	if ( 0 == GET_FPGA_STAUTS )	 //ç­‰å¾… nstauts å˜é«˜
 		return -1;
 			
-	UsNopDelay(20);			       //ÑÓÊ± 20us
+	UsNopDelay(20);			       //å»¶æ—¶ 20us
 
 
-	//TRACE_DEBUG_WP("FpgaLoad Start\r\n"); // ¶¨Î»Ò³µØÖ·
+	//TRACE_DEBUG_WP("FpgaLoad Start\r\n"); // å®šä½é¡µåœ°å€
 	page = ( FPGA_LOAD_BLOCK1==fpga_load_block ) ? (FLASH_FPGA_PAGE_START1+1) : (FLASH_FPGA_PAGE_START2+1) ;
 	//TRACE_INFO_WP("Start Page:%04X.\r\n", page);
 
 	
-	CLR_FPGA_CS_PIN;      // FPGAµÄÆ¬Ñ¡ÓĞĞ§
+	CLR_FPGA_CS_PIN;      // FPGAçš„ç‰‡é€‰æœ‰æ•ˆ
 
 	WTD_CLR;
 		
-	CLR_FPGA_NCS1_PIN;   // Óë0µçÆ½WEĞÅºÅÏà»ò ²úÉúFPGAÕı³£¼ÓÔØµÄWEĞÅºÅ
+	CLR_FPGA_NCS1_PIN;   // ä¸0ç”µå¹³WEä¿¡å·ç›¸æˆ– äº§ç”ŸFPGAæ­£å¸¸åŠ è½½çš„WEä¿¡å·
 	
 	while (len)   
 	{
@@ -357,7 +357,7 @@ CHAR8 FpgaLoadAll(UINT32 len)
 		{
 		   ucTmpDat = *(p_flash_page+i);
 			
-           #ifdef FPGA_COMPRESS 		// Ñ¹Ëõ·½Ê½´æ´¢
+           #ifdef FPGA_COMPRESS 		// å‹ç¼©æ–¹å¼å­˜å‚¨
               SentLoadDat(ucTmpDat); 
            #else 
               *p_ext_8 = ucTmpDat; 
@@ -370,13 +370,13 @@ CHAR8 FpgaLoadAll(UINT32 len)
 	}
 	
 	WTD_CLR;
-       //¼ÓÔØÍê±Ï
+       //åŠ è½½å®Œæ¯•
 	UsNopDelay(1000);			//Delay 1ms 
 	
 	if (GET_FPGA_CONF_DONE)  
 	{     
 		//TRACE_INFO_WP("CONF_DONE ==1\r\n");
-		//¼ÓÔØ³É¹¦,ÑÓ³Ù1ms½øÈëuser mode 
+		//åŠ è½½æˆåŠŸ,å»¶è¿Ÿ1msè¿›å…¥user mode 
 		for (i=0 ;i<100; i++) 
 		{
 			UsNopDelay(100);  
@@ -392,12 +392,12 @@ CHAR8 FpgaLoadAll(UINT32 len)
 	{
 		//TRACE_INFO_WP("CONF_DONE ==0\r\n");
 		
-		while (serial_retry--)			  //³¢ÊÔ¶à·¢µãCLK
+		while (serial_retry--)			  //å°è¯•å¤šå‘ç‚¹CLK
 		{	
 			if (GET_FPGA_CONF_DONE)
 			{
 				//TRACE_INFO_WP("CONF_DONE ==1 @@%d\r\n",serial_retry);
-				//¼ÓÔØ³É¹¦,ÑÓ³Ù1ms½øÈëuser mode
+				//åŠ è½½æˆåŠŸ,å»¶è¿Ÿ1msè¿›å…¥user mode
 				for (i=0 ;i<100; i++)
 				{
 					UsNopDelay(50);
@@ -427,18 +427,18 @@ CHAR8 FpgaLoadAll(UINT32 len)
 
 /*************************************************************
 Name:          GetAD9524LD      
-Description:   ÅĞ¶Ï9524ÊÇ·ñËø¶¨
+Description:   åˆ¤æ–­9524æ˜¯å¦é”å®š
 Input:         void          
 Output:        void         
-Return:        0:Ã»Ëø¶¨
-               1:Ëø¶¨
+Return:        0:æ²¡é”å®š
+               1:é”å®š
 **************************************************************/
 UCHAR8 GetAD9524LD()
 {
-//	return GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15);//20140906¸ü¸ÄÎªÈçÏÂ
+//	return GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_15);//20140906æ›´æ”¹ä¸ºå¦‚ä¸‹
 
 
-	//½ü¶ËE2ÎªËø¶¨
+	//è¿‘ç«¯E2ä¸ºé”å®š
 	if(Ad9524Read(0x22c)==0xe2)
 	{
 		return 1;
@@ -453,11 +453,11 @@ UCHAR8 GetAD9524LD()
 
 /*************************************************************
 Name:          GetAD9524Refmon      
-Description:   ÅĞ¶Ï9524²Î¿¼ÊÇ·ñËø¶¨
+Description:   åˆ¤æ–­9524å‚è€ƒæ˜¯å¦é”å®š
 Input:         void          
 Output:        void         
-Return:        0:Ã»Ëø¶¨
-               1:Ëø¶¨
+Return:        0:æ²¡é”å®š
+               1:é”å®š
 **************************************************************/
 UCHAR8 GetAD9524Refmon()
 {
@@ -467,11 +467,11 @@ UCHAR8 GetAD9524Refmon()
 
 /*************************************************************
 Name:          GetAD9524Status      
-Description:   ÅĞ¶Ï9524²Î¿¼ÊÇ·ñËø¶¨
+Description:   åˆ¤æ–­9524å‚è€ƒæ˜¯å¦é”å®š
 Input:         void          
 Output:        void         
-Return:        0:Ã»Ëø¶¨
-               1:Ëø¶¨
+Return:        0:æ²¡é”å®š
+               1:é”å®š
 **************************************************************/
 UCHAR8 GetAD9524Status()
 {
@@ -481,11 +481,11 @@ UCHAR8 GetAD9524Status()
 
 /*************************************************************
 Name:          GetDA9122LockA      
-Description:   ÅĞ¶ÏA¶Î9122ÊÇ·ñËø¶¨
+Description:   åˆ¤æ–­Aæ®µ9122æ˜¯å¦é”å®š
 Input:         void          
 Output:        void         
-Return:        0:Ã»Ëø¶¨
-               1:Ëø¶¨
+Return:        0:æ²¡é”å®š
+               1:é”å®š
 **************************************************************/
 UCHAR8 GetDA9122LockA()
 {
@@ -499,11 +499,11 @@ UCHAR8 GetDA9122LockA()
 
 /*************************************************************
 Name:          GetDA9122LockB      
-Description:   ÅĞ¶ÏB¶Î9122ÊÇ·ñËø¶¨
+Description:   åˆ¤æ–­Bæ®µ9122æ˜¯å¦é”å®š
 Input:         void          
 Output:        void         
-Return:        0:Ã»Ëø¶¨
-               1:Ëø¶¨
+Return:        0:æ²¡é”å®š
+               1:é”å®š
 **************************************************************/
 UCHAR8 GetDA9122LockB()
 {
@@ -517,11 +517,11 @@ UCHAR8 GetDA9122LockB()
 
 /*************************************************************
 Name:          SysSoftReset      
-Description:   Èí¼ş¸´Î»
+Description:   è½¯ä»¶å¤ä½
 Input:         void          
 Output:        void         
-Return:        0:Ã»Ëø¶¨
-               1:Ëø¶¨
+Return:        0:æ²¡é”å®š
+               1:é”å®š
 **************************************************************/
 void SysSoftReset()
 {
@@ -534,10 +534,10 @@ void SysSoftReset()
 
 /*************************************************************
 Name:          GetTemperature      
-Description:   »ñµÃMCUµÄÎÂ¶È
+Description:   è·å¾—MCUçš„æ¸©åº¦
 Input:         void          
 Output:        void         
-Return:        ÎÂ¶È´óĞ¡
+Return:        æ¸©åº¦å¤§å°
 **************************************************************/
 CHAR8 GetTemperature()
 {
@@ -552,16 +552,16 @@ CHAR8 GetTemperature()
 
 /*************************************************************
 Name:          SentLoadDat      
-Description:   ´®ĞĞ·¢ËÍ¼ÓÔØÊı¾İ
-Input:         Dat - ·¢ËÍµÄ×Ö½Ú          
+Description:   ä¸²è¡Œå‘é€åŠ è½½æ•°æ®
+Input:         Dat - å‘é€çš„å­—èŠ‚          
 Output:        void           
 Return:        void       
 **************************************************************/
 void SentLoadDat(UCHAR8 Dat)
 {
 	UCHAR8 i; 
-	//Îª¼Ó¿ìÂß¼­¼ÓÔØ
-	//20151126Âß¼­¼ÓÔØÖ±½Ó²Ù×÷¼Ä´æÆ÷µØÖ·
+	//ä¸ºåŠ å¿«é€»è¾‘åŠ è½½
+	//20151126é€»è¾‘åŠ è½½ç›´æ¥æ“ä½œå¯„å­˜å™¨åœ°å€
 	volatile unsigned long *DBSRR_SFR=GPIOD_SFR_BASE_SET; 
 	volatile unsigned long *DBRR_SFR=GPIOD_SFR_BASE_RESET; 
 	volatile unsigned long *BBSRR_SFR=GPIOB_SFR_BASE_SET; 

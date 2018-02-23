@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :rec_app.c
-* Description :ÏµÍ³²ÎÊı´¦ÀíÏà¹Øº¯Êı
+* Description :ç³»ç»Ÿå‚æ•°å¤„ç†ç›¸å…³å‡½æ•°
 * Version     :v0.1
 * Author      :RJ
 * Date        :2010-03-10
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*RJ		2010-03-10		v0.1			³õÊ¼°æ±¾
+*RJ		2010-03-10		v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #include "Header.h"
 
@@ -21,24 +21,24 @@ extern _T_MODULE_CFG mod_cfg_a;
 extern _T_MODULE_CFG mod_cfg_b;
 extern UINT32 fpga_load_status;
 extern _T_BIG_PKT_BUFF msg_big_buff[MSG_BIG_PKT_COUNT];
-extern UINT32 module_param_chg_flag;		//ÏµÍ³¹¤×÷²ÎÊıĞŞ¸Ä±êÖ¾
+extern UINT32 module_param_chg_flag;		//ç³»ç»Ÿå·¥ä½œå‚æ•°ä¿®æ”¹æ ‡å¿—
 extern FLOAT32 fpga_dgcic_b;
-extern UCHAR8 traffic_start ;//¿ªÊ¼»°ÎñÁ¿Í³¼Æ
+extern UCHAR8 traffic_start ;//å¼€å§‹è¯åŠ¡é‡ç»Ÿè®¡
 
 _T_VALID_FP_TOPO valid_fp_topo[FP_MAX];
-_T_RE_INFO tmp_re_inf[FP_MAX][RE_MAX];		// REĞÅÏ¢µÄÁÙÊ±»º´æ
-_T_FP_INFO fp_inf[FP_MAX];		// ¹â¿ÚÍØÆËĞÅÏ¢
+_T_RE_INFO tmp_re_inf[FP_MAX][RE_MAX];		// REä¿¡æ¯çš„ä¸´æ—¶ç¼“å­˜
+_T_FP_INFO fp_inf[FP_MAX];		// å…‰å£æ‹“æ‰‘ä¿¡æ¯
 _T_TOPO_ALARM_INFO topo_alarm[FP_MAX][RE_MAX] = {0};
 
-UINT16 fp_enable = 0;			// ¹â¿ÚµÄÊ¹ÄÜ×´Ì¬: 1-Ê¹ÄÜ
-UINT16 total_re_count = 0;		// ÍØÆËÖĞ×ÜµÄREÊıÁ¿
-UCHAR8 pre_re_count[FP_MAX];	// Ç°Ò»´ÎµÄ¹â¿ÚREÊıÁ¿
-UINT16 total_ree_count = 0;		// ÍØÆËÖĞ×ÜµÄREÊıÁ¿
-UCHAR8 pre_ree_count[FP_MAX];	// Ç°Ò»´ÎµÄ¹â¿ÚREÊıÁ¿
-_T_TOPO_STATUS topo_st;			// ÍØÆË¹ÜÀí×´Ì¬
+UINT16 fp_enable = 0;			// å…‰å£çš„ä½¿èƒ½çŠ¶æ€: 1-ä½¿èƒ½
+UINT16 total_re_count = 0;		// æ‹“æ‰‘ä¸­æ€»çš„REæ•°é‡
+UCHAR8 pre_re_count[FP_MAX];	// å‰ä¸€æ¬¡çš„å…‰å£REæ•°é‡
+UINT16 total_ree_count = 0;		// æ‹“æ‰‘ä¸­æ€»çš„REæ•°é‡
+UCHAR8 pre_ree_count[FP_MAX];	// å‰ä¸€æ¬¡çš„å…‰å£REæ•°é‡
+_T_TOPO_STATUS topo_st;			// æ‹“æ‰‘ç®¡ç†çŠ¶æ€
 
-UCHAR8 gsm_type_a = G2_TYPE_UNICOM;	// A¶ÎgsmÄ£Ê½,Ä¬ÈÏÎªÁªÍ¨Æµ¶Î
-UCHAR8 gsm_type_b = G2_TYPE_UNICOM;	// B¶ÎgsmÄ£Ê½,Ä¬ÈÏÎªÁªÍ¨Æµ¶Î
+UCHAR8 gsm_type_a = G2_TYPE_UNICOM;	// Aæ®µgsmæ¨¡å¼,é»˜è®¤ä¸ºè”é€šé¢‘æ®µ
+UCHAR8 gsm_type_b = G2_TYPE_UNICOM;	// Bæ®µgsmæ¨¡å¼,é»˜è®¤ä¸ºè”é€šé¢‘æ®µ
 
 UINT32 bit_err_cnt=0;
 UINT32 topo_chg_cnt = 0;
@@ -50,7 +50,7 @@ UCHAR8 ucPllStatus =0;
 UCHAR8 benzhen2340 = 0;
 
 _T_NOISE_TEST_STATUS noise_test_st = 0;
-//¼ÆËãREÆ½¾ù¹¦ÂÊÓÃµÄÊı¾İ,=10log(1~64)
+//è®¡ç®—REå¹³å‡åŠŸç‡ç”¨çš„æ•°æ®,=10log(1~64)
 const FLOAT32 pow_div_tbl[64]={
 	0.000000,   3.010300,  4.771213,  6.020600,  6.989700,  7.781513,  8.450980,  9.030900, 
 	9.542425,  10.000000, 10.413927, 10.791812, 11.139434, 11.461280, 11.760913, 12.041200, 
@@ -62,10 +62,10 @@ const FLOAT32 pow_div_tbl[64]={
 	17.558749, 17.634280, 17.708520, 17.781513, 17.853298, 17.923917, 17.993405, 18.061800, 
 };
 
-// td_scdmaËÑË÷Í¨µÀºÅ£¬µÚ1Í¨µÀÎª½çÃæÉèÖÃµÄÆµµã£¬³õÊ¼ÖµÎª10087£¬½ÓÏÂÀ´Ç°9¸öÎª´óÌÆµÄ¹Ì¶¨Æµµã£¬ºó9¸öÎª»ªÎªµÄ¹Ì¶¨Æµµã:10054,10062,10070,10079,10087,10095,10104,10112,10120£¬10055,10063,10071,10080,10088,10096,10104,10112,10120,
+// td_scdmaæœç´¢é€šé“å·ï¼Œç¬¬1é€šé“ä¸ºç•Œé¢è®¾ç½®çš„é¢‘ç‚¹ï¼Œåˆå§‹å€¼ä¸º10087ï¼Œæ¥ä¸‹æ¥å‰9ä¸ªä¸ºå¤§å”çš„å›ºå®šé¢‘ç‚¹ï¼Œå9ä¸ªä¸ºåä¸ºçš„å›ºå®šé¢‘ç‚¹:10054,10062,10070,10079,10087,10095,10104,10112,10120ï¼Œ10055,10063,10071,10080,10088,10096,10104,10112,10120,
 UINT16 tds_dl_channel[19] = {10087,10054,10062,10070,10079,10087,10095,10104,10112,10120,10055,10063,10071,10080,10088,10096};
-// ÎÂ¶ÈÔöÒæ²¹³¥±í
-// A¶ÎÏÂĞĞÎÂ¶ÈÔöÒæ²¹³¥±í        //                  -20                         -10                     0
+// æ¸©åº¦å¢ç›Šè¡¥å¿è¡¨
+// Aæ®µä¸‹è¡Œæ¸©åº¦å¢ç›Šè¡¥å¿è¡¨        //                  -20                         -10                     0
 const UINT16 temp_cmp_tbl_adl[13] = {(UINT16)((INT16)(2.2*1000)),(UINT16)((INT16)(1.6*1000)),(UINT16)((INT16)(1.2*1000)),
 								//					10,						    20,  					30 ,				   					
 								(UINT16)((INT16)(0.9*1000)),(UINT16)((INT16)(0.6*1000)),(UINT16)((INT16)(0.2*1000)),
@@ -73,7 +73,7 @@ const UINT16 temp_cmp_tbl_adl[13] = {(UINT16)((INT16)(2.2*1000)),(UINT16)((INT16
 								(UINT16)((INT16)(0*1000)),(UINT16)((INT16)(-0.4*1000)),(UINT16)((INT16)(-0.8*1000)),
 								//                  70, 				        80, 			
 								(UINT16)((INT16)(-0.8*1000)),(UINT16)((INT16)(-1.5*1000)), 0, 0};	
-// A¶ÎÉÏĞĞÎÂ¶ÈÔöÒæ²¹³¥±í        //                   -20                     1-0                          0
+// Aæ®µä¸Šè¡Œæ¸©åº¦å¢ç›Šè¡¥å¿è¡¨        //                   -20                     1-0                          0
 const UINT16 temp_cmp_tbl_aul[13] = {(UINT16)((INT16)(1.6*1000)),(UINT16)((INT16)(1.2*1000)),(UINT16)((INT16)(0.87*1000)),
 								//					10,						    20,  						      30 ,				   					
 								(UINT16)((INT16)(0.9*1000)),(UINT16)((INT16)(0.2*1000)),(UINT16)((INT16)(0*1000)),
@@ -82,7 +82,7 @@ const UINT16 temp_cmp_tbl_aul[13] = {(UINT16)((INT16)(1.6*1000)),(UINT16)((INT16
 								//                  70, 				        80, 			
 								(UINT16)((INT16)(-0.2*1000)),(UINT16)((INT16)(-0.9*1000)), 0, 0};		
 
-// B¶ÎÏÂĞĞÎÂ¶ÈÔöÒæ²¹³¥±í        //                  -20                          -10                   0
+// Bæ®µä¸‹è¡Œæ¸©åº¦å¢ç›Šè¡¥å¿è¡¨        //                  -20                          -10                   0
 const UINT16 temp_cmp_tbl_bdl[13] = {(UINT16)((INT16)(2.2*1000)),(UINT16)((INT16)(1.9*1000)),(UINT16)((INT16)(1.5*1000)),
 								//					10,						      20,  						      30 ,				   					
 								(UINT16)((INT16)(1.1*1000)),(UINT16)((INT16)(0.7*1000)),(UINT16)((INT16)(0.4*1000)),
@@ -90,7 +90,7 @@ const UINT16 temp_cmp_tbl_bdl[13] = {(UINT16)((INT16)(2.2*1000)),(UINT16)((INT16
 								(UINT16)((INT16)(0*1000)),(UINT16)((INT16)(-0.5*1000)),(UINT16)((INT16)(-0.8*1000)),
 								//                70, 				            80, 			
 								(UINT16)((INT16)(-1.2*1000)),(UINT16)((INT16)(-1.7*1000)), 0, 0};	
-// B¶ÎÉÏĞĞÎÂ¶ÈÔöÒæ²¹³¥±í       //                   -20                         -10                        0
+// Bæ®µä¸Šè¡Œæ¸©åº¦å¢ç›Šè¡¥å¿è¡¨       //                   -20                         -10                        0
 const UINT16 temp_cmp_tbl_bul[13] = {(UINT16)((INT16)(1.81*1000)),(UINT16)((INT16)(1.31*1000)),(UINT16)((INT16)(1.17*1000)),
 								//					10,						     20,  						      30 ,				   					
 								(UINT16)((INT16)(0.61*1000)),(UINT16)((INT16)(0.71*1000)),(UINT16)((INT16)(0.11*1000)),
@@ -99,7 +99,7 @@ const UINT16 temp_cmp_tbl_bul[13] = {(UINT16)((INT16)(1.81*1000)),(UINT16)((INT1
 								//                  70, 				        80, 			
 								(UINT16)((INT16)(-0.9*1000)),(UINT16)((INT16)(-1.69*1000)), 0, 0};		
 
-// C¶ÎÏÂĞĞÎÂ¶ÈÔöÒæ²¹³¥±í      //                   -20                        -10                        0
+// Cæ®µä¸‹è¡Œæ¸©åº¦å¢ç›Šè¡¥å¿è¡¨      //                   -20                        -10                        0
 const UINT16 temp_cmp_tbl_cdl[13] = {(UINT16)((INT16)(2.3*1000)),(UINT16)((INT16)(2.2*1000)),(UINT16)((INT16)(1.7*1000)),
 								//					10,						   20,  						      30 ,				   					
 								(UINT16)((INT16)(0.6*1000)),(UINT16)((INT16)(0.8*1000)),(UINT16)((INT16)(0.32*1000)),
@@ -107,7 +107,7 @@ const UINT16 temp_cmp_tbl_cdl[13] = {(UINT16)((INT16)(2.3*1000)),(UINT16)((INT16
 								(UINT16)((INT16)(0*1000)),(UINT16)((INT16)(-0.8*1000)),(UINT16)((INT16)(-1.3*1000)),
 								//                  70, 				      80, 			
 								(UINT16)((INT16)(-1.4*1000)),(UINT16)((INT16)(-2.2*1000)), 0, 0};	
-// C¶ÎÉÏĞĞÎÂ¶ÈÔöÒæ²¹³¥±í      //                   -20                         -10                     0
+// Cæ®µä¸Šè¡Œæ¸©åº¦å¢ç›Šè¡¥å¿è¡¨      //                   -20                         -10                     0
 const UINT16 temp_cmp_tbl_cul[13] = {(UINT16)((INT16)(1.9*1000)),(UINT16)((INT16)(1.8*1000)),(UINT16)((INT16)(1.44*1000)),
 								//					10,						      20,  						      30 ,				   					
 								(UINT16)((INT16)(1.09*1000)),(UINT16)((INT16)(0.3*1000)),(UINT16)((INT16)(0*1000)),
@@ -115,7 +115,7 @@ const UINT16 temp_cmp_tbl_cul[13] = {(UINT16)((INT16)(1.9*1000)),(UINT16)((INT16
 								(UINT16)((INT16)(0*1000)),(UINT16)((INT16)(0.1*1000)),(UINT16)((INT16)(-0.4*1000)),
 								//                  70, 				        80, 			
 								(UINT16)((INT16)(-0.6*1000)),(UINT16)((INT16)(-1.4*1000)), 0, 0};		
-// D¶ÎÏÂĞĞÎÂ¶ÈÔöÒæ²¹³¥±í         //                  -20                        -10                       0
+// Dæ®µä¸‹è¡Œæ¸©åº¦å¢ç›Šè¡¥å¿è¡¨         //                  -20                        -10                       0
 UINT16 temp_cmp_tbl_ddl[13] = {(UINT16)((INT16)(2.5*1000)),(UINT16)((INT16)(2.3*1000)),(UINT16)((INT16)(1.9*1000)),
 								//					10,						      20,  						      30 ,				   					
 								(UINT16)((INT16)(1.29*1000)),(UINT16)((INT16)(0.9*1000)),(UINT16)((INT16)(0.2*1000)),
@@ -123,7 +123,7 @@ UINT16 temp_cmp_tbl_ddl[13] = {(UINT16)((INT16)(2.5*1000)),(UINT16)((INT16)(2.3*
 								(UINT16)((INT16)(0*1000)),(UINT16)((INT16)(-1.2*1000)),(UINT16)((INT16)(-1.1*1000)),
 								//        			70, 				         80, 			
 								(UINT16)((INT16)(-1.5*1000)),(UINT16)((INT16)(-2*1000)), 0, 0};	
-// D¶ÎÉÏĞĞÎÂ¶ÈÔöÒæ²¹³¥±í       //                  -20                          -10                      0
+// Dæ®µä¸Šè¡Œæ¸©åº¦å¢ç›Šè¡¥å¿è¡¨       //                  -20                          -10                      0
 const UINT16 temp_cmp_tbl_dul[13] = {(UINT16)((INT16)(1.8*1000)),(UINT16)((INT16)(1.6*1000)),(UINT16)((INT16)(1.3*1000)),
 								//					10,						      20,  						      30 ,				   					
 								(UINT16)((INT16)(0.75*1000)),(UINT16)((INT16)(0.6*1000)),(UINT16)((INT16)(0.2*1000)),
@@ -143,7 +143,7 @@ void InitRec()
 	topo_st.IsSendReqPkt = 0;
 	topo_st.IsGetReInfOk = 0;   
 	
-	fp_enable = 0xFF;		// Ê¹ÄÜËùÓĞ¹â¿Ú 1Ê¹ÄÜ£¬0Ê§ÄÜ
+	fp_enable = 0xFF;		// ä½¿èƒ½æ‰€æœ‰å…‰å£ 1ä½¿èƒ½ï¼Œ0å¤±èƒ½
 
 	FPGA_ENABLE_WRITE;
 	FpgaWriteRegister(FPGA_REG_OPT_ON, fp_enable);
@@ -160,7 +160,7 @@ void InitRec()
 			fp_inf[i].re_info[j].re_status = 0;
 		}
 		
-		//Çå¿Õ»º³åÇø 
+		//æ¸…ç©ºç¼“å†²åŒº 
 		ClearTmpReInfo(i);
 	}
 
@@ -172,25 +172,25 @@ void InitRec()
 	
 	if ( FPGA_LDST_OK != fpga_load_status )
 	{
-		// FPGA¹ÊÕÏ£¬·µ»Ø
+		// FPGAæ•…éšœï¼Œè¿”å›
 		return;
 	}
 
 	sys_work_info = 0;
 
-#ifdef FUNC_TD_AUTO_SEARCH_FP	// TD×Ô¶¯ÆµµãËÑË÷
-	// ³õÊ¼»¯ËÑË÷³¬Ê±Ê±¼ä£¬MCUµÄÂß¼­Ğ´»º´æµØÖ·211£¬²»ÓÃ¿ªĞ´±£»¤
+#ifdef FUNC_TD_AUTO_SEARCH_FP	// TDè‡ªåŠ¨é¢‘ç‚¹æœç´¢
+	// åˆå§‹åŒ–æœç´¢è¶…æ—¶æ—¶é—´ï¼ŒMCUçš„é€»è¾‘å†™ç¼“å­˜åœ°å€211ï¼Œä¸ç”¨å¼€å†™ä¿æŠ¤
 	//FpgaWriteRegister( FPGA_WO_REG(211), 90 );
 #endif
 }
 
 /*************************************************************
 Name:SetValidTopo          
-Description: ¸üĞÂÍØÆËĞÅÏ¢
+Description: æ›´æ–°æ‹“æ‰‘ä¿¡æ¯
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 BOOL SetValidTopo( UCHAR8 * p_dat )
@@ -238,12 +238,12 @@ BOOL SetValidTopo( UCHAR8 * p_dat )
 
 /*************************************************************
 Name:             GetNewTopo          
-Description:      ¼ì²é8¸ö¹â¿ÚµÄ×´Ì¬:ÊÇ·ñÓĞ¹âÄ£¿é²åÈë
-                                    ÊÇ·ñ¸Ã¹â¿ÚËø¶¨
-                                    Í³¼Æ¸Ã¹â¿ÚÏÂµÄREÊıÄ¿
-                                    ÊÇ·ñÓĞ¶Ô¶Ë¿Ú£¬ÒÔ¼°¶Ô¶Ë¿ÚµÄID
+Description:      æ£€æŸ¥8ä¸ªå…‰å£çš„çŠ¶æ€:æ˜¯å¦æœ‰å…‰æ¨¡å—æ’å…¥
+                                    æ˜¯å¦è¯¥å…‰å£é”å®š
+                                    ç»Ÿè®¡è¯¥å…‰å£ä¸‹çš„REæ•°ç›®
+                                    æ˜¯å¦æœ‰å¯¹ç«¯å£ï¼Œä»¥åŠå¯¹ç«¯å£çš„ID
                
-                  ÔÚTaskManageTopoÖĞµ÷ÓÃ 
+                  åœ¨TaskManageTopoä¸­è°ƒç”¨ 
 Input: void
 Return: void
 **************************************************************/
@@ -252,25 +252,25 @@ void GetNewTopo()
 	UCHAR8 i,j,k;
 	UINT16 tmp;
 
-	// D7-0£º1/0----¹â¿Ú0~7µÄ¹âÄ£¿éÃ»ÓĞ²åÈë/²åÈë
+	// D7-0ï¼š1/0----å…‰å£0~7çš„å…‰æ¨¡å—æ²¡æœ‰æ’å…¥/æ’å…¥
 	tmp = FpgaReadRegister(FPGA_REG_SFP_CONNECT);
 	//printf("fp_enable = %d\r\n",fp_enable);
-	// ¶ÁÈ¡ËùÓĞ¹â¿ÚµÄÍØÆË×´Ì¬
+	// è¯»å–æ‰€æœ‰å…‰å£çš„æ‹“æ‰‘çŠ¶æ€
 	for ( i=0; i<FP_MAX; i++ )
 	{
-	#ifdef  CLIENT_XINMIN	// ĞÀÃñÒªÇó¹â¿ÚÄæĞòÅÅÁĞ
-		fp_inf[FP_MAX-i-1].re_cnt = 0;	// Çå³ıREÊıÁ¿
-		fp_inf[FP_MAX-i-1].ops_info = 0;	// Çå³ı»·Íø×´Ì¬
+	#ifdef  CLIENT_XINMIN	// æ¬£æ°‘è¦æ±‚å…‰å£é€†åºæ’åˆ—
+		fp_inf[FP_MAX-i-1].re_cnt = 0;	// æ¸…é™¤REæ•°é‡
+		fp_inf[FP_MAX-i-1].ops_info = 0;	// æ¸…é™¤ç¯ç½‘çŠ¶æ€
 	#else
-		fp_inf[i].re_cnt = 0;	// Çå³ıREÊıÁ¿
-		fp_inf[i].ops_info = 0;	// Çå³ı»·Íø×´Ì¬
+		fp_inf[i].re_cnt = 0;	// æ¸…é™¤REæ•°é‡
+		fp_inf[i].ops_info = 0;	// æ¸…é™¤ç¯ç½‘çŠ¶æ€
 		fp_inf[i].ree_cnt=0;
-		// ÅĞ¶Ï¹âÄ£¿éÊÇ·ñ²åÈë
+		// åˆ¤æ–­å…‰æ¨¡å—æ˜¯å¦æ’å…¥
 	#endif
 	
 		if ( 0== (tmp & (0x01<<i)) )
 		{
-			#ifdef CLIENT_XINMIN	// ĞÀÃñÒªÇó¹â¿ÚÄæĞòÅÅÁĞ
+			#ifdef CLIENT_XINMIN	// æ¬£æ°‘è¦æ±‚å…‰å£é€†åºæ’åˆ—
 				fp_inf[FP_MAX-i-1].sfp_attach = 1;
 			#else
 				fp_inf[i].sfp_attach = 1;
@@ -279,21 +279,21 @@ void GetNewTopo()
 		}
 		else
 		{
-			#ifdef CLIENT_XINMIN	// ĞÀÃñÒªÇó¹â¿ÚÄæĞòÅÅÁĞ
+			#ifdef CLIENT_XINMIN	// æ¬£æ°‘è¦æ±‚å…‰å£é€†åºæ’åˆ—
 				fp_inf[FP_MAX-i-1].sfp_attach = 0;
 			#else
 				fp_inf[i].sfp_attach = 0;
             #endif
 		}
 		
-		// ¼ì²é¹â¿ÚÊÇ·ñÊ¹ÄÜ
+		// æ£€æŸ¥å…‰å£æ˜¯å¦ä½¿èƒ½
 		if ( 0 == fp_enable&(0x01<<i) )
 		{
 			continue;
 		}
 		
-		// ¶ÁÈ¡¹â¿ÚĞÅÏ¢
-		#ifdef  CLIENT_XINMIN	// ĞÀÃñÒªÇó¹â¿ÚÄæĞòÅÅÁĞ
+		// è¯»å–å…‰å£ä¿¡æ¯
+		#ifdef  CLIENT_XINMIN	// æ¬£æ°‘è¦æ±‚å…‰å£é€†åºæ’åˆ—
 			if ( b_FALSE==FpgaGetTopoStaus( i, &fp_inf[FP_MAX-i-1] ) )
 			{
 				fp_inf[FP_MAX-i-1].re_cnt = 0;
@@ -335,14 +335,14 @@ void GetNewTopo()
 
 /*************************************************************
 Name:         CheckTopoChange          
-Description:  ÅĞ¶ÏÍØÆËÓĞÃ»ÓĞ±ä»¯£¬Í³¼Æ×ÜµÄREÊı
+Description:  åˆ¤æ–­æ‹“æ‰‘æœ‰æ²¡æœ‰å˜åŒ–ï¼Œç»Ÿè®¡æ€»çš„REæ•°
 
-              Ö»ÒªÍ³¼Æµ½ÈÎºÎÒ»¸ö¹â¿ÚµÄREºÍÉÏÒ»´ÎµÄRE¸öÊı²½ÏàµÈ£¬¾ÍÈÏÎª ÍØÆËÒÑ¾­¸Ä±ä
-              ×îºóÍ³¼ÆËùÓĞµÄ¹â¿ÚµÄRE×ÜÊı
+              åªè¦ç»Ÿè®¡åˆ°ä»»ä½•ä¸€ä¸ªå…‰å£çš„REå’Œä¸Šä¸€æ¬¡çš„REä¸ªæ•°æ­¥ç›¸ç­‰ï¼Œå°±è®¤ä¸º æ‹“æ‰‘å·²ç»æ”¹å˜
+              æœ€åç»Ÿè®¡æ‰€æœ‰çš„å…‰å£çš„REæ€»æ•°
 
 Input:        void
-Return:       b_TRUE-ÍØÆË¸Ä±ä£» 
-              FALSE-ÍØÆËÎ´¸Ä±ä 
+Return:       b_TRUE-æ‹“æ‰‘æ”¹å˜ï¼› 
+              FALSE-æ‹“æ‰‘æœªæ”¹å˜ 
 **************************************************************/
 BOOL CheckTopoChange()
 {
@@ -356,7 +356,7 @@ BOOL CheckTopoChange()
 	for ( i=0; i<FP_MAX; i++ )
 	{
 		WTD_CLR;
-		if (  ( fp_inf[i].re_cnt != pre_re_count[i] )||(pre_ree_count[i] != fp_inf[i].ree_cnt)  )		// ¹â¿ÚµÄREÊıÁ¿ÓëÇ°Ò»´ÎµÄ²»Ò»Ñù
+		if (  ( fp_inf[i].re_cnt != pre_re_count[i] )||(pre_ree_count[i] != fp_inf[i].ree_cnt)  )		// å…‰å£çš„REæ•°é‡ä¸å‰ä¸€æ¬¡çš„ä¸ä¸€æ ·
 		{
 			IsChange = b_TRUE; 
 			//TRACE_INFO("pre_re_count[%d] =[%x], fp_inf[%d].re_cnt=[%x]\r\n",i,pre_re_count[i],i,fp_inf[i].re_cnt);
@@ -386,13 +386,13 @@ BOOL CheckTopoChange()
 
 /*************************************************************
 Name:CheckRingNetErr          
-Description: ¼ì²âÊÇ·ñ»·Íø¶Ï¿ª 
+Description: æ£€æµ‹æ˜¯å¦ç¯ç½‘æ–­å¼€ 
 Input: void
 Return: void
 **************************************************************/
 void CheckRingNetErr()
 {
-	static UCHAR8 pre_ring_net_st=0;			// »·Íø×´Ì¬£¬³õÊ¼Îª·Ç»·Íø
+	static UCHAR8 pre_ring_net_st=0;			// ç¯ç½‘çŠ¶æ€ï¼Œåˆå§‹ä¸ºéç¯ç½‘
 	UINT32 i;
 	UINT32 flag = 0;
 	UCHAR8 alarm = 0;
@@ -400,67 +400,67 @@ void CheckRingNetErr()
 
 	for ( i=0; i<FP_MAX; i++ )
 	{
-		// ³õÊ¼»¯»·Íø×´Ì¬Îª·Ç»·Íø 
+		// åˆå§‹åŒ–ç¯ç½‘çŠ¶æ€ä¸ºéç¯ç½‘ 
 		flag = 1;
 
-		// ÖØÖÃ±¾¶ËÏÂĞĞ·¢ËÍ×´Ì¬ÎªÕı³£
+		// é‡ç½®æœ¬ç«¯ä¸‹è¡Œå‘é€çŠ¶æ€ä¸ºæ­£å¸¸
 		fp_inf[i].tx_err = 0;
 				
-		// ¼ì²âÊÇ·ñÊÇ»·ÍøÁ¬½Ó
+		// æ£€æµ‹æ˜¯å¦æ˜¯ç¯ç½‘è¿æ¥
 		if ( OPS_RCV_FLAG==(fp_inf[i].ops_info & OPS_RCV_FLAG) )
 		{	
-			// È¡µÃ»·Íø¶Ô¶Ë¹â¿ÚºÅ(0¿ªÊ¼)
+			// å–å¾—ç¯ç½‘å¯¹ç«¯å…‰å£å·(0å¼€å§‹)
 			ops_no = fp_inf[i].ops_info & OPS_NO_MASK;
 
-			if ( ops_no!=i )	// ¶Ô¶Ë¹â¿ÚºÅÓëµ±Ç°¹â¿ÚºÅ²»¿ÉÄÜÏàÍ¬
+			if ( ops_no!=i )	// å¯¹ç«¯å…‰å£å·ä¸å½“å‰å…‰å£å·ä¸å¯èƒ½ç›¸åŒ
 			{
-				// ¶Ô¶Ë¹â¿ÚÒ²ÊÕµ½±¾¶ËÏÂĞĞÖ¡£¬ÔòÈ·¶¨ÊÇ»·Íø
+				// å¯¹ç«¯å…‰å£ä¹Ÿæ”¶åˆ°æœ¬ç«¯ä¸‹è¡Œå¸§ï¼Œåˆ™ç¡®å®šæ˜¯ç¯ç½‘
 				if (( ops_no<FP_MAX )&&( OPS_RCV_FLAG==(fp_inf[ops_no].ops_info & OPS_RCV_FLAG) ))
 				{		
-					// »·Íø
+					// ç¯ç½‘
 					flag = 0;
 				}
 				else
 				{	 
-					// Ä©¶ËREÃ»ÓĞÊÕµ½±¾¶ËµÄÏÂĞĞÊı¾İ£¬ÅĞ¶Ï±¾¶ËÏÂĞĞ·¢ËÍ¹ÊÕÏ
+					// æœ«ç«¯REæ²¡æœ‰æ”¶åˆ°æœ¬ç«¯çš„ä¸‹è¡Œæ•°æ®ï¼Œåˆ¤æ–­æœ¬ç«¯ä¸‹è¡Œå‘é€æ•…éšœ
 					fp_inf[i].tx_err = 1;
 				}  
 			}
 		}
 
-		// Èç¹û¹âÄ£¿éÎ´Á¬½Ó£¬ÔòÇå³ıÇ°Ò»´ÎµÄ»·Íø±êÖ¾
+		// å¦‚æœå…‰æ¨¡å—æœªè¿æ¥ï¼Œåˆ™æ¸…é™¤å‰ä¸€æ¬¡çš„ç¯ç½‘æ ‡å¿—
 		if ( fp_inf[i].sfp_attach==0 )
 		{
 			pre_ring_net_st &= (~(1<<i));
 			continue;
 		}
 
-        /*ÉÏ´ÎÎª·Ç»·Íø*/
+        /*ä¸Šæ¬¡ä¸ºéç¯ç½‘*/
 		if ( 0==(pre_ring_net_st & (1<<i)) )
 		{
-			// ¼ì²âµ½µ±Ç°Îª»·Íø
+			// æ£€æµ‹åˆ°å½“å‰ä¸ºç¯ç½‘
 			if ( flag==0 )
 			{ 
 				
-				pre_ring_net_st |= (1<<i);	// ÖÃ»·Íø±êÖ¾
+				pre_ring_net_st |= (1<<i);	// ç½®ç¯ç½‘æ ‡å¿—
 			}
 		}
-		else /*ÉÏ´ÎÎª»·Íø*/
+		else /*ä¸Šæ¬¡ä¸ºç¯ç½‘*/
 		{
-			// ¼ì²âµ½µ±Ç°²»Îª»·Íø
+			// æ£€æµ‹åˆ°å½“å‰ä¸ä¸ºç¯ç½‘
 			if( flag == 1 )
 			{
-				alarm = 1;	// »·Íø×´Ì¬¸æ¾¯
+				alarm = 1;	// ç¯ç½‘çŠ¶æ€å‘Šè­¦
 				break;
 			}
 			else
 			{
-				// ¼ì²âµ½µ±Ç°Îª»·Íø
+				// æ£€æµ‹åˆ°å½“å‰ä¸ºç¯ç½‘
 			}
 		}
 	}
 
-	sys_param_1b[MADD_TOPO_CHG_ALM].val = alarm;	// »·Íø×´Ì¬¸æ¾¯
+	sys_param_1b[MADD_TOPO_CHG_ALM].val = alarm;	// ç¯ç½‘çŠ¶æ€å‘Šè­¦
 	
 }
 
@@ -471,7 +471,7 @@ void RefreshParam()
 	
 	if ( 0 == topo_st.IsTopoUnsteady )
 	{
-		// ¸üĞÂ½ÚµãÊıÁ¿µ½²ÎÊıÖĞ
+		// æ›´æ–°èŠ‚ç‚¹æ•°é‡åˆ°å‚æ•°ä¸­
 		sys_param_4b[MADD_OPT_RE_COUNT1].val = (fp_inf[3].re_cnt<<24)|(fp_inf[2].re_cnt<<16)|(fp_inf[1].re_cnt<<8)|(fp_inf[0].re_cnt);
 		sys_param_4b[MADD_OPT_RE_COUNT2].val = (fp_inf[7].re_cnt<<24)|(fp_inf[6].re_cnt<<16)|(fp_inf[5].re_cnt<<8)|(fp_inf[4].re_cnt);
 		
@@ -498,8 +498,8 @@ void RefreshParam()
 
 /*************************************************************
 Name:         UpdateReInfo          
-Description:  ¸üĞÂREĞÅÏ¢
-              ÔÚÖ÷Ñ­»·ÖĞµ÷ÓÃ£¬1ÃëÖÓ¾Í´¦ÀíÒ»´Î  
+Description:  æ›´æ–°REä¿¡æ¯
+              åœ¨ä¸»å¾ªç¯ä¸­è°ƒç”¨ï¼Œ1ç§’é’Ÿå°±å¤„ç†ä¸€æ¬¡  
 
 
 
@@ -515,7 +515,7 @@ void UpdateReInfo()
 	
     //TRACE_INFO("UpdateReInfo\r\n");
 	
-	// ÍØÆË²»ÎÈ¶¨ 
+	// æ‹“æ‰‘ä¸ç¨³å®š 
 	if ( 1 == topo_st.IsTopoUnsteady )
 	{
 		topo_st.IsGetReInfOk = 0;
@@ -525,38 +525,38 @@ void UpdateReInfo()
 		return; 
 	}          
 
-    //Ã»ÓĞREÊıÄ¿ 
+    //æ²¡æœ‰REæ•°ç›® 
 	if ( 0 == total_re_count )
 	{
 		//TRACE_INFO("back 5\r\n");
 		return; 
 	}
 
-	// ±íÊ¾»¹Ã»·¢ËÍREĞÅÏ¢ÇëÇó
-	if ( 0 == topo_st.IsSendReqPkt )   //Ã¿5ÃëÖÓ·¢ËÍÒ»´Î²éRE×´Ì¬µÄ¹ã²¥ĞÅÏ¢
+	// è¡¨ç¤ºè¿˜æ²¡å‘é€REä¿¡æ¯è¯·æ±‚
+	if ( 0 == topo_st.IsSendReqPkt )   //æ¯5ç§’é’Ÿå‘é€ä¸€æ¬¡æŸ¥REçŠ¶æ€çš„å¹¿æ’­ä¿¡æ¯
 	{
 		
-		GetReInfo();                    // ¹ã²¥»ñÈ¡REĞÅÏ¢ÇëÇó ,·µ»ØÃ¿¸öREµÄID +×´Ì¬(Ëø¶¨  + Ö¡Ä£Ê½)
-		topo_st.IsSendReqPkt = 1;		// ±íÊ¾ÒÑ¾­·¢ËÍREĞÅÏ¢ÇëÇó
-		topo_st.IsGetReInfOk = 0;		// Çå³ıREĞÅÏ¢¸üĞÂÍê³É±êÖ¾
-		topo_st.ReAckTimeOut = 0;		// ¸´Î»Ó¦´ğ³¬Ê±¼ÆÊ±Æ÷
+		GetReInfo();                    // å¹¿æ’­è·å–REä¿¡æ¯è¯·æ±‚ ,è¿”å›æ¯ä¸ªREçš„ID +çŠ¶æ€(é”å®š  + å¸§æ¨¡å¼)
+		topo_st.IsSendReqPkt = 1;		// è¡¨ç¤ºå·²ç»å‘é€REä¿¡æ¯è¯·æ±‚
+		topo_st.IsGetReInfOk = 0;		// æ¸…é™¤REä¿¡æ¯æ›´æ–°å®Œæˆæ ‡å¿—
+		topo_st.ReAckTimeOut = 0;		// å¤ä½åº”ç­”è¶…æ—¶è®¡æ—¶å™¨
 		//TRACE_INFO("back 4\r\n");
 		return; 
 	}  
 
-	// REÃ»ÓĞ·µ»Ø×îĞÂ×´Ì¬
+	// REæ²¡æœ‰è¿”å›æœ€æ–°çŠ¶æ€
 	if ( 0 == topo_st.IsGetReInfOk )
 	{
 		topo_st.ReAckTimeOut++;
 		
-		if ( topo_st.ReAckTimeOut > 5 )		// »ñÈ¡REĞÅÏ¢³¬Ê±(5s)
+		if ( topo_st.ReAckTimeOut > 5 )		// è·å–REä¿¡æ¯è¶…æ—¶(5s)
 		{
-			topo_st.IsSendReqPkt = 0;		//5ÃëÖ®ÄÚ»¹Ã»ÊÕµ½ËùÓĞREµÄĞÅÏ¢°ü£¬ÖØĞÂ¹ã²¥
+			topo_st.IsSendReqPkt = 0;		//5ç§’ä¹‹å†…è¿˜æ²¡æ”¶åˆ°æ‰€æœ‰REçš„ä¿¡æ¯åŒ…ï¼Œé‡æ–°å¹¿æ’­
 			//TRACE_INFO("back 3\r\n");
 			return;
 		}
 
-		// ±éÀú¼ì²éÊÇ·ñËùÓĞµÄRE¶¼·µ»ØÁË×îĞÂ×´Ì¬
+		// éå†æ£€æŸ¥æ˜¯å¦æ‰€æœ‰çš„REéƒ½è¿”å›äº†æœ€æ–°çŠ¶æ€
 		for( fp_no=0; fp_no<FP_MAX; fp_no++ )
 		{
 			if ( fp_inf[fp_no].re_cnt > RE_MAX )
@@ -567,7 +567,7 @@ void UpdateReInfo()
 			
 			for ( re_no=0; re_no<fp_inf[fp_no].re_cnt; re_no++ )
 			{
-				if ( 0 == tmp_re_inf[fp_no][re_no].flag )	// ÓĞREÃ»ÓĞ·µ»ØĞÅÏ¢
+				if ( 0 == tmp_re_inf[fp_no][re_no].flag )	// æœ‰REæ²¡æœ‰è¿”å›ä¿¡æ¯
 				{
 					//TRACE_INFO("back 1\r\n");  
 					//TRACE_INFO("%d,%d\r\n",fp_no,re_no);
@@ -576,10 +576,10 @@ void UpdateReInfo()
 			}
 		}
 
-		topo_st.IsGetReInfOk = 1;		// ËùÓĞµÄREĞÅÏ¢¸üĞÂÍê³É±êÖ¾
-		topo_st.UpdateCycDelay = 0;  	// Çå³ıµÈ´ı¼ÆÊ±Æ÷
+		topo_st.IsGetReInfOk = 1;		// æ‰€æœ‰çš„REä¿¡æ¯æ›´æ–°å®Œæˆæ ‡å¿—
+		topo_st.UpdateCycDelay = 0;  	// æ¸…é™¤ç­‰å¾…è®¡æ—¶å™¨
 		
-		// ±£´æREĞÅÏ¢µ½ÍØÆË½á¹¹ÖĞ£¬²¢Çå¿Õ»º´æ
+		// ä¿å­˜REä¿¡æ¯åˆ°æ‹“æ‰‘ç»“æ„ä¸­ï¼Œå¹¶æ¸…ç©ºç¼“å­˜
 		for( fp_no=0; fp_no<FP_MAX; fp_no++ )
 		{
 			for ( re_no=0; re_no<fp_inf[fp_no].re_cnt; re_no++ )
@@ -591,25 +591,25 @@ void UpdateReInfo()
 			ClearTmpReInfo( fp_no );
 		}
 
-		//¼ì²éREµÄid
+		//æ£€æŸ¥REçš„id
 		//CheckReID();
 		
 	}
-	else  //ÒÑ¾­·µ»ØÁËËùÓĞREµÄĞÅÏ¢
+	else  //å·²ç»è¿”å›äº†æ‰€æœ‰REçš„ä¿¡æ¯
 	{
 		topo_st.UpdateCycDelay++;
 //		TRACE_INFO_WP("Wait..%d\r\n", topo_st.UpdateCycDelay);
-		if ( topo_st.UpdateCycDelay>5 )		// ¸ôÒ»¶¨ÖÜÆÚ¼ì²éÒ»´Î(5s)
+		if ( topo_st.UpdateCycDelay>5 )		// éš”ä¸€å®šå‘¨æœŸæ£€æŸ¥ä¸€æ¬¡(5s)
 		{
-			topo_st.IsSendReqPkt = 0;	// ÇåÁã¡¾ÒÑ·¢ËÍRE×´Ì¬ÇëÇó°ü¡¿×´Ì¬£¬¼´ĞèÒªÖØ·¢ÇëÇó°ü
-			topo_st.IsGetReInfOk = 0;	// Çå³ıREĞÅÏ¢¸üĞÂÍê³É±êÖ¾
+			topo_st.IsSendReqPkt = 0;	// æ¸…é›¶ã€å·²å‘é€REçŠ¶æ€è¯·æ±‚åŒ…ã€‘çŠ¶æ€ï¼Œå³éœ€è¦é‡å‘è¯·æ±‚åŒ…
+			topo_st.IsGetReInfOk = 0;	// æ¸…é™¤REä¿¡æ¯æ›´æ–°å®Œæˆæ ‡å¿—
 		}
 	}
 	
 }
 /*************************************************************
 Name:RecBoadcastGetTopo         
-Description: ¹ã²¥»ñÈ¡REµÄÍØÆËĞÅÏ¢,¸üĞÂ±êÖ¾ĞÅÏ¢
+Description: å¹¿æ’­è·å–REçš„æ‹“æ‰‘ä¿¡æ¯,æ›´æ–°æ ‡å¿—ä¿¡æ¯
 Input: void
 Return: void
 **************************************************************/
@@ -640,8 +640,8 @@ void  RecBoadcastGetTopo()
 	
 /*************************************************************
 Name:TaskManageTopo          
-Description: ¼ì²éÍØÆË,¸üĞÂ±êÖ¾ĞÅÏ¢
-             ´Ëº¯ÊıÔÚÖ÷Ñ­»·ÖĞÊµÊ±µ÷ÓÃ
+Description: æ£€æŸ¥æ‹“æ‰‘,æ›´æ–°æ ‡å¿—ä¿¡æ¯
+             æ­¤å‡½æ•°åœ¨ä¸»å¾ªç¯ä¸­å®æ—¶è°ƒç”¨
 Input:  void
 Return: void
 **************************************************************/
@@ -654,20 +654,20 @@ void TaskManageTopo()
 	
 	if ( FPGA_LDST_OK != fpga_load_status )
 	{
-		// FPGA¹ÊÕÏ£¬·µ»Ø
+		// FPGAæ•…éšœï¼Œè¿”å›
 		topo_st.IsTopoUnsteady = 1;
 		return; 
 	} 
 
 
-    /*¸üĞÂ8¸ö¹â¿ÚµÄ×îĞÂ×´Ì¬*/
+    /*æ›´æ–°8ä¸ªå…‰å£çš„æœ€æ–°çŠ¶æ€*/
 	GetNewTopo();
 
-    /*¼ì²âÊÇ·ñ»·Íø¶Ï¿ª */
+    /*æ£€æµ‹æ˜¯å¦ç¯ç½‘æ–­å¼€ */
 	//CheckRingNetErr();
 
-    /*¼ì²âÍØÆËÓĞÎŞ±ä»¯£¬²¢Í³¼Æ×ÜREÊıÄ¿*/
-	if ( b_TRUE == CheckTopoChange() )		// ÍØÆË±ä»¯
+    /*æ£€æµ‹æ‹“æ‰‘æœ‰æ— å˜åŒ–ï¼Œå¹¶ç»Ÿè®¡æ€»REæ•°ç›®*/
+	if ( b_TRUE == CheckTopoChange() )		// æ‹“æ‰‘å˜åŒ–
 	{
 		TRACE_INFO("2013-----------CheckTopoChange\r\n");
 		topo_stable_count = 0;
@@ -676,24 +676,24 @@ void TaskManageTopo()
 		sys_work_info |= SYSTEM_FLAG_SET_RE_TDSLOT;
 		sys_work_info |= SYSTEM_FLAG_SET_RE_SFC;
 
-		//if(topo_ok_count > 86400)//Èç¹ûÎÈ¶¨ÁË24Ğ¡Ê±ºò£¬·¢Éú²»ÎÈ¶¨ ¼ÇÎªTOPO¸æ¾¯
-		//if(topo_ok_count > 300)//5·ÖÖÓ¸æ¾¯²âÊÔ°æ±¾
-		if(topo_ok_count > 7200)  //2Ğ¡Ê±°æ±¾
+		//if(topo_ok_count > 86400)//å¦‚æœç¨³å®šäº†24å°æ—¶å€™ï¼Œå‘ç”Ÿä¸ç¨³å®š è®°ä¸ºTOPOå‘Šè­¦
+		//if(topo_ok_count > 300)//5åˆ†é’Ÿå‘Šè­¦æµ‹è¯•ç‰ˆæœ¬
+		if(topo_ok_count > 7200)  //2å°æ—¶ç‰ˆæœ¬
 			topo_err_count ++;
 	} 
 	else
 	{  
-		/*ÍØÆËÎÈ¶¨¼ÆÊı¼Ó1*/
+		/*æ‹“æ‰‘ç¨³å®šè®¡æ•°åŠ 1*/
 		topo_stable_count++;
 		topo_ok_count++;
 	}
 	
-	// ¼ì²éµ½8´ÎÒÔÉÏ£¬²ÅÖ¤Ã÷ÍØÆËÎÈ¶¨£¬ÎŞ¸Ä±ä
+	// æ£€æŸ¥åˆ°8æ¬¡ä»¥ä¸Šï¼Œæ‰è¯æ˜æ‹“æ‰‘ç¨³å®šï¼Œæ— æ”¹å˜
 	if ( topo_stable_count < 8 )		
 	{ 
 		if ( topo_st.IsTopoUnsteady==0 )
 		{   
-			/*ÍØÆË±ä»¯¼ÆÊıÆ÷*/
+			/*æ‹“æ‰‘å˜åŒ–è®¡æ•°å™¨*/
 			topo_chg_cnt++;
 		}		
 		topo_st.IsTopoUnsteady = 1;	
@@ -709,8 +709,8 @@ void TaskManageTopo()
 
 /*************************************************************
 Name:ClearTmpReInfo          
-Description: Çå³ıREĞÅÏ¢µÄÁÙÊ±»º´æ
-Input: fp:¹â¿ÚºÅ
+Description: æ¸…é™¤REä¿¡æ¯çš„ä¸´æ—¶ç¼“å­˜
+Input: fp:å…‰å£å·
 Return: void
 **************************************************************/
 void ClearTmpReInfo( UCHAR8 fp )
@@ -726,7 +726,7 @@ void ClearTmpReInfo( UCHAR8 fp )
 
 /*************************************************************
 Name:GetReInfo          
-Description: ¹ã²¥·¢ËÍ»ñÈ¡RE×´Ì¬µÄÊı¾İ°ü
+Description: å¹¿æ’­å‘é€è·å–REçŠ¶æ€çš„æ•°æ®åŒ…
 Input: void
 Return: void
 **************************************************************/
@@ -755,53 +755,53 @@ void GetReInfo()
 	
 	tx_len = MSG_PKT_HEAD_SIZE;
 
-	msg[tx_len++] = 0xA7;		// À©Õ¹±êÊ¶1
-	msg[tx_len++] = 0xE5;		// À©Õ¹±êÊ¶2
-	msg[tx_len++] = 0x0;		// Ä£Ê½°æ±¾0
+	msg[tx_len++] = 0xA7;		// æ‰©å±•æ ‡è¯†1
+	msg[tx_len++] = 0xE5;		// æ‰©å±•æ ‡è¯†2
+	msg[tx_len++] = 0x0;		// æ¨¡å¼ç‰ˆæœ¬0
 
-	tmp = mod_cfg_a.ul_pcf.reg_n;		// A¶ÎÉÏĞĞ4153_N
+	tmp = mod_cfg_a.ul_pcf.reg_n;		// Aæ®µä¸Šè¡Œ4153_N
 	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
 	msg[tx_len++] = (UCHAR8)(tmp>>8);	
 	msg[tx_len++] = (UCHAR8)(tmp>>16);	
 	msg[tx_len++] = (UCHAR8)(tmp>>24);	
 	
-	tmp = mod_cfg_a.ul_pcf.reg_r;		// A¶ÎÉÏĞĞ4153_R
+	tmp = mod_cfg_a.ul_pcf.reg_r;		// Aæ®µä¸Šè¡Œ4153_R
 	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
 	msg[tx_len++] = (UCHAR8)(tmp>>8);	
 	msg[tx_len++] = (UCHAR8)(tmp>>16);	
 	msg[tx_len++] = (UCHAR8)(tmp>>24);	
 
-	tmp = mod_cfg_a.dl_pcf.reg_n;		// A¶ÎÏÂĞĞ4153_N
+	tmp = mod_cfg_a.dl_pcf.reg_n;		// Aæ®µä¸‹è¡Œ4153_N
 	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
 	msg[tx_len++] = (UCHAR8)(tmp>>8);	
 	msg[tx_len++] = (UCHAR8)(tmp>>16);	
 	msg[tx_len++] = (UCHAR8)(tmp>>24);	
 	
-	tmp = mod_cfg_a.dl_pcf.reg_r;		// A¶ÎÏÂĞĞ4153_R
+	tmp = mod_cfg_a.dl_pcf.reg_r;		// Aæ®µä¸‹è¡Œ4153_R
 	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
 	msg[tx_len++] = (UCHAR8)(tmp>>8);	
 	msg[tx_len++] = (UCHAR8)(tmp>>16);	
 	msg[tx_len++] = (UCHAR8)(tmp>>24);	
 
-	tmp = mod_cfg_b.ul_pcf.reg_n;		// B¶ÎÉÏĞĞ4153_N
+	tmp = mod_cfg_b.ul_pcf.reg_n;		// Bæ®µä¸Šè¡Œ4153_N
 	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
 	msg[tx_len++] = (UCHAR8)(tmp>>8);	
 	msg[tx_len++] = (UCHAR8)(tmp>>16);	
 	msg[tx_len++] = (UCHAR8)(tmp>>24);	
 	
-	tmp = mod_cfg_b.ul_pcf.reg_r;		// B¶ÎÉÏĞĞ4153_R
+	tmp = mod_cfg_b.ul_pcf.reg_r;		// Bæ®µä¸Šè¡Œ4153_R
 	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
 	msg[tx_len++] = (UCHAR8)(tmp>>8);	
 	msg[tx_len++] = (UCHAR8)(tmp>>16);	
 	msg[tx_len++] = (UCHAR8)(tmp>>24);	
 
-	tmp = mod_cfg_b.dl_pcf.reg_n;		// B¶ÎÏÂĞĞ4153_N
+	tmp = mod_cfg_b.dl_pcf.reg_n;		// Bæ®µä¸‹è¡Œ4153_N
 	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
 	msg[tx_len++] = (UCHAR8)(tmp>>8);	
 	msg[tx_len++] = (UCHAR8)(tmp>>16);	
 	msg[tx_len++] = (UCHAR8)(tmp>>24);	
 	
-	tmp = mod_cfg_b.dl_pcf.reg_r;		// B¶ÎÏÂĞĞ4153_R
+	tmp = mod_cfg_b.dl_pcf.reg_r;		// Bæ®µä¸‹è¡Œ4153_R
 	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
 	msg[tx_len++] = (UCHAR8)(tmp>>8);	
 	msg[tx_len++] = (UCHAR8)(tmp>>16);	
@@ -813,14 +813,14 @@ void GetReInfo()
 
 /*************************************************************
 Name:AssignID          
-Description: ·ÖÅäID
+Description: åˆ†é…ID
 Input:
-	fp: ¹â¿ÚºÅ
-	re: REÎ»ÖÃĞòºÅ
-	p_id: ±£´æIDÖµµÄ»º³åÖ¸Õë
+	fp: å…‰å£å·
+	re: REä½ç½®åºå·
+	p_id: ä¿å­˜IDå€¼çš„ç¼“å†²æŒ‡é’ˆ
 Return: 
-	b_TRUE: ³É¹¦·ÖÅäIDÖµ
-	b_FALSE: ·ÖÅäIDÊ§°Ü
+	b_TRUE: æˆåŠŸåˆ†é…IDå€¼
+	b_FALSE: åˆ†é…IDå¤±è´¥
 **************************************************************/
 BOOL AssignID( UINT32 fp, UINT32 re, UINT32 * p_id )
 {
@@ -875,11 +875,11 @@ BOOL AssignID( UINT32 fp, UINT32 re, UINT32 * p_id )
 
 /*************************************************************
 Name:CheckReID          
-Description: ¼ì²éREµÄIDÊÇ·ñÓĞÖØ¸´
+Description: æ£€æŸ¥REçš„IDæ˜¯å¦æœ‰é‡å¤
 Input: void
 Return: 
-	b_TRUE:  ³É¹¦·ÖÅäIDÖµ
-	b_FALSE: ·ÖÅäIDÊ§°Ü
+	b_TRUE:  æˆåŠŸåˆ†é…IDå€¼
+	b_FALSE: åˆ†é…IDå¤±è´¥
 **************************************************************/
 void CheckReID()
 {
@@ -893,7 +893,7 @@ void CheckReID()
 
 	for (fp=0; fp<FP_MAX; fp++)
 	{
-		// ¼ì²é¹â¿ÚÊÇ·ñÊ¹ÄÜ
+		// æ£€æŸ¥å…‰å£æ˜¯å¦ä½¿èƒ½
 		if ( 0 == (fp_enable&(0x01<<fp)) )
 		{
 			continue;
@@ -907,7 +907,7 @@ void CheckReID()
 				if ( b_TRUE == AssignID( fp, re, &tmp_id ) )
 				{
 					fp_inf[fp].re_info[re].re_id = tmp_id;
-					// ·¢ËÍÊı¾İ°üÉèÖÃREµÄID
+					// å‘é€æ•°æ®åŒ…è®¾ç½®REçš„ID
 					SetReID( fp, re, 0, tmp_id );
 				} 
 				else
@@ -924,7 +924,7 @@ void CheckReID()
 						if ( b_TRUE == AssignID( fp, i, &tmp_id ) )
 						{
 							fp_inf[fp].re_info[i].re_id = tmp_id;
-							// ·¢ËÍÊı¾İ°üÉèÖÃREµÄID
+							// å‘é€æ•°æ®åŒ…è®¾ç½®REçš„ID
 							SetReID( fp, re, 0, tmp_id );
 						}
 						else
@@ -937,12 +937,12 @@ void CheckReID()
 		}
 	}
 
-	// Çå³ı±êÖ¾
+	// æ¸…é™¤æ ‡å¿—
 	sys_work_info &= (~SYSTEM_FLAG_CHECK_ID);
 
 }
 
-// ¶ÁÈ¡WLAN¿ÚµÄ×´Ì¬£¬¸üĞÂµ½½Ó¿Ú²ÎÊı±íÖĞ
+// è¯»å–WLANå£çš„çŠ¶æ€ï¼Œæ›´æ–°åˆ°æ¥å£å‚æ•°è¡¨ä¸­
 void GetWlanPortStatus()
 {
 	UINT16 port;
@@ -950,30 +950,30 @@ void GetWlanPortStatus()
 	
 	for ( port=0; port<WLAN_PORT_COUNT; port++)
 	{
-		sys_param_1b[MADD_WLAN_CONN_ST1+port].val = 0;		// ÖØÖÃ×´Ì¬ÎªÕı³£
-		sys_param_1b[MADD_WLAN_SPEED1+port].val = 0;		// ÖØÖÃËÙ¶ÈÎª10M
+		sys_param_1b[MADD_WLAN_CONN_ST1+port].val = 0;		// é‡ç½®çŠ¶æ€ä¸ºæ­£å¸¸
+		sys_param_1b[MADD_WLAN_SPEED1+port].val = 0;		// é‡ç½®é€Ÿåº¦ä¸º10M
 
-		if ( 0==fpga_cfg.wlan_en )		// 122.88MÊ±ÖÓ,·ÇWLANÄ£Ê½£¬²»¶ÁÈ¡WLAN¿ÚĞÅÏ¢
+		if ( 0==fpga_cfg.wlan_en )		// 122.88Mæ—¶é’Ÿ,éWLANæ¨¡å¼ï¼Œä¸è¯»å–WLANå£ä¿¡æ¯
 		{
 			continue;
 		}
 
-		if ( 0==fp_inf[port+WLAN_PORT_OFFSET].sfp_attach)		// Íø¿ÚÄ£¿éÎ´Á¬½Ó
+		if ( 0==fp_inf[port+WLAN_PORT_OFFSET].sfp_attach)		// ç½‘å£æ¨¡å—æœªè¿æ¥
 		{
-			continue;	// ²»¸üĞÂ×´Ì¬ĞÅÏ¢
+			continue;	// ä¸æ›´æ–°çŠ¶æ€ä¿¡æ¯
 		}
 		
 
 		FPGA_ENABLE_WRITE;
-		FPGA_SET_OPT(port+WLAN_PORT_OFFSET);		// ÉèÖÃ¹â¿Ú
+		FPGA_SET_OPT(port+WLAN_PORT_OFFSET);		// è®¾ç½®å…‰å£
 		FPGA_DISABLE_WRITE;
 
-		reg = FpgaReadRegister(FPGA_WLAN_PORT_INFO);	// ¶ÁÈ¡²ÎÊı
-		if ( 0 == (reg&BM_WLAN_LINK_ST) )	// Á¬½Ó¶Ï¿ª
+		reg = FpgaReadRegister(FPGA_WLAN_PORT_INFO);	// è¯»å–å‚æ•°
+		if ( 0 == (reg&BM_WLAN_LINK_ST) )	// è¿æ¥æ–­å¼€
 		{
 			sys_param_1b[MADD_WLAN_CONN_ST1+port].val = 1;
 		}
-		switch (reg&BM_WLAN_SPEED)		// ËÙ¶ÈÁ÷Á¿
+		switch (reg&BM_WLAN_SPEED)		// é€Ÿåº¦æµé‡
 		{
 		case FLAG_WLAN_SPEED_10M:
 			sys_param_1b[MADD_WLAN_SPEED1+port].val = 0;
@@ -998,7 +998,7 @@ void GetWlanPortStatus()
 
 /*************************************************************
 Name: GetNetworkDelay          
-Description: »ñÈ¡×î´óµÄ¹â¿ÚÑÓÊ±Ê±¼ä£¬²¢Ğ´Èë×î´óÑÓÊ±¼Ä´æÆ÷
+Description: è·å–æœ€å¤§çš„å…‰å£å»¶æ—¶æ—¶é—´ï¼Œå¹¶å†™å…¥æœ€å¤§å»¶æ—¶å¯„å­˜å™¨
 Input: void 
 Return: void
 **************************************************************/
@@ -1011,13 +1011,13 @@ void GetNetworkDelay()
 	if ( FPGA_LDST_OK == fpga_load_status )
 	{
 		tmp = ((UINT32)FpgaReadRegister(FPGA_REG_OPT_MAX_DELAY_H)<<8)| ((FpgaReadRegister(FPGA_REG_OPT_MAX_DELAY_L)>>8)&0xff);
-		sys_param_2b[MADD_MAX_T14].val = (UINT16)(tmp/75.0); //¹â¿Ú×î´óÑÓÊ±
+		sys_param_2b[MADD_MAX_T14].val = (UINT16)(tmp/75.0); //å…‰å£æœ€å¤§å»¶æ—¶
 		//TRACE_INFO("sys_param_2b[MADD_MAX_T14].val=[%x],tmp=[%x]\r\n",sys_param_2b[MADD_MAX_T14].val,tmp);
 		tmp = ((UINT32)FpgaReadRegister(FPGA_REG_OPT_MAX_DELAY_H)<<8)| ((FpgaReadRegister(FPGA_REG_OPT_MAX_DELAY_L)>>8)&0xff);
-		sys_param_2b[MADD_MAX_T14_A].val = (UINT16)(tmp/75.0/2)+RF_DELAY_TIME_A*100; //¹â¿Ú×î´óÑÓÊ±
-		sys_param_2b[MADD_MAX_T14_B].val = (UINT16)(tmp/75.0/2)+RF_DELAY_TIME_B*100; //¹â¿Ú×î´óÑÓÊ±
-		sys_param_2b[MADD_MAX_T14_C].val = (UINT16)(tmp/75.0/2)+RF_DELAY_TIME_C*100; //¹â¿Ú×î´óÑÓÊ±
-		sys_param_2b[MADD_MAX_T14_D].val = (UINT16)(tmp/75.0/2)+RF_DELAY_TIME_D*100; //¹â¿Ú×î´óÑÓÊ±
+		sys_param_2b[MADD_MAX_T14_A].val = (UINT16)(tmp/75.0/2)+RF_DELAY_TIME_A*100; //å…‰å£æœ€å¤§å»¶æ—¶
+		sys_param_2b[MADD_MAX_T14_B].val = (UINT16)(tmp/75.0/2)+RF_DELAY_TIME_B*100; //å…‰å£æœ€å¤§å»¶æ—¶
+		sys_param_2b[MADD_MAX_T14_C].val = (UINT16)(tmp/75.0/2)+RF_DELAY_TIME_C*100; //å…‰å£æœ€å¤§å»¶æ—¶
+		sys_param_2b[MADD_MAX_T14_D].val = (UINT16)(tmp/75.0/2)+RF_DELAY_TIME_D*100; //å…‰å£æœ€å¤§å»¶æ—¶
 
 	}
 #if 0
@@ -1030,13 +1030,13 @@ void GetNetworkDelay()
 			opt_t14 = 0;
 
             #ifdef CLIENT_XINMIN
-			  FPGA_SET_OPT(7-i); //Ñ¡ÖĞ¹â¿Ú  
+			  FPGA_SET_OPT(7-i); //é€‰ä¸­å…‰å£  
 			#else
-			   FPGA_SET_OPT(i); //Ñ¡ÖĞ¹â¿Ú     
+			   FPGA_SET_OPT(i); //é€‰ä¸­å…‰å£     
             #endif 
 
 			 
-			// ¹â¿ÚÊ¹ÄÜÇÒËø¶¨£¬¶ÁÈ¡ÑÓÊ±,²¢ÇÒ»ñµÃÆäÖĞ¹â¿ÚµÄ×î´óÑÓÊ± Ê±¼ä 
+			// å…‰å£ä½¿èƒ½ä¸”é”å®šï¼Œè¯»å–å»¶æ—¶,å¹¶ä¸”è·å¾—å…¶ä¸­å…‰å£çš„æœ€å¤§å»¶æ—¶ æ—¶é—´ 
 			if ((0!=sys_param_1b[MADD_FP1_EN+i].val )&&( FRAME_LOCK==fp_inf[i].frm_lock))
 			{
 				tmp = FpgaReadRegister(FPGA_REG_OPT_DELAY_H);
@@ -1051,10 +1051,10 @@ void GetNetworkDelay()
 			} 
 		}
 
-		// ³ı2,ÇóT12
+		// é™¤2,æ±‚T12
 		max_t14 >>= 1;
 
-		sys_param_2b[MADD_MAX_T14].val = (INT32)(max_t14*8.138)/10; //¹â¿Ú×î´óÑÓÊ±
+		sys_param_2b[MADD_MAX_T14].val = (INT32)(max_t14*8.138)/10; //å…‰å£æœ€å¤§å»¶æ—¶
 //		TRACE_INFO("sys_param_2b[MADD_MAX_T14].val=%04x,max_t14=%d\r\n",sys_param_2b[MADD_MAX_T14].val,max_t14);
 		
 		tmp = (UINT16)(max_t14>>8);
@@ -1068,7 +1068,7 @@ void GetNetworkDelay()
 
 /*************************************************************
 Name:GetPeripheralStatus          
-Description: ¸üĞÂµ¥°å×´Ì¬
+Description: æ›´æ–°å•æ¿çŠ¶æ€
 Input: void
 Return: void
 **************************************************************/
@@ -1087,41 +1087,41 @@ void GetPeripheralStatus()
 		 return;  
 	}   
  
-	/*»ñÈ¡×î´óµÄ¹â¿ÚÑÓÊ±Ê±¼ä£¬²¢Ğ´Èë×î´óÑÓÊ±¼Ä´æÆ÷*/
+	/*è·å–æœ€å¤§çš„å…‰å£å»¶æ—¶æ—¶é—´ï¼Œå¹¶å†™å…¥æœ€å¤§å»¶æ—¶å¯„å­˜å™¨*/
 	//GetNetworkDelay();
 
-	// PLL×´Ì¬ 
-	// ¼ì²é9517Ê±ÖÓ×´Ì¬ 
+	// PLLçŠ¶æ€ 
+	// æ£€æŸ¥9517æ—¶é’ŸçŠ¶æ€ 
 	sys_param_1b[MADD_CLK_PLL_ST].val = ( 0==GetAD9524LD()? 1 : 0 );
 	//sys_param_1b[MADD_CLK_REF_ST].val = ( 0==GetAD9524Refmon() ? 1 : 0 );
 //	sys_param_1b[MADD_CLK_].val = ( 0==GetAD9524Status() ? 0 : 1 );
 
-	// DAËøÏà»·
+	// DAé”ç›¸ç¯
 	//sys_param_1b[MADD_A_BB_PLL_LOCK].val = (0==GetDA9122LockA()) ? 1 : 0;
 	//sys_param_1b[MADD_B_BB_PLL_LOCK].val = (0==GetDA9122LockB()) ? 1 : 0;
 	
-	// ÎóÂëÂÊÆ«¸ß±¨¾¯
+	// è¯¯ç ç‡åé«˜æŠ¥è­¦
 	//sys_param_1b[MADD_BER_ALARM].val = 0;
 
 	if ( FPGA_LDST_OK == fpga_load_status )
 	{
-		// ¶ÁÈ¡Ê±ÖÓ×´Ì¬
+		// è¯»å–æ—¶é’ŸçŠ¶æ€
 		tmp = FpgaReadRegister(FPGA_REG_GCLK_ST);
-		// FPGAËøÏà»·
+		// FPGAé”ç›¸ç¯
 		sys_param_1b[MADD_FPGA_CLK_ST].val = ( 0==(tmp&BM_FPGA_PLL_LOCK) ? 1 : 0 );
 
-		// SERDES×´Ì¬
+		// SERDESçŠ¶æ€
 		for ( i=0; i<FP_MAX; i++ )
 		{
-			// ÖØÖÃ×´Ì¬ÎªÕı³£
-			sys_param_1b[MADD_FP1_LOS+i].val = 0;//0: Õı³££¬1: ¸æ¾¯
+			// é‡ç½®çŠ¶æ€ä¸ºæ­£å¸¸
+			sys_param_1b[MADD_FP1_LOS+i].val = 0;//0: æ­£å¸¸ï¼Œ1: å‘Šè­¦
 			sys_param_1b[MADD_FP1_LOF+i].val = 0;
 			sys_param_1b[MADD_SERDES1_PLL_ST+i].val = 0;
 
-			// ¹âÄ£¿éÔÚÎ»×´Ì¬
+			// å…‰æ¨¡å—åœ¨ä½çŠ¶æ€
 			sys_param_1b[MADD_FP1_ON_POS+i].val = ( fp_inf[i].sfp_attach==1 ) ? 0 : 1;
 
-			if ( 1==fpga_cfg.wlan_en )		// WLANÄ£Ê½£¬²»¶ÁÈ¡WLAN¿ÚËùÔÚ¹â¿ÚµÄËø¶¨×´Ì¬ĞÅÏ¢,Ö»¶ÁÈ¡ÆÕÍ¨¹â¿ÚĞÅÏ¢
+			if ( 1==fpga_cfg.wlan_en )		// WLANæ¨¡å¼ï¼Œä¸è¯»å–WLANå£æ‰€åœ¨å…‰å£çš„é”å®šçŠ¶æ€ä¿¡æ¯,åªè¯»å–æ™®é€šå…‰å£ä¿¡æ¯
 			{
 				if ( i>=WLAN_PORT_OFFSET )
 				{
@@ -1129,34 +1129,34 @@ void GetPeripheralStatus()
 				}
 			}
 
-			if ( fp_inf[i].sfp_attach == 1 )	// ¹âÄ£¿éÒÑÁ¬½Ó
+			if ( fp_inf[i].sfp_attach == 1 )	// å…‰æ¨¡å—å·²è¿æ¥
 			{
 //				TRACE_INFO("i[%02x]20130509++++++++r\n",i);
-				// ¹âÄ£¿é×´Ì¬
+				// å…‰æ¨¡å—çŠ¶æ€
 				sys_param_1b[MADD_FP1_LOS+i].val = (( FRAME_LOCK==fp_inf[i].frm_lock ) ? 0 : 1);//(( b_TRUE==FpgaGetSfpStatus(i) ) ? 0 : 1);	//(( FRAME_LOCK==fp_inf[i].frm_lock ) ? 0 : 1);
-				// Á´Â·Í¬²½×´Ì¬
+				// é“¾è·¯åŒæ­¥çŠ¶æ€
 				sys_param_1b[MADD_FP1_LOF+i].val = ((FRAME_LOCK==fp_inf[i].frm_lock)&&(0==fp_inf[i].tx_err) ? 0 : 1);
-				// Ëø¶¨×´Ì¬
+				// é”å®šçŠ¶æ€
 				sys_param_1b[MADD_SERDES1_PLL_ST+i].val = ((FRAME_LOCK==fp_inf[i].frm_lock)&&(0==fp_inf[i].tx_err) ? 0 : 1);
 			}
 #if 0
 			else 
 	//20130517		
 			{//20130510
-				// ¹âÄ£¿é×´Ì¬
+				// å…‰æ¨¡å—çŠ¶æ€
 				sys_param_1b[MADD_FP1_LOS+i].val = 1;	//(( FRAME_LOCK==fp_inf[i].frm_lock ) ? 0 : 1);
-				// Á´Â·Í¬²½×´Ì¬
+				// é“¾è·¯åŒæ­¥çŠ¶æ€
 				sys_param_1b[MADD_FP1_LOF+i].val = 1;
-				// Ëø¶¨×´Ì¬
+				// é”å®šçŠ¶æ€
 				sys_param_1b[MADD_SERDES1_PLL_ST+i].val = 1;
 			}
 #endif 
 		}
 
-		// »ìÆµÆ÷(±¾Õñ)Ëø¶¨×´Ì¬, 1-Ê§Ëø
+		// æ··é¢‘å™¨(æœ¬æŒ¯)é”å®šçŠ¶æ€, 1-å¤±é”
 /*		sys_param_1b[MADD_A_TX_PLL_ST].val = ((ucPllStatus&A_DN_PLL_LCK)?0:1);
 		
-		if ( fpga_cfg.a_net_type==NET_TYPE_CMMB )	// CMMBÎŞÉÏĞĞ£¬ÈÏÎªÉÏĞĞÇ°¶Ë±¾ÕñËø¶¨
+		if ( fpga_cfg.a_net_type==NET_TYPE_CMMB )	// CMMBæ— ä¸Šè¡Œï¼Œè®¤ä¸ºä¸Šè¡Œå‰ç«¯æœ¬æŒ¯é”å®š
 		{
 			sys_param_1b[MADD_A_RX_PLL_ST].val = 0;
 		} 
@@ -1168,7 +1168,7 @@ void GetPeripheralStatus()
 	
 		if ( fpga_cfg.b_net_type==NET_DIVE )
 		{
-			// ·Ö¼¯Ã»ÓĞÏÂĞĞ,ÈÏÎªÏÂĞĞÇ°¶Ë±¾ÕñËø¶¨
+			// åˆ†é›†æ²¡æœ‰ä¸‹è¡Œ,è®¤ä¸ºä¸‹è¡Œå‰ç«¯æœ¬æŒ¯é”å®š
 			sys_param_1b[MADD_B_TX_PLL_ST].val = 0;
 		}
 		else
@@ -1176,7 +1176,7 @@ void GetPeripheralStatus()
 			sys_param_1b[MADD_B_TX_PLL_ST].val = ((ucPllStatus&B_DN_PLL_LCK)?0:1);
 		} 
 		
-		if ( fpga_cfg.b_net_type==NET_TYPE_CMMB )	// CMMBÎŞÉÏĞĞ£¬ÈÏÎªÉÏĞĞÇ°¶Ë±¾ÕñËø¶¨
+		if ( fpga_cfg.b_net_type==NET_TYPE_CMMB )	// CMMBæ— ä¸Šè¡Œï¼Œè®¤ä¸ºä¸Šè¡Œå‰ç«¯æœ¬æŒ¯é”å®š
 		{
 			sys_param_1b[MADD_B_RX_PLL_ST].val = 0;
 		}
@@ -1188,7 +1188,7 @@ void GetPeripheralStatus()
 
 
 #if	0
-		// Ö¡¶ªÊ§×´Ì¬,Ö»ÒªÓĞÒ»¸ö¹â¿Ú³öÏÖLOF,ÔòÖÃÎ»Ö¡¶ªÊ§×´Ì¬
+		// å¸§ä¸¢å¤±çŠ¶æ€,åªè¦æœ‰ä¸€ä¸ªå…‰å£å‡ºç°LOF,åˆ™ç½®ä½å¸§ä¸¢å¤±çŠ¶æ€
 		sys_param_1b[MADD_OPT_LOF].val = 0;
 		 
 		for ( i=0; i<FP_MAX; i++ )
@@ -1206,9 +1206,9 @@ void GetPeripheralStatus()
 
 		sys_param_4b[MADD_DEV_ADDR].val = 0x00000000;
 
-		sys_param_1b[MADD_TD_SYNC_ST].val = ((((1<<5) & FpgaReadRegister(FPGA_REG_TD_SYNC_ST) )>>5 ) == 0) ? 1 : 0;	// TDÍ¬²½×´Ì¬
-		sys_param_1b[MADD_C_TD_SYNC_ST].val = ((((1<<2) & FpgaReadRegister(FPGA_REG_C_TD_SYNC_ST) )>>2 ) == 0) ? 1 : 0;	// TDÍ¬²½×´Ì¬
-		sys_param_1b[MADD_D_TD_SYNC_ST].val = ((((1<<2) & FpgaReadRegister(FPGA_REG_D_TD_SYNC_ST) )>>2 ) == 0) ? 1 : 0;	// TDÍ¬²½×´Ì¬
+		sys_param_1b[MADD_TD_SYNC_ST].val = ((((1<<5) & FpgaReadRegister(FPGA_REG_TD_SYNC_ST) )>>5 ) == 0) ? 1 : 0;	// TDåŒæ­¥çŠ¶æ€
+		sys_param_1b[MADD_C_TD_SYNC_ST].val = ((((1<<2) & FpgaReadRegister(FPGA_REG_C_TD_SYNC_ST) )>>2 ) == 0) ? 1 : 0;	// TDåŒæ­¥çŠ¶æ€
+		sys_param_1b[MADD_D_TD_SYNC_ST].val = ((((1<<2) & FpgaReadRegister(FPGA_REG_D_TD_SYNC_ST) )>>2 ) == 0) ? 1 : 0;	// TDåŒæ­¥çŠ¶æ€
 
 //		TRACE_INFO("sys_param_1b[MADD_TD_SYNC_ST].val(%02x)(%04x)!!!!!!!!!!!!1\r\n",sys_param_1b[MADD_TD_SYNC_ST].val,FpgaReadRegister(FPGA_REG_TD_SYNC_ST));
 
@@ -1233,7 +1233,7 @@ void GetPeripheralStatus()
 		{
 			sys_param_1b[MADD_LOW_POWER_ALARM].val  =1;
 		}
-		sys_param_1b[MADD_HOST_DEVICE_LINK_SINGNAL_ALARM].val=0;//È¥³ıÖ÷´ÓÁ´Â·¸æ¾¯£¬ÒòÎª¶¨Òå²»Ò»Ñù¡£
+		sys_param_1b[MADD_HOST_DEVICE_LINK_SINGNAL_ALARM].val=0;//å»é™¤ä¸»ä»é“¾è·¯å‘Šè­¦ï¼Œå› ä¸ºå®šä¹‰ä¸ä¸€æ ·ã€‚
 		if ( ( 1==sys_param_1b[MADD_OPT_LOF].val )||( 1==sys_param_1b[MADD_TD_SYNC_ST].val )||( 1==sys_param_1b[MADD_HOST_DEVICE_LINK_SINGNAL_ALARM].val ) )
 		{
 			sys_param_1b[MADD_DIGITAL_SINGNAL_ALARM].val = 1;			
@@ -1294,10 +1294,10 @@ void GetPeripheralStatus()
 		sys_param_1b[MADD_C_TX_PLL_ST].val = (AD9363_TX_PLL_ST==(UCHAR8)ReadWriteTF(TF_C,0,AD9363_REG_R_TX_PLL_ST,0) ? 0 : 1);
 		sys_param_1b[MADD_D_TX_PLL_ST].val = (AD9363_TX_PLL_ST==(UCHAR8)ReadWriteTF(TF_D,0,AD9363_REG_R_TX_PLL_ST,0) ? 0 : 1);
 
-		sys_param_1b[MADD_A_Modulator_EN].val = (AD9363_A_Modulator_EN==(UCHAR8)ReadWriteTF(TF_A,0,AD9363_REG_R_Modulator_EN,0) ? 1 : 0);	//¿ª£ºAU   AD9363  0x57	 3C	
-		sys_param_1b[MADD_B_Modulator_EN].val = (AD9363_B_Modulator_EN==(UCHAR8)ReadWriteTF(TF_B,0,AD9363_REG_R_Modulator_EN,0) ? 1 : 0);	//¿ª£ºAU   AD9363  0x57	 3C
-		sys_param_1b[MADD_C_Modulator_EN].val = (((UCHAR8)ReadWriteTF(TF_C,0,AD9363_REG_R_Modulator_EN,0) & 0X02)? 0 : 1);	//¿ª£ºAU   AD9363  0x57[1]   0
-		sys_param_1b[MADD_D_Modulator_EN].val = (((UCHAR8)ReadWriteTF(TF_D,0,AD9363_REG_R_Modulator_EN,0) & 0X01)? 0 : 1);	//¿ª£ºAU   AD9363  0x57[0] 0
+		sys_param_1b[MADD_A_Modulator_EN].val = (AD9363_A_Modulator_EN==(UCHAR8)ReadWriteTF(TF_A,0,AD9363_REG_R_Modulator_EN,0) ? 1 : 0);	//å¼€ï¼šAU   AD9363  0x57	 3C	
+		sys_param_1b[MADD_B_Modulator_EN].val = (AD9363_B_Modulator_EN==(UCHAR8)ReadWriteTF(TF_B,0,AD9363_REG_R_Modulator_EN,0) ? 1 : 0);	//å¼€ï¼šAU   AD9363  0x57	 3C
+		sys_param_1b[MADD_C_Modulator_EN].val = (((UCHAR8)ReadWriteTF(TF_C,0,AD9363_REG_R_Modulator_EN,0) & 0X02)? 0 : 1);	//å¼€ï¼šAU   AD9363  0x57[1]   0
+		sys_param_1b[MADD_D_Modulator_EN].val = (((UCHAR8)ReadWriteTF(TF_D,0,AD9363_REG_R_Modulator_EN,0) & 0X01)? 0 : 1);	//å¼€ï¼šAU   AD9363  0x57[0] 0
 
 		sys_param_1b[MADD_SLOT_TIME_DISTRI_B].val = (UCHAR8)FpgaReadRegister(FPGA_REG_R_SLOT_TIME_B);
 		sys_param_1b[MADD_VERSION_FLAG].val = version_number;
@@ -1318,7 +1318,7 @@ void GetPeripheralStatus()
 		//AutoProtect();
 		//RefreshParam();
 		
-		// ÉèÖÃFPGA´íÎóÖ¸Ê¾µÆ
+		// è®¾ç½®FPGAé”™è¯¯æŒ‡ç¤ºç¯
 		//FPGA_ENABLE_WRITE;
 		//FpgaWriteRegister(FPGA_REG_SHOW_ERROR, sys_param_1b[MADD_WORK_ERROR].val);
 		//FPGA_DISABLE_WRITE;
@@ -1331,7 +1331,7 @@ void GetPeripheralStatus()
 
 /*************************************************************
 Name: CheckErrStatus_Erricson          
-Description: ¼ì²éÏµÍ³¹¤×÷ÊÇ·ñÓĞÒì³£
+Description: æ£€æŸ¥ç³»ç»Ÿå·¥ä½œæ˜¯å¦æœ‰å¼‚å¸¸
 Input: void
 Return: void
 **************************************************************/
@@ -1339,8 +1339,8 @@ void CheckErrStatus_Erricson()
 {
 	UCHAR8 i=0,j=0,err=0,tmp = 0;
 	UCHAR8 au_err = 0,eu_err = 0,ru_err = 0;
-	static UINT16 workerror_last = 0;//ÉÏÒ»´Î¸æ¾¯µÄÖµ
-	static UINT16 workerror_current = 0;//±¾´ÎµÄ¸æ¾¯µÄÖµ
+	static UINT16 workerror_last = 0;//ä¸Šä¸€æ¬¡å‘Šè­¦çš„å€¼
+	static UINT16 workerror_current = 0;//æœ¬æ¬¡çš„å‘Šè­¦çš„å€¼
 	static UCHAR8 fp_eu_cnt_old[FP_MAX] = {0};
 
 
@@ -1351,39 +1351,39 @@ void CheckErrStatus_Erricson()
 
 
 #if 0
-	// Ô¤´¦ÀíA\B¶Î×´Ì¬
-#if ( A_NETWORK_TYPE==NET_NONE )	// A¶ÎÃ»ÓĞ£¬×´Ì¬È«²¿Õı³£
+	// é¢„å¤„ç†A\Bæ®µçŠ¶æ€
+#if ( A_NETWORK_TYPE==NET_NONE )	// Aæ®µæ²¡æœ‰ï¼ŒçŠ¶æ€å…¨éƒ¨æ­£å¸¸
 	sys_param_1b[MADD_A_TX_PLL_ST].val = 0;
 	sys_param_1b[MADD_A_RX_PLL_ST].val = 0;
 	sys_param_1b[MADD_A_BB_PLL_LOCK].val = 0;
 #endif
 
-#if ( B_NETWORK_TYPE==NET_NONE )	// B¶ÎÃ»ÓĞ£¬×´Ì¬È«²¿Õı³£
+#if ( B_NETWORK_TYPE==NET_NONE )	// Bæ®µæ²¡æœ‰ï¼ŒçŠ¶æ€å…¨éƒ¨æ­£å¸¸
 	sys_param_1b[MADD_B_TX_PLL_ST].val = 0;
 	sys_param_1b[MADD_B_RX_PLL_ST].val = 0;
 	sys_param_1b[MADD_B_BB_PLL_LOCK].val = 0;
 #endif
 
-#if ( C_NETWORK_TYPE==NET_NONE )	// C¶ÎÃ»ÓĞ£¬×´Ì¬È«²¿Õı³£
+#if ( C_NETWORK_TYPE==NET_NONE )	// Cæ®µæ²¡æœ‰ï¼ŒçŠ¶æ€å…¨éƒ¨æ­£å¸¸
 	sys_param_1b[MADD_C_TX_PLL_ST].val = 0;
 	sys_param_1b[MADD_C_RX_PLL_ST].val = 0;
 	sys_param_1b[MADD_C_BB_PLL_LOCK].val = 0;
 #endif
 
-#if ( D_NETWORK_TYPE==NET_NONE )	// D¶ÎÃ»ÓĞ£¬×´Ì¬È«²¿Õı³£
+#if ( D_NETWORK_TYPE==NET_NONE )	// Dæ®µæ²¡æœ‰ï¼ŒçŠ¶æ€å…¨éƒ¨æ­£å¸¸
 	sys_param_1b[MADD_D_TX_PLL_ST].val = 0;
 	sys_param_1b[MADD_D_RX_PLL_ST].val = 0;
 	sys_param_1b[MADD_D_BB_PLL_LOCK].val = 0;
 #endif
 
 
-	// FPGA¼ÓÔØÒì³£
+	// FPGAåŠ è½½å¼‚å¸¸
 	if ( sys_param_1b[MADD_LOAD_FPGA_ST].val !=0 ) goto _set_work_err;
 
-	// Ê±ÖÓÊ§Ëø
+	// æ—¶é’Ÿå¤±é”
 	if ( sys_param_1b[MADD_CLK_PLL_ST].val==1 ) goto _set_work_err;
 
-	// ±¾ÕñÊ§Ëø
+	// æœ¬æŒ¯å¤±é”
 	if ( sys_param_1b[MADD_A_TX_PLL_ST].val==1) goto _set_work_err;
 	if ( sys_param_1b[MADD_A_RX_PLL_ST].val==1) goto _set_work_err;
 	if ( sys_param_1b[MADD_B_TX_PLL_ST].val==1) goto _set_work_err;
@@ -1391,17 +1391,17 @@ void CheckErrStatus_Erricson()
 	if ( sys_param_1b[MADD_C_TX_PLL_ST].val==1) goto _set_work_err;
 	if ( sys_param_1b[MADD_C_RX_PLL_ST].val==1) goto _set_work_err;
 
-	// FPGAËøÏà»·Ê§Ëø
+	// FPGAé”ç›¸ç¯å¤±é”
 	if ( sys_param_1b[MADD_FPGA_CLK_ST].val == 1) goto _set_work_err;
 	
-	// DAËøÏà»·Ê§Ëø
+	// DAé”ç›¸ç¯å¤±é”
 	if ( sys_param_1b[MADD_A_BB_PLL_LOCK].val ==1 ) goto _set_work_err;
 	if ( sys_param_1b[MADD_B_BB_PLL_LOCK].val ==1 ) goto _set_work_err;
 
-	// LNAÒì³£
+	// LNAå¼‚å¸¸
 	
 	
-	// ¹â¿ÚÒì³£
+	// å…‰å£å¼‚å¸¸
 	for( i=0; i<FP_MAX; i++)
 	{
 		if ( sys_param_1b[MADD_FP1_LOS+i].val==1 ) goto _set_work_err;
@@ -1414,17 +1414,17 @@ void CheckErrStatus_Erricson()
 	sys_param_1b[MADD_WORK_ERROR].val = 0;
 	return;
 
-_set_work_err:		// ÉèÖÃ´íÎó×´Ì¬
+_set_work_err:		// è®¾ç½®é”™è¯¯çŠ¶æ€
 	sys_param_1b[MADD_WORK_ERROR].val = 1;
 #endif
-	//µ±¸Ã¹â¿Ú²»´æÔÚEUÊ±Çå³ı¶ÔÓ¦µÄEU RU¸æ¾¯Ïî
+	//å½“è¯¥å…‰å£ä¸å­˜åœ¨EUæ—¶æ¸…é™¤å¯¹åº”çš„EU RUå‘Šè­¦é¡¹
 	#if 0
 	for(i=0; i<FP_MAX; i++)
 	{
 		if(sys_param_1b[MADD_FP1_LOS+i].val)
 		{
-			//sys_param_eu_1b[MADD_EU_ALARM_FLAG1+i].val = tmp? 0:sys_param_eu_1b[MADD_EU_ALARM_FLAG1+i].val;  //¶ªÊ§¹âÏË ÇåÁã¸æ¾¯
-			//sys_param_eu_2b[MADD_EU_RUALARM_FLAG1+i].val  = tmp? 0:sys_param_eu_2b[MADD_EU_RUALARM_FLAG1+i].val; //¶ªÊ§¹âÏËÇåÁã¸æ¾¯
+			//sys_param_eu_1b[MADD_EU_ALARM_FLAG1+i].val = tmp? 0:sys_param_eu_1b[MADD_EU_ALARM_FLAG1+i].val;  //ä¸¢å¤±å…‰çº¤ æ¸…é›¶å‘Šè­¦
+			//sys_param_eu_2b[MADD_EU_RUALARM_FLAG1+i].val  = tmp? 0:sys_param_eu_2b[MADD_EU_RUALARM_FLAG1+i].val; //ä¸¢å¤±å…‰çº¤æ¸…é›¶å‘Šè­¦
 			sys_param_eu_1b[MADD_EU_ALARM_FLAG1+i].val = 0;
 			sys_param_eu_2b[MADD_EU_RUALARM_FLAG1+i].val  = 0;
 		 	for(j=0; j<RE_MAX; j++)
@@ -1436,7 +1436,7 @@ _set_work_err:		// ÉèÖÃ´íÎó×´Ì¬
 	}
 	#endif
 
-	//¹â¿ÚÏÂµÄ¼¶ÁªEU¼õÉÙÊ±£¬Çå³ı±»°ÎµôµÄEUµÄ¸æ¾¯×´Ì¬
+	//å…‰å£ä¸‹çš„çº§è”EUå‡å°‘æ—¶ï¼Œæ¸…é™¤è¢«æ‹”æ‰çš„EUçš„å‘Šè­¦çŠ¶æ€
 
 	for(i=0; i<FP_MAX; i++)
 	{
@@ -1452,7 +1452,7 @@ _set_work_err:		// ÉèÖÃ´íÎó×´Ì¬
 			fp_eu_cnt_old[i] = fp_inf[i].re_cnt;
 	}
 
-	//for(i=FP_MAX; i<8; i++)//Çå³ıÆäËû¹â¿ÚµÄ¸æ¾¯
+	//for(i=FP_MAX; i<8; i++)//æ¸…é™¤å…¶ä»–å…‰å£çš„å‘Šè­¦
 	//{
 	//	sys_param_eu_1b[MADD_EU_ALARM_FLAG1+i].val = 0;
 	//	sys_param_eu_2b[MADD_EU_RUALARM_FLAG1+i].val = 0;
@@ -1461,14 +1461,14 @@ _set_work_err:		// ÉèÖÃ´íÎó×´Ì¬
 	
 
 	au_err = 0;
-	//ÎÂ¶È¸æ¾¯
+	//æ¸©åº¦å‘Šè­¦
 	//workerror_current |= sys_param_1b[MADD_BOARD_TEMP].val>80? (0x01):0x00;
 	au_err |= sys_param_1b[MADD_BOARD_TEMP].val>80? (0x01):0x00;
 
-	//Ê±ÖÓÊ§Ëø
+	//æ—¶é’Ÿå¤±é”
 	au_err |=sys_param_1b[MADD_CLK_PLL_ST].val? 0x02:0x00;
 
-	//¹âÏËÁ´Â·Òì³£¸æ¾¯
+	//å…‰çº¤é“¾è·¯å¼‚å¸¸å‘Šè­¦
 
 	//if(sys_param_1b[MADD_FP1_LOS+0].val |sys_param_1b[MADD_FP1_LOS+1].val |sys_param_1b[MADD_FP1_LOS+2].val |sys_param_1b[MADD_FP1_LOS+3].val )
 	//	workerror_current = 0x04;
@@ -1480,15 +1480,15 @@ _set_work_err:		// ÉèÖÃ´íÎó×´Ì¬
 	if(err >0)
 		au_err |= 0x04;
 
-	//ÍØÆË¸æ¾¯
+	//æ‹“æ‰‘å‘Šè­¦
 	if(topo_err_count >=1)
 	{
 	
-		//au_err |= 0x08;//ÔİÊ±¹Ø±Õ¸Ã¸æ¾¯
+		//au_err |= 0x08;//æš‚æ—¶å…³é—­è¯¥å‘Šè­¦
 	}
 
-	sys_param_1b[MADD_WORK_ERROR].val = au_err;//AU¶ÔÓ¦µÄ¸æ¾¯Ïî
-	//sys_param_1b[MADD_WORK_ERROR].val = 3;//AU¶ÔÓ¦µÄ¸æ¾¯Ïî
+	sys_param_1b[MADD_WORK_ERROR].val = au_err;//AUå¯¹åº”çš„å‘Šè­¦é¡¹
+	//sys_param_1b[MADD_WORK_ERROR].val = 3;//AUå¯¹åº”çš„å‘Šè­¦é¡¹
 
 	sys_param_1b[MADD_BATTERY_BREAKDOWN_ALARM].val = au_err?1:0;
 	//topo_alarm[0][0].mau_alarm = sys_param_1b[MADD_BATTERY_BREAKDOWN_ALARM].val;
@@ -1508,13 +1508,13 @@ _set_work_err:		// ÉèÖÃ´íÎó×´Ì¬
 	}
 
 	
-	//»ã×Ü¸æ¾¯Ïî	
+	//æ±‡æ€»å‘Šè­¦é¡¹	
 	workerror_current = 0;
-	workerror_current |=  au_err? 0x8000:0x0000;//AU¸æ¾¯
+	workerror_current |=  au_err? 0x8000:0x0000;//AUå‘Šè­¦
 	workerror_current |=  eu_err?0x4000:0x0000;
 	workerror_current |=  ru_err?0x2000:0x0000;
-	//workerror_current |= (sys_param_eu_1b[MADD_EU_ALARM_FLAG1].val ||sys_param_eu_1b[MADD_EU_ALARM_FLAG2].val ||sys_param_eu_1b[MADD_EU_ALARM_FLAG3].val ||sys_param_eu_1b[MADD_EU_ALARM_FLAG4].val)? 0x4000:0x0000;//µÍ4Î»ÎªEU¸æ¾¯
-	//workerror_current |= (sys_param_eu_2b[MADD_EU_RUALARM_FLAG1].val ||sys_param_eu_2b[MADD_EU_RUALARM_FLAG2].val ||sys_param_eu_2b[MADD_EU_RUALARM_FLAG3].val ||sys_param_eu_2b[MADD_EU_RUALARM_FLAG4].val)? 0x2000:0x0000;//¸ß4Î»ÎªRU¸æ¾¯
+	//workerror_current |= (sys_param_eu_1b[MADD_EU_ALARM_FLAG1].val ||sys_param_eu_1b[MADD_EU_ALARM_FLAG2].val ||sys_param_eu_1b[MADD_EU_ALARM_FLAG3].val ||sys_param_eu_1b[MADD_EU_ALARM_FLAG4].val)? 0x4000:0x0000;//ä½4ä½ä¸ºEUå‘Šè­¦
+	//workerror_current |= (sys_param_eu_2b[MADD_EU_RUALARM_FLAG1].val ||sys_param_eu_2b[MADD_EU_RUALARM_FLAG2].val ||sys_param_eu_2b[MADD_EU_RUALARM_FLAG3].val ||sys_param_eu_2b[MADD_EU_RUALARM_FLAG4].val)? 0x2000:0x0000;//é«˜4ä½ä¸ºRUå‘Šè­¦
 	
 	//sys_param_1b[MADD_WORK_ERROR].val = 0x3;
 	
@@ -1525,7 +1525,7 @@ _set_work_err:		// ÉèÖÃ´íÎó×´Ì¬
 		printf("Alarm Occurred\r\n");
 		workerror_last = workerror_current;
 		FPGA_ENABLE_WRITE;
-		FpgaWriteRegister(FPGA_REG_SHOW_ERROR,( ~workerror_current)&0xF000);//µÍµçÆ½¸æ¾¯
+		FpgaWriteRegister(FPGA_REG_SHOW_ERROR,( ~workerror_current)&0xF000);//ä½ç”µå¹³å‘Šè­¦
 		FPGA_DISABLE_WRITE;
 		sys_param_1b[MADD_HOST_DEVICE_LINK_SINGNAL_ALARM].val  = (UCHAR8) (workerror_last>>8);
 	}
@@ -1534,7 +1534,7 @@ _set_work_err:		// ÉèÖÃ´íÎó×´Ì¬
 
 /*************************************************************
 Name: CheckErrStatus          
-Description: ¼ì²éÏµÍ³¹¤×÷ÊÇ·ñÓĞÒì³£
+Description: æ£€æŸ¥ç³»ç»Ÿå·¥ä½œæ˜¯å¦æœ‰å¼‚å¸¸
 Input: void
 Return: void
 **************************************************************/
@@ -1546,39 +1546,39 @@ void CheckErrStatus()
 	
 	WTD_CLR;
 
-	// Ô¤´¦ÀíA\B¶Î×´Ì¬
-#if ( A_NETWORK_TYPE==NET_NONE )	// A¶ÎÃ»ÓĞ£¬×´Ì¬È«²¿Õı³£
+	// é¢„å¤„ç†A\Bæ®µçŠ¶æ€
+#if ( A_NETWORK_TYPE==NET_NONE )	// Aæ®µæ²¡æœ‰ï¼ŒçŠ¶æ€å…¨éƒ¨æ­£å¸¸
 	sys_param_1b[MADD_A_TX_PLL_ST].val = 0;
 	sys_param_1b[MADD_A_RX_PLL_ST].val = 0;
 	sys_param_1b[MADD_A_BB_PLL_LOCK].val = 0;
 #endif
 
-#if ( B_NETWORK_TYPE==NET_NONE )	// B¶ÎÃ»ÓĞ£¬×´Ì¬È«²¿Õı³£
+#if ( B_NETWORK_TYPE==NET_NONE )	// Bæ®µæ²¡æœ‰ï¼ŒçŠ¶æ€å…¨éƒ¨æ­£å¸¸
 	sys_param_1b[MADD_B_TX_PLL_ST].val = 0;
 	sys_param_1b[MADD_B_RX_PLL_ST].val = 0;
 	sys_param_1b[MADD_B_BB_PLL_LOCK].val = 0;
 #endif
 
-#if ( C_NETWORK_TYPE==NET_NONE )	// C¶ÎÃ»ÓĞ£¬×´Ì¬È«²¿Õı³£
+#if ( C_NETWORK_TYPE==NET_NONE )	// Cæ®µæ²¡æœ‰ï¼ŒçŠ¶æ€å…¨éƒ¨æ­£å¸¸
 	sys_param_1b[MADD_C_TX_PLL_ST].val = 0;
 	sys_param_1b[MADD_C_RX_PLL_ST].val = 0;
 	sys_param_1b[MADD_C_BB_PLL_LOCK].val = 0;
 #endif
 
-#if ( D_NETWORK_TYPE==NET_NONE )	// D¶ÎÃ»ÓĞ£¬×´Ì¬È«²¿Õı³£
+#if ( D_NETWORK_TYPE==NET_NONE )	// Dæ®µæ²¡æœ‰ï¼ŒçŠ¶æ€å…¨éƒ¨æ­£å¸¸
 	sys_param_1b[MADD_D_TX_PLL_ST].val = 0;
 	sys_param_1b[MADD_D_RX_PLL_ST].val = 0;
 	sys_param_1b[MADD_D_BB_PLL_LOCK].val = 0;
 #endif
 
 
-	// FPGA¼ÓÔØÒì³£
+	// FPGAåŠ è½½å¼‚å¸¸
 	if ( sys_param_1b[MADD_LOAD_FPGA_ST].val !=0 ) goto _set_work_err;
 
-	// Ê±ÖÓÊ§Ëø
+	// æ—¶é’Ÿå¤±é”
 	if ( sys_param_1b[MADD_CLK_PLL_ST].val==1 ) goto _set_work_err;
 
-	// ±¾ÕñÊ§Ëø
+	// æœ¬æŒ¯å¤±é”
 	if ( sys_param_1b[MADD_A_TX_PLL_ST].val==1) goto _set_work_err;
 	if ( sys_param_1b[MADD_A_RX_PLL_ST].val==1) goto _set_work_err;
 	if ( sys_param_1b[MADD_B_TX_PLL_ST].val==1) goto _set_work_err;
@@ -1586,17 +1586,17 @@ void CheckErrStatus()
 	if ( sys_param_1b[MADD_C_TX_PLL_ST].val==1) goto _set_work_err;
 	if ( sys_param_1b[MADD_C_RX_PLL_ST].val==1) goto _set_work_err;
 
-	// FPGAËøÏà»·Ê§Ëø
+	// FPGAé”ç›¸ç¯å¤±é”
 	if ( sys_param_1b[MADD_FPGA_CLK_ST].val == 1) goto _set_work_err;
 	
-	// DAËøÏà»·Ê§Ëø
+	// DAé”ç›¸ç¯å¤±é”
 	if ( sys_param_1b[MADD_A_BB_PLL_LOCK].val ==1 ) goto _set_work_err;
 	if ( sys_param_1b[MADD_B_BB_PLL_LOCK].val ==1 ) goto _set_work_err;
 
-	// LNAÒì³£
+	// LNAå¼‚å¸¸
 	
 	
-	// ¹â¿ÚÒì³£
+	// å…‰å£å¼‚å¸¸
 	for( i=0; i<FP_MAX; i++)
 	{
 		if ( sys_param_1b[MADD_FP1_LOS+i].val==1 ) goto _set_work_err;
@@ -1609,7 +1609,7 @@ void CheckErrStatus()
 	sys_param_1b[MADD_WORK_ERROR].val = 0;
 	return;
 
-_set_work_err:		// ÉèÖÃ´íÎó×´Ì¬
+_set_work_err:		// è®¾ç½®é”™è¯¯çŠ¶æ€
 	sys_param_1b[MADD_WORK_ERROR].val = 1;
 
 	
@@ -1634,12 +1634,12 @@ CheckErrStatus_Erricson();
 	
 }
 
-// ×Ô¶¯±£»¤´ëÊ©
+// è‡ªåŠ¨ä¿æŠ¤æªæ–½
 void AutoProtect( void )
 {
-	UCHAR8 err_off;		// ¹ÊÕÏ¹Ø¶ÏÊä³ö±êÖ¾ 1-¹Ø¶Ï
+	UCHAR8 err_off;		// æ•…éšœå…³æ–­è¾“å‡ºæ ‡å¿— 1-å…³æ–­
 
-	// A¶Î
+	// Aæ®µ
 	err_off = 0;
 	
 	if (0==sys_param_1b[MADD_A_DL_WORK_EN].val)	err_off = 1;
@@ -1649,19 +1649,19 @@ void AutoProtect( void )
 	if (1==sys_param_1b[MADD_A_BB_PLL_LOCK].val) err_off = 1;
 	if (1==sys_param_1b[MADD_CLK_PLL_ST].val)	err_off = 1;
 
-	if ( 0==err_off )	// ²»ĞèÒª¹Ø¶Ï
+	if ( 0==err_off )	// ä¸éœ€è¦å…³æ–­
 	{
-		if ( b_FALSE==FpgaIsEnableA() )	// ÈôÖ®Ç°¹Ø±ÕÁËFPGAÊä³ö£¬Ôò¿ªÆô
+		if ( b_FALSE==FpgaIsEnableA() )	// è‹¥ä¹‹å‰å…³é—­äº†FPGAè¾“å‡ºï¼Œåˆ™å¼€å¯
 		{ 
 			FpgaWorkEnableA( 1 );
 		} 
 	}
-	else	// ¹Ø¶ÏÊä³ö
+	else	// å…³æ–­è¾“å‡º
 	{
 		FpgaWorkEnableA( 0 ); 
 	}
 
-	// B¶Î
+	// Bæ®µ
 	err_off = 0;	
 
 	if (0==sys_param_1b[MADD_B_DL_WORK_EN].val)	err_off = 1;
@@ -1671,14 +1671,14 @@ void AutoProtect( void )
 	if (1==sys_param_1b[MADD_B_BB_PLL_LOCK].val) err_off = 1;
 	if (1==sys_param_1b[MADD_CLK_PLL_ST].val)	err_off = 1;
 
-	if ( 0==err_off )	// ²»ĞèÒª¹Ø¶Ï
+	if ( 0==err_off )	// ä¸éœ€è¦å…³æ–­
 	{
-		if ( b_FALSE==FpgaIsEnableB() )	// ÈôÖ®Ç°¹Ø±ÕÁËFPGAÊä³ö£¬Ôò¿ªÆô
+		if ( b_FALSE==FpgaIsEnableB() )	// è‹¥ä¹‹å‰å…³é—­äº†FPGAè¾“å‡ºï¼Œåˆ™å¼€å¯
 		{ 
 			FpgaWorkEnableB( 1 );
 		} 
 	}
-	else	// ¹Ø¶ÏÊä³ö
+	else	// å…³æ–­è¾“å‡º
 	{
 		FpgaWorkEnableB( 0 ); 
 	}
@@ -1688,13 +1688,13 @@ void AutoProtect( void )
 	{
 		if (( sys_param_1b[MADD_A_TX_PLL_ST].val==1 )||( sys_param_1b[MADD_A_RX_PLL_ST].val==1 )||( sys_param_1b[MADD_A_BB_PLL_LOCK].val ==1 ))
 		{
-			// Ê±ÖÓÊ§ËøÔò¹Ø¶ÏFPGAÊä³ö
+			// æ—¶é’Ÿå¤±é”åˆ™å…³æ–­FPGAè¾“å‡º
 			//TRACE_ERROR("SecA Err, Close Output\r\n");
 			FpgaWorkEnableA( 0 );
 		}
 		else if ( b_FALSE==FpgaIsEnableA() )
 		{
-			// Ê±ÖÓËø¶¨£¬ÈôÖ®Ç°¹Ø±ÕÁËFPGAÊä³ö£¬Ôò¿ªÆô
+			// æ—¶é’Ÿé”å®šï¼Œè‹¥ä¹‹å‰å…³é—­äº†FPGAè¾“å‡ºï¼Œåˆ™å¼€å¯
 			FpgaWorkEnableA( 1 );
 		}
 	}
@@ -1703,13 +1703,13 @@ void AutoProtect( void )
 	{
 		if (( sys_param_1b[MADD_B_TX_PLL_ST].val==1 )||( sys_param_1b[MADD_B_RX_PLL_ST].val==1 )||( sys_param_1b[MADD_B_BB_PLL_LOCK].val ==1 ))
 		{
-			// Ê±ÖÓÊ§ËøÔò¹Ø¶ÏFPGAÊä³ö
+			// æ—¶é’Ÿå¤±é”åˆ™å…³æ–­FPGAè¾“å‡º
 			//TRACE_ERROR("SecB Err, Close Output\r\n");
 			FpgaWorkEnableB( 0 );
 		}
 		else if ( b_FALSE==FpgaIsEnableB() )
 		{
-			// Ê±ÖÓËø¶¨£¬ÈôÖ®Ç°¹Ø±ÕÁËFPGAÊä³ö£¬Ôò¿ªÆô
+			// æ—¶é’Ÿé”å®šï¼Œè‹¥ä¹‹å‰å…³é—­äº†FPGAè¾“å‡ºï¼Œåˆ™å¼€å¯
 			FpgaWorkEnableB( 1 );
 		}
 	}
@@ -1718,7 +1718,7 @@ void AutoProtect( void )
 
 /*************************************************************
 Name:UpdateWorkParam          
-Description: ÉèÖÃ¹¤×÷²ÎÊı
+Description: è®¾ç½®å·¥ä½œå‚æ•°
 Input: void
 Return: void
 **************************************************************/
@@ -1741,22 +1741,22 @@ void UpdateWorkParam(UINT32 mask)
 	FpgaWorkEnableB( 0 );
 	FpgaWorkEnableC( 0 );
 	FpgaWorkEnableD( 0 );
-//	FpgaAttOutput(1);		// ¿ØÖÆË¥¼õÆ÷È«Ë¥£¬·ÀÖ¹Âß¼­¿ªÊ¼¹¤×÷Ê±³öÏÖµÄÔÓÉ¢
+//	FpgaAttOutput(1);		// æ§åˆ¶è¡°å‡å™¨å…¨è¡°ï¼Œé˜²æ­¢é€»è¾‘å¼€å§‹å·¥ä½œæ—¶å‡ºç°çš„æ‚æ•£
 
-	//¸ü¸Ä±¾Õñ»òÕßÖĞĞÄÆµÂÊ
+	//æ›´æ”¹æœ¬æŒ¯æˆ–è€…ä¸­å¿ƒé¢‘ç‡
 	if( 0 != ( mask&PCHG_CENTER_FRE_FLAG) )
 	{
-		//printf("ÉèÖÃÖĞĞÄÆµµã\r\n");
+		//printf("è®¾ç½®ä¸­å¿ƒé¢‘ç‚¹\r\n");
 		#if defined CLIENT_JIZHUN
-		//TRACE_INFO("µÍ²ÙÃÅÏŞA = %d\r\n",(CHAR8)sys_param_1b[MADD_A_LTHR_DN].val) ;  
+		//TRACE_INFO("ä½æ“é—¨é™A = %d\r\n",(CHAR8)sys_param_1b[MADD_A_LTHR_DN].val) ;  
 		MoveCenterFre(SYS_A_FLAG, SYS_DL_FLAG);
 		#endif
 	}
 #if 0
-	// ĞèÒªÖØÖÃ±¾Õñ 
+	// éœ€è¦é‡ç½®æœ¬æŒ¯ 
 	if ( 0!= (mask&PCHG_A_FL_CHG) ) 
 	{
-		mask |= PCHG_A_CHANNEL;	// ±¾ÕñĞŞ¸ÄÖ®ºó£¬Âß¼­µÄÍ¨µÀ¼Ä´æÆ÷ÆµÂÊ×ÖÒªÖØĞÂ¼ÆËã
+		mask |= PCHG_A_CHANNEL;	// æœ¬æŒ¯ä¿®æ”¹ä¹‹åï¼Œé€»è¾‘çš„é€šé“å¯„å­˜å™¨é¢‘ç‡å­—è¦é‡æ–°è®¡ç®—
 		
 		Init_Local_Pll(A_MIXER); 
 		Init_Local_Pll(A_MODEN);  
@@ -1766,7 +1766,7 @@ void UpdateWorkParam(UINT32 mask)
 
 	if ( 0!= (mask&PCHG_B_FL_CHG) ) 
 	{
-		mask |= PCHG_B_CHANNEL;	// ±¾ÕñĞŞ¸ÄÖ®ºó£¬Âß¼­µÄÍ¨µÀ¼Ä´æÆ÷ÆµÂÊ×ÖÒªÖØĞÂ¼ÆËã
+		mask |= PCHG_B_CHANNEL;	// æœ¬æŒ¯ä¿®æ”¹ä¹‹åï¼Œé€»è¾‘çš„é€šé“å¯„å­˜å™¨é¢‘ç‡å­—è¦é‡æ–°è®¡ç®—
 		//Init_Local_Pll(B_MIXER); 
 		//Init_Local_Pll(B_MODEN); 
 		//FpgaSetFreqAdjB();
@@ -1777,7 +1777,7 @@ void UpdateWorkParam(UINT32 mask)
 #endif
 
 	#if defined CLIENT_ERRICSON
-	// ĞŞ¸ÄÆµµãËÑË÷·¶Î§
+	// ä¿®æ”¹é¢‘ç‚¹æœç´¢èŒƒå›´
 	if ( 0!= (mask&PCHG_FPS_RANGE) )
 	{
 
@@ -1788,7 +1788,7 @@ void UpdateWorkParam(UINT32 mask)
 		FPS_SetParam(); 
 	}
 	#endif
-	// ÉèÖÃÍ¨µÀºÍÍ¨µÀÊ¹ÄÜ
+	// è®¾ç½®é€šé“å’Œé€šé“ä½¿èƒ½
 	if ( 0 != ( mask&PCHG_A_CHANNEL) )
 	{
 		WTD_CLR;
@@ -1812,25 +1812,25 @@ void UpdateWorkParam(UINT32 mask)
 	if ( 0!= (mask&(PCHG_A_CHANNEL|PCHG_B_CHANNEL|PCHG_C_CHANNEL|PCHG_D_CHANNEL)) )
 	{
 		WTD_CLR;
-		// ¹ã²¥ÉèÖÃÆµµã
+		// å¹¿æ’­è®¾ç½®é¢‘ç‚¹
 		sys_work_info |= SYSTEM_FLAG_SET_RE_SFC;
-		// Ê¹ÄÜ»°ÎñÁ¿Í³¼Æ,15·ÖÖÓ
+		// ä½¿èƒ½è¯åŠ¡é‡ç»Ÿè®¡,15åˆ†é’Ÿ
 		FpgaEnableTrafficCtl( TRAFFIC_TIME, 1 );
 		//traffic_start = 1;
 	}
 	
-	// ÉèÖÃÉÏÏÂĞĞ¹â¿ÚÑÓ³Ù
+	// è®¾ç½®ä¸Šä¸‹è¡Œå…‰å£å»¶è¿Ÿ
 	if ( 0!= ( mask&PCHG_OPT_DELAY ) )
 	{
 		WTD_CLR;
 		SetReSysConfig();
-		// ¿í´ø°æ±¾µÄÂË²¨Æ÷´ø¿íÉèÖÃÓÃµ¥¶ÀµÄÊı¾İ°ü·¢ËÍ£¬·ñÔò¾É°æ³ÌĞòÃ»Õâ¸ö²ÎÊı»áµ¼ÖÂÉèÖÃÊ§°Ü
+		// å®½å¸¦ç‰ˆæœ¬çš„æ»¤æ³¢å™¨å¸¦å®½è®¾ç½®ç”¨å•ç‹¬çš„æ•°æ®åŒ…å‘é€ï¼Œå¦åˆ™æ—§ç‰ˆç¨‹åºæ²¡è¿™ä¸ªå‚æ•°ä¼šå¯¼è‡´è®¾ç½®å¤±è´¥
 		//SetReBwConfig();
 
 		sys_work_info |= SYSTEM_FLAG_SET_RE_SYS_CFG;
 	}
 
-	// ÉèÖÃÉÏĞĞÍ¨µÀ×î´ó¹¦ÂÊ 2012.6.20 Ìí¼ÓÁËĞÂµÄÅĞ¶ÏÌõ¼ş  PCHG_A_CHANNEL|PCHG_B_CHANNEL
+	// è®¾ç½®ä¸Šè¡Œé€šé“æœ€å¤§åŠŸç‡ 2012.6.20 æ·»åŠ äº†æ–°çš„åˆ¤æ–­æ¡ä»¶  PCHG_A_CHANNEL|PCHG_B_CHANNEL
 	if ( 0 != ( mask&(PCHG_A_POW_GAIN|PCHG_B_POW_GAIN|PCHG_A_CHANNEL|PCHG_B_CHANNEL|PCHG_C_POW_GAIN|PCHG_D_POW_GAIN|PCHG_C_CHANNEL|PCHG_D_CHANNEL)) )
 	{
 		WTD_CLR;
@@ -1852,27 +1852,27 @@ void UpdateWorkParam(UINT32 mask)
 	}
 
 #endif
-	 // ÉèÖÃA¶ÎÉäÆµ¿ª¹ØÊ¹ÄÜ
+	 // è®¾ç½®Aæ®µå°„é¢‘å¼€å…³ä½¿èƒ½
  	if ( 0 != ( mask&(PCHG_A_WORK_EN)) )
  	{
  		RFWorkEnableA(); 
  	}
 
-	// ÉèÖÃB¶ÎÉäÆµ¿ª¹ØÊ¹ÄÜ
+	// è®¾ç½®Bæ®µå°„é¢‘å¼€å…³ä½¿èƒ½
  	if ( 0 != ( mask&(PCHG_A_WORK_EN)) )
  	{
  		WTD_CLR;
  		RFWorkEnableB(); 
  	}
 
-	 // ÉèÖÃC¶ÎÉäÆµ¿ª¹ØÊ¹ÄÜ
+	 // è®¾ç½®Cæ®µå°„é¢‘å¼€å…³ä½¿èƒ½
  	if ( 0 != ( mask&(PCHG_C_WORK_EN)) )
  	{
 	 	 WTD_CLR;	
   		RFWorkEnableC();
  	}
 
-	 // ÉèÖÃD¶ÎÉäÆµ¿ª¹ØÊ¹ÄÜ
+	 // è®¾ç½®Dæ®µå°„é¢‘å¼€å…³ä½¿èƒ½
  	if ( 0 != ( mask&(PCHG_D_WORK_EN)) )
  	{
 		WTD_CLR;
@@ -1880,14 +1880,14 @@ void UpdateWorkParam(UINT32 mask)
  	}
 #if 0
 
-	// ÉèÖÃ¿ØÖÆ¶Ë¿Ú²¨ÌØÂÊ
+	// è®¾ç½®æ§åˆ¶ç«¯å£æ³¢ç‰¹ç‡
 	if ( 0 != ( mask&PCHG_CTRL_BAUD) )
 	{
 		WTD_CLR;
 		//CtrlUartConfig();
 	}
 
-	// ÉèÖÃÍ¸´«¶Ë¿Ú
+	// è®¾ç½®é€ä¼ ç«¯å£
 	if ( 0 != ( mask&PCHG_THR_CONFIG) )
 	{
 		//ThrUartConfig();
@@ -1896,7 +1896,7 @@ void UpdateWorkParam(UINT32 mask)
 #endif
 
 #if 0
-	// µÍ¹¦ºÄÄ£Ê½
+	// ä½åŠŸè€—æ¨¡å¼
 	if ( 0 != (mask&PCHG_LOW_POWER) )
 	{
 		if ( sys_param_1b[MADD_LOW_POWER].val ==0 )
@@ -1912,28 +1912,28 @@ void UpdateWorkParam(UINT32 mask)
 	}
 #endif
 
-	// ÉèÖÃ¹â¿ÚÊ¹ÄÜ
+	// è®¾ç½®å…‰å£ä½¿èƒ½
 	if ( 0 != ( mask&PCHG_SYS_FP_EN) )
 	{
 		 WTD_CLR;
 		 EnableOpt();
 	}
 
-	//ÉèÖÃ±¾Õñ²ÎÊı
+	//è®¾ç½®æœ¬æŒ¯å‚æ•°
 	#if 0
 	if(0!=( mask&PCHG_BENZHEN_ADJ_FLAG ) )
 	{
 		//SetAdjBenZhenSignalPara();
 	}
 	#endif
-	// ²ÎÊıÉèÖÃÍê³É£¬Èôµ±Ç°Ä£Ê½²»ÊÇµÍ¹¦ºÄÄ£Ê½£¬Ôò¸ù¾İÊ¹ÄÜÎ»Ê¹ÄÜFPGA¹¤×÷
+	// å‚æ•°è®¾ç½®å®Œæˆï¼Œè‹¥å½“å‰æ¨¡å¼ä¸æ˜¯ä½åŠŸè€—æ¨¡å¼ï¼Œåˆ™æ ¹æ®ä½¿èƒ½ä½ä½¿èƒ½FPGAå·¥ä½œ
 	#if 0
 	if ( 0 == (sys_work_info & SYSTEM_FLAG_LOW_POWER ) )	
 	{
 	}
 	#endif
 	
-	// ÉèÖÃ¹¤×÷Ê¹ÄÜ
+	// è®¾ç½®å·¥ä½œä½¿èƒ½
 	FpgaWorkEnableA( sys_param_1b[MADD_A_DL_WORK_EN].val);
 	FpgaWorkEnableB( sys_param_1b[MADD_B_DL_WORK_EN].val);
 	FpgaWorkEnableC( sys_param_1b[MADD_C_DL_WORK_EN].val);
@@ -1976,8 +1976,8 @@ void UpdateWorkParam(UINT32 mask)
 			FpgaWorkEnableD( 0 );
 		}
 #endif		
-	// »Ö¸´Ë¥¼õÆ÷¹¦ÄÜ
-	UsNopDelay(100*1000);			// ÑÓÊ±5ms
+	// æ¢å¤è¡°å‡å™¨åŠŸèƒ½
+	UsNopDelay(100*1000);			// å»¶æ—¶5ms
 	//FpgaAttOutput(0);
 	WTD_CLR;
 
@@ -2012,7 +2012,7 @@ void EnableOpt()
 
 /*************************************************************
 Name: SetRecFcmps          
-Description: ÉèÖÃRECµÄÆµÂÊ²¹³¥Òò×Ó
+Description: è®¾ç½®RECçš„é¢‘ç‡è¡¥å¿å› å­
 Input: void
 Return: void
 **************************************************************/
@@ -2043,26 +2043,26 @@ void SetTDParam_C()
 	FPGA_ENABLE_WRITE;
 
 
-	// TD¹¤×÷Ä£Ê½
+	// TDå·¥ä½œæ¨¡å¼
 	FpgaWriteRegister( FPGA_REC_C_TD_WORK_MODE, sys_param_1b[MADD_C_TD_WORK_MODE].val );
 
-	// µÚÒ»×ª»»µãµ÷ÕûÊ±¼äns
-	val = (INT16)sys_param_2b[MADD_C_TD_1ST_CP_TIME].val;	// ÓĞ·ûºÅÊı£¬ÏÈ´ø·ûºÅÀ©Õ¹Îª32Î»ÔÙ°´ÎŞ·ûºÅÊı¼ÆËã
+	// ç¬¬ä¸€è½¬æ¢ç‚¹è°ƒæ•´æ—¶é—´ns
+	val = (INT16)sys_param_2b[MADD_C_TD_1ST_CP_TIME].val;	// æœ‰ç¬¦å·æ•°ï¼Œå…ˆå¸¦ç¬¦å·æ‰©å±•ä¸º32ä½å†æŒ‰æ— ç¬¦å·æ•°è®¡ç®—
 	tmp = _CalcTdTimeParam( val );
 	FpgaWriteRegister(FPGA_REC_C_TD_1ST_TIME, tmp);
 
-	// µÚ¶ş×ª»»µãµ÷ÕûÊ±¼äns
-	val = (INT16)sys_param_2b[MADD_C_TD_2ND_CP_TIME].val;	// ÓĞ·ûºÅÊı£¬ÏÈ´ø·ûºÅÀ©Õ¹Îª32Î»ÔÙ°´ÎŞ·ûºÅÊı¼ÆËã
+	// ç¬¬äºŒè½¬æ¢ç‚¹è°ƒæ•´æ—¶é—´ns
+	val = (INT16)sys_param_2b[MADD_C_TD_2ND_CP_TIME].val;	// æœ‰ç¬¦å·æ•°ï¼Œå…ˆå¸¦ç¬¦å·æ‰©å±•ä¸º32ä½å†æŒ‰æ— ç¬¦å·æ•°è®¡ç®—
 	tmp = _CalcTdTimeParam( val );
 	FpgaWriteRegister(FPGA_REC_C_TD_2ND_TIME, tmp);
 
-	// LNA¿ªÆô³ÙºóDN_PA¹Ø±ÕµÄ±£»¤Ê±¼äns
-	val = (INT16)sys_param_2b[MADD_C_TD_LNA_ON_TIME].val;		// ÎŞ·ûºÅÊı
+	// LNAå¼€å¯è¿ŸåDN_PAå…³é—­çš„ä¿æŠ¤æ—¶é—´ns
+	val = (INT16)sys_param_2b[MADD_C_TD_LNA_ON_TIME].val;		// æ— ç¬¦å·æ•°
 	tmp = _CalcTdTimeParam( val );
 	FpgaWriteRegister(FPGA_REC_C_TD_LNA_ON_TIME, tmp);
 
-	// LNA¹Ø±Õ³¬Ç°DN_PA¿ªÆôµÄ±£»¤Ê±¼äns
-	val = (INT16)sys_param_2b[MADD_C_TD_LNA_OFF_TIME].val;		// ÎŞ·ûºÅÊı
+	// LNAå…³é—­è¶…å‰DN_PAå¼€å¯çš„ä¿æŠ¤æ—¶é—´ns
+	val = (INT16)sys_param_2b[MADD_C_TD_LNA_OFF_TIME].val;		// æ— ç¬¦å·æ•°
 	tmp = _CalcTdTimeParam( val );
 	FpgaWriteRegister(FPGA_REC_C_TD_LNA_OFF_TIME, tmp);
 	
@@ -2078,7 +2078,7 @@ void SetTDParam_C()
 	|| (version_number == VERSION_50M_IN_V5)
 	)
 	{
-		if(sys_param_1b[MADD_SLOT_TIME_EN_C].val==1)//¿ªÆôTDSÊ±Ï¶Åä±È×Ô¶¯¼ì²â
+		if(sys_param_1b[MADD_SLOT_TIME_EN_C].val==1)//å¼€å¯TDSæ—¶éš™é…æ¯”è‡ªåŠ¨æ£€æµ‹
 		{
 			tmp = (UINT16)sys_param_1b[MADD_SLOT_TIME_EN_C].val;		
 			tmp <<= 15;
@@ -2087,23 +2087,23 @@ void SetTDParam_C()
 		}
 		else
 		{
-			FpgaWriteRegister( FPGA_REG_W_SLOT_TIME_C, 0 );//¹Ø±ÕÊ±Ï¶×Ô¶¯¼ì²â
+			FpgaWriteRegister( FPGA_REG_W_SLOT_TIME_C, 0 );//å…³é—­æ—¶éš™è‡ªåŠ¨æ£€æµ‹
 
-			// Ê±Ï¶ÉÏÏÂĞĞÅä±È
+			// æ—¶éš™ä¸Šä¸‹è¡Œé…æ¯”
 			FpgaWriteRegister(FPGA_REC_C_TS_CONFIG, tmp);
-			//ÌØÊâ×ÓÖ¡Åä±È
+			//ç‰¹æ®Šå­å¸§é…æ¯”
 			//FpgaWriteRegister(FPGA_REC_C_TS_CONFIG, sys_param_1b[MADD_C_TD_NORMAL_CP].val);
-			//CPÅä±È
+			//CPé…æ¯”
 			//FpgaWriteRegister(FPGA_REC_C_TS_CONFIG, sys_param_1b[MADD_C_TD_EXTENDED_CP].val);
 		}
 	}	
 	else if((version_number == VERSION_20M_NOIN) || (version_number == VERSION_20M_IN))
 	{
-		// Ê±Ï¶ÉÏÏÂĞĞÅä±È
+		// æ—¶éš™ä¸Šä¸‹è¡Œé…æ¯”
 		FpgaWriteRegister(FPGA_REC_C_TS_CONFIG, tmp);
-		//ÌØÊâ×ÓÖ¡Åä±È
+		//ç‰¹æ®Šå­å¸§é…æ¯”
 		//FpgaWriteRegister(FPGA_REC_C_TS_CONFIG, sys_param_1b[MADD_C_TD_NORMAL_CP].val);
-		//CPÅä±È
+		//CPé…æ¯”
 		//FpgaWriteRegister(FPGA_REC_C_TS_CONFIG, sys_param_1b[MADD_C_TD_EXTENDED_CP].val);
 	}
 	
@@ -2120,37 +2120,37 @@ void SetTDParam_D()
 
 	FPGA_ENABLE_WRITE;
 
-	// TD¹¤×÷Ä£Ê½
+	// TDå·¥ä½œæ¨¡å¼
 	FpgaWriteRegister( FPGA_REC_D_TD_WORK_MODE, sys_param_1b[MADD_D_TD_WORK_MODE].val );
 
-	// µÚÒ»×ª»»µãµ÷ÕûÊ±¼äns
-	val = (INT16)sys_param_2b[MADD_D_TD_1ST_CP_TIME].val;	// ÓĞ·ûºÅÊı£¬ÏÈ´ø·ûºÅÀ©Õ¹Îª32Î»ÔÙ°´ÎŞ·ûºÅÊı¼ÆËã
+	// ç¬¬ä¸€è½¬æ¢ç‚¹è°ƒæ•´æ—¶é—´ns
+	val = (INT16)sys_param_2b[MADD_D_TD_1ST_CP_TIME].val;	// æœ‰ç¬¦å·æ•°ï¼Œå…ˆå¸¦ç¬¦å·æ‰©å±•ä¸º32ä½å†æŒ‰æ— ç¬¦å·æ•°è®¡ç®—
 	tmp = _CalcTdTimeParam( val );
 	TRACE_INFO("tm=[%X]\r\n",tmp);
 	FpgaWriteRegister(FPGA_REC_D_TD_1ST_TIME, tmp);
 
-	// µÚ¶ş×ª»»µãµ÷ÕûÊ±¼äns
-	val = (INT16)sys_param_2b[MADD_D_TD_2ND_CP_TIME].val;	// ÓĞ·ûºÅÊı£¬ÏÈ´ø·ûºÅÀ©Õ¹Îª32Î»ÔÙ°´ÎŞ·ûºÅÊı¼ÆËã
+	// ç¬¬äºŒè½¬æ¢ç‚¹è°ƒæ•´æ—¶é—´ns
+	val = (INT16)sys_param_2b[MADD_D_TD_2ND_CP_TIME].val;	// æœ‰ç¬¦å·æ•°ï¼Œå…ˆå¸¦ç¬¦å·æ‰©å±•ä¸º32ä½å†æŒ‰æ— ç¬¦å·æ•°è®¡ç®—
 	tmp = _CalcTdTimeParam( val );
 	FpgaWriteRegister(FPGA_REC_D_TD_2ND_TIME, tmp);
 
-	// LNA¿ªÆô³ÙºóDN_PA¹Ø±ÕµÄ±£»¤Ê±¼äns
-	val = (INT16)sys_param_2b[MADD_D_TD_LNA_ON_TIME].val;		// ÎŞ·ûºÅÊı
+	// LNAå¼€å¯è¿ŸåDN_PAå…³é—­çš„ä¿æŠ¤æ—¶é—´ns
+	val = (INT16)sys_param_2b[MADD_D_TD_LNA_ON_TIME].val;		// æ— ç¬¦å·æ•°
 	tmp = _CalcTdTimeParam( val );
 	FpgaWriteRegister(FPGA_REC_D_TD_LNA_ON_TIME, tmp);
 
-	// LNA¹Ø±Õ³¬Ç°DN_PA¿ªÆôµÄ±£»¤Ê±¼äns
-	val = (INT16)sys_param_2b[MADD_D_TD_LNA_OFF_TIME].val;		// ÎŞ·ûºÅÊı
+	// LNAå…³é—­è¶…å‰DN_PAå¼€å¯çš„ä¿æŠ¤æ—¶é—´ns
+	val = (INT16)sys_param_2b[MADD_D_TD_LNA_OFF_TIME].val;		// æ— ç¬¦å·æ•°
 	tmp = _CalcTdTimeParam( val );
 	FpgaWriteRegister(FPGA_REC_D_TD_LNA_OFF_TIME, tmp);
 	
 
 	tmp = (sys_param_1b[MADD_D_TD_TYPE_SELECT].val&0X07)| ((sys_param_1b[MADD_D_TD_NORMAL_CP].val<<3)&0X78)|((sys_param_1b[MADD_D_TD_EXTENDED_CP].val<<15)&0X80);
-	// Ê±Ï¶ÉÏÏÂĞĞÅä±È
+	// æ—¶éš™ä¸Šä¸‹è¡Œé…æ¯”
 	FpgaWriteRegister(FPGA_REC_D_TS_CONFIG, tmp);
-	//ÌØÊâ×ÓÖ¡Åä±È
+	//ç‰¹æ®Šå­å¸§é…æ¯”
 	//FpgaWriteRegister(FPGA_REC_D_TS_CONFIG, sys_param_1b[MADD_D_TD_NORMAL_CP].val);
-	//CPÅä±È
+	//CPé…æ¯”
 	//FpgaWriteRegister(FPGA_REC_D_TS_CONFIG, sys_param_1b[MADD_D_TD_EXTENDED_CP].val);
 
 	
@@ -2173,8 +2173,8 @@ void SetTDParam_B()
 	|| (version_number == VERSION_50M_IN_V5)
 	)
 	{
-		// Ê±Ï¶ÉÏÏÂĞĞÉèÖÃ
-		if(sys_param_1b[MADD_SLOT_TIME_EN_B].val==1)//TDSÊ±Ï¶Åä±È×Ô¶¯¼ì²â
+		// æ—¶éš™ä¸Šä¸‹è¡Œè®¾ç½®
+		if(sys_param_1b[MADD_SLOT_TIME_EN_B].val==1)//TDSæ—¶éš™é…æ¯”è‡ªåŠ¨æ£€æµ‹
 		{
 			tmp = (UINT16)sys_param_1b[MADD_SLOT_TIME_EN_B].val;		
 			tmp <<= 15;
@@ -2183,7 +2183,7 @@ void SetTDParam_B()
 		}
 		else
 		{
-			FpgaWriteRegister( FPGA_REG_W_SLOT_TIME_B, 0 );//¹Ø±ÕÊ±Ï¶×Ô¶¯¼ì²â
+			FpgaWriteRegister( FPGA_REG_W_SLOT_TIME_B, 0 );//å…³é—­æ—¶éš™è‡ªåŠ¨æ£€æµ‹
 			for ( i=0; i<7; i++)
 			{
 				if ( sys_param_1b[MADD_TD_T0_UD+i].val == 1 )
@@ -2206,33 +2206,33 @@ void SetTDParam_B()
 		} 
 	
 	
-		// Ê±Ï¶ÉÏÏÂĞĞÉèÖÃ
+		// æ—¶éš™ä¸Šä¸‹è¡Œè®¾ç½®
 		FpgaWriteRegister(FPGA_REG_TDSLOT_CTL, tmp);
 	}
 
-	// µÚÒ»×ª»»µãµ÷ÕûÊ±¼äns
-	val = sys_param_2b[MADD_TD_1ST_CP_TIME].val;	// ÓĞ·ûºÅÊı£¬ÏÈ´ø·ûºÅÀ©Õ¹Îª32Î»ÔÙ°´ÎŞ·ûºÅÊı¼ÆËã
+	// ç¬¬ä¸€è½¬æ¢ç‚¹è°ƒæ•´æ—¶é—´ns
+	val = sys_param_2b[MADD_TD_1ST_CP_TIME].val;	// æœ‰ç¬¦å·æ•°ï¼Œå…ˆå¸¦ç¬¦å·æ‰©å±•ä¸º32ä½å†æŒ‰æ— ç¬¦å·æ•°è®¡ç®—
 	tmp = _CalcTdTimeParam( val );
 	FpgaWriteRegister(FPGA_REG_TD_1ST_TIME, tmp);
 
-	// µÚ¶ş×ª»»µãµ÷ÕûÊ±¼äns
-	val = (INT16)sys_param_2b[MADD_TD_2ND_CP_TIME].val;	// ÓĞ·ûºÅÊı£¬ÏÈ´ø·ûºÅÀ©Õ¹Îª32Î»ÔÙ°´ÎŞ·ûºÅÊı¼ÆËã
+	// ç¬¬äºŒè½¬æ¢ç‚¹è°ƒæ•´æ—¶é—´ns
+	val = (INT16)sys_param_2b[MADD_TD_2ND_CP_TIME].val;	// æœ‰ç¬¦å·æ•°ï¼Œå…ˆå¸¦ç¬¦å·æ‰©å±•ä¸º32ä½å†æŒ‰æ— ç¬¦å·æ•°è®¡ç®—
 	tmp = _CalcTdTimeParam( val );
 	FpgaWriteRegister(FPGA_REG_TD_2ND_TIME, tmp);
 
-	// LNA¿ªÆô³ÙºóDN_PA¹Ø±ÕµÄ±£»¤Ê±¼äns  
-	val = (INT16)sys_param_2b[MADD_TD_LNA_ON_TIME].val;		// ÎŞ·ûºÅÊı
+	// LNAå¼€å¯è¿ŸåDN_PAå…³é—­çš„ä¿æŠ¤æ—¶é—´ns  
+	val = (INT16)sys_param_2b[MADD_TD_LNA_ON_TIME].val;		// æ— ç¬¦å·æ•°
 	tmp = _CalcTdTimeParam( val );
 	FpgaWriteRegister(FPGA_REG_TD_LNA_ON_TIME, tmp);
 
-	// LNA¹Ø±Õ³¬Ç°DN_PA¿ªÆôµÄ±£»¤Ê±¼äns  
-	val = (INT16)sys_param_2b[MADD_TD_LNA_OFF_TIME].val;		// ÎŞ·ûºÅÊı
+	// LNAå…³é—­è¶…å‰DN_PAå¼€å¯çš„ä¿æŠ¤æ—¶é—´ns  
+	val = (INT16)sys_param_2b[MADD_TD_LNA_OFF_TIME].val;		// æ— ç¬¦å·æ•°
 	tmp = _CalcTdTimeParam( val );
 	FpgaWriteRegister(FPGA_REG_TD_LNA_OFF_TIME, tmp);
 
 //	TRACE_INFO("sys_param_1b[MADD_TD_WORK_MODE].val=[%X]\r\n",sys_param_1b[MADD_TD_WORK_MODE].val);
 
-	// TD¹¤×÷Ä£Ê½
+	// TDå·¥ä½œæ¨¡å¼
 	FpgaWriteRegister( FPGA_REG_TD_WORK_MODE, sys_param_1b[MADD_TD_WORK_MODE].val );
 	
 	FPGA_DISABLE_WRITE;
@@ -2241,20 +2241,20 @@ void SetTDParam_B()
 
 /*************************************************************
 Name: SysBroadcastReFcA          
-Description: ¹ã²¥ÉèÖÃREµÄÆµµã
+Description: å¹¿æ’­è®¾ç½®REçš„é¢‘ç‚¹
 Input: void
 Return: void
 **************************************************************/
 void SysBroadcastReFcA( void )
 {
-#if ( defined(FUNC_FREQ_POINT_SEARCH_EN) && defined(FUNC_FPS_AUTO_SET) )	// ÆôÓÃÆµµãËÑË÷£¬ÇÒ×Ô¶¯ÉèÖÃÆµµã
+#if ( defined(FUNC_FREQ_POINT_SEARCH_EN) && defined(FUNC_FPS_AUTO_SET) )	// å¯ç”¨é¢‘ç‚¹æœç´¢ï¼Œä¸”è‡ªåŠ¨è®¾ç½®é¢‘ç‚¹
 	UCHAR8 * p_msg = sys_temp_buff;
 	UINT32 tx_len;
 	UINT16 tmp;
 	UINT32 i;
 	UINT16 addr_base;
 
-	if ( 0!=(sys_work_info&SYSTEM_FLAG_ATT_ADJ) )		// ´¦ÓÚĞ£×¼×´Ì¬£¬²»ÉèÖÃRE²ÎÊı
+	if ( 0!=(sys_work_info&SYSTEM_FLAG_ATT_ADJ) )		// å¤„äºæ ¡å‡†çŠ¶æ€ï¼Œä¸è®¾ç½®REå‚æ•°
 	{
 		return;
 	}
@@ -2365,7 +2365,7 @@ void SysBroadcastReFcA( void )
 
 /*************************************************************
 Name: SetReDpxInfo          
-Description: ÉèÖÃREµÄÉÏĞĞÊä³ö¹¦ÂÊÃÅÏŞ
+Description: è®¾ç½®REçš„ä¸Šè¡Œè¾“å‡ºåŠŸç‡é—¨é™
 Input: void
 Return: void
 **************************************************************/
@@ -2385,68 +2385,68 @@ void SetReDpxInfo()
 	p_msg[MSG_ACK_FLAG] = MSG_ACK_MASTER_SEND;
 	tx_len = MSG_PKT_HEAD_SIZE;
 
-	// RECµÄA¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_A_REC_DPX_IG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Aæ®µè¾“å…¥åŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_A_REC_DPX_IG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_A_REC_DPX_IG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_A_UDPX_IN_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_A_UDPX_IN_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 	
-	// RECµÄA¶ÎÊä³öË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_A_REC_DPX_OG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Aæ®µè¾“å‡ºåŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_A_REC_DPX_OG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_A_REC_DPX_OG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_A_UDPX_OUT_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_A_UDPX_OUT_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 
-	// RECµÄB¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_B_REC_DPX_IG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Bæ®µè¾“å…¥åŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_B_REC_DPX_IG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_B_REC_DPX_IG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_B_UDPX_IN_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_B_UDPX_IN_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 	
-	// RECµÄB¶ÎÊä³öË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_B_REC_DPX_OG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Bæ®µè¾“å‡ºåŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_B_REC_DPX_OG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_B_REC_DPX_OG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_B_UDPX_OUT_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_B_UDPX_OUT_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 
 	
-	// RECµÄC¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_C_REC_DPX_IG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Cæ®µè¾“å…¥åŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_C_REC_DPX_IG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_C_REC_DPX_IG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_C_UDPX_IN_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_C_UDPX_IN_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 	
-	// RECµÄC¶ÎÊä³öË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_C_REC_DPX_OG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Cæ®µè¾“å‡ºåŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_C_REC_DPX_OG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_C_REC_DPX_OG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_C_UDPX_OUT_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_C_UDPX_OUT_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 
-	// RECµÄD¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_D_REC_DPX_IG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Dæ®µè¾“å…¥åŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_D_REC_DPX_IG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_D_REC_DPX_IG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_D_UDPX_IN_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_D_UDPX_IN_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 	
-	// RECµÄD¶ÎÊä³öË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_D_REC_DPX_OG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Dæ®µè¾“å‡ºåŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_D_REC_DPX_OG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_D_REC_DPX_OG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_D_UDPX_OUT_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_D_UDPX_OUT_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 	TRACE_INFO("-------SetReDpxInfo---------MADD_A_REC_DPX_IG:%04X\r\n",sys_param_2b[MADD_A_UDPX_IN_GAIN].val);		
@@ -2456,7 +2456,7 @@ void SetReDpxInfo()
 
 /*************************************************************
 Name: SetReUlPowerGain          
-Description: ÉèÖÃREµÄÉÏĞĞÊä³ö¹¦ÂÊÃÅÏŞ
+Description: è®¾ç½®REçš„ä¸Šè¡Œè¾“å‡ºåŠŸç‡é—¨é™
 Input: void
 Return: void
 **************************************************************/
@@ -2468,7 +2468,7 @@ void SetReUlPowerGain()
 	INT16 pow_set;
 	UINT16 tmp;
 
-	if ( 0!=(sys_work_info&SYSTEM_FLAG_ATT_ADJ) )		// ´¦ÓÚĞ£×¼×´Ì¬£¬²»ÉèÖÃRE²ÎÊı
+	if ( 0!=(sys_work_info&SYSTEM_FLAG_ATT_ADJ) )		// å¤„äºæ ¡å‡†çŠ¶æ€ï¼Œä¸è®¾ç½®REå‚æ•°
 	{
 		return;
 	}
@@ -2492,331 +2492,331 @@ void SetReUlPowerGain()
 	p_msg[MSG_ACK_FLAG] = MSG_ACK_MASTER_SEND;
 	tx_len = MSG_PKT_HEAD_SIZE;
 
-	// A¶ÎÉÏĞĞ¹¦ÂÊ---------- ½çÃæÉèÖÃµÄÉÏĞĞÊä³ö¹¦ÂÊ
+	// Aæ®µä¸Šè¡ŒåŠŸç‡---------- ç•Œé¢è®¾ç½®çš„ä¸Šè¡Œè¾“å‡ºåŠŸç‡
 	total_pow = (INT16)sys_param_2b[MADD_A_UCH_MAX_POW1].val;
 	//pow_set = total_pow-(INT16)(pow_div_tbl[total_re_count]+0.5);
-	pow_set = total_pow;		// ¹¦ÂÊ²»Æ½·Ö
-	// µØÖ·
+	pow_set = total_pow;		// åŠŸç‡ä¸å¹³åˆ†
+	// åœ°å€
 	p_msg[tx_len++] = (UCHAR8)(MADD_A_UCH_MAX_POW1&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_A_UCH_MAX_POW1>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 2;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(pow_set&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((pow_set>>8)&0x00FF);
 
-	//A¶ÎÏÂĞĞ×ÜË¥¼õ---------
-	// µØÖ·£¬RECµÄÏÂĞĞ×ÜË¥¼õ¶ÔÓ¦REµÄÉÏĞĞÊı¿ØË¥¼õµØÖ·2
+	//Aæ®µä¸‹è¡Œæ€»è¡°å‡---------
+	// åœ°å€ï¼ŒRECçš„ä¸‹è¡Œæ€»è¡°å‡å¯¹åº”REçš„ä¸Šè¡Œæ•°æ§è¡°å‡åœ°å€2
 	p_msg[tx_len++] = (UCHAR8)(MADD_A_DCH_REC_RF_ATT1&0x00FF);//20130302 modifi 
 	p_msg[tx_len++] = (UCHAR8)((MADD_A_DCH_REC_RF_ATT1>>8)&0x00FF);
 	TRACE_INFO("MADD_A_DCH_ATT11:%04X\r\n",sys_param_1b[MADD_A_DCH_ATT1].val);	
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_A_DCH_ATT1].val;	
 
-	// A¶ÎÉÏĞĞ×ÜË¥¼õ---------
-	// µØÖ·£¬RECµÄÉÏĞĞ×ÜË¥¼õ¶ÔÓ¦REµÄÉÏĞĞÊı¿ØË¥¼õµØÖ·2
+	// Aæ®µä¸Šè¡Œæ€»è¡°å‡---------
+	// åœ°å€ï¼ŒRECçš„ä¸Šè¡Œæ€»è¡°å‡å¯¹åº”REçš„ä¸Šè¡Œæ•°æ§è¡°å‡åœ°å€2
 	p_msg[tx_len++] = (UCHAR8)(MADD_A_UCH_REC_RF_ATT1&0x00FF);//20130302 modifi 
 	p_msg[tx_len++] = (UCHAR8)((MADD_A_UCH_REC_RF_ATT1>>8)&0x00FF);
 	TRACE_INFO("MADD_A_UCH_ATT11:%04X\r\n",sys_param_1b[MADD_A_UCH_ATT1].val);	
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_A_UCH_ATT1].val;	
 	
-	// B¶ÎÉÏĞĞ¹¦ÂÊ----------
+	// Bæ®µä¸Šè¡ŒåŠŸç‡----------
 	total_pow = (INT16)sys_param_2b[MADD_B_UCH_MAX_POW1].val;
 	//pow_set = total_pow-pow_div_tbl[total_re_count];
-	pow_set = total_pow;		// ¹¦ÂÊ²»Æ½·Ö
-	// µØÖ·
+	pow_set = total_pow;		// åŠŸç‡ä¸å¹³åˆ†
+	// åœ°å€
 	p_msg[tx_len++] = (UCHAR8)(MADD_B_UCH_MAX_POW1&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_B_UCH_MAX_POW1>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 2;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(pow_set&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((pow_set>>8)&0x00FF);
 
-	//B¶ÎÏÂĞĞ×ÜË¥¼õ---------
-	// µØÖ·£¬RECµÄÏÂĞĞ×ÜË¥¼õ¶ÔÓ¦REµÄÉÏĞĞÊı¿ØË¥¼õµØÖ·2
+	//Bæ®µä¸‹è¡Œæ€»è¡°å‡---------
+	// åœ°å€ï¼ŒRECçš„ä¸‹è¡Œæ€»è¡°å‡å¯¹åº”REçš„ä¸Šè¡Œæ•°æ§è¡°å‡åœ°å€2
 	p_msg[tx_len++] = (UCHAR8)(MADD_B_DCH_REC_RF_ATT1&0x00FF);//20130302 modifi 
 	p_msg[tx_len++] = (UCHAR8)((MADD_B_DCH_REC_RF_ATT1>>8)&0x00FF);
 	TRACE_INFO("MADD_B_DCH_ATT11:%04X\r\n",sys_param_1b[MADD_B_DCH_ATT1].val);	
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_B_DCH_ATT1].val;	
 
-	// B¶ÎÉÏĞĞ×ÜË¥¼õ----------
-	// µØÖ·£¬RECµÄÉÏĞĞ×ÜË¥¼õ¶ÔÓ¦REµÄÉÏĞĞÊı¿ØË¥¼õµØÖ·2
+	// Bæ®µä¸Šè¡Œæ€»è¡°å‡----------
+	// åœ°å€ï¼ŒRECçš„ä¸Šè¡Œæ€»è¡°å‡å¯¹åº”REçš„ä¸Šè¡Œæ•°æ§è¡°å‡åœ°å€2
 	p_msg[tx_len++] = (UCHAR8)(MADD_B_UCH_REC_RF_ATT1&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_B_UCH_REC_RF_ATT1>>8)&0x00FF);//20130302 modifi 
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_B_UCH_ATT1].val;
 
 
-	// C¶ÎÉÏĞĞ¹¦ÂÊ---------- ½çÃæÉèÖÃµÄÉÏĞĞÊä³ö¹¦ÂÊ
+	// Cæ®µä¸Šè¡ŒåŠŸç‡---------- ç•Œé¢è®¾ç½®çš„ä¸Šè¡Œè¾“å‡ºåŠŸç‡
 	total_pow = (INT16)sys_param_2b[MADD_C_UCH_MAX_POW1].val;
 	//pow_set = total_pow-(INT16)(pow_div_tbl[total_re_count]+0.5);
-	pow_set = total_pow;		// ¹¦ÂÊ²»Æ½·Ö
-	// µØÖ·
+	pow_set = total_pow;		// åŠŸç‡ä¸å¹³åˆ†
+	// åœ°å€
 	p_msg[tx_len++] = (UCHAR8)(MADD_C_UCH_MAX_POW1&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_C_UCH_MAX_POW1>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 2;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(pow_set&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((pow_set>>8)&0x00FF);
 
-	//C¶ÎÏÂĞĞ×ÜË¥¼õ---------
-	// µØÖ·£¬RECµÄÏÂĞĞ×ÜË¥¼õ¶ÔÓ¦REµÄÉÏĞĞÊı¿ØË¥¼õµØÖ·2
+	//Cæ®µä¸‹è¡Œæ€»è¡°å‡---------
+	// åœ°å€ï¼ŒRECçš„ä¸‹è¡Œæ€»è¡°å‡å¯¹åº”REçš„ä¸Šè¡Œæ•°æ§è¡°å‡åœ°å€2
 	p_msg[tx_len++] = (UCHAR8)(MADD_C_DCH_REC_RF_ATT1&0x00FF);//20130302 modifi 
 	p_msg[tx_len++] = (UCHAR8)((MADD_C_DCH_REC_RF_ATT1>>8)&0x00FF);
 	TRACE_INFO("MADD_C_DCH_ATT11:%04X\r\n",sys_param_1b[MADD_C_DCH_ATT1].val);	
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_C_DCH_ATT1].val;	
 
-	//C¶ÎÉÏĞĞ×ÜË¥¼õ---------
-	// µØÖ·£¬RECµÄÉÏĞĞ×ÜË¥¼õ¶ÔÓ¦REµÄÉÏĞĞÊı¿ØË¥¼õµØÖ·2
+	//Cæ®µä¸Šè¡Œæ€»è¡°å‡---------
+	// åœ°å€ï¼ŒRECçš„ä¸Šè¡Œæ€»è¡°å‡å¯¹åº”REçš„ä¸Šè¡Œæ•°æ§è¡°å‡åœ°å€2
 	p_msg[tx_len++] = (UCHAR8)(MADD_C_UCH_REC_RF_ATT1&0x00FF);//20130302 modifi 
 	p_msg[tx_len++] = (UCHAR8)((MADD_C_UCH_REC_RF_ATT1>>8)&0x00FF);
 	TRACE_INFO("MADD_C_UCH_ATT11:%04X\r\n",sys_param_1b[MADD_C_UCH_ATT1].val);	
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_C_UCH_ATT1].val;	
 	
-	// D¶ÎÉÏĞĞ¹¦ÂÊ----------
+	// Dæ®µä¸Šè¡ŒåŠŸç‡----------
 	total_pow = (INT16)sys_param_2b[MADD_D_UCH_MAX_POW1].val;
 	//pow_set = total_pow-pow_div_tbl[total_re_count];
-	pow_set = total_pow;		// ¹¦ÂÊ²»Æ½·Ö
-	// µØÖ·
+	pow_set = total_pow;		// åŠŸç‡ä¸å¹³åˆ†
+	// åœ°å€
 	p_msg[tx_len++] = (UCHAR8)(MADD_D_UCH_MAX_POW1&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_D_UCH_MAX_POW1>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 2;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(pow_set&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((pow_set>>8)&0x00FF);
 
-	//D¶ÎÏÂĞĞ×ÜË¥¼õ---------
-	// µØÖ·£¬RECµÄÏÂĞĞ×ÜË¥¼õ¶ÔÓ¦REµÄÉÏĞĞÊı¿ØË¥¼õµØÖ·2
+	//Dæ®µä¸‹è¡Œæ€»è¡°å‡---------
+	// åœ°å€ï¼ŒRECçš„ä¸‹è¡Œæ€»è¡°å‡å¯¹åº”REçš„ä¸Šè¡Œæ•°æ§è¡°å‡åœ°å€2
 	p_msg[tx_len++] = (UCHAR8)(MADD_D_DCH_REC_RF_ATT1&0x00FF);//20130302 modifi 
 	p_msg[tx_len++] = (UCHAR8)((MADD_D_DCH_REC_RF_ATT1>>8)&0x00FF);
 	TRACE_INFO("MADD_D_DCH_ATT11:%04X\r\n",sys_param_1b[MADD_D_DCH_ATT1].val);	
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_D_DCH_ATT1].val;	
 
-	// D¶ÎÉÏĞĞ×ÜË¥¼õ----------
-	// µØÖ·£¬RECµÄÉÏĞĞ×ÜË¥¼õ¶ÔÓ¦REµÄÉÏĞĞÊı¿ØË¥¼õµØÖ·2
+	// Dæ®µä¸Šè¡Œæ€»è¡°å‡----------
+	// åœ°å€ï¼ŒRECçš„ä¸Šè¡Œæ€»è¡°å‡å¯¹åº”REçš„ä¸Šè¡Œæ•°æ§è¡°å‡åœ°å€2
 	p_msg[tx_len++] = (UCHAR8)(MADD_D_UCH_REC_RF_ATT1&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_D_UCH_REC_RF_ATT1>>8)&0x00FF);//20130302 modifi 
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_D_UCH_ATT1].val;
 	
 
 #if 0//201411120931
 	p_msg[tx_len++] = (UCHAR8)(MADD_METER_OFFSET&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_METER_OFFSET>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_METER_OFFSET].val;
 
 	p_msg[tx_len++] = (UCHAR8)(MADD_METER_OFFSET_B&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_METER_OFFSET_B>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_METER_OFFSET_B].val;
 
 	p_msg[tx_len++] = (UCHAR8)(MADD_METER_OFFSET_C&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_METER_OFFSET_C>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_METER_OFFSET_C].val;
 
 	p_msg[tx_len++] = (UCHAR8)(MADD_METER_OFFSET_D&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_METER_OFFSET_D>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_METER_OFFSET_D].val;
 #endif 
 
 	p_msg[tx_len++] = (UCHAR8)(MADD_A_DL_RF_EN&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_A_DL_RF_EN>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_A_DL_RF_EN].val;
 
 	p_msg[tx_len++] = (UCHAR8)(MADD_A_UL_RF_EN&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_A_UL_RF_EN>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_A_UL_RF_EN].val;
 
 	p_msg[tx_len++] = (UCHAR8)(MADD_B_DL_RF_EN&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_B_DL_RF_EN>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_B_DL_RF_EN].val;
 
 	p_msg[tx_len++] = (UCHAR8)(MADD_B_UL_RF_EN&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_B_UL_RF_EN>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_B_UL_RF_EN].val;
 
 	p_msg[tx_len++] = (UCHAR8)(MADD_C_DL_RF_EN&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_C_DL_RF_EN>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_C_DL_RF_EN].val;
 
 	p_msg[tx_len++] = (UCHAR8)(MADD_C_UL_RF_EN&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_C_UL_RF_EN>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_C_UL_RF_EN].val;
 
 	p_msg[tx_len++] = (UCHAR8)(MADD_D_DL_RF_EN&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_D_DL_RF_EN>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_D_DL_RF_EN].val;
 
 	p_msg[tx_len++] = (UCHAR8)(MADD_D_UL_RF_EN&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_D_UL_RF_EN>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_D_UL_RF_EN].val;
 
 	p_msg[tx_len++] = (UCHAR8)(MADD_FREQ_MODIF_VAL_D&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_FREQ_MODIF_VAL_D>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_FREQ_MODIF_VAL_D].val;	
 
 	p_msg[tx_len++] = (UCHAR8)(MADD_DELAY_MODE_A&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_DELAY_MODE_A>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_DELAY_MODE_A].val;	
 
 	p_msg[tx_len++] = (UCHAR8)(MADD_DELAY_MODE_B&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_DELAY_MODE_B>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_DELAY_MODE_B].val;	
 
 	p_msg[tx_len++] = (UCHAR8)(MADD_DELAY_MODE_C&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_DELAY_MODE_C>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_DELAY_MODE_C].val;	
 	
 	p_msg[tx_len++] = (UCHAR8)(MADD_DELAY_MODE_D&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_DELAY_MODE_D>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_DELAY_MODE_D].val;	
 
-	// RECµÄA¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_A_REC_DPX_IG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Aæ®µè¾“å…¥åŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_A_REC_DPX_IG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_A_REC_DPX_IG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_A_UDPX_IN_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_A_UDPX_IN_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 	
-	// RECµÄA¶ÎÊä³öË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_A_REC_DPX_OG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Aæ®µè¾“å‡ºåŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_A_REC_DPX_OG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_A_REC_DPX_OG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_A_UDPX_OUT_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_A_UDPX_OUT_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 
-	// RECµÄB¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_B_REC_DPX_IG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Bæ®µè¾“å…¥åŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_B_REC_DPX_IG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_B_REC_DPX_IG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_B_UDPX_IN_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_B_UDPX_IN_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 	
-	// RECµÄB¶ÎÊä³öË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_B_REC_DPX_OG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Bæ®µè¾“å‡ºåŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_B_REC_DPX_OG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_B_REC_DPX_OG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_B_UDPX_OUT_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_B_UDPX_OUT_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 
 	
-	// RECµÄC¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_C_REC_DPX_IG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Cæ®µè¾“å…¥åŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_C_REC_DPX_IG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_C_REC_DPX_IG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_C_UDPX_IN_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_C_UDPX_IN_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 	
-	// RECµÄC¶ÎÊä³öË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_C_REC_DPX_OG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Cæ®µè¾“å‡ºåŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_C_REC_DPX_OG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_C_REC_DPX_OG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_C_UDPX_OUT_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_C_UDPX_OUT_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 
-	// RECµÄD¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_D_REC_DPX_IG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Dæ®µè¾“å…¥åŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_D_REC_DPX_IG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_D_REC_DPX_IG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_D_UDPX_IN_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_D_UDPX_IN_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 	
-	// RECµÄD¶ÎÊä³öË«¹¤Æ÷ÔöÒæ
-	p_msg[tx_len++] = (UCHAR8)(MADD_D_REC_DPX_OG&0x00FF);			// REÖĞµÄRECË«¹¤Æ÷²ÎÊıµØÖ·
+	// RECçš„Dæ®µè¾“å‡ºåŒå·¥å™¨å¢ç›Š
+	p_msg[tx_len++] = (UCHAR8)(MADD_D_REC_DPX_OG&0x00FF);			// REä¸­çš„RECåŒå·¥å™¨å‚æ•°åœ°å€
 	p_msg[tx_len++] = (UCHAR8)((MADD_D_REC_DPX_OG>>8)&0x00FF);
-	p_msg[tx_len++] = 2;		// ³¤¶È
-	tmp = sys_param_2b[MADD_D_UDPX_OUT_GAIN].val;		// Êı¾İ
+	p_msg[tx_len++] = 2;		// é•¿åº¦
+	tmp = sys_param_2b[MADD_D_UDPX_OUT_GAIN].val;		// æ•°æ®
 	p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
 	TRACE_INFO("-------SetReDpxInfo---------MADD_A_REC_DPX_IG:%04X\r\n",sys_param_2b[MADD_A_UDPX_IN_GAIN].val);		
 	
-	// ¿í´øÂË²¨Æ÷´ø¿í
+	// å®½å¸¦æ»¤æ³¢å™¨å¸¦å®½
 	p_msg[tx_len++] = (UCHAR8)(MADD_GSM_BW_SEL&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_GSM_BW_SEL>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = sys_param_1b[MADD_GSM_BW_SEL].val;	
 	
 	
@@ -2830,7 +2830,7 @@ void SetReUlPowerGain()
 
 /*************************************************************
 Name: SetReSysConfig          
-Description: ÉèÖÃREµÄÉÏĞĞÊä³ö¹¦ÂÊÃÅÏŞ
+Description: è®¾ç½®REçš„ä¸Šè¡Œè¾“å‡ºåŠŸç‡é—¨é™
 Input: void
 Return: void
 **************************************************************/
@@ -2850,12 +2850,12 @@ void SetReBwConfig()
 	p_msg[MSG_ACK_FLAG] = MSG_ACK_MASTER_SEND;
 	tx_len = MSG_PKT_HEAD_SIZE; 
 
-	// ¿í´øÂË²¨Æ÷´ø¿í
+	// å®½å¸¦æ»¤æ³¢å™¨å¸¦å®½
 	p_msg[tx_len++] = (UCHAR8)(MADD_GSM_BW_SEL&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_GSM_BW_SEL>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = sys_param_1b[MADD_GSM_BW_SEL].val;	
 
 	SendMsgPkt(tx_len, p_msg);
@@ -2864,7 +2864,7 @@ void SetReBwConfig()
 
 /*************************************************************
 Name: SetReSysConfig          
-Description: ÉèÖÃREµÄÑÓÊ±Ä£Ê½ 
+Description: è®¾ç½®REçš„å»¶æ—¶æ¨¡å¼ 
 Input: void 
 Return: void 
 **************************************************************/
@@ -2874,7 +2874,7 @@ void SetReSysConfig()
 	UINT32 tx_len;
 	UINT16 tmp;
 
-	if ( 0!=(sys_work_info&SYSTEM_FLAG_ATT_ADJ) )		// ´¦ÓÚĞ£×¼×´Ì¬£¬²»ÉèÖÃRE²ÎÊı
+	if ( 0!=(sys_work_info&SYSTEM_FLAG_ATT_ADJ) )		// å¤„äºæ ¡å‡†çŠ¶æ€ï¼Œä¸è®¾ç½®REå‚æ•°
 	{
 		return;
 	}
@@ -2896,12 +2896,12 @@ void SetReSysConfig()
 	tx_len = MSG_PKT_HEAD_SIZE;
 
 //	tmp = sys_param_2b[MADD_A_UCH_POW1].addr;
-	// ÑÓÊ±Ä£Ê½µØÖ·
+	// å»¶æ—¶æ¨¡å¼åœ°å€
 	p_msg[tx_len++] = (UCHAR8)(MADD_DELAY_MODE&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_DELAY_MODE>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = sys_param_1b[MADD_DELAY_MODE].val;	
 
 	sys_param_1b[MADD_DELAY_MODE_A].val=sys_param_1b[MADD_DELAY_MODE].val;
@@ -2909,36 +2909,36 @@ void SetReSysConfig()
 	sys_param_1b[MADD_DELAY_MODE_C].val=sys_param_1b[MADD_DELAY_MODE].val;
 	sys_param_1b[MADD_DELAY_MODE_D].val=sys_param_1b[MADD_DELAY_MODE].val;
 	
-	// ÑÓÊ±Ä£Ê½µØÖ·
+	// å»¶æ—¶æ¨¡å¼åœ°å€
 	p_msg[tx_len++] = (UCHAR8)(MADD_DELAY_MODE_A&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_DELAY_MODE_A>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = sys_param_1b[MADD_DELAY_MODE_A].val;	
 
-	// ÑÓÊ±Ä£Ê½µØÖ·
+	// å»¶æ—¶æ¨¡å¼åœ°å€
 	p_msg[tx_len++] = (UCHAR8)(MADD_DELAY_MODE_B&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_DELAY_MODE_B>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = sys_param_1b[MADD_DELAY_MODE_B].val;	
 
-	// ÑÓÊ±Ä£Ê½µØÖ·
+	// å»¶æ—¶æ¨¡å¼åœ°å€
 	p_msg[tx_len++] = (UCHAR8)(MADD_DELAY_MODE_C&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_DELAY_MODE_C>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = sys_param_1b[MADD_DELAY_MODE_C].val;		
 
-	// ÑÓÊ±Ä£Ê½µØÖ·
+	// å»¶æ—¶æ¨¡å¼åœ°å€
 	p_msg[tx_len++] = (UCHAR8)(MADD_DELAY_MODE_D&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_DELAY_MODE_D>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	p_msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	p_msg[tx_len++] = sys_param_1b[MADD_DELAY_MODE_D].val;		
 
 	//crc
@@ -2951,13 +2951,13 @@ void SetReSysConfig()
 
 /*************************************************************
 Name: SetReDelayMode          
-Description: ÉèÖÃREµÄTD²ÎÊı
+Description: è®¾ç½®REçš„TDå‚æ•°
 Input: void 
 Return: void
 **************************************************************/
 void SetReTDParam()
 {
-	const UINT16 mo_param_add_list1[]={		// Ò»×Ö½Ú²ÎÊı£¬TDÍ¨µÀÉÏÏÂĞĞÉèÖÃ
+	const UINT16 mo_param_add_list1[]={		// ä¸€å­—èŠ‚å‚æ•°ï¼ŒTDé€šé“ä¸Šä¸‹è¡Œè®¾ç½®
 		MADD_TD_T0_UD, 
 		MADD_TD_T1_UD, 	
 		MADD_TD_T2_UD, 
@@ -2966,7 +2966,7 @@ void SetReTDParam()
 		MADD_TD_T5_UD,	
 		MADD_TD_T6_UD,
 	};
-	const UINT16 mo_param_add_list2[]={		 // ¶ş×Ö½Ú²ÎÊı£¬TD×ª»»µãÊ±¼ä
+	const UINT16 mo_param_add_list2[]={		 // äºŒå­—èŠ‚å‚æ•°ï¼ŒTDè½¬æ¢ç‚¹æ—¶é—´
 		MADD_TD_1ST_CP_TIME,
 		MADD_TD_2ND_CP_TIME, 
 		MADD_TD_LNA_ON_TIME, 
@@ -2978,7 +2978,7 @@ void SetReTDParam()
 	UINT16 tmp;
 	UINT32 i;
 
-	if ( 0!=(sys_work_info&SYSTEM_FLAG_ATT_ADJ) )		// ´¦ÓÚĞ£×¼×´Ì¬£¬²»ÉèÖÃRE²ÎÊı
+	if ( 0!=(sys_work_info&SYSTEM_FLAG_ATT_ADJ) )		// å¤„äºæ ¡å‡†çŠ¶æ€ï¼Œä¸è®¾ç½®REå‚æ•°
 	{
 		return;
 	}
@@ -3004,24 +3004,24 @@ void SetReTDParam()
 	for ( i=0; i<ARRY_NUM(mo_param_add_list1, UINT16); i++)
 	{
 		tmp = mo_param_add_list1[i];	// MADD_TD_T0_UD+i;
-		// TDÊ±Ï¶ÉÏÏÂĞĞÄ£Ê½µØÖ·
+		// TDæ—¶éš™ä¸Šä¸‹è¡Œæ¨¡å¼åœ°å€
 		p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 		p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
-		// ³¤¶È
+		// é•¿åº¦
 		p_msg[tx_len++] = 1;
-		// Êı¾İ
+		// æ•°æ®
 		p_msg[tx_len++] = sys_param_1b[tmp].val;	
 	}
 	
 	for ( i=0; i<ARRY_NUM(mo_param_add_list2, UINT16); i++)
 	{
 		tmp = mo_param_add_list2[i];	// MADD_TD_T0_UD+i;
-		// TDÊ±Ï¶ÉÏÏÂĞĞÄ£Ê½µØÖ·
+		// TDæ—¶éš™ä¸Šä¸‹è¡Œæ¨¡å¼åœ°å€
 		p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 		p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
-		// ³¤¶È
+		// é•¿åº¦
 		p_msg[tx_len++] = 2;
-		// Êı¾İ
+		// æ•°æ®
 		tmp = sys_param_2b[tmp].val;
 		p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
 		p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
@@ -3137,7 +3137,7 @@ void SetReTDParam()
 
 /*************************************************************
 Name:SetAttByParam
-Description: ½«²ÎÊı±íÖĞµÄË¥¼õÆ÷ÖµĞ´ÈëFPGAÖĞ
+Description: å°†å‚æ•°è¡¨ä¸­çš„è¡°å‡å™¨å€¼å†™å…¥FPGAä¸­
 Input: void
 Output:void         
 Return:void
@@ -3147,19 +3147,19 @@ void SetAttByParam( UCHAR8 ab_flag )
 #if 0
 	if ( SYS_A_FLAG==ab_flag )
 	{
-		// Ç°¶ËÊäÈëË¥¼õÆ÷1
+		// å‰ç«¯è¾“å…¥è¡°å‡å™¨1
 		if ( sys_param_1b[MADD_A_IN_ATT1].val < 64 )
 		{
 			FpgaSetAttValue( SYS_A_FLAG, FPGA_AF_ATT1, sys_param_1b[MADD_A_IN_ATT1].val );
 		}
 
-		// Ç°¶ËÊäÈëË¥¼õÆ÷2
+		// å‰ç«¯è¾“å…¥è¡°å‡å™¨2
 		if ( sys_param_1b[MADD_A_IN_ATT2].val < 64 )
 		{
 			FpgaSetAttValue( SYS_A_FLAG, FPGA_AF_ATT2, sys_param_1b[MADD_A_IN_ATT2].val );
 		}
 
-		// ºó¶ËÊä³öË¥¼õÆ÷1
+		// åç«¯è¾“å‡ºè¡°å‡å™¨1
 		if ( sys_param_1b[MADD_A_OUT_ATT1].val < 64 )
 		{
 			FpgaSetAttValue( SYS_A_FLAG, FPGA_AB_ATT1, sys_param_1b[MADD_A_OUT_ATT1].val );
@@ -3167,19 +3167,19 @@ void SetAttByParam( UCHAR8 ab_flag )
 	}
 	else if ( SYS_B_FLAG==ab_flag )
 	{
-		// Ç°¶ËÊäÈëË¥¼õÆ÷1
+		// å‰ç«¯è¾“å…¥è¡°å‡å™¨1
 		if ( sys_param_1b[MADD_B_IN_ATT1].val < 64 )
 		{
 			FpgaSetAttValue( SYS_B_FLAG, FPGA_BF_ATT1, sys_param_1b[MADD_B_IN_ATT1].val );
 		}
 
-		// Ç°¶ËÊäÈëË¥¼õÆ÷2
+		// å‰ç«¯è¾“å…¥è¡°å‡å™¨2
 		if ( sys_param_1b[MADD_B_IN_ATT2].val < 64 )
 		{
 			FpgaSetAttValue( SYS_B_FLAG, FPGA_BF_ATT2, sys_param_1b[MADD_B_IN_ATT2].val );
 		}
 
-		// ºó¶ËÊä³öË¥¼õÆ÷1
+		// åç«¯è¾“å‡ºè¡°å‡å™¨1
 		if ( sys_param_1b[MADD_B_OUT_ATT1].val < 64 )
 		{
 			FpgaSetAttValue( SYS_B_FLAG, FPGA_BB_ATT1, sys_param_1b[MADD_B_OUT_ATT1].val );
@@ -3190,7 +3190,7 @@ void SetAttByParam( UCHAR8 ab_flag )
 
 /*************************************************************
 Name: SetChannelByParam
-Description: ¸ù¾İ²ÎÊıÖĞµÄÆµµãºÅÀ´ÅäÖÃÆµÂÊ
+Description: æ ¹æ®å‚æ•°ä¸­çš„é¢‘ç‚¹å·æ¥é…ç½®é¢‘ç‡
 Input: void
 Output:void         
 Return:void
@@ -3228,7 +3228,7 @@ void SetChannelByParam( UCHAR8 abcd_flag )
 
 /*************************************************************
 Name: GetPsfFromRe
-Description: ´ÓRE¶ÁÈ¡Ñ¡Æµ¹¦ÂÊÖµ£¬Ğ£×¼Ê±ÓÃ
+Description: ä»REè¯»å–é€‰é¢‘åŠŸç‡å€¼ï¼Œæ ¡å‡†æ—¶ç”¨
 Input: void
 Output:void         
 Return:void
@@ -3244,13 +3244,13 @@ void GetPsfFromRe( UCHAR8 ab_flag, UCHAR8 ud_flag )
 	{
 		if ( ATT_UL_ADJ==ud_flag )
 		{
-			reg_psf_l = FPGA_REG_RE_A_UPSF_L;		// ÉÏĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊµÍ16Î»
-			reg_psf_h = FPGA_REG_RE_A_UPSF_H;		// ÉÏĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊ¸ß16Î»
+			reg_psf_l = FPGA_REG_RE_A_UPSF_L;		// ä¸Šè¡Œé€‰é¢‘é€šé“åŠŸç‡ä½16ä½
+			reg_psf_h = FPGA_REG_RE_A_UPSF_H;		// ä¸Šè¡Œé€‰é¢‘é€šé“åŠŸç‡é«˜16ä½
 		}
 		else
 		{
-			reg_psf_l = FPGA_REG_RE_A_DPSF_L;		// ÏÂĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊµÍ16Î»
-			reg_psf_h = FPGA_REG_RE_A_DPSF_H;		// ÏÂĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊ¸ß16Î»
+			reg_psf_l = FPGA_REG_RE_A_DPSF_L;		// ä¸‹è¡Œé€‰é¢‘é€šé“åŠŸç‡ä½16ä½
+			reg_psf_h = FPGA_REG_RE_A_DPSF_H;		// ä¸‹è¡Œé€‰é¢‘é€šé“åŠŸç‡é«˜16ä½
 		}
 		switch(fpga_cfg.a_net_type)
 		{
@@ -3266,16 +3266,16 @@ void GetPsfFromRe( UCHAR8 ab_flag, UCHAR8 ud_flag )
 	{
 		if ( ATT_UL_ADJ==ud_flag )
 		{
-			reg_psf_l = FPGA_REG_RE_B_UPSF_L;		// ÉÏĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊµÍ16Î»
-			reg_psf_h = FPGA_REG_RE_B_UPSF_H;		// ÉÏĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊ¸ß16Î»
+			reg_psf_l = FPGA_REG_RE_B_UPSF_L;		// ä¸Šè¡Œé€‰é¢‘é€šé“åŠŸç‡ä½16ä½
+			reg_psf_h = FPGA_REG_RE_B_UPSF_H;		// ä¸Šè¡Œé€‰é¢‘é€šé“åŠŸç‡é«˜16ä½
 		}
 		else
 		{
-			reg_psf_l = FPGA_REG_RE_B_DPSF_L;		// ÏÂĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊµÍ16Î»
-			reg_psf_h = FPGA_REG_RE_B_DPSF_H;		// ÏÂĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊ¸ß16Î»
+			reg_psf_l = FPGA_REG_RE_B_DPSF_L;		// ä¸‹è¡Œé€‰é¢‘é€šé“åŠŸç‡ä½16ä½
+			reg_psf_h = FPGA_REG_RE_B_DPSF_H;		// ä¸‹è¡Œé€‰é¢‘é€šé“åŠŸç‡é«˜16ä½
 		}
-		#if ( defined(FUNC_FREQ_POINT_SEARCH_EN) && defined(FUNC_FPS_AUTO_SET) && defined(FUNC_FPS_AVG_FP) )	// ÆôÓÃÆµµãËÑË÷£¬ÇÒ×Ô¶¯Æ½¾ùÉèÖÃÆµµã
-			ch = 8;		// B¶ÎÉÏÏÂĞĞ²ÉÓÃÍ¨µÀ8Ğ£×¼
+		#if ( defined(FUNC_FREQ_POINT_SEARCH_EN) && defined(FUNC_FPS_AUTO_SET) && defined(FUNC_FPS_AVG_FP) )	// å¯ç”¨é¢‘ç‚¹æœç´¢ï¼Œä¸”è‡ªåŠ¨å¹³å‡è®¾ç½®é¢‘ç‚¹
+			ch = 8;		// Bæ®µä¸Šä¸‹è¡Œé‡‡ç”¨é€šé“8æ ¡å‡†
 		#endif
 
 		switch(fpga_cfg.b_net_type)
@@ -3292,13 +3292,13 @@ void GetPsfFromRe( UCHAR8 ab_flag, UCHAR8 ud_flag )
 	{
 		if ( ATT_UL_ADJ==ud_flag )
 		{
-			reg_psf_l = FPGA_REG_RE_C_UPSF_L;		// ÉÏĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊµÍ16Î»
-			reg_psf_h = FPGA_REG_RE_C_UPSF_H;		// ÉÏĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊ¸ß16Î»
+			reg_psf_l = FPGA_REG_RE_C_UPSF_L;		// ä¸Šè¡Œé€‰é¢‘é€šé“åŠŸç‡ä½16ä½
+			reg_psf_h = FPGA_REG_RE_C_UPSF_H;		// ä¸Šè¡Œé€‰é¢‘é€šé“åŠŸç‡é«˜16ä½
 		}
 		else
 		{
-			reg_psf_l = FPGA_REG_RE_C_DPSF_L;		// ÏÂĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊµÍ16Î»
-			reg_psf_h = FPGA_REG_RE_C_DPSF_H;		// ÏÂĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊ¸ß16Î»
+			reg_psf_l = FPGA_REG_RE_C_DPSF_L;		// ä¸‹è¡Œé€‰é¢‘é€šé“åŠŸç‡ä½16ä½
+			reg_psf_h = FPGA_REG_RE_C_DPSF_H;		// ä¸‹è¡Œé€‰é¢‘é€šé“åŠŸç‡é«˜16ä½
 		}
 
 		switch(fpga_cfg.c_net_type)
@@ -3315,13 +3315,13 @@ void GetPsfFromRe( UCHAR8 ab_flag, UCHAR8 ud_flag )
 	{
 		if ( ATT_UL_ADJ==ud_flag )
 		{
-			reg_psf_l = FPGA_REG_RE_D_UPSF_L;		// ÉÏĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊµÍ16Î»
-			reg_psf_h = FPGA_REG_RE_D_UPSF_H;		// ÉÏĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊ¸ß16Î»
+			reg_psf_l = FPGA_REG_RE_D_UPSF_L;		// ä¸Šè¡Œé€‰é¢‘é€šé“åŠŸç‡ä½16ä½
+			reg_psf_h = FPGA_REG_RE_D_UPSF_H;		// ä¸Šè¡Œé€‰é¢‘é€šé“åŠŸç‡é«˜16ä½
 		}
 		else
 		{
-			reg_psf_l = FPGA_REG_RE_D_DPSF_L;		// ÏÂĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊµÍ16Î»
-			reg_psf_h = FPGA_REG_RE_D_DPSF_H;		// ÏÂĞĞÑ¡ÆµÍ¨µÀ¹¦ÂÊ¸ß16Î»
+			reg_psf_l = FPGA_REG_RE_D_DPSF_L;		// ä¸‹è¡Œé€‰é¢‘é€šé“åŠŸç‡ä½16ä½
+			reg_psf_h = FPGA_REG_RE_D_DPSF_H;		// ä¸‹è¡Œé€‰é¢‘é€šé“åŠŸç‡é«˜16ä½
 		}
 
 		switch(fpga_cfg.d_net_type)
@@ -3335,10 +3335,10 @@ void GetPsfFromRe( UCHAR8 ab_flag, UCHAR8 ud_flag )
 		}
 	}
 
-	// °üÍ·
-	msg[MSG_DES_FP] = ADJ_ADDR_AU;	    // ËùÓĞ¹â¿Ú
-	msg[MSG_DES_RE] = ADJ_ADDR_EU;					// µÚÒ»¸öMEU	
-	msg[MSG_DES_REE] = ADJ_ADDR_RU;					// µÚÒ»¸öMRU
+	// åŒ…å¤´
+	msg[MSG_DES_FP] = ADJ_ADDR_AU;	    // æ‰€æœ‰å…‰å£
+	msg[MSG_DES_RE] = ADJ_ADDR_EU;					// ç¬¬ä¸€ä¸ªMEU	
+	msg[MSG_DES_REE] = ADJ_ADDR_RU;					// ç¬¬ä¸€ä¸ªMRU
 	msg[MSG_SRC_FP] = LOCAL_ADD_FP;         //00
 	msg[MSG_SRC_RE] = LOCAL_ADD_RE;         //00
 	msg[MSG_SRC_REE] = LOCAL_ADD_REE;         //00
@@ -3348,15 +3348,15 @@ void GetPsfFromRe( UCHAR8 ab_flag, UCHAR8 ud_flag )
 	msg[MSG_RESERVE2] = 0x11;
 
 	tx_len = MSG_PKT_HEAD_SIZE;
-	// µÍµØÖ·
-	msg[tx_len++] = attr|ch;		// Í¨µÀ0
+	// ä½åœ°å€
+	msg[tx_len++] = attr|ch;		// é€šé“0
 	msg[tx_len++] = attr2;		
 	msg[tx_len++] = (UCHAR8)(reg_psf_l&0x0ff);
 	msg[tx_len++] = (UCHAR8)((reg_psf_l>>8)&0x0ff);
 	msg[tx_len++] = 0;
 	msg[tx_len++] = 0;
-	// ¸ß16Î»µØÖ·
-	msg[tx_len++] = attr|ch;		// Í¨µÀ0
+	// é«˜16ä½åœ°å€
+	msg[tx_len++] = attr|ch;		// é€šé“0
 	msg[tx_len++] = attr2;		
 	msg[tx_len++] = (UCHAR8)(reg_psf_h&0x0ff);
 	msg[tx_len++] = (UCHAR8)((reg_psf_h>>8)&0x0ff);
@@ -3373,11 +3373,11 @@ void GetPsfFromRe( UCHAR8 ab_flag, UCHAR8 ud_flag )
 
 /*************************************************************
 Name: SetReID         
-Description: ÉèÖÃREµÄIDºÅ
+Description: è®¾ç½®REçš„IDå·
 Input: 
-	fp: ¹â¿ÚºÅ(0¿ªÊ¼)
-	re: ½ÚµãºÅ(0¿ªÊ¼)
-	id: IDºÅ
+	fp: å…‰å£å·(0å¼€å§‹)
+	re: èŠ‚ç‚¹å·(0å¼€å§‹)
+	id: IDå·
 Return: void
 **************************************************************/
 void SetReID( UCHAR8 fp, UCHAR8 re, UCHAR8 rf,  UCHAR8 id )
@@ -3398,12 +3398,12 @@ void SetReID( UCHAR8 fp, UCHAR8 re, UCHAR8 rf,  UCHAR8 id )
 	msg[MSG_ACK_FLAG] = MSG_ACK_MASTER_SEND;
 	tx_len = MSG_PKT_HEAD_SIZE;
 
-	// IDºÅµØÖ·
+	// IDå·åœ°å€
 	msg[tx_len++] = (UCHAR8)(MADD_MODULE_HRI_ID&0x00FF);	
 	msg[tx_len++] = (UCHAR8)((MADD_MODULE_HRI_ID>>8)&0x00FF);
-	// ³¤¶È
+	// é•¿åº¦
 	msg[tx_len++] = 1;
-	// Êı¾İ
+	// æ•°æ®
 	msg[tx_len++] = id;	
 	
 	msg[tx_len] = 0;	
@@ -3416,33 +3416,33 @@ void SetReID( UCHAR8 fp, UCHAR8 re, UCHAR8 rf,  UCHAR8 id )
 void SysLowPowerMode()
 {
 #ifndef AD9528
-	// 9517³ıÁË¸øFPGAµÄÊ±ÖÓÍâ,È«²¿PowerDown
+	// 9517é™¤äº†ç»™FPGAçš„æ—¶é’Ÿå¤–,å…¨éƒ¨PowerDown
 	Ad9524Write( 0xF0, 0x01|Ad9524Read(0xF0) );		// OUT0
 	Ad9524Write( 0xF1, 0x01|Ad9524Read(0xF1) );		// OUT1
 	Ad9524Write( 0xF4, 0x01|Ad9524Read(0xF4) );		// OUT2
 	Ad9524Write( 0xF5, 0x01|Ad9524Read(0xF5) );		// OUT3
-	// OUT4, OUT5×÷ÎªSerdesµÄÊ±ÖÓ¸øFPGAÌá¹©¹¤×÷Ê±ÖÓ,²»¹Ø¶Ï
+	// OUT4, OUT5ä½œä¸ºSerdesçš„æ—¶é’Ÿç»™FPGAæä¾›å·¥ä½œæ—¶é’Ÿ,ä¸å…³æ–­
 	Ad9524Write( 0x142, 0x01|Ad9524Read(0x142) );		// OUT6
 	Ad9524Write( 0x143, 0x01|Ad9524Read(0x143) );		// OUT7
 #endif
-	// AD-PowerDown, 08¼Ä´æÆ÷Ğ´01-ÄÚ²¿ÍêÈ«µôµç
+	// AD-PowerDown, 08å¯„å­˜å™¨å†™01-å†…éƒ¨å®Œå…¨æ‰ç”µ
 	//Ad6649Write(AD6655_ADD_CHANNEL, 0x03);			// 0x05
 	Ad6649Write(0x08, 0x01);  
 
-	// DA-PowerDown, 0µØÖ·µÄbit4ÖÃ1
+	// DA-PowerDown, 0åœ°å€çš„bit4ç½®1
 	Ad9122Write( 0, (1<<4)|Ad9122Read(0, DA_A_FLAG), DA_A_FLAG );		
 	Ad9122Write( 0, (1<<4)|Ad9122Read(0, DA_B_FLAG), DA_B_FLAG );		
 	
-	// 4153-PowerDown, 2µØÖ·µÄbit4ÖÃ1
+	// 4153-PowerDown, 2åœ°å€çš„bit4ç½®1
 	//SetADF4153Reg( (1<<4)|GetADF4153Reg(2, MIXER_FRONT, MIXER_A_FLAG), MIXER_FRONT, MIXER_A_FLAG);
 	//SetADF4153Reg( (1<<4)|GetADF4153Reg(2, MIXER_BACK, MIXER_A_FLAG), MIXER_BACK, MIXER_A_FLAG);
 	//SetADF4153Reg( (1<<4)|GetADF4153Reg(2, MIXER_FRONT, MIXER_B_FLAG), MIXER_FRONT, MIXER_B_FLAG);
 	//SetADF4153Reg( (1<<4)|GetADF4153Reg(2, MIXER_BACK, MIXER_B_FLAG), MIXER_BACK, MIXER_B_FLAG);
 
-	// ¹Ø±Õ5.5VÄ£ÄâµçÔ´
+	// å…³é—­5.5Væ¨¡æ‹Ÿç”µæº
 	DisablePower5V5;
 
-	// ÉèÖÃµÍ¹¦ºÄÄ£Ê½±êÖ¾
+	// è®¾ç½®ä½åŠŸè€—æ¨¡å¼æ ‡å¿—
 	sys_work_info |= SYSTEM_FLAG_LOW_POWER;
 
 }
@@ -3451,59 +3451,59 @@ void SysNormalWorkMode()
 {
 	sys_work_info &= (~SYSTEM_FLAG_LOW_POWER);
 #ifndef AD9528
-	// ³õÊ¼»¯9517
+	// åˆå§‹åŒ–9517
 	Ad9524Write( 0xF0, (~0x01)&Ad9524Read(0xF0) );		// OUT0
 	Ad9524Write( 0xF1, (~0x01)&Ad9524Read(0xF1) );		// OUT1
 	Ad9524Write( 0xF4, (~0x01)&Ad9524Read(0xF4) );		// OUT2
 	Ad9524Write( 0xF5, (~0x01)&Ad9524Read(0xF5) );		// OUT3
-	// OUT4, OUT5×÷ÎªSerdesµÄÊ±ÖÓ¸øFPGAÌá¹©¹¤×÷Ê±ÖÓ,²»¹Ø¶Ï
+	// OUT4, OUT5ä½œä¸ºSerdesçš„æ—¶é’Ÿç»™FPGAæä¾›å·¥ä½œæ—¶é’Ÿ,ä¸å…³æ–­
 	Ad9524Write( 0x142, (~0x01)&Ad9524Read(0x142) );		// OUT6
 	Ad9524Write( 0x143, (~0x01)&Ad9524Read(0x143) );		// OUT7
 #endif
-	// ³õÊ¼»¯4153
+	// åˆå§‹åŒ–4153
 	//InitADF4153AF();
 	//InitADF4153AB();
 	//InitADF4153BF();
 	//InitADF4153BB();
 		
-	// ³õÊ¼»¯AD
+	// åˆå§‹åŒ–AD
 	Ad6649Write(0x08, 0x00);
 
-	// ³õÊ¼»¯DA
+	// åˆå§‹åŒ–DA
 	Ad9122Write( 0, (~0x10)&Ad9122Read(0, DA_A_FLAG), DA_A_FLAG );		
 	Ad9122Write( 0, (~0x10)&Ad9122Read(0, DA_B_FLAG), DA_B_FLAG );		
 
-	// ´ò¿ª5.5VÄ£ÄâµçÔ´
+	// æ‰“å¼€5.5Væ¨¡æ‹Ÿç”µæº
 	EnablePower5V5;
 
 }
 
 /*************************************************************
 Name:CheckReID          
-Params: [reset_fp: 0-¼ÌĞøÖ®Ç°µÄËÑË÷£¬·Ç0-ÖØÖÃËÑË÷ÆğÊ¼Æµµã£¬²¢ÖØĞÂ¿ªÊ¼ËÑË÷]
+Params: [reset_fp: 0-ç»§ç»­ä¹‹å‰çš„æœç´¢ï¼Œé0-é‡ç½®æœç´¢èµ·å§‹é¢‘ç‚¹ï¼Œå¹¶é‡æ–°å¼€å§‹æœç´¢]
 Return: void
-Description: TD×Ô¶¯ÆµµãËÑË÷¹¦ÄÜ£¬µ±·¢ÏÖTDÎŞ·¨Í¬²½Ö®ºó£¬×Ô¶¯ÇĞ»»Æµµã£¬ÖªµÀTDÖØĞÂÍ¬²½£¬º¯ÊıÒªÇóÃ¿Ãëµ÷ÓÃ1´Î
+Description: TDè‡ªåŠ¨é¢‘ç‚¹æœç´¢åŠŸèƒ½ï¼Œå½“å‘ç°TDæ— æ³•åŒæ­¥ä¹‹åï¼Œè‡ªåŠ¨åˆ‡æ¢é¢‘ç‚¹ï¼ŒçŸ¥é“TDé‡æ–°åŒæ­¥ï¼Œå‡½æ•°è¦æ±‚æ¯ç§’è°ƒç”¨1æ¬¡
 **************************************************************/
 void TdAutoSearchFp( UCHAR8 reset_fp )
 {
 #ifdef FUNC_TD_AUTO_SEARCH_FP
-	static UCHAR8 search_ch = 0;	// td_scdmaËÑË÷Í¨µÀºÅ£¬µÚ1Í¨µÀÎª½çÃæÉèÖÃµÄÆµµã£¬½ÓÏÂÀ´Ç°9¸öÎª»ªÎªµÄ¹Ì¶¨Æµµã£¬ºó9¸öÎª»ªÎªµÄ¹Ì¶¨Æµµã:10055¡¢10063¡¢10071¡¢10080¡¢10088¡¢10096¡¢10104¡¢10112¡¢10120,10054,10062,10070,10079,10087,10095,10104,10112,10120
+	static UCHAR8 search_ch = 0;	// td_scdmaæœç´¢é€šé“å·ï¼Œç¬¬1é€šé“ä¸ºç•Œé¢è®¾ç½®çš„é¢‘ç‚¹ï¼Œæ¥ä¸‹æ¥å‰9ä¸ªä¸ºåä¸ºçš„å›ºå®šé¢‘ç‚¹ï¼Œå9ä¸ªä¸ºåä¸ºçš„å›ºå®šé¢‘ç‚¹:10055ã€10063ã€10071ã€10080ã€10088ã€10096ã€10104ã€10112ã€10120,10054,10062,10070,10079,10087,10095,10104,10112,10120
 
 	UINT16 tmp;
 	UINT16 cnt;
 	UINT16 search_ch_loop;
 
 
-	tmp = sys_param_2b[MADD_B_DL_CHANNEL1].val; //ÆğÊ¼Æµµã
+	tmp = sys_param_2b[MADD_B_DL_CHANNEL1].val; //èµ·å§‹é¢‘ç‚¹
 	tds_dl_channel[0]=tmp;
 	TRACE_INFO("Start FrePoint=[%d]\r\n",tmp);
 	TRACE_INFO("\r\n");
-	cnt = 16; //µ±Ç°¹Ì¶¨Ğ´È«²¿15¸öÆµµã
+	cnt = 16; //å½“å‰å›ºå®šå†™å…¨éƒ¨15ä¸ªé¢‘ç‚¹
 	//TRACE_INFO("FrePonit Count=[%d]\r\n",cnt);
 	FPGA_ENABLE_WRITE;
 	FpgaWriteRegister(FPGA_REG_TD_MAIN_CH_CNT, (cnt&0x00FF));
 	FPGA_DISABLE_WRITE;
-	//¼ÆËãÆµµã¸öÊı²¢Ğ´ÈëFPGA
+	//è®¡ç®—é¢‘ç‚¹ä¸ªæ•°å¹¶å†™å…¥FPGA
 	for(search_ch=1;search_ch<16;search_ch++)
 	{
 		if(tds_dl_channel[search_ch]>=tmp)
@@ -3511,8 +3511,8 @@ void TdAutoSearchFp( UCHAR8 reset_fp )
 			break;
 		}   
 	}
-	search_ch_loop = search_ch; //×î´óÆµµãÈÆ»ØÀ´×îĞ¡ºóÒªĞ´µÄÆµµã¸öÊı
-         //¼ÆËãÆµÂÊ×Ö²¢Ğ´ÈëFPGA
+	search_ch_loop = search_ch; //æœ€å¤§é¢‘ç‚¹ç»•å›æ¥æœ€å°åè¦å†™çš„é¢‘ç‚¹ä¸ªæ•°
+         //è®¡ç®—é¢‘ç‡å­—å¹¶å†™å…¥FPGA
 	for(;search_ch<16;search_ch++)
 	{  
 		PB_SetTdMainChannel( sys_param_1b[MADD_B_DCH_EN1].val, tds_dl_channel[search_ch] );
@@ -3521,7 +3521,7 @@ void TdAutoSearchFp( UCHAR8 reset_fp )
 	{  
 		PB_SetTdMainChannel( sys_param_1b[MADD_B_DCH_EN1].val, tds_dl_channel[search_ch] );
 	}
-	//Ğ´ÆµÂÊ×ÖÍê±Ï£¬·¢Íê±ÏÂö³å(Ğ´¿ÕÒ²ĞĞ)
+	//å†™é¢‘ç‡å­—å®Œæ¯•ï¼Œå‘å®Œæ¯•è„‰å†²(å†™ç©ºä¹Ÿè¡Œ)
 	FPGA_ENABLE_WRITE;
 	FpgaWriteRegister(FPGA_REG_TD_MAIN_CH_END, (cnt&0x0000));
 	FPGA_DISABLE_WRITE; 
@@ -3533,17 +3533,17 @@ void TdAutoSearchFp( UCHAR8 reset_fp )
 	||(version_number == VERSION_50M_IN_V5)
 	)
 	{
-		//c¶Î
-		tmp = sys_param_2b[MADD_C_DL_CHANNEL1].val; //ÆğÊ¼Æµµã
+		//cæ®µ
+		tmp = sys_param_2b[MADD_C_DL_CHANNEL1].val; //èµ·å§‹é¢‘ç‚¹
 		tds_dl_channel[0]=tmp;
 		TRACE_INFO("Start FrePoint=[%d]\r\n",tmp);
 		TRACE_INFO("\r\n");
-		cnt = 16; //µ±Ç°¹Ì¶¨Ğ´È«²¿15¸öÆµµã
+		cnt = 16; //å½“å‰å›ºå®šå†™å…¨éƒ¨15ä¸ªé¢‘ç‚¹
 		//TRACE_INFO("FrePonit Count=[%d]\r\n",cnt);
 		FPGA_ENABLE_WRITE;
 		FpgaWriteRegister(FPGA_REG_LTE_MAIN_CH_CNT, (cnt&0x00FF));
 		FPGA_DISABLE_WRITE;
-		//¼ÆËãÆµµã¸öÊı²¢Ğ´ÈëFPGA
+		//è®¡ç®—é¢‘ç‚¹ä¸ªæ•°å¹¶å†™å…¥FPGA
 		for(search_ch=1;search_ch<16;search_ch++)
 		{
 			if(tds_dl_channel[search_ch]>=tmp)
@@ -3551,8 +3551,8 @@ void TdAutoSearchFp( UCHAR8 reset_fp )
 				break;
 			}   
 		}
-		search_ch_loop = search_ch; //×î´óÆµµãÈÆ»ØÀ´×îĞ¡ºóÒªĞ´µÄÆµµã¸öÊı
-		//¼ÆËãÆµÂÊ×Ö²¢Ğ´ÈëFPGA
+		search_ch_loop = search_ch; //æœ€å¤§é¢‘ç‚¹ç»•å›æ¥æœ€å°åè¦å†™çš„é¢‘ç‚¹ä¸ªæ•°
+		//è®¡ç®—é¢‘ç‡å­—å¹¶å†™å…¥FPGA
 		for(;search_ch<16;search_ch++)
 		{  
 			PC_SetTdMainChannel( sys_param_1b[MADD_C_DCH_EN1].val, tds_dl_channel[search_ch] );
@@ -3561,7 +3561,7 @@ void TdAutoSearchFp( UCHAR8 reset_fp )
 		{  
 			PC_SetTdMainChannel( sys_param_1b[MADD_C_DCH_EN1].val, tds_dl_channel[search_ch] );
 		}
-		//Ğ´ÆµÂÊ×ÖÍê±Ï£¬·¢Íê±ÏÂö³å(Ğ´¿ÕÒ²ĞĞ)
+		//å†™é¢‘ç‡å­—å®Œæ¯•ï¼Œå‘å®Œæ¯•è„‰å†²(å†™ç©ºä¹Ÿè¡Œ)
 		FPGA_ENABLE_WRITE;
 		FpgaWriteRegister(FPGA_REG_LTE_MAIN_CH_END, (cnt&0x0000));
 		FPGA_DISABLE_WRITE; 
@@ -3573,31 +3573,31 @@ void TdAutoSearchFp( UCHAR8 reset_fp )
 			PB_SetTdMainChannel( sys_param_1b[MADD_B_DCH_EN1].val, tmp );	
 			sys_param_2b[MADD_B_DL_CHANNEL1].val=tmp;
 			tm_search_wait = 0;
-			tm_check_wait = 0;	// ÇåÁãµÈ´ıÊ±¼ä
+			tm_check_wait = 0;	// æ¸…é›¶ç­‰å¾…æ—¶é—´
 		}
-		else // Ö®Ç°´¦ÓÚÍ¬²½×´Ì¬
+		else // ä¹‹å‰å¤„äºåŒæ­¥çŠ¶æ€
 		{
-			tmp = FpgaReadRegister( FPGA_REG_TD_SYNC_ST ) & BM_TD_SYNC_OK;		// ¶ÁÈ¡Í¬²½×´Ì¬
+			tmp = FpgaReadRegister( FPGA_REG_TD_SYNC_ST ) & BM_TD_SYNC_OK;		// è¯»å–åŒæ­¥çŠ¶æ€
 			TRACE_INFO("1tmp{0/1}=[%x],tm_check_wait=[%x]\r\n",tmp,tm_check_wait);
-			if ( 0==tmp )	// ¼ì²âµ½²»Í¬²½
+			if ( 0==tmp )	// æ£€æµ‹åˆ°ä¸åŒæ­¥
 			{
-				if ( 0==tm_check_wait )	// ³õ´Î¼ì²âµ½²»Í¬²½£¬µÈ´ı15Ãë
+				if ( 0==tm_check_wait )	// åˆæ¬¡æ£€æµ‹åˆ°ä¸åŒæ­¥ï¼Œç­‰å¾…15ç§’
 				{
 					tm_check_wait = 1;
 				}
 			}
 
-			if ( tm_check_wait>0 )	// ÑÓÊ±µÈ´ı
+			if ( tm_check_wait>0 )	// å»¶æ—¶ç­‰å¾…
 			{
 				tm_check_wait++;
-				if ( tm_check_wait>=15 )	// 15ÃëÊ±¼äÅĞ¶ÏÍ¬²½×´Ì¬
+				if ( tm_check_wait>=15 )	// 15ç§’æ—¶é—´åˆ¤æ–­åŒæ­¥çŠ¶æ€
 				{
 					if ( 0==tmp )
 					{
-						pre_sync_st = 0;		// ×´Ì¬±äÎªÎ´Í¬²½
-						tm_search_wait = 0;	// ÇåÁãËÑË÷µÈ´ıÊ±¼ä
+						pre_sync_st = 0;		// çŠ¶æ€å˜ä¸ºæœªåŒæ­¥
+						tm_search_wait = 0;	// æ¸…é›¶æœç´¢ç­‰å¾…æ—¶é—´
 					}
-					tm_check_wait = 0;	// ÇåÁãµÈ´ıÊ±¼ä
+					tm_check_wait = 0;	// æ¸…é›¶ç­‰å¾…æ—¶é—´
 				}
 			}
 		}
@@ -3607,21 +3607,21 @@ void TdAutoSearchFp( UCHAR8 reset_fp )
 }
 /*************************************************************
 Name: TempGainCompensate
-Params: [force_set: Ç¿ÖÆ¸ù¾İµ±Ç°ÎÂ¶È¸üĞÂ²¹³¥Öµ, 1ÓĞĞ§]
+Params: [force_set: å¼ºåˆ¶æ ¹æ®å½“å‰æ¸©åº¦æ›´æ–°è¡¥å¿å€¼, 1æœ‰æ•ˆ]
 Return: void
-Description: Ö´ĞĞÎÂ¶È²¹³¥¹¦ÄÜ(ÓÉÓÚÎÂ¶È±ä»¯½ÏÂı£¬Ó¦3ÃëÖÓµ÷ÓÃÒ»´Î)
+Description: æ‰§è¡Œæ¸©åº¦è¡¥å¿åŠŸèƒ½(ç”±äºæ¸©åº¦å˜åŒ–è¾ƒæ…¢ï¼Œåº”3ç§’é’Ÿè°ƒç”¨ä¸€æ¬¡)
 **************************************************************/
 void TempGainCompensate( UCHAR8 force_set )
 {
-	static CHAR8 temp_old = 25;	// Ç°Ò»´ÎµÄÎÂ¶ÈÖµ
-	static CHAR8 comp_id = -1;	// ²¹³¥±íÏÂ±ê
+	static CHAR8 temp_old = 25;	// å‰ä¸€æ¬¡çš„æ¸©åº¦å€¼
+	static CHAR8 comp_id = -1;	// è¡¥å¿è¡¨ä¸‹æ ‡
 	CHAR8 temp_now;
 	CHAR8 seg, index;
 
-	// ¶ÁÈ¡µ±Ç°ÎÂ¶È
+	// è¯»å–å½“å‰æ¸©åº¦
 	temp_now = (CHAR8)sys_param_1b[MADD_BOARD_TEMP].val;
 	//temp_now=-11;
-	// Ç°ºóÁ½´ÎÎÂ¶ÈÒ»Ñù
+	// å‰åä¸¤æ¬¡æ¸©åº¦ä¸€æ ·
 	if (( temp_old==temp_now )||( 1==force_set ))
 	{
 		index = 0;
@@ -3644,30 +3644,30 @@ void TempGainCompensate( UCHAR8 force_set )
 		{
 			
 			comp_id = index;
-			// ÉèÖÃA¶ÎÎÂ¶È²¹³¥
+			// è®¾ç½®Aæ®µæ¸©åº¦è¡¥å¿
 			FpgaSetTempComp( 0, 0, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_aul[index]/1000.0) );
 			FpgaSetTempComp( 0, 1, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_adl[index]/1000.0) );
 
-			// ÉèÖÃB¶ÎÎÂ¶È²¹³¥
+			// è®¾ç½®Bæ®µæ¸©åº¦è¡¥å¿
 			FpgaSetTempComp( 1, 0, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_bul[index]/1000.0) );
 			FpgaSetTempComp( 1, 1, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_bdl[index]/1000.0) );
 
-			// ÉèÖÃC¶ÎÎÂ¶È²¹³¥
+			// è®¾ç½®Cæ®µæ¸©åº¦è¡¥å¿
 			FpgaSetTempComp( 2, 0, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_cul[index]/1000.0) );
 			FpgaSetTempComp( 2, 1, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_cdl[index]/1000.0) );
 
-			// ÉèÖÃD¶ÎÎÂ¶È²¹³¥
+			// è®¾ç½®Dæ®µæ¸©åº¦è¡¥å¿
 			FpgaSetTempComp( 3, 0, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_dul[index]/1000.0) );
 			FpgaSetTempComp( 3, 1, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_ddl[index]/1000.0) );		}
 	}
 
-	// ±£´æ±¾´ÎÎÂ¶È
+	// ä¿å­˜æœ¬æ¬¡æ¸©åº¦
 	temp_old = temp_now;
 
 }
 /*************************************************************
 Name: NoiseTest          
-Description: µ×Ôë²âÊÔ¹¦ÄÜÓÃ
+Description: åº•å™ªæµ‹è¯•åŠŸèƒ½ç”¨
 Input: void
 Return: void
 **************************************************************/
@@ -3688,10 +3688,10 @@ void NoiseTest(void)
 	{	
 		if(noise_test_st.mcu_control == 0x01)
 		{
-			//½øÈëMCU¿ØÖÆÄ£Ê½
+			//è¿›å…¥MCUæ§åˆ¶æ¨¡å¼
 			//ReadWriteTF(noise_test_st.type,1,0x077,tmp1|0X40);
 			//ReadWriteTF(noise_test_st.type,1,0x07c,tmp2|0X40);
-			//0x73 0x75Ğ´1
+			//0x73 0x75å†™1
 			if(noise_test_st.type == SYS_C_FLAG)
 			{
 				//printf("C data = %d\r\n",noise_test_st.value);
@@ -3699,7 +3699,7 @@ void NoiseTest(void)
 				ReadWriteTF(TF_C,1,0x0075,(UCHAR8)(noise_test_st.value*4));
 				ReadWriteTF(TF_B,1,0x0073,0);				
 				
-				//printf("c--ÉèÖÃ0x75\r\n");
+				//printf("c--è®¾ç½®0x75\r\n");
 			}
 			else if(noise_test_st.type == SYS_D_FLAG)
 			{
@@ -3707,7 +3707,7 @@ void NoiseTest(void)
 				//printf("D data = %d\r\n",noise_test_st.value);
 				ReadWriteTF(TF_D,1,0x0073,(UCHAR8)(noise_test_st.value*4));
 				ReadWriteTF(TF_B,1,0x0073,0);				
-				//printf("d--ÉèÖÃ0x73\r\n");
+				//printf("d--è®¾ç½®0x73\r\n");
 			}
 			else if(noise_test_st.type == SYS_B_FLAG)
 			{
@@ -3715,11 +3715,11 @@ void NoiseTest(void)
 				ReadWriteTF(TF_C,1,0x0075,0);
 				ReadWriteTF(TF_D,1,0x0073,0);
 				ReadWriteTF(TF_B,1,0x0073,(UCHAR8)(noise_test_st.value*4));
-				//printf("ÉèÖÃB--0x73\r\n");
-				//printf("ÉèÖÃB--0x73--9363_0x17_0 = %02x,\r\n",ReadWriteTF(TF_B,0,0x0017,0) );
+				//printf("è®¾ç½®B--0x73\r\n");
+				//printf("è®¾ç½®B--0x73--9363_0x17_0 = %02x,\r\n",ReadWriteTF(TF_B,0,0x0017,0) );
 				
 			}
-			//Ö´ĞĞ±¾ÕñĞ¹Â¶Ğ£×¼¹ı³Ì
+			//æ‰§è¡Œæœ¬æŒ¯æ³„éœ²æ ¡å‡†è¿‡ç¨‹
 			ReadWriteTF(noise_test_st.type,1,0x0169,0xcc);
 			WTD_CLR;
 			UsNopDelay(1000);
@@ -3750,10 +3750,10 @@ void NoiseTest(void)
 			if(noise_test_st.type == SYS_B_FLAG)
 			{		
 
-				//ÍË³öMCU¿ØÖÆÄ£Ê½
+				//é€€å‡ºMCUæ§åˆ¶æ¨¡å¼
 				//ReadWriteTF(TF_C,1,0x077,tmp1|0X40);
 				//ReadWriteTF(TF_C,1,0x07c,tmp2|0X40);
-				//0x73 0x75Ğ´0
+				//0x73 0x75å†™0
 				//if(noise_test_st.type == SYS_C_FLAG)
 				ReadWriteTF(TF_B,1,0x0073,0);
 				WTD_CLR;
@@ -3763,7 +3763,7 @@ void NoiseTest(void)
 				WTD_CLR;
 				UsNopDelay(1000);				
 				
-				//Ö´ĞĞ±¾ÕñĞ¹Â¶Ğ£×¼¹ı³Ì			
+				//æ‰§è¡Œæœ¬æŒ¯æ³„éœ²æ ¡å‡†è¿‡ç¨‹			
 				ReadWriteTF(TF_B,1,0x0169,0xcc);
 				WTD_CLR;
 				UsNopDelay(1000);				
@@ -3797,10 +3797,10 @@ void NoiseTest(void)
 
 			}else 
 			{
-				//ÍË³öMCU¿ØÖÆÄ£Ê½
+				//é€€å‡ºMCUæ§åˆ¶æ¨¡å¼
 				//ReadWriteTF(TF_C,1,0x077,tmp1|0X40);
 				//ReadWriteTF(TF_C,1,0x07c,tmp2|0X40);
-				//0x73 0x75Ğ´0
+				//0x73 0x75å†™0
 				//if(noise_test_st.type == SYS_C_FLAG)
 				ReadWriteTF(TF_C,1,0x0073,0);
 				WTD_CLR;
@@ -3811,7 +3811,7 @@ void NoiseTest(void)
 				WTD_CLR;
 				UsNopDelay(1000);				
 				
-				//Ö´ĞĞ±¾ÕñĞ¹Â¶Ğ£×¼¹ı³Ì
+				//æ‰§è¡Œæœ¬æŒ¯æ³„éœ²æ ¡å‡†è¿‡ç¨‹
 				ReadWriteTF(TF_C,1,0x0169,0xcc);
 				WTD_CLR;
 				UsNopDelay(1000);				
@@ -3854,10 +3854,10 @@ void NoiseTest(void)
 		{		
 			if(noise_test_st.mcu_control  == 0x01)
 			{
-				//ÍË³öMCU¿ØÖÆÄ£Ê½
+				//é€€å‡ºMCUæ§åˆ¶æ¨¡å¼
 				//ReadWriteTF(TF_C,1,0x077,tmp1|0X40);
 				//ReadWriteTF(TF_C,1,0x07c,tmp2|0X40);
-				//0x73 0x75Ğ´0
+				//0x73 0x75å†™0
 				//if(noise_test_st.type == SYS_C_FLAG)
 				ReadWriteTF(TF_B,1,0x0073,0);
 				WTD_CLR;
@@ -3868,7 +3868,7 @@ void NoiseTest(void)
 				WTD_CLR;
 				UsNopDelay(1000);				
 				
-				//Ö´ĞĞ±¾ÕñĞ¹Â¶Ğ£×¼¹ı³Ì
+				//æ‰§è¡Œæœ¬æŒ¯æ³„éœ²æ ¡å‡†è¿‡ç¨‹
 				ReadWriteTF(TF_B,1,0x0169,0xcc);
 				WTD_CLR;
 				UsNopDelay(1000);				
@@ -3908,10 +3908,10 @@ void NoiseTest(void)
 		{		
 			if(noise_test_st.mcu_control  == 0x01)
 			{
-				//ÍË³öMCU¿ØÖÆÄ£Ê½
+				//é€€å‡ºMCUæ§åˆ¶æ¨¡å¼
 				//ReadWriteTF(TF_C,1,0x077,tmp1|0X40);
 				//ReadWriteTF(TF_C,1,0x07c,tmp2|0X40);
-				//0x73 0x75Ğ´0
+				//0x73 0x75å†™0
 				//if(noise_test_st.type == SYS_C_FLAG)
 				ReadWriteTF(TF_C,1,0x0073,0);
 				WTD_CLR;
@@ -3920,7 +3920,7 @@ void NoiseTest(void)
 				ReadWriteTF(TF_C,1,0x0075,0);
 				WTD_CLR;
 				UsNopDelay(1000);
-				//Ö´ĞĞ±¾ÕñĞ¹Â¶Ğ£×¼¹ı³Ì
+				//æ‰§è¡Œæœ¬æŒ¯æ³„éœ²æ ¡å‡†è¿‡ç¨‹
 				ReadWriteTF(TF_C,1,0x0169,0xcc);
 				WTD_CLR;
 				UsNopDelay(1000);
@@ -3956,7 +3956,7 @@ void NoiseTest(void)
 
 /*************************************************************
 Name: MAUSetParamToMEU          
-Description: ÏÂ·¢²ÎÊıµ½ÍØÕ¹°å
+Description: ä¸‹å‘å‚æ•°åˆ°æ‹“å±•æ¿
 Input: void
 Return: void
 **************************************************************/
@@ -3965,12 +3965,12 @@ void MAUSetParamToMEU(void)
 	if ( (0 !=	( sys_work_info & SYSTEM_FLAG_SET_RE_UPOW))
 		||( 0 !=	(sys_work_info & SYSTEM_FLAG_SET_RE_SYS_CFG) ) )
 	{
-		// ÉèÖÃREµÄÉÏĞĞÊä³ö×Ü¹¦ÂÊ(ÆäÖµÓÉ½çÃæÉè)
+		// è®¾ç½®REçš„ä¸Šè¡Œè¾“å‡ºæ€»åŠŸç‡(å…¶å€¼ç”±ç•Œé¢è®¾)
 		sys_work_info &= (~SYSTEM_FLAG_SET_RE_UPOW);
 		sys_work_info &= (~SYSTEM_FLAG_SET_RE_SYS_CFG);
 		WTD_CLR; 
 		//SetReUlPowerGain();
-		// RECµÄË«¹¤Æ÷²ÎÊıÓÃµ¥¶ÀµÄÊı¾İ°ü·¢ËÍ£¬±ÜÃâ¾É°æRE³ÌĞò²»Ê¶±ğ£¬µ¼ÖÂÆäËû²ÎÊıÒ²ÉèÖÃÊ§°Ü
+		// RECçš„åŒå·¥å™¨å‚æ•°ç”¨å•ç‹¬çš„æ•°æ®åŒ…å‘é€ï¼Œé¿å…æ—§ç‰ˆREç¨‹åºä¸è¯†åˆ«ï¼Œå¯¼è‡´å…¶ä»–å‚æ•°ä¹Ÿè®¾ç½®å¤±è´¥
 		//SetReDpxInfo();
 
 	}
@@ -3978,7 +3978,7 @@ void MAUSetParamToMEU(void)
 	if ( 0 !=	(sys_work_info & SYSTEM_FLAG_SET_RE_SYS_CFG) )
 	{
 		WTD_CLR; 
-		// ĞèÒªË¢ĞÂREµÄÑÓÊ±Ä£Ê½
+		// éœ€è¦åˆ·æ–°REçš„å»¶æ—¶æ¨¡å¼
 		sys_work_info &= (~SYSTEM_FLAG_SET_RE_SYS_CFG);
 		//SetReSysConfig();
 		//SetReBwConfig();
@@ -3988,7 +3988,7 @@ void MAUSetParamToMEU(void)
 	if ( 0!= (sys_work_info & SYSTEM_FLAG_SET_RE_TDSLOT ) )
 	{
 		WTD_CLR; 
-		// ÉèÖÃREµÄTDÊ±Ï¶
+		// è®¾ç½®REçš„TDæ—¶éš™
 		sys_work_info &= (~SYSTEM_FLAG_SET_RE_TDSLOT);
 		//SetReTDParam();
 	}
@@ -3996,7 +3996,7 @@ void MAUSetParamToMEU(void)
 	if ( 0!= (sys_work_info & SYSTEM_FLAG_SET_RE_SFC ) )
 	{
 		WTD_CLR; 
-		// ÉèÖÃREµÄÆµµãÅäÖÃ
+		// è®¾ç½®REçš„é¢‘ç‚¹é…ç½®
 		sys_work_info &= ( ~SYSTEM_FLAG_SET_RE_SFC );
 		SysBroadcastReFcA();   
 	}
@@ -4006,7 +4006,7 @@ void MAUSetParamToMEU(void)
 Name: SetAdjBenZhenSignalPara
 Params: 
 Return: void
-Description: ÉèÖÃ±¾ÕñĞ£×¼²ÎÊı
+Description: è®¾ç½®æœ¬æŒ¯æ ¡å‡†å‚æ•°
 **************************************************************/
 void SetAdjBenZhenSignalPara( void)
 {
@@ -4075,35 +4075,35 @@ void SetAdjBenZhenSignalPara( void)
 Name: ZiDongShiXiPeiBi
 Params: 
 Return: void
-Description: ×Ô¶¯Ê±Ï¶Åä±È
+Description: è‡ªåŠ¨æ—¶éš™é…æ¯”
 **************************************************************/
 void ZiDongShiXiPeiBi( void)
 {	
 	UINT16 tmp=0,tmp2=0,tmp3=0;
-//»ñÈ¡×Ô¶¯Ê±Ï¶Åä±È
+//è·å–è‡ªåŠ¨æ—¶éš™é…æ¯”
 
 	if( (version_number == VERSION_50M_IN_F)||(version_number == VERSION_50M_IN_V4)||(version_number == VERSION_50M_IN_V5))
 	{
-		if(sys_param_1b[MADD_SLOT_TIME_EN_C].val==1)//¿ªÆôTDSÊ±Ï¶Åä±È×Ô¶¯¼ì²â
+		if(sys_param_1b[MADD_SLOT_TIME_EN_C].val==1)//å¼€å¯TDSæ—¶éš™é…æ¯”è‡ªåŠ¨æ£€æµ‹
 		{
-			//Ê¹ÄÜ×Ô¶¯Ê±Ï¶¼ì²â¹¦ÄÜ
+			//ä½¿èƒ½è‡ªåŠ¨æ—¶éš™æ£€æµ‹åŠŸèƒ½
 			FpgaWriteRegister( FPGA_REG_W_SLOT_TIME_C, 1<<15 );
 
-			//»ñÈ¡×Ô¶¯Ê±Ï¶Åä±È
+			//è·å–è‡ªåŠ¨æ—¶éš™é…æ¯”
 			sys_param_1b[MADD_SLOT_TIME_DISTRI_C].val; 
 			tmp = (UCHAR8)FpgaReadRegister(FPGA_REG_R_SLOT_TIME_C);
-			tmp2= tmp&0x0f;//ÌØÊâ×ÓÖ¡Åä±È
-			tmp3 = (tmp&0xf0)>>4;//ÉÏÏÂĞĞÊ±Ï¶Åä±È
+			tmp2= tmp&0x0f;//ç‰¹æ®Šå­å¸§é…æ¯”
+			tmp3 = (tmp&0xf0)>>4;//ä¸Šä¸‹è¡Œæ—¶éš™é…æ¯”
 			//tmp2 =  (sys_param_1b[MADD_C_TD_NORMAL_CP].val)| ((sys_param_1b[MADD_C_TD_TYPE_SELECT].val<<3)&0X78)|((sys_param_1b[MADD_C_TD_EXTENDED_CP].val<<7)&0X80);
-			//»ñÈ¡Åä±È³É¹¦
-			//ÓëÔ­ÓĞµÄÅä±È±È½Ï
+			//è·å–é…æ¯”æˆåŠŸ
+			//ä¸åŸæœ‰çš„é…æ¯”æ¯”è¾ƒ
 			if((tmp2 != sys_param_1b[MADD_C_TD_NORMAL_CP].val)||(tmp3 != sys_param_1b[MADD_C_TD_TYPE_SELECT].val))
 			{
 				sys_param_1b[MADD_C_TD_NORMAL_CP].val = tmp2;
 				sys_param_1b[MADD_C_TD_TYPE_SELECT].val = tmp3;
 				tmp = (sys_param_1b[MADD_C_TD_TYPE_SELECT].val&0X07)| ((sys_param_1b[MADD_C_TD_NORMAL_CP].val<<3)&0X78)|((sys_param_1b[MADD_C_TD_EXTENDED_CP].val<<7)&0X80);
 
-				//Ğ´ÈëÊ±Ï¶Åä±È¼Ä´æÆ÷	
+				//å†™å…¥æ—¶éš™é…æ¯”å¯„å­˜å™¨	
 				FPGA_ENABLE_WRITE;
 				FpgaWriteRegister(FPGA_REC_C_TS_CONFIG, tmp);
 				FPGA_DISABLE_WRITE;
@@ -4120,7 +4120,7 @@ void ZiDongShiXiPeiBi( void)
 Name: MoveBenZhenTo2345
 Params: 
 Return: void
-Description: ¸ù¾İÌõ¼şÒÆ¶¯±¾Õñ(ÓÃÓÚ²âÊÔ)
+Description: æ ¹æ®æ¡ä»¶ç§»åŠ¨æœ¬æŒ¯(ç”¨äºæµ‹è¯•)
 **************************************************************/
 void MoveBenZhenTo2340( void)
 {
@@ -4131,7 +4131,7 @@ void MoveBenZhenTo2340( void)
 	if(time_start == 1)
 	{
 		time_tick++;
-//		printf("¼ÆÊ±Æ÷%d\r\n",time_tick);
+//		printf("è®¡æ—¶å™¨%d\r\n",time_tick);
 		if(time_tick >= 10)
 		{
 			time_tick = 0;
@@ -4142,35 +4142,35 @@ void MoveBenZhenTo2340( void)
 	}
 		
 	
-	//Í¬²½
+	//åŒæ­¥
 	 if(FpgaReadRegister(FPGA_REG_C_TD_SYNC_ST)&0x04) 
 	 {
-	 	//ÆµÆ«5M
+	 	//é¢‘å5M
 	 	fre = FpgaReadRegister(FPGA_REG_C_LTE_CUR_FREQ_L)|(FpgaReadRegister(FPGA_REG_C_LTE_CUR_FREQ_H)<<12);
-//		printf("ÆµÆ«%X\r\n",fre);
+//		printf("é¢‘å%X\r\n",fre);
 		fre_f = (FLOAT32)(fre/( 8192*1024*8*1/62.5));
-//		printf("ÆµÆ«F%f\r\n",fre_f);
+//		printf("é¢‘åF%f\r\n",fre_f);
 
 		if((fre_f > 4)&&(fre_f < 6 ))
 		{
-			//ÒÆ¶¯±¾ÕñÖÁ2340 (Ä¬ÈÏÎª2345)
+			//ç§»åŠ¨æœ¬æŒ¯è‡³2340 (é»˜è®¤ä¸º2345)
 			benzhen2340 = 1;
 			if(state == 0)
 				state= 1;
-			//Æô¶¯¼ÆÊ± 10Ãë
+			//å¯åŠ¨è®¡æ—¶ 10ç§’
 			time_start = 1;
-//			printf("Í¬²½Ğ¡ÓÚ5M\r\n");
+//			printf("åŒæ­¥å°äº5M\r\n");
 			change2340 = 1;
 		}
 		else if((fre_f > 9)&&(fre_f < 11 ))
 		{
 			if(change2340 == 1)
 			{
-//				printf("²»¶¯r\n");
+//				printf("ä¸åŠ¨r\n");
 			}
 			else
 			{
-//				printf("Í¬²½>ÓÚ5M\r\n");
+//				printf("åŒæ­¥>äº5M\r\n");
 				benzhen2340 = 0;
 				if(state == 2)
 					state = 3;
@@ -4180,7 +4180,7 @@ void MoveBenZhenTo2340( void)
 		}
 		else 
 		{
-//			printf("Í¬²½>ÓÚ5M\r\n");
+//			printf("åŒæ­¥>äº5M\r\n");
 			benzhen2340 = 0;
 			if(state == 2)
 				state = 3;
@@ -4189,7 +4189,7 @@ void MoveBenZhenTo2340( void)
 	 }
 	 else
 	 {
-//	 		printf("Ê§²½\r\n");
+//	 		printf("å¤±æ­¥\r\n");
 	 		benzhen2340 = 0;
 			if(state == 2)
 				state = 3;
@@ -4201,7 +4201,7 @@ void MoveBenZhenTo2340( void)
 	 			state = 2;
 	 		if(state == 3)
 				state = 0;
-//	 		printf("Âú×ãÌõ¼şÖ´ĞĞ\r\n");
+//	 		printf("æ»¡è¶³æ¡ä»¶æ‰§è¡Œ\r\n");
 	 		module_param_chg_flag |= PCHG_C_CHANNEL;
 			module_param_chg_flag |= PCHG_D_CHANNEL;
 			MAUSetParamToMRU();
@@ -4210,7 +4210,7 @@ void MoveBenZhenTo2340( void)
 
 /*************************************************************
 Name: MAUSetParamToMEU          
-Description: ÏÂ·¢²ÎÊıµ½ÍØÕ¹°å
+Description: ä¸‹å‘å‚æ•°åˆ°æ‹“å±•æ¿
 Input: void
 Return: void
 **************************************************************/
@@ -4240,7 +4240,7 @@ void MAUSetParamToMRU(void)
 }
 /*************************************************************
 Name: MAUSetParamToMEU          
-Description: ÏÂ·¢²ÎÊıµ½ÍØÕ¹°å
+Description: ä¸‹å‘å‚æ•°åˆ°æ‹“å±•æ¿
 Input: void
 Return: void
 **************************************************************/
@@ -4271,7 +4271,7 @@ void GainAdjSetEUFrePoint(UCHAR8 ab_flag,INT32 freq_point)
 }
 /*************************************************************
 Name: MAUSetParamToMEU          
-Description: ÏÂ·¢²ÎÊıµ½ÍØÕ¹°å
+Description: ä¸‹å‘å‚æ•°åˆ°æ‹“å±•æ¿
 Input: void
 Return: void
 **************************************************************/
@@ -4300,7 +4300,7 @@ void GainAdjSetEUEnterAdjMode(UCHAR8 ab_flag)
 }
 /*************************************************************
 Name: GainAdjGetEUSfPow          
-Description: ¶ÁÈ¡EU¹¦ÂÊ
+Description: è¯»å–EUåŠŸç‡
 Input: void
 Return: void
 **************************************************************/
@@ -4312,7 +4312,7 @@ void GainAdjGetEUPow(UCHAR8 ab_flag, UCHAR8 ud_flag)
 	UINT16 tmp;
 	UINT32 i;
 		
-	p_msg[MSG_DES_FP] = 1;//µÚÒ»¸ö¹â¿ÚÏÂµÄEU
+	p_msg[MSG_DES_FP] = 1;//ç¬¬ä¸€ä¸ªå…‰å£ä¸‹çš„EU
 	p_msg[MSG_DES_RE] = 1;
 	p_msg[MSG_DES_REE] = 0;
 	p_msg[MSG_SRC_FP] = LOCAL_ADD_FP;
@@ -4332,7 +4332,7 @@ void GainAdjGetEUPow(UCHAR8 ab_flag, UCHAR8 ud_flag)
 
 /*************************************************************
 Name: ReeBordcastToSetRe          
-Description:À©Õ¹µ¥Ôª¹ã²¥ÉèÖÃÉäÆµ²ÎÊı
+Description:æ‰©å±•å•å…ƒå¹¿æ’­è®¾ç½®å°„é¢‘å‚æ•°
 Input:base_flag:
 Output:void         
 Return:void
@@ -4340,20 +4340,20 @@ Return:void
 //void ReeBroadcastToSetRe(UCHAR8 485_usb_flag, UCHAR8 rf,UCHAR8 *P_tx_buff )
 void MAUBroadcastToMEU(UCHAR8 uart_usb_flag,UCHAR8 des_eu,UCHAR8 *p_tx_buff ,UINT msg_tx_length,UCHAR8 msg_cmd_id)
 {
-	//Ä¿µÄµØÖ·
+	//ç›®çš„åœ°å€
 	p_tx_buff[MSG_DES_FP] = des_eu;  
 	p_tx_buff[MSG_DES_RE] = BROADCAST_ADD_RE;   
 	p_tx_buff[MSG_DES_REE] = 0; 
 	
-	// Ô´µØÖ·  
+	// æºåœ°å€  
 	p_tx_buff[MSG_SRC_FP] = LOCAL_ADD_FP;
 	p_tx_buff[MSG_SRC_RE] = LOCAL_ADD_RE; 
 	p_tx_buff[MSG_SRC_REE] = LOCAL_ADD_REE;
 
-	// Ó¦´ğ°üµÄ±£Áô×Ö¶Î
+	// åº”ç­”åŒ…çš„ä¿ç•™å­—æ®µ
 	p_tx_buff[MSG_RESERVE1] = 0;
 	p_tx_buff[MSG_RESERVE2] = uart_usb_flag;
-	// Ó¦´ğ°üµÄÃüÁî×Ö
+	// åº”ç­”åŒ…çš„å‘½ä»¤å­—
 	p_tx_buff[MSG_CMD_ID] = msg_cmd_id ;
 	p_tx_buff[MSG_ACK_FLAG]=MSG_ACK_MASTER_SEND;
 
@@ -4364,7 +4364,7 @@ void MAUBroadcastToMEU(UCHAR8 uart_usb_flag,UCHAR8 des_eu,UCHAR8 *p_tx_buff ,UIN
 
 /*************************************************************
 Name: MAUSetParamToMEU          
-Description: ÏÂ·¢²ÎÊıµ½ÍØÕ¹°å
+Description: ä¸‹å‘å‚æ•°åˆ°æ‹“å±•æ¿
 Input: void
 Return: void
 **************************************************************/
@@ -4386,12 +4386,12 @@ void MAUGetParamFromMEU(void)
 	if ( (0 !=	( sys_work_info & SYSTEM_FLAG_SET_RE_UPOW))
 		||( 0 !=	(sys_work_info & SYSTEM_FLAG_SET_RE_SYS_CFG) ) )
 	{
-		// ÉèÖÃREµÄÉÏĞĞÊä³ö×Ü¹¦ÂÊ(ÆäÖµÓÉ½çÃæÉè)
+		// è®¾ç½®REçš„ä¸Šè¡Œè¾“å‡ºæ€»åŠŸç‡(å…¶å€¼ç”±ç•Œé¢è®¾)
 		sys_work_info &= (~SYSTEM_FLAG_SET_RE_UPOW);
 		sys_work_info &= (~SYSTEM_FLAG_SET_RE_SYS_CFG);
 		WTD_CLR; 
 		//SetReUlPowerGain();
-		// RECµÄË«¹¤Æ÷²ÎÊıÓÃµ¥¶ÀµÄÊı¾İ°ü·¢ËÍ£¬±ÜÃâ¾É°æRE³ÌĞò²»Ê¶±ğ£¬µ¼ÖÂÆäËû²ÎÊıÒ²ÉèÖÃÊ§°Ü
+		// RECçš„åŒå·¥å™¨å‚æ•°ç”¨å•ç‹¬çš„æ•°æ®åŒ…å‘é€ï¼Œé¿å…æ—§ç‰ˆREç¨‹åºä¸è¯†åˆ«ï¼Œå¯¼è‡´å…¶ä»–å‚æ•°ä¹Ÿè®¾ç½®å¤±è´¥
 		//SetReDpxInfo();
 
 	}
@@ -4399,7 +4399,7 @@ void MAUGetParamFromMEU(void)
 	if ( 0 !=	(sys_work_info & SYSTEM_FLAG_SET_RE_SYS_CFG) )
 	{
 		WTD_CLR; 
-		// ĞèÒªË¢ĞÂREµÄÑÓÊ±Ä£Ê½
+		// éœ€è¦åˆ·æ–°REçš„å»¶æ—¶æ¨¡å¼
 		sys_work_info &= (~SYSTEM_FLAG_SET_RE_SYS_CFG);
 		//SetReSysConfig();
 		//SetReBwConfig();
@@ -4422,7 +4422,7 @@ void MAUGetParamFromMEU(void)
 
 /*************************************************************
 Name:ReeDetectReST          
-Description: ree»ñÈ¡re×´Ì¬
+Description: reeè·å–reçŠ¶æ€
 Input:
 
 Return: void
@@ -4496,7 +4496,7 @@ void MauGetMeuAlarm()
 
 
 	//TRACE_INFO("DETECT -------------------\r\n");
-	//printf("·¢ËÍ");
+	//printf("å‘é€");
 //	TRACE_INFO(" ReeBroadcastToSetRe---2 \r\n"); 		
 	//for(i=0;i<msg_tx_len;i++)
 	//{

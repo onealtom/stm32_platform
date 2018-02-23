@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :sys_param.c
-* Description :ÏµÍ³²ÎÊı´¦ÀíÏà¹Øº¯Êı
+* Description :ç³»ç»Ÿå‚æ•°å¤„ç†ç›¸å…³å‡½æ•°
 * Version     :v0.1
 * Author      :RJ
 * Date        :2010-03-10
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*RJ		2010-03-10		v0.1			³õÊ¼°æ±¾
+*RJ		2010-03-10		v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #include "Header.h"
 
@@ -20,7 +20,7 @@ extern _T_PARAM_4B sys_param_4b[];
 extern _T_PARAM_ASC sys_param_asc[];
 extern _T_VALID_FP_TOPO valid_fp_topo[FP_MAX];
 extern _T_FP_INFO fp_inf[FP_MAX];
-extern _T_RE_INFO tmp_re_inf[FP_MAX][RE_MAX];		// REĞÅÏ¢µÄÁÙÊ±»º´æ
+extern _T_RE_INFO tmp_re_inf[FP_MAX][RE_MAX];		// REä¿¡æ¯çš„ä¸´æ—¶ç¼“å­˜
 //extern UINT32 sys_work_info;
 extern unsigned int traceLevel;
 extern _T_ATT_ADJ_ST fpga_att_adj_st;
@@ -32,60 +32,60 @@ extern UCHAR8  re_trans_rf ;
 extern UCHAR8 att_adj_buff[];
 
 
-//UCHAR8 msg_big_buff[FP_MAX][MSG_BIG_PKT_SIZE];		// ´óÏûÏ¢°ü»º³å
+//UCHAR8 msg_big_buff[FP_MAX][MSG_BIG_PKT_SIZE];		// å¤§æ¶ˆæ¯åŒ…ç¼“å†²
 _T_BIG_PKT_BUFF msg_big_buff[MSG_BIG_PKT_COUNT];
-UCHAR8 msg_buff[FP_MAX][FPGA_MSG_BUFF_SIZE];		// Ğ¡ÏûÏ¢°ü»º³å
+UCHAR8 msg_buff[FP_MAX][FPGA_MSG_BUFF_SIZE];		// å°æ¶ˆæ¯åŒ…ç¼“å†²
 UINT32 re_msg_buff_st[FP_MAX];
 
-UCHAR8 msg_tx_buff[MSG_BIG_PKT_SIZE];		// ·¢ËÍ»º³å
+UCHAR8 msg_tx_buff[MSG_BIG_PKT_SIZE];		// å‘é€ç¼“å†²
 extern _T_NOISE_TEST_STATUS noise_test_st ;
 /*************************************************************
 Name:CheckMsgAddr          
-Description: ¼ì²éµØÖ·ÊÇ·ñºÏ·¨
+Description: æ£€æŸ¥åœ°å€æ˜¯å¦åˆæ³•
 Input:
-	des_fp: Ä¿±ê¹â¿Ú(0-REC, 1~n-Ä³¹â¿Ú, BROADCAST_ADD_FP-È«¹â¿Ú¹ã²¥)
-	des_re: Ä¿±êRE (0-REC, 1~RE_MAX-Ä³RE, BROADCAST_ADD_RE-¹â¿ÚÈ«RE¹ã²¥ )
+	des_fp: ç›®æ ‡å…‰å£(0-REC, 1~n-æŸå…‰å£, BROADCAST_ADD_FP-å…¨å…‰å£å¹¿æ’­)
+	des_re: ç›®æ ‡RE (0-REC, 1~RE_MAX-æŸRE, BROADCAST_ADD_RE-å…‰å£å…¨REå¹¿æ’­ )
 Return: 
-	0-·Ç·¨µØÖ·
-	1-Ö÷¿ØµØÖ·
-	2-¹â¿Ú¹ã²¥
-	3-Õë¶ÔRE·¢ËÍ
+	0-éæ³•åœ°å€
+	1-ä¸»æ§åœ°å€
+	2-å…‰å£å¹¿æ’­
+	3-é’ˆå¯¹REå‘é€
 **************************************************************/
 UINT32 CheckMsgAddr( UCHAR8 des_fp, UCHAR8 des_re ,UCHAR8 des_ree)
 {
 	if ((( PC_ADD_FP==des_fp )&&( PC_ADD_RE==des_re )&&( PC_ADD_REE==des_ree ))||(  PC_ABS_FP==des_fp )&&( PC_ABS_RE==des_re )&&( PC_ABS_REE==des_ree ))
 
 	{
-		// ±¾µØÖ÷¿ØµØÖ·
+		// æœ¬åœ°ä¸»æ§åœ°å€
 		return MSG_TO_PC;
 	}
 	else
 	{
 
-		if ( ADDR_PC_MASK!=(des_fp&ADDR_PC_MASK) )		// PCÍØÆËµØÖ·ºÍÏà¶ÔµØÖ·±êÖ¾²»ÄÜÍ¬Ê±ÓĞĞ§
+		if ( ADDR_PC_MASK!=(des_fp&ADDR_PC_MASK) )		// PCæ‹“æ‰‘åœ°å€å’Œç›¸å¯¹åœ°å€æ ‡å¿—ä¸èƒ½åŒæ—¶æœ‰æ•ˆ
 		{
 			des_fp &= ADDR_FP_MASK; 
-            //REÎª¹ã²¥µØÖ· ²¢ÇÒ ¹â¿ÚµØÖ·´æÔÚ
+            //REä¸ºå¹¿æ’­åœ°å€ å¹¶ä¸” å…‰å£åœ°å€å­˜åœ¨
 			if (( BROADCAST_ADD_RE==des_re )&&( LOCAL_ADD_FP!=des_fp))
 			{
-				//RFÎª¹ã²¥µØÖ· »òÔò ¹â¿ÚÎª 1µ½8ÖĞµÄÒ»¸ö
+				//RFä¸ºå¹¿æ’­åœ°å€ æˆ–åˆ™ å…‰å£ä¸º 1åˆ°8ä¸­çš„ä¸€ä¸ª
 				if (( BROADCAST_ADD_FP==des_fp )||( des_fp<=FP_MAX ))
 				{
 					return MSG_TO_ALL;
 				}
 			}
 
-           		 //¹â¿Ú Îª¹ã²¥µØÖ· ²¢ÇÒ REµØÖ·´æÔÚ
+           		 //å…‰å£ ä¸ºå¹¿æ’­åœ°å€ å¹¶ä¸” REåœ°å€å­˜åœ¨
 			if (( BROADCAST_ADD_FP==des_fp )&&( LOCAL_ADD_RE!=des_re ))
 			{
-			    //REÎª¹ã²¥µØÖ· »òÔò Îª1~32ÖĞµÄÒ»¸ö
+			    //REä¸ºå¹¿æ’­åœ°å€ æˆ–åˆ™ ä¸º1~32ä¸­çš„ä¸€ä¸ª
 				if (( BROADCAST_ADD_RE==des_re )||( des_re<=RE_MAX ))
 				{
 					return MSG_TO_ALL;
 				} 
 			}  
 				
-			if (( des_re<=RE_MAX )&&( des_fp<=FP_MAX )&&( des_ree<=REE_MAX ))	// Õë¶ÔÄ³¹â¿ÚµÄÄ³¸öRE
+			if (( des_re<=RE_MAX )&&( des_fp<=FP_MAX )&&( des_ree<=REE_MAX ))	// é’ˆå¯¹æŸå…‰å£çš„æŸä¸ªRE
 			{
 				if (( LOCAL_ADD_RE!=des_re ))
 				{
@@ -95,7 +95,7 @@ UINT32 CheckMsgAddr( UCHAR8 des_fp, UCHAR8 des_re ,UCHAR8 des_ree)
 						des_ree -= 1;
 					return MSG_TO_RE; 
 					
-					// ²é¿´´ËÎ»ÖÃÊÇ·ñÓĞRE
+					// æŸ¥çœ‹æ­¤ä½ç½®æ˜¯å¦æœ‰RE
 					if (   (des_re<fp_inf[des_fp].re_cnt )&&(des_ree<REE_MAX  ))
 					{
 						return MSG_TO_RE; 
@@ -111,7 +111,7 @@ UINT32 CheckMsgAddr( UCHAR8 des_fp, UCHAR8 des_re ,UCHAR8 des_ree)
 		}
 		
 	}
-	// ´íÎóµØÖ·
+	// é”™è¯¯åœ°å€
 	return MSG_TO_NONE;
 }
 #if 0
@@ -120,18 +120,18 @@ UINT32 CheckMsgAddr( UCHAR8 des_fp, UCHAR8 des_re ,UCHAR8 des_ree)
 //	if ((( PC_ADD_FP==des_fp )&&( PC_ADD_RE==des_re )&&( PC_ADD_REE==des_ree )))
 	if ((( PC_ADD_FP==des_fp )&&( PC_ADD_RE==des_re )))
 	{
-		// ±¾µØÖ÷¿ØµØÖ·
+		// æœ¬åœ°ä¸»æ§åœ°å€
 		return MSG_TO_PC;
 	}
 	else
 	{
-		if ( ADDR_PC_MASK!=(des_fp&ADDR_PC_MASK) )		// PCÍØÆËµØÖ·ºÍÏà¶ÔµØÖ·±êÖ¾²»ÄÜÍ¬Ê±ÓĞĞ§
+		if ( ADDR_PC_MASK!=(des_fp&ADDR_PC_MASK) )		// PCæ‹“æ‰‘åœ°å€å’Œç›¸å¯¹åœ°å€æ ‡å¿—ä¸èƒ½åŒæ—¶æœ‰æ•ˆ
 		{
 			des_fp &= ADDR_FP_MASK;
 
 			if (( BROADCAST_ADD_RE==des_re )&&( LOCAL_ADD_FP!=des_fp))
 			{
-				// ¹ã²¥
+				// å¹¿æ’­
 				if (( BROADCAST_ADD_FP==des_fp )||( des_fp<=FP_MAX ))
 				{
 					return MSG_TO_ALL;
@@ -140,14 +140,14 @@ UINT32 CheckMsgAddr( UCHAR8 des_fp, UCHAR8 des_re ,UCHAR8 des_ree)
 
 			if (( BROADCAST_ADD_FP==des_fp )&&( LOCAL_ADD_RE!=des_re ))
 			{
-				// ¹ã²¥
+				// å¹¿æ’­
 				if (( BROADCAST_ADD_RE==des_re )||( des_re<=RE_MAX ))
 				{
 					return MSG_TO_ALL;
 				}
 			}
 			
-			if (( des_re<=RE_MAX )&&( des_fp<=FP_MAX ))	// Õë¶ÔÄ³¹â¿ÚµÄÄ³¸öRE
+			if (( des_re<=RE_MAX )&&( des_fp<=FP_MAX ))	// é’ˆå¯¹æŸå…‰å£çš„æŸä¸ªRE
 			{
 				if (( LOCAL_ADD_FP!=des_fp )&&( LOCAL_ADD_RE!=des_re ))
 				{
@@ -155,7 +155,7 @@ UINT32 CheckMsgAddr( UCHAR8 des_fp, UCHAR8 des_re ,UCHAR8 des_ree)
 					#if 0
 					des_fp -= 1;
 					des_re -= 1;
-					// ²é¿´´ËÎ»ÖÃÊÇ·ñÓĞRE
+					// æŸ¥çœ‹æ­¤ä½ç½®æ˜¯å¦æœ‰RE
 					#ifdef CLIENT_XINMIN
 						if ( des_re<fp_inf[7-des_fp].re_cnt )
 						{
@@ -172,19 +172,19 @@ UINT32 CheckMsgAddr( UCHAR8 des_fp, UCHAR8 des_re ,UCHAR8 des_ree)
 			}
 		}
 	}
-	// ´íÎóµØÖ·
+	// é”™è¯¯åœ°å€
 	return MSG_TO_NONE;
 }
 
 /*************************************************************
 Name:GetReBigMsgBuffIndex          
-Description: ²éÕÒÖ¸¶¨REµÄÏûÏ¢±£´æµÄ´ó»º³åµØÖ·
+Description: æŸ¥æ‰¾æŒ‡å®šREçš„æ¶ˆæ¯ä¿å­˜çš„å¤§ç¼“å†²åœ°å€
 Input:
-	fp: ¹â¿ÚºÅ
-	re: reĞòºÅ
+	fp: å…‰å£å·
+	re: reåºå·
 Return: 
-	0-Ã»ÕÒµ½
-	1~MSG_BIG_PKT_COUNT: ´ó»º³åÇø
+	0-æ²¡æ‰¾åˆ°
+	1~MSG_BIG_PKT_COUNT: å¤§ç¼“å†²åŒº
 **************************************************************/
 UINT32 GetReBigMsgBuffIndex( UCHAR8 fp, UCHAR8 re )
 {
@@ -209,13 +209,13 @@ UINT32 GetReBigMsgBuffIndex( UCHAR8 fp, UCHAR8 re )
 #endif
 /*************************************************************
 Name:GetReBigMsgBuffIndex          
-Description: ²éÕÒÖ¸¶¨REµÄÏûÏ¢±£´æµÄ´ó»º³åµØÖ·
+Description: æŸ¥æ‰¾æŒ‡å®šREçš„æ¶ˆæ¯ä¿å­˜çš„å¤§ç¼“å†²åœ°å€
 Input:
-	fp: ¹â¿ÚºÅ
-	re: reĞòºÅ
+	fp: å…‰å£å·
+	re: reåºå·
 Return: 
-	0-Ã»ÕÒµ½
-	1~MSG_BIG_PKT_COUNT: ´ó»º³åÇø
+	0-æ²¡æ‰¾åˆ°
+	1~MSG_BIG_PKT_COUNT: å¤§ç¼“å†²åŒº
 **************************************************************/
 UINT32 GetReBigMsgBuffIndex( UCHAR8 fp, UCHAR8 re,UCHAR8 rf )
 {
@@ -240,11 +240,11 @@ UINT32 GetReBigMsgBuffIndex( UCHAR8 fp, UCHAR8 re,UCHAR8 rf )
 }
 /*************************************************************
 Name:GetFreeBigBuffIndex          
-Description: ²éÕÒ¿ÕÏĞµÄ´óÊı¾İ»º³åÇø
+Description: æŸ¥æ‰¾ç©ºé—²çš„å¤§æ•°æ®ç¼“å†²åŒº
 Input: void
 Return: 
-	0-Ã»ÕÒµ½
-	1~MSG_BIG_PKT_COUNT: ´ó»º³åÇø
+	0-æ²¡æ‰¾åˆ°
+	1~MSG_BIG_PKT_COUNT: å¤§ç¼“å†²åŒº
 **************************************************************/
 UINT32 GetFreeBigBuffIndex( void )
 {
@@ -261,13 +261,13 @@ UINT32 GetFreeBigBuffIndex( void )
 
 /*************************************************************
 Name:GetReBigMsgBuffIndex          
-Description: ²éÕÒÖ¸¶¨REµÄÏûÏ¢±£´æµÄ´ó»º³åµØÖ·
+Description: æŸ¥æ‰¾æŒ‡å®šREçš„æ¶ˆæ¯ä¿å­˜çš„å¤§ç¼“å†²åœ°å€
 Input:
-	fp: ¹â¿ÚºÅ
-	re: reĞòºÅ
+	fp: å…‰å£å·
+	re: reåºå·
 Return: 
-	0-Ã»ÕÒµ½
-	1~MSG_BIG_PKT_COUNT: ´ó»º³åÇø
+	0-æ²¡æ‰¾åˆ°
+	1~MSG_BIG_PKT_COUNT: å¤§ç¼“å†²åŒº
 **************************************************************/
 BOOL SetReBigMsgBuff( UCHAR8 index,  UCHAR8 fp, UCHAR8 re )
 {
@@ -291,7 +291,7 @@ BOOL SetReBigMsgBuff( UCHAR8 index,  UCHAR8 fp, UCHAR8 re )
 
 /*************************************************************
 Name:CheckBigBuffTimeOut          
-Description: ¼ì²éÊÇ·ñÓĞRE³¤Ê±¼äÕ¼ÓÃ´ó»º³åÇø
+Description: æ£€æŸ¥æ˜¯å¦æœ‰REé•¿æ—¶é—´å ç”¨å¤§ç¼“å†²åŒº
 Input: void
 Return: void
 **************************************************************/
@@ -314,10 +314,10 @@ void CheckBigBuffTimeOut( void )
 
 /*************************************************************
 Name:SendMsgPkt          
-Description: ·¢ËÍÏûÏ¢°ü¸øRE»òÖ÷¿Ø
+Description: å‘é€æ¶ˆæ¯åŒ…ç»™REæˆ–ä¸»æ§
 Input:
-	msg_len: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
+	msg_len: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
 Return: void
 **************************************************************/
 void SendMsgPkt( UINT32 tx_len, UCHAR8 * p_msg_dat )
@@ -334,7 +334,7 @@ void SendMsgPkt( UINT32 tx_len, UCHAR8 * p_msg_dat )
 
 	if ( tx_len >= MSG_BIG_PKT_SIZE )
 	{
-		// ³¤¶ÈÒç³ö
+		// é•¿åº¦æº¢å‡º
 		TRACE_INFO_WP("over flow\r\n");
 		return;
 	}
@@ -350,31 +350,31 @@ void SendMsgPkt( UINT32 tx_len, UCHAR8 * p_msg_dat )
 	TRACE_INFO("tmp(%d).\r\n",tmp);
 	if ( MSG_TO_NONE == tmp )
 	{
-		// ÎŞĞ§µØÖ·
+		// æ— æ•ˆåœ°å€
 		TRACE_INFO_WP("Unknow Addr[%02X:%02X]\r\n", des_fp, des_re );
 		return;
 	}
 	
-	des_fp &= ADDR_FP_MASK;		// È¡µÃ¹â¿ÚºÅ
+	des_fp &= ADDR_FP_MASK;		// å–å¾—å…‰å£å·
 
-	// ¼ÆËãCRCÖµ
+	// è®¡ç®—CRCå€¼
 	crc_val = CalCrc16(p_msg_dat, tx_len, POLYNOMIAL );
 	p_msg_dat[tx_len++] = (UCHAR8)(crc_val&0x00ff);
 	p_msg_dat[tx_len++] = (UCHAR8)((crc_val>>8)&0x00ff);
 
 	switch( tmp )
 	{
-	case MSG_TO_PC:		// ·¢ËÍ¸ø±¾µØÖ÷¿Ø
+	case MSG_TO_PC:		// å‘é€ç»™æœ¬åœ°ä¸»æ§
 		TRACE_INFO_WP("To PC\r\n");
 		UsbSendMsgPkt( tx_len, p_msg_dat );
 		break;
 
-	case MSG_TO_ALL:	// ¹ã²¥
+	case MSG_TO_ALL:	// å¹¿æ’­
 		TRACE_INFO_WP("MSG_TO_ALL\r\n");
 		if ( BROADCAST_ADD_FP==des_fp )
 		{
 			//TRACE_INFO_WP("Broadcast1\r\n");
-			// È«¹â¿Ú¹ã²¥
+			// å…¨å…‰å£å¹¿æ’­
 			for (i=0;i<FP_MAX;i++)
 			{
 				//TRACE_INFO_WP("Broadcast2\r\n");
@@ -393,7 +393,7 @@ void SendMsgPkt( UINT32 tx_len, UCHAR8 * p_msg_dat )
 		}
 		else if ( BROADCAST_ADD_RE==des_re )
 		{
-			// µ¥¹â¿ÚËùÓĞRE¹ã²¥
+			// å•å…‰å£æ‰€æœ‰REå¹¿æ’­
 			TRACE_INFO_WP("Broadcast\r\n");
 			if ( des_fp > 0 )
 			{
@@ -405,7 +405,7 @@ void SendMsgPkt( UINT32 tx_len, UCHAR8 * p_msg_dat )
 		}
 		break;
 
-	case MSG_TO_RE:		// Õë¶ÔÄ³¸öRE
+	case MSG_TO_RE:		// é’ˆå¯¹æŸä¸ªRE
 		TRACE_INFO_WP("MSG_TO_EU\r\n");
 		//if (des_fp==0)
 		//{
@@ -432,10 +432,10 @@ void SendMsgPkt( UINT32 tx_len, UCHAR8 * p_msg_dat )
 
 /*************************************************************
 Name:MsgPktTransmit          
-Description: ×ª·¢ÏûÏ¢°ü¸øRE»òÖ÷¿Ø
+Description: è½¬å‘æ¶ˆæ¯åŒ…ç»™REæˆ–ä¸»æ§
 Input:
-	tx_len: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
+	tx_len: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgPktTransmit( UINT32 tx_len, UCHAR8 * p_msg_dat )
@@ -452,7 +452,7 @@ void MsgPktTransmit( UINT32 tx_len, UCHAR8 * p_msg_dat )
 
 	if ( tx_len >= MSG_BIG_PKT_SIZE )
 	{
-		// ³¤¶ÈÒç³ö
+		// é•¿åº¦æº¢å‡º
 		//TRACE_INFO_WP("over flow\r\n");
 		return;
 	}
@@ -465,7 +465,7 @@ void MsgPktTransmit( UINT32 tx_len, UCHAR8 * p_msg_dat )
        
 	    if (( 0xFA == p_args[0] )&&( 0x5A == p_args[1] ))
 	    {
-           sys_work_info |= SYSTEM_FLAG_REMOTE_UPDATE;	//ÉèÖÃFPGAÕıÔÚÉı¼¶±êÖ¾
+           sys_work_info |= SYSTEM_FLAG_REMOTE_UPDATE;	//è®¾ç½®FPGAæ­£åœ¨å‡çº§æ ‡å¿—
  
 		}
 		else
@@ -496,7 +496,7 @@ void MsgPktTransmit( UINT32 tx_len, UCHAR8 * p_msg_dat )
 
 	if (( (src_fp&0x1f)>0 ))
 	{
-		src_fp--;  //±äÎªÂß¼­¹â¿ÚµØÖ·
+		src_fp--;  //å˜ä¸ºé€»è¾‘å…‰å£åœ°å€
 	} 
 	
 	src_add = (src_fp<<16)|(src_re<<8)|src_ree;
@@ -505,25 +505,25 @@ void MsgPktTransmit( UINT32 tx_len, UCHAR8 * p_msg_dat )
 	TRACE_INFO_WP("CheckMsgAddr(%d)\r\n",tmp);	
 	if ( MSG_TO_NONE == tmp )
 	{
-		// ÎŞĞ§µØÖ·
+		// æ— æ•ˆåœ°å€
 		TRACE_INFO_WP("Unknow Addr[%02X:%02X]\r\n", des_fp, des_re );
 		return; 
 	}
 
-	des_fp &= ADDR_FP_MASK;		// È¡µÃ¹â¿ÚºÅ
+	des_fp &= ADDR_FP_MASK;		// å–å¾—å…‰å£å·
 
 	switch( tmp )    
 	{
-	case MSG_TO_PC:		// ·¢ËÍ¸ø±¾µØÖ÷¿Ø
+	case MSG_TO_PC:		// å‘é€ç»™æœ¬åœ°ä¸»æ§
 		TRACE_INFO_WP("To PC\r\n");
 		UsbSendMsgPkt( tx_len, p_msg_dat );
 		break;
 
-	case MSG_TO_ALL:	// ¹ã²¥
+	case MSG_TO_ALL:	// å¹¿æ’­
 		TRACE_INFO_WP("To Broadcast\r\n");
 		if ( BROADCAST_ADD_FP==des_fp )
 		{
-				// È«¹â¿Ú¹ã²¥
+				// å…¨å…‰å£å¹¿æ’­
 				for (i=0;i<8;i++)
 				{
 					des_add = i<<16;
@@ -541,7 +541,7 @@ void MsgPktTransmit( UINT32 tx_len, UCHAR8 * p_msg_dat )
 			}
 			else if ( BROADCAST_ADD_RE==des_re )
 			{
-				// µ¥¹â¿ÚËùÓĞRE¹ã²¥
+				// å•å…‰å£æ‰€æœ‰REå¹¿æ’­
 				if ( des_fp > 0 )
 				{
 					des_fp--;
@@ -552,7 +552,7 @@ void MsgPktTransmit( UINT32 tx_len, UCHAR8 * p_msg_dat )
 		
 		break;
 
-		case MSG_TO_RE:		// Õë¶ÔÄ³¸öRE
+		case MSG_TO_RE:		// é’ˆå¯¹æŸä¸ªRE
 			if (des_fp>0) 
 			{
 				TRACE_INFO_WP("To RE\r\n");  
@@ -570,10 +570,10 @@ void MsgPktTransmit( UINT32 tx_len, UCHAR8 * p_msg_dat )
 #if 0
 /*************************************************************
 Name:MsgHandle          
-Description: ´¦ÀíÊÕµ½µÄÏûÏ¢°ü
+Description: å¤„ç†æ”¶åˆ°çš„æ¶ˆæ¯åŒ…
 Input:
-	msg_len: ÏûÏ¢°üµÄ³¤¶È£¬°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
+	msg_len: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼ŒåŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandle( UINT32 msg_len, UCHAR8* p_msg_dat )
@@ -586,7 +586,7 @@ void MsgHandle( UINT32 msg_len, UCHAR8* p_msg_dat )
 
 	WTD_CLR;
 	
-	// ÅĞ¶ÏÊÇ·ñÊÇÓĞĞ§Êı¾İ°ü 
+	// åˆ¤æ–­æ˜¯å¦æ˜¯æœ‰æ•ˆæ•°æ®åŒ… 
 	des_fp = p_msg_dat[MSG_DES_FP]; 
 	des_re = p_msg_dat[MSG_DES_RE];
 	src_fp = p_msg_dat[MSG_SRC_FP];
@@ -623,59 +623,59 @@ void MsgHandle( UINT32 msg_len, UCHAR8* p_msg_dat )
 	p_msg_dat[MSG_SRC_FP], p_msg_dat[MSG_SRC_RE], p_msg_dat[MSG_DES_FP], p_msg_dat[MSG_DES_RE], p_msg_dat[MSG_CMD_ID]);
     WTD_CLR;
 	 
-	// ¸ù¾İÄ¿µÄµØÖ·´¦Àí  ¾ø¶ÔµØÖ·»òÕßÍØÆËµØÖ·                                           
+	// æ ¹æ®ç›®çš„åœ°å€å¤„ç†  ç»å¯¹åœ°å€æˆ–è€…æ‹“æ‰‘åœ°å€                                           
 	if  ( ((LOCAL_ADD_FP==des_fp)&&(LOCAL_ADD_RE==des_re))||(0x80==des_fp) ) 
 	{
-		// ·¢¸øRECµÄ£¬»òÊÇÖ÷¿Ø¸ø±¾µØÄ£¿éµÄ
+		// å‘ç»™RECçš„ï¼Œæˆ–æ˜¯ä¸»æ§ç»™æœ¬åœ°æ¨¡å—çš„
 
-		// ¼ÆËãÊµ¼ÊÊı¾İ³¤¶È£¬²»°üÀ¨CRC
+		// è®¡ç®—å®é™…æ•°æ®é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
 		msg_len-=2;
 		
 		if ( MSG_ACK_MASTER_SEND == p_msg_dat[MSG_ACK_FLAG] )
 		{
-			// È·¶¨Ó¦´ğ°üµÄÄ¿µÄµØÖ·
+			// ç¡®å®šåº”ç­”åŒ…çš„ç›®çš„åœ°å€
 
-			// Êı¾İ°üÓ¦´ğ¸ø·¢ËÍ·½
+			// æ•°æ®åŒ…åº”ç­”ç»™å‘é€æ–¹
 			msg_tx_buff[MSG_DES_FP] = p_msg_dat[MSG_SRC_FP];
 			msg_tx_buff[MSG_DES_RE] = p_msg_dat[MSG_SRC_RE];
 			
 			if ((PC_ABS_FP==msg_tx_buff[MSG_DES_FP])&&(PC_ABS_NODE==msg_tx_buff[MSG_DES_RE]))
 			{
-				// ÈôÓ¦´ğµØÖ·ÎªÖ÷¿ØµÄÏà¶ÔµØÖ·£¬Ôò¸ÄÎªÖ÷¿ØµÄÍØÆËµØÖ·
+				// è‹¥åº”ç­”åœ°å€ä¸ºä¸»æ§çš„ç›¸å¯¹åœ°å€ï¼Œåˆ™æ”¹ä¸ºä¸»æ§çš„æ‹“æ‰‘åœ°å€
 				msg_tx_buff[MSG_DES_FP] = PC_ADD_FP;
 				msg_tx_buff[MSG_DES_RE] = PC_ADD_RE;
 			}
-			// Ô´µØÖ·REC [0x00,0x00]
+			// æºåœ°å€REC [0x00,0x00]
 			msg_tx_buff[MSG_SRC_FP] = LOCAL_ADD_FP;
 			msg_tx_buff[MSG_SRC_RE] = LOCAL_ADD_RE;
 
-			// Ó¦´ğ°üµÄ±£Áô×Ö¶Î
+			// åº”ç­”åŒ…çš„ä¿ç•™å­—æ®µ
 			msg_tx_buff[MSG_RESERVE1] = p_msg_dat[MSG_RESERVE1];
 			msg_tx_buff[MSG_RESERVE2] = p_msg_dat[MSG_RESERVE2];
 
-			// Ó¦´ğ°üµÄÃüÁî×Ö
+			// åº”ç­”åŒ…çš„å‘½ä»¤å­—
 			msg_tx_buff[MSG_CMD_ID] = p_msg_dat[MSG_CMD_ID];
 
-			// ´¦ÀíÓ¦´ğ°üÃüÁî
+			// å¤„ç†åº”ç­”åŒ…å‘½ä»¤
 			switch ( p_msg_dat[MSG_CMD_ID] )
 			{
-				case MSG_CMD_SET_PARAM:		// ÉèÖÃ²ÎÊı
+				case MSG_CMD_SET_PARAM:		// è®¾ç½®å‚æ•°
 					MsgHandleSetParam( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
-				case MSG_CMD_GET_PARAM:		// ²éÑ¯²ÎÊı
+				case MSG_CMD_GET_PARAM:		// æŸ¥è¯¢å‚æ•°
 					MsgHandleGetParam( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 					
-				case MSG_CMD_SET_DEV_REG:		// ÉèÖÃÆ÷¼ş¼Ä´æÆ÷
+				case MSG_CMD_SET_DEV_REG:		// è®¾ç½®å™¨ä»¶å¯„å­˜å™¨
 					MsgHandleSetDevReg( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
-				case MSG_CMD_GET_DEV_REG:		// ²éÑ¯Æ÷¼ş¼Ä´æÆ÷
+				case MSG_CMD_GET_DEV_REG:		// æŸ¥è¯¢å™¨ä»¶å¯„å­˜å™¨
 					MsgHandleGetDevReg( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
-				case MSG_CMD_RESET_DEV:		// ÖØĞÂ³õÊ¼»¯Æ÷¼ş
+				case MSG_CMD_RESET_DEV:		// é‡æ–°åˆå§‹åŒ–å™¨ä»¶
 					MsgHandleResetDev( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
@@ -683,31 +683,31 @@ void MsgHandle( UINT32 msg_len, UCHAR8* p_msg_dat )
 					MsgHandleGetFpgaReg( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
-				case MSG_CMD_GET_TABLE:		// ²éÑ¯±í¸ñ
+				case MSG_CMD_GET_TABLE:		// æŸ¥è¯¢è¡¨æ ¼
 					MsgHandleGetTable( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
-				case MSG_CMD_SET_TABLE:		// ÉèÖÃ±í¸ñ
+				case MSG_CMD_SET_TABLE:		// è®¾ç½®è¡¨æ ¼
 					MsgHandleSetTable( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 					
-				case MSG_CMD_GET_TOPO:		// ²éÑ¯ÍØÆË
+				case MSG_CMD_GET_TOPO:		// æŸ¥è¯¢æ‹“æ‰‘
 					MsgHandleGetTopo( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 					
-				case MSG_CMD_SET_TOPO:			// ÉèÖÃÍØÆË
+				case MSG_CMD_SET_TOPO:			// è®¾ç½®æ‹“æ‰‘
 					MsgHandleSetTopo( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 					
-				case MSG_CMD_UPDATE_MCU:		// Éı¼¶MCU
+				case MSG_CMD_UPDATE_MCU:		// å‡çº§MCU
 					MsgHandleUpdateMCU( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 					
-				case MSG_CMD_UPDATE_FPGA:		// Éı¼¶FPGA
+				case MSG_CMD_UPDATE_FPGA:		// å‡çº§FPGA
 					MsgHandleUpdateFPGA( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 					
-				case MSG_CMD_GET_FLASH_PAGE:	// ¶ÁÈ¡FLASHÒ³ÄÚÈİ
+				case MSG_CMD_GET_FLASH_PAGE:	// è¯»å–FLASHé¡µå†…å®¹
 					MsgHandleGetFlashPage( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
@@ -727,7 +727,7 @@ void MsgHandle( UINT32 msg_len, UCHAR8* p_msg_dat )
 					MsgHandleFcScan( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 					
-				case MSG_CMD_ERR_ALARM:		// ´íÎó±¨¾¯
+				case MSG_CMD_ERR_ALARM:		// é”™è¯¯æŠ¥è­¦
 					//MsgHandleDlGainStepAdjust( msg_length, p_msg_dat );
 				break;
 
@@ -735,20 +735,20 @@ void MsgHandle( UINT32 msg_len, UCHAR8* p_msg_dat )
 					MsgHandleBlankCmd( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
-				default:		// Î´ÖªÃüÁî
+				default:		// æœªçŸ¥å‘½ä»¤
 					MsgHandleUnknowCmd( msg_len, p_msg_dat, msg_tx_buff );
 
 			}
 		}
 		else
 		{
-			// Ó¦´ğ°ü
+			// åº”ç­”åŒ…
 			MsgHandleAck( msg_len, p_msg_dat );
 		}
 	}
 	else
 	{
-		// ĞèÒª×ª·¢µÄ
+		// éœ€è¦è½¬å‘çš„
 		MsgPktTransmit( msg_len, p_msg_dat );
 	}
 	
@@ -759,10 +759,10 @@ void MsgHandle( UINT32 msg_len, UCHAR8* p_msg_dat )
 #endif
 /*************************************************************
 Name:MsgHandle          
-Description: ´¦ÀíÊÕµ½µÄÏûÏ¢°ü
+Description: å¤„ç†æ”¶åˆ°çš„æ¶ˆæ¯åŒ…
 Input:
-	msg_len: ÏûÏ¢°üµÄ³¤¶È£¬°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
+	msg_len: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼ŒåŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
 Return: void
 **************************************************************/
 //void MsgHandle( UCHAR8 fp, UCHAR8 re,UINT32 msg_len, UCHAR8* p_msg_dat )//20121130
@@ -774,7 +774,7 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 	//UCHAR8 src_fp, src_re;
 	
 	WTD_CLR;
-	// ÅĞ¶ÏÊÇ·ñÊÇÓĞĞ§Êı¾İ°ü
+	// åˆ¤æ–­æ˜¯å¦æ˜¯æœ‰æ•ˆæ•°æ®åŒ…
 	if (( msg_len<MSG_PKT_SIZE_MIN )||( msg_len>MSG_BIG_PKT_SIZE )||( NULL == p_msg_dat ))
 	{
 		TRACE_DEBUG("This Is Not a MsgPkt!\r\n");
@@ -782,7 +782,7 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 	}
 
 #if 0
-	// CRCĞ£Ñé
+	// CRCæ ¡éªŒ
 	crc_val = CalCrc16( p_msg_dat, msg_len-2, POLYNOMIAL );
 	tmp = (UINT16)((p_msg_dat[msg_len-1]<<8)|(p_msg_dat[msg_len-2]));
 	if ( crc_val != tmp )
@@ -822,28 +822,28 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 	TRACE_INFO("src_fp(%02x).\r\n", p_msg_dat[MSG_SRC_FP]);
 	TRACE_INFO("src_re (%02x).\r\n", p_msg_dat[MSG_SRC_RE] );
 	TRACE_INFO("src_ree(%02x).\r\n", p_msg_dat[MSG_SRC_REE]);
-	// ¸ù¾İÄ¿µÄµØÖ·´¦Àí
+	// æ ¹æ®ç›®çš„åœ°å€å¤„ç†
 	if  ( ((LOCAL_ADD_FP==(des_fp))&&(LOCAL_ADD_RE==des_re)&&(LOCAL_ADD_REE==des_ree))||(0x80==des_fp) ) 
 //	if  ( (((des_fp<=FP_MAX)||(LOCAL_ADD_FP==(des_fp))&&(LOCAL_ADD_RE==des_re))||(0x80==des_fp) ) 
 	{
-		// ·¢¸øRECµÄ£¬»òÊÇÖ÷¿Ø¸ø±¾µØÄ£¿éµÄ
+		// å‘ç»™RECçš„ï¼Œæˆ–æ˜¯ä¸»æ§ç»™æœ¬åœ°æ¨¡å—çš„
 
-		// ¼ÆËãÊµ¼ÊÊı¾İ³¤¶È£¬²»°üÀ¨CRC
+		// è®¡ç®—å®é™…æ•°æ®é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
 		msg_len-=2;
 
 		TRACE_INFO("p_msg_dat[MSG_ACK_FLAG](%d).\r\n", p_msg_dat[MSG_ACK_FLAG] );
 		if ( MSG_ACK_MASTER_SEND == p_msg_dat[MSG_ACK_FLAG] )
 		{
-			// È·¶¨Ó¦´ğ°üµÄÄ¿µÄµØÖ·
+			// ç¡®å®šåº”ç­”åŒ…çš„ç›®çš„åœ°å€
 
-			// Êı¾İ°üÓ¦´ğ¸ø·¢ËÍ·½
+			// æ•°æ®åŒ…åº”ç­”ç»™å‘é€æ–¹
 			msg_tx_buff[MSG_DES_FP] = p_msg_dat[MSG_SRC_FP];
 			msg_tx_buff[MSG_DES_RE] = p_msg_dat[MSG_SRC_RE];
 			msg_tx_buff[MSG_DES_REE] = p_msg_dat[MSG_SRC_REE];
 			
 			if ((PC_ABS_FP==msg_tx_buff[MSG_DES_FP])&&(PC_ABS_RE==msg_tx_buff[MSG_DES_RE])&&(PC_ABS_REE==msg_tx_buff[MSG_DES_REE]))
 			{
-				// ÈôÓ¦´ğµØÖ·ÎªÖ÷¿ØµÄÏà¶ÔµØÖ·£¬Ôò¸ÄÎªÖ÷¿ØµÄÍØÆËµØÖ·
+				// è‹¥åº”ç­”åœ°å€ä¸ºä¸»æ§çš„ç›¸å¯¹åœ°å€ï¼Œåˆ™æ”¹ä¸ºä¸»æ§çš„æ‹“æ‰‘åœ°å€
 				msg_tx_buff[MSG_DES_FP] = PC_ADD_FP;
 				msg_tx_buff[MSG_DES_RE] = PC_ADD_RE;
 				msg_tx_buff[MSG_DES_REE] = PC_ADD_REE;
@@ -851,57 +851,57 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 #if 0
 			if ((MODULE_ABS_FP==des_fp )&&(MODULE_ABS_RE==des_re))
 			{
-				// Ö÷¿ØµÄÏà¶ÔµØÖ··ÃÎÊ£¬·µ»ØµØÖ·ÒªÓÃÖ÷¿ØµÄ¾ø¶ÔµØÖ·
+				// ä¸»æ§çš„ç›¸å¯¹åœ°å€è®¿é—®ï¼Œè¿”å›åœ°å€è¦ç”¨ä¸»æ§çš„ç»å¯¹åœ°å€
 				msg_tx_buff[MSG_DES_FP] = PC_ADD_FP;
 				msg_tx_buff[MSG_DES_RE] = PC_ADD_RE;
 			}
 			else if ((PC_ABS_FP==p_msg_dat[MSG_SRC_FP])&&(PC_ABS_NODE==p_msg_dat[MSG_SRC_RE]))
 			{
-				// Ô´µØÖ·ÎªÖ÷¿ØµÄµØÖ·£¬·µ»ØµØÖ·ÒªÓÃÖ÷¿ØµÄÍØÆËµØÖ·
+				// æºåœ°å€ä¸ºä¸»æ§çš„åœ°å€ï¼Œè¿”å›åœ°å€è¦ç”¨ä¸»æ§çš„æ‹“æ‰‘åœ°å€
 				msg_tx_buff[MSG_DES_FP] = PC_ADD_FP;
 				msg_tx_buff[MSG_DES_RE] = PC_ADD_RE;
 			}
 			else
 			{
-				// Êı¾İ°üÓ¦´ğ¸ø·¢ËÍ·½
+				// æ•°æ®åŒ…åº”ç­”ç»™å‘é€æ–¹
 				msg_tx_buff[MSG_DES_FP] = p_msg_dat[MSG_SRC_FP];
 				msg_tx_buff[MSG_DES_RE] = p_msg_dat[MSG_SRC_RE];
 			}
 #endif 			
-			// Ô´µØÖ·REC [0x00,0x00]
+			// æºåœ°å€REC [0x00,0x00]
 			msg_tx_buff[MSG_SRC_FP] = LOCAL_ADD_FP;
 			msg_tx_buff[MSG_SRC_RE] = LOCAL_ADD_RE;
 			msg_tx_buff[MSG_SRC_REE] = LOCAL_ADD_REE;
 
-			// Ó¦´ğ°üµÄ±£Áô×Ö¶Î
+			// åº”ç­”åŒ…çš„ä¿ç•™å­—æ®µ
 			msg_tx_buff[MSG_RESERVE1] = p_msg_dat[MSG_RESERVE1];
 			msg_tx_buff[MSG_RESERVE2] = p_msg_dat[MSG_RESERVE2];
 
-			// Ó¦´ğ°üµÄÃüÁî×Ö
+			// åº”ç­”åŒ…çš„å‘½ä»¤å­—
 			msg_tx_buff[MSG_CMD_ID] = p_msg_dat[MSG_CMD_ID];
 
 			TRACE_INFO(" MSG_CMD_ID =%d\r\n", p_msg_dat[MSG_CMD_ID]); 
 
-			// ´¦ÀíÓ¦´ğ°üÃüÁî
+			// å¤„ç†åº”ç­”åŒ…å‘½ä»¤
 			switch ( p_msg_dat[MSG_CMD_ID] )
 			{
-			case MSG_CMD_SET_PARAM:		// ÉèÖÃ²ÎÊı
+			case MSG_CMD_SET_PARAM:		// è®¾ç½®å‚æ•°
 				MsgHandleSetParam( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
-			case MSG_CMD_GET_PARAM:		// ²éÑ¯²ÎÊı
+			case MSG_CMD_GET_PARAM:		// æŸ¥è¯¢å‚æ•°
 				MsgHandleGetParam( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 				
-			case MSG_CMD_SET_DEV_REG:		// ÉèÖÃÆ÷¼ş¼Ä´æÆ÷
+			case MSG_CMD_SET_DEV_REG:		// è®¾ç½®å™¨ä»¶å¯„å­˜å™¨
 				MsgHandleSetDevReg( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
-			case MSG_CMD_GET_DEV_REG:		// ²éÑ¯Æ÷¼ş¼Ä´æÆ÷
+			case MSG_CMD_GET_DEV_REG:		// æŸ¥è¯¢å™¨ä»¶å¯„å­˜å™¨
 				MsgHandleGetDevReg( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
-			case MSG_CMD_RESET_DEV:		// ÖØĞÂ³õÊ¼»¯Æ÷¼ş
+			case MSG_CMD_RESET_DEV:		// é‡æ–°åˆå§‹åŒ–å™¨ä»¶
 				MsgHandleResetDev( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
@@ -909,34 +909,34 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 				MsgHandleGetFpgaReg( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
-			case MSG_CMD_GET_TABLE:		// ²éÑ¯±í¸ñ
+			case MSG_CMD_GET_TABLE:		// æŸ¥è¯¢è¡¨æ ¼
 				MsgHandleGetTable( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
-			case MSG_CMD_SET_TABLE:		// ÉèÖÃ±í¸ñ
+			case MSG_CMD_SET_TABLE:		// è®¾ç½®è¡¨æ ¼
 				MsgHandleSetTable( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 				
-			case MSG_CMD_GET_TOPO:		// ²éÑ¯ÍØÆË
+			case MSG_CMD_GET_TOPO:		// æŸ¥è¯¢æ‹“æ‰‘
 				MsgHandleGetTopo( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 				
-			case MSG_CMD_SET_TOPO:			// ÉèÖÃÍØÆË
+			case MSG_CMD_SET_TOPO:			// è®¾ç½®æ‹“æ‰‘
 				MsgHandleSetTopo( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 				
-			case MSG_CMD_UPDATE_MCU:		// Éı¼¶MCU
+			case MSG_CMD_UPDATE_MCU:		// å‡çº§MCU
 				MsgHandleUpdateMCU( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 				
-			case MSG_CMD_UPDATE_FPGA:		// Éı¼¶FPGA
+			case MSG_CMD_UPDATE_FPGA:		// å‡çº§FPGA
 				MsgHandleUpdateFPGA( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 				
-			case MSG_CMD_GET_FLASH_PAGE:	// ¶ÁÈ¡FLASHÒ³ÄÚÈİ
+			case MSG_CMD_GET_FLASH_PAGE:	// è¯»å–FLASHé¡µå†…å®¹
 				MsgHandleGetFlashPage( msg_len, p_msg_dat, msg_tx_buff );
 				break;
-			case MSG_CMD_FLASH_OPERATION: //FlashÒ³²Ù×÷
+			case MSG_CMD_FLASH_OPERATION: //Flashé¡µæ“ä½œ
 				MsgHandleFlashOperatePage( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
@@ -969,7 +969,7 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 				MsgHandleBlankCmd( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 
-			default:		// Î´ÖªÃüÁî
+			default:		// æœªçŸ¥å‘½ä»¤
 				MsgHandleUnknowCmd( msg_len, p_msg_dat, msg_tx_buff );
 
 			}
@@ -978,7 +978,7 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 		{
 			TRACE_INFO(" MSG_CMD_ID =%d\r\n", p_msg_dat[MSG_CMD_ID]); 	
 	//		TRACE_INFO("MsgHandleAck \r\n"); 		
-			// Ó¦´ğ°ü
+			// åº”ç­”åŒ…
 			MsgHandleAck( msg_len, p_msg_dat );
 		}
 
@@ -988,7 +988,7 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 	{
 
 		TRACE_INFO("MsgPktTransmit \r\n"); 		
-		// ĞèÒª×ª·¢µÄ
+		// éœ€è¦è½¬å‘çš„
 		MsgPktTransmit( msg_len, p_msg_dat );
 	}
 	
@@ -998,30 +998,30 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 
 /*************************************************************
 Name:MsgCrcError          
-Description: ÏûÏ¢°üÃüÁî:Î´ÖªÃüÁî
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:æœªçŸ¥å‘½ä»¤
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 #if 0
 void MsgCrcError( UCHAR8 fp, UCHAR8 re, UCHAR8 cmd, UINT16 crc )
 {
 	UINT32 msg_tx_len;
-	// Ä¿µÄµØÖ·
+	// ç›®çš„åœ°å€
 	msg_tx_buff[MSG_DES_FP] = fp;
 	msg_tx_buff[MSG_DES_RE] = re;
 	
 	
-	// Ô´µØÖ·REC [0x00,0x00]
+	// æºåœ°å€REC [0x00,0x00]
 	msg_tx_buff[MSG_SRC_FP] = 0;
 	msg_tx_buff[MSG_SRC_RE] = 0;
 
-	// Ó¦´ğ°üµÄÃüÁî×Ö
+	// åº”ç­”åŒ…çš„å‘½ä»¤å­—
 	msg_tx_buff[MSG_CMD_ID] = cmd;		// MSG_CMD_BLANK;
 
-	// Ó¦´ğĞÅÏ¢
+	// åº”ç­”ä¿¡æ¯
 	msg_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_CRC;
 
 	msg_tx_len = MSG_PKT_HEAD_SIZE;
@@ -1029,7 +1029,7 @@ void MsgCrcError( UCHAR8 fp, UCHAR8 re, UCHAR8 cmd, UINT16 crc )
 	msg_tx_buff[msg_tx_len++] = (UCHAR8)(crc&0x00ff);
 	msg_tx_buff[msg_tx_len++] = (UCHAR8)((crc>>8)&0x00ff);
 	
-	// ·¢ËÍÓ¦´ğ°ü
+	// å‘é€åº”ç­”åŒ…
 	SendMsgPkt( msg_tx_len, msg_tx_buff );
 	
 }
@@ -1038,20 +1038,20 @@ void MsgCrcError( UCHAR8 fp, UCHAR8 re, UCHAR8 cmd, UINT16 crc )
 void MsgCrcError( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UCHAR8 cmd, UINT16 crc )
 {
 	UINT32 msg_tx_len;
-	// Ä¿µÄµØÖ· 
+	// ç›®çš„åœ°å€ 
 	msg_tx_buff[MSG_DES_FP] = fp;  
 	msg_tx_buff[MSG_DES_RE] = re;  
 	msg_tx_buff[MSG_DES_RE] = ree; 
 	
-	// Ô´µØÖ·REC [0x00,0x00] 
+	// æºåœ°å€REC [0x00,0x00] 
 	msg_tx_buff[MSG_SRC_FP] = 0; 
 	msg_tx_buff[MSG_SRC_RE] = 0;
 	msg_tx_buff[MSG_SRC_REE] = 0;
 
-	// Ó¦´ğ°üµÄÃüÁî×Ö
+	// åº”ç­”åŒ…çš„å‘½ä»¤å­—
 	msg_tx_buff[MSG_CMD_ID] = cmd;		// MSG_CMD_BLANK;
 
-	// Ó¦´ğĞÅÏ¢
+	// åº”ç­”ä¿¡æ¯
 	msg_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_CRC;
 
 	msg_tx_len = MSG_PKT_HEAD_SIZE;
@@ -1059,7 +1059,7 @@ void MsgCrcError( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UCHAR8 cmd, UINT16 crc )
 	msg_tx_buff[msg_tx_len++] = (UCHAR8)(crc&0x00ff);
 	msg_tx_buff[msg_tx_len++] = (UCHAR8)((crc>>8)&0x00ff);
 	
-	// ·¢ËÍÓ¦´ğ°ü
+	// å‘é€åº”ç­”åŒ…
 	SendMsgPkt( msg_tx_len, msg_tx_buff );
 	
 }
@@ -1069,80 +1069,80 @@ void MsgCrcError( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UCHAR8 cmd, UINT16 crc )
 #if 0
 /*************************************************************
 Name:MsgHandleUnknowCmd
-Description: ÏûÏ¢°üÃüÁî:Î´ÖªÃüÁî
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:æœªçŸ¥å‘½ä»¤
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgReceiverBusy( UCHAR8 des_fp, UCHAR8 des_no )
 {
 	UINT32 msg_tx_len;
 
-	// Ä¿µÄµØÖ·
+	// ç›®çš„åœ°å€
 	msg_tx_buff[MSG_DES_FP] = des_fp;
 	msg_tx_buff[MSG_DES_RE] = des_no;
 	
-	// Ô´µØÖ·REC [0x00,0x00]
+	// æºåœ°å€REC [0x00,0x00]
 	msg_tx_buff[MSG_SRC_FP] = 0;
 	msg_tx_buff[MSG_SRC_RE] = 0;
 
-	// Ó¦´ğ°üµÄÃüÁî×Ö
+	// åº”ç­”åŒ…çš„å‘½ä»¤å­—
 	msg_tx_buff[MSG_CMD_ID] = MSG_CMD_BLANK;
 
-	// Ó¦´ğĞÅÏ¢
+	// åº”ç­”ä¿¡æ¯
 	msg_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_BUSY;
 
 	msg_tx_len = MSG_PKT_HEAD_SIZE;
 	
-	// ·¢ËÍÓ¦´ğ°ü
+	// å‘é€åº”ç­”åŒ…
 	SendMsgPkt( msg_tx_len, msg_tx_buff );
 	
 }
 #endif
 /*************************************************************
 Name:MsgHandleUnknowCmd
-Description: ÏûÏ¢°üÃüÁî:Î´ÖªÃüÁî
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:æœªçŸ¥å‘½ä»¤
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgReceiverBusy( UCHAR8 des_fp, UCHAR8 des_re,UCHAR8 des_rf )
 {
 	UINT32 msg_tx_len;
 
-	// Ä¿µÄµØÖ·
+	// ç›®çš„åœ°å€
 	msg_tx_buff[MSG_DES_FP] = des_fp;
 	msg_tx_buff[MSG_DES_RE] = des_re;
 	msg_tx_buff[MSG_DES_REE] = des_rf;
 	
-	// Ô´µØÖ·REC [0x00,0x00]
+	// æºåœ°å€REC [0x00,0x00]
 	msg_tx_buff[MSG_SRC_FP] = 0;
 	msg_tx_buff[MSG_SRC_RE] = 0;
 	msg_tx_buff[MSG_SRC_REE] = 0;
 
-	// Ó¦´ğ°üµÄÃüÁî×Ö
+	// åº”ç­”åŒ…çš„å‘½ä»¤å­—
 	msg_tx_buff[MSG_CMD_ID] = MSG_CMD_BLANK;
 
-	// Ó¦´ğĞÅÏ¢
+	// åº”ç­”ä¿¡æ¯
 	msg_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_BUSY;
 
 	msg_tx_len = MSG_PKT_HEAD_SIZE; 
 	
-	// ·¢ËÍÓ¦´ğ°ü
+	// å‘é€åº”ç­”åŒ…
 	SendMsgPkt( msg_tx_len, msg_tx_buff );
 	
 }
 /*************************************************************
 Name:MsgHandleUnknowCmd          
-Description: ÏûÏ¢°üÃüÁî:Î´ÖªÃüÁî
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:æœªçŸ¥å‘½ä»¤
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleUnknowCmd( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -1166,17 +1166,17 @@ void MsgHandleUnknowCmd( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 	//	p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_CMD;
 	
 
-	// ·¢ËÍÓ¦´ğ°ü
+	// å‘é€åº”ç­”åŒ…
 	SendMsgPkt( msg_tx_len, p_tx_buff );
 }
 
 /*************************************************************
 Name:MsgHandleBlankCmd          
-Description: ÏûÏ¢°üÃüÁî:¿ÕÃüÁî
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:ç©ºå‘½ä»¤
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleBlankCmd( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -1189,7 +1189,7 @@ void MsgHandleBlankCmd( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 
 	msg_tx_len = MSG_PKT_HEAD_SIZE;
 
-	// A B C D¶ÎÍ¨µÀÊı
+	// A B C Dæ®µé€šé“æ•°
 	tmp = FpgaReadRegister(FPGA_REG_CH_COUNT);
 
 	#if defined CLIENT_JIZHUN
@@ -1203,12 +1203,12 @@ void MsgHandleBlankCmd( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 	p_tx_buff[msg_tx_len++] = (tmp&BM_C_CH_COUNT)>>4;
 	p_tx_buff[msg_tx_len++] = (tmp&BM_D_CH_COUNT)>>12;
 	#endif
-	// A B C D¶ÎÍ¨ĞÅÖÆÊ½
+	// A B C Dæ®µé€šä¿¡åˆ¶å¼
 	tmp = FpgaReadRegister(FPGA_REG_RF_INFO);
 	p_tx_buff[msg_tx_len++] =(tmp>>8); //0x20|(tmp&0x0f);////20130318 test 
-//	TRACE_INFO("[M]Msg Handle Blank A B C D¶ÎÍ¨ĞÅÖÆÊ½:[%04X]\r\n",(tmp&0XFF00)>>8);		
+//	TRACE_INFO("[M]Msg Handle Blank A B C Dæ®µé€šä¿¡åˆ¶å¼:[%04X]\r\n",(tmp&0XFF00)>>8);		
 //	#if 0
-	// ¸½¼ÓÄ£¿é
+	// é™„åŠ æ¨¡å—
 
 	tmp = 0;
 
@@ -1244,31 +1244,31 @@ void MsgHandleBlankCmd( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 	p_tx_buff[msg_tx_len++] = (UCHAR8)0;  //2014.08.29
 #endif
 
-	//Ôö¼Ó·û
+	//å¢åŠ ç¬¦
 	p_tx_buff[msg_tx_len++] = '+';
-	//°æ±¾Ãû³Æ			
+	//ç‰ˆæœ¬åç§°			
 	p_tx_buff[msg_tx_len++] = MAJOR_VERSION;
-	//±ê³ÆÔöÒæ
-	p_tx_buff[msg_tx_len++] = FPGA_REC_GFNOM;//AU Ç°¶Ë
-	p_tx_buff[msg_tx_len++] = FPGA_REC_GDNOM;//AU ºó¶Ë
-	p_tx_buff[msg_tx_len++] = FPGA_RE_GFNOM;//RU Ç°¶Ë
-	p_tx_buff[msg_tx_len++] = FPGA_RE_GDNOM;//RU ºó¶Ë
+	//æ ‡ç§°å¢ç›Š
+	p_tx_buff[msg_tx_len++] = FPGA_REC_GFNOM;//AU å‰ç«¯
+	p_tx_buff[msg_tx_len++] = FPGA_REC_GDNOM;//AU åç«¯
+	p_tx_buff[msg_tx_len++] = FPGA_RE_GFNOM;//RU å‰ç«¯
+	p_tx_buff[msg_tx_len++] = FPGA_RE_GDNOM;//RU åç«¯
 
 	p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
 
 #endif
 	
-	// ·¢ËÍÓ¦´ğ°ü
+	// å‘é€åº”ç­”åŒ…
 	SendMsgPkt( msg_tx_len, p_tx_buff );
 }
 
 /*************************************************************
 Name: MsgHandleSetParam          
-Description: ÏûÏ¢°üÃüÁî:ÉèÖÃ²ÎÊı
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:è®¾ç½®å‚æ•°
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleSetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -1278,8 +1278,8 @@ void MsgHandleSetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 	//UINT16 para_2b_bak[PARA_2B_MAX];
 	//UINT32 para_4b_bak[PARA_4B_MAX];
 
-	UINT16 param_set_len;		// ²ÎÊıÉèÖÃ´®µÄ³¤¶È
-	UINT16 err_add;				// ´íÎó²ÎÊıµÄµØÖ·
+	UINT16 param_set_len;		// å‚æ•°è®¾ç½®ä¸²çš„é•¿åº¦
+	UINT16 err_add;				// é”™è¯¯å‚æ•°çš„åœ°å€
 	UCHAR8 * p_param_set_dat;
 	UINT32 msg_tx_len;
 
@@ -1290,16 +1290,16 @@ void MsgHandleSetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 
 	msg_tx_len = MSG_CMD_BODY;
 		
-	// ¼ì²é²ÎÊıÉèÖÃ´®ÊÇ·ñÕıÈ·
+	// æ£€æŸ¥å‚æ•°è®¾ç½®ä¸²æ˜¯å¦æ­£ç¡®
 #if 0
 	if ( 0 != ParamChangeVerify( param_set_len, p_param_set_dat, 0, &err_add ) )
 	{
 		BackupSystemPara(para_bak);
 
-		// ÉèÖÃ²ÎÊı
+		// è®¾ç½®å‚æ•°
 		if ( b_TRUE == SetSysParam( param_set_len, p_param_set_dat ) )
 		{
-			// ±£´æ²ÎÊı
+			// ä¿å­˜å‚æ•°
 			SaveSysParamToFlash();
 			p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
 			goto _set_param_end;
@@ -1311,10 +1311,10 @@ void MsgHandleSetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 #endif
 	BackupSystemPara(para_bak);
 
-	// ÉèÖÃ²ÎÊı
+	// è®¾ç½®å‚æ•°
 	if ( 0 != SetSysParam( param_set_len, 0, p_param_set_dat, &err_add ) )
 	{
-		// ±£´æ²ÎÊı
+		// ä¿å­˜å‚æ•°
 		SaveSysParamToFlash();
 		p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
 	} 
@@ -1328,18 +1328,18 @@ void MsgHandleSetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 		p_tx_buff[msg_tx_len++] = (UCHAR8)((err_add>>8) & 0x000000FF);
 	}
 
-	// ·¢ËÍÓ¦´ğ°ü
+	// å‘é€åº”ç­”åŒ…
 	SendMsgPkt( msg_tx_len, p_tx_buff );
 	
 }
 
 /*************************************************************
 Name: MsgHandleGetParam          
-Description: ÏûÏ¢°üÃüÁî:²éÑ¯²ÎÊı
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:æŸ¥è¯¢å‚æ•°
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleGetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -1362,13 +1362,13 @@ void MsgHandleGetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 
 	for ( i=MSG_CMD_BODY; (i+3)<msg_length; )
 	{
-		// ¶ÁÈ¡²ÎÊıµØÖ·
+		// è¯»å–å‚æ•°åœ°å€
 		addr = p_msg_dat[i+0]|(p_msg_dat[i+1]<<8);
 
-		// ¶ÁÈ¡²ÎÊı³¤¶È
+		// è¯»å–å‚æ•°é•¿åº¦
 		len = p_msg_dat[i+2];
 
-		// µØÖ·ºÍ³¤¶ÈĞ´ÈëÓ¦´ğ°ü
+		// åœ°å€å’Œé•¿åº¦å†™å…¥åº”ç­”åŒ…
 		p_tx_buff[msg_tx_len++] = p_msg_dat[i+0];
 		p_tx_buff[msg_tx_len++] = p_msg_dat[i+1];
 		p_tx_buff[msg_tx_len++] = p_msg_dat[i+2];
@@ -1394,7 +1394,7 @@ void MsgHandleGetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 				msg_tx_len+=len;
 				continue;				
 			}			
-			// »ñÈ¡1×Ö½Ú²ÎÊı
+			// è·å–1å­—èŠ‚å‚æ•°
 			val = sys_param_1b[mo_addr].val;
 			p_tx_buff[msg_tx_len++] = (UCHAR8)(val&0x00ff);
 			TRACE_INFO_WP("val:%02X\r\n", val);
@@ -1406,7 +1406,7 @@ void MsgHandleGetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 				msg_tx_len+=len;
 				continue;				
 			}			
-			// »ñÈ¡2×Ö½Ú²ÎÊı
+			// è·å–2å­—èŠ‚å‚æ•°
 			val = sys_param_2b[mo_addr].val;
 			p_tx_buff[msg_tx_len++] = (UCHAR8)(val&0x00ff);
 			p_tx_buff[msg_tx_len++] = (UCHAR8)((val>>8)&0x00ff);
@@ -1419,7 +1419,7 @@ void MsgHandleGetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 				msg_tx_len+=len;
 				continue;				
 			}			
-			// »ñÈ¡4×Ö½Ú²ÎÊı
+			// è·å–4å­—èŠ‚å‚æ•°
 			val = sys_param_4b[mo_addr].val;
 			p_tx_buff[msg_tx_len++] = (UCHAR8)(val&0x00ff);
 			p_tx_buff[msg_tx_len++] = (UCHAR8)((val>>8)&0x00ff);
@@ -1435,7 +1435,7 @@ void MsgHandleGetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 				continue;
 				
 			}		
-			// »ñÈ¡1×Ö½Ú²ÎÊı
+			// è·å–1å­—èŠ‚å‚æ•°
 			val = sys_param_eu_1b[mo_addr].val;
 			p_tx_buff[msg_tx_len++] = (UCHAR8)(val&0x00ff);
 //			TRACE_INFO("TYPE_REE_1B_val1:%02X\r\n", val);
@@ -1449,7 +1449,7 @@ void MsgHandleGetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 				
 			}
 							
-			// »ñÈ¡2×Ö½Ú²ÎÊı
+			// è·å–2å­—èŠ‚å‚æ•°
 			val = sys_param_eu_2b[mo_addr].val;
 			p_tx_buff[msg_tx_len++] = (UCHAR8)(val&0x00ff);
 			p_tx_buff[msg_tx_len++] = (UCHAR8)((val>>8)&0x00ff);
@@ -1462,7 +1462,7 @@ void MsgHandleGetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 				msg_tx_len+=len;
 				continue;				
 			}			
-			// »ñÈ¡×Ö·û´®²ÎÊı
+			// è·å–å­—ç¬¦ä¸²å‚æ•°
 			for ( j=0; j<len; j++ )
 			{
 				if ( j > sys_param_asc[mo_addr].length )
@@ -1486,11 +1486,11 @@ void MsgHandleGetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 
 	p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
 
-	// ·¢ËÍÓ¦´ğ°ü
+	// å‘é€åº”ç­”åŒ…
 	SendMsgPkt( msg_tx_len, p_tx_buff );
 	return;
 
-// ´íÎó´¦Àí
+// é”™è¯¯å¤„ç†
 get_param_err_return:
 
 	p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_ADDR;
@@ -1499,7 +1499,7 @@ get_param_err_return:
 	p_tx_buff[msg_tx_len++] = (UCHAR8)(addr&0x00ff);
 	p_tx_buff[msg_tx_len++] = (UCHAR8)((addr>>8)&0x00ff);
 	
-	// ·¢ËÍ´íÎóÓ¦´ğ
+	// å‘é€é”™è¯¯åº”ç­”
 	SendMsgPkt( msg_tx_len, p_tx_buff );
 	
 }
@@ -1539,7 +1539,7 @@ void MsgHandleSetTable( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 		att_num = p_args[1];
 
 		//ab_flag=( 0==(p_args[2]&0x01) ) ? SYS_A_FLAG : SYS_B_FLAG;
-		abcd_flag=( (p_args[2]&0x03) );//p_args[2]µÍËÄÎ»º¬Òå£¬¸ü¸ÄÎª0:ÎªA¶Î£¬1:ÎªB¶Î£¬2:ÎªC¶Î£¬3:ÎªD¶Î£¬
+		abcd_flag=( (p_args[2]&0x03) );//p_args[2]ä½å››ä½å«ä¹‰ï¼Œæ›´æ”¹ä¸º0:ä¸ºAæ®µï¼Œ1:ä¸ºBæ®µï¼Œ2:ä¸ºCæ®µï¼Œ3:ä¸ºDæ®µï¼Œ
 		switch(abcd_flag)
 		{
 			case 0x00:
@@ -1594,41 +1594,41 @@ void MsgHandleSetTable( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 			FpgaSetUlAttAdjTable(ab_flag);
 		}
 
-		// ÍË³öĞ£×¼Ä£Ê½
+		// é€€å‡ºæ ¡å‡†æ¨¡å¼
 		FpgaExitAttAdjMode( ab_flag );
 	#endif
 	
 		TRACE_INFO("Msg Handle_Set_Tbl_type_RETURN\r\n");
 	
-		// ·¢ËÍ´íÎóÓ¦´ğ
+		// å‘é€é”™è¯¯åº”ç­”
 		SendMsgPkt( msg_tx_len, p_tx_buff );
 	
-	}else if ( 1==p_args[0] )	// ÎÂ¶È±í¸ñ
+	}else if ( 1==p_args[0] )	// æ¸©åº¦è¡¨æ ¼
 	{
 #if 0	
 		p_args++;
 		
-		// Êı¾İ¸öÊı
+		// æ•°æ®ä¸ªæ•°
 		tmp = *p_args++;
-		// ±í¸ñÑ¡Ôñ
+		// è¡¨æ ¼é€‰æ‹©
 		ab_flag=( 0==(p_args[0]&0x01) ) ? 0 : 1;
 		ud_flag=( 0==(p_args[0]&0x02) ) ? 0 : 1;
 		p_args++;
-		// ±£´æµ½Flash
+		// ä¿å­˜åˆ°Flash
 		if ( 0==SaveTempCmpTable( ab_flag, ud_flag, p_args ) )
 		{
-			// Ğ´Èë±í¸ñ´íÎó
+			// å†™å…¥è¡¨æ ¼é”™è¯¯
 			p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_VALUE;
 		}
 		else
 		{
-			// ÖØĞÂ´ÓFlashÔØÈë±í¸ñ
+			// é‡æ–°ä»Flashè½½å…¥è¡¨æ ¼
 			InitTempCmpTable( ab_fl ag, ud_flag );
-			// ÖØÖÃ²¹³¥
+			// é‡ç½®è¡¥å¿
 			TempGainCompensate( 1 );
 		}
 		
-		// ·¢ËÍ´íÎóÓ¦´ğ
+		// å‘é€é”™è¯¯åº”ç­”
 		SendMsgPkt( msg_tx_len, p_tx_buff );
 #endif		
 	}else if ( 2==p_args[0] )	// AD9363
@@ -1638,7 +1638,7 @@ void MsgHandleSetTable( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 		UartReceHandleSetFtPara(p_msg_dat,msg_length);
 		
 		
-	}else if ( 3==p_args[0] )	// ÆµÂÊĞ£×¼
+	}else if ( 3==p_args[0] )	// é¢‘ç‡æ ¡å‡†
 	{
 		
 		switch(p_args[2]&0x03)
@@ -1661,21 +1661,21 @@ void MsgHandleSetTable( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 		}
 		ud_flag=( 0==(p_args[2]&0x08) ) ? 0 : 1;
 #if 0	
-		// ±£´æµ½Flash
+		// ä¿å­˜åˆ°Flash
 		if ( 0==SaveTempCmpTable( ab_flag, ud_flag, p_args ) )
 		{
-			// Ğ´Èë±í¸ñ´íÎó
+			// å†™å…¥è¡¨æ ¼é”™è¯¯
 			p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_VALUE;
 		}
 		else
 		{
-			// ÖØĞÂ´ÓFlashÔØÈë±í¸ñ
+			// é‡æ–°ä»Flashè½½å…¥è¡¨æ ¼
 			//InitTempCmpTable( ab_fl ag, ud_flag );
-			// ÖØÖÃ²¹³¥
+			// é‡ç½®è¡¥å¿
 			TempGainCompensate( 1 );
 		}
 		
-		// ·¢ËÍ´íÎóÓ¦´ğ
+		// å‘é€é”™è¯¯åº”ç­”
 		SendMsgPkt( msg_tx_len, p_tx_buff );
 	
 #endif 		
@@ -1692,11 +1692,11 @@ void MsgHandleGetTable( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 
 /*************************************************************
 Name: MsgHandleSetDevReg          
-Description: ÏûÏ¢°üÃüÁî:ÉèÖÃÆ÷¼ş¼Ä´æÆ÷
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:è®¾ç½®å™¨ä»¶å¯„å­˜å™¨
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleSetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -1747,12 +1747,12 @@ void MsgHandleSetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 		TRACE_INFO("[M]Msg Handle Set Device_dev_id[%d]\r\n",dev_id);
 		switch( dev_id )
 		{
-		case DEV_ID_CLK:			// AD9517Ê±ÖÓ
+		case DEV_ID_CLK:			// AD9517æ—¶é’Ÿ
 			Ad9524Write(reg_add, tmp);
 			//TRACE_INFO_WP("<W IC>AD9517.");	
 			break;
 
-		case DEV_ID_FPGA:			// Âß¼­FPGA
+		case DEV_ID_FPGA:			// é€»è¾‘FPGA
 			if ( reg_add == 0xFA01 )
 			{
 				uart_ctl_ore_count = (UINT16)tmp;
@@ -1775,35 +1775,35 @@ void MsgHandleSetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 			//TRACE_INFO_WP("<W IC>AD6655.");	
 			break;
 
-		case DEV_ID_DA_A:		// A¶ÎDA AD9779
+		case DEV_ID_DA_A:		// Aæ®µDA AD9779
 			Ad9122Write(reg_add, tmp, DA_A_FLAG);
 			//TRACE_INFO_WP("<W IC>DA9779_A.");	
 			break;
 
-		case DEV_ID_DA_B:		// B¶ÎDA AD9779
+		case DEV_ID_DA_B:		// Bæ®µDA AD9779
 			Ad9122Write(reg_add, tmp, DA_B_FLAG);
 			//TRACE_INFO_WP("<W IC>DA9779_B.");	
 			break;		
 
-		case DEV_ID_A_UP_LINK:		// A¶ÎÇ°¶Ë»ìÆµÆ÷
+		case DEV_ID_A_UP_LINK:		// Aæ®µå‰ç«¯æ··é¢‘å™¨
 			    FPGA_ENABLE_WRITE;
 				ReadWriteHmc830(A_MODEN,0,reg_add,tmp);
 				FPGA_DISABLE_WRITE; 	
 			break;
 
-		case DEV_ID_A_DN_LINK:		// A¶Îºó¶Ë»ìÆµÆ÷	 
+		case DEV_ID_A_DN_LINK:		// Aæ®µåç«¯æ··é¢‘å™¨	 
 			    FPGA_ENABLE_WRITE;
 				ReadWriteHmc830(A_MIXER,0,reg_add,tmp);
 				FPGA_DISABLE_WRITE; 
 			break;
 
-		case DEV_ID_B_UP_LINK:		// B¶ÎÇ°¶Ë»ìÆµÆ÷	
+		case DEV_ID_B_UP_LINK:		// Bæ®µå‰ç«¯æ··é¢‘å™¨	
 			    FPGA_ENABLE_WRITE;
 				ReadWriteHmc830(B_MODEN,0,reg_add,tmp);
 				FPGA_DISABLE_WRITE;	
 			break;
 
-		case DEV_ID_B_DN_LINK:		// B¶Îºó¶Ë»ìÆµÆ÷
+		case DEV_ID_B_DN_LINK:		// Bæ®µåç«¯æ··é¢‘å™¨
 			    FPGA_ENABLE_WRITE;
 				ReadWriteHmc830(B_MIXER,0,reg_add,tmp);
 				FPGA_DISABLE_WRITE; 	 
@@ -1864,10 +1864,10 @@ void MsgHandleSetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 	if ( DEV_ID_CLK==dev_id )
 	{
 #ifdef AD9528	
-		Ad9524Write(AD9528_ADD_UPDATE_ALL,0x01);	// ĞèÒªĞ´Èë01£¬Ğ´ÈëµÄÖµ²ÅÄÜÉúĞ§
-		//Ad9524Write(AD9524_ADD_UPDATE_ALL,0x01);	// ĞèÒªĞ´Èë01£¬Ğ´ÈëµÄÖµ²ÅÄÜÉúĞ§
+		Ad9524Write(AD9528_ADD_UPDATE_ALL,0x01);	// éœ€è¦å†™å…¥01ï¼Œå†™å…¥çš„å€¼æ‰èƒ½ç”Ÿæ•ˆ
+		//Ad9524Write(AD9524_ADD_UPDATE_ALL,0x01);	// éœ€è¦å†™å…¥01ï¼Œå†™å…¥çš„å€¼æ‰èƒ½ç”Ÿæ•ˆ
 #else
-		Ad9524Write(AD9524_ADD_UPDATE_ALL,0x01);	// ĞèÒªĞ´Èë01£¬Ğ´ÈëµÄÖµ²ÅÄÜÉúĞ§
+		Ad9524Write(AD9524_ADD_UPDATE_ALL,0x01);	// éœ€è¦å†™å…¥01ï¼Œå†™å…¥çš„å€¼æ‰èƒ½ç”Ÿæ•ˆ
 #endif
 		
 	} 
@@ -1879,11 +1879,11 @@ void MsgHandleSetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 
 /*************************************************************
 Name: MsgHandleGetDevReg          
-Description: ÏûÏ¢°üÃüÁî:¶ÁÈ¡Æ÷¼ş¼Ä´æÆ÷
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:è¯»å–å™¨ä»¶å¯„å­˜å™¨
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleGetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -1919,12 +1919,12 @@ void MsgHandleGetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 		TRACE_INFO_WP("%d\r\n",dev_id );
 		switch( dev_id )
 		{
-			case DEV_ID_CLK:			// AD9517Ê±ÖÓ
+			case DEV_ID_CLK:			// AD9517æ—¶é’Ÿ
 				tmp = Ad9524Read(reg_add);
 				//TRACE_INFO_WP("%08X=%08X\r\n", reg_add, tmp );	
 			break;
 
-			case DEV_ID_FPGA:			// Âß¼­FPGA
+			case DEV_ID_FPGA:			// é€»è¾‘FPGA
 				if ( reg_add == 0xFA01 ) 
 				{
 					tmp = uart_ctl_ore_count;
@@ -1947,17 +1947,17 @@ void MsgHandleGetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 				//TRACE_INFO_WP("<R IC>AD6655.");	
 			break;
 
-			case DEV_ID_DA_A:		// A¶ÎDA AD9779
+			case DEV_ID_DA_A:		// Aæ®µDA AD9779
 				tmp = Ad9122Read(reg_add, DA_A_FLAG);
 				//TRACE_INFO_WP("<R IC>DA9779_A.");	
 			break;
 
-			case DEV_ID_DA_B:		// B¶ÎDA AD9779
+			case DEV_ID_DA_B:		// Bæ®µDA AD9779
 				tmp = Ad9122Read(reg_add, DA_B_FLAG);
 				//TRACE_INFO_WP("<R IC>DA9779_B.");	
 			break;
 
-			case DEV_ID_A_UP_LINK:		// A¶ÎÉÏĞĞÁ´Â·
+			case DEV_ID_A_UP_LINK:		// Aæ®µä¸Šè¡Œé“¾è·¯
 			
 			    FPGA_ENABLE_WRITE;
 				tmp = ReadWriteHmc830(A_MODEN,1,reg_add,00);
@@ -1966,7 +1966,7 @@ void MsgHandleGetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 				//TRACE_INFO_WP("<R IC> A_MODEN.");		
 			break; 
 
-			case DEV_ID_A_DN_LINK:		// A¶ÎÏÂĞĞÁ´Â·	
+			case DEV_ID_A_DN_LINK:		// Aæ®µä¸‹è¡Œé“¾è·¯	
 
 			    FPGA_ENABLE_WRITE;
 				tmp = ReadWriteHmc830(A_MIXER,1,reg_add,00);
@@ -1976,7 +1976,7 @@ void MsgHandleGetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 				
 			break;
 
-			case DEV_ID_B_UP_LINK:		// B¶ÎÉÏĞĞÁ´Â·
+			case DEV_ID_B_UP_LINK:		// Bæ®µä¸Šè¡Œé“¾è·¯
 			
 			    FPGA_ENABLE_WRITE;
 				tmp = ReadWriteHmc830(B_MODEN,1,reg_add,00);
@@ -1986,7 +1986,7 @@ void MsgHandleGetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 				
 			break;
 
-			case DEV_ID_B_DN_LINK:		// B¶ÎÏÂĞĞÁ´Â· 
+			case DEV_ID_B_DN_LINK:		// Bæ®µä¸‹è¡Œé“¾è·¯ 
 
 			    FPGA_ENABLE_WRITE;
  				tmp = ReadWriteHmc830(B_MIXER,1,reg_add,00);
@@ -2074,18 +2074,18 @@ void MsgHandleGetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 
 /*************************************************************
 Name: MsgHandleResetDev          
-Description: ÏûÏ¢°üÃüÁî: ³õÊ¼»¯Æ÷¼ş
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤: åˆå§‹åŒ–å™¨ä»¶
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleResetDev( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
 {
 	UCHAR8 dev_id = 0xff;
 	BOOL ret_val = 0;
-	UCHAR8 output_st = 0;	// µ±Ç°Êä³ö×´Ì¬: b0±íÊ¾A¶Î,b1±íÊ¾B¶Î; 0-Êä³ö¹Ø±Õ,1-Êä³ö´ò¿ª
+	UCHAR8 output_st = 0;	// å½“å‰è¾“å‡ºçŠ¶æ€: b0è¡¨ç¤ºAæ®µ,b1è¡¨ç¤ºBæ®µ; 0-è¾“å‡ºå…³é—­,1-è¾“å‡ºæ‰“å¼€
 //	UINT32 len;
 //	UINT32 tmp;
 	UINT32 msg_tx_len;
@@ -2098,10 +2098,10 @@ void MsgHandleResetDev( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 
 	dev_id = p_args[0];
 	
-	// ±£´æÊä³ö×´Ì¬
+	// ä¿å­˜è¾“å‡ºçŠ¶æ€
 	if ( b_TRUE==FpgaIsEnableA() )	output_st |= 0x01;
 	if ( b_TRUE==FpgaIsEnableB() )	output_st |= 0x02;
-	// ¹Ø±Õµ÷ÖÆÆ÷Êä³ö
+	// å…³é—­è°ƒåˆ¶å™¨è¾“å‡º
 	EnableModulatorA( 0 );
 	EnableModulatorB( 0 );
 
@@ -2114,7 +2114,7 @@ void MsgHandleResetDev( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 		ret_val = (0==GetAD9524LD()) ? b_FALSE : b_TRUE;
 		break;   
 
-	case DEV_ID_FPGA:			// Âß¼­FPGA
+	case DEV_ID_FPGA:			// é€»è¾‘FPGA
 		ret_val = InitFpga();
 		break;
 
@@ -2122,27 +2122,27 @@ void MsgHandleResetDev( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 	    ret_val = InitAD();
 		break;
 
-	case DEV_ID_DA_A:		    // A¶ÎDA AD9779
+	case DEV_ID_DA_A:		    // Aæ®µDA AD9779
 		//ret_val = InitDA_A();
 		break; 
 
-	case DEV_ID_DA_B:		// B¶ÎDA AD9779
+	case DEV_ID_DA_B:		// Bæ®µDA AD9779
 		//ret_val = InitDA_B();
 		break;
 
-	case DEV_ID_A_UP_LINK:		// A¶ÎÇ°¶Ë»ìÆµÆ÷	
+	case DEV_ID_A_UP_LINK:		// Aæ®µå‰ç«¯æ··é¢‘å™¨	
 		//ret_val = Init_Local_Pll(A_MODEN);
 		break;
 
-	case DEV_ID_A_DN_LINK:		// A¶Îºó¶Ë»ìÆµÆ÷	
+	case DEV_ID_A_DN_LINK:		// Aæ®µåç«¯æ··é¢‘å™¨	
 		//ret_val = Init_Local_Pll(A_MIXER);
 		break;
 
-	case DEV_ID_B_UP_LINK:		// B¶ÎÇ°¶Ë»ìÆµÆ÷	
+	case DEV_ID_B_UP_LINK:		// Bæ®µå‰ç«¯æ··é¢‘å™¨	
 		//ret_val = Init_Local_Pll(B_MODEN);
 		break;
 
-	case DEV_ID_B_DN_LINK:		// B¶Îºó¶Ë»ìÆµÆ÷
+	case DEV_ID_B_DN_LINK:		// Bæ®µåç«¯æ··é¢‘å™¨
 		//ret_val = Init_Local_Pll(B_MIXER);
 		break;
 
@@ -2161,7 +2161,7 @@ void MsgHandleResetDev( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 	
 	SendMsgPkt(msg_tx_len, p_tx_buff);
 
-	if ( 0!=output_st )	// Êä³ö×´Ì¬ÓĞĞ§, ÑÓÊ±´ò¿ªÊä³ö
+	if ( 0!=output_st )	// è¾“å‡ºçŠ¶æ€æœ‰æ•ˆ, å»¶æ—¶æ‰“å¼€è¾“å‡º
 	{
 		WTD_CLR;
 		UsNopDelay( 500000 );
@@ -2175,11 +2175,11 @@ void MsgHandleResetDev( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 
 /*************************************************************
 Name: MsgHandleGetFpgaReg          
-Description: ÏûÏ¢°üÃüÁî:¶ÁÈ¡Æ÷¼ş¼Ä´æÆ÷
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:è¯»å–å™¨ä»¶å¯„å­˜å™¨
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleGetFpgaReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -2284,11 +2284,11 @@ void MsgHandleGetFpgaReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_b
 
 /*************************************************************
 Name: MsgHandleSetTopo          
-Description: ÏûÏ¢°üÃüÁî:ÉèÖÃÕıÈ·ÍØÆË
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:è®¾ç½®æ­£ç¡®æ‹“æ‰‘
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleSetTopo( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -2311,11 +2311,11 @@ void MsgHandleSetTopo( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff
 
 /*************************************************************
 Name: MsgHandleSetTopo          
-Description: ÏûÏ¢°üÃüÁî:ÉèÖÃÕıÈ·ÍØÆË
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:è®¾ç½®æ­£ç¡®æ‹“æ‰‘
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleGetTopo( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -2334,49 +2334,49 @@ void MsgHandleGetTopo( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff
 	p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
 	p_tx_buff[msg_tx_len++] = p_args[0];
 
-	if ( 0x00 == p_args[0] )		// ²éÑ¯ÀàĞÍ:µ±Ç°ÍØÆË
+	if ( 0x00 == p_args[0] )		// æŸ¥è¯¢ç±»å‹:å½“å‰æ‹“æ‰‘
 	{
 		TRACE_INFO("[M]Msg Handle Get Topo  2\r\n"); 
 		for ( fp_no=0; fp_no<FP_MAX; fp_no++ )
 		{
-			// ¹â¿Ú×´Ì¬
+			// å…‰å£çŠ¶æ€
 			tmp = 0;
 			
-			if ( COMMA_LOCK==fp_inf[fp_no].comma_lock )	// ¶ººÅËø¶¨
+			if ( COMMA_LOCK==fp_inf[fp_no].comma_lock )	// é€—å·é”å®š
 			{
                   		tmp |= (0x01<<7);
 			}
 			
-			if ( FRAME_LOCK==fp_inf[fp_no].frm_lock )	// ½ÓÊÕÖ¡Ëø¶¨
+			if ( FRAME_LOCK==fp_inf[fp_no].frm_lock )	// æ¥æ”¶å¸§é”å®š
 			{
 				 tmp |= (0x01<<6);
 			}
 
-			if ( 0 != ( OPS_RCV_FLAG & fp_inf[fp_no].ops_info ) )	// ÊÕµ½¶Ô¶Ë¹â¿ÚÊı¾İ£¬»·Íø
+			if ( 0 != ( OPS_RCV_FLAG & fp_inf[fp_no].ops_info ) )	// æ”¶åˆ°å¯¹ç«¯å…‰å£æ•°æ®ï¼Œç¯ç½‘
 			{
-				tmp |= (0x01<<4);		// »·Íø
-				tmp |= ( fp_inf[fp_no].ops_info & OPS_NO_MASK );		// ¶Ô¶Ë¹â¿ÚºÅ
+				tmp |= (0x01<<4);		// ç¯ç½‘
+				tmp |= ( fp_inf[fp_no].ops_info & OPS_NO_MASK );		// å¯¹ç«¯å…‰å£å·
 			}
 
 
-			p_tx_buff[msg_tx_len++] = tmp;  //bit7~¶ººÅËø¶¨£¬bit6~Ö¡Ëø¶¨£¬bit4~»·Íø±êÖ¾£¬bit3~bit0 ¶Ô¶Ë¹â¿ÚºÅ 
-			p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_cnt; //µ±Ç°¹â¿ÚµÄEU¸öÊı 
-//			p_tx_buff[msg_tx_len++] = fp_inf[fp_no].ree_cnt; //µ±Ç°¹â¿ÚµÄREe¸öÊı  
+			p_tx_buff[msg_tx_len++] = tmp;  //bit7~é€—å·é”å®šï¼Œbit6~å¸§é”å®šï¼Œbit4~ç¯ç½‘æ ‡å¿—ï¼Œbit3~bit0 å¯¹ç«¯å…‰å£å· 
+			p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_cnt; //å½“å‰å…‰å£çš„EUä¸ªæ•° 
+//			p_tx_buff[msg_tx_len++] = fp_inf[fp_no].ree_cnt; //å½“å‰å…‰å£çš„REeä¸ªæ•°  
 			TRACE_INFO("\r\n"); 
 			TRACE_INFO("fp_inf[fp_no].re_cnt(%0x)\r\n",fp_inf[fp_no].re_cnt); 	
 
 			
 			for ( re_no=0; re_no< fp_inf[fp_no].re_cnt; re_no++ )  
 			{
-				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].re_status; //°üº¬ÁË¹â¿Ú0¡¢1µÄËø¶¨×´Ì¬ºÍÉÏ¡¢ÏÂĞĞ¹â¿ÚµÄÅĞ¶Ï
-				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].re_id;     //¹â¿ÚID 
+				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].re_status; //åŒ…å«äº†å…‰å£0ã€1çš„é”å®šçŠ¶æ€å’Œä¸Šã€ä¸‹è¡Œå…‰å£çš„åˆ¤æ–­
+				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].re_id;     //å…‰å£ID 
 				
-//				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].ree_count;           //µ±Ç°¹â¿Úµ±Ç°½ÚµãµÄREe¸öÊı 
-//				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].ree_sync_st_inf[0];     // 4¸öÁ¬½ÓRFµÄ¹â¿Ú×´Ì¬ºÍ8¸öÁ¬½ÓRFµÄÍø¿Ú×´Ì¬
+//				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].ree_count;           //å½“å‰å…‰å£å½“å‰èŠ‚ç‚¹çš„REeä¸ªæ•° 
+//				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].ree_sync_st_inf[0];     // 4ä¸ªè¿æ¥RFçš„å…‰å£çŠ¶æ€å’Œ8ä¸ªè¿æ¥RFçš„ç½‘å£çŠ¶æ€
 //				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].ree_sync_st_inf[1];     // 	
-				p_tx_buff[msg_tx_len++] = tmp_re_inf[fp_no][re_no].ree_nt_stat;     // EUÏÂÃæ8¸öÍø¿ÚRUµÄÁ¬½Ó×´Ì¬
-				p_tx_buff[msg_tx_len++] =tmp_re_inf[fp_no][re_no].ree_fp_stat;     // EUÏÂÃæ8¸ö¹â¿ÚRUµÄÁ¬½Ó×´Ì¬
-				p_tx_buff[msg_tx_len++] =(UCHAR8)(tmp_re_inf[fp_no][re_no].ree_work_status>>8);     // 4¸öÁ¬½ÓRFµÄ¹â¿Ú×´Ì¬ºÍ8¸öÁ¬½ÓRFµÄÍø¿Ú×´Ì¬
+				p_tx_buff[msg_tx_len++] = tmp_re_inf[fp_no][re_no].ree_nt_stat;     // EUä¸‹é¢8ä¸ªç½‘å£RUçš„è¿æ¥çŠ¶æ€
+				p_tx_buff[msg_tx_len++] =tmp_re_inf[fp_no][re_no].ree_fp_stat;     // EUä¸‹é¢8ä¸ªå…‰å£RUçš„è¿æ¥çŠ¶æ€
+				p_tx_buff[msg_tx_len++] =(UCHAR8)(tmp_re_inf[fp_no][re_no].ree_work_status>>8);     // 4ä¸ªè¿æ¥RFçš„å…‰å£çŠ¶æ€å’Œ8ä¸ªè¿æ¥RFçš„ç½‘å£çŠ¶æ€
 				p_tx_buff[msg_tx_len++] =(UCHAR8)tmp_re_inf[fp_no][re_no].ree_work_status;     // 
 
 				TRACE_INFO("fp_inf[fp_no].re_info[re_no].re_status(%0x)\r\n",fp_inf[fp_no].re_info[re_no].re_status); 
@@ -2392,54 +2392,54 @@ void MsgHandleGetTopo( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff
 		}
 
 		#if 0
-		//Ë³±ã²éÑ¯¸æ¾¯²ÎÊı£¬½â¾öAU EU¸æ¾¯²ÎÁ¿²»Í¬µÄÎÊÌâ		
+		//é¡ºä¾¿æŸ¥è¯¢å‘Šè­¦å‚æ•°ï¼Œè§£å†³AU EUå‘Šè­¦å‚é‡ä¸åŒçš„é—®é¢˜		
 		{
 			p_tx_buff[msg_tx_len++] = '+';
-			p_tx_buff[msg_tx_len++] = sys_param_1b[MADD_WORK_ERROR].val?1:0;//AU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG1].val?1:0;//EU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG2].val?1:0;//EU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG3].val?1:0;//EU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG4].val?1:0;//EU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG5].val?1:0;//EU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG6].val?1:0;//EU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG7].val?1:0;//EU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG8].val?1:0;//EU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG1].val);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG1].val>>8);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG2].val);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG2].val>>8);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG3].val);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG3].val>>8);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG4].val);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG4].val>>8);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG5].val);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG5].val>>8);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG6].val);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG6].val>>8);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG7].val);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG7].val>>8);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG8].val);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG8].val>>8);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
+			p_tx_buff[msg_tx_len++] = sys_param_1b[MADD_WORK_ERROR].val?1:0;//AUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG1].val?1:0;//EUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG2].val?1:0;//EUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG3].val?1:0;//EUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG4].val?1:0;//EUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG5].val?1:0;//EUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG6].val?1:0;//EUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG7].val?1:0;//EUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = sys_param_eu_1b[MADD_EU_ALARM_FLAG8].val?1:0;//EUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG1].val);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG1].val>>8);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG2].val);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG2].val>>8);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG3].val);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG3].val>>8);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG4].val);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG4].val>>8);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG5].val);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG5].val>>8);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG6].val);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG6].val>>8);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG7].val);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG7].val>>8);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG8].val);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(sys_param_eu_2b[MADD_EU_RUALARM_FLAG8].val>>8);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
 		}
 		#endif
 		{
 			p_tx_buff[msg_tx_len++] = '+';
-			p_tx_buff[msg_tx_len++] = sys_param_1b[MADD_WORK_ERROR].val?1:0;//AU¸æ¾¯Ïî
+			p_tx_buff[msg_tx_len++] = sys_param_1b[MADD_WORK_ERROR].val?1:0;//AUå‘Šè­¦é¡¹
 			for ( fp_no=0; fp_no<FP_MAX; fp_no++ )
 			{
 				//p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_cnt;
 				for ( re_no=0; re_no< fp_inf[fp_no].re_cnt; re_no++ )  
 				{
-					p_tx_buff[msg_tx_len++] = topo_alarm[fp_no][re_no].meu_alarm?1:0; //EU¸æ¾¯Ïî
+					p_tx_buff[msg_tx_len++] = topo_alarm[fp_no][re_no].meu_alarm?1:0; //EUå‘Šè­¦é¡¹
 					
-					p_tx_buff[msg_tx_len++] = (UCHAR8)(topo_alarm[fp_no][re_no].ru_alarm);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî
-					p_tx_buff[msg_tx_len++] = (UCHAR8)(topo_alarm[fp_no][re_no].ru_alarm>>8);//EU¶ÔÓ¦µÄRU¸æ¾¯Ïî			
+					p_tx_buff[msg_tx_len++] = (UCHAR8)(topo_alarm[fp_no][re_no].ru_alarm);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹
+					p_tx_buff[msg_tx_len++] = (UCHAR8)(topo_alarm[fp_no][re_no].ru_alarm>>8);//EUå¯¹åº”çš„RUå‘Šè­¦é¡¹			
 				} 
 			
 			}
 		}
 	}
-	else if ( 0x01==p_args[0] )		// ²éÑ¯ÀàĞÍ:ÒÑÉèÖÃµÄÕıÈ·ÍØÆË
+	else if ( 0x01==p_args[0] )		// æŸ¥è¯¢ç±»å‹:å·²è®¾ç½®çš„æ­£ç¡®æ‹“æ‰‘
 	{
 		for ( fp_no=0; fp_no<FP_MAX; fp_no++ )
 		{
@@ -2450,12 +2450,12 @@ void MsgHandleGetTopo( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff
 			{
 				p_tx_buff[msg_tx_len++] = valid_fp_topo[fp_no].re_inf[re_no].mode;
 				p_tx_buff[msg_tx_len++] = valid_fp_topo[fp_no].re_inf[re_no].id;
-				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].ree_sync_st_inf[0];     // 4¸öÁ¬½ÓRFµÄ¹â¿Ú×´Ì¬ºÍ8¸öÁ¬½ÓRFµÄÍø¿Ú×´Ì¬
+				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].ree_sync_st_inf[0];     // 4ä¸ªè¿æ¥RFçš„å…‰å£çŠ¶æ€å’Œ8ä¸ªè¿æ¥RFçš„ç½‘å£çŠ¶æ€
                 		p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].ree_sync_st_inf[1];     // 
 			}
 		}
 	}
-	else		// ´íÎóµÄÍØÆËÀàĞÍ
+	else		// é”™è¯¯çš„æ‹“æ‰‘ç±»å‹
 	{ 
 		p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_ADDR; 
 	}
@@ -2482,32 +2482,32 @@ void MsgHandleGetTopo( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff
 	
 	p_tx_buff[msg_tx_len++] = p_args[0];
 
-	if ( 0x00 == p_args[0] )		// ²éÑ¯ÀàĞÍ:µ±Ç°ÍØÆË
+	if ( 0x00 == p_args[0] )		// æŸ¥è¯¢ç±»å‹:å½“å‰æ‹“æ‰‘
 	{
 		for ( fp_no=0; fp_no<FP_MAX; fp_no++ )
 		{
-			// ¹â¿Ú×´Ì¬
+			// å…‰å£çŠ¶æ€
 			tmp = 0;
 			
-			if ( COMMA_LOCK==fp_inf[fp_no].comma_lock )	// ¶ººÅËø¶¨
+			if ( COMMA_LOCK==fp_inf[fp_no].comma_lock )	// é€—å·é”å®š
 			{
 				//#ifdef CLIENT_XINMIN
                   tmp |= (0x01<<7);
 			}
 			
-			if ( FRAME_LOCK==fp_inf[fp_no].frm_lock )	// ½ÓÊÕÖ¡Ëø¶¨
+			if ( FRAME_LOCK==fp_inf[fp_no].frm_lock )	// æ¥æ”¶å¸§é”å®š
 			{
 				tmp |= (0x01<<6);
 			}
 
-			if ( 0 != ( OPS_RCV_FLAG & fp_inf[fp_no].ops_info ) )	// ÊÕµ½¶Ô¶Ë¹â¿ÚÊı¾İ£¬»·Íø
+			if ( 0 != ( OPS_RCV_FLAG & fp_inf[fp_no].ops_info ) )	// æ”¶åˆ°å¯¹ç«¯å…‰å£æ•°æ®ï¼Œç¯ç½‘
 			{
-				tmp |= (0x01<<4);		// »·Íø
-				tmp |= ( fp_inf[fp_no].ops_info & OPS_NO_MASK );		// ¶Ô¶Ë¹â¿ÚºÅ
+				tmp |= (0x01<<4);		// ç¯ç½‘
+				tmp |= ( fp_inf[fp_no].ops_info & OPS_NO_MASK );		// å¯¹ç«¯å…‰å£å·
 			}
 
-			p_tx_buff[msg_tx_len++] = tmp; //¹â¿Ú×´Ì¬
-			p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_cnt; //´Ë¹â¿Ú°üº¬¶àÊÇ¸öRE
+			p_tx_buff[msg_tx_len++] = tmp; //å…‰å£çŠ¶æ€
+			p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_cnt; //æ­¤å…‰å£åŒ…å«å¤šæ˜¯ä¸ªRE
 			
 			for ( re_no=0; re_no<fp_inf[fp_no].re_cnt; re_no++ )
 			{
@@ -2518,7 +2518,7 @@ void MsgHandleGetTopo( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff
 			
 		}
 	}
-	else if ( 0x01==p_args[0] )		// ²éÑ¯ÀàĞÍ:ÒÑÉèÖÃµÄÕıÈ·ÍØÆË
+	else if ( 0x01==p_args[0] )		// æŸ¥è¯¢ç±»å‹:å·²è®¾ç½®çš„æ­£ç¡®æ‹“æ‰‘
 	{
 		for ( fp_no=0; fp_no<FP_MAX; fp_no++ )
 		{
@@ -2531,7 +2531,7 @@ void MsgHandleGetTopo( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff
 			}
 		}
 	}
-	else		// ´íÎóµÄÍØÆËÀàĞÍ
+	else		// é”™è¯¯çš„æ‹“æ‰‘ç±»å‹
 	{
 		p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_ADDR;
 	}
@@ -2543,11 +2543,11 @@ void MsgHandleGetTopo( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff
 
 /*************************************************************
 Name: MsgHandleUpdateMCU          
-Description: ÏûÏ¢°üÃüÁî:MCUÉı¼¶
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:MCUå‡çº§
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleUpdateMCU( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -2568,7 +2568,7 @@ void MsgHandleUpdateMCU( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 
 	if (( 0xFA == p_args[0] )&&( 0x5A == p_args[1] ))
 	{
-		//ÆğÊ¼°ü
+		//èµ·å§‹åŒ…
 		pkt_count = p_args[2]|(p_args[3]<<8);
 		len = p_args[4]|(p_args[5]<<8)|(p_args[6]<<16)|(p_args[7]<<24);
 		if ( 0 == UpdateStart( UPDATE_TYPE_MCU, len, pkt_count) )
@@ -2582,7 +2582,7 @@ void MsgHandleUpdateMCU( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 	}
 	else if (( 0xA5 == p_args[0] )&&( 0xAF == p_args[1] ))
 	{
-		//½áÊø°ü
+		//ç»“æŸåŒ…
 		tmp = p_args[2]|(p_args[3]<<8);
 		if ( 0 == McuUpdateEnd( tmp, &tmp) )
 		{
@@ -2604,7 +2604,7 @@ void MsgHandleUpdateMCU( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 
 		if ( pkt_no == 1 )
 		{
-			if ( 0==CheckIsMcuFw( (UINT32*)(p_args+4) ) )	// ¼ì²éÊı¾İÍ·£¬ÅĞ¶ÏÊÇ·ñÊÇºÏ·¨µÄMCU³ÌĞò
+			if ( 0==CheckIsMcuFw( (UINT32*)(p_args+4) ) )	// æ£€æŸ¥æ•°æ®å¤´ï¼Œåˆ¤æ–­æ˜¯å¦æ˜¯åˆæ³•çš„MCUç¨‹åº
 			{
 				p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_UPDATE_FAIL;
 				goto __re_ack;
@@ -2629,11 +2629,11 @@ __re_ack:
 
 /*************************************************************
 Name: MsgHandleUpdateFPGA          
-Description: ÏûÏ¢°üÃüÁî:FPGAÉı¼¶
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:FPGAå‡çº§
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleUpdateFPGA( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -2654,7 +2654,7 @@ void MsgHandleUpdateFPGA( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_b
 	{
 		UINT32 pkt_count;
 		
-		//ÆğÊ¼°ü
+		//èµ·å§‹åŒ…
 		pkt_count = p_args[2]|(p_args[3]<<8);
 		len = p_args[4]|(p_args[5]<<8)|(p_args[6]<<16)|(p_args[7]<<24);
 		if ( 0 == UpdateStart( UPDATE_TYPE_FPGA, len, pkt_count) )
@@ -2669,7 +2669,7 @@ void MsgHandleUpdateFPGA( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_b
 	else if (( 0xA5 == p_args[0] )&&( 0xAF == p_args[1] ))
 	{
 		TRACE_INFO("Message Handle Update FPGA_________FpgaUpdateEnd!\r\n");
-		//½áÊø°ü
+		//ç»“æŸåŒ…
 		tmp = p_args[2]|(p_args[3]<<8);
 		if ( 0 == FpgaUpdateEnd( tmp, &tmp) )
 		{
@@ -2711,11 +2711,11 @@ void MsgHandleUpdateFPGA( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_b
 
 /*************************************************************
 Name: MsgHandleGetFlashPage          
-Description: ÏûÏ¢°üÃüÁî:¶ÁÈ¡Íâ²¿FLASHÒ»¸öpageµÄÄÚÈİ
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:è¯»å–å¤–éƒ¨FLASHä¸€ä¸ªpageçš„å†…å®¹
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleGetFlashPage( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -2750,11 +2750,11 @@ void MsgHandleGetFlashPage( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx
 }
 /*************************************************************
 Name: MsgHandleFlashOperatePage        
-Description: ÏûÏ¢°üÃüÁî:²Á³ıÍâ²¿FLASHÒ»¸öpageµÄÄÚÈİ
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:æ“¦é™¤å¤–éƒ¨FLASHä¸€ä¸ªpageçš„å†…å®¹
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleFlashOperatePage( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -2773,7 +2773,7 @@ void MsgHandleFlashOperatePage( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * 
 
     msg_tx_len =  msg_length ;
 	
-	if(p_msg_dat[MSG_RESERVE1]==0) //²Á³ıFlash ²Ù×÷
+	if(p_msg_dat[MSG_RESERVE1]==0) //æ“¦é™¤Flash æ“ä½œ
 	{
 	    TRACE_INFO("FlashErase!\r\n");
 	    page = (UINT32)( p_args[0]|(p_args[1]<<8)|(p_args[2]<<16)|(p_args[3]<<24) )*((UINT32)(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE));
@@ -2789,7 +2789,7 @@ void MsgHandleFlashOperatePage( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * 
 		}
 	
 	   
-	}else if(p_msg_dat[MSG_RESERVE1]==1) //µÃµ½FlashÒ³ĞÅÏ¢
+	}else if(p_msg_dat[MSG_RESERVE1]==1) //å¾—åˆ°Flashé¡µä¿¡æ¯
 	{ 
 	   GetFlashPageInfo(length ,p_args ,p_tx_buff+MSG_PKT_HEAD_SIZE );
 	   p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
@@ -2800,11 +2800,11 @@ void MsgHandleFlashOperatePage( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * 
 
 /*************************************************************
 Name: MsgHandleStartAttAdj          
-Description: ÏûÏ¢°üÃüÁî:½øÈëĞ£×¼Ä£Ê½
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:è¿›å…¥æ ¡å‡†æ¨¡å¼
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleStartAttAdj( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -2833,14 +2833,14 @@ if(NET_TYPE_TD == fpga_cfg.b_net_type )
 	TRACE_INFO ("MsgHandleStartAttAdj++++++++++++++++test20131016_10fpga_att_adj_st.ab_flag=%x\r\n",fpga_att_adj_st.ab_flag);
 	if ( 0x00 == p_args[0] )    // A   
 	{
-		fpga_att_adj_st.adj_st  = ATT_ADJ_ST_MAX_ADJ; //¿ªÊ¼×î´óĞ£Õı
+		fpga_att_adj_st.adj_st  = ATT_ADJ_ST_MAX_ADJ; //å¼€å§‹æœ€å¤§æ ¡æ­£
 		fpga_att_adj_st.is_wait = 0;
 		fpga_att_adj_st.ab_flag = SYS_A_FLAG;
 
 	}    
 	else if ( 0x01 == p_args[0] )// B    
 	{ 
-		fpga_att_adj_st.adj_st = ATT_ADJ_ST_MAX_ADJ;  //¿ªÊ¼×î´óĞ£Õı
+		fpga_att_adj_st.adj_st = ATT_ADJ_ST_MAX_ADJ;  //å¼€å§‹æœ€å¤§æ ¡æ­£
 		fpga_att_adj_st.is_wait = 0;
 		fpga_att_adj_st.ab_flag = SYS_B_FLAG;
 		TRACE_INFO ("MsgHandleStartAttAdj++++++++++++++++test20131016_fpga_cfg.b_ultra_info=[%x]\r\n",fpga_cfg.b_ultra_info); 
@@ -2849,21 +2849,21 @@ if(NET_TYPE_TD == fpga_cfg.b_net_type )
 			TRACE_INFO ("MsgHandleStartAttAdj++++++++++++++++test201312061434_p_args[1]=[%x]\r\n",p_args[1]); 
 			FPGA_ENABLE_WRITE;
 			if ( 0==p_args[1] )  
-			{					// ÉÏĞĞÊä³ö
+			{					// ä¸Šè¡Œè¾“å‡º
 				//fpga_att_adj_st.ud_flag=ATT_UL_ADJ;
 				FpgaWriteRegister(FPGA_REG_TD_WORK_MODE, TD_WM_UL_ALWAYS_ON);
 				sys_param_1b[MADD_TD_WORK_MODE].val = 1;
-				ReadWriteTF(TF_B,1,0X56,0X00);//´ò¿ªÉÏĞĞ£¬Êä³öÍ¨µÀ¡¢
+				ReadWriteTF(TF_B,1,0X56,0X00);//æ‰“å¼€ä¸Šè¡Œï¼Œè¾“å‡ºé€šé“ã€
 				tmp=ReadWriteTF(TF_B,0,0x057,0x01);
 				tmp&=(~0x01);
 				ReadWriteTF(TF_B,1,0x057,tmp);	
 			}    
 			else 
-			{					// ÏÂĞĞÊäÈë
+			{					// ä¸‹è¡Œè¾“å…¥
 				//fpga_att_adj_st.ud_flag=ATT_DL_ADJ;
 				FpgaWriteRegister(FPGA_REG_TD_WORK_MODE, TD_WM_DL_ALWAYS_ON);
 				sys_param_1b[MADD_TD_WORK_MODE].val = 2;
-				ReadWriteTF(TF_B,1,0X56,0XF0);//´ò¿ªÉÏĞĞ£¬Êä³öÍ¨µÀ¡¢
+				ReadWriteTF(TF_B,1,0X56,0XF0);//æ‰“å¼€ä¸Šè¡Œï¼Œè¾“å‡ºé€šé“ã€
 				tmp=ReadWriteTF(TF_B,0,0x057,0x01);
 				tmp|=0x01;
 				ReadWriteTF(TF_B,1,0x057,tmp);
@@ -2878,29 +2878,29 @@ if(NET_TYPE_TD == fpga_cfg.b_net_type )
 	} 
 	else if ( 0x02 == p_args[0] )// C    
 	{ 
-		fpga_att_adj_st.adj_st = ATT_ADJ_ST_MAX_ADJ;  //¿ªÊ¼×î´óĞ£Õı
+		fpga_att_adj_st.adj_st = ATT_ADJ_ST_MAX_ADJ;  //å¼€å§‹æœ€å¤§æ ¡æ­£
 		fpga_att_adj_st.is_wait = 0;
 		fpga_att_adj_st.ab_flag = SYS_C_FLAG;
 
 			TRACE_INFO ("MsgHandleStartAttAdj++++++++++++++++test201312061434C_p_args[1]=[%x]\r\n",p_args[1]); 
 			FPGA_ENABLE_WRITE;
 			if ( 0==p_args[1] )  
-			{		// ÉÏĞĞÊä³ö
+			{		// ä¸Šè¡Œè¾“å‡º
 				FpgaWriteRegister(FPGA_REC_C_TD_WORK_MODE, TD_WM_UL_ALWAYS_ON);
 				sys_param_1b[MADD_C_TD_WORK_MODE].val = TD_WM_UL_ALWAYS_ON;
-				ReadWriteTF(TF_C,1,0X56,0X00);//´ò¿ªÉÏĞĞ£¬Êä³öÍ¨µÀ¡¢
-				//Ğ£×¼ÉÏĞĞÊ±£¬´ò¿ªÉÏĞĞÉäÆµ¿ª¹Ø
+				ReadWriteTF(TF_C,1,0X56,0X00);//æ‰“å¼€ä¸Šè¡Œï¼Œè¾“å‡ºé€šé“ã€
+				//æ ¡å‡†ä¸Šè¡Œæ—¶ï¼Œæ‰“å¼€ä¸Šè¡Œå°„é¢‘å¼€å…³
 				tmp=ReadWriteTF(TF_C,0,0x057,0x01);
 				tmp&=(~0x01<<1);
 				ReadWriteTF(TF_C,1,0x057,tmp);	
 			}    
 			else 
-			{		// ÏÂĞĞÊäÈë
+			{		// ä¸‹è¡Œè¾“å…¥
 				FpgaWriteRegister(FPGA_REC_C_TD_WORK_MODE, TD_WM_DL_ALWAYS_ON);
 				sys_param_1b[MADD_C_TD_WORK_MODE].val = TD_WM_DL_ALWAYS_ON;
-				ReadWriteTF(TF_C,1,0X56,0XF0);//¹Ø±ÕÉÏĞĞ£¬Êä³öÍ¨µÀ
+				ReadWriteTF(TF_C,1,0X56,0XF0);//å…³é—­ä¸Šè¡Œï¼Œè¾“å‡ºé€šé“
 			
-				//Ğ£×¼ÏÂĞĞÊ±¹ØÉÏĞĞÉäÆµ¿ª¹Ø£¬´ò¿ªÏÂĞĞÉäÆµ¿ª¹Ø
+				//æ ¡å‡†ä¸‹è¡Œæ—¶å…³ä¸Šè¡Œå°„é¢‘å¼€å…³ï¼Œæ‰“å¼€ä¸‹è¡Œå°„é¢‘å¼€å…³
 				tmp=ReadWriteTF(TF_C,0,0x057,0x01);
 				tmp|=(0x01<<1);
 				ReadWriteTF(TF_C,1,0x057,tmp);
@@ -2915,30 +2915,30 @@ if(NET_TYPE_TD == fpga_cfg.b_net_type )
 	}
 	else if ( 0x03 == p_args[0] )// D    
 	{ 
-		fpga_att_adj_st.adj_st = ATT_ADJ_ST_MAX_ADJ;  //¿ªÊ¼×î´óĞ£Õı
+		fpga_att_adj_st.adj_st = ATT_ADJ_ST_MAX_ADJ;  //å¼€å§‹æœ€å¤§æ ¡æ­£
 		fpga_att_adj_st.is_wait = 0;
 		fpga_att_adj_st.ab_flag = SYS_D_FLAG;
 
 			TRACE_INFO ("MsgHandleStartAttAdj++++++++++++++++test201312061434D_p_args[1]=[%x]\r\n",p_args[1]); 
 			FPGA_ENABLE_WRITE;
 			if ( 0==p_args[1] )  
-			{		// ÉÏĞĞÊä³ö
+			{		// ä¸Šè¡Œè¾“å‡º
 				FpgaWriteRegister(FPGA_REC_D_TD_WORK_MODE, TD_WM_UL_ALWAYS_ON);
 				sys_param_1b[MADD_D_TD_WORK_MODE].val = TD_WM_UL_ALWAYS_ON;
-				ReadWriteTF(TF_D,1,0X56,0X00);//´ò¿ªÉÏĞĞ£¬Êä³öÍ¨µÀ¡¢				
+				ReadWriteTF(TF_D,1,0X56,0X00);//æ‰“å¼€ä¸Šè¡Œï¼Œè¾“å‡ºé€šé“ã€				
 
-				//Ğ£×¼ÉÏĞĞÊ±£¬´ò¿ªÉÏĞĞÉäÆµ¿ª¹Ø
+				//æ ¡å‡†ä¸Šè¡Œæ—¶ï¼Œæ‰“å¼€ä¸Šè¡Œå°„é¢‘å¼€å…³
 				tmp=ReadWriteTF(TF_C,0,0x057,0x01);
 				tmp&=(~0x01<<0);
 				ReadWriteTF(TF_C,1,0x057,tmp);	
 			}    
 			else 
-			{		// ÏÂĞĞÊäÈë
+			{		// ä¸‹è¡Œè¾“å…¥
 				FpgaWriteRegister(FPGA_REC_D_TD_WORK_MODE, TD_WM_DL_ALWAYS_ON);
 				sys_param_1b[MADD_D_TD_WORK_MODE].val = TD_WM_DL_ALWAYS_ON;
-				ReadWriteTF(TF_D,1,0X56,0XF0);//´ò¿ªÉÏĞĞ£¬Êä³öÍ¨µÀ¡¢
+				ReadWriteTF(TF_D,1,0X56,0XF0);//æ‰“å¼€ä¸Šè¡Œï¼Œè¾“å‡ºé€šé“ã€
 
-				//Ğ£×¼ÏÂĞĞÊ±¹ØÉÏĞĞÉäÆµ¿ª¹Ø£¬´ò¿ªÏÂĞĞÉäÆµ¿ª¹Ø
+				//æ ¡å‡†ä¸‹è¡Œæ—¶å…³ä¸Šè¡Œå°„é¢‘å¼€å…³ï¼Œæ‰“å¼€ä¸‹è¡Œå°„é¢‘å¼€å…³
 				tmp=ReadWriteTF(TF_C,0,0x057,0x01);
 				tmp|=(0x01<<0);
 				ReadWriteTF(TF_C,1,0x057,tmp);
@@ -2960,13 +2960,13 @@ if(NET_TYPE_TD == fpga_cfg.b_net_type )
 
 	if ( 0==p_args[1] )  
 	{
-		// ÉÏĞĞÊä³ö
+		// ä¸Šè¡Œè¾“å‡º
 		fpga_att_adj_st.ud_flag=ATT_UL_ADJ;
 		
 	}    
 	else 
 	{
-		// ÏÂĞĞÊäÈë
+		// ä¸‹è¡Œè¾“å…¥
 		fpga_att_adj_st.ud_flag=ATT_DL_ADJ;
 	}
 
@@ -2980,11 +2980,11 @@ if(NET_TYPE_TD == fpga_cfg.b_net_type )
 
 /*************************************************************
 Name: MsgHandleAttStepAdj          
-Description: ÏûÏ¢°üÃüÁî:²½½øĞ£×¼
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:æ­¥è¿›æ ¡å‡†
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleAttStepAdj( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -3032,15 +3032,15 @@ void MsgHandleAttStepAdj( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_b
 	
 	if ( 0==p_args[1] )
 	{
-		// ÉÏĞĞÊä³ö
+		// ä¸Šè¡Œè¾“å‡º
 		fpga_att_adj_st.ud_flag=ATT_UL_ADJ;
-		p_tx_buff[msg_tx_len++] = 1;		// Êä³öÖ»ÓĞ1¸öË¥¼õÆ÷
+		p_tx_buff[msg_tx_len++] = 1;		// è¾“å‡ºåªæœ‰1ä¸ªè¡°å‡å™¨
 	}
 	else
 	{
-		// ÏÂĞĞÊäÈë
+		// ä¸‹è¡Œè¾“å…¥
 		fpga_att_adj_st.ud_flag=ATT_DL_ADJ;
-		p_tx_buff[msg_tx_len++] = 1;		// ÊäÈëÓĞ1¸öË¥¼õÆ÷
+		p_tx_buff[msg_tx_len++] = 1;		// è¾“å…¥æœ‰1ä¸ªè¡°å‡å™¨
 	}
 	
 	FpgaMakeAttAdjMsgHead( msg_tx_len, p_tx_buff );
@@ -3054,11 +3054,11 @@ void MsgHandleAttStepAdj( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_b
 
 /*************************************************************
 Name: MsgHandleAttStepAdj          
-Description: ÏûÏ¢°üÃüÁî:²½½øĞ£×¼
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:æ­¥è¿›æ ¡å‡†
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleEndAttAdj( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -3104,11 +3104,11 @@ void MsgHandleEndAttAdj( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 }
 /*************************************************************
 Name: MsgHandleNoiseTest          
-Description: ÏûÏ¢°üÃüÁî:µ×Ôë²âÊÔ
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:åº•å™ªæµ‹è¯•
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleNoiseTest( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -3129,7 +3129,7 @@ void MsgHandleNoiseTest( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 	//printf("9363_0x17_01 = %02x,\r\n",ReadWriteTF(TF_B,0,0x0017,0) );
 
 	WTD_CLR;	
-	//ÔëÉù²âÊÔ
+	//å™ªå£°æµ‹è¯•
 	NoiseTest();
 	//printf("9363_0x17_02 = %02x,\r\n",ReadWriteTF(TF_B,0,0x0017,0) );
 
@@ -3139,11 +3139,11 @@ void MsgHandleNoiseTest( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 
 /*************************************************************
 Name: MsgHandleFcScan          
-Description: ÏûÏ¢°üÃüÁî:²½½øĞ£×¼
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:æ­¥è¿›æ ¡å‡†
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleFcScan( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -3161,10 +3161,10 @@ void MsgHandleFcScan( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff 
 	msg_tx_len = MSG_PKT_HEAD_SIZE;
 	p_args = p_msg_dat+MSG_CMD_BODY;
 	p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
-#ifdef FUNC_FREQ_POINT_SEARCH_EN		// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN		// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 	cmd_mode = p_args[0]&0x7F;
 
-	if ( 3==cmd_mode )	// ²éÑ¯×Ô¶¯ËÑË÷×´Ì¬
+	if ( 3==cmd_mode )	// æŸ¥è¯¢è‡ªåŠ¨æœç´¢çŠ¶æ€
 	{
 		p_tx_buff[msg_tx_len++] = p_args[0];
 		p_tx_buff[msg_tx_len++] = p_args[1];
@@ -3175,16 +3175,16 @@ void MsgHandleFcScan( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff 
 		force_run = (0==(p_args[0]&0x80)) ? 0 : 1;
 		rcv_code = p_args[1];
 		p_args += 2;
-		FPS_MakeAckMsgHead( cmd_mode, rcv_code, msg_tx_len, p_tx_buff );		// ±£´æÓ¦´ğÏûÏ¢µÄ°üÍ·Êı¾İ
+		FPS_MakeAckMsgHead( cmd_mode, rcv_code, msg_tx_len, p_tx_buff );		// ä¿å­˜åº”ç­”æ¶ˆæ¯çš„åŒ…å¤´æ•°æ®
 		p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_VALUE;
 
-		if ( 1==cmd_mode )	// ÊÖ¶¯BCCHËÑË÷
+		if ( 1==cmd_mode )	// æ‰‹åŠ¨BCCHæœç´¢
 		{
 			time_out = p_args[0]|((UINT16)p_args[1]<<8);
 			FPS_ManualStartBcch( force_run, time_out );
 			return;
 		}
-		else if ( 2==cmd_mode )	// ÊÖ¶¯TCHËÑË÷
+		else if ( 2==cmd_mode )	// æ‰‹åŠ¨TCHæœç´¢
 		{
 			fc = p_args[0]|((UINT16)p_args[1]<<8);
 			p_args+=2;
@@ -3202,11 +3202,11 @@ void MsgHandleFcScan( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff 
 
 /*************************************************************
 Name: MsgHandleGainAdj          
-Description: ÏûÏ¢°üÃüÁî:ÔöÒæĞ£×¼
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:å¢ç›Šæ ¡å‡†
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleGainAdj( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -3218,7 +3218,7 @@ void MsgHandleGainAdj( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff
 	msg_tx_len = MSG_PKT_HEAD_SIZE;
 	p_args = p_msg_dat+MSG_CMD_BODY;
 
-	cmd2 = p_args[0];//×ÓÃüÁî	
+	cmd2 = p_args[0];//å­å‘½ä»¤	
 	p_tx_buff[msg_tx_len++] = p_args[0];
 	switch(cmd2)
 	{
@@ -3244,11 +3244,11 @@ void MsgHandleGainAdj( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff
 
 /*************************************************************
 Name: MsgHandleGainAdjEUAck          
-Description: ÏûÏ¢°üÃüÁî:ÔöÒæĞ£×¼
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:å¢ç›Šæ ¡å‡†
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleGainAdjEUAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
@@ -3263,7 +3263,7 @@ void MsgHandleGainAdjEUAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
 
 	p_args = p_msg_dat+MSG_CMD_BODY;
 
-	status = p_args[0];//AU´«µİ×´Ì¬¸øEU  EU½øĞĞÍ¬²½²Ù×÷
+	status = p_args[0];//AUä¼ é€’çŠ¶æ€ç»™EU  EUè¿›è¡ŒåŒæ­¥æ“ä½œ
 	switch(status)
 	{
 		case GAIN_ADJ_ST_SET_AUEU_ADJ_MODE:	
@@ -3301,11 +3301,11 @@ void MsgHandleGainAdjEUAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
 
 /*************************************************************
 Name: MsgHandleErrAlarm          
-Description: ÏûÏ¢°üÃüÁî:´¦Àí´íÎó¸æ¾¯Ïà¹ØÃüÁî
+Description: æ¶ˆæ¯åŒ…å‘½ä»¤:å¤„ç†é”™è¯¯å‘Šè­¦ç›¸å…³å‘½ä»¤
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleErrAlarm( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
@@ -3321,11 +3321,11 @@ void MsgHandleErrAlarm( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 
 	p_args = p_msg_dat+MSG_CMD_BODY;
 
-	cmd1 = p_args[0];//AU´«µİ×´Ì¬¸øEU  EU½øĞĞÍ¬²½²Ù×÷
+	cmd1 = p_args[0];//AUä¼ é€’çŠ¶æ€ç»™EU  EUè¿›è¡ŒåŒæ­¥æ“ä½œ
 	switch(cmd1)
 	{
 		case ALARM_CLAER:
-			//printf("Çå³ı¸æ¾¯\r\n");
+			//printf("æ¸…é™¤å‘Šè­¦\r\n");
 			sys_param_1b[MADD_WORK_ERROR].val = 0;
 			sys_param_1b[MADD_HOST_DEVICE_LINK_SINGNAL_ALARM].val  = 0;
 			sys_param_1b[MADD_BATTERY_BREAKDOWN_ALARM].val = 0;
@@ -3361,11 +3361,11 @@ void MsgHandleErrAlarm( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 
 /*************************************************************
 Name: MsgHandleAck          
-Description: ´¦ÀíÓ¦´ğ°ü
+Description: å¤„ç†åº”ç­”åŒ…
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
@@ -3380,7 +3380,7 @@ void MsgHandleAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
 
 	if ( MSG_ACK_CMD_OK != p_msg_dat[MSG_ACK_FLAG] )
 	{ 
-		// ÃüÁîÖ´ĞĞ´íÎó
+		// å‘½ä»¤æ‰§è¡Œé”™è¯¯
 		TRACE_INFO_WP("Err.");
 		return; 
 	} 
@@ -3388,15 +3388,15 @@ void MsgHandleAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
 	TRACE_INFO("Msg Handle Ack[%02X:%02X:%02X]->[%02X:%02X:%02X],cmd=%02X,p_msg_dat[MSG_RESERVE1]=%02X,p_msg_dat[MSG_RESERVE2]=%02X.\r\n", 
 	p_msg_dat[MSG_SRC_FP], p_msg_dat[MSG_SRC_RE],p_msg_dat[MSG_SRC_REE], p_msg_dat[MSG_DES_FP], p_msg_dat[MSG_DES_RE],  p_msg_dat[MSG_DES_REE],p_msg_dat[MSG_CMD_ID],p_msg_dat[MSG_RESERVE1],p_msg_dat[MSG_RESERVE2]);
 
-	// ÅĞ¶ÏÊÇ·ñÊÇ485×ª·¢Êı¾İ°ü
+	// åˆ¤æ–­æ˜¯å¦æ˜¯485è½¬å‘æ•°æ®åŒ…
 	if ( MSG_CMD_RE_REMOTE == p_msg_dat[MSG_CMD_ID] )
 	{
 		if ( (MSG_RE_TRANS_RECV_CODE1==p_msg_dat[MSG_RESERVE1]) && (MSG_RE_TRANS_RECV_CODE2==p_msg_dat[MSG_RESERVE2]) )
 		{
-			// ¼ì²éµØÖ·
+			// æ£€æŸ¥åœ°å€
 			if ( (p_msg_dat[MSG_SRC_FP]==re_trans_fp) && (p_msg_dat[MSG_SRC_RE]==re_trans_node)&& (p_msg_dat[MSG_SRC_REE]==re_trans_rf)  )
 			{
-				// ·¢ËÍ485Êı¾İ°ü£¬Ìø¹ıÇ°Á½¸ö×Ö½ÚµÄ×ÓÃüÁî×ÖºÍAB¶Î±êÖ¾
+				// å‘é€485æ•°æ®åŒ…ï¼Œè·³è¿‡å‰ä¸¤ä¸ªå­—èŠ‚çš„å­å‘½ä»¤å­—å’ŒABæ®µæ ‡å¿—
 				UartReTransHandleAckMsg( p_msg_dat[MSG_ACK_FLAG], (p_msg_dat+MSG_CMD_BODY+2), (msg_length-MSG_PKT_HEAD_SIZE-2) );
 				return;
 			} 
@@ -3406,7 +3406,7 @@ void MsgHandleAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
 
 	if (MSG_CMD_BLANK== p_msg_dat[MSG_CMD_ID] )
 	{ 
-		// ÃüÁîÖ´ĞĞ´íÎó
+		// å‘½ä»¤æ‰§è¡Œé”™è¯¯
 			TRACE_INFO("return_of_MSG_CMD_BLANK_from_re.");
 		return; 
 	} 
@@ -3438,8 +3438,8 @@ void MsgHandleAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
 			tmp_re_inf[src_fp][src_re].id = p_args[len++]; 
 			tmp_re_inf[src_fp][src_re].status = p_args[len++];  
 			tmp_re_inf[src_fp][src_re].re_t12 = p_args[len++]|(p_args[len++]<<8)|(p_args[len++]<<16)|(p_args[len++]<<24);
-			tmp_re_inf[src_fp][src_re].ree_fp_stat =  p_args[len++]; // 4¸öÁ¬µ½RFµÄ¹â¿Ú×´Ì¬
-			tmp_re_inf[src_fp][src_re].ree_nt_stat =  p_args[len++]; // 8¸öÁ¬µ½RFµÄÍø¿Ú¿Ú×´Ì¬ 
+			tmp_re_inf[src_fp][src_re].ree_fp_stat =  p_args[len++]; // 4ä¸ªè¿åˆ°RFçš„å…‰å£çŠ¶æ€
+			tmp_re_inf[src_fp][src_re].ree_nt_stat =  p_args[len++]; // 8ä¸ªè¿åˆ°RFçš„ç½‘å£å£çŠ¶æ€ 
 #endif
 		}                     
 	} 
@@ -3457,8 +3457,8 @@ void MsgHandleAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
 			tmp_re_inf[src_fp][src_re].id = p_args[len++]; 
 			tmp_re_inf[src_fp][src_re].status = p_args[len++];  
 			tmp_re_inf[src_fp][src_re].re_t12 = p_args[len++]|(p_args[len++]<<8)|(p_args[len++]<<16)|(p_args[len++]<<24);
-			tmp_re_inf[src_fp][src_re].ree_nt_stat =  p_args[len++]; // 8¸öÁ¬µ½RFµÄÍø¿Ú¿Ú×´Ì¬ 
-			tmp_re_inf[src_fp][src_re].ree_fp_stat =  p_args[len++]; // 8¸öÁ¬µ½RFµÄ¹â¿Ú×´Ì¬
+			tmp_re_inf[src_fp][src_re].ree_nt_stat =  p_args[len++]; // 8ä¸ªè¿åˆ°RFçš„ç½‘å£å£çŠ¶æ€ 
+			tmp_re_inf[src_fp][src_re].ree_fp_stat =  p_args[len++]; // 8ä¸ªè¿åˆ°RFçš„å…‰å£çŠ¶æ€
 			tmp_re_inf[src_fp][src_re].ree_work_status=p_args[len++]|(p_args[len++]<<8);
 
 			TRACE_INFO("[src_fp (%d).src_re (%d)\r\n",src_fp ,src_re);
@@ -3496,11 +3496,11 @@ void MsgHandleAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
 
 /*************************************************************
 Name: MsgHandleGetReParam          
-Description: ´¦ÀíreÓ¦´ğ°ü
+Description: å¤„ç†reåº”ç­”åŒ…
 Input:
-	msg_length: ÏûÏ¢°üµÄ³¤¶È£¬²»°üÀ¨CRC
-	p_msg_dat: Ö¸Ïò´æ·ÅÏûÏ¢°üµÄ»º³åÖ¸Õë
-	p_tx_buff: Ö¸ÏòÓ¦´ğ°ü»º³åÇøÖ¸Õë
+	msg_length: æ¶ˆæ¯åŒ…çš„é•¿åº¦ï¼Œä¸åŒ…æ‹¬CRC
+	p_msg_dat: æŒ‡å‘å­˜æ”¾æ¶ˆæ¯åŒ…çš„ç¼“å†²æŒ‡é’ˆ
+	p_tx_buff: æŒ‡å‘åº”ç­”åŒ…ç¼“å†²åŒºæŒ‡é’ˆ
 Return: void
 **************************************************************/
 void MsgHandleGetEUParam( UINT16 msg_length, UCHAR8 * p_msg_dat )
@@ -3509,8 +3509,8 @@ void MsgHandleGetEUParam( UINT16 msg_length, UCHAR8 * p_msg_dat )
 	UINT32 len;
 	UINT16 addr, mo_addr;
 	UINT32 val;
-	static unsigned char b_busy_time_count;		// ÉÏĞĞÊ±Ï¶
-	static unsigned char a_busy_time_count;		// ÉÏĞĞÊ±Ï¶	
+	static unsigned char b_busy_time_count;		// ä¸Šè¡Œæ—¶éš™
+	static unsigned char a_busy_time_count;		// ä¸Šè¡Œæ—¶éš™	
 	UCHAR8 src_fp, src_re,src_ree;
 	UCHAR8 des_fp, des_re,des_ree;
 
@@ -3522,7 +3522,7 @@ void MsgHandleGetEUParam( UINT16 msg_length, UCHAR8 * p_msg_dat )
 	des_ree= p_msg_dat[MSG_DES_REE];
 	
 	TRACE_INFO(" MSG_CMD_GET_PARAM Ack---2 \r\n"); 	
-//	printf("½ÓÊÕ");
+//	printf("æ¥æ”¶");
 //	for(i=0;i<msg_length;i++)
 //	{
 //		TRACE_INFO_WP("%d,%x --",i,p_msg_dat[i]); 	
@@ -3532,9 +3532,9 @@ void MsgHandleGetEUParam( UINT16 msg_length, UCHAR8 * p_msg_dat )
 	TRACE_INFO(" \r\n"); 		
 	for ( i=MSG_CMD_BODY; (i+3)<msg_length; )
 	{
-		// ¶ÁÈ¡²ÎÊıµØÖ·   
+		// è¯»å–å‚æ•°åœ°å€   
 		addr = p_msg_dat[i+0]|(p_msg_dat[i+1]<<8);
-		// ¶ÁÈ¡²ÎÊı³¤¶È    
+		// è¯»å–å‚æ•°é•¿åº¦    
 		len = p_msg_dat[i+2];
 		mo_addr = addr;
 		
@@ -3557,7 +3557,7 @@ void MsgHandleGetEUParam( UINT16 msg_length, UCHAR8 * p_msg_dat )
 				//{
 				//	return;
 				//}
-				// »ñÈ¡1×Ö½Ú²ÎÊı
+				// è·å–1å­—èŠ‚å‚æ•°
 				//sys_param_1b[mo_addr+src_ree-1].val = p_msg_dat[i++];
 
 				goto AddLen;			
@@ -3632,16 +3632,16 @@ void MsgHandleAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
 	
 	TRACE_INFO("Msg Handle Ack!");
 
-#if (!(defined(HXCT_VER) || defined( GUORENSOFT)))	// ·ÇºçĞÅÌØÊâ485Ğ­Òé»ò¹úÈËÌØÊâ485Ğ­Òé
-	// ÅĞ¶ÏÊÇ·ñÊÇ485×ª·¢Êı¾İ°ü
+#if (!(defined(HXCT_VER) || defined( GUORENSOFT)))	// éè™¹ä¿¡ç‰¹æ®Š485åè®®æˆ–å›½äººç‰¹æ®Š485åè®®
+	// åˆ¤æ–­æ˜¯å¦æ˜¯485è½¬å‘æ•°æ®åŒ…
 	if ( MSG_CMD_RE_REMOTE == p_msg_dat[MSG_CMD_ID] )
 	{
 		if ( (MSG_RE_TRANS_RECV_CODE1==p_msg_dat[MSG_RESERVE1]) && (MSG_RE_TRANS_RECV_CODE2==p_msg_dat[MSG_RESERVE2]) )
 		{
-			// ¼ì²éµØÖ·
+			// æ£€æŸ¥åœ°å€
 			if ( (p_msg_dat[MSG_SRC_FP]==re_trans_fp) && (p_msg_dat[MSG_SRC_RE]==re_trans_node) )
 			{
-				// ·¢ËÍ485Êı¾İ°ü£¬Ìø¹ıÇ°Á½¸ö×Ö½ÚµÄ×ÓÃüÁî×ÖºÍAB¶Î±êÖ¾
+				// å‘é€485æ•°æ®åŒ…ï¼Œè·³è¿‡å‰ä¸¤ä¸ªå­—èŠ‚çš„å­å‘½ä»¤å­—å’ŒABæ®µæ ‡å¿—
 				UartReTransHandleAckMsg( p_msg_dat[MSG_ACK_FLAG], (p_msg_dat+MSG_CMD_BODY+2), (msg_length-MSG_PKT_HEAD_SIZE-2) );
 				return;
 			}
@@ -3651,7 +3651,7 @@ void MsgHandleAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
 
 	if ( MSG_ACK_CMD_OK != p_msg_dat[MSG_ACK_FLAG] )
 	{
-		// ÃüÁîÖ´ĞĞ´íÎó
+		// å‘½ä»¤æ‰§è¡Œé”™è¯¯
 		TRACE_INFO_WP("Err.");
 		return;
 	}

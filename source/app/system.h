@@ -1,4 +1,4 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :system.h
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*shiyang		2008-01-29	v0.1			³õÊ¼°æ±¾
+*shiyang		2008-01-29	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #ifndef _SYSTEM_H
 #define _SYSTEM_H
@@ -19,12 +19,12 @@
 
 
 
-// MCUÈí¼þ°æ±¾ºÅ
+// MCUè½¯ä»¶ç‰ˆæœ¬å·
 #define MCU_SOFT_VER 	0x20
 
-#define ARRY_NUM(ARRAY, TYPE) (sizeof(ARRAY)/sizeof(TYPE)) 	// ÇóÊý×éÔªËØ¸öÊý£¬ARRAYÊÇÊý×é£¬TYPEÊÇÊý×éÔªËØÀàÐÍ
+#define ARRY_NUM(ARRAY, TYPE) (sizeof(ARRAY)/sizeof(TYPE)) 	// æ±‚æ•°ç»„å…ƒç´ ä¸ªæ•°ï¼ŒARRAYæ˜¯æ•°ç»„ï¼ŒTYPEæ˜¯æ•°ç»„å…ƒç´ ç±»åž‹
 #define VAL_IN_RANGE( VALUE, RANGE_MIN, RANGE_MAX )	( ((VALUE)>=(RANGE_MIN)) && ((VALUE)<=(RANGE_MAX)) )
-// ¼ÆËã10Îªµ×µÄ¶ÔÊý
+// è®¡ç®—10ä¸ºåº•çš„å¯¹æ•°
 #define LOG_10( VAL )				( log(VAL)/log(10) )
 
 typedef struct _S_ERROR
@@ -33,7 +33,7 @@ typedef struct _S_ERROR
 	UCHAR8 err_info[64];
 } _T_ERROR;
 
-// ÍøÂçÖÆÊ½
+// ç½‘ç»œåˆ¶å¼
 #define NET_TYPE_GSM900			0
 #define NET_TYPE_WCDMA2100		1
 #define NET_TYPE_TD				2
@@ -45,31 +45,31 @@ typedef struct _S_ERROR
 #define NET_TYPE_LTE_TD			8
 #define NET_TYPE_LTE_FDD		9
 #define NET_TYPE_CDMA800		    10
-#define NET_DIVE				0xF		// ·Ö¼¯
-#define NET_NONE				0xEE	// ¿Õ£¬ÎÞÏàÓ¦Ó²¼þ
+#define NET_DIVE				0xF		// åˆ†é›†
+#define NET_NONE				0xEE	// ç©ºï¼Œæ— ç›¸åº”ç¡¬ä»¶
 
-#define G2_TYPE_UNICOM		0		//ÖÐ¹úÁªÍ¨
-#define G2_TYPE_CNMOBILE		1	//ÖÐ¹úÒÆ¶¯
-#define G2_TYPE_TELECOM		2	//ÖÐ¹úµçÐÅ
+#define G2_TYPE_UNICOM		0		//ä¸­å›½è”é€š
+#define G2_TYPE_CNMOBILE		1	//ä¸­å›½ç§»åŠ¨
+#define G2_TYPE_TELECOM		2	//ä¸­å›½ç”µä¿¡
 
 
-#define FP_MAX	4			// Ö§³ÖµÄ×î´ó¹â¿ÚÊýÁ¿
-#define RE_MAX	12			// Ã¿¸ö¹â¿ÚÖ§³ÖµÄ×î´óREÊýÁ¿
-#define REE_MAX	12			// Ã¿¸öREÖ§³ÖµÄ×î´óREEÊýÁ¿
+#define FP_MAX	4			// æ”¯æŒçš„æœ€å¤§å…‰å£æ•°é‡
+#define RE_MAX	12			// æ¯ä¸ªå…‰å£æ”¯æŒçš„æœ€å¤§REæ•°é‡
+#define REE_MAX	12			// æ¯ä¸ªREæ”¯æŒçš„æœ€å¤§REEæ•°é‡
 
-//#define MAX_CHANNEL_COUNT		32	// Ö§³ÖµÄÍ¨µÀÊý
+//#define MAX_CHANNEL_COUNT		32	// æ”¯æŒçš„é€šé“æ•°
 
-#define WLAN_PORT_COUNT		4	// WLAN¶Ë¿ÚÊýÁ¿
-#define WLAN_PORT_OFFSET		4	// WLAN¶Ë¿ÚÆ«ÒÆÁ¿£¬¼´WLAN0¶ÔÓ¦µÄ¹â¿ÚºÅ
+#define WLAN_PORT_COUNT		4	// WLANç«¯å£æ•°é‡
+#define WLAN_PORT_OFFSET		4	// WLANç«¯å£åç§»é‡ï¼Œå³WLAN0å¯¹åº”çš„å…‰å£å·
 
-// A¶ÎÍøÂçÖÆÊ½
+// Aæ®µç½‘ç»œåˆ¶å¼
 #ifdef USER_NET_TYPE_A
 #define A_NETWORK_TYPE		USER_NET_TYPE_A		
 #else
 #define A_NETWORK_TYPE		NET_TYPE_GSM900	
 #endif
 
-// B¶ÎÍøÂçÖÆÊ½
+// Bæ®µç½‘ç»œåˆ¶å¼
 #ifdef USER_NET_TYPE_B
 
 #if 	(( USER_NET_TYPE_B==NET_TYPE_DCS1800 ) && defined(FUNC_FREQ_POINT_SEARCH_EN) && defined(FUNC_FPS_AUTO_SET))
@@ -82,47 +82,47 @@ typedef struct _S_ERROR
 #define B_NETWORK_TYPE		NET_TYPE_WCDMA2100	
 #endif
 
-// C¶ÎÍøÂçÖÆÊ½
+// Cæ®µç½‘ç»œåˆ¶å¼
 #ifdef USER_NET_TYPE_C
 #define C_NETWORK_TYPE		USER_NET_TYPE_C		
 #else
 #define C_NETWORK_TYPE		NET_TYPE_LTE_FDD	
 #endif
 
-// D¶ÎÍøÂçÖÆÊ½
+// Dæ®µç½‘ç»œåˆ¶å¼
 #ifdef USER_NET_TYPE_D
 #define D_NETWORK_TYPE		USER_NET_TYPE_D		
 #else
 #define D_NETWORK_TYPE		NET_TYPE_LTE_FDD	
 #endif
 
-// ÖÆÊ½¼ì²é£¬A¶ÎÎª¿ÕÊ±£¬²»ÔÊÐíB¶ÎÉèÖÃÎª·Ö¼¯Ä£Ê½
+// åˆ¶å¼æ£€æŸ¥ï¼ŒAæ®µä¸ºç©ºæ—¶ï¼Œä¸å…è®¸Bæ®µè®¾ç½®ä¸ºåˆ†é›†æ¨¡å¼
 #if (( A_NETWORK_TYPE==NET_NONE )&&( B_NETWORK_TYPE==NET_DIVE ))
 #error "A&B NET TYPE ERROR!"
 #endif
 
-// »°ÎñÁ¿Í³¼ÆÊ±¼ä(·ÖÖÓ)
+// è¯åŠ¡é‡ç»Ÿè®¡æ—¶é—´(åˆ†é’Ÿ)
 #ifdef USER_TRAFFIC_TIME
 #define TRAFFIC_TIME		USER_TRAFFIC_TIME	
 #else
 #define TRAFFIC_TIME		15
 #endif
 
-// ²ÎÊý³õÊ¼»¯:¿ØÖÆ¶Ë¿Ú²¨ÌØÂÊ
+// å‚æ•°åˆå§‹åŒ–:æŽ§åˆ¶ç«¯å£æ³¢ç‰¹çŽ‡
 #ifdef USER_INIT_PARAM_CTRL_BAUD
 #define PARAM_INIT_CTRL_BAUD			USER_INIT_PARAM_CTRL_BAUD	
 #else
 #define PARAM_INIT_CTRL_BAUD			0	// 0-9600bps
 #endif
 
-// ²ÎÊý³õÊ¼»¯:Í¸´«¶Ë¿ÚÑ¡Ôñ
+// å‚æ•°åˆå§‹åŒ–:é€ä¼ ç«¯å£é€‰æ‹©
 #ifdef USER_INIT_PARAM_THR_PORT
 #define PARAM_INIT_THR_PORT			USER_INIT_PARAM_THR_PORT	
 #else
 #define PARAM_INIT_THR_PORT			0	// 0-485B
 #endif
 
-// ²ÎÊý³õÊ¼»¯:Í¸´«¶Ë¿Ú²¨ÌØÂÊ
+// å‚æ•°åˆå§‹åŒ–:é€ä¼ ç«¯å£æ³¢ç‰¹çŽ‡
 #ifdef USER_INIT_PARAM_THR_BAUD
 #define PARAM_INIT_THR_BAUD			USER_INIT_PARAM_THR_BAUD	
 #else
@@ -131,72 +131,72 @@ typedef struct _S_ERROR
 
 
 
-// µÍÔë·ÅµçÑ¹·¶Î§
+// ä½Žå™ªæ”¾ç”µåŽ‹èŒƒå›´
 #define V_LNA_MIN		3.6
 #define V_LNA_MAX		4.6
 #if 0
-//REÐÅÏ¢½á¹¹Ìå
+//REä¿¡æ¯ç»“æž„ä½“
 typedef struct _S_RE_INFO
 {
-	UCHAR8 flag;	// ×´Ì¬¸üÐÂÐÅÏ¢
-	UCHAR8 id;		// REµÄIDºÅ
-	UINT16 status;	// REµÄ¹¤×÷×´Ì¬
-	UINT32 re_t12;	// REµ½Ç°¼¶µÄ¹âÏËÑÓÊ±
+	UCHAR8 flag;	// çŠ¶æ€æ›´æ–°ä¿¡æ¯
+	UCHAR8 id;		// REçš„IDå·
+	UINT16 status;	// REçš„å·¥ä½œçŠ¶æ€
+	UINT32 re_t12;	// REåˆ°å‰çº§çš„å…‰çº¤å»¶æ—¶
 } _T_RE_INFO;
 
-//¹â¿ÚÐÅÏ¢½á¹¹Ìå
+//å…‰å£ä¿¡æ¯ç»“æž„ä½“
 typedef struct _S_FP_INFO
 {
-	UCHAR8 sfp_attach:1;	// ¹âÄ£¿éÁ¬½Ó¼ì²â: 1-ÒÑÁ¬½Ó
-	UCHAR8 comma_lock:1;	// ±¾¶Ë¶ººÅ¼ì²â: 1-Õý³£¼ì²âµ½¶ººÅ,0-Òì³£
-	UCHAR8 frm_lock:1;		// ±¾¶ËÖ¡½ÓÊÕ×´Ì¬: 1-Õý³£, 0-Òì³£
-	UCHAR8 tx_err:1;		// Ä©¶ËÏÂÐÐ·¢ËÍ×´Ì¬: 1-¶Ï¿ª
-	UCHAR8 rcv_frm_mode;	// ½ÓÊÕÖ¡×´Ì¬:00---Ã»ÓÐÊÕµ½Ö¡Êý¾Ý£¬01---ÊÕµ½×Ô·¢Ö¡£¬10---ÊÕµ½ÏÂÐÐÖ¡£¬11-ÊÕµ½ÉÏÐÐÖ¡
-	UCHAR8 re_cnt;			// ¹â¿Úµ±Ç°Á¬½ÓµÄREÊý
-	UCHAR8 ops_info;		// ¶Ô¶Ë¹â¿ÚºÅ,×î¸ßÎ»ÎªÖ¸Ê¾Î»
+	UCHAR8 sfp_attach:1;	// å…‰æ¨¡å—è¿žæŽ¥æ£€æµ‹: 1-å·²è¿žæŽ¥
+	UCHAR8 comma_lock:1;	// æœ¬ç«¯é€—å·æ£€æµ‹: 1-æ­£å¸¸æ£€æµ‹åˆ°é€—å·,0-å¼‚å¸¸
+	UCHAR8 frm_lock:1;		// æœ¬ç«¯å¸§æŽ¥æ”¶çŠ¶æ€: 1-æ­£å¸¸, 0-å¼‚å¸¸
+	UCHAR8 tx_err:1;		// æœ«ç«¯ä¸‹è¡Œå‘é€çŠ¶æ€: 1-æ–­å¼€
+	UCHAR8 rcv_frm_mode;	// æŽ¥æ”¶å¸§çŠ¶æ€:00---æ²¡æœ‰æ”¶åˆ°å¸§æ•°æ®ï¼Œ01---æ”¶åˆ°è‡ªå‘å¸§ï¼Œ10---æ”¶åˆ°ä¸‹è¡Œå¸§ï¼Œ11-æ”¶åˆ°ä¸Šè¡Œå¸§
+	UCHAR8 re_cnt;			// å…‰å£å½“å‰è¿žæŽ¥çš„REæ•°
+	UCHAR8 ops_info;		// å¯¹ç«¯å…‰å£å·,æœ€é«˜ä½ä¸ºæŒ‡ç¤ºä½
 	struct 
 	{
-		UCHAR8 id;		// REµÄIDºÅ
-		UCHAR8 status;	// REµÄ¹¤×÷×´Ì¬
-	} re_info[RE_MAX];	//RE_MAXÃ¿¸ö¹â¿ÚÖ§³ÖµÄREÊý
+		UCHAR8 id;		// REçš„IDå·
+		UCHAR8 status;	// REçš„å·¥ä½œçŠ¶æ€
+	} re_info[RE_MAX];	//RE_MAXæ¯ä¸ªå…‰å£æ”¯æŒçš„REæ•°
 } _T_FP_INFO;
 #endif
 
-//REÐÅÏ¢½á¹¹Ìå
+//REä¿¡æ¯ç»“æž„ä½“
 typedef struct _S_RE_INFO
 {
-	UCHAR8 flag;	    // ×´Ì¬¸üÐÂÐÅÏ¢ 
-	UCHAR8 id;		    // REµÄIDºÅ 
-	UINT16 status;	    // REµÄ¹¤×÷×´Ì¬
-	UINT32 re_t12;	    // REµ½Ç°¼¶µÄ¹âÏËÑÓÊ±
-    UCHAR8 ree_fp_stat;  // 4¸öÁ¬µ½ReeµÄ¹â¿Ú×´Ì¬
-    UCHAR8 ree_nt_stat;  // 8¸öÁ¬µ½ReeµÄÍø¿Ú¿Ú×´Ì¬ 
-    UCHAR8 pre_ree_fp_stat;  // 4¸öÁ¬µ½ReeµÄ¹â¿Ú×´Ì¬
-    UCHAR8 pre_ree_nt_stat;  // 8¸öÁ¬µ½ReeµÄÍø¿Ú¿Ú×´Ì¬     
-    UINT16  ree_work_status;	    // REµÄ¹¤×÷×´Ì¬
+	UCHAR8 flag;	    // çŠ¶æ€æ›´æ–°ä¿¡æ¯ 
+	UCHAR8 id;		    // REçš„IDå· 
+	UINT16 status;	    // REçš„å·¥ä½œçŠ¶æ€
+	UINT32 re_t12;	    // REåˆ°å‰çº§çš„å…‰çº¤å»¶æ—¶
+    UCHAR8 ree_fp_stat;  // 4ä¸ªè¿žåˆ°Reeçš„å…‰å£çŠ¶æ€
+    UCHAR8 ree_nt_stat;  // 8ä¸ªè¿žåˆ°Reeçš„ç½‘å£å£çŠ¶æ€ 
+    UCHAR8 pre_ree_fp_stat;  // 4ä¸ªè¿žåˆ°Reeçš„å…‰å£çŠ¶æ€
+    UCHAR8 pre_ree_nt_stat;  // 8ä¸ªè¿žåˆ°Reeçš„ç½‘å£å£çŠ¶æ€     
+    UINT16  ree_work_status;	    // REçš„å·¥ä½œçŠ¶æ€
 	
 } _T_RE_INFO;  
 
-//¹â¿ÚÐÅÏ¢½á¹¹Ìå
+//å…‰å£ä¿¡æ¯ç»“æž„ä½“
 typedef struct _S_FP_INFO
 {
-	UCHAR8 sfp_attach:1;	// ¹âÄ£¿éÁ¬½Ó¼ì²â: 1-ÒÑÁ¬½Ó
-	UCHAR8 comma_lock:1;	// ±¾¶Ë¶ººÅ¼ì²â: 1-Õý³£¼ì²âµ½¶ººÅ,0-Òì³£
-	UCHAR8 frm_lock:1;		// ±¾¶ËÖ¡½ÓÊÕ×´Ì¬: 1-Õý³£, 0-Òì³£
-	UCHAR8 tx_err:1;		// Ä©¶ËÏÂÐÐ·¢ËÍ×´Ì¬: 1-¶Ï¿ª
-	UCHAR8 rcv_frm_mode;	// ½ÓÊÕÖ¡×´Ì¬:00---Ã»ÓÐÊÕµ½Ö¡Êý¾Ý£¬01---ÊÕµ½×Ô·¢Ö¡£¬10---ÊÕµ½ÏÂÐÐÖ¡£¬11-ÊÕµ½ÉÏÐÐÖ¡
-	UCHAR8 re_cnt;			// ¹â¿Úµ±Ç°Á¬½ÓµÄREÊý
-	UCHAR8 ree_cnt;			// ¹â¿Úµ±Ç°Á¬½ÓµÄREEÊý
-	UCHAR8 ops_info;		// ¶Ô¶Ë¹â¿ÚºÅ,×î¸ßÎ»ÎªÖ¸Ê¾Î»
+	UCHAR8 sfp_attach:1;	// å…‰æ¨¡å—è¿žæŽ¥æ£€æµ‹: 1-å·²è¿žæŽ¥
+	UCHAR8 comma_lock:1;	// æœ¬ç«¯é€—å·æ£€æµ‹: 1-æ­£å¸¸æ£€æµ‹åˆ°é€—å·,0-å¼‚å¸¸
+	UCHAR8 frm_lock:1;		// æœ¬ç«¯å¸§æŽ¥æ”¶çŠ¶æ€: 1-æ­£å¸¸, 0-å¼‚å¸¸
+	UCHAR8 tx_err:1;		// æœ«ç«¯ä¸‹è¡Œå‘é€çŠ¶æ€: 1-æ–­å¼€
+	UCHAR8 rcv_frm_mode;	// æŽ¥æ”¶å¸§çŠ¶æ€:00---æ²¡æœ‰æ”¶åˆ°å¸§æ•°æ®ï¼Œ01---æ”¶åˆ°è‡ªå‘å¸§ï¼Œ10---æ”¶åˆ°ä¸‹è¡Œå¸§ï¼Œ11-æ”¶åˆ°ä¸Šè¡Œå¸§
+	UCHAR8 re_cnt;			// å…‰å£å½“å‰è¿žæŽ¥çš„REæ•°
+	UCHAR8 ree_cnt;			// å…‰å£å½“å‰è¿žæŽ¥çš„REEæ•°
+	UCHAR8 ops_info;		// å¯¹ç«¯å…‰å£å·,æœ€é«˜ä½ä¸ºæŒ‡ç¤ºä½
 	struct 
 	{
-		UCHAR8 re_id;		    // REµÄIDºÅ :À©Õ¹µ¥Ôª
-		UCHAR8 re_status;	    // REµÄ¹¤×÷×´Ì¬
-		UCHAR8 ree_sync_st_inf[2];  // 12¸öÀ­Ô¶¿Ú¹¤×÷×´Ì¬ 
-		UCHAR8 pre_ree_sync_st_inf[2];  // 12¸öÀ­Ô¶¿Ú¹¤×÷×´Ì¬
-		UCHAR8 rf_count;  //ReÁ¬½ÓRfµÄÊýÁ¿  
+		UCHAR8 re_id;		    // REçš„IDå· :æ‰©å±•å•å…ƒ
+		UCHAR8 re_status;	    // REçš„å·¥ä½œçŠ¶æ€
+		UCHAR8 ree_sync_st_inf[2];  // 12ä¸ªæ‹‰è¿œå£å·¥ä½œçŠ¶æ€ 
+		UCHAR8 pre_ree_sync_st_inf[2];  // 12ä¸ªæ‹‰è¿œå£å·¥ä½œçŠ¶æ€
+		UCHAR8 rf_count;  //Reè¿žæŽ¥Rfçš„æ•°é‡  
 		
-	} re_info[RE_MAX];	//RE_MAXÃ¿¸ö¹â¿ÚÖ§³ÖµÄREÊý
+	} re_info[RE_MAX];	//RE_MAXæ¯ä¸ªå…‰å£æ”¯æŒçš„REæ•°
 	
 } _T_FP_INFO;
 
@@ -226,65 +226,65 @@ typedef struct _S_TOPO_ALARM_INFO
 	
 }_T_TOPO_ALARM_INFO;
 
-// ¶ººÅËø¶¨×´Ì¬
+// é€—å·é”å®šçŠ¶æ€
 #define COMMA_LOCK			1
 #define COMMA_UNLOCK		0
 
-// Ö¡Ëø¶¨×´Ì¬
+// å¸§é”å®šçŠ¶æ€
 #define FRAME_LOCK			1
 #define FRAME_UNLOCK		0
 
-// ½ÓÊÕÖ¡×´Ì¬
-#define RFM_NO_FRAME		0	// ÎÞÊý¾ÝÖ¡
-#define RFM_AT_FRAME		1	// ×Ô·¢Ö¡
-#define RFM_DL_FRAME		2	// ÏÂÐÐÖ¡
-#define FRM_UL_FRAME		3	// ÉÏÐÐÖ¡
+// æŽ¥æ”¶å¸§çŠ¶æ€
+#define RFM_NO_FRAME		0	// æ— æ•°æ®å¸§
+#define RFM_AT_FRAME		1	// è‡ªå‘å¸§
+#define RFM_DL_FRAME		2	// ä¸‹è¡Œå¸§
+#define FRM_UL_FRAME		3	// ä¸Šè¡Œå¸§
 
-// ¹â¿Ú¶Ô¶Ë½ÓÊÕ±êÖ¾£¬¼´»·Íø
-#define OPS_RCV_FLAG		0x80	// ½ÓÊÕµ½¶Ô¶Ë¹â¿ÚÊý¾Ý
-#define OPS_NO_MASK		0x0F	// ¶Ô¶Ë¹â¿ÚºÅ
-#define OPS_NOT_FOUND		0x00	// Ã»ÓÐ¶Ô¶Ë¹â¿Ú
+// å…‰å£å¯¹ç«¯æŽ¥æ”¶æ ‡å¿—ï¼Œå³çŽ¯ç½‘
+#define OPS_RCV_FLAG		0x80	// æŽ¥æ”¶åˆ°å¯¹ç«¯å…‰å£æ•°æ®
+#define OPS_NO_MASK		0x0F	// å¯¹ç«¯å…‰å£å·
+#define OPS_NOT_FOUND		0x00	// æ²¡æœ‰å¯¹ç«¯å…‰å£
 
 
-// ÏµÍ³´íÎó×´Ì¬
+// ç³»ç»Ÿé”™è¯¯çŠ¶æ€
 #define SYS_ERR_FPGA_LOAD				2
 #define SYS_ERR_PLL_UNLOCK				3
 
-#define SYS_A_FLAG		0	// A¶Î
-#define SYS_B_FLAG		1	// B¶Î
-#define SYS_C_FLAG		2	// C¶Î
-#define SYS_D_FLAG		3	// D¶Î
+#define SYS_A_FLAG		0	// Aæ®µ
+#define SYS_B_FLAG		1	// Bæ®µ
+#define SYS_C_FLAG		2	// Cæ®µ
+#define SYS_D_FLAG		3	// Dæ®µ
 
-#define SYS_DL_FLAG		0	// ÏÂÐÐ±êÖ¾
-#define SYS_UL_FLAG		1	// ÉÏÐÐ±êÖ¾
+#define SYS_DL_FLAG		0	// ä¸‹è¡Œæ ‡å¿—
+#define SYS_UL_FLAG		1	// ä¸Šè¡Œæ ‡å¿—
 
 
-// DA±êÖ¾
-#define DA_A_FLAG		0	// A¶Î
-#define DA_B_FLAG		1	// B¶Î
-#define DA_C_FLAG		3	// C¶Î
-#define DA_D_FLAG		4	// D¶Î
+// DAæ ‡å¿—
+#define DA_A_FLAG		0	// Aæ®µ
+#define DA_B_FLAG		1	// Bæ®µ
+#define DA_C_FLAG		3	// Cæ®µ
+#define DA_D_FLAG		4	// Dæ®µ
 
-// »ìÆµÆ÷Ç°ºó¶Ë±êÖ¾
-#define MIXER_FRONT		0	// Ç°¶Ë
-#define MIXER_BACK		1	// ºó¶Ë
-#define MIXER_A_FLAG	0	// A¶Î
-#define MIXER_B_FLAG	1	// B¶Î
+// æ··é¢‘å™¨å‰åŽç«¯æ ‡å¿—
+#define MIXER_FRONT		0	// å‰ç«¯
+#define MIXER_BACK		1	// åŽç«¯
+#define MIXER_A_FLAG	0	// Aæ®µ
+#define MIXER_B_FLAG	1	// Bæ®µ
 
 #define FPGA_COMPRESS  
 
 
-// Î»¼ì²â
+// ä½æ£€æµ‹
 #define SET_BIT_FLAG( VALUE, BIT_FLAG )		(VALUE) = (VALUE)|(BIT_FLAG)
 #define CLR_BIT_FLAG( VALUE, BIT_FLAG )		(VALUE) = (VALUE)&(~(BIT_FLAG))
 #define CHECK_BIT_FLAG( VALUE, BIT_FLAG )	( (VALUE)&(BIT_FLAG) )
 
 
 
-// REµÄid·¶Î§
-#define ID_DEFAULT	0		// Ä¬ÈÏµÄIDÖµ
-#define ID_MAX		254		// IDµÄ×î´óÖµ
-#define ID_START	64		// IDµÄ·ÖÅäÆðÊ¼Öµ£¬¼´×îÐ¡Öµ£¬1~63±£Áô
+// REçš„idèŒƒå›´
+#define ID_DEFAULT	0		// é»˜è®¤çš„IDå€¼
+#define ID_MAX		254		// IDçš„æœ€å¤§å€¼
+#define ID_START	64		// IDçš„åˆ†é…èµ·å§‹å€¼ï¼Œå³æœ€å°å€¼ï¼Œ1~63ä¿ç•™
 
 
 

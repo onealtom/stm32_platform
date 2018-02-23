@@ -1,4 +1,4 @@
-#ifndef _BASE_APP_H_
+ï»¿#ifndef _BASE_APP_H_
 #define _BASE_APP_H_
 
 
@@ -13,40 +13,40 @@
 #define  DIV_122M		         0.02
 #define  DIV_125M		         0.0125	         
 #define  AD_FS_122M		         122.88
-#define  AD_FS_125M		         125	          // ²ÉÑùÊäÈëÊ±ÖÓ
+#define  AD_FS_125M		         125	          // é‡‡æ ·è¾“å…¥æ—¶é’Ÿ
 
 
-//¼ÆËãÆµÂÊ×Ö
+//è®¡ç®—é¢‘çŽ‡å­—
 #define CALC_FPGA_FRE_WORD(fre,fpga_clk_data)	(INT32)( (FLOAT32)pow(2,13)*1024*8*(fre)*1/(fpga_clk_data))
 
 
-/******************************************GSM±¾ÕñÆµÂÊÏà¹Ø²ÎÊý***************************************************/
-#define  GSM_PLL_DL_OUT_122M_CNMOBILE         1095.6         //GSMÎ¢ÐÍ¹âÇ¥µÄÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ  ÓÉ1098.6 ¸ÄÎª 1098.75  9.27 PM 
-#define  GSM_PLL_DL_OUT_125M_CNMOBILE         1098.25           //GSMÎ¢ÐÍ¹âÇ¥µÄÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ 
-#define  GSM_PLL_DL_OUT_150M_CNMOBILE         929           //GSMÎ¢ÐÍ¹âÇ¥µÄÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ 
-#define  GSM_PLL_UL_OUT_150M_CNMOBILE         909.3           //GSMÎ¢ÐÍ¹âÇ¥µÄÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ 
+/******************************************GSMæœ¬æŒ¯é¢‘çŽ‡ç›¸å…³å‚æ•°***************************************************/
+#define  GSM_PLL_DL_OUT_122M_CNMOBILE         1095.6         //GSMå¾®åž‹å…‰é’Žçš„ä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡  ç”±1098.6 æ”¹ä¸º 1098.75  9.27 PM 
+#define  GSM_PLL_DL_OUT_125M_CNMOBILE         1098.25           //GSMå¾®åž‹å…‰é’Žçš„ä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡ 
+#define  GSM_PLL_DL_OUT_150M_CNMOBILE         929           //GSMå¾®åž‹å…‰é’Žçš„ä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡ 
+#define  GSM_PLL_UL_OUT_150M_CNMOBILE         909.3           //GSMå¾®åž‹å…‰é’Žçš„ä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡ 
 
 
-#define  GSM_PLL_DL_OUT_122M_UNICOM           1110.6         //GSMÎ¢ÐÍ¹âÇ¥µÄÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ  ÓÉ1098.6 ¸ÄÎª 1098.75  9.27 PM 
-#define  GSM_PLL_DL_OUT_125M_UNICOM           1113.25           //GSMÎ¢ÐÍ¹âÇ¥µÄÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ 
+#define  GSM_PLL_DL_OUT_122M_UNICOM           1110.6         //GSMå¾®åž‹å…‰é’Žçš„ä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡  ç”±1098.6 æ”¹ä¸º 1098.75  9.27 PM 
+#define  GSM_PLL_DL_OUT_125M_UNICOM           1113.25           //GSMå¾®åž‹å…‰é’Žçš„ä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡ 
 
-/******************************************WCDMA2100±¾ÕñÆµÂÊÏà¹Ø²ÎÊý*************************************************/
-#define  WCDMA_PLL_DL_OUT_122M       2298.6          //WCDMAÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ 
-#define  WCDMA_PLL_DL_OUT_125M       2301.25            //WCDMAÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ
-#define  WCDMA_PLL_DL_OUT_150M       2301.25            //WCDMAÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ
-
-
-/******************************************TD±¾ÕñÆµÂÊÏà¹Ø²ÎÊý*********************************************************/
-
-#define  TD_SCDMA_PLL_DL_OUT_122M       2298.6          //TD_SCDMAÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ 
-#define  TD_SCDMA_PLL_DL_OUT_125M       2173.65            //TD_SCDMAÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ
-#define  TD_SCDMA_PLL_DL_OUT_150M       2028           //TD_SCDMAÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ
-#define  TD_SCDMA_PLL_UL_OUT_150M       2030           //TD_SCDMAÎ¢ÐÍ¹âÇ¥µÄrecÉÏÐÐ±¾ÕñµÄÊä³öÆµÂÊ
+/******************************************WCDMA2100æœ¬æŒ¯é¢‘çŽ‡ç›¸å…³å‚æ•°*************************************************/
+#define  WCDMA_PLL_DL_OUT_122M       2298.6          //WCDMAå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡ 
+#define  WCDMA_PLL_DL_OUT_125M       2301.25            //WCDMAå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
+#define  WCDMA_PLL_DL_OUT_150M       2301.25            //WCDMAå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 
 
+/******************************************TDæœ¬æŒ¯é¢‘çŽ‡ç›¸å…³å‚æ•°*********************************************************/
+
+#define  TD_SCDMA_PLL_DL_OUT_122M       2298.6          //TD_SCDMAå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡ 
+#define  TD_SCDMA_PLL_DL_OUT_125M       2173.65            //TD_SCDMAå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
+#define  TD_SCDMA_PLL_DL_OUT_150M       2028           //TD_SCDMAå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
+#define  TD_SCDMA_PLL_UL_OUT_150M       2030           //TD_SCDMAå¾®åž‹å…‰é’Žçš„recä¸Šè¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 
 
-/******************************************CDMA±¾ÕñÆµÂÊÏà¹Ø²ÎÊý******************************************************/
+
+
+/******************************************CDMAæœ¬æŒ¯é¢‘çŽ‡ç›¸å…³å‚æ•°******************************************************/
 
 #define  CDMA_PLL_DL_OUT_122M_CNMOBILE         1971             
 #define  CDMA_PLL_DL_OUT_125M_CNMOBILE         1973.65           
@@ -55,66 +55,66 @@
 #define  CDMA_PLL_UL_OUT						1973.65           
 
 
-/******************************************DCS1800±¾ÕñÆµÂÊÏà¹Ø²ÎÊý****************************************************/
-#define  DCS_PLL_DL_OUT_122M_CNMOBILE         1971             //DCSÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ 
-#define  DCS_PLL_DL_OUT_125M_CNMOBILE         1973.65           //DCSÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ
+/******************************************DCS1800æœ¬æŒ¯é¢‘çŽ‡ç›¸å…³å‚æ•°****************************************************/
+#define  DCS_PLL_DL_OUT_122M_CNMOBILE         1971             //DCSå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡ 
+#define  DCS_PLL_DL_OUT_125M_CNMOBILE         1973.65           //DCSå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 
-#define  DCS_PLL_DL_OUT_122M_UNICOM         1993.6             //DCSÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ 
-#define  DCS_PLL_DL_OUT_125M_UNICOM         1996.25            //DCSÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ
+#define  DCS_PLL_DL_OUT_122M_UNICOM         1993.6             //DCSå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡ 
+#define  DCS_PLL_DL_OUT_125M_UNICOM         1996.25            //DCSå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 
 //#if defined (GUORENSOFT)
-#define  DCS_PLL_DL_OUT_150M_CNMOBILE         1817.5//1802//1804.5//1840.7//1851            //DCSÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ
+#define  DCS_PLL_DL_OUT_150M_CNMOBILE         1817.5//1802//1804.5//1840.7//1851            //DCSå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 #define  DCS_PLL_UL_OUT_150M_CNMOBILE         1722.5//1738//1735.5//(1396+342)//(1394+344)//1762			
 //#else
-#define  DCS_PLL_DL_OUT_150M_UNICOM         1857//1851            //DCSÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ
+#define  DCS_PLL_DL_OUT_150M_UNICOM         1857//1851            //DCSå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 #define  DCS_PLL_UL_OUT_150M_UNICOM         (1416+346)//1762
 
 //#endif
 
-/******************************************CMMB±¾ÕñÆµÂÊÏà¹Ø²ÎÊý********************************************************/
+/******************************************CMMBæœ¬æŒ¯é¢‘çŽ‡ç›¸å…³å‚æ•°********************************************************/
 
                  
-#define  TETRA_PLL_DL_OUT_122M       532.46            //WCDMAÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ 
-#define  TETRA_PLL_DL_OUT_125M       348            //WCDMAÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ
+#define  TETRA_PLL_DL_OUT_122M       532.46            //WCDMAå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡ 
+#define  TETRA_PLL_DL_OUT_125M       348            //WCDMAå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 
 
 #define  TETRA_PLL_DL_FRQ       		363.5    
 #define  TETRA_PLL_UL_FRQ       		353.5            
 
-/******************************************LTE_TD±¾ÕñÆµÂÊÏà¹Ø²ÎÊý********************************************************/
+/******************************************LTE_TDæœ¬æŒ¯é¢‘çŽ‡ç›¸å…³å‚æ•°********************************************************/
                  
-#define  LTE_TDD_PLL_DL_OUT_122M       532.46            //WCDMAÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ 
-#define  LTE_TDD_PLL_DL_OUT_125M       532.46            //WCDMAÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ
+#define  LTE_TDD_PLL_DL_OUT_122M       532.46            //WCDMAå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡ 
+#define  LTE_TDD_PLL_DL_OUT_125M       532.46            //WCDMAå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 
-#define  LTE_TDD_PLL_DL_OUT      		 857.5            //ÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ 
-#define  LTE_TDD_PLL_UL_OUT			845//828   //ÉÏÐÐ±¾ÕñµÄÊä³öÆµÂÊ
+#define  LTE_TDD_PLL_DL_OUT      		 857.5            //ä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡ 
+#define  LTE_TDD_PLL_UL_OUT			845//828   //ä¸Šè¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 
 
-/******************************************LTE_FDD±¾ÕñÆµÂÊÏà¹Ø²ÎÊý********************************************************/
+/******************************************LTE_FDDæœ¬æŒ¯é¢‘çŽ‡ç›¸å…³å‚æ•°********************************************************/
                  
-#define  LTE_FDD_PLL_DL_OUT_122M       532.46            //WCDMAÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ 
-#define  LTE_FDD_PLL_DL_OUT_125M       532.46            //WCDMAÎ¢ÐÍ¹âÇ¥µÄrecÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ
+#define  LTE_FDD_PLL_DL_OUT_122M       532.46            //WCDMAå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡ 
+#define  LTE_FDD_PLL_DL_OUT_125M       532.46            //WCDMAå¾®åž‹å…‰é’Žçš„recä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 
-#define  LTE_FDD_PLL_DL_OUT      		 	857.5            //ÏÂÐÐ±¾ÕñµÄÊä³öÆµÂÊ 
-#define  LTE_FDD_PLL_UL_OUT			845//828   //ÉÏÐÐ±¾ÕñµÄÊä³öÆµÂÊ
+#define  LTE_FDD_PLL_DL_OUT      		 	857.5            //ä¸‹è¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡ 
+#define  LTE_FDD_PLL_UL_OUT			845//828   //ä¸Šè¡Œæœ¬æŒ¯çš„è¾“å‡ºé¢‘çŽ‡
 
 
 
 typedef struct _S_DYNAMIC_PLL_CFG 
 {
-	INT32 fnco;		// ADµÄNCO±¾ÕñÖÐÐÄÆµÂÊ(KHz)
-	INT32 adfs;		// ²ÉÑùÊäÈëÊ±ÖÓ(KHz)
-	INT32 adfout;		// ADÊä³öµ½FPGAµÄÖÐÐÄÆµÂÊ(KHz), µÈÓÚADÆµÂÊ/8£¬¼´AD_FS/AD_DIV
+	INT32 fnco;		// ADçš„NCOæœ¬æŒ¯ä¸­å¿ƒé¢‘çŽ‡(KHz)
+	INT32 adfs;		// é‡‡æ ·è¾“å…¥æ—¶é’Ÿ(KHz)
+	INT32 adfout;		// ADè¾“å‡ºåˆ°FPGAçš„ä¸­å¿ƒé¢‘çŽ‡(KHz), ç­‰äºŽADé¢‘çŽ‡/8ï¼Œå³AD_FS/AD_DIV
 
-	INT32 f_mid;	// ÖÐÆµÆµÂÊ(KHz)
-	INT32 fref;		// ²Î¿¼Ê±ÖÓÆµÂÊ(KHz)
-	INT32 fstep;	// ±¾Õñ²½½øÆµÂÊ(KHz)
-	INT32 fpfd;		// ¼øÏàÆ÷ÆµÂÊ(KHz)
+	INT32 f_mid;	// ä¸­é¢‘é¢‘çŽ‡(KHz)
+	INT32 fref;		// å‚è€ƒæ—¶é’Ÿé¢‘çŽ‡(KHz)
+	INT32 fstep;	// æœ¬æŒ¯æ­¥è¿›é¢‘çŽ‡(KHz)
+	INT32 fpfd;		// é‰´ç›¸å™¨é¢‘çŽ‡(KHz)
 
-	UINT32 reg_n;	// 4153µÄN¼Ä´æÆ÷
-	UINT32 reg_r;	// 4153µÄR¼Ä´æÆ÷
-	INT32 ftoset;	// ÒªÉèÖÃµÄÐÂÆµÂÊ(KHz)
-	INT32 fout;	// Êµ¼ÊÊä³öÆµÂÊ(KHz)
+	UINT32 reg_n;	// 4153çš„Nå¯„å­˜å™¨
+	UINT32 reg_r;	// 4153çš„Rå¯„å­˜å™¨
+	INT32 ftoset;	// è¦è®¾ç½®çš„æ–°é¢‘çŽ‡(KHz)
+	INT32 fout;	// å®žé™…è¾“å‡ºé¢‘çŽ‡(KHz)
 } _T_DYNAMIC_PLL_CFG, *_T_PDYNAMIC_PLL_CFG;
 
 typedef void (*LPF_RESET_DPC)(_T_PDYNAMIC_PLL_CFG); 
@@ -123,7 +123,7 @@ typedef BOOL (*LPF_CHECK_LOCAL_PLL_CFG)( INT32 , INT32 , _T_PDYNAMIC_PLL_CFG , _
 typedef INT32 (*LPF_CALC_DF)( INT32, _T_PDYNAMIC_PLL_CFG ); 
 typedef INT32 (*LPF_CALC_FOUT_ADJ)(_T_PDYNAMIC_PLL_CFG , _T_PDYNAMIC_PLL_CFG ); 
 
-typedef struct _S_MODULE_CFG	// ¶ÎÅäÖÃ½á¹¹
+typedef struct _S_MODULE_CFG	// æ®µé…ç½®ç»“æž„
 {
 	_T_DYNAMIC_PLL_CFG ul_pcf;
 	_T_DYNAMIC_PLL_CFG dl_pcf;
@@ -135,13 +135,13 @@ typedef struct _S_MODULE_CFG	// ¶ÎÅäÖÃ½á¹¹
 	LPF_CALC_FOUT_ADJ lpf_CalcFoutAdj;
 } _T_MODULE_CFG, * _T_PMODULE_CFG;
 
-#define DCS_PLL_RANGE 		20000	//26000	// ¶¯Ì¬·¶Î§(KHz)
-#define PLL_RANGE 		25000	//26000	// ¶¯Ì¬·¶Î§(KHz)
-#define FREQ_MARGIN	12000	//11500	// ÆµÂÊ¾à±ß½çµÄ¼ä¸ô(KHz)
-#define FBW_SUPPORT	24000	// ±¾ÕñÖ§³ÖµÄÆµÂÊ´ø¿í
+#define DCS_PLL_RANGE 		20000	//26000	// åŠ¨æ€èŒƒå›´(KHz)
+#define PLL_RANGE 		25000	//26000	// åŠ¨æ€èŒƒå›´(KHz)
+#define FREQ_MARGIN	12000	//11500	// é¢‘çŽ‡è·è¾¹ç•Œçš„é—´éš”(KHz)
+#define FBW_SUPPORT	24000	// æœ¬æŒ¯æ”¯æŒçš„é¢‘çŽ‡å¸¦å®½
 
-// GSM ´ø¿í38.8M
-#define GSM_SF_STEP				0.2		// Æµµã²½½øÆµÂÊ(MHz)
+// GSM å¸¦å®½38.8M
+#define GSM_SF_STEP				0.2		// é¢‘ç‚¹æ­¥è¿›é¢‘çŽ‡(MHz)
 #define GSM_FUL_MIN			(890000L+(955-1024)*GSM_SF_STEP+FREQ_MARGIN)
 #define GSM_FUL_MAX			(890000L+124*GSM_SF_STEP-FREQ_MARGIN)
 #define GSM_FDL_MIN			(935000L+(955-1024)*GSM_SF_STEP+FREQ_MARGIN)
@@ -150,30 +150,30 @@ typedef struct _S_MODULE_CFG	// ¶ÎÅäÖÃ½á¹¹
 //#define IS_DCS_FC( _FC )			(( ((_FC)>=512)&&((_FC)<=636) )||( ((_FC)>=637)&&((_FC)<=736) ))
 
 
-// DCS ´ø¿í75M
-#define DCS_SF_STEP				200		// Æµµã²½½øÆµÂÊ(KHz)
+// DCS å¸¦å®½75M
+#define DCS_SF_STEP				200		// é¢‘ç‚¹æ­¥è¿›é¢‘çŽ‡(KHz)
 #define DCS_FUL_MIN				(1710000L+(DCS_MIN_FRE_CODE_CNMOBILE-511)*DCS_SF_STEP+FREQ_MARGIN)
 #define DCS_FUL_MAX			(1710000L+(885-511)*DCS_SF_STEP-FREQ_MARGIN)
 #define DCS_FDL_MIN				(1805000L+(DCS_MIN_FRE_CODE_CNMOBILE-511)*DCS_SF_STEP+FREQ_MARGIN)
 #define DCS_FDL_MAX			(1805000L+(885-511)*DCS_SF_STEP-FREQ_MARGIN)
 #define IS_DCS_FC( _FC )			( ((_FC)>=DCS_MIN_FRE_CODE_CNMOBILE)&&((_FC)<=885) )
 
-// WCDMA ´ø¿í60M
-#define WCDMA_PLL_RANGE 		20000	// W¶¯Ì¬·¶Î§(KHz)
-#define WCDMA_FREQ_MARGIN	12000	// WÆµÂÊ¾à±ß½çµÄ¼ä¸ô(KHz)
-#define WCDMA_FBW_SUPPORT	20000	// W±¾ÕñÖ§³ÖµÄÆµÂÊ´ø¿í£¬ÆµµãÁô³ö5M´ø¿í		
-#define WCDMA_SF_STEP			(200)		// Æµµã²½½øÆµÂÊ(KHz)
+// WCDMA å¸¦å®½60M
+#define WCDMA_PLL_RANGE 		20000	// WåŠ¨æ€èŒƒå›´(KHz)
+#define WCDMA_FREQ_MARGIN	12000	// Wé¢‘çŽ‡è·è¾¹ç•Œçš„é—´éš”(KHz)
+#define WCDMA_FBW_SUPPORT	20000	// Wæœ¬æŒ¯æ”¯æŒçš„é¢‘çŽ‡å¸¦å®½ï¼Œé¢‘ç‚¹ç•™å‡º5Må¸¦å®½		
+#define WCDMA_SF_STEP			(200)		// é¢‘ç‚¹æ­¥è¿›é¢‘çŽ‡(KHz)
 #define WCDMA_FUL_MIN			(10550*WCDMA_SF_STEP-190000+WCDMA_FREQ_MARGIN)
 #define WCDMA_FUL_MAX			(10850*WCDMA_SF_STEP-190000-WCDMA_FREQ_MARGIN)
 #define WCDMA_FDL_MIN			(10550*WCDMA_SF_STEP+WCDMA_FREQ_MARGIN)
 #define WCDMA_FDL_MAX			(10850*WCDMA_SF_STEP-WCDMA_FREQ_MARGIN)
 #define IS_WCDMA_FC( _FC )		( ((_FC)>=10550)&&((_FC)<=10850) )
 
-// TD ´ø¿í15M
+// TD å¸¦å®½15M
 //#define IS_TD_FC( _FC )			( ((_FC)>=10050)&&((_FC)<=10125) )
 #define IS_TD_FC( _FC )			( ((_FC)>=10055)&&((_FC)<=10120) )
 // CMMB 470~566MHz, 606~798MHz
-#define CMMB_SF_STEP			(8000)		// Æµµã²½½øÆµÂÊ(KHz)
+#define CMMB_SF_STEP			(8000)		// é¢‘ç‚¹æ­¥è¿›é¢‘çŽ‡(KHz)
 #define CMMB_FDL_MIN1			( 370000+13*CMMB_SF_STEP+FREQ_MARGIN )
 #define CMMB_FDL_MAX1			( 370000+24*CMMB_SF_STEP-FREQ_MARGIN )
 #define IS_CMMB_FC1( _FC )		( ((_FC)>=13)&&((_FC)<=24) )
@@ -184,9 +184,9 @@ typedef struct _S_MODULE_CFG	// ¶ÎÅäÖÃ½á¹¹
 
 #define CLK_FLAG_122_88M		0
 #define CLK_FLAG_125M			1
-extern UCHAR8 clk_flag;	//Ê±ÖÓ±êÊ¾£º 0-122.88£¬1-125
+extern UCHAR8 clk_flag;	//æ—¶é’Ÿæ ‡ç¤ºï¼š 0-122.88ï¼Œ1-125
 
-//°æ±¾¿ØÖÆ
+//ç‰ˆæœ¬æŽ§åˆ¶
 #define VERSION_FLAG	            0xAA
 #define VERSION_GEDT_ERRICSON_C	0
 #define VERSION_GEDT_ERRICSON_G	1
@@ -196,13 +196,13 @@ extern UCHAR8 clk_flag;	//Ê±ÖÓ±êÊ¾£º 0-122.88£¬1-125
 
 
 
-#define VERSION_20M_NOIN			0   //20M ·ÇÒ»Ìå»¯
-#define VERSION_40M_NOIN			1   //40M ·ÇÒ»Ìå»¯
-#define VERSION_20M_IN			    2  //20M Ò»Ìå»¯
-#define VERSION_40M_IN_A			    3   //40M Ò»Ìå»¯
-#define VERSION_40M_IN_B			    4   //40M Ò»Ìå»¯
-#define VERSION_40M_IN_C			    5   //40M Ò»Ìå»¯
-#define VERSION_40M_IN_D			    6   //40M Ò»Ìå»¯
+#define VERSION_20M_NOIN			0   //20M éžä¸€ä½“åŒ–
+#define VERSION_40M_NOIN			1   //40M éžä¸€ä½“åŒ–
+#define VERSION_20M_IN			    2  //20M ä¸€ä½“åŒ–
+#define VERSION_40M_IN_A			    3   //40M ä¸€ä½“åŒ–
+#define VERSION_40M_IN_B			    4   //40M ä¸€ä½“åŒ–
+#define VERSION_40M_IN_C			    5   //40M ä¸€ä½“åŒ–
+#define VERSION_40M_IN_D			    6   //40M ä¸€ä½“åŒ–
 #define VERSION_40M_IN_E			    7   
 #define VERSION_50M_IN_F			    8
 
@@ -213,7 +213,7 @@ extern UCHAR8 clk_flag;	//Ê±ÖÓ±êÊ¾£º 0-122.88£¬1-125
 
 extern UCHAR8 version_number ;
 
-//²ÎÊý°æ±¾¿ØÖÆ
+//å‚æ•°ç‰ˆæœ¬æŽ§åˆ¶
 #define MCU_PARAM_FLAG	            0xAB	//2014.08.29
 #define MCU_PARAM_VER_0			     0      //2014.08.29
 #define MCU_PARAM_VER_1			     1      //2014.08.29
@@ -224,10 +224,10 @@ extern UCHAR8 version_number ;
 
 
 
-// ±äÁ¿
+// å˜é‡
 
 
-// º¯Êý
+// å‡½æ•°
 BOOL Init_Local_Pll(UCHAR8 ucPll);
 //UINT16 CalcFreqWord( INT32 freq_code, UCHAR8 Flag);
 INT32 CalcFreqWord( INT32 freq_code, UCHAR8 Flag,INT32 *up_fre_word,INT32 *down_fre_word );

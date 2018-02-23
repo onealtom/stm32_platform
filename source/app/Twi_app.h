@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :twi_app.h
-* Description :TWI(IIC)½Ó¿Ú²Ù×÷
+* Description :TWI(IIC)æ¥å£æ“ä½œ
 * Version     :v0.1
 * Author      :RJ
 * Date        :2008-08-29
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*	RJ		2008-08-29	v0.1			³õÊ¼°æ±¾
+*	RJ		2008-08-29	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #ifndef _TWI_APP_H
 

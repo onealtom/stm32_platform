@@ -1,33 +1,33 @@
-/************************************************************
+ï»¿/************************************************************
 
-     Copyright (C), 2011-2111, ¸ñÀ¼Ì©¿Ë¿Æ¼¼ÓĞÏŞ¹«Ë¾
+     Copyright (C), 2011-2111, æ ¼å…°æ³°å…‹ç§‘æŠ€æœ‰é™å…¬å¸
 
 *************************************************************
-ÎÄ¼şÃû£º   GPIO_DRV_H_ 
-°æ±¾ºÅ£º   V03
-×÷Õß£º     Î¤Èğ½õ 
-Éú³ÉÈÕÆÚ£º 2010Äê08ÔÂ05ÈÕ
-×î½üĞŞ¸Ä£º 
-¹¦ÄÜÃèÊö£º GPIOµÄÍ·ÎÄ¼ş
-º¯ÊıÁĞ±í£º 
-ĞŞ¸ÄÈÕÆÚ£º 
-        1.ÈÕÆÚ:      2010Äê08ÔÂ05ÈÕ  
-          ×÷Õß£º     Î¤Èğ½õ 
-          ĞŞ¸ÄÄÚÈİ£º Ô­°æ
-        2.ÈÕÆÚ:      2012Äê04ÔÂ17ÈÕ  
-          ×÷Õß£º     µË×ÓÇ«
-          ĞŞ¸ÄÄÚÈİ£º Î¢ĞÍ¹âÇ¥V02 
+æ–‡ä»¶åï¼š   GPIO_DRV_H_ 
+ç‰ˆæœ¬å·ï¼š   V03
+ä½œè€…ï¼š     éŸ¦ç‘é”¦ 
+ç”Ÿæˆæ—¥æœŸï¼š 2010å¹´08æœˆ05æ—¥
+æœ€è¿‘ä¿®æ”¹ï¼š 
+åŠŸèƒ½æè¿°ï¼š GPIOçš„å¤´æ–‡ä»¶
+å‡½æ•°åˆ—è¡¨ï¼š 
+ä¿®æ”¹æ—¥æœŸï¼š 
+        1.æ—¥æœŸ:      2010å¹´08æœˆ05æ—¥  
+          ä½œè€…ï¼š     éŸ¦ç‘é”¦ 
+          ä¿®æ”¹å†…å®¹ï¼š åŸç‰ˆ
+        2.æ—¥æœŸ:      2012å¹´04æœˆ17æ—¥  
+          ä½œè€…ï¼š     é‚“å­è°¦
+          ä¿®æ”¹å†…å®¹ï¼š å¾®å‹å…‰é’V02 
 **************************************************************/
 #ifndef _GPIO_DRV_H_
 #define _GPIO_DRV_H_ 
 
 #if 0
-/*************************************************A¶Ë¿ÚµÄÅäÖÃ************************************************************************/
+/*************************************************Aç«¯å£çš„é…ç½®************************************************************************/
 #define PINS_A_LNA1_VD_M	{GPIO_Pin_0, GPIO_Speed_2MHz,  GPIO_Mode_AIN}
 #define PINS_RTS485A		{GPIO_Pin_1, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}
 #define PINS_TXD485A		{GPIO_Pin_2, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
 #define PINS_RXD485A		{GPIO_Pin_3, GPIO_Speed_50MHz, GPIO_Mode_IN_FLOATING}
-                                                //GPIO_Pin_4ÔİÊ±²»¶¨Òå
+                                                //GPIO_Pin_4æš‚æ—¶ä¸å®šä¹‰
 //#define PINS_SPICLK			{GPIO_Pin_5, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
 //#define PINS_MISO			{GPIO_Pin_6, GPIO_Speed_50MHz, GPIO_Mode_IPU}
 //#define PINS_MOSI			{GPIO_Pin_7, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
@@ -65,10 +65,10 @@
 #define PINS_DP_CONNECT		{GPIO_Pin_12, GPIO_Speed_50MHz, GPIO_Mode_AF_OD}
 
 
-/****************************************************B¶Ë¿ÚµÄÅäÖÃ*****************************************************************/
+/****************************************************Bç«¯å£çš„é…ç½®*****************************************************************/
 #define PINS_T_BAT			  {GPIO_Pin_0, GPIO_Speed_2MHz, GPIO_Mode_AIN}
 #define PINS_1V2_T_M		  {GPIO_Pin_1, GPIO_Speed_2MHz, GPIO_Mode_AIN}
-                                                 //GPIO_Pin_2ÉÏÁ¬BOOT1
+                                                 //GPIO_Pin_2ä¸Šè¿BOOT1
 #define PINS_NCS1			  {GPIO_Pin_3, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}
 #define PINS_AD9524_SYNC	  {GPIO_Pin_4, GPIO_Speed_2MHz,  GPIO_Mode_Out_PP}
 #define PINS_AD9524_RST	  {GPIO_Pin_5, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}
@@ -77,7 +77,7 @@
 #define PINS_NADV			  {GPIO_Pin_7, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
 #define PINS_B_AD9122_IRQ     {GPIO_Pin_8, GPIO_Speed_50MHz, GPIO_Mode_IPU}
 #define PINS_WDI		         {GPIO_Pin_9, GPIO_Speed_50MHz,   GPIO_Mode_Out_PP}
-                                                  //GPIO_Pin_10×÷ÎªAD6643µÄSPIË«ÏòÊı¾İ½Ó¿Ú£¬ÓÃµÄÊ±ºò²Å³õÊ¼»¯
+                                                  //GPIO_Pin_10ä½œä¸ºAD6643çš„SPIåŒå‘æ•°æ®æ¥å£ï¼Œç”¨çš„æ—¶å€™æ‰åˆå§‹åŒ–
 //#define PINS_AD6643_SPI_CLK  {GPIO_Pin_11, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}	
 #define PINS_WLAN_MDC		{GPIO_Pin_10, GPIO_Speed_2MHz,  GPIO_Mode_Out_PP}
 #define PINS_WLAN_MDIO		{GPIO_Pin_11, GPIO_Speed_2MHz,  GPIO_Mode_AF_PP}
@@ -86,8 +86,8 @@
 #define PINS_MISO			{GPIO_Pin_14, GPIO_Speed_50MHz, GPIO_Mode_IPU}
 #define PINS_MOSI			{GPIO_Pin_15, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
 //#define PINS_AD9524_SIP_CE    {GPIO_Pin_13, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}
-                                                 //GPIO_Pin_14Î´Á¬½Ó
-                                                 //GPIO_Pin_15Î´Á¬½Ó
+                                                 //GPIO_Pin_14æœªè¿æ¥
+                                                 //GPIO_Pin_15æœªè¿æ¥
                                                  
 #define GPIO_CFG_B  \
 			PINS_T_BAT,\
@@ -109,7 +109,7 @@
 #define PINS_AD6643_SPI_DO			//{GPIO_Pin_10, GPIO_Speed_50MHz, GPIO_Mode_Out_PP} 
 #define PINS_AD6643_SPI_DI			//{GPIO_Pin_10, GPIO_Speed_50MHz, GPIO_Mode_IPU}
 
-/*******************************************************C¶Ë¿ÚµÄÅäÖÃ******************************************************************/
+/*******************************************************Cç«¯å£çš„é…ç½®******************************************************************/
 #define PINS_A_D_VCO_VT_M	    {GPIO_Pin_0, GPIO_Speed_2MHz, GPIO_Mode_AIN}
 #define PINS_B_D_VCO_VT_M	    {GPIO_Pin_1, GPIO_Speed_2MHz, GPIO_Mode_AIN}
 #define PINS_CLK_VCO_VT_M	    {GPIO_Pin_2, GPIO_Speed_2MHz, GPIO_Mode_AIN}
@@ -145,7 +145,7 @@
 			PINS_A_AD9122_SPI_CE,\
 			PINS_B_AD9122_SPI_CE
 
-/*******************************************************D¶Ë¿ÚµÄÅäÖÃ************************************************************/
+/*******************************************************Dç«¯å£çš„é…ç½®************************************************************/
 #define PINS_AD2			{GPIO_Pin_0, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
 #define PINS_AD3			{GPIO_Pin_1, GPIO_Speed_50MHz, GPIO_Mode_AF_PP} 
 #define PINS_AD9524_PD		{GPIO_Pin_2, GPIO_Speed_10MHz, GPIO_Mode_Out_PP}
@@ -158,7 +158,7 @@
 #define PINS_AD14			{GPIO_Pin_9, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
 #define PINS_AD15			{GPIO_Pin_10, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
 #define PINS_FPGA_INIT_B	   {GPIO_Pin_11,  GPIO_Speed_50MHz,  GPIO_Mode_AIN}
-                                               //GPIO_Pin_12Î´Á¬½Ó
+                                               //GPIO_Pin_12æœªè¿æ¥
 #define PINS_FPGA_DATA0			{GPIO_Pin_13,  GPIO_Speed_50MHz, GPIO_Mode_Out_PP}
 #define PINS_AD0			{GPIO_Pin_14, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
 #define PINS_AD1			{GPIO_Pin_15, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
@@ -181,7 +181,7 @@
 			PINS_AD1
  
 
-/*******************************************************E¶Ë¿ÚµÄÅäÖÃ************************************************************/
+/*******************************************************Eç«¯å£çš„é…ç½®************************************************************/
 #define PINS_B_AD9122_RST	     {GPIO_Pin_0, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}
 #define PINS_A_AD9122_RST	     {GPIO_Pin_1, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}
 #define PINS_A_AD9122_IRQ	     {GPIO_Pin_2, GPIO_Speed_50MHz, GPIO_Mode_IPU}
@@ -217,7 +217,7 @@
 			PINS_AD11,\
 			PINS_AD12
 #endif
-/*************************************************A¶Ë¿ÚµÄÅäÖÃ************************************************************************/
+/*************************************************Aç«¯å£çš„é…ç½®************************************************************************/
 //#define PINS_A_LNA1_VD_M	{GPIO_Pin_0, GPIO_Speed_2MHz,  GPIO_Mode_AIN}
 //#define PINS_RTS485A		{GPIO_Pin_1, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}//201511051616
 
@@ -228,7 +228,7 @@
 //#define PINS_TXD485A		{GPIO_Pin_2, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
 #define PINS_TXD485A		{GPIO_Pin_2, GPIO_Speed_50MHz, GPIO_Mode_AF_PP} //2014.08.19
 #define PINS_RXD485A		{GPIO_Pin_3, GPIO_Speed_50MHz, GPIO_Mode_IN_FLOATING}
-#define PINS_LED_RUN		{GPIO_Pin_4, GPIO_Speed_2MHz, GPIO_Mode_Out_PP}                                                //GPIO_Pin_4ÔİÊ±²»¶¨Òå
+#define PINS_LED_RUN		{GPIO_Pin_4, GPIO_Speed_2MHz, GPIO_Mode_Out_PP}                                                //GPIO_Pin_4æš‚æ—¶ä¸å®šä¹‰
 //#define PINS_SPICLK			{GPIO_Pin_5, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
 //#define PINS_MISO			{GPIO_Pin_6, GPIO_Speed_50MHz, GPIO_Mode_IPU}
 //#define PINS_MOSI			{GPIO_Pin_7, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
@@ -267,10 +267,10 @@
 #define PINS_DP_CONNECT		{GPIO_Pin_12, GPIO_Speed_50MHz, GPIO_Mode_AF_OD}
 
 
-/****************************************************B¶Ë¿ÚµÄÅäÖÃ*****************************************************************/
+/****************************************************Bç«¯å£çš„é…ç½®*****************************************************************/
 #define PINS_T_BAT			  {GPIO_Pin_0, GPIO_Speed_2MHz, GPIO_Mode_AIN}
 #define PINS_1V2_T_M		  {GPIO_Pin_1, GPIO_Speed_2MHz, GPIO_Mode_AIN}
-                                                 //GPIO_Pin_2ÉÏÁ¬BOOT1
+                                                 //GPIO_Pin_2ä¸Šè¿BOOT1
 #define PINS_NCS1			  {GPIO_Pin_3, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}
 #define PINS_AD9524_SYNC	  {GPIO_Pin_4, GPIO_Speed_2MHz,  GPIO_Mode_Out_PP}
 #define PINS_AD9524_RST	  {GPIO_Pin_5, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}
@@ -284,15 +284,15 @@
 //#define PINS_WLAN_MDIO		{GPIO_Pin_11, GPIO_Speed_2MHz,  GPIO_Mode_AF_PP}
 #define PINS_TXD232B			{GPIO_Pin_10, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
 #define PINS_RXD232B			{GPIO_Pin_11, GPIO_Speed_50MHz, GPIO_Mode_IN_FLOATING}
-                                                  //GPIO_Pin_10×÷ÎªAD6643µÄSPIË«ÏòÊı¾İ½Ó¿Ú£¬ÓÃµÄÊ±ºò²Å³õÊ¼»¯
+                                                  //GPIO_Pin_10ä½œä¸ºAD6643çš„SPIåŒå‘æ•°æ®æ¥å£ï¼Œç”¨çš„æ—¶å€™æ‰åˆå§‹åŒ–
 //#define PINS_AD6643_SPI_CLK  {GPIO_Pin_11, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}	
 #define PINS_AT45DB_SPI_CE	  {GPIO_Pin_12, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}
 //#define PINS_AD9524_SIP_CE    {GPIO_Pin_13, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}
 #define PINS_SPICLK			{GPIO_Pin_13, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
 #define PINS_MISO			{GPIO_Pin_14, GPIO_Speed_50MHz, GPIO_Mode_IPU}
 #define PINS_MOSI			{GPIO_Pin_15, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
-                                                 //GPIO_Pin_14Î´Á¬½Ó
-                                                 //GPIO_Pin_15Î´Á¬½Ó
+                                                 //GPIO_Pin_14æœªè¿æ¥
+                                                 //GPIO_Pin_15æœªè¿æ¥
 #define GPIO_CFG_B  \
 			PINS_T_BAT,\
 			PINS_1V2_T_M,\
@@ -315,7 +315,7 @@
 #define PINS_AD6643_SPI_DO			//{GPIO_Pin_10, GPIO_Speed_50MHz, GPIO_Mode_Out_PP} 
 #define PINS_AD6643_SPI_DI			//{GPIO_Pin_10, GPIO_Speed_50MHz, GPIO_Mode_IPU}
 
-/*******************************************************C¶Ë¿ÚµÄÅäÖÃ******************************************************************/
+/*******************************************************Cç«¯å£çš„é…ç½®******************************************************************/
 #define PINS_A_D_VCO_VT_M	    {GPIO_Pin_0, GPIO_Speed_2MHz, GPIO_Mode_AIN}
 #define PINS_B_D_VCO_VT_M	    {GPIO_Pin_1, GPIO_Speed_2MHz, GPIO_Mode_AIN}
 //#define PINS_CLK_VCO_VT_M	    {GPIO_Pin_2, GPIO_Speed_2MHz, GPIO_Mode_AIN}
@@ -353,7 +353,7 @@
 			PINS_A_AD9122_SPI_CE,\
 			PINS_B_AD9122_SPI_CE
 
-/*******************************************************D¶Ë¿ÚµÄÅäÖÃ************************************************************/
+/*******************************************************Dç«¯å£çš„é…ç½®************************************************************/
 #define PINS_AD2			{GPIO_Pin_0, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
 #define PINS_AD3			{GPIO_Pin_1, GPIO_Speed_50MHz, GPIO_Mode_AF_PP} 
 #define PINS_AD9524_PD		{GPIO_Pin_2, GPIO_Speed_10MHz, GPIO_Mode_Out_PP}
@@ -393,7 +393,7 @@
 			
 #define PINS_NWE			{GPIO_Pin_4, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}  
 #define PINS_AD0			{GPIO_Pin_14, GPIO_Speed_50MHz, GPIO_Mode_AF_PP}
-/*******************************************************E¶Ë¿ÚµÄÅäÖÃ************************************************************/
+/*******************************************************Eç«¯å£çš„é…ç½®************************************************************/
 #define PINS_B_AD9122_RST		{GPIO_Pin_0, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}
 #define PINS_A_AD9122_RST		{GPIO_Pin_1, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}
 #define PINS_A_AD9122_IRQ	    {GPIO_Pin_2, GPIO_Speed_50MHz, GPIO_Mode_IPU}
@@ -429,30 +429,30 @@
 			PINS_AD11,\
 			PINS_AD12
 
-/*¿ØÖÆLEDµÄ¹Ü½Ì¶¨Òå*/
+/*æ§åˆ¶LEDçš„ç®¡æ•™å®šä¹‰*/
 #define IO_LED		GPIO_Pin_7
 
-/*¿ØÖÆAD9524µÄCLK¿ª¹Ø*/ 
+/*æ§åˆ¶AD9524çš„CLKå¼€å…³*/ 
 #define CLK_PD_HIGH				GPIO_SetBits(GPIOD, GPIO_Pin_2)
 #define CLK_PD_LOW				GPIO_ResetBits(GPIOD, GPIO_Pin_2)
 
-/*¿ØÖÆAD9524µÄÊÖ¶¯Í¬²½¿ª¹Ø*/ 
+/*æ§åˆ¶AD9524çš„æ‰‹åŠ¨åŒæ­¥å¼€å…³*/ 
 #define ENABLE_AD9524_SYNC		GPIO_SetBits( GPIOB, GPIO_Pin_4)
 #define DISABLE_AD9524_SYNC	GPIO_ResetBits( GPIOB, GPIO_Pin_4)
   
-/*¿ØÖÆ5VµÄµçÔ´¿ª¹Ø*/ 
+/*æ§åˆ¶5Vçš„ç”µæºå¼€å…³*/ 
 #define EnablePower5V5			GPIO_SetBits( GPIOC, GPIO_Pin_13)
 #define DisablePower5V5			GPIO_ResetBits( GPIOC, GPIO_Pin_13)
 
-/*¿ØÖÆA¶ÎµÄµ÷ÖÆÆ÷*/   
+/*æ§åˆ¶Aæ®µçš„è°ƒåˆ¶å™¨*/   
 #define SET_DSOP_A_PIN			GPIO_SetBits(GPIOD, GPIO_Pin_3)
 #define CLR_DSOP_A_PIN			GPIO_ResetBits(GPIOD, GPIO_Pin_3)
 
-/*¿ØÖÆB¶ÎµÄµ÷ÖÆÆ÷*/
+/*æ§åˆ¶Bæ®µçš„è°ƒåˆ¶å™¨*/
 #define SET_DSOP_B_PIN			GPIO_SetBits(GPIOD, GPIO_Pin_6)
 #define CLR_DSOP_B_PIN			GPIO_ResetBits(GPIOD, GPIO_Pin_6)
 
-/*ÔÚ¼ÓÔØFPGAÊ±ÓëNWEÏà»ò£¬²úÉúĞ´Ê±ÖÓ*/
+/*åœ¨åŠ è½½FPGAæ—¶ä¸NWEç›¸æˆ–ï¼Œäº§ç”Ÿå†™æ—¶é’Ÿ*/
 #define SET_FPGA_NCS1_PIN		GPIO_SetBits(GPIOB, GPIO_Pin_3)
 #define CLR_FPGA_NCS1_PIN		GPIO_ResetBits(GPIOB, GPIO_Pin_3)
 
@@ -462,18 +462,18 @@
 
 
 
-/*FPGA¼ÓÔØÊ±µÄĞÅºÅ*/
+/*FPGAåŠ è½½æ—¶çš„ä¿¡å·*/
 #define SET_FPGA_NCONFIG		GPIO_SetBits(GPIOC, GPIO_Pin_8)
 #define CLR_FPGA_NCONFIG		GPIO_ResetBits(GPIOC, GPIO_Pin_8)
 
-/*FPGA¼ÓÔØÊ±µÄĞÅºÅ*/
+/*FPGAåŠ è½½æ—¶çš„ä¿¡å·*/
 #define GET_FPGA_STAUTS		GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_9)
 
-/*FPGA¼ÓÔØÊ±µÄĞÅºÅ*/
+/*FPGAåŠ è½½æ—¶çš„ä¿¡å·*/
 #define GET_FPGA_CONF_DONE	GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_8)
 
 
-/* Fpga µÄ¸´Î»¹Ü½Ì */
+/* Fpga çš„å¤ä½ç®¡æ•™ */
 #define SET_FPGA_RST_PIN           do{}while(0)		   
 #define CLR_FPGA_RST_PIN		   do{}while(0) 
 
@@ -495,7 +495,7 @@
 
  
 #define FPGA_INIT_B		    GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_11)
-// Ä£ÄâI2CµÄIO²Ù×÷  
+// æ¨¡æ‹ŸI2Cçš„IOæ“ä½œ  
 #if 0
 #define I2C_SCL_H				GPIO_SetBits( GPIOB, GPIO_Pin_10 )
 #define I2C_SCL_L				GPIO_ResetBits( GPIOB, GPIO_Pin_10 )

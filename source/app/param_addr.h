@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    : param_addr.h
-* Description : ÏµÍ³²ÎÊý´¦ÀíÏà¹Øº¯Êý
+* Description : ç³»ç»Ÿå‚æ•°å¤„ç†ç›¸å…³å‡½æ•°
 * Version     : v0.1
 * Author      : RJ
 * Date        : 2010-03-10
@@ -10,60 +10,60 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*RJ		2010-03-10		v0.1			³õÊ¼°æ±¾
+*RJ		2010-03-10		v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #ifndef _PARAM_ADDR_H_
 #define _PARAM_ADDR_H_
 
-// 1×Ö½Ú²ÎÊý½á¹¹Ìå
+// 1å­—èŠ‚å‚æ•°ç»“æž„ä½“
 typedef struct _S_PARAM_1B
 {
-	UINT16	addr;	// µØÖ·
-	UCHAR8	type;	// ÐÔÖÊºÍËã·¨
-	UCHAR8	val;		// ²ÎÊýÖµ
+	UINT16	addr;	// åœ°å€
+	UCHAR8	type;	// æ€§è´¨å’Œç®—æ³•
+	UCHAR8	val;		// å‚æ•°å€¼
 }_T_PARAM_1B;
 
-// 2×Ö½Ú²ÎÊý½á¹¹Ìå
+// 2å­—èŠ‚å‚æ•°ç»“æž„ä½“
 typedef struct _S_PARAM_2B
 {
-	UINT16	addr;	// µØÖ·
-	UCHAR8	type;	// ÐÔÖÊºÍËã·¨
-	UINT16	val;		// ²ÎÊýÖµ
+	UINT16	addr;	// åœ°å€
+	UCHAR8	type;	// æ€§è´¨å’Œç®—æ³•
+	UINT16	val;		// å‚æ•°å€¼
 }_T_PARAM_2B;
 
-// 4×Ö½Ú²ÎÊý½á¹¹Ìå
+// 4å­—èŠ‚å‚æ•°ç»“æž„ä½“
 typedef struct _S_PARAM_4B
 {
-	UINT16	addr;	// µØÖ·
-	UCHAR8	type;	// ÐÔÖÊºÍËã·¨
-	UINT32	val;		// ²ÎÊýÖµ
+	UINT16	addr;	// åœ°å€
+	UCHAR8	type;	// æ€§è´¨å’Œç®—æ³•
+	UINT32	val;		// å‚æ•°å€¼
 }_T_PARAM_4B;
 
-// ×Ö·û´®²ÎÊý½á¹¹Ìå
+// å­—ç¬¦ä¸²å‚æ•°ç»“æž„ä½“
 typedef struct _S_PARAM_ASC
 {
-	UINT16	addr;	// µØÖ·
-	UCHAR8	type;	// ÐÔÖÊºÍËã·¨
-	UCHAR8	length;	// ×Ö·û´®³¤¶È
-	UCHAR8 * p_asc;	// Ö¸Ïò×Ö·û´®Ê×µØÖ·Ö¸Õë
+	UINT16	addr;	// åœ°å€
+	UCHAR8	type;	// æ€§è´¨å’Œç®—æ³•
+	UCHAR8	length;	// å­—ç¬¦ä¸²é•¿åº¦
+	UCHAR8 * p_asc;	// æŒ‡å‘å­—ç¬¦ä¸²é¦–åœ°å€æŒ‡é’ˆ
 }_T_PARAM_ASC;
 
 
 
-#define PARAM_ASC_MAX_LEN		64		//×Ö·û´®²ÎÊýµÄ³¤¶È×î´óÖµ
+#define PARAM_ASC_MAX_LEN		64		//å­—ç¬¦ä¸²å‚æ•°çš„é•¿åº¦æœ€å¤§å€¼
 
-#define PTM_MASK	(0x07<<0)	// Ëã·¨ÑÚÂë
-#define PT_NC		(0<<0) // ÎÞËã·¨
-#define PT_SI		(1<<0) // ÓÐ·ûºÅÊý
-#define PT_SW		(2<<0) // ÓÐ·ûºÅË«×Ö½ÚÊý,ÐèÒª½«Êµ¼ÊÖµx10
-#define PT_US		(3<<0) // ÎÞ·ûºÅÊý
-#define PT_RST		(4<<0) // ¸´Î»Ëã·¨
+#define PTM_MASK	(0x07<<0)	// ç®—æ³•æŽ©ç 
+#define PT_NC		(0<<0) // æ— ç®—æ³•
+#define PT_SI		(1<<0) // æœ‰ç¬¦å·æ•°
+#define PT_SW		(2<<0) // æœ‰ç¬¦å·åŒå­—èŠ‚æ•°,éœ€è¦å°†å®žé™…å€¼x10
+#define PT_US		(3<<0) // æ— ç¬¦å·æ•°
+#define PT_RST		(4<<0) // å¤ä½ç®—æ³•
 
-#define PT_RO		(8<<0)	// Ö»¶Á²ÎÊý
-#define PT_AP		(1<<4)	// Íâ²¿Ö÷¿Ø485²ÎÊý
-#define PT_BP		(1<<5)	// Íâ²¿Ö÷¿Ø485²ÎÊý
-#define PT_CP		(1<<6)	// Íâ²¿Ö÷¿Ø485²ÎÊý
-#define PT_DP		(1<<7)	// Íâ²¿Ö÷¿Ø485²ÎÊý
+#define PT_RO		(8<<0)	// åªè¯»å‚æ•°
+#define PT_AP		(1<<4)	// å¤–éƒ¨ä¸»æŽ§485å‚æ•°
+#define PT_BP		(1<<5)	// å¤–éƒ¨ä¸»æŽ§485å‚æ•°
+#define PT_CP		(1<<6)	// å¤–éƒ¨ä¸»æŽ§485å‚æ•°
+#define PT_DP		(1<<7)	// å¤–éƒ¨ä¸»æŽ§485å‚æ•°
 
 
 #define PT_ARNC		(PT_AP|PT_NC)
@@ -71,7 +71,7 @@ typedef struct _S_PARAM_ASC
 #define PT_ABRNC	(PT_AP|PT_BP|PT_NC)
 
 #if defined ( CLIENT_JIZHUN)
-	// ¹úÈË²ÎÊý
+	// å›½äººå‚æ•°
 	#define PT_AP_G		(PT_AP)
 	#define PT_BP_G		(PT_BP)
 	#define PT_CP_G		(PT_CP)
@@ -80,19 +80,19 @@ typedef struct _S_PARAM_ASC
 	#define PT_BP_G_EX		(PT_BP)
 	#define PT_CP_G_EX		(0)
 	#define PT_DP_G_EX		(0)		
-	// ¶ÔÍâ²ÎÊý
+	// å¯¹å¤–å‚æ•°
 	#define PT_AP_EX	(PT_AP)
 	#define PT_BP_EX	(PT_BP)	
 	#define PT_CP_EX	(PT_CP)
 	#define PT_DP_EX	(PT_DP)	
 
 #else
-	// ¹úÈË²ÎÊý
+	// å›½äººå‚æ•°
 	#define PT_AP_G		(0)
 	#define PT_BP_G		(0)
 	#define PT_CP_G		(0)
 	#define PT_DP_G		(0)	
-	// ¶ÔÍâ²ÎÊý
+	// å¯¹å¤–å‚æ•°
 	#define PT_AP_EX	(PT_AP)
 	#define PT_BP_EX	(PT_BP)	
 	#define PT_CP_EX	(PT_CP)
@@ -105,772 +105,772 @@ typedef struct _S_PARAM_ASC
 #endif
 
 #if defined ( CLIENT_JIZHUN)
-	// ¹úÈË²ÎÊý
-// ²ÎÊýµØÖ·¶¨Òå==================================================== 1b								
-#define	PARA_A_CHANNEL_COUNT	0x8889	//	A¶ÎÖ§³ÖµÄÍ¨µÀÊý
-#define	PARA_A_DL_WORK_EN	0x08a0	//	A¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_A_UL_WORK_EN	0x08a1	//	A¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_A_DPOW_MODE	0	//	A¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_A_UPOW_MODE	0	//	A¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_A_LTHR_EN	0x0770	//	A¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ
-#define	PARA_A_LTHR_UP	0	//	A¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ
-#define	PARA_A_LTHR_DN	0x08b0	//	A¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ
-#define	PARA_A_DCH_EN1	0x08d0	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_A_DCH_EN2	0x08d1	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_A_DCH_EN3	0x08d2	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_A_DCH_EN4	0x08d3	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_A_DCH_EN5	0x08d4	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_A_DCH_EN6	0x08d5	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_A_DCH_EN7	0x08d6	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_A_DCH_EN8	0x08d7	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_A_DCH_EN9	0x08d8	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_A_DCH_EN10	0x08d9	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_A_DCH_EN11	0x08dA	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-#define	PARA_A_DCH_EN12	0x08dB	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-#define	PARA_A_DCH_EN13	0x08dC	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-#define	PARA_A_DCH_EN14	0x08dD	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-#define	PARA_A_DCH_EN15	0x08dE	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-#define	PARA_A_DCH_EN16	0x08dF	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-#define	PARA_A_UCH_EN1	0x08d0	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_A_UCH_EN2	0x08d1	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_A_UCH_EN3	0x08d2	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_A_UCH_EN4	0x08d3	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_A_UCH_EN5	0x08d4	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_A_UCH_EN6	0x08d5	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_A_UCH_EN7	0x08d6	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_A_UCH_EN8	0x08d7	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_A_UCH_EN9	0x08d8	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_A_UCH_EN10	0x08d9	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_A_UCH_EN11	0x08dA	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-#define	PARA_A_UCH_EN12	0x08dB	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-#define	PARA_A_UCH_EN13	0x08dC	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-#define	PARA_A_UCH_EN14	0x08dD	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-#define	PARA_A_UCH_EN15	0x08dE	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-#define	PARA_A_UCH_EN16	0x08dF	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-#define	PARA_A_DCH_GAIN1	0x0840	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_A_DCH_GAIN2	0x0841	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_A_DCH_GAIN3	0x0842	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_A_DCH_GAIN4	0x0843	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_A_DCH_GAIN5	0x0844	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_A_DCH_GAIN6	0x0845	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_A_DCH_GAIN7	0x0846	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_A_DCH_GAIN8	0x0847	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_A_DCH_GAIN9	0x0848	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_A_DCH_GAIN10	0x0849	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define	PARA_A_DCH_GAIN11	0x084A	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define	PARA_A_DCH_GAIN12	0x084B	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define	PARA_A_DCH_GAIN13	0x084C	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define	PARA_A_DCH_GAIN14	0x084D	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define	PARA_A_DCH_GAIN15	0x084E	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define	PARA_A_DCH_GAIN16	0x084F	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_A_UCH_GAIN1	0x0850	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_A_UCH_GAIN2	0x0851	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_A_UCH_GAIN3	0x0852	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_A_UCH_GAIN4	0x0853	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_A_UCH_GAIN5	0x0854	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_A_UCH_GAIN6	0x0855	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_A_UCH_GAIN7	0x0856	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_A_UCH_GAIN8	0x0857	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_A_UCH_GAIN9	0x0858	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_A_UCH_GAIN10	0x0859	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define	PARA_A_UCH_GAIN11	0x085A	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define	PARA_A_UCH_GAIN12	0x085B	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define	PARA_A_UCH_GAIN13	0x085C	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define	PARA_A_UCH_GAIN14	0x085D	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define	PARA_A_UCH_GAIN15	0x085E	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define	PARA_A_UCH_GAIN16	0x085F	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_A_DCH_ATT1	0x0324	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿1
-#define	PARA_A_DCH_ATT2	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿2
-#define	PARA_A_DCH_ATT3	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿3
-#define	PARA_A_DCH_ATT4	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿4
-#define	PARA_A_DCH_ATT5	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿5
-#define	PARA_A_DCH_ATT6	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿6
-#define	PARA_A_DCH_ATT7	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿7
-#define	PARA_A_DCH_ATT8	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿8
-#define	PARA_A_DCH_ATT9	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿9
-#define	PARA_A_DCH_ATT10	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿10
-#define	PARA_A_DCH_ATT11	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿11
-#define	PARA_A_DCH_ATT12	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿12
-#define	PARA_A_DCH_ATT13	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿13
-#define	PARA_A_DCH_ATT14	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿14
-#define	PARA_A_DCH_ATT15	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿15
-#define	PARA_A_DCH_ATT16	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿16
-#define	PARA_A_UCH_ATT1	0x0320	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿1
-#define	PARA_A_UCH_ATT2	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿2
-#define	PARA_A_UCH_ATT3	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿3
-#define	PARA_A_UCH_ATT4	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿4
-#define	PARA_A_UCH_ATT5	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿5
-#define	PARA_A_UCH_ATT6	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿6
-#define	PARA_A_UCH_ATT7	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿7
-#define	PARA_A_UCH_ATT8	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿8
-#define	PARA_A_UCH_ATT9	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿9
-#define	PARA_A_UCH_ATT10	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿10
-#define	PARA_A_UCH_ATT11	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿11
-#define	PARA_A_UCH_ATT12	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿12
-#define	PARA_A_UCH_ATT13	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿13
-#define	PARA_A_UCH_ATT14	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿14
-#define	PARA_A_UCH_ATT15	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿15
-#define	PARA_A_UCH_ATT16	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿16
-#define	PARA_A_DL_PA_GAIN	0	//	A¶ÎÏÂÐÐ¹¦·ÅÔöÒæ
-#define	PARA_A_UL_PA_GAIN	0	//	A¶ÎÉÏÐÐ¹¦·ÅÔöÒæ
-#define	PARA_A_TX_PLL_ST	0x8308	//	A¶ÎÏÂÐÐPLL×´Ì¬,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_A_RX_PLL_ST	0x8300	//	A¶ÎÉÏÐÐPLL×´Ì¬,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_A_INIT_DA_ST	0	//	³õÊ¼»¯A¶ÎDA×´Ì¬,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£
-#define	PARA_A_BB_PLL_LOCK	0	//	A¶ÎBB PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_A_FSAT		0	//	A¶ÎÇ°¶ËADÊäÈë×´Ì¬
-#define	PARA_A_DSAT		0	//	A¶Îºó¶ËDAÊä³ö×´Ì¬
-#define	PARA_A_PA_VG_EN	0	//	A¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-#define	PARA_A_PA_VT	0	//	A¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾
-#define	PARA_A_Modulator_EN	0	//	A¶Îµ÷ÖÆÆ÷×´Ì¬
-#define	PARA_A_LNA_VT	0	//	A¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹
-#define	PARA_A_LNA1_ST		0x8214	//	ÉÏÐÐLNA1×´Ì¬
-#define	PARA_A_LNA2_ST		0x8215	//	ÉÏÐÐLNA2×´Ì¬
-#define	PARA_A_BUSY_TIME	0x8892	//	A¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ
-#define	PARA_A_PRI_ADD 	0xf002	//	A¶ÎÄ£¿éµØÖ·(ÔÚºçÐÅÐ­ÒéÖÐ£¬¸ßËÄÎ»ÎªÉÏÐÐµØÖ·£¬µÍËÄÎ»ÎªÏÂÐÐµØÖ·)
-#define	PARA_A_UL_POW_1B	0x831e	//	A¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_A_DL_POW_1B	0x8390	//	A¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_A_DCH_REC_RF_ATT1          0     //// REC¶ËµÄÏÂÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÏÂÐÐË¥¼õÁ¿ ÔÚrf
-#define 	PARA_A_UCH_REC_RF_ATT1          0     //// REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿ ÔÚrf
-#define	PARA_B_CHANNEL_COUNT	0x8889	//	B¶ÎÖ§³ÖµÄÍ¨µÀÊý
-#define	PARA_B_DL_WORK_EN	0x08a0	//	B¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_B_UL_WORK_EN	0x08a1	//	B¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_B_DPOW_MODE	0	//	B¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_B_UPOW_MODE	0	//	B¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_B_LTHR_EN		0x0770	//	B¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ
-#define	PARA_B_LTHR_UP		0	//	B¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ
-#define	PARA_B_LTHR_DN		0x08b0	//	B¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ
-#define	PARA_B_DCH_EN1		0x08d0	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_B_DCH_EN2		0x08d1	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_B_DCH_EN3		0x08d2	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_B_DCH_EN4		0x08d3	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_B_DCH_EN5		0x08d4	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_B_DCH_EN6		0x08d5	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_B_DCH_EN7		0x08d6	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_B_DCH_EN8		0x08d7	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_B_DCH_EN9		0x08d8	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_B_DCH_EN10		0x08d9	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_B_DCH_EN11		0x08dA	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-#define	PARA_B_DCH_EN12		0x08dB	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-#define	PARA_B_DCH_EN13		0x08dC	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-#define	PARA_B_DCH_EN14		0x08dD	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-#define	PARA_B_DCH_EN15		0x08dE	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-#define	PARA_B_DCH_EN16		0x08dF	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-#define	PARA_B_UCH_EN1		0x08d0	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_B_UCH_EN2		0x08d1	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_B_UCH_EN3		0x08d2	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_B_UCH_EN4		0x08d3	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_B_UCH_EN5		0x08d4	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_B_UCH_EN6		0x08d5	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_B_UCH_EN7		0x08d6	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_B_UCH_EN8		0x08d7	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_B_UCH_EN9		0x08d8	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_B_UCH_EN10		0x08d9	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_B_UCH_EN11		0x08dA	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-#define	PARA_B_UCH_EN12		0x08dB	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-#define	PARA_B_UCH_EN13		0x08dC	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-#define	PARA_B_UCH_EN14		0x08dD	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-#define	PARA_B_UCH_EN15		0x08dE	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-#define	PARA_B_UCH_EN16		0x08dF	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-#define	PARA_B_DCH_GAIN1	0x0840	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_B_DCH_GAIN2	0x0841	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_B_DCH_GAIN3	0x0842	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_B_DCH_GAIN4	0x0843	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_B_DCH_GAIN5	0x0844	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_B_DCH_GAIN6	0x0845	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_B_DCH_GAIN7	0x0846	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_B_DCH_GAIN8	0x0847	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_B_DCH_GAIN9	0x0848	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_B_DCH_GAIN10	0x0849	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define	PARA_B_DCH_GAIN11	0x084A	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define	PARA_B_DCH_GAIN12	0x084B	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define	PARA_B_DCH_GAIN13	0x084C	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define	PARA_B_DCH_GAIN14	0x084D	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define	PARA_B_DCH_GAIN15	0x084E	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define	PARA_B_DCH_GAIN16	0x084F	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_B_UCH_GAIN1	0x0850	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_B_UCH_GAIN2	0x0851	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_B_UCH_GAIN3	0x0852	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_B_UCH_GAIN4	0x0853	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_B_UCH_GAIN5	0x0854	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_B_UCH_GAIN6	0x0855	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_B_UCH_GAIN7	0x0856	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_B_UCH_GAIN8	0x0857	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_B_UCH_GAIN9	0x0858	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_B_UCH_GAIN10	0x0859	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define	PARA_B_UCH_GAIN11	0x085A	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define	PARA_B_UCH_GAIN12	0x085B	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define	PARA_B_UCH_GAIN13	0x085C	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define	PARA_B_UCH_GAIN14	0x085D	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define	PARA_B_UCH_GAIN15	0x085E	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define	PARA_B_UCH_GAIN16	0x085F	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_B_DCH_ATT1		0x0324	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿1
-#define	PARA_B_DCH_ATT2		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿2
-#define	PARA_B_DCH_ATT3		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿3
-#define	PARA_B_DCH_ATT4		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿4
-#define	PARA_B_DCH_ATT5		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿5
-#define	PARA_B_DCH_ATT6		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿6
-#define	PARA_B_DCH_ATT7		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿7
-#define	PARA_B_DCH_ATT8		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿8
-#define	PARA_B_DCH_ATT9		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿9
-#define	PARA_B_DCH_ATT10	0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿10
-#define	PARA_B_DCH_ATT11	0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿11
-#define	PARA_B_DCH_ATT12	0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿12
-#define	PARA_B_DCH_ATT13	0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿13
-#define	PARA_B_DCH_ATT14	0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿14
-#define	PARA_B_DCH_ATT15	0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿15
-#define	PARA_B_DCH_ATT16	0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿16
-#define	PARA_B_UCH_ATT1		0//0x0320	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿1
-#define	PARA_B_UCH_ATT2		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿2
-#define	PARA_B_UCH_ATT3		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿3
-#define	PARA_B_UCH_ATT4		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿4
-#define	PARA_B_UCH_ATT5		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿5
-#define	PARA_B_UCH_ATT6		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿6
-#define	PARA_B_UCH_ATT7		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿7
-#define	PARA_B_UCH_ATT8		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿8
-#define	PARA_B_UCH_ATT9		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿9
-#define	PARA_B_UCH_ATT10	0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿10
-#define	PARA_B_UCH_ATT11	0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿11
-#define	PARA_B_UCH_ATT12	0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿12
-#define	PARA_B_UCH_ATT13	0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿13
-#define	PARA_B_UCH_ATT14	0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿14
-#define	PARA_B_UCH_ATT15	0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿15
-#define	PARA_B_UCH_ATT16	0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿16
-#define	PARA_B_DL_PA_GAIN	0	//	B¶ÎÏÂÐÐ¹¦·ÅÔöÒæ
-#define	PARA_B_UL_PA_GAIN	0	//	B¶ÎÉÏÐÐ¹¦·ÅÔöÒæ
-#define	PARA_B_TX_PLL_ST	0x8308	//	B¶ÎÏÂÐÐPLL×´Ì¬,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_B_RX_PLL_ST	0x8300	//	B¶ÎÉÏÐÐPLL×´Ì¬,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_B_INIT_DA_ST	0	//	³õÊ¼»¯B¶ÎDA×´Ì¬,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£
-#define	PARA_B_BB_PLL_LOCK	0	//	B¶ÎBB PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_B_FSAT		0	//	B¶ÎÇ°¶ËADÊäÈë×´Ì¬
-#define	PARA_B_DSAT		0	//	B¶Îºó¶ËDAÊä³ö×´Ì¬
-#define	PARA_B_PA_VG_EN	0	//	B¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-#define	PARA_B_PA_VT	0	//	B¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾
-#define	PARA_B_Modulator_EN	0	//	B¶Îµ÷ÖÆÆ÷×´Ì¬
-#define	PARA_B_LNA_VT	0	//	B¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹
-#define	PARA_B_LNA1_ST		0x8214	//	ÉÏÐÐLNA1×´Ì¬
-#define	PARA_B_LNA2_ST		0x8215	//	ÉÏÐÐLNA2×´Ì¬
-#define	PARA_B_BUSY_TIME	0x8892	//	B¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ
-#define	PARA_B_PRI_ADD 		0xf002	//	B¶ÎÄ£¿éµØÖ·(ÔÚºçÐÅÐ­ÒéÖÐ£¬¸ßËÄÎ»ÎªÉÏÐÐµØÖ·£¬µÍËÄÎ»ÎªÏÂÐÐµØÖ·)
-#define	PARA_B_UL_POW_1B	0x831e	//	B¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_B_DL_POW_1B	0x8390	//	B¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_B_DCH_REC_RF_ATT1          0     //// REC¶ËµÄÏÂÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÏÂÐÐË¥¼õÁ¿ ÔÚrf
-#define 	PARA_B_UCH_REC_RF_ATT1          0     //// REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿  ÔÚrf
-#define	PARA_C_CHANNEL_COUNT	0x8889	//	C¶ÎÖ§³ÖµÄÍ¨µÀÊý
-#define	PARA_C_DL_WORK_EN	0x08a0	//	C¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_C_UL_WORK_EN	0x08a1	//	C¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_C_DPOW_MODE	0	//	C¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_C_UPOW_MODE	0	//	C¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_C_LTHR_EN		0x0770	//	C¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ
-#define	PARA_C_LTHR_UP		0	//	C¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ
-#define	PARA_C_LTHR_DN		0x08b0	//	C¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ
-#define	PARA_C_DCH_EN1		0x08d0	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_C_DCH_EN2		0x08d1	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_C_DCH_EN3		0x08d2	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_C_DCH_EN4		0x08d3	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_C_DCH_EN5		0x08d4	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_C_DCH_EN6		0x08d5	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_C_DCH_EN7		0x08d6	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_C_DCH_EN8		0x08d7	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_C_DCH_EN9		0x08d8	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_C_DCH_EN10		0x08d9	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_C_UCH_EN1		0x08d0	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_C_UCH_EN2		0x08d1	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_C_UCH_EN3		0x08d2	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_C_UCH_EN4		0x08d3	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_C_UCH_EN5		0x08d4	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_C_UCH_EN6		0x08d5	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_C_UCH_EN7		0x08d6	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_C_UCH_EN8		0x08d7	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_C_UCH_EN9		0x08d8	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_C_UCH_EN10		0x08d9	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_C_DCH_GAIN1	0x0840	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_C_DCH_GAIN2	0x0841	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_C_DCH_GAIN3	0x0842	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_C_DCH_GAIN4	0x0843	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_C_DCH_GAIN5	0x0844	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_C_DCH_GAIN6	0x0845	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_C_DCH_GAIN7	0x0846	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_C_DCH_GAIN8	0x0847	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_C_DCH_GAIN9	0x0848	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_C_DCH_GAIN10	0x0849	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define 	PARA_C_DCH_GAIN11 	0	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define 	PARA_C_DCH_GAIN12 	0	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define 	PARA_C_DCH_GAIN13 	0	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define 	PARA_C_DCH_GAIN14 	0	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define 	PARA_C_DCH_GAIN15 	0	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define 	PARA_C_DCH_GAIN16 	0	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_C_UCH_GAIN1	0x0850	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_C_UCH_GAIN2	0x0851	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_C_UCH_GAIN3	0x0852	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_C_UCH_GAIN4	0x0853	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_C_UCH_GAIN5	0x0854	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_C_UCH_GAIN6	0x0855	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_C_UCH_GAIN7	0x0856	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_C_UCH_GAIN8	0x0857	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_C_UCH_GAIN9	0x0858	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_C_UCH_GAIN10	0x0859	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define	PARA_C_UCH_GAIN11	0	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define	PARA_C_UCH_GAIN12	0	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define	PARA_C_UCH_GAIN13	0	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define	PARA_C_UCH_GAIN14	0	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define	PARA_C_UCH_GAIN15	0	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define	PARA_C_UCH_GAIN16	0	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_C_DCH_ATT1		0x0324	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿1
-#define	PARA_C_DCH_ATT2		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿2
-#define	PARA_C_DCH_ATT3		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿3
-#define	PARA_C_DCH_ATT4		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿4
-#define	PARA_C_DCH_ATT5		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿5
-#define	PARA_C_DCH_ATT6		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿6
-#define	PARA_C_DCH_ATT7		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿7
-#define	PARA_C_DCH_ATT8		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿8
-#define	PARA_C_DCH_ATT9		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿9
-#define	PARA_C_DCH_ATT10	0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿10
-#define	PARA_C_DCH_ATT11	0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿11
-#define	PARA_C_DCH_ATT12	0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿12
-#define	PARA_C_DCH_ATT13	0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿13
-#define	PARA_C_DCH_ATT14	0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿14
-#define	PARA_C_DCH_ATT15	0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿15
-#define	PARA_C_DCH_ATT16	0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿16
-#define	PARA_C_UCH_ATT1		0//0x0320	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿1
-#define	PARA_C_UCH_ATT2		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿2
-#define	PARA_C_UCH_ATT3		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿3
-#define	PARA_C_UCH_ATT4		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿4
-#define	PARA_C_UCH_ATT5		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿5
-#define	PARA_C_UCH_ATT6		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿6
-#define	PARA_C_UCH_ATT7		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿7
-#define	PARA_C_UCH_ATT8		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿8
-#define	PARA_C_UCH_ATT9		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿9
-#define	PARA_C_UCH_ATT10	0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿10
-#define	PARA_C_UCH_ATT11	0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿11
-#define	PARA_C_UCH_ATT12	0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿12
-#define	PARA_C_UCH_ATT13	0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿13
-#define	PARA_C_UCH_ATT14	0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿14
-#define	PARA_C_UCH_ATT15	0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿15
-#define	PARA_C_UCH_ATT16	0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿16
-#define	PARA_C_DL_PA_GAIN	0	//	C¶ÎÏÂÐÐ¹¦·ÅÔöÒæ
-#define	PARA_C_UL_PA_GAIN	0	//	C¶ÎÉÏÐÐ¹¦·ÅÔöÒæ
-#define	PARA_C_TX_PLL_ST	0x8308	//	C¶ÎÏÂÐÐPLL×´Ì¬,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_C_RX_PLL_ST	0x8300	//	C¶ÎÉÏÐÐPLL×´Ì¬,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_C_INIT_DA_ST	0	//	C³õÊ¼»¯B¶ÎDA×´Ì¬,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£
-#define	PARA_C_BB_PLL_LOCK	0	//	C¶ÎBB PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_C_FSAT		0	//	C¶ÎÇ°¶ËADÊäÈë×´Ì¬
-#define	PARA_C_DSAT		0	//	C¶Îºó¶ËDAÊä³ö×´Ì¬
-#define	PARA_C_PA_VG_EN	0	//	C¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-#define	PARA_C_PA_VT	0	//	C¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾
-#define	PARA_C_Modulator_EN	0	//	C¶Îµ÷ÖÆÆ÷×´Ì¬
-#define	PARA_C_LNA_VT	0	//	C¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹
-#define	PARA_C_LNA1_ST		0x8214	//	CÉÏÐÐLNA1×´Ì¬
-#define	PARA_C_LNA2_ST		0x8215	//	CÉÏÐÐLNA2×´Ì¬
-#define	PARA_C_BUSY_TIME	0x8892	//	C¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ
-#define	PARA_C_PRI_ADD 		0xf002	//	C¶ÎÄ£¿éµØÖ·(ÔÚºçÐÅÐ­ÒéÖÐ£¬¸ßËÄÎ»ÎªÉÏÐÐµØÖ·£¬µÍËÄÎ»ÎªÏÂÐÐµØÖ·)
-#define	PARA_C_UL_POW_1B	0x831e	//	C¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_C_DL_POW_1B	0x8390	//	C¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_C_DCH_REC_RF_ATT1          0     //// REC¶ËµÄÏÂÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÏÂÐÐË¥¼õÁ¿ ÔÚrf
-#define 	PARA_C_UCH_REC_RF_ATT1          0     //// REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿  ÔÚrf
-#define	PARA_D_CHANNEL_COUNT	0x8889	//	D¶ÎÖ§³ÖµÄÍ¨µÀÊý
-#define	PARA_D_DL_WORK_EN	0x08a0	//	D¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_D_UL_WORK_EN	0x08a1	//	D¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_D_DPOW_MODE	0	//	D¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_D_UPOW_MODE	0	//	D¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_D_LTHR_EN		0x0770	//	D¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ
-#define	PARA_D_LTHR_UP		0	//	D¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ
-#define	PARA_D_LTHR_DN		0x08b0	//	D¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ
-#define	PARA_D_DCH_EN1		0x08d0	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_D_DCH_EN2		0x08d1	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_D_DCH_EN3		0x08d2	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_D_DCH_EN4		0x08d3	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_D_DCH_EN5		0x08d4	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_D_DCH_EN6		0x08d5	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_D_DCH_EN7		0x08d6	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_D_DCH_EN8		0x08d7	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_D_DCH_EN9		0x08d8	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_D_DCH_EN10	0x08d9	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_D_UCH_EN1		0x08d0	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_D_UCH_EN2		0x08d1	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_D_UCH_EN3		0x08d2	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_D_UCH_EN4		0x08d3	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_D_UCH_EN5		0x08d4	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_D_UCH_EN6		0x08d5	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_D_UCH_EN7		0x08d6	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_D_UCH_EN8		0x08d7	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_D_UCH_EN9		0x08d8	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_D_UCH_EN10	0x08d9	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_D_DCH_GAIN1	0x0840	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_D_DCH_GAIN2	0x0841	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_D_DCH_GAIN3	0x0842	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_D_DCH_GAIN4	0x0843	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_D_DCH_GAIN5	0x0844	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_D_DCH_GAIN6	0x0845	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_D_DCH_GAIN7	0x0846	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_D_DCH_GAIN8	0x0847	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_D_DCH_GAIN9	0x0848	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_D_DCH_GAIN10	0x0849	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define	PARA_D_DCH_GAIN11	0	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define	PARA_D_DCH_GAIN12	0	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define	PARA_D_DCH_GAIN13	0	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define	PARA_D_DCH_GAIN14	0	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define	PARA_D_DCH_GAIN15	0	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define	PARA_D_DCH_GAIN16	0	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_D_UCH_GAIN1	0x0850	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_D_UCH_GAIN2	0x0851	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_D_UCH_GAIN3	0x0852	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_D_UCH_GAIN4	0x0853	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_D_UCH_GAIN5	0x0854	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_D_UCH_GAIN6	0x0855	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_D_UCH_GAIN7	0x0856	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_D_UCH_GAIN8	0x0857	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_D_UCH_GAIN9	0x0858	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_D_UCH_GAIN10	0x0859	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define	PARA_D_UCH_GAIN11	0	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define	PARA_D_UCH_GAIN12	0	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define	PARA_D_UCH_GAIN13	0	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define	PARA_D_UCH_GAIN14	0	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define	PARA_D_UCH_GAIN15	0	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define	PARA_D_UCH_GAIN16	0	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_D_DCH_ATT1		0x0324	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿1
-#define	PARA_D_DCH_ATT2		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿2
-#define	PARA_D_DCH_ATT3		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿3
-#define	PARA_D_DCH_ATT4		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿4
-#define	PARA_D_DCH_ATT5		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿5
-#define	PARA_D_DCH_ATT6		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿6
-#define	PARA_D_DCH_ATT7		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿7
-#define	PARA_D_DCH_ATT8		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿8
-#define	PARA_D_DCH_ATT9		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿9
-#define	PARA_D_DCH_ATT10	0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿10
-#define	PARA_D_DCH_ATT11	0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿11
-#define	PARA_D_DCH_ATT12	0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿12
-#define	PARA_D_DCH_ATT13	0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿13
-#define	PARA_D_DCH_ATT14	0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿14
-#define	PARA_D_DCH_ATT15	0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿15
-#define	PARA_D_DCH_ATT16	0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿16
-#define	PARA_D_UCH_ATT1		0//0x0320	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿1
-#define	PARA_D_UCH_ATT2		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿2
-#define	PARA_D_UCH_ATT3		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿3
-#define	PARA_D_UCH_ATT4		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿4
-#define	PARA_D_UCH_ATT5		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿5
-#define	PARA_D_UCH_ATT6		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿6
-#define	PARA_D_UCH_ATT7		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿7
-#define	PARA_D_UCH_ATT8		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿8
-#define	PARA_D_UCH_ATT9		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿9
-#define	PARA_D_UCH_ATT10	0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿10
-#define	PARA_D_UCH_ATT11	0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿11
-#define	PARA_D_UCH_ATT12	0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿12
-#define	PARA_D_UCH_ATT13	0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿13
-#define	PARA_D_UCH_ATT14	0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿14
-#define	PARA_D_UCH_ATT15	0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿15
-#define	PARA_D_UCH_ATT16	0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿16
-#define	PARA_D_DL_PA_GAIN	0	//	D¶ÎÏÂÐÐ¹¦·ÅÔöÒæ
-#define	PARA_D_UL_PA_GAIN	0	//	D¶ÎÉÏÐÐ¹¦·ÅÔöÒæ
-#define	PARA_D_TX_PLL_ST	0x8308	//	D¶ÎÏÂÐÐPLL×´Ì¬,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_D_RX_PLL_ST	0x8300	//	D¶ÎÉÏÐÐPLL×´Ì¬,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_D_INIT_DA_ST	0	//	D³õÊ¼»¯B¶ÎDA×´Ì¬,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£
-#define	PARA_D_BB_PLL_LOCK	0	//	D¶ÎBB PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_D_FSAT		0	//	D¶ÎÇ°¶ËADÊäÈë×´Ì¬
-#define	PARA_D_DSAT		0	//	D¶Îºó¶ËDAÊä³ö×´Ì¬
-#define	PARA_D_PA_VG_EN	0	//	D¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-#define	PARA_D_PA_VT	0	//	D¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾
-#define	PARA_D_Modulator_EN	0	//	D¶Îµ÷ÖÆÆ÷×´Ì¬
-#define	PARA_D_LNA_VT	0	//	D¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹
-#define	PARA_D_LNA1_ST		0x8214	//	DÉÏÐÐLNA1×´Ì¬
-#define	PARA_D_LNA2_ST		0x8215	//	DÉÏÐÐLNA2×´Ì¬
-#define	PARA_D_BUSY_TIME	0x8892	//	D¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ
-#define	PARA_D_PRI_ADD 		0xf002	//	D¶ÎÄ£¿éµØÖ·(ÔÚºçÐÅÐ­ÒéÖÐ£¬¸ßËÄÎ»ÎªÉÏÐÐµØÖ·£¬µÍËÄÎ»ÎªÏÂÐÐµØÖ·)
-#define	PARA_D_UL_POW_1B	0x831e	//	D¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_D_DL_POW_1B	0x8390	//	D¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_D_DCH_REC_RF_ATT1          0     //// REC¶ËµÄÏÂÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÏÂÐÐË¥¼õÁ¿ ÔÚrf
-#define 	PARA_D_UCH_REC_RF_ATT1          0     //// REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿  ÔÚrf
-#define	PARA_FP1_EN	0x0927	//	¹â¿Ú·¢ËÍÊ¹ÄÜ1
-#define	PARA_FP2_EN	0x0928	//	¹â¿Ú·¢ËÍÊ¹ÄÜ2
-#define	PARA_FP3_EN	0x0929	//	¹â¿Ú·¢ËÍÊ¹ÄÜ3
-#define	PARA_FP4_EN	0x092A	//	¹â¿Ú·¢ËÍÊ¹ÄÜ4
-#define	PARA_FP5_EN	0x092B	//	¹â¿Ú·¢ËÍÊ¹ÄÜ5
-#define	PARA_FP6_EN	0x092C	//	¹â¿Ú·¢ËÍÊ¹ÄÜ6
-#define	PARA_FP7_EN	0x092D	//	¹â¿Ú·¢ËÍÊ¹ÄÜ7
-#define	PARA_FP8_EN	0x092E	//	¹â¿Ú·¢ËÍÊ¹ÄÜ8
-#define	PARA_FP9_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ9
-#define	PARA_FP10_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ10
-#define	PARA_FP11_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ11
-#define	PARA_FP12_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ12
-#define	PARA_FP13_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ13
-#define	PARA_FP14_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ14
-#define	PARA_FP15_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ15
-#define	PARA_FP16_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ16
-#define	PARA_FP1_ON_POS	0x8568	//	¹â¿ÚÔÚÎ»×´Ì¬1, 0-ÔÚÎ»	
-#define	PARA_FP2_ON_POS	0x8569	//	¹â¿ÚÔÚÎ»×´Ì¬2, 0-ÔÚÎ»	
-#define	PARA_FP3_ON_POS	0x856A	//	¹â¿ÚÔÚÎ»×´Ì¬3, 0-ÔÚÎ»	
-#define	PARA_FP4_ON_POS	0x856B	//	¹â¿ÚÔÚÎ»×´Ì¬4, 0-ÔÚÎ»	
-#define	PARA_FP5_ON_POS	0x856C	//	¹â¿ÚÔÚÎ»×´Ì¬5, 0-ÔÚÎ»	
-#define	PARA_FP6_ON_POS	0x856D	//	¹â¿ÚÔÚÎ»×´Ì¬6, 0-ÔÚÎ»	
-#define	PARA_FP7_ON_POS	0x856E	//	¹â¿ÚÔÚÎ»×´Ì¬7, 0-ÔÚÎ»	
-#define	PARA_FP8_ON_POS	0x856F	//	¹â¿ÚÔÚÎ»×´Ì¬8, 0-ÔÚÎ»	
-#define	PARA_FP9_ON_POS	0x8568	//	¹â¿ÚÔÚÎ»×´Ì¬9, 0-ÔÚÎ»	
-#define	PARA_FP10_ON_POS	0x8569	//	¹â¿ÚÔÚÎ»×´Ì¬10, 0-ÔÚÎ»	
-#define	PARA_FP11_ON_POS	0x856a	//	¹â¿ÚÔÚÎ»×´Ì¬11, 0-ÔÚÎ»	
-#define	PARA_FP12_ON_POS	0x856b	//	¹â¿ÚÔÚÎ»×´Ì¬12, 0-ÔÚÎ»	
-#define	PARA_FP13_ON_POS	0x856c	//	¹â¿ÚÔÚÎ»×´Ì¬13, 0-ÔÚÎ»	
-#define	PARA_FP14_ON_POS	0x856d	//	¹â¿ÚÔÚÎ»×´Ì¬14, 0-ÔÚÎ»
-#define	PARA_FP15_ON_POS	0x856e	//	¹â¿ÚÔÚÎ»×´Ì¬15, 0-ÔÚÎ»
-#define	PARA_FP16_ON_POS	0x856f	//	¹â¿ÚÔÚÎ»×´Ì¬16, 0-ÔÚÎ»
-#define	PARA_FP1_LOS	0x8738//0x8730	//	¹â¿Ú1ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP2_LOS	0x8739//0x8731	//	¹â¿Ú2ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP3_LOS	0x873a//0x8732	//	¹â¿Ú3ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP4_LOS	0x873b//0x8733	//	¹â¿Ú4ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP5_LOS	0x873c//0x8734	//	¹â¿Ú5ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP6_LOS	0x873d//0x8735	//	¹â¿Ú6ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP7_LOS	0x8598//0x8736	//	¹â¿Ú7ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP8_LOS	0x8599//0x8737	//	¹â¿Ú8ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP9_LOS	0//0x8738	//	¹â¿Ú9ÐÅºÅ¶ªÊ§×´Ì¬
-#define	PARA_FP10_LOS	0//0x8739	//	¹â¿Ú10ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP11_LOS	0//0x873a	//	¹â¿Ú11ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP12_LOS	0//0x873b	//	¹â¿Ú12ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP13_LOS	0//0x873c	//	¹â¿Ú13ÐÅºÅ¶ªÊ§×´Ì¬
-#define	PARA_FP14_LOS	0//0x873d	//	¹â¿Ú14ÐÅºÅ¶ªÊ§×´Ì¬
-#define	PARA_FP15_LOS	0//0x873e	//	¹â¿Ú15ÐÅºÅ¶ªÊ§×´Ì¬
-#define	PARA_FP16_LOS	0//0x873f	//	¹â¿Ú16ÐÅºÅ¶ªÊ§×´Ì¬
-#define	PARA_FP1_LOF	0x878a//0x8780	//	¹â¿Ú1Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP2_LOF	0x878b//0x8781	//	¹â¿Ú2Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP3_LOF	0x878c//0x8782	//	¹â¿Ú3Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP4_LOF	0x878d//0x8783	//	¹â¿Ú4Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP5_LOF	0x87ab//0x8784	//	¹â¿Ú5Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP6_LOF	0x87ac//0x8785	//	¹â¿Ú6Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP7_LOF	0x87ad//0x8786	//	¹â¿Ú7Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP8_LOF	0x87ae//0x8787	//	¹â¿Ú8Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP9_LOF	0//0x8788	//	¹â¿Ú9Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP10_LOF	0//0x8789	//	¹â¿Ú10Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP11_LOF	0//0x878a	//	¹â¿Ú11Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP12_LOF	0//0x878b	//	¹â¿Ú12Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP13_LOF	0//0x878c	//	¹â¿Ú13Ö¡¶ªÊ§×´Ì¬
-#define	PARA_FP14_LOF	0//0x878d	//	¹â¿Ú14Ö¡¶ªÊ§×´Ì¬
-#define	PARA_FP15_LOF	0//0x878e	//	¹â¿Ú15Ö¡¶ªÊ§×´Ì¬
-#define	PARA_FP16_LOF	0//0x878f	//	¹â¿Ú16Ö¡¶ªÊ§×´Ì¬
-#define	PARA_OPT_LOF	0//0x87ad	//	Ö¡¶ªÊ§×´Ì¬
-#define	PARA_SERDES1_PLL_ST	0x878e	//	SerDesÐ¾Æ¬PLL×´Ì¬1	
-#define	PARA_SERDES2_PLL_ST	0x878f	//	SerDesÐ¾Æ¬PLL×´Ì¬2	
-#define	PARA_SERDES3_PLL_ST	0x8790	//	SerDesÐ¾Æ¬PLL×´Ì¬3	
-#define	PARA_SERDES4_PLL_ST	0x8791	//	SerDesÐ¾Æ¬PLL×´Ì¬4	
-#define	PARA_SERDES5_PLL_ST	0x8898	//	SerDesÐ¾Æ¬PLL×´Ì¬5	
-#define	PARA_SERDES6_PLL_ST	0x8899	//	SerDesÐ¾Æ¬PLL×´Ì¬6	
-#define	PARA_SERDES7_PLL_ST	0x889a	//	SerDesÐ¾Æ¬PLL×´Ì¬7	
-#define	PARA_SERDES8_PLL_ST	0x889b	//	SerDesÐ¾Æ¬PLL×´Ì¬8	
-#define	PARA_SERDES9_PLL_ST	0x85a8	//	SerDesÐ¾Æ¬PLL×´Ì¬9	
-#define	PARA_SERDES10_PLL_ST	0x85a9	//	SerDesÐ¾Æ¬PLL×´Ì¬10	
-#define	PARA_SERDES11_PLL_ST	0x85aa	//	SerDesÐ¾Æ¬PLL×´Ì¬11	
-#define	PARA_SERDES12_PLL_ST	0x85ab	//	SerDesÐ¾Æ¬PLL×´Ì¬12	
-#define	PARA_SERDES13_PLL_ST	0x85ac	//	SerDesÐ¾Æ¬PLL×´Ì¬13
-#define	PARA_SERDES14_PLL_ST	0x85ad	//	SerDesÐ¾Æ¬PLL×´Ì¬14
-#define	PARA_SERDES15_PLL_ST	0x85ae	//	SerDesÐ¾Æ¬PLL×´Ì¬15
-#define	PARA_SERDES16_PLL_ST	0x85af	//	SerDesÐ¾Æ¬PLL×´Ì¬16
-#define	PARA_TOPO_CHG_ALM	0x873F//0x87af	//	»·Â·×´Ì¬¸æ¾¯
-#define	PARA_BER_ALARM	0//0x87ae	//	ÎóÂëÂÊÆ«¸ß¸æ¾¯
-#define	PARA_LOAD_FPGA_ST	0x8854	//	¼ÓÔØFPGA×´Ì¬
-#define	PARA_FPGA_CLK_ST	0x8851	//	FPGA±¾Õñ×´Ì¬
-#define	PARA_INIT_CLK_ST	0	//	³õÊ¼»¯Ê±ÖÓ×´Ì¬
-#define	PARA_INIT_AD_ST	0	//	³õÊ¼»¯AD×´Ì¬
-#define	PARA_INIT_FB_AD_ST	0	//	³õÊ¼»¯·´À¡AD×´Ì¬
-#define	PARA_CLK_PLL_ST	0x884e	//	CLK PLL×´Ì¬
-#define	PARA_CLK_REF_ST	0x884f	//	CLK ²Î¿¼×´Ì¬
-#define	PARA_RE_NODE_MODE	0x889d	//	RE½ÚµãÄ£Ê½
-#define	PARA_BOARD_TEMP	0x8844	//	µ¥°åÎÂ¶È
-#define	PARA_CLK_VCO_VT	0	//	Ê±ÖÓVCOµçÑ¹
-#define	PARA_PWR_9V0_VT	0	//	9VµçÔ´µçÑ¹
-#define	PARA_PWR_5V5_VT	0	//	5.5VµçÔ´µçÑ¹
-#define	PARA_PWR_3V6_VT	0	//	3.6VµçÔ´µçÑ¹
-#define	PARA_PWR_1V2_VT	0	//	1.2VµçÔ´µçÑ¹
-#define	PARA_PWR_2V5_VT	0	//	1.2VµçÔ´µçÑ¹
-#define	PARA_PRI_PROTOCAL_V	0xf003	//	Ð­Òé°æ±¾
+	// å›½äººå‚æ•°
+// å‚æ•°åœ°å€å®šä¹‰==================================================== 1b								
+#define	PARA_A_CHANNEL_COUNT	0x8889	//	Aæ®µæ”¯æŒçš„é€šé“æ•°
+#define	PARA_A_DL_WORK_EN	0x08a0	//	Aæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_A_UL_WORK_EN	0x08a1	//	Aæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_A_DPOW_MODE	0	//	Aæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_A_UPOW_MODE	0	//	Aæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_A_LTHR_EN	0x0770	//	Aæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½
+#define	PARA_A_LTHR_UP	0	//	Aæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™
+#define	PARA_A_LTHR_DN	0x08b0	//	Aæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
+#define	PARA_A_DCH_EN1	0x08d0	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_A_DCH_EN2	0x08d1	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_A_DCH_EN3	0x08d2	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_A_DCH_EN4	0x08d3	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_A_DCH_EN5	0x08d4	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_A_DCH_EN6	0x08d5	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_A_DCH_EN7	0x08d6	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_A_DCH_EN8	0x08d7	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_A_DCH_EN9	0x08d8	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_A_DCH_EN10	0x08d9	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_A_DCH_EN11	0x08dA	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½11
+#define	PARA_A_DCH_EN12	0x08dB	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½12
+#define	PARA_A_DCH_EN13	0x08dC	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½13
+#define	PARA_A_DCH_EN14	0x08dD	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½14
+#define	PARA_A_DCH_EN15	0x08dE	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½15
+#define	PARA_A_DCH_EN16	0x08dF	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½16
+#define	PARA_A_UCH_EN1	0x08d0	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_A_UCH_EN2	0x08d1	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_A_UCH_EN3	0x08d2	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_A_UCH_EN4	0x08d3	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_A_UCH_EN5	0x08d4	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_A_UCH_EN6	0x08d5	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_A_UCH_EN7	0x08d6	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_A_UCH_EN8	0x08d7	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_A_UCH_EN9	0x08d8	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_A_UCH_EN10	0x08d9	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_A_UCH_EN11	0x08dA	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½11
+#define	PARA_A_UCH_EN12	0x08dB	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½12
+#define	PARA_A_UCH_EN13	0x08dC	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½13
+#define	PARA_A_UCH_EN14	0x08dD	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½14
+#define	PARA_A_UCH_EN15	0x08dE	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½15
+#define	PARA_A_UCH_EN16	0x08dF	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½16
+#define	PARA_A_DCH_GAIN1	0x0840	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_A_DCH_GAIN2	0x0841	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_A_DCH_GAIN3	0x0842	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_A_DCH_GAIN4	0x0843	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_A_DCH_GAIN5	0x0844	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_A_DCH_GAIN6	0x0845	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_A_DCH_GAIN7	0x0846	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_A_DCH_GAIN8	0x0847	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_A_DCH_GAIN9	0x0848	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_A_DCH_GAIN10	0x0849	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define	PARA_A_DCH_GAIN11	0x084A	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define	PARA_A_DCH_GAIN12	0x084B	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define	PARA_A_DCH_GAIN13	0x084C	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define	PARA_A_DCH_GAIN14	0x084D	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define	PARA_A_DCH_GAIN15	0x084E	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define	PARA_A_DCH_GAIN16	0x084F	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_A_UCH_GAIN1	0x0850	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_A_UCH_GAIN2	0x0851	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_A_UCH_GAIN3	0x0852	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_A_UCH_GAIN4	0x0853	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_A_UCH_GAIN5	0x0854	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_A_UCH_GAIN6	0x0855	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_A_UCH_GAIN7	0x0856	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_A_UCH_GAIN8	0x0857	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_A_UCH_GAIN9	0x0858	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_A_UCH_GAIN10	0x0859	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define	PARA_A_UCH_GAIN11	0x085A	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define	PARA_A_UCH_GAIN12	0x085B	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define	PARA_A_UCH_GAIN13	0x085C	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define	PARA_A_UCH_GAIN14	0x085D	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define	PARA_A_UCH_GAIN15	0x085E	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define	PARA_A_UCH_GAIN16	0x085F	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_A_DCH_ATT1	0x0324	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡1
+#define	PARA_A_DCH_ATT2	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡2
+#define	PARA_A_DCH_ATT3	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡3
+#define	PARA_A_DCH_ATT4	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡4
+#define	PARA_A_DCH_ATT5	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡5
+#define	PARA_A_DCH_ATT6	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡6
+#define	PARA_A_DCH_ATT7	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡7
+#define	PARA_A_DCH_ATT8	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡8
+#define	PARA_A_DCH_ATT9	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡9
+#define	PARA_A_DCH_ATT10	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡10
+#define	PARA_A_DCH_ATT11	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡11
+#define	PARA_A_DCH_ATT12	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡12
+#define	PARA_A_DCH_ATT13	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡13
+#define	PARA_A_DCH_ATT14	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡14
+#define	PARA_A_DCH_ATT15	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡15
+#define	PARA_A_DCH_ATT16	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡16
+#define	PARA_A_UCH_ATT1	0x0320	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡1
+#define	PARA_A_UCH_ATT2	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡2
+#define	PARA_A_UCH_ATT3	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡3
+#define	PARA_A_UCH_ATT4	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡4
+#define	PARA_A_UCH_ATT5	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡5
+#define	PARA_A_UCH_ATT6	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡6
+#define	PARA_A_UCH_ATT7	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡7
+#define	PARA_A_UCH_ATT8	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡8
+#define	PARA_A_UCH_ATT9	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡9
+#define	PARA_A_UCH_ATT10	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡10
+#define	PARA_A_UCH_ATT11	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡11
+#define	PARA_A_UCH_ATT12	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡12
+#define	PARA_A_UCH_ATT13	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡13
+#define	PARA_A_UCH_ATT14	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡14
+#define	PARA_A_UCH_ATT15	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡15
+#define	PARA_A_UCH_ATT16	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡16
+#define	PARA_A_DL_PA_GAIN	0	//	Aæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_A_UL_PA_GAIN	0	//	Aæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_A_TX_PLL_ST	0x8308	//	Aæ®µä¸‹è¡ŒPLLçŠ¶æ€,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_A_RX_PLL_ST	0x8300	//	Aæ®µä¸Šè¡ŒPLLçŠ¶æ€,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_A_INIT_DA_ST	0	//	åˆå§‹åŒ–Aæ®µDAçŠ¶æ€,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸
+#define	PARA_A_BB_PLL_LOCK	0	//	Aæ®µBB PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_A_FSAT		0	//	Aæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€
+#define	PARA_A_DSAT		0	//	Aæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€
+#define	PARA_A_PA_VG_EN	0	//	Aæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+#define	PARA_A_PA_VT	0	//	Aæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º
+#define	PARA_A_Modulator_EN	0	//	Aæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+#define	PARA_A_LNA_VT	0	//	Aæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹
+#define	PARA_A_LNA1_ST		0x8214	//	ä¸Šè¡ŒLNA1çŠ¶æ€
+#define	PARA_A_LNA2_ST		0x8215	//	ä¸Šè¡ŒLNA2çŠ¶æ€
+#define	PARA_A_BUSY_TIME	0x8892	//	Aæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡
+#define	PARA_A_PRI_ADD 	0xf002	//	Aæ®µæ¨¡å—åœ°å€(åœ¨è™¹ä¿¡åè®®ä¸­ï¼Œé«˜å››ä½ä¸ºä¸Šè¡Œåœ°å€ï¼Œä½Žå››ä½ä¸ºä¸‹è¡Œåœ°å€)
+#define	PARA_A_UL_POW_1B	0x831e	//	Aæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_A_DL_POW_1B	0x8390	//	Aæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_A_DCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸‹è¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸‹è¡Œè¡°å‡é‡ åœ¨rf
+#define 	PARA_A_UCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡ åœ¨rf
+#define	PARA_B_CHANNEL_COUNT	0x8889	//	Bæ®µæ”¯æŒçš„é€šé“æ•°
+#define	PARA_B_DL_WORK_EN	0x08a0	//	Bæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_B_UL_WORK_EN	0x08a1	//	Bæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_B_DPOW_MODE	0	//	Bæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_B_UPOW_MODE	0	//	Bæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_B_LTHR_EN		0x0770	//	Bæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½
+#define	PARA_B_LTHR_UP		0	//	Bæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™
+#define	PARA_B_LTHR_DN		0x08b0	//	Bæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
+#define	PARA_B_DCH_EN1		0x08d0	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_B_DCH_EN2		0x08d1	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_B_DCH_EN3		0x08d2	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_B_DCH_EN4		0x08d3	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_B_DCH_EN5		0x08d4	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_B_DCH_EN6		0x08d5	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_B_DCH_EN7		0x08d6	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_B_DCH_EN8		0x08d7	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_B_DCH_EN9		0x08d8	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_B_DCH_EN10		0x08d9	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_B_DCH_EN11		0x08dA	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½11
+#define	PARA_B_DCH_EN12		0x08dB	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½12
+#define	PARA_B_DCH_EN13		0x08dC	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½13
+#define	PARA_B_DCH_EN14		0x08dD	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½14
+#define	PARA_B_DCH_EN15		0x08dE	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½15
+#define	PARA_B_DCH_EN16		0x08dF	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½16
+#define	PARA_B_UCH_EN1		0x08d0	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_B_UCH_EN2		0x08d1	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_B_UCH_EN3		0x08d2	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_B_UCH_EN4		0x08d3	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_B_UCH_EN5		0x08d4	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_B_UCH_EN6		0x08d5	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_B_UCH_EN7		0x08d6	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_B_UCH_EN8		0x08d7	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_B_UCH_EN9		0x08d8	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_B_UCH_EN10		0x08d9	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_B_UCH_EN11		0x08dA	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½11
+#define	PARA_B_UCH_EN12		0x08dB	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½12
+#define	PARA_B_UCH_EN13		0x08dC	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½13
+#define	PARA_B_UCH_EN14		0x08dD	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½14
+#define	PARA_B_UCH_EN15		0x08dE	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½15
+#define	PARA_B_UCH_EN16		0x08dF	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½16
+#define	PARA_B_DCH_GAIN1	0x0840	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_B_DCH_GAIN2	0x0841	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_B_DCH_GAIN3	0x0842	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_B_DCH_GAIN4	0x0843	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_B_DCH_GAIN5	0x0844	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_B_DCH_GAIN6	0x0845	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_B_DCH_GAIN7	0x0846	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_B_DCH_GAIN8	0x0847	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_B_DCH_GAIN9	0x0848	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_B_DCH_GAIN10	0x0849	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define	PARA_B_DCH_GAIN11	0x084A	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define	PARA_B_DCH_GAIN12	0x084B	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define	PARA_B_DCH_GAIN13	0x084C	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define	PARA_B_DCH_GAIN14	0x084D	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define	PARA_B_DCH_GAIN15	0x084E	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define	PARA_B_DCH_GAIN16	0x084F	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_B_UCH_GAIN1	0x0850	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_B_UCH_GAIN2	0x0851	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_B_UCH_GAIN3	0x0852	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_B_UCH_GAIN4	0x0853	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_B_UCH_GAIN5	0x0854	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_B_UCH_GAIN6	0x0855	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_B_UCH_GAIN7	0x0856	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_B_UCH_GAIN8	0x0857	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_B_UCH_GAIN9	0x0858	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_B_UCH_GAIN10	0x0859	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define	PARA_B_UCH_GAIN11	0x085A	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define	PARA_B_UCH_GAIN12	0x085B	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define	PARA_B_UCH_GAIN13	0x085C	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define	PARA_B_UCH_GAIN14	0x085D	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define	PARA_B_UCH_GAIN15	0x085E	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define	PARA_B_UCH_GAIN16	0x085F	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_B_DCH_ATT1		0x0324	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡1
+#define	PARA_B_DCH_ATT2		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡2
+#define	PARA_B_DCH_ATT3		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡3
+#define	PARA_B_DCH_ATT4		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡4
+#define	PARA_B_DCH_ATT5		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡5
+#define	PARA_B_DCH_ATT6		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡6
+#define	PARA_B_DCH_ATT7		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡7
+#define	PARA_B_DCH_ATT8		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡8
+#define	PARA_B_DCH_ATT9		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡9
+#define	PARA_B_DCH_ATT10	0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡10
+#define	PARA_B_DCH_ATT11	0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡11
+#define	PARA_B_DCH_ATT12	0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡12
+#define	PARA_B_DCH_ATT13	0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡13
+#define	PARA_B_DCH_ATT14	0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡14
+#define	PARA_B_DCH_ATT15	0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡15
+#define	PARA_B_DCH_ATT16	0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡16
+#define	PARA_B_UCH_ATT1		0//0x0320	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡1
+#define	PARA_B_UCH_ATT2		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡2
+#define	PARA_B_UCH_ATT3		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡3
+#define	PARA_B_UCH_ATT4		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡4
+#define	PARA_B_UCH_ATT5		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡5
+#define	PARA_B_UCH_ATT6		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡6
+#define	PARA_B_UCH_ATT7		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡7
+#define	PARA_B_UCH_ATT8		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡8
+#define	PARA_B_UCH_ATT9		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡9
+#define	PARA_B_UCH_ATT10	0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡10
+#define	PARA_B_UCH_ATT11	0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡11
+#define	PARA_B_UCH_ATT12	0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡12
+#define	PARA_B_UCH_ATT13	0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡13
+#define	PARA_B_UCH_ATT14	0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡14
+#define	PARA_B_UCH_ATT15	0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡15
+#define	PARA_B_UCH_ATT16	0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡16
+#define	PARA_B_DL_PA_GAIN	0	//	Bæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_B_UL_PA_GAIN	0	//	Bæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_B_TX_PLL_ST	0x8308	//	Bæ®µä¸‹è¡ŒPLLçŠ¶æ€,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_B_RX_PLL_ST	0x8300	//	Bæ®µä¸Šè¡ŒPLLçŠ¶æ€,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_B_INIT_DA_ST	0	//	åˆå§‹åŒ–Bæ®µDAçŠ¶æ€,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸
+#define	PARA_B_BB_PLL_LOCK	0	//	Bæ®µBB PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_B_FSAT		0	//	Bæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€
+#define	PARA_B_DSAT		0	//	Bæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€
+#define	PARA_B_PA_VG_EN	0	//	Bæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+#define	PARA_B_PA_VT	0	//	Bæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º
+#define	PARA_B_Modulator_EN	0	//	Bæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+#define	PARA_B_LNA_VT	0	//	Bæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹
+#define	PARA_B_LNA1_ST		0x8214	//	ä¸Šè¡ŒLNA1çŠ¶æ€
+#define	PARA_B_LNA2_ST		0x8215	//	ä¸Šè¡ŒLNA2çŠ¶æ€
+#define	PARA_B_BUSY_TIME	0x8892	//	Bæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡
+#define	PARA_B_PRI_ADD 		0xf002	//	Bæ®µæ¨¡å—åœ°å€(åœ¨è™¹ä¿¡åè®®ä¸­ï¼Œé«˜å››ä½ä¸ºä¸Šè¡Œåœ°å€ï¼Œä½Žå››ä½ä¸ºä¸‹è¡Œåœ°å€)
+#define	PARA_B_UL_POW_1B	0x831e	//	Bæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_B_DL_POW_1B	0x8390	//	Bæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_B_DCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸‹è¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸‹è¡Œè¡°å‡é‡ åœ¨rf
+#define 	PARA_B_UCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡  åœ¨rf
+#define	PARA_C_CHANNEL_COUNT	0x8889	//	Cæ®µæ”¯æŒçš„é€šé“æ•°
+#define	PARA_C_DL_WORK_EN	0x08a0	//	Cæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_C_UL_WORK_EN	0x08a1	//	Cæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_C_DPOW_MODE	0	//	Cæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_C_UPOW_MODE	0	//	Cæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_C_LTHR_EN		0x0770	//	Cæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½
+#define	PARA_C_LTHR_UP		0	//	Cæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™
+#define	PARA_C_LTHR_DN		0x08b0	//	Cæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
+#define	PARA_C_DCH_EN1		0x08d0	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_C_DCH_EN2		0x08d1	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_C_DCH_EN3		0x08d2	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_C_DCH_EN4		0x08d3	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_C_DCH_EN5		0x08d4	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_C_DCH_EN6		0x08d5	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_C_DCH_EN7		0x08d6	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_C_DCH_EN8		0x08d7	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_C_DCH_EN9		0x08d8	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_C_DCH_EN10		0x08d9	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_C_UCH_EN1		0x08d0	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_C_UCH_EN2		0x08d1	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_C_UCH_EN3		0x08d2	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_C_UCH_EN4		0x08d3	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_C_UCH_EN5		0x08d4	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_C_UCH_EN6		0x08d5	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_C_UCH_EN7		0x08d6	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_C_UCH_EN8		0x08d7	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_C_UCH_EN9		0x08d8	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_C_UCH_EN10		0x08d9	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_C_DCH_GAIN1	0x0840	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_C_DCH_GAIN2	0x0841	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_C_DCH_GAIN3	0x0842	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_C_DCH_GAIN4	0x0843	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_C_DCH_GAIN5	0x0844	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_C_DCH_GAIN6	0x0845	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_C_DCH_GAIN7	0x0846	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_C_DCH_GAIN8	0x0847	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_C_DCH_GAIN9	0x0848	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_C_DCH_GAIN10	0x0849	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define 	PARA_C_DCH_GAIN11 	0	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define 	PARA_C_DCH_GAIN12 	0	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define 	PARA_C_DCH_GAIN13 	0	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define 	PARA_C_DCH_GAIN14 	0	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define 	PARA_C_DCH_GAIN15 	0	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define 	PARA_C_DCH_GAIN16 	0	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_C_UCH_GAIN1	0x0850	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_C_UCH_GAIN2	0x0851	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_C_UCH_GAIN3	0x0852	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_C_UCH_GAIN4	0x0853	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_C_UCH_GAIN5	0x0854	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_C_UCH_GAIN6	0x0855	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_C_UCH_GAIN7	0x0856	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_C_UCH_GAIN8	0x0857	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_C_UCH_GAIN9	0x0858	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_C_UCH_GAIN10	0x0859	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define	PARA_C_UCH_GAIN11	0	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define	PARA_C_UCH_GAIN12	0	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define	PARA_C_UCH_GAIN13	0	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define	PARA_C_UCH_GAIN14	0	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define	PARA_C_UCH_GAIN15	0	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define	PARA_C_UCH_GAIN16	0	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_C_DCH_ATT1		0x0324	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡1
+#define	PARA_C_DCH_ATT2		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡2
+#define	PARA_C_DCH_ATT3		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡3
+#define	PARA_C_DCH_ATT4		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡4
+#define	PARA_C_DCH_ATT5		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡5
+#define	PARA_C_DCH_ATT6		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡6
+#define	PARA_C_DCH_ATT7		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡7
+#define	PARA_C_DCH_ATT8		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡8
+#define	PARA_C_DCH_ATT9		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡9
+#define	PARA_C_DCH_ATT10	0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡10
+#define	PARA_C_DCH_ATT11	0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡11
+#define	PARA_C_DCH_ATT12	0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡12
+#define	PARA_C_DCH_ATT13	0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡13
+#define	PARA_C_DCH_ATT14	0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡14
+#define	PARA_C_DCH_ATT15	0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡15
+#define	PARA_C_DCH_ATT16	0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡16
+#define	PARA_C_UCH_ATT1		0//0x0320	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡1
+#define	PARA_C_UCH_ATT2		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡2
+#define	PARA_C_UCH_ATT3		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡3
+#define	PARA_C_UCH_ATT4		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡4
+#define	PARA_C_UCH_ATT5		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡5
+#define	PARA_C_UCH_ATT6		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡6
+#define	PARA_C_UCH_ATT7		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡7
+#define	PARA_C_UCH_ATT8		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡8
+#define	PARA_C_UCH_ATT9		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡9
+#define	PARA_C_UCH_ATT10	0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡10
+#define	PARA_C_UCH_ATT11	0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡11
+#define	PARA_C_UCH_ATT12	0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡12
+#define	PARA_C_UCH_ATT13	0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡13
+#define	PARA_C_UCH_ATT14	0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡14
+#define	PARA_C_UCH_ATT15	0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡15
+#define	PARA_C_UCH_ATT16	0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡16
+#define	PARA_C_DL_PA_GAIN	0	//	Cæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_C_UL_PA_GAIN	0	//	Cæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_C_TX_PLL_ST	0x8308	//	Cæ®µä¸‹è¡ŒPLLçŠ¶æ€,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_C_RX_PLL_ST	0x8300	//	Cæ®µä¸Šè¡ŒPLLçŠ¶æ€,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_C_INIT_DA_ST	0	//	Cåˆå§‹åŒ–Bæ®µDAçŠ¶æ€,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸
+#define	PARA_C_BB_PLL_LOCK	0	//	Cæ®µBB PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_C_FSAT		0	//	Cæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€
+#define	PARA_C_DSAT		0	//	Cæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€
+#define	PARA_C_PA_VG_EN	0	//	Cæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+#define	PARA_C_PA_VT	0	//	Cæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º
+#define	PARA_C_Modulator_EN	0	//	Cæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+#define	PARA_C_LNA_VT	0	//	Cæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹
+#define	PARA_C_LNA1_ST		0x8214	//	Cä¸Šè¡ŒLNA1çŠ¶æ€
+#define	PARA_C_LNA2_ST		0x8215	//	Cä¸Šè¡ŒLNA2çŠ¶æ€
+#define	PARA_C_BUSY_TIME	0x8892	//	Cæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡
+#define	PARA_C_PRI_ADD 		0xf002	//	Cæ®µæ¨¡å—åœ°å€(åœ¨è™¹ä¿¡åè®®ä¸­ï¼Œé«˜å››ä½ä¸ºä¸Šè¡Œåœ°å€ï¼Œä½Žå››ä½ä¸ºä¸‹è¡Œåœ°å€)
+#define	PARA_C_UL_POW_1B	0x831e	//	Cæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_C_DL_POW_1B	0x8390	//	Cæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_C_DCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸‹è¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸‹è¡Œè¡°å‡é‡ åœ¨rf
+#define 	PARA_C_UCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡  åœ¨rf
+#define	PARA_D_CHANNEL_COUNT	0x8889	//	Dæ®µæ”¯æŒçš„é€šé“æ•°
+#define	PARA_D_DL_WORK_EN	0x08a0	//	Dæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_D_UL_WORK_EN	0x08a1	//	Dæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_D_DPOW_MODE	0	//	Dæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_D_UPOW_MODE	0	//	Dæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_D_LTHR_EN		0x0770	//	Dæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½
+#define	PARA_D_LTHR_UP		0	//	Dæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™
+#define	PARA_D_LTHR_DN		0x08b0	//	Dæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
+#define	PARA_D_DCH_EN1		0x08d0	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_D_DCH_EN2		0x08d1	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_D_DCH_EN3		0x08d2	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_D_DCH_EN4		0x08d3	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_D_DCH_EN5		0x08d4	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_D_DCH_EN6		0x08d5	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_D_DCH_EN7		0x08d6	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_D_DCH_EN8		0x08d7	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_D_DCH_EN9		0x08d8	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_D_DCH_EN10	0x08d9	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_D_UCH_EN1		0x08d0	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_D_UCH_EN2		0x08d1	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_D_UCH_EN3		0x08d2	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_D_UCH_EN4		0x08d3	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_D_UCH_EN5		0x08d4	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_D_UCH_EN6		0x08d5	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_D_UCH_EN7		0x08d6	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_D_UCH_EN8		0x08d7	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_D_UCH_EN9		0x08d8	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_D_UCH_EN10	0x08d9	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_D_DCH_GAIN1	0x0840	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_D_DCH_GAIN2	0x0841	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_D_DCH_GAIN3	0x0842	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_D_DCH_GAIN4	0x0843	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_D_DCH_GAIN5	0x0844	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_D_DCH_GAIN6	0x0845	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_D_DCH_GAIN7	0x0846	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_D_DCH_GAIN8	0x0847	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_D_DCH_GAIN9	0x0848	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_D_DCH_GAIN10	0x0849	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define	PARA_D_DCH_GAIN11	0	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define	PARA_D_DCH_GAIN12	0	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define	PARA_D_DCH_GAIN13	0	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define	PARA_D_DCH_GAIN14	0	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define	PARA_D_DCH_GAIN15	0	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define	PARA_D_DCH_GAIN16	0	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_D_UCH_GAIN1	0x0850	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_D_UCH_GAIN2	0x0851	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_D_UCH_GAIN3	0x0852	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_D_UCH_GAIN4	0x0853	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_D_UCH_GAIN5	0x0854	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_D_UCH_GAIN6	0x0855	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_D_UCH_GAIN7	0x0856	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_D_UCH_GAIN8	0x0857	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_D_UCH_GAIN9	0x0858	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_D_UCH_GAIN10	0x0859	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define	PARA_D_UCH_GAIN11	0	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define	PARA_D_UCH_GAIN12	0	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define	PARA_D_UCH_GAIN13	0	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define	PARA_D_UCH_GAIN14	0	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define	PARA_D_UCH_GAIN15	0	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define	PARA_D_UCH_GAIN16	0	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_D_DCH_ATT1		0x0324	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡1
+#define	PARA_D_DCH_ATT2		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡2
+#define	PARA_D_DCH_ATT3		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡3
+#define	PARA_D_DCH_ATT4		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡4
+#define	PARA_D_DCH_ATT5		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡5
+#define	PARA_D_DCH_ATT6		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡6
+#define	PARA_D_DCH_ATT7		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡7
+#define	PARA_D_DCH_ATT8		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡8
+#define	PARA_D_DCH_ATT9		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡9
+#define	PARA_D_DCH_ATT10	0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡10
+#define	PARA_D_DCH_ATT11	0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡11
+#define	PARA_D_DCH_ATT12	0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡12
+#define	PARA_D_DCH_ATT13	0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡13
+#define	PARA_D_DCH_ATT14	0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡14
+#define	PARA_D_DCH_ATT15	0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡15
+#define	PARA_D_DCH_ATT16	0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡16
+#define	PARA_D_UCH_ATT1		0//0x0320	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡1
+#define	PARA_D_UCH_ATT2		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡2
+#define	PARA_D_UCH_ATT3		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡3
+#define	PARA_D_UCH_ATT4		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡4
+#define	PARA_D_UCH_ATT5		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡5
+#define	PARA_D_UCH_ATT6		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡6
+#define	PARA_D_UCH_ATT7		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡7
+#define	PARA_D_UCH_ATT8		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡8
+#define	PARA_D_UCH_ATT9		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡9
+#define	PARA_D_UCH_ATT10	0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡10
+#define	PARA_D_UCH_ATT11	0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡11
+#define	PARA_D_UCH_ATT12	0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡12
+#define	PARA_D_UCH_ATT13	0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡13
+#define	PARA_D_UCH_ATT14	0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡14
+#define	PARA_D_UCH_ATT15	0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡15
+#define	PARA_D_UCH_ATT16	0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡16
+#define	PARA_D_DL_PA_GAIN	0	//	Dæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_D_UL_PA_GAIN	0	//	Dæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_D_TX_PLL_ST	0x8308	//	Dæ®µä¸‹è¡ŒPLLçŠ¶æ€,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_D_RX_PLL_ST	0x8300	//	Dæ®µä¸Šè¡ŒPLLçŠ¶æ€,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_D_INIT_DA_ST	0	//	Dåˆå§‹åŒ–Bæ®µDAçŠ¶æ€,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸
+#define	PARA_D_BB_PLL_LOCK	0	//	Dæ®µBB PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_D_FSAT		0	//	Dæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€
+#define	PARA_D_DSAT		0	//	Dæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€
+#define	PARA_D_PA_VG_EN	0	//	Dæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+#define	PARA_D_PA_VT	0	//	Dæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º
+#define	PARA_D_Modulator_EN	0	//	Dæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+#define	PARA_D_LNA_VT	0	//	Dæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹
+#define	PARA_D_LNA1_ST		0x8214	//	Dä¸Šè¡ŒLNA1çŠ¶æ€
+#define	PARA_D_LNA2_ST		0x8215	//	Dä¸Šè¡ŒLNA2çŠ¶æ€
+#define	PARA_D_BUSY_TIME	0x8892	//	Dæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡
+#define	PARA_D_PRI_ADD 		0xf002	//	Dæ®µæ¨¡å—åœ°å€(åœ¨è™¹ä¿¡åè®®ä¸­ï¼Œé«˜å››ä½ä¸ºä¸Šè¡Œåœ°å€ï¼Œä½Žå››ä½ä¸ºä¸‹è¡Œåœ°å€)
+#define	PARA_D_UL_POW_1B	0x831e	//	Dæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_D_DL_POW_1B	0x8390	//	Dæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_D_DCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸‹è¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸‹è¡Œè¡°å‡é‡ åœ¨rf
+#define 	PARA_D_UCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡  åœ¨rf
+#define	PARA_FP1_EN	0x0927	//	å…‰å£å‘é€ä½¿èƒ½1
+#define	PARA_FP2_EN	0x0928	//	å…‰å£å‘é€ä½¿èƒ½2
+#define	PARA_FP3_EN	0x0929	//	å…‰å£å‘é€ä½¿èƒ½3
+#define	PARA_FP4_EN	0x092A	//	å…‰å£å‘é€ä½¿èƒ½4
+#define	PARA_FP5_EN	0x092B	//	å…‰å£å‘é€ä½¿èƒ½5
+#define	PARA_FP6_EN	0x092C	//	å…‰å£å‘é€ä½¿èƒ½6
+#define	PARA_FP7_EN	0x092D	//	å…‰å£å‘é€ä½¿èƒ½7
+#define	PARA_FP8_EN	0x092E	//	å…‰å£å‘é€ä½¿èƒ½8
+#define	PARA_FP9_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½9
+#define	PARA_FP10_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½10
+#define	PARA_FP11_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½11
+#define	PARA_FP12_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½12
+#define	PARA_FP13_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½13
+#define	PARA_FP14_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½14
+#define	PARA_FP15_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½15
+#define	PARA_FP16_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½16
+#define	PARA_FP1_ON_POS	0x8568	//	å…‰å£åœ¨ä½çŠ¶æ€1, 0-åœ¨ä½	
+#define	PARA_FP2_ON_POS	0x8569	//	å…‰å£åœ¨ä½çŠ¶æ€2, 0-åœ¨ä½	
+#define	PARA_FP3_ON_POS	0x856A	//	å…‰å£åœ¨ä½çŠ¶æ€3, 0-åœ¨ä½	
+#define	PARA_FP4_ON_POS	0x856B	//	å…‰å£åœ¨ä½çŠ¶æ€4, 0-åœ¨ä½	
+#define	PARA_FP5_ON_POS	0x856C	//	å…‰å£åœ¨ä½çŠ¶æ€5, 0-åœ¨ä½	
+#define	PARA_FP6_ON_POS	0x856D	//	å…‰å£åœ¨ä½çŠ¶æ€6, 0-åœ¨ä½	
+#define	PARA_FP7_ON_POS	0x856E	//	å…‰å£åœ¨ä½çŠ¶æ€7, 0-åœ¨ä½	
+#define	PARA_FP8_ON_POS	0x856F	//	å…‰å£åœ¨ä½çŠ¶æ€8, 0-åœ¨ä½	
+#define	PARA_FP9_ON_POS	0x8568	//	å…‰å£åœ¨ä½çŠ¶æ€9, 0-åœ¨ä½	
+#define	PARA_FP10_ON_POS	0x8569	//	å…‰å£åœ¨ä½çŠ¶æ€10, 0-åœ¨ä½	
+#define	PARA_FP11_ON_POS	0x856a	//	å…‰å£åœ¨ä½çŠ¶æ€11, 0-åœ¨ä½	
+#define	PARA_FP12_ON_POS	0x856b	//	å…‰å£åœ¨ä½çŠ¶æ€12, 0-åœ¨ä½	
+#define	PARA_FP13_ON_POS	0x856c	//	å…‰å£åœ¨ä½çŠ¶æ€13, 0-åœ¨ä½	
+#define	PARA_FP14_ON_POS	0x856d	//	å…‰å£åœ¨ä½çŠ¶æ€14, 0-åœ¨ä½
+#define	PARA_FP15_ON_POS	0x856e	//	å…‰å£åœ¨ä½çŠ¶æ€15, 0-åœ¨ä½
+#define	PARA_FP16_ON_POS	0x856f	//	å…‰å£åœ¨ä½çŠ¶æ€16, 0-åœ¨ä½
+#define	PARA_FP1_LOS	0x8738//0x8730	//	å…‰å£1ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP2_LOS	0x8739//0x8731	//	å…‰å£2ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP3_LOS	0x873a//0x8732	//	å…‰å£3ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP4_LOS	0x873b//0x8733	//	å…‰å£4ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP5_LOS	0x873c//0x8734	//	å…‰å£5ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP6_LOS	0x873d//0x8735	//	å…‰å£6ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP7_LOS	0x8598//0x8736	//	å…‰å£7ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP8_LOS	0x8599//0x8737	//	å…‰å£8ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP9_LOS	0//0x8738	//	å…‰å£9ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP10_LOS	0//0x8739	//	å…‰å£10ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP11_LOS	0//0x873a	//	å…‰å£11ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP12_LOS	0//0x873b	//	å…‰å£12ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP13_LOS	0//0x873c	//	å…‰å£13ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP14_LOS	0//0x873d	//	å…‰å£14ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP15_LOS	0//0x873e	//	å…‰å£15ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP16_LOS	0//0x873f	//	å…‰å£16ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP1_LOF	0x878a//0x8780	//	å…‰å£1å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP2_LOF	0x878b//0x8781	//	å…‰å£2å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP3_LOF	0x878c//0x8782	//	å…‰å£3å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP4_LOF	0x878d//0x8783	//	å…‰å£4å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP5_LOF	0x87ab//0x8784	//	å…‰å£5å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP6_LOF	0x87ac//0x8785	//	å…‰å£6å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP7_LOF	0x87ad//0x8786	//	å…‰å£7å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP8_LOF	0x87ae//0x8787	//	å…‰å£8å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP9_LOF	0//0x8788	//	å…‰å£9å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP10_LOF	0//0x8789	//	å…‰å£10å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP11_LOF	0//0x878a	//	å…‰å£11å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP12_LOF	0//0x878b	//	å…‰å£12å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP13_LOF	0//0x878c	//	å…‰å£13å¸§ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP14_LOF	0//0x878d	//	å…‰å£14å¸§ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP15_LOF	0//0x878e	//	å…‰å£15å¸§ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP16_LOF	0//0x878f	//	å…‰å£16å¸§ä¸¢å¤±çŠ¶æ€
+#define	PARA_OPT_LOF	0//0x87ad	//	å¸§ä¸¢å¤±çŠ¶æ€
+#define	PARA_SERDES1_PLL_ST	0x878e	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€1	
+#define	PARA_SERDES2_PLL_ST	0x878f	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€2	
+#define	PARA_SERDES3_PLL_ST	0x8790	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€3	
+#define	PARA_SERDES4_PLL_ST	0x8791	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€4	
+#define	PARA_SERDES5_PLL_ST	0x8898	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€5	
+#define	PARA_SERDES6_PLL_ST	0x8899	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€6	
+#define	PARA_SERDES7_PLL_ST	0x889a	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€7	
+#define	PARA_SERDES8_PLL_ST	0x889b	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€8	
+#define	PARA_SERDES9_PLL_ST	0x85a8	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€9	
+#define	PARA_SERDES10_PLL_ST	0x85a9	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€10	
+#define	PARA_SERDES11_PLL_ST	0x85aa	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€11	
+#define	PARA_SERDES12_PLL_ST	0x85ab	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€12	
+#define	PARA_SERDES13_PLL_ST	0x85ac	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€13
+#define	PARA_SERDES14_PLL_ST	0x85ad	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€14
+#define	PARA_SERDES15_PLL_ST	0x85ae	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€15
+#define	PARA_SERDES16_PLL_ST	0x85af	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€16
+#define	PARA_TOPO_CHG_ALM	0x873F//0x87af	//	çŽ¯è·¯çŠ¶æ€å‘Šè­¦
+#define	PARA_BER_ALARM	0//0x87ae	//	è¯¯ç çŽ‡åé«˜å‘Šè­¦
+#define	PARA_LOAD_FPGA_ST	0x8854	//	åŠ è½½FPGAçŠ¶æ€
+#define	PARA_FPGA_CLK_ST	0x8851	//	FPGAæœ¬æŒ¯çŠ¶æ€
+#define	PARA_INIT_CLK_ST	0	//	åˆå§‹åŒ–æ—¶é’ŸçŠ¶æ€
+#define	PARA_INIT_AD_ST	0	//	åˆå§‹åŒ–ADçŠ¶æ€
+#define	PARA_INIT_FB_AD_ST	0	//	åˆå§‹åŒ–åé¦ˆADçŠ¶æ€
+#define	PARA_CLK_PLL_ST	0x884e	//	CLK PLLçŠ¶æ€
+#define	PARA_CLK_REF_ST	0x884f	//	CLK å‚è€ƒçŠ¶æ€
+#define	PARA_RE_NODE_MODE	0x889d	//	REèŠ‚ç‚¹æ¨¡å¼
+#define	PARA_BOARD_TEMP	0x8844	//	å•æ¿æ¸©åº¦
+#define	PARA_CLK_VCO_VT	0	//	æ—¶é’ŸVCOç”µåŽ‹
+#define	PARA_PWR_9V0_VT	0	//	9Vç”µæºç”µåŽ‹
+#define	PARA_PWR_5V5_VT	0	//	5.5Vç”µæºç”µåŽ‹
+#define	PARA_PWR_3V6_VT	0	//	3.6Vç”µæºç”µåŽ‹
+#define	PARA_PWR_1V2_VT	0	//	1.2Vç”µæºç”µåŽ‹
+#define	PARA_PWR_2V5_VT	0	//	1.2Vç”µæºç”µåŽ‹
+#define	PARA_PRI_PROTOCAL_V	0xf003	//	åè®®ç‰ˆæœ¬
 #define	PARA_MODULE_HRI_ID	0	//	ID
-#define 	PARA_WORK_ERROR	0	// ÏµÍ³¹¤×÷×´Ì¬£¬1-ÓÐ¹ÊÕÏ
-#define 	PARA_TRAFFIC_END	0x88ac	// »°ÎñÁ¿Í³¼Æ½áÊø±êÖ¾
-#define 	PARA_DELAY_MODE	0x098f	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯
-#define	PARA_TD_SYNC_ST			0x862a		// TDÍ¬²½×´Ì¬: 1-ÒÑÍ¬²½£¬0-Î´Í¬²½
-#define	PARA_TD_WORK_MODE 		0x060c	// [WR]TD:TD_SCDMA¿ØÖÆÄ£Ê½£¬00Õý³£Ä£Ê½£¬01ÉÏÐÐ³£¿ª£¬10ÊÇÏÂÐÐ³£¿ª, Ã¿´ÎÉÏµçºóÇåÁã			
-#define 	PARA_TD_T0_UD		0x08a0	// TDÊ±Ï¶0ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_TD_T1_UD		0x08a1	// TDÊ±Ï¶1ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_TD_T2_UD		0x08a2	// TDÊ±Ï¶2ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_TD_T3_UD		0x08a3	// TDÊ±Ï¶3ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_TD_T4_UD		0x08a4	// TDÊ±Ï¶4ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_TD_T5_UD		0x08a5	// TDÊ±Ï¶5ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_TD_T6_UD		0x08a6	// TDÊ±Ï¶6ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define	PARA_POWERUP_ST		0x8852	// 	Êý×Ö°åÉÏµç×´Ì¬,Ã¿´ÎÆô¶¯Ê±ÖÃ1
-#define	PARA_LOW_POWER			0x88ff//0x08ad	//	µÍ¹¦ºÄÄ£Ê½:1-µÍ¹¦ºÄ;	0-Õý³£		¹úÈË x0778   ÓÉÈí¼þ³õÊ¼»¯£¬´ËºêÖ»×÷Îª²Î¿¼
-#define 	PARA_THR_PORT		0		// 	Í¸´«¶Ë¿ÚÑ¡Ôñ0-485B, 1-RS232
-#define	PARA_THR_BAUD		0		//	Í¸´«¶Ë¿Ú²¨ÌØÂÊ 0-9600, 1-19200, 2-38400, 4-57600, 5-115200
-#define	PARA_CTRL_BAUD	0		//	¿ØÖÆ¶Ë¿Ú²¨ÌØÂÊ 0-9600, 1-19200, 2-38400, 4-57600, 5-115200
-#define	PARA_WLAN_CONN_ST1		0x87b2	// WLAN¿Ú×´Ì¬1: 0-Õý³££¬1-Òì³£
-#define	PARA_WLAN_CONN_ST2		0x87b3	// WLAN¿Ú×´Ì¬2: 0-Õý³££¬1-Òì³£
-#define	PARA_WLAN_CONN_ST3		0x87b4	// WLAN¿Ú×´Ì¬3: 0-Õý³££¬1-Òì³£
-#define	PARA_WLAN_CONN_ST4		0x87b7	// WLAN¿Ú×´Ì¬4: 0-Õý³££¬1-Òì³£
-#define	PARA_WLAN_SPEED1			0x87b8	// WLAN¿ÚËÙ¶È1: 0£º10M  1£º100M  2£º1000M
-#define	PARA_WLAN_SPEED2			0x87b9		// WLAN¿ÚËÙ¶È1: 0£º10M  1£º100M  2£º1000M
-#define	PARA_WLAN_SPEED3			0x87ba		// WLAN¿ÚËÙ¶È1: 0£º10M  1£º100M  2£º1000M
-#define	PARA_WLAN_SPEED4			0x87bb		// WLAN¿ÚËÙ¶È1: 0£º10M  1£º100M  2£º1000M
-#define	PARA_GSM_BW_SEL			0		// ¿í´ø°æ±¾GSM´ø¿íÑ¡Ôñ: 0-6M, 1-20M, 2-24M, 3-25M, ÆäËûÎÞÐ§
-#define	PARA_HX_DET_UADDR 0 // ºçÐÅDETÄ£¿éÉÏÐÐµØÖ·, ¸ß4Î»ÎªB¶Î, µÍËÄÎ»ÎªA¶Î
-#define	PARA_HX_LNA_UADDR 0 // ºçÐÅLNAÄ£¿éÉÏÐÐµØÖ·, ¸ß4Î»ÎªB¶Î, µÍËÄÎ»ÎªA¶Î
-#define	PARA_HX_DET_DADDR 0 // ºçÐÅDETÄ£¿éÏÂÐÐµØÖ·, ¸ß4Î»ÎªB¶Î, µÍËÄÎ»ÎªA¶Î
-#define	PARA_HX_LNA_DADDR 0 // ºçÐÅLNAÄ£¿éÏÂÐÐµØÖ·, ¸ß4Î»ÎªB¶Î, µÍËÄÎ»ÎªA¶Î
-#define 	PARA_FPS_AUTO_SCAN		0x0931		// ×Ô¶¯ÆµµãËÑË÷¹¦ÄÜÊ¹ÄÜ:1-×Ô¶¯ËÑË÷ºÍÉèÖÃÆµµã, 0-ÊÖ¶¯ËÑË÷
-#define 	PARA_FPS_SWITCH_THD 		0 		// ×Ô¶¯ÆµµãËÑË÷µÄBCCH¹¦ÂÊÇÐ»»ÃÅÏÞ
-#define 	PARA_FPS_MOSVC_SEL		0x0925	// ÆµµãËÑË÷: ÔËÓªÉÌÑ¡Ôñ: 0-ÖÐÒÆ¶¯, 1-ÖÐÁªÍ¨, 2-ÖÐÒÆ¶¯, 255-×Ô¶¯Ñ¡Ôñ
-#define	PARA_FPS_RFRANGE_SEL	0x0924	// ÆµµãËÑË÷: Æµ¿íÑ¡Ôñ(ºöÂÔ,ÒÔÄ£¿éÖÆÊ½Îª×¼): 0-È«Æµ¶Î, 1-900MHz, 2-1800MHz
-#define 	PARA_FPS_BS_ID			0x8959	// ÆµµãËÑË÷: »ùÕ¾Ê¶±ðÂë
-#define	PARA_FPS_CA_COUNT		0x895b	// ÆµµãËÑË÷: ÓÐÐ§ÐÅµÀÊý
-#define	PARA_FPS_BCCH_LK_ST		0x895c	// ÆµµãËÑË÷: Ëø¶¨BCCH×´Ì¬: 1-Ëø¶¨, 0-Ê§°Ü
-#define	PARA_FPS_MOSVC_LK_ST		0x895d	// ÆµµãËÑË÷: Ëø¶¨ÔËÓªÉÌ×´Ì¬: 1-Ëø¶¨, 0-Ê§°Ü
-#define	PARA_FPS_RFRANGE_LK_ST	0x895e	// ÆµµãËÑË÷: Ëø¶¨Æµ´ø×´Ì¬: 1-Ëø¶¨, 0-Ê§°Ü
-#define	PARA_FPS_BCCH_POW_M		0x8960	// ÆµµãËÑË÷: Ö÷Ð¡ÇøBCCH½ÓÊÕÇ¿¶È
-#define	PARA_FPS_BCCH_POW_1		0x8961	// ÆµµãËÑË÷: ÁÚÐ¡Çø1BCCH½ÓÊÕÇ¿¶È
-#define	PARA_FPS_BCCH_POW_2		0x8962	// ÆµµãËÑË÷: ÁÚÐ¡Çø2BCCH½ÓÊÕÇ¿¶È
-#define	PARA_FPS_BCCH_POW_3		0x8963	// ÆµµãËÑË÷: ÁÚÐ¡Çø3BCCH½ÓÊÕÇ¿¶È
-#define	PARA_FPS_BCCH_POW_4		0x8964	// ÆµµãËÑË÷: ÁÚÐ¡Çø4BCCH½ÓÊÕÇ¿¶È
-#define	PARA_FPS_BCCH_POW_5		0x8965	// ÆµµãËÑË÷: ÁÚÐ¡Çø5BCCH½ÓÊÕÇ¿¶È
-#define	PARA_FPS_BCCH_POW_6		0x8966	// ÆµµãËÑË÷: ÁÚÐ¡Çø6BCCH½ÓÊÕÇ¿¶È
-#define	PARA_A_EXPA_WORK_EN		0xC401	// [WR]Î¢¹¦·Å: ÉäÆµÐÅºÅ¿ª¹Ø
-#define	PARA_A_EXPA_DL_ATT		0xC441	// [WR]Î¢¹¦·Å: ÏÂÐÐË¥¼õÖµ
-#define	PARA_A_EXPA_TEMP			0xC501	// [RO]Î¢¹¦·Å: ÎÂ¶È
-#define	PARA_A_EXPA_DL_POW		0xC503	// [RO]Î¢¹¦·Å: ÏÂÐÐÊä³ö¹¦ÂÊµçÆ½
-#define	PARA_A_EXPA_SWR			0xC506	// [RO]Î¢¹¦·Å: ÏÂÐÐ×¤²¨±ÈÖµ
-#define	PARA_A_EXPA_POWER_DN	0xC301	// [RO]Î¢¹¦·Å: µçÔ´µôµç¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)
-#define	PARA_A_EXPA_POWER_ERR	0xC302	// [RO]Î¢¹¦·Å: µçÔ´¹ÊÕÏ¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)
-#define	PARA_A_EXPA_BATT_ERR		0xC304	// [RO]Î¢¹¦·Å: ¼à¿ØÄ£¿éµç³Ø¹ÊÕÏ¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)
-#define	PARA_A_EXPA_POS_ALM		0xC305	// [RO]Î¢¹¦·Å: Î»ÖÃ¸æ¾¯
-#define	PARA_A_EXPA_DOOR_ALM	0xC328	// [RO]Î¢¹¦·Å: ÃÅ½û¸æ¾¯
-#define	PARA_A_EXPA_WROK_ALM	0xC30D	// [RO]Î¢¹¦·Å: ÏÂÐÐ¹¦·Å¹ÊÕÏ¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)
-#define	PARA_A_EXPA_EXT1_ALM		0xC320	// [RO]Î¢¹¦·Å: Íâ²¿¸æ¾¯1
-#define	PARA_A_EXPA_EXT2_ALM		0xC321	// [RO]Î¢¹¦·Å: Íâ²¿¸æ¾¯2
-#define	PARA_A_EXPA_EXT3_ALM		0xC322	// [RO]Î¢¹¦·Å: Íâ²¿¸æ¾¯3
-#define	PARA_A_EXPA_MAX_GAIN	0		// Î¢¹¦·Å: ÁãË¥¼õÔöÒæ£¬¼´×î´óÔöÒæ
-#define	PARA_A_EXPA_GAIN_THD		0		// Î¢¹¦·Å: ÔöÒæÃÅÏÞ£¬¼´ÔÊÐí¹¤×÷µÄÔöÒæ×î´óÖµ
-#define	PARA_A_EXPA_POW_THD		0		// Î¢¹¦·Å: ¹¦·ÅÊä³ö¹¦ÂÊÃÅÏÞ
-#define	PARA_A_EXPA_POD_CMP 		0		// Î¢¹¦·Å: ¼ì²¨¹Ü¹¦ÂÊ¼ì²â²¹³¥Öµ,1×Ö½ÚÓÐ·ûºÅÊý,×îÖÕ¹¦ÂÊÎª¼ì²¨¹Ü¹¦ÂÊ¼ÓÉÏ²¹³¥Öµ
-#define	PARA_MONITOR_VOL_OVER_THR 				0x0a62 			 // ¼à¿ØµçÑ¹¹ýÃÅÏÞ
-#define 	PARA_MONITOR_VOL_OWE_THR 				0x0a63 			 // ¼à¿ØµçÑ¹Ç·ÃÅÏÞ
-#define 	PARA_DIGITAL_SINGNAL_ALARM 				0x8a68			 // Êý×ÖÐÅºÅÒì³£¸æ¾¯
-#define 	PARA_HOST_DEVICE_LINK_SINGNAL_ALARM 	0x8a69			 // Ö÷´Ó¼à¿ØÁ´Â·¸æ¾¯
-#define 	PARA_MONITOR_BATTERY_ALARM 				0x8a6a			 // ¼à¿ØÄ£¿éµç³Ø¹ÊÕÏ¸æ¾¯
-#define 	PARA_LOW_POWER_ALARM 					0x8a6b			 // µçÔ´µôµç¸æ¾¯
-#define 	PARA_BATTERY_BREAKDOWN_ALARM 			0x8a6c			 // µçÔ´¹ÊÕÏ¸æ¾¯
-#define 	PARA_POSITION_MOVE_ALARM					0x8a6f			 // Î»ÖÃ¸æ¾¯
-#define 	PARA_A_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // AÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯
-#define 	PARA_A_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // AÏÂÐÐÊäÈëÇ·¹¦ÂÊ¸æ¾¯
-#define 	PARA_B_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // BÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯
-#define 	PARA_B_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // BÏÂÐÐÊäÈëÇ·¹¦ÂÊ¸æ¾¯
-#define 	PARA_C_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // CÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯
-#define 	PARA_C_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // CÏÂÐÐÊäÈëÇ·¹¦ÂÊ¸æ¾¯
-#define 	PARA_D_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // DÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯
-#define 	PARA_D_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // DÏÂÐÐÊäÈëÇ·¹¦ÂÊ¸æ¾¯
-#define 	PARA_TD_D_OVER_SLOT1_THR_ALARM 			0x8a66			 // TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯
-#define 	PARA_TD_D_OWE_SLOT1_THR_ALARM 			0x8a67			 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯
-#define 	PARA_RE_DATA_LAN_ST1     0x8a40     //Êý¾ÝPHYÐ¾Æ¬¹¤×÷×´Ì¬  0: Õý³££¬1: ¸æ¾¯
-#define 	PARA_RE_CASCADE_LAN_ST1   0x8a48     //¼¶ÁªÍø¿ÚµÄ¹¤×÷×´Ì¬  0: Õý³££¬1: ¸æ¾¯
-#define 	PARA_RE_DATA_LAN_SYS_ST1  0x8a4a     //Êý¾ÝÍø¿ÚÍ¬²½×´Ì¬  0: Í¬²½£¬1: Ê§²½
-#define 	PARA_RE_CASCADE_LAN_SYS_ST1  0x8a52     //¼¶ÁªÍø¿ÚÍ¬²½×´Ì¬  0: Í¬²½£¬1: Ê§²½
-#define 	PARA_A_RF_POW_SWR           	0x8a32     //A¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È
-#define 	PARA_A_RF_OUT_POW_H_THR   		0x0a50     //A¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ
-#define 	PARA_A_RF_OUT_POW_L_THR   		0x0a51     //A¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ
-#define 	PARA_B_RF_POW_SWR            	0x8a32     //B¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È
-#define 	PARA_B_RF_OUT_POW_H_THR   		0x0a50     //A¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ
-#define 	PARA_B_RF_OUT_POW_L_THR   		0x0a51     //A¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ
-#define 	PARA_C_RF_POW_SWR           	0x8a32     //A¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È
-#define 	PARA_C_RF_OUT_POW_H_THR   		0x0a50     //A¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ
-#define 	PARA_C_RF_OUT_POW_L_THR   		0x0a51     //A¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ
-#define 	PARA_D_RF_POW_SWR            	0x8a32     //B¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È
-#define 	PARA_D_RF_OUT_POW_H_THR   		0x0a50     //A¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ
-#define 	PARA_D_RF_OUT_POW_L_THR   		0x0a51     //A¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ
-#define 	PARA_PWR_3V3_1_VT	0		// 3.3VµçÔ´µçÑ¹
-#define 	PARA_PWR_3V3_2_VT	0		//	3.3VµçÔ´µçÑ¹
-#define 	PARA_PWR_1V8_VT		0			// 1.8VµçÔ´µçÑ¹
-#define 	PARA_PWR_1V5_VT		0			 // 1.5VµçÔ´µçÑ¹
-#define 	PARA_A_DL_RF_EN 	0x08a0	// 	A¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_A_UL_RF_EN 	0x08a1	// 	A¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_B_DL_RF_EN 	0x08a0	// 	B¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_B_UL_RF_EN		0x08a1	// 	B¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_C_DL_RF_EN 	0x08a0	// 	C¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_C_UL_RF_EN 	0x08a1	// 	C¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_D_DL_RF_EN 	0x08a0	// 	D¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_D_UL_RF_EN 	0x08a1	// 	D¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_METER_OFFSET	0x0a66	//	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-#define 	PARA_METER_OFFSET_B	0x0a66	//	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-#define 	PARA_METER_OFFSET_C	0x0a66	//	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-#define 	PARA_METER_OFFSET_D	0x0a66	//	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-#define 	PARA_C_TD_TYPE_SELECT	0x0631	//686	// TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯					
-#define 	PARA_C_TD_NORMAL_CP		0x0632	//716	//	TDDÌØÊâÊ±Ï¶ NORMAL_CP
-#define 	PARA_C_TD_EXTENDED_CP	0x0a6c	//717	//	TDDÌØÊâÊ±Ï¶ NORMAL_CP
-#define 	PARA_C_TD_SYNC_ST	0x862a	//687	//	TDÍ¬²½×´Ì¬:	0-ÒÑÍ¬²½£¬1-Î´Í¬²½			
-#define 	PARA_C_TD_WORK_MODE	0x060c	//688	//	[WR]TD:TD_SCDMA¿ØÖÆÄ£Ê½£¬00Õý³£Ä£Ê½£¬01ÉÏÐÐ³£¿ª£¬10ÊÇÏÂÐÐ³£¿ª,	Ã¿´ÎÉÏµçºóÇåÁã			
-#define 	PARA_C_TD_DL_OVER_SLOT1_THR_ALARM	0x8a66	//689	// TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯					
-#define 	PARA_C_TD_DL_OWE_SLOT1_THR_ALARM	0x8a67	//690	 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯					
-#define 	PARA_D_TD_TYPE_SELECT	0x0631	//691	// TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯					
-#define 	PARA_D_TD_NORMAL_CP		0x0632	//718	//	TDDÌØÊâÊ±Ï¶ NORMAL_CP
-#define 	PARA_D_TD_EXTENDED_CP	0x0a6c	//719	//	TDDÌØÊâÊ±Ï¶ NORMAL_CP
-#define 	PARA_D_TD_SYNC_ST	0x862a	//692	//	TDÍ¬²½×´Ì¬:	0-ÒÑÍ¬²½£¬1-Î´Í¬²½			
-#define 	PARA_D_TD_WORK_MODE	0x060c	//693	//	[WR]TD:TD_SCDMA¿ØÖÆÄ£Ê½£¬00Õý³£Ä£Ê½£¬01ÉÏÐÐ³£¿ª£¬10ÊÇÏÂÐÐ³£¿ª,	Ã¿´ÎÉÏµçºóÇåÁã			
-#define 	PARA_D_TD_DL_OVER_SLOT1_THR_ALARM	0x8a66	//694	// TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯					
-#define 	PARA_D_TD_DL_OWE_SLOT1_THR_ALARM	0x8a67	//695	 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯					
-#define 	PARA_C_TD_T0_UD	0	//696	//	TDÊ±Ï¶0ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T1_UD	0	//697	//	TDÊ±Ï¶1ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T2_UD	0	//698	//	TDÊ±Ï¶2ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T3_UD	0	//699	//	TDÊ±Ï¶3ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T4_UD	0	//700	//	TDÊ±Ï¶4ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T5_UD	0	//701	//	TDÊ±Ï¶5ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T6_UD	0	//702	//	TDÊ±Ï¶6ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T7_UD	0	//703	//	TDÊ±Ï¶7ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T8_UD	0	//704	//	TDÊ±Ï¶8ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T9_UD	0	//705	//	TDÊ±Ï¶9ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T0_UD	0	//706	//	TDÊ±Ï¶0ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T1_UD	0	//707	//	TDÊ±Ï¶1ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T2_UD	0	//708	//	TDÊ±Ï¶2ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T3_UD	0	//709	//	TDÊ±Ï¶3ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T4_UD	0	//710	//	TDÊ±Ï¶4ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T5_UD	0	//711	//	TDÊ±Ï¶5ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T6_UD	0	//712	//	TDÊ±Ï¶6ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T7_UD	0	//713	//	TDÊ±Ï¶7ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T8_UD	0	//714	//	TDÊ±Ï¶8ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T9_UD	0	//715	//	TDÊ±Ï¶9ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ//#endif
-#define	PARA_NOISE_TEST_EN	0	//	ÔëÉù²âÊÔ¿ª¹Ø		
-#define	PARA_FREQ_MODIF_VAL_D	0x0a6d		//	±¾ÕñÐÞÕýÖµ
-#define	PARA_FREQ_MODIF_VAL_B	0x0a6e		//	±¾ÕñÐÞÕýÖµ
-#define	PARA_FREQ_MODIF_VAL_A	0x0a6f		//	±¾ÕñÐÞÕýÖµ
-#define	PARA_B_TDS_2TH_BREAKING_POINT_SET	0x0609		//	TDS µÚ¶þ×ª»»µãÉèÖÃ
-#define 	PARA_DELAY_MODE_A	0x8660	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯
-#define 	PARA_DELAY_MODE_B	0x8660	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯
-#define 	PARA_DELAY_MODE_C	0x8660	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯
-#define 	PARA_DELAY_MODE_D	0x8660	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯
+#define 	PARA_WORK_ERROR	0	// ç³»ç»Ÿå·¥ä½œçŠ¶æ€ï¼Œ1-æœ‰æ•…éšœ
+#define 	PARA_TRAFFIC_END	0x88ac	// è¯åŠ¡é‡ç»Ÿè®¡ç»“æŸæ ‡å¿—
+#define 	PARA_DELAY_MODE	0x098f	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨
+#define	PARA_TD_SYNC_ST			0x862a		// TDåŒæ­¥çŠ¶æ€: 1-å·²åŒæ­¥ï¼Œ0-æœªåŒæ­¥
+#define	PARA_TD_WORK_MODE 		0x060c	// [WR]TD:TD_SCDMAæŽ§åˆ¶æ¨¡å¼ï¼Œ00æ­£å¸¸æ¨¡å¼ï¼Œ01ä¸Šè¡Œå¸¸å¼€ï¼Œ10æ˜¯ä¸‹è¡Œå¸¸å¼€, æ¯æ¬¡ä¸Šç”µåŽæ¸…é›¶			
+#define 	PARA_TD_T0_UD		0x08a0	// TDæ—¶éš™0ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_TD_T1_UD		0x08a1	// TDæ—¶éš™1ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_TD_T2_UD		0x08a2	// TDæ—¶éš™2ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_TD_T3_UD		0x08a3	// TDæ—¶éš™3ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_TD_T4_UD		0x08a4	// TDæ—¶éš™4ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_TD_T5_UD		0x08a5	// TDæ—¶éš™5ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_TD_T6_UD		0x08a6	// TDæ—¶éš™6ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define	PARA_POWERUP_ST		0x8852	// 	æ•°å­—æ¿ä¸Šç”µçŠ¶æ€,æ¯æ¬¡å¯åŠ¨æ—¶ç½®1
+#define	PARA_LOW_POWER			0x88ff//0x08ad	//	ä½ŽåŠŸè€—æ¨¡å¼:1-ä½ŽåŠŸè€—;	0-æ­£å¸¸		å›½äºº x0778   ç”±è½¯ä»¶åˆå§‹åŒ–ï¼Œæ­¤å®åªä½œä¸ºå‚è€ƒ
+#define 	PARA_THR_PORT		0		// 	é€ä¼ ç«¯å£é€‰æ‹©0-485B, 1-RS232
+#define	PARA_THR_BAUD		0		//	é€ä¼ ç«¯å£æ³¢ç‰¹çŽ‡ 0-9600, 1-19200, 2-38400, 4-57600, 5-115200
+#define	PARA_CTRL_BAUD	0		//	æŽ§åˆ¶ç«¯å£æ³¢ç‰¹çŽ‡ 0-9600, 1-19200, 2-38400, 4-57600, 5-115200
+#define	PARA_WLAN_CONN_ST1		0x87b2	// WLANå£çŠ¶æ€1: 0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸
+#define	PARA_WLAN_CONN_ST2		0x87b3	// WLANå£çŠ¶æ€2: 0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸
+#define	PARA_WLAN_CONN_ST3		0x87b4	// WLANå£çŠ¶æ€3: 0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸
+#define	PARA_WLAN_CONN_ST4		0x87b7	// WLANå£çŠ¶æ€4: 0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸
+#define	PARA_WLAN_SPEED1			0x87b8	// WLANå£é€Ÿåº¦1: 0ï¼š10M  1ï¼š100M  2ï¼š1000M
+#define	PARA_WLAN_SPEED2			0x87b9		// WLANå£é€Ÿåº¦1: 0ï¼š10M  1ï¼š100M  2ï¼š1000M
+#define	PARA_WLAN_SPEED3			0x87ba		// WLANå£é€Ÿåº¦1: 0ï¼š10M  1ï¼š100M  2ï¼š1000M
+#define	PARA_WLAN_SPEED4			0x87bb		// WLANå£é€Ÿåº¦1: 0ï¼š10M  1ï¼š100M  2ï¼š1000M
+#define	PARA_GSM_BW_SEL			0		// å®½å¸¦ç‰ˆæœ¬GSMå¸¦å®½é€‰æ‹©: 0-6M, 1-20M, 2-24M, 3-25M, å…¶ä»–æ— æ•ˆ
+#define	PARA_HX_DET_UADDR 0 // è™¹ä¿¡DETæ¨¡å—ä¸Šè¡Œåœ°å€, é«˜4ä½ä¸ºBæ®µ, ä½Žå››ä½ä¸ºAæ®µ
+#define	PARA_HX_LNA_UADDR 0 // è™¹ä¿¡LNAæ¨¡å—ä¸Šè¡Œåœ°å€, é«˜4ä½ä¸ºBæ®µ, ä½Žå››ä½ä¸ºAæ®µ
+#define	PARA_HX_DET_DADDR 0 // è™¹ä¿¡DETæ¨¡å—ä¸‹è¡Œåœ°å€, é«˜4ä½ä¸ºBæ®µ, ä½Žå››ä½ä¸ºAæ®µ
+#define	PARA_HX_LNA_DADDR 0 // è™¹ä¿¡LNAæ¨¡å—ä¸‹è¡Œåœ°å€, é«˜4ä½ä¸ºBæ®µ, ä½Žå››ä½ä¸ºAæ®µ
+#define 	PARA_FPS_AUTO_SCAN		0x0931		// è‡ªåŠ¨é¢‘ç‚¹æœç´¢åŠŸèƒ½ä½¿èƒ½:1-è‡ªåŠ¨æœç´¢å’Œè®¾ç½®é¢‘ç‚¹, 0-æ‰‹åŠ¨æœç´¢
+#define 	PARA_FPS_SWITCH_THD 		0 		// è‡ªåŠ¨é¢‘ç‚¹æœç´¢çš„BCCHåŠŸçŽ‡åˆ‡æ¢é—¨é™
+#define 	PARA_FPS_MOSVC_SEL		0x0925	// é¢‘ç‚¹æœç´¢: è¿è¥å•†é€‰æ‹©: 0-ä¸­ç§»åŠ¨, 1-ä¸­è”é€š, 2-ä¸­ç§»åŠ¨, 255-è‡ªåŠ¨é€‰æ‹©
+#define	PARA_FPS_RFRANGE_SEL	0x0924	// é¢‘ç‚¹æœç´¢: é¢‘å®½é€‰æ‹©(å¿½ç•¥,ä»¥æ¨¡å—åˆ¶å¼ä¸ºå‡†): 0-å…¨é¢‘æ®µ, 1-900MHz, 2-1800MHz
+#define 	PARA_FPS_BS_ID			0x8959	// é¢‘ç‚¹æœç´¢: åŸºç«™è¯†åˆ«ç 
+#define	PARA_FPS_CA_COUNT		0x895b	// é¢‘ç‚¹æœç´¢: æœ‰æ•ˆä¿¡é“æ•°
+#define	PARA_FPS_BCCH_LK_ST		0x895c	// é¢‘ç‚¹æœç´¢: é”å®šBCCHçŠ¶æ€: 1-é”å®š, 0-å¤±è´¥
+#define	PARA_FPS_MOSVC_LK_ST		0x895d	// é¢‘ç‚¹æœç´¢: é”å®šè¿è¥å•†çŠ¶æ€: 1-é”å®š, 0-å¤±è´¥
+#define	PARA_FPS_RFRANGE_LK_ST	0x895e	// é¢‘ç‚¹æœç´¢: é”å®šé¢‘å¸¦çŠ¶æ€: 1-é”å®š, 0-å¤±è´¥
+#define	PARA_FPS_BCCH_POW_M		0x8960	// é¢‘ç‚¹æœç´¢: ä¸»å°åŒºBCCHæŽ¥æ”¶å¼ºåº¦
+#define	PARA_FPS_BCCH_POW_1		0x8961	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº1BCCHæŽ¥æ”¶å¼ºåº¦
+#define	PARA_FPS_BCCH_POW_2		0x8962	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº2BCCHæŽ¥æ”¶å¼ºåº¦
+#define	PARA_FPS_BCCH_POW_3		0x8963	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº3BCCHæŽ¥æ”¶å¼ºåº¦
+#define	PARA_FPS_BCCH_POW_4		0x8964	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº4BCCHæŽ¥æ”¶å¼ºåº¦
+#define	PARA_FPS_BCCH_POW_5		0x8965	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº5BCCHæŽ¥æ”¶å¼ºåº¦
+#define	PARA_FPS_BCCH_POW_6		0x8966	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº6BCCHæŽ¥æ”¶å¼ºåº¦
+#define	PARA_A_EXPA_WORK_EN		0xC401	// [WR]å¾®åŠŸæ”¾: å°„é¢‘ä¿¡å·å¼€å…³
+#define	PARA_A_EXPA_DL_ATT		0xC441	// [WR]å¾®åŠŸæ”¾: ä¸‹è¡Œè¡°å‡å€¼
+#define	PARA_A_EXPA_TEMP			0xC501	// [RO]å¾®åŠŸæ”¾: æ¸©åº¦
+#define	PARA_A_EXPA_DL_POW		0xC503	// [RO]å¾®åŠŸæ”¾: ä¸‹è¡Œè¾“å‡ºåŠŸçŽ‡ç”µå¹³
+#define	PARA_A_EXPA_SWR			0xC506	// [RO]å¾®åŠŸæ”¾: ä¸‹è¡Œé©»æ³¢æ¯”å€¼
+#define	PARA_A_EXPA_POWER_DN	0xC301	// [RO]å¾®åŠŸæ”¾: ç”µæºæŽ‰ç”µå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)
+#define	PARA_A_EXPA_POWER_ERR	0xC302	// [RO]å¾®åŠŸæ”¾: ç”µæºæ•…éšœå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)
+#define	PARA_A_EXPA_BATT_ERR		0xC304	// [RO]å¾®åŠŸæ”¾: ç›‘æŽ§æ¨¡å—ç”µæ± æ•…éšœå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)
+#define	PARA_A_EXPA_POS_ALM		0xC305	// [RO]å¾®åŠŸæ”¾: ä½ç½®å‘Šè­¦
+#define	PARA_A_EXPA_DOOR_ALM	0xC328	// [RO]å¾®åŠŸæ”¾: é—¨ç¦å‘Šè­¦
+#define	PARA_A_EXPA_WROK_ALM	0xC30D	// [RO]å¾®åŠŸæ”¾: ä¸‹è¡ŒåŠŸæ”¾æ•…éšœå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)
+#define	PARA_A_EXPA_EXT1_ALM		0xC320	// [RO]å¾®åŠŸæ”¾: å¤–éƒ¨å‘Šè­¦1
+#define	PARA_A_EXPA_EXT2_ALM		0xC321	// [RO]å¾®åŠŸæ”¾: å¤–éƒ¨å‘Šè­¦2
+#define	PARA_A_EXPA_EXT3_ALM		0xC322	// [RO]å¾®åŠŸæ”¾: å¤–éƒ¨å‘Šè­¦3
+#define	PARA_A_EXPA_MAX_GAIN	0		// å¾®åŠŸæ”¾: é›¶è¡°å‡å¢žç›Šï¼Œå³æœ€å¤§å¢žç›Š
+#define	PARA_A_EXPA_GAIN_THD		0		// å¾®åŠŸæ”¾: å¢žç›Šé—¨é™ï¼Œå³å…è®¸å·¥ä½œçš„å¢žç›Šæœ€å¤§å€¼
+#define	PARA_A_EXPA_POW_THD		0		// å¾®åŠŸæ”¾: åŠŸæ”¾è¾“å‡ºåŠŸçŽ‡é—¨é™
+#define	PARA_A_EXPA_POD_CMP 		0		// å¾®åŠŸæ”¾: æ£€æ³¢ç®¡åŠŸçŽ‡æ£€æµ‹è¡¥å¿å€¼,1å­—èŠ‚æœ‰ç¬¦å·æ•°,æœ€ç»ˆåŠŸçŽ‡ä¸ºæ£€æ³¢ç®¡åŠŸçŽ‡åŠ ä¸Šè¡¥å¿å€¼
+#define	PARA_MONITOR_VOL_OVER_THR 				0x0a62 			 // ç›‘æŽ§ç”µåŽ‹è¿‡é—¨é™
+#define 	PARA_MONITOR_VOL_OWE_THR 				0x0a63 			 // ç›‘æŽ§ç”µåŽ‹æ¬ é—¨é™
+#define 	PARA_DIGITAL_SINGNAL_ALARM 				0x8a68			 // æ•°å­—ä¿¡å·å¼‚å¸¸å‘Šè­¦
+#define 	PARA_HOST_DEVICE_LINK_SINGNAL_ALARM 	0x8a69			 // ä¸»ä»Žç›‘æŽ§é“¾è·¯å‘Šè­¦
+#define 	PARA_MONITOR_BATTERY_ALARM 				0x8a6a			 // ç›‘æŽ§æ¨¡å—ç”µæ± æ•…éšœå‘Šè­¦
+#define 	PARA_LOW_POWER_ALARM 					0x8a6b			 // ç”µæºæŽ‰ç”µå‘Šè­¦
+#define 	PARA_BATTERY_BREAKDOWN_ALARM 			0x8a6c			 // ç”µæºæ•…éšœå‘Šè­¦
+#define 	PARA_POSITION_MOVE_ALARM					0x8a6f			 // ä½ç½®å‘Šè­¦
+#define 	PARA_A_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // Aä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_A_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // Aä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_B_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // Bä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_B_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // Bä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_C_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // Cä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_C_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // Cä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_D_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // Dä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_D_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // Dä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_TD_D_OVER_SLOT1_THR_ALARM 			0x8a66			 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_TD_D_OWE_SLOT1_THR_ALARM 			0x8a67			 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_RE_DATA_LAN_ST1     0x8a40     //æ•°æ®PHYèŠ¯ç‰‡å·¥ä½œçŠ¶æ€  0: æ­£å¸¸ï¼Œ1: å‘Šè­¦
+#define 	PARA_RE_CASCADE_LAN_ST1   0x8a48     //çº§è”ç½‘å£çš„å·¥ä½œçŠ¶æ€  0: æ­£å¸¸ï¼Œ1: å‘Šè­¦
+#define 	PARA_RE_DATA_LAN_SYS_ST1  0x8a4a     //æ•°æ®ç½‘å£åŒæ­¥çŠ¶æ€  0: åŒæ­¥ï¼Œ1: å¤±æ­¥
+#define 	PARA_RE_CASCADE_LAN_SYS_ST1  0x8a52     //çº§è”ç½‘å£åŒæ­¥çŠ¶æ€  0: åŒæ­¥ï¼Œ1: å¤±æ­¥
+#define 	PARA_A_RF_POW_SWR           	0x8a32     //Aæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”
+#define 	PARA_A_RF_OUT_POW_H_THR   		0x0a50     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™
+#define 	PARA_A_RF_OUT_POW_L_THR   		0x0a51     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™
+#define 	PARA_B_RF_POW_SWR            	0x8a32     //Bæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”
+#define 	PARA_B_RF_OUT_POW_H_THR   		0x0a50     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™
+#define 	PARA_B_RF_OUT_POW_L_THR   		0x0a51     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™
+#define 	PARA_C_RF_POW_SWR           	0x8a32     //Aæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”
+#define 	PARA_C_RF_OUT_POW_H_THR   		0x0a50     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™
+#define 	PARA_C_RF_OUT_POW_L_THR   		0x0a51     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™
+#define 	PARA_D_RF_POW_SWR            	0x8a32     //Bæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”
+#define 	PARA_D_RF_OUT_POW_H_THR   		0x0a50     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™
+#define 	PARA_D_RF_OUT_POW_L_THR   		0x0a51     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™
+#define 	PARA_PWR_3V3_1_VT	0		// 3.3Vç”µæºç”µåŽ‹
+#define 	PARA_PWR_3V3_2_VT	0		//	3.3Vç”µæºç”µåŽ‹
+#define 	PARA_PWR_1V8_VT		0			// 1.8Vç”µæºç”µåŽ‹
+#define 	PARA_PWR_1V5_VT		0			 // 1.5Vç”µæºç”µåŽ‹
+#define 	PARA_A_DL_RF_EN 	0x08a0	// 	Aæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_A_UL_RF_EN 	0x08a1	// 	Aæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_B_DL_RF_EN 	0x08a0	// 	Bæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_B_UL_RF_EN		0x08a1	// 	Bæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_C_DL_RF_EN 	0x08a0	// 	Cæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_C_UL_RF_EN 	0x08a1	// 	Cæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_D_DL_RF_EN 	0x08a0	// 	Dæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_D_UL_RF_EN 	0x08a1	// 	Dæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_METER_OFFSET	0x0a66	//	ä»ªå™¨åå·®å€¼è®¾ç½®
+#define 	PARA_METER_OFFSET_B	0x0a66	//	ä»ªå™¨åå·®å€¼è®¾ç½®
+#define 	PARA_METER_OFFSET_C	0x0a66	//	ä»ªå™¨åå·®å€¼è®¾ç½®
+#define 	PARA_METER_OFFSET_D	0x0a66	//	ä»ªå™¨åå·®å€¼è®¾ç½®
+#define 	PARA_C_TD_TYPE_SELECT	0x0631	//686	// TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦					
+#define 	PARA_C_TD_NORMAL_CP		0x0632	//716	//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP
+#define 	PARA_C_TD_EXTENDED_CP	0x0a6c	//717	//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP
+#define 	PARA_C_TD_SYNC_ST	0x862a	//687	//	TDåŒæ­¥çŠ¶æ€:	0-å·²åŒæ­¥ï¼Œ1-æœªåŒæ­¥			
+#define 	PARA_C_TD_WORK_MODE	0x060c	//688	//	[WR]TD:TD_SCDMAæŽ§åˆ¶æ¨¡å¼ï¼Œ00æ­£å¸¸æ¨¡å¼ï¼Œ01ä¸Šè¡Œå¸¸å¼€ï¼Œ10æ˜¯ä¸‹è¡Œå¸¸å¼€,	æ¯æ¬¡ä¸Šç”µåŽæ¸…é›¶			
+#define 	PARA_C_TD_DL_OVER_SLOT1_THR_ALARM	0x8a66	//689	// TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦					
+#define 	PARA_C_TD_DL_OWE_SLOT1_THR_ALARM	0x8a67	//690	 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦					
+#define 	PARA_D_TD_TYPE_SELECT	0x0631	//691	// TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦					
+#define 	PARA_D_TD_NORMAL_CP		0x0632	//718	//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP
+#define 	PARA_D_TD_EXTENDED_CP	0x0a6c	//719	//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP
+#define 	PARA_D_TD_SYNC_ST	0x862a	//692	//	TDåŒæ­¥çŠ¶æ€:	0-å·²åŒæ­¥ï¼Œ1-æœªåŒæ­¥			
+#define 	PARA_D_TD_WORK_MODE	0x060c	//693	//	[WR]TD:TD_SCDMAæŽ§åˆ¶æ¨¡å¼ï¼Œ00æ­£å¸¸æ¨¡å¼ï¼Œ01ä¸Šè¡Œå¸¸å¼€ï¼Œ10æ˜¯ä¸‹è¡Œå¸¸å¼€,	æ¯æ¬¡ä¸Šç”µåŽæ¸…é›¶			
+#define 	PARA_D_TD_DL_OVER_SLOT1_THR_ALARM	0x8a66	//694	// TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦					
+#define 	PARA_D_TD_DL_OWE_SLOT1_THR_ALARM	0x8a67	//695	 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦					
+#define 	PARA_C_TD_T0_UD	0	//696	//	TDæ—¶éš™0ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T1_UD	0	//697	//	TDæ—¶éš™1ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T2_UD	0	//698	//	TDæ—¶éš™2ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T3_UD	0	//699	//	TDæ—¶éš™3ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T4_UD	0	//700	//	TDæ—¶éš™4ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T5_UD	0	//701	//	TDæ—¶éš™5ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T6_UD	0	//702	//	TDæ—¶éš™6ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T7_UD	0	//703	//	TDæ—¶éš™7ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T8_UD	0	//704	//	TDæ—¶éš™8ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T9_UD	0	//705	//	TDæ—¶éš™9ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T0_UD	0	//706	//	TDæ—¶éš™0ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T1_UD	0	//707	//	TDæ—¶éš™1ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T2_UD	0	//708	//	TDæ—¶éš™2ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T3_UD	0	//709	//	TDæ—¶éš™3ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T4_UD	0	//710	//	TDæ—¶éš™4ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T5_UD	0	//711	//	TDæ—¶éš™5ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T6_UD	0	//712	//	TDæ—¶éš™6ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T7_UD	0	//713	//	TDæ—¶éš™7ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T8_UD	0	//714	//	TDæ—¶éš™8ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T9_UD	0	//715	//	TDæ—¶éš™9ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ//#endif
+#define	PARA_NOISE_TEST_EN	0	//	å™ªå£°æµ‹è¯•å¼€å…³		
+#define	PARA_FREQ_MODIF_VAL_D	0x0a6d		//	æœ¬æŒ¯ä¿®æ­£å€¼
+#define	PARA_FREQ_MODIF_VAL_B	0x0a6e		//	æœ¬æŒ¯ä¿®æ­£å€¼
+#define	PARA_FREQ_MODIF_VAL_A	0x0a6f		//	æœ¬æŒ¯ä¿®æ­£å€¼
+#define	PARA_B_TDS_2TH_BREAKING_POINT_SET	0x0609		//	TDS ç¬¬äºŒè½¬æ¢ç‚¹è®¾ç½®
+#define 	PARA_DELAY_MODE_A	0x8660	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨
+#define 	PARA_DELAY_MODE_B	0x8660	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨
+#define 	PARA_DELAY_MODE_C	0x8660	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨
+#define 	PARA_DELAY_MODE_D	0x8660	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨
 #define	PARA_REE_CIRCUIT_ALARM	 		0
 #define	PARA_REE_WLAN_CONN_ST			0
 #define	PARA_DL_POWER_MAX			0
-#define 	PARA_SLOT_TIME_EN_B	0x0	// Ê±Ï¶Åä±È×Ô¶¯¼ì²â¿ª¹Ø		
-#define 	PARA_SLOT_TIME_DISTRI_B	0	// Ê±Ï¶Åä±È·Ö²¼	BIT0£º1´ú±í15Åä±È,BIT1£º1´ú±í24Åä±È,	BIT2£º1´ú±í33Åä±È			
-#define 	PARA_VERSION_FLAG		0	// °æ±¾±êÊ¶		
-#define 	PARA_SLOT_TIME_EN_C	0	// Ê±Ï¶Åä±È×Ô¶¯¼ì²â¿ª¹Ø		
+#define 	PARA_SLOT_TIME_EN_B	0x0	// æ—¶éš™é…æ¯”è‡ªåŠ¨æ£€æµ‹å¼€å…³		
+#define 	PARA_SLOT_TIME_DISTRI_B	0	// æ—¶éš™é…æ¯”åˆ†å¸ƒ	BIT0ï¼š1ä»£è¡¨15é…æ¯”,BIT1ï¼š1ä»£è¡¨24é…æ¯”,	BIT2ï¼š1ä»£è¡¨33é…æ¯”			
+#define 	PARA_VERSION_FLAG		0	// ç‰ˆæœ¬æ ‡è¯†		
+#define 	PARA_SLOT_TIME_EN_C	0	// æ—¶éš™é…æ¯”è‡ªåŠ¨æ£€æµ‹å¼€å…³		
 #define 	PARA_SLOT_TIME_DISTRI_C	0	
-#define 	PARA_A_1197_LOCK_ST		0	// A¶Î1197Ëø¶¨×´Ì¬	
-#define 	PARA_A_IF_ST	0	// A¶ÎÖÐÆµÆµÂÊ,0/1---300M/500M		
-#define 	PARA_ENCRYPTION_ST	0	//¼ÓÃÜ×´Ì¬,0/1---²»¼ÓÃÜ/¼ÓÃÜ
-#define 	PARA_PWR_1V6_VT	0	//¼ÓÃÜ×´Ì¬,0/1---²»¼ÓÃÜ/¼ÓÃÜ
-#define		PARA_A_90_VALUE			0				//A¶Î9363 90¼Ä´æÆ÷µÄÖµ
-#define		PARA_A_91_VALUE			0				//A¶Î9363 91¼Ä´æÆ÷µÄÖµ
-#define		PARA_A_94_VALUE			0				//A¶Î9363 94¼Ä´æÆ÷µÄÖµ
-#define		PARA_A_95_VALUE			0				//A¶Î9363 95¼Ä´æÆ÷µÄÖµ
-#define		PARA_B_90_VALUE			0				//B¶Î9363 90¼Ä´æÆ÷µÄÖµ
-#define		PARA_B_91_VALUE			0				//B¶Î9363 91¼Ä´æÆ÷µÄÖµ
-#define		PARA_B_94_VALUE			0				//B¶Î9363 94¼Ä´æÆ÷µÄÖµ
-#define		PARA_B_95_VALUE			0				//B¶Î9363 95¼Ä´æÆ÷µÄÖµ
-#define		PARA_C_90_VALUE			0				//C¶Î9363 90¼Ä´æÆ÷µÄÖµ
-#define		PARA_C_91_VALUE			0				//C¶Î9363 91¼Ä´æÆ÷µÄÖµ
-#define		PARA_C_94_VALUE			0				//C¶Î9363 94¼Ä´æÆ÷µÄÖµ
-#define		PARA_C_95_VALUE			0				//C¶Î9363 95¼Ä´æÆ÷µÄÖµ
-#define		PARA_D_90_VALUE			0				//D¶Î9363 90¼Ä´æÆ÷µÄÖµ
-#define		PARA_D_91_VALUE			0				//D¶Î9363 91¼Ä´æÆ÷µÄÖµ
-#define		PARA_D_94_VALUE			0				//D¶Î9363 94¼Ä´æÆ÷µÄÖµ
-#define		PARA_D_95_VALUE			0				//D¶Î9363 95¼Ä´æÆ÷µÄÖµ
-#define		PARA_PASSTHROUGH_EN			0				//²âÊÔÍ¸´«Ê¹ÄÜ
+#define 	PARA_A_1197_LOCK_ST		0	// Aæ®µ1197é”å®šçŠ¶æ€	
+#define 	PARA_A_IF_ST	0	// Aæ®µä¸­é¢‘é¢‘çŽ‡,0/1---300M/500M		
+#define 	PARA_ENCRYPTION_ST	0	//åŠ å¯†çŠ¶æ€,0/1---ä¸åŠ å¯†/åŠ å¯†
+#define 	PARA_PWR_1V6_VT	0	//åŠ å¯†çŠ¶æ€,0/1---ä¸åŠ å¯†/åŠ å¯†
+#define		PARA_A_90_VALUE			0				//Aæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+#define		PARA_A_91_VALUE			0				//Aæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+#define		PARA_A_94_VALUE			0				//Aæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+#define		PARA_A_95_VALUE			0				//Aæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+#define		PARA_B_90_VALUE			0				//Bæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+#define		PARA_B_91_VALUE			0				//Bæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+#define		PARA_B_94_VALUE			0				//Bæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+#define		PARA_B_95_VALUE			0				//Bæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+#define		PARA_C_90_VALUE			0				//Cæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+#define		PARA_C_91_VALUE			0				//Cæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+#define		PARA_C_94_VALUE			0				//Cæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+#define		PARA_C_95_VALUE			0				//Cæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+#define		PARA_D_90_VALUE			0				//Dæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+#define		PARA_D_91_VALUE			0				//Dæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+#define		PARA_D_94_VALUE			0				//Dæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+#define		PARA_D_95_VALUE			0				//Dæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+#define		PARA_PASSTHROUGH_EN			0				//æµ‹è¯•é€ä¼ ä½¿èƒ½
 #define		PARA_A_DL_POW_ADJ			0			
 #define		PARA_B_DL_POW_ADJ			0			
 #define		PARA_C_DL_POW_ADJ			0			
 #define		PARA_D_DL_POW_ADJ			0		
 #define		PARA_SoftwareLoadTimes			0		
-#define     PARA_A_LNA_EN_ST 		   0	// 	A¶ÎÏÂÐÐµÍÔë·ÅLNA¿ª¹ØÊ¹ÄÜ
+#define     PARA_A_LNA_EN_ST 		   0	// 	Aæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAå¼€å…³ä½¿èƒ½
 
 
 
@@ -880,3089 +880,3089 @@ typedef struct _S_PARAM_ASC
 
 #else
 
-// ²ÎÊýµØÖ·¶¨Òå==================================================== 1b								
-#define	PARA_A_CHANNEL_COUNT	0x8889	//	A¶ÎÖ§³ÖµÄÍ¨µÀÊý
-#define	PARA_A_DL_WORK_EN	0x08b1	//	A¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_A_UL_WORK_EN	0x08b2	//	A¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_A_DPOW_MODE	0	//	A¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_A_UPOW_MODE	0	//	A¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_A_LTHR_EN	0x0770	//	A¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ
-#define	PARA_A_LTHR_UP	0	//	A¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ
-#define	PARA_A_LTHR_DN	0x08b0	//	A¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ
-#define	PARA_A_DCH_EN1	0x08d0	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_A_DCH_EN2	0x08d1	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_A_DCH_EN3	0x08d2	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_A_DCH_EN4	0x08d3	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_A_DCH_EN5	0x08d4	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_A_DCH_EN6	0x08d5	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_A_DCH_EN7	0x08d6	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_A_DCH_EN8	0x08d7	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_A_DCH_EN9	0x08d8	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_A_DCH_EN10	0x08d9	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_A_DCH_EN11	0x08dA	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-#define	PARA_A_DCH_EN12	0x08dB	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-#define	PARA_A_DCH_EN13	0x08dC	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-#define	PARA_A_DCH_EN14	0x08dD	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-#define	PARA_A_DCH_EN15	0x08dE	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-#define	PARA_A_DCH_EN16	0x08dF	//	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-#define	PARA_A_UCH_EN1	0x08d0	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_A_UCH_EN2	0x08d1	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_A_UCH_EN3	0x08d2	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_A_UCH_EN4	0x08d3	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_A_UCH_EN5	0x08d4	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_A_UCH_EN6	0x08d5	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_A_UCH_EN7	0x08d6	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_A_UCH_EN8	0x08d7	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_A_UCH_EN9	0x08d8	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_A_UCH_EN10	0x08d9	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_A_UCH_EN11	0x08dA	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-#define	PARA_A_UCH_EN12	0x08dB	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-#define	PARA_A_UCH_EN13	0x08dC	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-#define	PARA_A_UCH_EN14	0x08dD	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-#define	PARA_A_UCH_EN15	0x08dE	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-#define	PARA_A_UCH_EN16	0x08dF	//	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-#define	PARA_A_DCH_GAIN1	0x0840	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_A_DCH_GAIN2	0x0841	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_A_DCH_GAIN3	0x0842	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_A_DCH_GAIN4	0x0843	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_A_DCH_GAIN5	0x0844	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_A_DCH_GAIN6	0x0845	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_A_DCH_GAIN7	0x0846	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_A_DCH_GAIN8	0x0847	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_A_DCH_GAIN9	0x0848	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_A_DCH_GAIN10	0x0849	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define	PARA_A_DCH_GAIN11	0x084A	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define	PARA_A_DCH_GAIN12	0x084B	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define	PARA_A_DCH_GAIN13	0x084C	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define	PARA_A_DCH_GAIN14	0x084D	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define	PARA_A_DCH_GAIN15	0x084E	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define	PARA_A_DCH_GAIN16	0x084F	//	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_A_UCH_GAIN1	0x0850	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_A_UCH_GAIN2	0x0851	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_A_UCH_GAIN3	0x0852	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_A_UCH_GAIN4	0x0853	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_A_UCH_GAIN5	0x0854	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_A_UCH_GAIN6	0x0855	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_A_UCH_GAIN7	0x0856	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_A_UCH_GAIN8	0x0857	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_A_UCH_GAIN9	0x0858	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_A_UCH_GAIN10	0x0859	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define	PARA_A_UCH_GAIN11	0x085A	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define	PARA_A_UCH_GAIN12	0x085B	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define	PARA_A_UCH_GAIN13	0x085C	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define	PARA_A_UCH_GAIN14	0x085D	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define	PARA_A_UCH_GAIN15	0x085E	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define	PARA_A_UCH_GAIN16	0x085F	//	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_A_DCH_ATT1	0x0324	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿1
-#define	PARA_A_DCH_ATT2	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿2
-#define	PARA_A_DCH_ATT3	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿3
-#define	PARA_A_DCH_ATT4	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿4
-#define	PARA_A_DCH_ATT5	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿5
-#define	PARA_A_DCH_ATT6	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿6
-#define	PARA_A_DCH_ATT7	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿7
-#define	PARA_A_DCH_ATT8	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿8
-#define	PARA_A_DCH_ATT9	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿9
-#define	PARA_A_DCH_ATT10	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿10
-#define	PARA_A_DCH_ATT11	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿11
-#define	PARA_A_DCH_ATT12	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿12
-#define	PARA_A_DCH_ATT13	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿13
-#define	PARA_A_DCH_ATT14	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿14
-#define	PARA_A_DCH_ATT15	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿15
-#define	PARA_A_DCH_ATT16	0	//	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿16
-#define	PARA_A_UCH_ATT1	0x0320	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿1
-#define	PARA_A_UCH_ATT2	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿2
-#define	PARA_A_UCH_ATT3	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿3
-#define	PARA_A_UCH_ATT4	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿4
-#define	PARA_A_UCH_ATT5	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿5
-#define	PARA_A_UCH_ATT6	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿6
-#define	PARA_A_UCH_ATT7	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿7
-#define	PARA_A_UCH_ATT8	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿8
-#define	PARA_A_UCH_ATT9	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿9
-#define	PARA_A_UCH_ATT10	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿10
-#define	PARA_A_UCH_ATT11	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿11
-#define	PARA_A_UCH_ATT12	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿12
-#define	PARA_A_UCH_ATT13	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿13
-#define	PARA_A_UCH_ATT14	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿14
-#define	PARA_A_UCH_ATT15	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿15
-#define	PARA_A_UCH_ATT16	0	//	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿16
-#define	PARA_A_DL_PA_GAIN	0	//	A¶ÎÏÂÐÐ¹¦·ÅÔöÒæ
-#define	PARA_A_UL_PA_GAIN	0	//	A¶ÎÉÏÐÐ¹¦·ÅÔöÒæ
-#define	PARA_A_TX_PLL_ST	0x8308	//	A¶ÎÏÂÐÐPLL×´Ì¬,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_A_RX_PLL_ST	0x8300	//	A¶ÎÉÏÐÐPLL×´Ì¬,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_A_INIT_DA_ST	0	//	³õÊ¼»¯A¶ÎDA×´Ì¬,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£
-#define	PARA_A_BB_PLL_LOCK	0	//	A¶ÎBB PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_A_FSAT		0	//	A¶ÎÇ°¶ËADÊäÈë×´Ì¬
-#define	PARA_A_DSAT		0	//	A¶Îºó¶ËDAÊä³ö×´Ì¬
-#define	PARA_A_PA_VG_EN	0	//	A¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-#define	PARA_A_PA_VT	0	//	A¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾
-#define	PARA_A_Modulator_EN	0	//	A¶Îµ÷ÖÆÆ÷×´Ì¬
-#define	PARA_A_LNA_VT	0	//	A¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹
-#define	PARA_A_LNA1_ST		0x8214	//	ÉÏÐÐLNA1×´Ì¬
-#define	PARA_A_LNA2_ST		0x8215	//	ÉÏÐÐLNA2×´Ì¬
-#define	PARA_A_BUSY_TIME	0x8892	//	A¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ
-#define	PARA_A_PRI_ADD 	0xf002	//	A¶ÎÄ£¿éµØÖ·(ÔÚºçÐÅÐ­ÒéÖÐ£¬¸ßËÄÎ»ÎªÉÏÐÐµØÖ·£¬µÍËÄÎ»ÎªÏÂÐÐµØÖ·)
-#define	PARA_A_UL_POW_1B	0x831e	//	A¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_A_DL_POW_1B	0x8390	//	A¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_A_DCH_REC_RF_ATT1          0     //// REC¶ËµÄÏÂÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÏÂÐÐË¥¼õÁ¿ ÔÚrf
-#define 	PARA_A_UCH_REC_RF_ATT1          0     //// REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿ ÔÚrf
-#define	PARA_B_CHANNEL_COUNT	0x8889	//	B¶ÎÖ§³ÖµÄÍ¨µÀÊý
-#define	PARA_B_DL_WORK_EN	0x08b1	//	B¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_B_UL_WORK_EN	0x08b2	//	B¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_B_DPOW_MODE	0	//	B¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_B_UPOW_MODE	0	//	B¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_B_LTHR_EN		0x0770	//	B¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ
-#define	PARA_B_LTHR_UP		0	//	B¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ
-#define	PARA_B_LTHR_DN		0x08b0	//	B¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ
-#define	PARA_B_DCH_EN1		0x08d0	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_B_DCH_EN2		0x08d1	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_B_DCH_EN3		0x08d2	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_B_DCH_EN4		0x08d3	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_B_DCH_EN5		0x08d4	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_B_DCH_EN6		0x08d5	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_B_DCH_EN7		0x08d6	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_B_DCH_EN8		0x08d7	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_B_DCH_EN9		0x08d8	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_B_DCH_EN10		0x08d9	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_B_DCH_EN11		0x08dA	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-#define	PARA_B_DCH_EN12		0x08dB	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-#define	PARA_B_DCH_EN13		0x08dC	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-#define	PARA_B_DCH_EN14		0x08dD	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-#define	PARA_B_DCH_EN15		0x08dE	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-#define	PARA_B_DCH_EN16		0x08dF	//	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-#define	PARA_B_UCH_EN1		0x08d0	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_B_UCH_EN2		0x08d1	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_B_UCH_EN3		0x08d2	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_B_UCH_EN4		0x08d3	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_B_UCH_EN5		0x08d4	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_B_UCH_EN6		0x08d5	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_B_UCH_EN7		0x08d6	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_B_UCH_EN8		0x08d7	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_B_UCH_EN9		0x08d8	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_B_UCH_EN10		0x08d9	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_B_UCH_EN11		0x08dA	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-#define	PARA_B_UCH_EN12		0x08dB	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-#define	PARA_B_UCH_EN13		0x08dC	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-#define	PARA_B_UCH_EN14		0x08dD	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-#define	PARA_B_UCH_EN15		0x08dE	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-#define	PARA_B_UCH_EN16		0x08dF	//	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-#define	PARA_B_DCH_GAIN1	0x0840	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_B_DCH_GAIN2	0x0841	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_B_DCH_GAIN3	0x0842	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_B_DCH_GAIN4	0x0843	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_B_DCH_GAIN5	0x0844	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_B_DCH_GAIN6	0x0845	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_B_DCH_GAIN7	0x0846	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_B_DCH_GAIN8	0x0847	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_B_DCH_GAIN9	0x0848	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_B_DCH_GAIN10	0x0849	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define	PARA_B_DCH_GAIN11	0x084A	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define	PARA_B_DCH_GAIN12	0x084B	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define	PARA_B_DCH_GAIN13	0x084C	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define	PARA_B_DCH_GAIN14	0x084D	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define	PARA_B_DCH_GAIN15	0x084E	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define	PARA_B_DCH_GAIN16	0x084F	//	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_B_UCH_GAIN1	0x0850	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_B_UCH_GAIN2	0x0851	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_B_UCH_GAIN3	0x0852	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_B_UCH_GAIN4	0x0853	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_B_UCH_GAIN5	0x0854	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_B_UCH_GAIN6	0x0855	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_B_UCH_GAIN7	0x0856	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_B_UCH_GAIN8	0x0857	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_B_UCH_GAIN9	0x0858	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_B_UCH_GAIN10	0x0859	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define	PARA_B_UCH_GAIN11	0x085A	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define	PARA_B_UCH_GAIN12	0x085B	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define	PARA_B_UCH_GAIN13	0x085C	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define	PARA_B_UCH_GAIN14	0x085D	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define	PARA_B_UCH_GAIN15	0x085E	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define	PARA_B_UCH_GAIN16	0x085F	//	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_B_DCH_ATT1		0x0324	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿1
-#define	PARA_B_DCH_ATT2		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿2
-#define	PARA_B_DCH_ATT3		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿3
-#define	PARA_B_DCH_ATT4		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿4
-#define	PARA_B_DCH_ATT5		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿5
-#define	PARA_B_DCH_ATT6		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿6
-#define	PARA_B_DCH_ATT7		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿7
-#define	PARA_B_DCH_ATT8		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿8
-#define	PARA_B_DCH_ATT9		0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿9
-#define	PARA_B_DCH_ATT10	0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿10
-#define	PARA_B_DCH_ATT11	0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿11
-#define	PARA_B_DCH_ATT12	0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿12
-#define	PARA_B_DCH_ATT13	0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿13
-#define	PARA_B_DCH_ATT14	0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿14
-#define	PARA_B_DCH_ATT15	0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿15
-#define	PARA_B_DCH_ATT16	0	//	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿16
-#define	PARA_B_UCH_ATT1		0//0x0320	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿1
-#define	PARA_B_UCH_ATT2		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿2
-#define	PARA_B_UCH_ATT3		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿3
-#define	PARA_B_UCH_ATT4		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿4
-#define	PARA_B_UCH_ATT5		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿5
-#define	PARA_B_UCH_ATT6		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿6
-#define	PARA_B_UCH_ATT7		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿7
-#define	PARA_B_UCH_ATT8		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿8
-#define	PARA_B_UCH_ATT9		0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿9
-#define	PARA_B_UCH_ATT10	0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿10
-#define	PARA_B_UCH_ATT11	0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿11
-#define	PARA_B_UCH_ATT12	0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿12
-#define	PARA_B_UCH_ATT13	0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿13
-#define	PARA_B_UCH_ATT14	0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿14
-#define	PARA_B_UCH_ATT15	0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿15
-#define	PARA_B_UCH_ATT16	0	//	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿16
-#define	PARA_B_DL_PA_GAIN	0	//	B¶ÎÏÂÐÐ¹¦·ÅÔöÒæ
-#define	PARA_B_UL_PA_GAIN	0	//	B¶ÎÉÏÐÐ¹¦·ÅÔöÒæ
-#define	PARA_B_TX_PLL_ST	0x8308	//	B¶ÎÏÂÐÐPLL×´Ì¬,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_B_RX_PLL_ST	0x8300	//	B¶ÎÉÏÐÐPLL×´Ì¬,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_B_INIT_DA_ST	0	//	³õÊ¼»¯B¶ÎDA×´Ì¬,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£
-#define	PARA_B_BB_PLL_LOCK	0	//	B¶ÎBB PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_B_FSAT		0	//	B¶ÎÇ°¶ËADÊäÈë×´Ì¬
-#define	PARA_B_DSAT		0	//	B¶Îºó¶ËDAÊä³ö×´Ì¬
-#define	PARA_B_PA_VG_EN	0	//	B¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-#define	PARA_B_PA_VT	0	//	B¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾
-#define	PARA_B_Modulator_EN	0	//	B¶Îµ÷ÖÆÆ÷×´Ì¬
-#define	PARA_B_LNA_VT	0	//	B¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹
-#define	PARA_B_LNA1_ST		0x8214	//	ÉÏÐÐLNA1×´Ì¬
-#define	PARA_B_LNA2_ST		0x8215	//	ÉÏÐÐLNA2×´Ì¬
-#define	PARA_B_BUSY_TIME	0x8892	//	B¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ
-#define	PARA_B_PRI_ADD 		0xf002	//	B¶ÎÄ£¿éµØÖ·(ÔÚºçÐÅÐ­ÒéÖÐ£¬¸ßËÄÎ»ÎªÉÏÐÐµØÖ·£¬µÍËÄÎ»ÎªÏÂÐÐµØÖ·)
-#define	PARA_B_UL_POW_1B	0x831e	//	B¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_B_DL_POW_1B	0x8390	//	B¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_B_DCH_REC_RF_ATT1          0     //// REC¶ËµÄÏÂÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÏÂÐÐË¥¼õÁ¿ ÔÚrf
-#define 	PARA_B_UCH_REC_RF_ATT1          0     //// REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿  ÔÚrf
-#define	PARA_C_CHANNEL_COUNT	0x8889	//	C¶ÎÖ§³ÖµÄÍ¨µÀÊý
-#define	PARA_C_DL_WORK_EN	0x08b1	//	C¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_C_UL_WORK_EN	0x08b2	//	C¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_C_DPOW_MODE	0	//	C¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_C_UPOW_MODE	0	//	C¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_C_LTHR_EN		0x0770	//	C¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ
-#define	PARA_C_LTHR_UP		0	//	C¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ
-#define	PARA_C_LTHR_DN		0x08b0	//	C¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ
-#define	PARA_C_DCH_EN1		0x08d0	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_C_DCH_EN2		0x08d1	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_C_DCH_EN3		0x08d2	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_C_DCH_EN4		0x08d3	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_C_DCH_EN5		0x08d4	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_C_DCH_EN6		0x08d5	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_C_DCH_EN7		0x08d6	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_C_DCH_EN8		0x08d7	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_C_DCH_EN9		0x08d8	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_C_DCH_EN10		0x08d9	//	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_C_UCH_EN1		0x08d0	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_C_UCH_EN2		0x08d1	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_C_UCH_EN3		0x08d2	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_C_UCH_EN4		0x08d3	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_C_UCH_EN5		0x08d4	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_C_UCH_EN6		0x08d5	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_C_UCH_EN7		0x08d6	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_C_UCH_EN8		0x08d7	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_C_UCH_EN9		0x08d8	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_C_UCH_EN10		0x08d9	//	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_C_DCH_GAIN1	0x0840	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_C_DCH_GAIN2	0x0841	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_C_DCH_GAIN3	0x0842	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_C_DCH_GAIN4	0x0843	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_C_DCH_GAIN5	0x0844	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_C_DCH_GAIN6	0x0845	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_C_DCH_GAIN7	0x0846	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_C_DCH_GAIN8	0x0847	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_C_DCH_GAIN9	0x0848	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_C_DCH_GAIN10	0x0849	//	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define 	PARA_C_DCH_GAIN11 	0	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define 	PARA_C_DCH_GAIN12 	0	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define 	PARA_C_DCH_GAIN13 	0	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define 	PARA_C_DCH_GAIN14 	0	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define 	PARA_C_DCH_GAIN15 	0	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define 	PARA_C_DCH_GAIN16 	0	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_C_UCH_GAIN1	0x0850	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_C_UCH_GAIN2	0x0851	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_C_UCH_GAIN3	0x0852	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_C_UCH_GAIN4	0x0853	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_C_UCH_GAIN5	0x0854	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_C_UCH_GAIN6	0x0855	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_C_UCH_GAIN7	0x0856	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_C_UCH_GAIN8	0x0857	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_C_UCH_GAIN9	0x0858	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_C_UCH_GAIN10	0x0859	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define	PARA_C_UCH_GAIN11	0	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define	PARA_C_UCH_GAIN12	0	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define	PARA_C_UCH_GAIN13	0	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define	PARA_C_UCH_GAIN14	0	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define	PARA_C_UCH_GAIN15	0	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define	PARA_C_UCH_GAIN16	0	//	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_C_DCH_ATT1		0x0324	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿1
-#define	PARA_C_DCH_ATT2		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿2
-#define	PARA_C_DCH_ATT3		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿3
-#define	PARA_C_DCH_ATT4		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿4
-#define	PARA_C_DCH_ATT5		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿5
-#define	PARA_C_DCH_ATT6		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿6
-#define	PARA_C_DCH_ATT7		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿7
-#define	PARA_C_DCH_ATT8		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿8
-#define	PARA_C_DCH_ATT9		0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿9
-#define	PARA_C_DCH_ATT10	0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿10
-#define	PARA_C_DCH_ATT11	0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿11
-#define	PARA_C_DCH_ATT12	0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿12
-#define	PARA_C_DCH_ATT13	0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿13
-#define	PARA_C_DCH_ATT14	0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿14
-#define	PARA_C_DCH_ATT15	0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿15
-#define	PARA_C_DCH_ATT16	0	//	C¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿16
-#define	PARA_C_UCH_ATT1		0//0x0320	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿1
-#define	PARA_C_UCH_ATT2		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿2
-#define	PARA_C_UCH_ATT3		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿3
-#define	PARA_C_UCH_ATT4		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿4
-#define	PARA_C_UCH_ATT5		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿5
-#define	PARA_C_UCH_ATT6		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿6
-#define	PARA_C_UCH_ATT7		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿7
-#define	PARA_C_UCH_ATT8		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿8
-#define	PARA_C_UCH_ATT9		0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿9
-#define	PARA_C_UCH_ATT10	0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿10
-#define	PARA_C_UCH_ATT11	0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿11
-#define	PARA_C_UCH_ATT12	0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿12
-#define	PARA_C_UCH_ATT13	0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿13
-#define	PARA_C_UCH_ATT14	0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿14
-#define	PARA_C_UCH_ATT15	0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿15
-#define	PARA_C_UCH_ATT16	0	//	C¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿16
-#define	PARA_C_DL_PA_GAIN	0	//	C¶ÎÏÂÐÐ¹¦·ÅÔöÒæ
-#define	PARA_C_UL_PA_GAIN	0	//	C¶ÎÉÏÐÐ¹¦·ÅÔöÒæ
-#define	PARA_C_TX_PLL_ST	0x8308	//	C¶ÎÏÂÐÐPLL×´Ì¬,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_C_RX_PLL_ST	0x8300	//	C¶ÎÉÏÐÐPLL×´Ì¬,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_C_INIT_DA_ST	0	//	C³õÊ¼»¯B¶ÎDA×´Ì¬,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£
-#define	PARA_C_BB_PLL_LOCK	0	//	C¶ÎBB PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_C_FSAT		0	//	C¶ÎÇ°¶ËADÊäÈë×´Ì¬
-#define	PARA_C_DSAT		0	//	C¶Îºó¶ËDAÊä³ö×´Ì¬
-#define	PARA_C_PA_VG_EN	0	//	C¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-#define	PARA_C_PA_VT	0	//	C¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾
-#define	PARA_C_Modulator_EN	0	//	C¶Îµ÷ÖÆÆ÷×´Ì¬
-#define	PARA_C_LNA_VT	0	//	C¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹
-#define	PARA_C_LNA1_ST		0x8214	//	CÉÏÐÐLNA1×´Ì¬
-#define	PARA_C_LNA2_ST		0x8215	//	CÉÏÐÐLNA2×´Ì¬
-#define	PARA_C_BUSY_TIME	0x8892	//	C¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ
-#define	PARA_C_PRI_ADD 		0xf002	//	C¶ÎÄ£¿éµØÖ·(ÔÚºçÐÅÐ­ÒéÖÐ£¬¸ßËÄÎ»ÎªÉÏÐÐµØÖ·£¬µÍËÄÎ»ÎªÏÂÐÐµØÖ·)
-#define	PARA_C_UL_POW_1B	0x831e	//	C¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_C_DL_POW_1B	0x8390	//	C¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_C_DCH_REC_RF_ATT1          0     //// REC¶ËµÄÏÂÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÏÂÐÐË¥¼õÁ¿ ÔÚrf
-#define 	PARA_C_UCH_REC_RF_ATT1          0     //// REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿  ÔÚrf
-#define	PARA_D_CHANNEL_COUNT	0x8889	//	D¶ÎÖ§³ÖµÄÍ¨µÀÊý
-#define	PARA_D_DL_WORK_EN	0x08b1	//	D¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_D_UL_WORK_EN	0x08b2	//	D¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ
-#define	PARA_D_DPOW_MODE	0	//	D¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_D_UPOW_MODE	0	//	D¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define	PARA_D_LTHR_EN		0x0770	//	D¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ
-#define	PARA_D_LTHR_UP		0	//	D¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ
-#define	PARA_D_LTHR_DN		0x08b0	//	D¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ
-#define	PARA_D_DCH_EN1		0x08d0	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_D_DCH_EN2		0x08d1	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_D_DCH_EN3		0x08d2	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_D_DCH_EN4		0x08d3	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_D_DCH_EN5		0x08d4	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_D_DCH_EN6		0x08d5	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_D_DCH_EN7		0x08d6	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_D_DCH_EN8		0x08d7	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_D_DCH_EN9		0x08d8	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_D_DCH_EN10	0x08d9	//	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_D_UCH_EN1		0x08d0	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define	PARA_D_UCH_EN2		0x08d1	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define	PARA_D_UCH_EN3		0x08d2	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define	PARA_D_UCH_EN4		0x08d3	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define	PARA_D_UCH_EN5		0x08d4	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define	PARA_D_UCH_EN6		0x08d5	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define	PARA_D_UCH_EN7		0x08d6	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define	PARA_D_UCH_EN8		0x08d7	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define	PARA_D_UCH_EN9		0x08d8	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define	PARA_D_UCH_EN10	0x08d9	//	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define	PARA_D_DCH_GAIN1	0x0840	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_D_DCH_GAIN2	0x0841	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_D_DCH_GAIN3	0x0842	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_D_DCH_GAIN4	0x0843	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_D_DCH_GAIN5	0x0844	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_D_DCH_GAIN6	0x0845	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_D_DCH_GAIN7	0x0846	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_D_DCH_GAIN8	0x0847	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_D_DCH_GAIN9	0x0848	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_D_DCH_GAIN10	0x0849	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define	PARA_D_DCH_GAIN11	0	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define	PARA_D_DCH_GAIN12	0	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define	PARA_D_DCH_GAIN13	0	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define	PARA_D_DCH_GAIN14	0	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define	PARA_D_DCH_GAIN15	0	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define	PARA_D_DCH_GAIN16	0	//	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_D_UCH_GAIN1	0x0850	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define	PARA_D_UCH_GAIN2	0x0851	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define	PARA_D_UCH_GAIN3	0x0852	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define	PARA_D_UCH_GAIN4	0x0853	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define	PARA_D_UCH_GAIN5	0x0854	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define	PARA_D_UCH_GAIN6	0x0855	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define	PARA_D_UCH_GAIN7	0x0856	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define	PARA_D_UCH_GAIN8	0x0857	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define	PARA_D_UCH_GAIN9	0x0858	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define	PARA_D_UCH_GAIN10	0x0859	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define	PARA_D_UCH_GAIN11	0	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define	PARA_D_UCH_GAIN12	0	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define	PARA_D_UCH_GAIN13	0	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define	PARA_D_UCH_GAIN14	0	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define	PARA_D_UCH_GAIN15	0	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define	PARA_D_UCH_GAIN16	0	//	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define	PARA_D_DCH_ATT1		0x0324	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿1
-#define	PARA_D_DCH_ATT2		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿2
-#define	PARA_D_DCH_ATT3		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿3
-#define	PARA_D_DCH_ATT4		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿4
-#define	PARA_D_DCH_ATT5		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿5
-#define	PARA_D_DCH_ATT6		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿6
-#define	PARA_D_DCH_ATT7		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿7
-#define	PARA_D_DCH_ATT8		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿8
-#define	PARA_D_DCH_ATT9		0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿9
-#define	PARA_D_DCH_ATT10	0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿10
-#define	PARA_D_DCH_ATT11	0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿11
-#define	PARA_D_DCH_ATT12	0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿12
-#define	PARA_D_DCH_ATT13	0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿13
-#define	PARA_D_DCH_ATT14	0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿14
-#define	PARA_D_DCH_ATT15	0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿15
-#define	PARA_D_DCH_ATT16	0	//	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿16
-#define	PARA_D_UCH_ATT1		0//0x0320	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿1
-#define	PARA_D_UCH_ATT2		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿2
-#define	PARA_D_UCH_ATT3		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿3
-#define	PARA_D_UCH_ATT4		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿4
-#define	PARA_D_UCH_ATT5		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿5
-#define	PARA_D_UCH_ATT6		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿6
-#define	PARA_D_UCH_ATT7		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿7
-#define	PARA_D_UCH_ATT8		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿8
-#define	PARA_D_UCH_ATT9		0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿9
-#define	PARA_D_UCH_ATT10	0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿10
-#define	PARA_D_UCH_ATT11	0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿11
-#define	PARA_D_UCH_ATT12	0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿12
-#define	PARA_D_UCH_ATT13	0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿13
-#define	PARA_D_UCH_ATT14	0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿14
-#define	PARA_D_UCH_ATT15	0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿15
-#define	PARA_D_UCH_ATT16	0	//	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿16
-#define	PARA_D_DL_PA_GAIN	0	//	D¶ÎÏÂÐÐ¹¦·ÅÔöÒæ
-#define	PARA_D_UL_PA_GAIN	0	//	D¶ÎÉÏÐÐ¹¦·ÅÔöÒæ
-#define	PARA_D_TX_PLL_ST	0x8308	//	D¶ÎÏÂÐÐPLL×´Ì¬,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_D_RX_PLL_ST	0x8300	//	D¶ÎÉÏÐÐPLL×´Ì¬,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_D_INIT_DA_ST	0	//	D³õÊ¼»¯B¶ÎDA×´Ì¬,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£
-#define	PARA_D_BB_PLL_LOCK	0	//	D¶ÎBB PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-#define	PARA_D_FSAT		0	//	D¶ÎÇ°¶ËADÊäÈë×´Ì¬
-#define	PARA_D_DSAT		0	//	D¶Îºó¶ËDAÊä³ö×´Ì¬
-#define	PARA_D_PA_VG_EN	0	//	D¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-#define	PARA_D_PA_VT	0	//	D¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾
-#define	PARA_D_Modulator_EN	0	//	D¶Îµ÷ÖÆÆ÷×´Ì¬
-#define	PARA_D_LNA_VT	0	//	D¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹
-#define	PARA_D_LNA1_ST		0x8214	//	DÉÏÐÐLNA1×´Ì¬
-#define	PARA_D_LNA2_ST		0x8215	//	DÉÏÐÐLNA2×´Ì¬
-#define	PARA_D_BUSY_TIME	0x8892	//	D¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ
-#define	PARA_D_PRI_ADD 		0xf002	//	D¶ÎÄ£¿éµØÖ·(ÔÚºçÐÅÐ­ÒéÖÐ£¬¸ßËÄÎ»ÎªÉÏÐÐµØÖ·£¬µÍËÄÎ»ÎªÏÂÐÐµØÖ·)
-#define	PARA_D_UL_POW_1B	0x831e	//	D¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_D_DL_POW_1B	0x8390	//	D¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define 	PARA_D_DCH_REC_RF_ATT1          0     //// REC¶ËµÄÏÂÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÏÂÐÐË¥¼õÁ¿ ÔÚrf
-#define 	PARA_D_UCH_REC_RF_ATT1          0     //// REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿  ÔÚrf
-#define	PARA_FP1_EN	0x0927	//	¹â¿Ú·¢ËÍÊ¹ÄÜ1
-#define	PARA_FP2_EN	0x0928	//	¹â¿Ú·¢ËÍÊ¹ÄÜ2
-#define	PARA_FP3_EN	0x0929	//	¹â¿Ú·¢ËÍÊ¹ÄÜ3
-#define	PARA_FP4_EN	0x092A	//	¹â¿Ú·¢ËÍÊ¹ÄÜ4
-#define	PARA_FP5_EN	0x092B	//	¹â¿Ú·¢ËÍÊ¹ÄÜ5
-#define	PARA_FP6_EN	0x092C	//	¹â¿Ú·¢ËÍÊ¹ÄÜ6
-#define	PARA_FP7_EN	0x092D	//	¹â¿Ú·¢ËÍÊ¹ÄÜ7
-#define	PARA_FP8_EN	0x092E	//	¹â¿Ú·¢ËÍÊ¹ÄÜ8
-#define	PARA_FP9_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ9
-#define	PARA_FP10_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ10
-#define	PARA_FP11_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ11
-#define	PARA_FP12_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ12
-#define	PARA_FP13_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ13
-#define	PARA_FP14_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ14
-#define	PARA_FP15_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ15
-#define	PARA_FP16_EN	0x0	//	¹â¿Ú·¢ËÍÊ¹ÄÜ16
-#define	PARA_FP1_ON_POS	0x8560	//	¹â¿ÚÔÚÎ»×´Ì¬1, 0-ÔÚÎ»	
-#define	PARA_FP2_ON_POS	0x8561	//	¹â¿ÚÔÚÎ»×´Ì¬2, 0-ÔÚÎ»	
-#define	PARA_FP3_ON_POS	0x8562	//	¹â¿ÚÔÚÎ»×´Ì¬3, 0-ÔÚÎ»	
-#define	PARA_FP4_ON_POS	0x8563	//	¹â¿ÚÔÚÎ»×´Ì¬4, 0-ÔÚÎ»	
-#define	PARA_FP5_ON_POS	0x8564	//	¹â¿ÚÔÚÎ»×´Ì¬5, 0-ÔÚÎ»	
-#define	PARA_FP6_ON_POS	0x8565	//	¹â¿ÚÔÚÎ»×´Ì¬6, 0-ÔÚÎ»	
-#define	PARA_FP7_ON_POS	0x8566	//	¹â¿ÚÔÚÎ»×´Ì¬7, 0-ÔÚÎ»	
-#define	PARA_FP8_ON_POS	0x8567	//	¹â¿ÚÔÚÎ»×´Ì¬8, 0-ÔÚÎ»	
-#define	PARA_FP9_ON_POS	0x8568	//	¹â¿ÚÔÚÎ»×´Ì¬9, 0-ÔÚÎ»	
-#define	PARA_FP10_ON_POS	0x8569	//	¹â¿ÚÔÚÎ»×´Ì¬10, 0-ÔÚÎ»	
-#define	PARA_FP11_ON_POS	0x856a	//	¹â¿ÚÔÚÎ»×´Ì¬11, 0-ÔÚÎ»	
-#define	PARA_FP12_ON_POS	0x856b	//	¹â¿ÚÔÚÎ»×´Ì¬12, 0-ÔÚÎ»	
-#define	PARA_FP13_ON_POS	0x856c	//	¹â¿ÚÔÚÎ»×´Ì¬13, 0-ÔÚÎ»	
-#define	PARA_FP14_ON_POS	0x856d	//	¹â¿ÚÔÚÎ»×´Ì¬14, 0-ÔÚÎ»
-#define	PARA_FP15_ON_POS	0x856e	//	¹â¿ÚÔÚÎ»×´Ì¬15, 0-ÔÚÎ»
-#define	PARA_FP16_ON_POS	0x856f	//	¹â¿ÚÔÚÎ»×´Ì¬16, 0-ÔÚÎ»
-#define	PARA_FP1_LOS	0x8730	//	¹â¿Ú1ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP2_LOS	0x8731	//	¹â¿Ú2ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP3_LOS	0x8732	//	¹â¿Ú3ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP4_LOS	0x8733	//	¹â¿Ú4ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP5_LOS	0x8734	//	¹â¿Ú5ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP6_LOS	0x8735	//	¹â¿Ú6ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP7_LOS	0x8736	//	¹â¿Ú7ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP8_LOS	0x8737	//	¹â¿Ú8ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP9_LOS	0x8738	//	¹â¿Ú9ÐÅºÅ¶ªÊ§×´Ì¬
-#define	PARA_FP10_LOS	0x8739	//	¹â¿Ú10ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP11_LOS	0x873a	//	¹â¿Ú11ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP12_LOS	0x873b	//	¹â¿Ú12ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	PARA_FP13_LOS	0x873c	//	¹â¿Ú13ÐÅºÅ¶ªÊ§×´Ì¬
-#define	PARA_FP14_LOS	0x873d	//	¹â¿Ú14ÐÅºÅ¶ªÊ§×´Ì¬
-#define	PARA_FP15_LOS	0x873e	//	¹â¿Ú15ÐÅºÅ¶ªÊ§×´Ì¬
-#define	PARA_FP16_LOS	0x873f	//	¹â¿Ú16ÐÅºÅ¶ªÊ§×´Ì¬
-#define	PARA_FP1_LOF	0x8780	//	¹â¿Ú1Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP2_LOF	0x8781	//	¹â¿Ú2Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP3_LOF	0x8782	//	¹â¿Ú3Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP4_LOF	0x8783	//	¹â¿Ú4Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP5_LOF	0x8784	//	¹â¿Ú5Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP6_LOF	0x8785	//	¹â¿Ú6Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP7_LOF	0x8786	//	¹â¿Ú7Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP8_LOF	0x8787	//	¹â¿Ú8Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP9_LOF	0x8788	//	¹â¿Ú9Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP10_LOF	0x8789	//	¹â¿Ú10Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP11_LOF	0x878a	//	¹â¿Ú11Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP12_LOF	0x878b	//	¹â¿Ú12Ö¡¶ªÊ§×´Ì¬	
-#define	PARA_FP13_LOF	0x878c	//	¹â¿Ú13Ö¡¶ªÊ§×´Ì¬
-#define	PARA_FP14_LOF	0x878d	//	¹â¿Ú14Ö¡¶ªÊ§×´Ì¬
-#define	PARA_FP15_LOF	0x878e	//	¹â¿Ú15Ö¡¶ªÊ§×´Ì¬
-#define	PARA_FP16_LOF	0x878f	//	¹â¿Ú16Ö¡¶ªÊ§×´Ì¬
-#define	PARA_OPT_LOF	0x87ad	//	Ö¡¶ªÊ§×´Ì¬
-#define	PARA_SERDES1_PLL_ST	0x8790	//	SerDesÐ¾Æ¬PLL×´Ì¬1	
-#define	PARA_SERDES2_PLL_ST	0x8791	//	SerDesÐ¾Æ¬PLL×´Ì¬2	
-#define	PARA_SERDES3_PLL_ST	0x8792	//	SerDesÐ¾Æ¬PLL×´Ì¬3	
-#define	PARA_SERDES4_PLL_ST	0x8793	//	SerDesÐ¾Æ¬PLL×´Ì¬4	
-#define	PARA_SERDES5_PLL_ST	0x8794	//	SerDesÐ¾Æ¬PLL×´Ì¬5	
-#define	PARA_SERDES6_PLL_ST	0x8795	//	SerDesÐ¾Æ¬PLL×´Ì¬6	
-#define	PARA_SERDES7_PLL_ST	0x8796	//	SerDesÐ¾Æ¬PLL×´Ì¬7	
-#define	PARA_SERDES8_PLL_ST	0x8797	//	SerDesÐ¾Æ¬PLL×´Ì¬8	
-#define	PARA_SERDES9_PLL_ST	0x8798	//	SerDesÐ¾Æ¬PLL×´Ì¬9	
-#define	PARA_SERDES10_PLL_ST	0x8799	//	SerDesÐ¾Æ¬PLL×´Ì¬10	
-#define	PARA_SERDES11_PLL_ST	0x879a	//	SerDesÐ¾Æ¬PLL×´Ì¬11	
-#define	PARA_SERDES12_PLL_ST	0x879b	//	SerDesÐ¾Æ¬PLL×´Ì¬12	
-#define	PARA_SERDES13_PLL_ST	0x879c	//	SerDesÐ¾Æ¬PLL×´Ì¬13
-#define	PARA_SERDES14_PLL_ST	0x879d	//	SerDesÐ¾Æ¬PLL×´Ì¬14
-#define	PARA_SERDES15_PLL_ST	0x879e	//	SerDesÐ¾Æ¬PLL×´Ì¬15
-#define	PARA_SERDES16_PLL_ST	0x879f	//	SerDesÐ¾Æ¬PLL×´Ì¬16
-#define	PARA_TOPO_CHG_ALM	0x87af	//	»·Â·×´Ì¬¸æ¾¯
-#define	PARA_BER_ALARM	0x87ae	//	ÎóÂëÂÊÆ«¸ß¸æ¾¯
-#define	PARA_LOAD_FPGA_ST	0x8854	//	¼ÓÔØFPGA×´Ì¬
-#define	PARA_FPGA_CLK_ST	0x8851	//	FPGA±¾Õñ×´Ì¬
-#define	PARA_INIT_CLK_ST	0	//	³õÊ¼»¯Ê±ÖÓ×´Ì¬
-#define	PARA_INIT_AD_ST	0	//	³õÊ¼»¯AD×´Ì¬
-#define	PARA_INIT_FB_AD_ST	0	//	³õÊ¼»¯·´À¡AD×´Ì¬
-#define	PARA_CLK_PLL_ST	0x884e	//	CLK PLL×´Ì¬
-#define	PARA_CLK_REF_ST	0x884f	//	CLK ²Î¿¼×´Ì¬
-#define	PARA_RE_NODE_MODE	0x889d	//	RE½ÚµãÄ£Ê½
-#define	PARA_BOARD_TEMP	0x8844	//	µ¥°åÎÂ¶È
-#define	PARA_CLK_VCO_VT	0	//	Ê±ÖÓVCOµçÑ¹
-#define	PARA_PWR_9V0_VT	0	//	9VµçÔ´µçÑ¹
-#define	PARA_PWR_5V5_VT	0	//	5.5VµçÔ´µçÑ¹
-#define	PARA_PWR_3V6_VT	0	//	3.6VµçÔ´µçÑ¹
-#define	PARA_PWR_1V2_VT	0	//	1.2VµçÔ´µçÑ¹
-#define	PARA_PWR_2V5_VT	0	//	1.2VµçÔ´µçÑ¹
-#define	PARA_PRI_PROTOCAL_V	0xf003	//	Ð­Òé°æ±¾
+// å‚æ•°åœ°å€å®šä¹‰==================================================== 1b								
+#define	PARA_A_CHANNEL_COUNT	0x8889	//	Aæ®µæ”¯æŒçš„é€šé“æ•°
+#define	PARA_A_DL_WORK_EN	0x08b1	//	Aæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_A_UL_WORK_EN	0x08b2	//	Aæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_A_DPOW_MODE	0	//	Aæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_A_UPOW_MODE	0	//	Aæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_A_LTHR_EN	0x0770	//	Aæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½
+#define	PARA_A_LTHR_UP	0	//	Aæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™
+#define	PARA_A_LTHR_DN	0x08b0	//	Aæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
+#define	PARA_A_DCH_EN1	0x08d0	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_A_DCH_EN2	0x08d1	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_A_DCH_EN3	0x08d2	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_A_DCH_EN4	0x08d3	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_A_DCH_EN5	0x08d4	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_A_DCH_EN6	0x08d5	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_A_DCH_EN7	0x08d6	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_A_DCH_EN8	0x08d7	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_A_DCH_EN9	0x08d8	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_A_DCH_EN10	0x08d9	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_A_DCH_EN11	0x08dA	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½11
+#define	PARA_A_DCH_EN12	0x08dB	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½12
+#define	PARA_A_DCH_EN13	0x08dC	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½13
+#define	PARA_A_DCH_EN14	0x08dD	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½14
+#define	PARA_A_DCH_EN15	0x08dE	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½15
+#define	PARA_A_DCH_EN16	0x08dF	//	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½16
+#define	PARA_A_UCH_EN1	0x08d0	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_A_UCH_EN2	0x08d1	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_A_UCH_EN3	0x08d2	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_A_UCH_EN4	0x08d3	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_A_UCH_EN5	0x08d4	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_A_UCH_EN6	0x08d5	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_A_UCH_EN7	0x08d6	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_A_UCH_EN8	0x08d7	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_A_UCH_EN9	0x08d8	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_A_UCH_EN10	0x08d9	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_A_UCH_EN11	0x08dA	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½11
+#define	PARA_A_UCH_EN12	0x08dB	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½12
+#define	PARA_A_UCH_EN13	0x08dC	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½13
+#define	PARA_A_UCH_EN14	0x08dD	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½14
+#define	PARA_A_UCH_EN15	0x08dE	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½15
+#define	PARA_A_UCH_EN16	0x08dF	//	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½16
+#define	PARA_A_DCH_GAIN1	0x0840	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_A_DCH_GAIN2	0x0841	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_A_DCH_GAIN3	0x0842	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_A_DCH_GAIN4	0x0843	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_A_DCH_GAIN5	0x0844	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_A_DCH_GAIN6	0x0845	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_A_DCH_GAIN7	0x0846	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_A_DCH_GAIN8	0x0847	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_A_DCH_GAIN9	0x0848	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_A_DCH_GAIN10	0x0849	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define	PARA_A_DCH_GAIN11	0x084A	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define	PARA_A_DCH_GAIN12	0x084B	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define	PARA_A_DCH_GAIN13	0x084C	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define	PARA_A_DCH_GAIN14	0x084D	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define	PARA_A_DCH_GAIN15	0x084E	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define	PARA_A_DCH_GAIN16	0x084F	//	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_A_UCH_GAIN1	0x0850	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_A_UCH_GAIN2	0x0851	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_A_UCH_GAIN3	0x0852	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_A_UCH_GAIN4	0x0853	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_A_UCH_GAIN5	0x0854	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_A_UCH_GAIN6	0x0855	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_A_UCH_GAIN7	0x0856	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_A_UCH_GAIN8	0x0857	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_A_UCH_GAIN9	0x0858	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_A_UCH_GAIN10	0x0859	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define	PARA_A_UCH_GAIN11	0x085A	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define	PARA_A_UCH_GAIN12	0x085B	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define	PARA_A_UCH_GAIN13	0x085C	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define	PARA_A_UCH_GAIN14	0x085D	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define	PARA_A_UCH_GAIN15	0x085E	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define	PARA_A_UCH_GAIN16	0x085F	//	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_A_DCH_ATT1	0x0324	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡1
+#define	PARA_A_DCH_ATT2	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡2
+#define	PARA_A_DCH_ATT3	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡3
+#define	PARA_A_DCH_ATT4	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡4
+#define	PARA_A_DCH_ATT5	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡5
+#define	PARA_A_DCH_ATT6	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡6
+#define	PARA_A_DCH_ATT7	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡7
+#define	PARA_A_DCH_ATT8	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡8
+#define	PARA_A_DCH_ATT9	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡9
+#define	PARA_A_DCH_ATT10	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡10
+#define	PARA_A_DCH_ATT11	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡11
+#define	PARA_A_DCH_ATT12	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡12
+#define	PARA_A_DCH_ATT13	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡13
+#define	PARA_A_DCH_ATT14	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡14
+#define	PARA_A_DCH_ATT15	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡15
+#define	PARA_A_DCH_ATT16	0	//	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡16
+#define	PARA_A_UCH_ATT1	0x0320	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡1
+#define	PARA_A_UCH_ATT2	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡2
+#define	PARA_A_UCH_ATT3	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡3
+#define	PARA_A_UCH_ATT4	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡4
+#define	PARA_A_UCH_ATT5	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡5
+#define	PARA_A_UCH_ATT6	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡6
+#define	PARA_A_UCH_ATT7	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡7
+#define	PARA_A_UCH_ATT8	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡8
+#define	PARA_A_UCH_ATT9	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡9
+#define	PARA_A_UCH_ATT10	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡10
+#define	PARA_A_UCH_ATT11	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡11
+#define	PARA_A_UCH_ATT12	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡12
+#define	PARA_A_UCH_ATT13	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡13
+#define	PARA_A_UCH_ATT14	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡14
+#define	PARA_A_UCH_ATT15	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡15
+#define	PARA_A_UCH_ATT16	0	//	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡16
+#define	PARA_A_DL_PA_GAIN	0	//	Aæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_A_UL_PA_GAIN	0	//	Aæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_A_TX_PLL_ST	0x8308	//	Aæ®µä¸‹è¡ŒPLLçŠ¶æ€,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_A_RX_PLL_ST	0x8300	//	Aæ®µä¸Šè¡ŒPLLçŠ¶æ€,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_A_INIT_DA_ST	0	//	åˆå§‹åŒ–Aæ®µDAçŠ¶æ€,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸
+#define	PARA_A_BB_PLL_LOCK	0	//	Aæ®µBB PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_A_FSAT		0	//	Aæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€
+#define	PARA_A_DSAT		0	//	Aæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€
+#define	PARA_A_PA_VG_EN	0	//	Aæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+#define	PARA_A_PA_VT	0	//	Aæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º
+#define	PARA_A_Modulator_EN	0	//	Aæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+#define	PARA_A_LNA_VT	0	//	Aæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹
+#define	PARA_A_LNA1_ST		0x8214	//	ä¸Šè¡ŒLNA1çŠ¶æ€
+#define	PARA_A_LNA2_ST		0x8215	//	ä¸Šè¡ŒLNA2çŠ¶æ€
+#define	PARA_A_BUSY_TIME	0x8892	//	Aæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡
+#define	PARA_A_PRI_ADD 	0xf002	//	Aæ®µæ¨¡å—åœ°å€(åœ¨è™¹ä¿¡åè®®ä¸­ï¼Œé«˜å››ä½ä¸ºä¸Šè¡Œåœ°å€ï¼Œä½Žå››ä½ä¸ºä¸‹è¡Œåœ°å€)
+#define	PARA_A_UL_POW_1B	0x831e	//	Aæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_A_DL_POW_1B	0x8390	//	Aæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_A_DCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸‹è¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸‹è¡Œè¡°å‡é‡ åœ¨rf
+#define 	PARA_A_UCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡ åœ¨rf
+#define	PARA_B_CHANNEL_COUNT	0x8889	//	Bæ®µæ”¯æŒçš„é€šé“æ•°
+#define	PARA_B_DL_WORK_EN	0x08b1	//	Bæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_B_UL_WORK_EN	0x08b2	//	Bæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_B_DPOW_MODE	0	//	Bæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_B_UPOW_MODE	0	//	Bæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_B_LTHR_EN		0x0770	//	Bæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½
+#define	PARA_B_LTHR_UP		0	//	Bæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™
+#define	PARA_B_LTHR_DN		0x08b0	//	Bæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
+#define	PARA_B_DCH_EN1		0x08d0	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_B_DCH_EN2		0x08d1	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_B_DCH_EN3		0x08d2	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_B_DCH_EN4		0x08d3	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_B_DCH_EN5		0x08d4	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_B_DCH_EN6		0x08d5	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_B_DCH_EN7		0x08d6	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_B_DCH_EN8		0x08d7	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_B_DCH_EN9		0x08d8	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_B_DCH_EN10		0x08d9	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_B_DCH_EN11		0x08dA	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½11
+#define	PARA_B_DCH_EN12		0x08dB	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½12
+#define	PARA_B_DCH_EN13		0x08dC	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½13
+#define	PARA_B_DCH_EN14		0x08dD	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½14
+#define	PARA_B_DCH_EN15		0x08dE	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½15
+#define	PARA_B_DCH_EN16		0x08dF	//	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½16
+#define	PARA_B_UCH_EN1		0x08d0	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_B_UCH_EN2		0x08d1	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_B_UCH_EN3		0x08d2	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_B_UCH_EN4		0x08d3	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_B_UCH_EN5		0x08d4	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_B_UCH_EN6		0x08d5	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_B_UCH_EN7		0x08d6	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_B_UCH_EN8		0x08d7	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_B_UCH_EN9		0x08d8	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_B_UCH_EN10		0x08d9	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_B_UCH_EN11		0x08dA	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½11
+#define	PARA_B_UCH_EN12		0x08dB	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½12
+#define	PARA_B_UCH_EN13		0x08dC	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½13
+#define	PARA_B_UCH_EN14		0x08dD	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½14
+#define	PARA_B_UCH_EN15		0x08dE	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½15
+#define	PARA_B_UCH_EN16		0x08dF	//	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½16
+#define	PARA_B_DCH_GAIN1	0x0840	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_B_DCH_GAIN2	0x0841	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_B_DCH_GAIN3	0x0842	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_B_DCH_GAIN4	0x0843	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_B_DCH_GAIN5	0x0844	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_B_DCH_GAIN6	0x0845	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_B_DCH_GAIN7	0x0846	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_B_DCH_GAIN8	0x0847	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_B_DCH_GAIN9	0x0848	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_B_DCH_GAIN10	0x0849	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define	PARA_B_DCH_GAIN11	0x084A	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define	PARA_B_DCH_GAIN12	0x084B	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define	PARA_B_DCH_GAIN13	0x084C	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define	PARA_B_DCH_GAIN14	0x084D	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define	PARA_B_DCH_GAIN15	0x084E	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define	PARA_B_DCH_GAIN16	0x084F	//	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_B_UCH_GAIN1	0x0850	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_B_UCH_GAIN2	0x0851	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_B_UCH_GAIN3	0x0852	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_B_UCH_GAIN4	0x0853	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_B_UCH_GAIN5	0x0854	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_B_UCH_GAIN6	0x0855	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_B_UCH_GAIN7	0x0856	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_B_UCH_GAIN8	0x0857	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_B_UCH_GAIN9	0x0858	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_B_UCH_GAIN10	0x0859	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define	PARA_B_UCH_GAIN11	0x085A	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define	PARA_B_UCH_GAIN12	0x085B	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define	PARA_B_UCH_GAIN13	0x085C	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define	PARA_B_UCH_GAIN14	0x085D	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define	PARA_B_UCH_GAIN15	0x085E	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define	PARA_B_UCH_GAIN16	0x085F	//	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_B_DCH_ATT1		0x0324	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡1
+#define	PARA_B_DCH_ATT2		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡2
+#define	PARA_B_DCH_ATT3		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡3
+#define	PARA_B_DCH_ATT4		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡4
+#define	PARA_B_DCH_ATT5		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡5
+#define	PARA_B_DCH_ATT6		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡6
+#define	PARA_B_DCH_ATT7		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡7
+#define	PARA_B_DCH_ATT8		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡8
+#define	PARA_B_DCH_ATT9		0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡9
+#define	PARA_B_DCH_ATT10	0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡10
+#define	PARA_B_DCH_ATT11	0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡11
+#define	PARA_B_DCH_ATT12	0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡12
+#define	PARA_B_DCH_ATT13	0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡13
+#define	PARA_B_DCH_ATT14	0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡14
+#define	PARA_B_DCH_ATT15	0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡15
+#define	PARA_B_DCH_ATT16	0	//	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡16
+#define	PARA_B_UCH_ATT1		0//0x0320	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡1
+#define	PARA_B_UCH_ATT2		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡2
+#define	PARA_B_UCH_ATT3		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡3
+#define	PARA_B_UCH_ATT4		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡4
+#define	PARA_B_UCH_ATT5		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡5
+#define	PARA_B_UCH_ATT6		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡6
+#define	PARA_B_UCH_ATT7		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡7
+#define	PARA_B_UCH_ATT8		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡8
+#define	PARA_B_UCH_ATT9		0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡9
+#define	PARA_B_UCH_ATT10	0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡10
+#define	PARA_B_UCH_ATT11	0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡11
+#define	PARA_B_UCH_ATT12	0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡12
+#define	PARA_B_UCH_ATT13	0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡13
+#define	PARA_B_UCH_ATT14	0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡14
+#define	PARA_B_UCH_ATT15	0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡15
+#define	PARA_B_UCH_ATT16	0	//	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡16
+#define	PARA_B_DL_PA_GAIN	0	//	Bæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_B_UL_PA_GAIN	0	//	Bæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_B_TX_PLL_ST	0x8308	//	Bæ®µä¸‹è¡ŒPLLçŠ¶æ€,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_B_RX_PLL_ST	0x8300	//	Bæ®µä¸Šè¡ŒPLLçŠ¶æ€,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_B_INIT_DA_ST	0	//	åˆå§‹åŒ–Bæ®µDAçŠ¶æ€,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸
+#define	PARA_B_BB_PLL_LOCK	0	//	Bæ®µBB PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_B_FSAT		0	//	Bæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€
+#define	PARA_B_DSAT		0	//	Bæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€
+#define	PARA_B_PA_VG_EN	0	//	Bæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+#define	PARA_B_PA_VT	0	//	Bæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º
+#define	PARA_B_Modulator_EN	0	//	Bæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+#define	PARA_B_LNA_VT	0	//	Bæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹
+#define	PARA_B_LNA1_ST		0x8214	//	ä¸Šè¡ŒLNA1çŠ¶æ€
+#define	PARA_B_LNA2_ST		0x8215	//	ä¸Šè¡ŒLNA2çŠ¶æ€
+#define	PARA_B_BUSY_TIME	0x8892	//	Bæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡
+#define	PARA_B_PRI_ADD 		0xf002	//	Bæ®µæ¨¡å—åœ°å€(åœ¨è™¹ä¿¡åè®®ä¸­ï¼Œé«˜å››ä½ä¸ºä¸Šè¡Œåœ°å€ï¼Œä½Žå››ä½ä¸ºä¸‹è¡Œåœ°å€)
+#define	PARA_B_UL_POW_1B	0x831e	//	Bæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_B_DL_POW_1B	0x8390	//	Bæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_B_DCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸‹è¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸‹è¡Œè¡°å‡é‡ åœ¨rf
+#define 	PARA_B_UCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡  åœ¨rf
+#define	PARA_C_CHANNEL_COUNT	0x8889	//	Cæ®µæ”¯æŒçš„é€šé“æ•°
+#define	PARA_C_DL_WORK_EN	0x08b1	//	Cæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_C_UL_WORK_EN	0x08b2	//	Cæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_C_DPOW_MODE	0	//	Cæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_C_UPOW_MODE	0	//	Cæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_C_LTHR_EN		0x0770	//	Cæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½
+#define	PARA_C_LTHR_UP		0	//	Cæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™
+#define	PARA_C_LTHR_DN		0x08b0	//	Cæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
+#define	PARA_C_DCH_EN1		0x08d0	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_C_DCH_EN2		0x08d1	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_C_DCH_EN3		0x08d2	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_C_DCH_EN4		0x08d3	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_C_DCH_EN5		0x08d4	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_C_DCH_EN6		0x08d5	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_C_DCH_EN7		0x08d6	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_C_DCH_EN8		0x08d7	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_C_DCH_EN9		0x08d8	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_C_DCH_EN10		0x08d9	//	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_C_UCH_EN1		0x08d0	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_C_UCH_EN2		0x08d1	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_C_UCH_EN3		0x08d2	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_C_UCH_EN4		0x08d3	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_C_UCH_EN5		0x08d4	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_C_UCH_EN6		0x08d5	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_C_UCH_EN7		0x08d6	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_C_UCH_EN8		0x08d7	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_C_UCH_EN9		0x08d8	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_C_UCH_EN10		0x08d9	//	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_C_DCH_GAIN1	0x0840	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_C_DCH_GAIN2	0x0841	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_C_DCH_GAIN3	0x0842	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_C_DCH_GAIN4	0x0843	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_C_DCH_GAIN5	0x0844	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_C_DCH_GAIN6	0x0845	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_C_DCH_GAIN7	0x0846	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_C_DCH_GAIN8	0x0847	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_C_DCH_GAIN9	0x0848	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_C_DCH_GAIN10	0x0849	//	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define 	PARA_C_DCH_GAIN11 	0	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define 	PARA_C_DCH_GAIN12 	0	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define 	PARA_C_DCH_GAIN13 	0	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define 	PARA_C_DCH_GAIN14 	0	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define 	PARA_C_DCH_GAIN15 	0	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define 	PARA_C_DCH_GAIN16 	0	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_C_UCH_GAIN1	0x0850	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_C_UCH_GAIN2	0x0851	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_C_UCH_GAIN3	0x0852	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_C_UCH_GAIN4	0x0853	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_C_UCH_GAIN5	0x0854	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_C_UCH_GAIN6	0x0855	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_C_UCH_GAIN7	0x0856	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_C_UCH_GAIN8	0x0857	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_C_UCH_GAIN9	0x0858	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_C_UCH_GAIN10	0x0859	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define	PARA_C_UCH_GAIN11	0	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define	PARA_C_UCH_GAIN12	0	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define	PARA_C_UCH_GAIN13	0	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define	PARA_C_UCH_GAIN14	0	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define	PARA_C_UCH_GAIN15	0	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define	PARA_C_UCH_GAIN16	0	//	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_C_DCH_ATT1		0x0324	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡1
+#define	PARA_C_DCH_ATT2		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡2
+#define	PARA_C_DCH_ATT3		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡3
+#define	PARA_C_DCH_ATT4		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡4
+#define	PARA_C_DCH_ATT5		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡5
+#define	PARA_C_DCH_ATT6		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡6
+#define	PARA_C_DCH_ATT7		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡7
+#define	PARA_C_DCH_ATT8		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡8
+#define	PARA_C_DCH_ATT9		0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡9
+#define	PARA_C_DCH_ATT10	0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡10
+#define	PARA_C_DCH_ATT11	0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡11
+#define	PARA_C_DCH_ATT12	0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡12
+#define	PARA_C_DCH_ATT13	0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡13
+#define	PARA_C_DCH_ATT14	0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡14
+#define	PARA_C_DCH_ATT15	0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡15
+#define	PARA_C_DCH_ATT16	0	//	Cæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡16
+#define	PARA_C_UCH_ATT1		0//0x0320	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡1
+#define	PARA_C_UCH_ATT2		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡2
+#define	PARA_C_UCH_ATT3		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡3
+#define	PARA_C_UCH_ATT4		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡4
+#define	PARA_C_UCH_ATT5		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡5
+#define	PARA_C_UCH_ATT6		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡6
+#define	PARA_C_UCH_ATT7		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡7
+#define	PARA_C_UCH_ATT8		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡8
+#define	PARA_C_UCH_ATT9		0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡9
+#define	PARA_C_UCH_ATT10	0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡10
+#define	PARA_C_UCH_ATT11	0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡11
+#define	PARA_C_UCH_ATT12	0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡12
+#define	PARA_C_UCH_ATT13	0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡13
+#define	PARA_C_UCH_ATT14	0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡14
+#define	PARA_C_UCH_ATT15	0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡15
+#define	PARA_C_UCH_ATT16	0	//	Cæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡16
+#define	PARA_C_DL_PA_GAIN	0	//	Cæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_C_UL_PA_GAIN	0	//	Cæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_C_TX_PLL_ST	0x8308	//	Cæ®µä¸‹è¡ŒPLLçŠ¶æ€,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_C_RX_PLL_ST	0x8300	//	Cæ®µä¸Šè¡ŒPLLçŠ¶æ€,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_C_INIT_DA_ST	0	//	Cåˆå§‹åŒ–Bæ®µDAçŠ¶æ€,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸
+#define	PARA_C_BB_PLL_LOCK	0	//	Cæ®µBB PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_C_FSAT		0	//	Cæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€
+#define	PARA_C_DSAT		0	//	Cæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€
+#define	PARA_C_PA_VG_EN	0	//	Cæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+#define	PARA_C_PA_VT	0	//	Cæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º
+#define	PARA_C_Modulator_EN	0	//	Cæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+#define	PARA_C_LNA_VT	0	//	Cæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹
+#define	PARA_C_LNA1_ST		0x8214	//	Cä¸Šè¡ŒLNA1çŠ¶æ€
+#define	PARA_C_LNA2_ST		0x8215	//	Cä¸Šè¡ŒLNA2çŠ¶æ€
+#define	PARA_C_BUSY_TIME	0x8892	//	Cæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡
+#define	PARA_C_PRI_ADD 		0xf002	//	Cæ®µæ¨¡å—åœ°å€(åœ¨è™¹ä¿¡åè®®ä¸­ï¼Œé«˜å››ä½ä¸ºä¸Šè¡Œåœ°å€ï¼Œä½Žå››ä½ä¸ºä¸‹è¡Œåœ°å€)
+#define	PARA_C_UL_POW_1B	0x831e	//	Cæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_C_DL_POW_1B	0x8390	//	Cæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_C_DCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸‹è¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸‹è¡Œè¡°å‡é‡ åœ¨rf
+#define 	PARA_C_UCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡  åœ¨rf
+#define	PARA_D_CHANNEL_COUNT	0x8889	//	Dæ®µæ”¯æŒçš„é€šé“æ•°
+#define	PARA_D_DL_WORK_EN	0x08b1	//	Dæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_D_UL_WORK_EN	0x08b2	//	Dæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½
+#define	PARA_D_DPOW_MODE	0	//	Dæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_D_UPOW_MODE	0	//	Dæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define	PARA_D_LTHR_EN		0x0770	//	Dæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½
+#define	PARA_D_LTHR_UP		0	//	Dæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™
+#define	PARA_D_LTHR_DN		0x08b0	//	Dæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
+#define	PARA_D_DCH_EN1		0x08d0	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_D_DCH_EN2		0x08d1	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_D_DCH_EN3		0x08d2	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_D_DCH_EN4		0x08d3	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_D_DCH_EN5		0x08d4	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_D_DCH_EN6		0x08d5	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_D_DCH_EN7		0x08d6	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_D_DCH_EN8		0x08d7	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_D_DCH_EN9		0x08d8	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_D_DCH_EN10	0x08d9	//	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_D_UCH_EN1		0x08d0	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define	PARA_D_UCH_EN2		0x08d1	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define	PARA_D_UCH_EN3		0x08d2	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define	PARA_D_UCH_EN4		0x08d3	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define	PARA_D_UCH_EN5		0x08d4	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define	PARA_D_UCH_EN6		0x08d5	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define	PARA_D_UCH_EN7		0x08d6	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define	PARA_D_UCH_EN8		0x08d7	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define	PARA_D_UCH_EN9		0x08d8	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define	PARA_D_UCH_EN10	0x08d9	//	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define	PARA_D_DCH_GAIN1	0x0840	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_D_DCH_GAIN2	0x0841	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_D_DCH_GAIN3	0x0842	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_D_DCH_GAIN4	0x0843	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_D_DCH_GAIN5	0x0844	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_D_DCH_GAIN6	0x0845	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_D_DCH_GAIN7	0x0846	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_D_DCH_GAIN8	0x0847	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_D_DCH_GAIN9	0x0848	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_D_DCH_GAIN10	0x0849	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define	PARA_D_DCH_GAIN11	0	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define	PARA_D_DCH_GAIN12	0	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define	PARA_D_DCH_GAIN13	0	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define	PARA_D_DCH_GAIN14	0	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define	PARA_D_DCH_GAIN15	0	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define	PARA_D_DCH_GAIN16	0	//	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_D_UCH_GAIN1	0x0850	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define	PARA_D_UCH_GAIN2	0x0851	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define	PARA_D_UCH_GAIN3	0x0852	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define	PARA_D_UCH_GAIN4	0x0853	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define	PARA_D_UCH_GAIN5	0x0854	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define	PARA_D_UCH_GAIN6	0x0855	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define	PARA_D_UCH_GAIN7	0x0856	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define	PARA_D_UCH_GAIN8	0x0857	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define	PARA_D_UCH_GAIN9	0x0858	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define	PARA_D_UCH_GAIN10	0x0859	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define	PARA_D_UCH_GAIN11	0	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define	PARA_D_UCH_GAIN12	0	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define	PARA_D_UCH_GAIN13	0	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define	PARA_D_UCH_GAIN14	0	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define	PARA_D_UCH_GAIN15	0	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define	PARA_D_UCH_GAIN16	0	//	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define	PARA_D_DCH_ATT1		0x0324	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡1
+#define	PARA_D_DCH_ATT2		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡2
+#define	PARA_D_DCH_ATT3		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡3
+#define	PARA_D_DCH_ATT4		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡4
+#define	PARA_D_DCH_ATT5		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡5
+#define	PARA_D_DCH_ATT6		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡6
+#define	PARA_D_DCH_ATT7		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡7
+#define	PARA_D_DCH_ATT8		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡8
+#define	PARA_D_DCH_ATT9		0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡9
+#define	PARA_D_DCH_ATT10	0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡10
+#define	PARA_D_DCH_ATT11	0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡11
+#define	PARA_D_DCH_ATT12	0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡12
+#define	PARA_D_DCH_ATT13	0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡13
+#define	PARA_D_DCH_ATT14	0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡14
+#define	PARA_D_DCH_ATT15	0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡15
+#define	PARA_D_DCH_ATT16	0	//	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡16
+#define	PARA_D_UCH_ATT1		0//0x0320	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡1
+#define	PARA_D_UCH_ATT2		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡2
+#define	PARA_D_UCH_ATT3		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡3
+#define	PARA_D_UCH_ATT4		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡4
+#define	PARA_D_UCH_ATT5		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡5
+#define	PARA_D_UCH_ATT6		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡6
+#define	PARA_D_UCH_ATT7		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡7
+#define	PARA_D_UCH_ATT8		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡8
+#define	PARA_D_UCH_ATT9		0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡9
+#define	PARA_D_UCH_ATT10	0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡10
+#define	PARA_D_UCH_ATT11	0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡11
+#define	PARA_D_UCH_ATT12	0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡12
+#define	PARA_D_UCH_ATT13	0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡13
+#define	PARA_D_UCH_ATT14	0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡14
+#define	PARA_D_UCH_ATT15	0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡15
+#define	PARA_D_UCH_ATT16	0	//	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡16
+#define	PARA_D_DL_PA_GAIN	0	//	Dæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_D_UL_PA_GAIN	0	//	Dæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š
+#define	PARA_D_TX_PLL_ST	0x8308	//	Dæ®µä¸‹è¡ŒPLLçŠ¶æ€,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_D_RX_PLL_ST	0x8300	//	Dæ®µä¸Šè¡ŒPLLçŠ¶æ€,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_D_INIT_DA_ST	0	//	Dåˆå§‹åŒ–Bæ®µDAçŠ¶æ€,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸
+#define	PARA_D_BB_PLL_LOCK	0	//	Dæ®µBB PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+#define	PARA_D_FSAT		0	//	Dæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€
+#define	PARA_D_DSAT		0	//	Dæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€
+#define	PARA_D_PA_VG_EN	0	//	Dæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+#define	PARA_D_PA_VT	0	//	Dæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º
+#define	PARA_D_Modulator_EN	0	//	Dæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+#define	PARA_D_LNA_VT	0	//	Dæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹
+#define	PARA_D_LNA1_ST		0x8214	//	Dä¸Šè¡ŒLNA1çŠ¶æ€
+#define	PARA_D_LNA2_ST		0x8215	//	Dä¸Šè¡ŒLNA2çŠ¶æ€
+#define	PARA_D_BUSY_TIME	0x8892	//	Dæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡
+#define	PARA_D_PRI_ADD 		0xf002	//	Dæ®µæ¨¡å—åœ°å€(åœ¨è™¹ä¿¡åè®®ä¸­ï¼Œé«˜å››ä½ä¸ºä¸Šè¡Œåœ°å€ï¼Œä½Žå››ä½ä¸ºä¸‹è¡Œåœ°å€)
+#define	PARA_D_UL_POW_1B	0x831e	//	Dæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_D_DL_POW_1B	0x8390	//	Dæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define 	PARA_D_DCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸‹è¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸‹è¡Œè¡°å‡é‡ åœ¨rf
+#define 	PARA_D_UCH_REC_RF_ATT1          0     //// RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡  åœ¨rf
+#define	PARA_FP1_EN	0x0927	//	å…‰å£å‘é€ä½¿èƒ½1
+#define	PARA_FP2_EN	0x0928	//	å…‰å£å‘é€ä½¿èƒ½2
+#define	PARA_FP3_EN	0x0929	//	å…‰å£å‘é€ä½¿èƒ½3
+#define	PARA_FP4_EN	0x092A	//	å…‰å£å‘é€ä½¿èƒ½4
+#define	PARA_FP5_EN	0x092B	//	å…‰å£å‘é€ä½¿èƒ½5
+#define	PARA_FP6_EN	0x092C	//	å…‰å£å‘é€ä½¿èƒ½6
+#define	PARA_FP7_EN	0x092D	//	å…‰å£å‘é€ä½¿èƒ½7
+#define	PARA_FP8_EN	0x092E	//	å…‰å£å‘é€ä½¿èƒ½8
+#define	PARA_FP9_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½9
+#define	PARA_FP10_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½10
+#define	PARA_FP11_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½11
+#define	PARA_FP12_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½12
+#define	PARA_FP13_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½13
+#define	PARA_FP14_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½14
+#define	PARA_FP15_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½15
+#define	PARA_FP16_EN	0x0	//	å…‰å£å‘é€ä½¿èƒ½16
+#define	PARA_FP1_ON_POS	0x8560	//	å…‰å£åœ¨ä½çŠ¶æ€1, 0-åœ¨ä½	
+#define	PARA_FP2_ON_POS	0x8561	//	å…‰å£åœ¨ä½çŠ¶æ€2, 0-åœ¨ä½	
+#define	PARA_FP3_ON_POS	0x8562	//	å…‰å£åœ¨ä½çŠ¶æ€3, 0-åœ¨ä½	
+#define	PARA_FP4_ON_POS	0x8563	//	å…‰å£åœ¨ä½çŠ¶æ€4, 0-åœ¨ä½	
+#define	PARA_FP5_ON_POS	0x8564	//	å…‰å£åœ¨ä½çŠ¶æ€5, 0-åœ¨ä½	
+#define	PARA_FP6_ON_POS	0x8565	//	å…‰å£åœ¨ä½çŠ¶æ€6, 0-åœ¨ä½	
+#define	PARA_FP7_ON_POS	0x8566	//	å…‰å£åœ¨ä½çŠ¶æ€7, 0-åœ¨ä½	
+#define	PARA_FP8_ON_POS	0x8567	//	å…‰å£åœ¨ä½çŠ¶æ€8, 0-åœ¨ä½	
+#define	PARA_FP9_ON_POS	0x8568	//	å…‰å£åœ¨ä½çŠ¶æ€9, 0-åœ¨ä½	
+#define	PARA_FP10_ON_POS	0x8569	//	å…‰å£åœ¨ä½çŠ¶æ€10, 0-åœ¨ä½	
+#define	PARA_FP11_ON_POS	0x856a	//	å…‰å£åœ¨ä½çŠ¶æ€11, 0-åœ¨ä½	
+#define	PARA_FP12_ON_POS	0x856b	//	å…‰å£åœ¨ä½çŠ¶æ€12, 0-åœ¨ä½	
+#define	PARA_FP13_ON_POS	0x856c	//	å…‰å£åœ¨ä½çŠ¶æ€13, 0-åœ¨ä½	
+#define	PARA_FP14_ON_POS	0x856d	//	å…‰å£åœ¨ä½çŠ¶æ€14, 0-åœ¨ä½
+#define	PARA_FP15_ON_POS	0x856e	//	å…‰å£åœ¨ä½çŠ¶æ€15, 0-åœ¨ä½
+#define	PARA_FP16_ON_POS	0x856f	//	å…‰å£åœ¨ä½çŠ¶æ€16, 0-åœ¨ä½
+#define	PARA_FP1_LOS	0x8730	//	å…‰å£1ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP2_LOS	0x8731	//	å…‰å£2ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP3_LOS	0x8732	//	å…‰å£3ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP4_LOS	0x8733	//	å…‰å£4ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP5_LOS	0x8734	//	å…‰å£5ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP6_LOS	0x8735	//	å…‰å£6ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP7_LOS	0x8736	//	å…‰å£7ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP8_LOS	0x8737	//	å…‰å£8ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP9_LOS	0x8738	//	å…‰å£9ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP10_LOS	0x8739	//	å…‰å£10ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP11_LOS	0x873a	//	å…‰å£11ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP12_LOS	0x873b	//	å…‰å£12ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP13_LOS	0x873c	//	å…‰å£13ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP14_LOS	0x873d	//	å…‰å£14ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP15_LOS	0x873e	//	å…‰å£15ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP16_LOS	0x873f	//	å…‰å£16ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP1_LOF	0x8780	//	å…‰å£1å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP2_LOF	0x8781	//	å…‰å£2å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP3_LOF	0x8782	//	å…‰å£3å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP4_LOF	0x8783	//	å…‰å£4å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP5_LOF	0x8784	//	å…‰å£5å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP6_LOF	0x8785	//	å…‰å£6å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP7_LOF	0x8786	//	å…‰å£7å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP8_LOF	0x8787	//	å…‰å£8å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP9_LOF	0x8788	//	å…‰å£9å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP10_LOF	0x8789	//	å…‰å£10å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP11_LOF	0x878a	//	å…‰å£11å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP12_LOF	0x878b	//	å…‰å£12å¸§ä¸¢å¤±çŠ¶æ€	
+#define	PARA_FP13_LOF	0x878c	//	å…‰å£13å¸§ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP14_LOF	0x878d	//	å…‰å£14å¸§ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP15_LOF	0x878e	//	å…‰å£15å¸§ä¸¢å¤±çŠ¶æ€
+#define	PARA_FP16_LOF	0x878f	//	å…‰å£16å¸§ä¸¢å¤±çŠ¶æ€
+#define	PARA_OPT_LOF	0x87ad	//	å¸§ä¸¢å¤±çŠ¶æ€
+#define	PARA_SERDES1_PLL_ST	0x8790	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€1	
+#define	PARA_SERDES2_PLL_ST	0x8791	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€2	
+#define	PARA_SERDES3_PLL_ST	0x8792	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€3	
+#define	PARA_SERDES4_PLL_ST	0x8793	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€4	
+#define	PARA_SERDES5_PLL_ST	0x8794	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€5	
+#define	PARA_SERDES6_PLL_ST	0x8795	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€6	
+#define	PARA_SERDES7_PLL_ST	0x8796	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€7	
+#define	PARA_SERDES8_PLL_ST	0x8797	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€8	
+#define	PARA_SERDES9_PLL_ST	0x8798	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€9	
+#define	PARA_SERDES10_PLL_ST	0x8799	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€10	
+#define	PARA_SERDES11_PLL_ST	0x879a	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€11	
+#define	PARA_SERDES12_PLL_ST	0x879b	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€12	
+#define	PARA_SERDES13_PLL_ST	0x879c	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€13
+#define	PARA_SERDES14_PLL_ST	0x879d	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€14
+#define	PARA_SERDES15_PLL_ST	0x879e	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€15
+#define	PARA_SERDES16_PLL_ST	0x879f	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€16
+#define	PARA_TOPO_CHG_ALM	0x87af	//	çŽ¯è·¯çŠ¶æ€å‘Šè­¦
+#define	PARA_BER_ALARM	0x87ae	//	è¯¯ç çŽ‡åé«˜å‘Šè­¦
+#define	PARA_LOAD_FPGA_ST	0x8854	//	åŠ è½½FPGAçŠ¶æ€
+#define	PARA_FPGA_CLK_ST	0x8851	//	FPGAæœ¬æŒ¯çŠ¶æ€
+#define	PARA_INIT_CLK_ST	0	//	åˆå§‹åŒ–æ—¶é’ŸçŠ¶æ€
+#define	PARA_INIT_AD_ST	0	//	åˆå§‹åŒ–ADçŠ¶æ€
+#define	PARA_INIT_FB_AD_ST	0	//	åˆå§‹åŒ–åé¦ˆADçŠ¶æ€
+#define	PARA_CLK_PLL_ST	0x884e	//	CLK PLLçŠ¶æ€
+#define	PARA_CLK_REF_ST	0x884f	//	CLK å‚è€ƒçŠ¶æ€
+#define	PARA_RE_NODE_MODE	0x889d	//	REèŠ‚ç‚¹æ¨¡å¼
+#define	PARA_BOARD_TEMP	0x8844	//	å•æ¿æ¸©åº¦
+#define	PARA_CLK_VCO_VT	0	//	æ—¶é’ŸVCOç”µåŽ‹
+#define	PARA_PWR_9V0_VT	0	//	9Vç”µæºç”µåŽ‹
+#define	PARA_PWR_5V5_VT	0	//	5.5Vç”µæºç”µåŽ‹
+#define	PARA_PWR_3V6_VT	0	//	3.6Vç”µæºç”µåŽ‹
+#define	PARA_PWR_1V2_VT	0	//	1.2Vç”µæºç”µåŽ‹
+#define	PARA_PWR_2V5_VT	0	//	1.2Vç”µæºç”µåŽ‹
+#define	PARA_PRI_PROTOCAL_V	0xf003	//	åè®®ç‰ˆæœ¬
 #define	PARA_MODULE_HRI_ID	0	//	ID
-#define 	PARA_WORK_ERROR	0	// ÏµÍ³¹¤×÷×´Ì¬£¬1-ÓÐ¹ÊÕÏ
-#define 	PARA_TRAFFIC_END	0x88ac	// »°ÎñÁ¿Í³¼Æ½áÊø±êÖ¾
-#define 	PARA_DELAY_MODE	0x098e	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯
-#define	PARA_TD_SYNC_ST			0x7620		// TDÍ¬²½×´Ì¬: 1-ÒÑÍ¬²½£¬0-Î´Í¬²½
-#define	PARA_TD_WORK_MODE 		0x08ac	// [WR]TD:TD_SCDMA¿ØÖÆÄ£Ê½£¬00Õý³£Ä£Ê½£¬01ÉÏÐÐ³£¿ª£¬10ÊÇÏÂÐÐ³£¿ª, Ã¿´ÎÉÏµçºóÇåÁã			
-#define 	PARA_TD_T0_UD		0x08a0	// TDÊ±Ï¶0ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_TD_T1_UD		0x08a1	// TDÊ±Ï¶1ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_TD_T2_UD		0x08a2	// TDÊ±Ï¶2ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_TD_T3_UD		0x08a3	// TDÊ±Ï¶3ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_TD_T4_UD		0x08a4	// TDÊ±Ï¶4ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_TD_T5_UD		0x08a5	// TDÊ±Ï¶5ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_TD_T6_UD		0x08a6	// TDÊ±Ï¶6ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define	PARA_POWERUP_ST		0x8852	// 	Êý×Ö°åÉÏµç×´Ì¬,Ã¿´ÎÆô¶¯Ê±ÖÃ1
-#define	PARA_LOW_POWER			0x88ff//0x08ad	//	µÍ¹¦ºÄÄ£Ê½:1-µÍ¹¦ºÄ;	0-Õý³£		¹úÈË x0778   ÓÉÈí¼þ³õÊ¼»¯£¬´ËºêÖ»×÷Îª²Î¿¼
-#define 	PARA_THR_PORT		0		// 	Í¸´«¶Ë¿ÚÑ¡Ôñ0-485B, 1-RS232
-#define	PARA_THR_BAUD		0		//	Í¸´«¶Ë¿Ú²¨ÌØÂÊ 0-9600, 1-19200, 2-38400, 4-57600, 5-115200
-#define	PARA_CTRL_BAUD	0		//	¿ØÖÆ¶Ë¿Ú²¨ÌØÂÊ 0-9600, 1-19200, 2-38400, 4-57600, 5-115200
-#define	PARA_WLAN_CONN_ST1		0x87b2	// WLAN¿Ú×´Ì¬1: 0-Õý³££¬1-Òì³£
-#define	PARA_WLAN_CONN_ST2		0x87b3	// WLAN¿Ú×´Ì¬2: 0-Õý³££¬1-Òì³£
-#define	PARA_WLAN_CONN_ST3		0x87b4	// WLAN¿Ú×´Ì¬3: 0-Õý³££¬1-Òì³£
-#define	PARA_WLAN_CONN_ST4		0x87b7	// WLAN¿Ú×´Ì¬4: 0-Õý³££¬1-Òì³£
-#define	PARA_WLAN_SPEED1			0x87b8	// WLAN¿ÚËÙ¶È1: 0£º10M  1£º100M  2£º1000M
-#define	PARA_WLAN_SPEED2			0x87b9		// WLAN¿ÚËÙ¶È1: 0£º10M  1£º100M  2£º1000M
-#define	PARA_WLAN_SPEED3			0x87ba		// WLAN¿ÚËÙ¶È1: 0£º10M  1£º100M  2£º1000M
-#define	PARA_WLAN_SPEED4			0x87bb		// WLAN¿ÚËÙ¶È1: 0£º10M  1£º100M  2£º1000M
-#define	PARA_GSM_BW_SEL			0		// ¿í´ø°æ±¾GSM´ø¿íÑ¡Ôñ: 0-6M, 1-20M, 2-24M, 3-25M, ÆäËûÎÞÐ§
-#define	PARA_HX_DET_UADDR 0 // ºçÐÅDETÄ£¿éÉÏÐÐµØÖ·, ¸ß4Î»ÎªB¶Î, µÍËÄÎ»ÎªA¶Î
-#define	PARA_HX_LNA_UADDR 0 // ºçÐÅLNAÄ£¿éÉÏÐÐµØÖ·, ¸ß4Î»ÎªB¶Î, µÍËÄÎ»ÎªA¶Î
-#define	PARA_HX_DET_DADDR 0 // ºçÐÅDETÄ£¿éÏÂÐÐµØÖ·, ¸ß4Î»ÎªB¶Î, µÍËÄÎ»ÎªA¶Î
-#define	PARA_HX_LNA_DADDR 0 // ºçÐÅLNAÄ£¿éÏÂÐÐµØÖ·, ¸ß4Î»ÎªB¶Î, µÍËÄÎ»ÎªA¶Î
-#define 	PARA_FPS_AUTO_SCAN		0x0932		// ×Ô¶¯ÆµµãËÑË÷¹¦ÄÜÊ¹ÄÜ:1-×Ô¶¯ËÑË÷ºÍÉèÖÃÆµµã, 0-ÊÖ¶¯ËÑË÷
-#define 	PARA_FPS_SWITCH_THD 		0 		// ×Ô¶¯ÆµµãËÑË÷µÄBCCH¹¦ÂÊÇÐ»»ÃÅÏÞ
-#define 	PARA_FPS_MOSVC_SEL		0x0925	// ÆµµãËÑË÷: ÔËÓªÉÌÑ¡Ôñ: 0-ÖÐÒÆ¶¯, 1-ÖÐÁªÍ¨, 2-ÖÐÒÆ¶¯, 255-×Ô¶¯Ñ¡Ôñ
-#define	PARA_FPS_RFRANGE_SEL	0x0924	// ÆµµãËÑË÷: Æµ¿íÑ¡Ôñ(ºöÂÔ,ÒÔÄ£¿éÖÆÊ½Îª×¼): 0-È«Æµ¶Î, 1-900MHz, 2-1800MHz
-#define 	PARA_FPS_BS_ID			0x8959	// ÆµµãËÑË÷: »ùÕ¾Ê¶±ðÂë
-#define	PARA_FPS_CA_COUNT		0x895b	// ÆµµãËÑË÷: ÓÐÐ§ÐÅµÀÊý
-#define	PARA_FPS_BCCH_LK_ST		0x895c	// ÆµµãËÑË÷: Ëø¶¨BCCH×´Ì¬: 1-Ëø¶¨, 0-Ê§°Ü
-#define	PARA_FPS_MOSVC_LK_ST		0x895d	// ÆµµãËÑË÷: Ëø¶¨ÔËÓªÉÌ×´Ì¬: 1-Ëø¶¨, 0-Ê§°Ü
-#define	PARA_FPS_RFRANGE_LK_ST	0x895e	// ÆµµãËÑË÷: Ëø¶¨Æµ´ø×´Ì¬: 1-Ëø¶¨, 0-Ê§°Ü
-#define	PARA_FPS_BCCH_POW_M		0x8960	// ÆµµãËÑË÷: Ö÷Ð¡ÇøBCCH½ÓÊÕÇ¿¶È
-#define	PARA_FPS_BCCH_POW_1		0x8961	// ÆµµãËÑË÷: ÁÚÐ¡Çø1BCCH½ÓÊÕÇ¿¶È
-#define	PARA_FPS_BCCH_POW_2		0x8962	// ÆµµãËÑË÷: ÁÚÐ¡Çø2BCCH½ÓÊÕÇ¿¶È
-#define	PARA_FPS_BCCH_POW_3		0x8963	// ÆµµãËÑË÷: ÁÚÐ¡Çø3BCCH½ÓÊÕÇ¿¶È
-#define	PARA_FPS_BCCH_POW_4		0x8964	// ÆµµãËÑË÷: ÁÚÐ¡Çø4BCCH½ÓÊÕÇ¿¶È
-#define	PARA_FPS_BCCH_POW_5		0x8965	// ÆµµãËÑË÷: ÁÚÐ¡Çø5BCCH½ÓÊÕÇ¿¶È
-#define	PARA_FPS_BCCH_POW_6		0x8966	// ÆµµãËÑË÷: ÁÚÐ¡Çø6BCCH½ÓÊÕÇ¿¶È
-#define	PARA_A_EXPA_WORK_EN		0xC401	// [WR]Î¢¹¦·Å: ÉäÆµÐÅºÅ¿ª¹Ø
-#define	PARA_A_EXPA_DL_ATT		0xC441	// [WR]Î¢¹¦·Å: ÏÂÐÐË¥¼õÖµ
-#define	PARA_A_EXPA_TEMP			0xC501	// [RO]Î¢¹¦·Å: ÎÂ¶È
-#define	PARA_A_EXPA_DL_POW		0xC503	// [RO]Î¢¹¦·Å: ÏÂÐÐÊä³ö¹¦ÂÊµçÆ½
-#define	PARA_A_EXPA_SWR			0xC506	// [RO]Î¢¹¦·Å: ÏÂÐÐ×¤²¨±ÈÖµ
-#define	PARA_A_EXPA_POWER_DN	0xC301	// [RO]Î¢¹¦·Å: µçÔ´µôµç¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)
-#define	PARA_A_EXPA_POWER_ERR	0xC302	// [RO]Î¢¹¦·Å: µçÔ´¹ÊÕÏ¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)
-#define	PARA_A_EXPA_BATT_ERR		0xC304	// [RO]Î¢¹¦·Å: ¼à¿ØÄ£¿éµç³Ø¹ÊÕÏ¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)
-#define	PARA_A_EXPA_POS_ALM		0xC305	// [RO]Î¢¹¦·Å: Î»ÖÃ¸æ¾¯
-#define	PARA_A_EXPA_DOOR_ALM	0xC328	// [RO]Î¢¹¦·Å: ÃÅ½û¸æ¾¯
-#define	PARA_A_EXPA_WROK_ALM	0xC30D	// [RO]Î¢¹¦·Å: ÏÂÐÐ¹¦·Å¹ÊÕÏ¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)
-#define	PARA_A_EXPA_EXT1_ALM		0xC320	// [RO]Î¢¹¦·Å: Íâ²¿¸æ¾¯1
-#define	PARA_A_EXPA_EXT2_ALM		0xC321	// [RO]Î¢¹¦·Å: Íâ²¿¸æ¾¯2
-#define	PARA_A_EXPA_EXT3_ALM		0xC322	// [RO]Î¢¹¦·Å: Íâ²¿¸æ¾¯3
-#define	PARA_A_EXPA_MAX_GAIN	0		// Î¢¹¦·Å: ÁãË¥¼õÔöÒæ£¬¼´×î´óÔöÒæ
-#define	PARA_A_EXPA_GAIN_THD		0		// Î¢¹¦·Å: ÔöÒæÃÅÏÞ£¬¼´ÔÊÐí¹¤×÷µÄÔöÒæ×î´óÖµ
-#define	PARA_A_EXPA_POW_THD		0		// Î¢¹¦·Å: ¹¦·ÅÊä³ö¹¦ÂÊÃÅÏÞ
-#define	PARA_A_EXPA_POD_CMP 		0		// Î¢¹¦·Å: ¼ì²¨¹Ü¹¦ÂÊ¼ì²â²¹³¥Öµ,1×Ö½ÚÓÐ·ûºÅÊý,×îÖÕ¹¦ÂÊÎª¼ì²¨¹Ü¹¦ÂÊ¼ÓÉÏ²¹³¥Öµ
-#define	PARA_MONITOR_VOL_OVER_THR 				0x0a62 			 // ¼à¿ØµçÑ¹¹ýÃÅÏÞ
-#define 	PARA_MONITOR_VOL_OWE_THR 				0x0a63 			 // ¼à¿ØµçÑ¹Ç·ÃÅÏÞ
-#define 	PARA_DIGITAL_SINGNAL_ALARM 				0x8a68			 // Êý×ÖÐÅºÅÒì³£¸æ¾¯
-#define 	PARA_HOST_DEVICE_LINK_SINGNAL_ALARM 	0x8a69			 // Ö÷´Ó¼à¿ØÁ´Â·¸æ¾¯
-#define 	PARA_MONITOR_BATTERY_ALARM 				0x8a6a			 // ¼à¿ØÄ£¿éµç³Ø¹ÊÕÏ¸æ¾¯
-#define 	PARA_LOW_POWER_ALARM 					0x8a6b			 // µçÔ´µôµç¸æ¾¯
-#define 	PARA_BATTERY_BREAKDOWN_ALARM 			0x8a6c			 // µçÔ´¹ÊÕÏ¸æ¾¯
-#define 	PARA_POSITION_MOVE_ALARM					0x8a6f			 // Î»ÖÃ¸æ¾¯
-#define 	PARA_A_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // AÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯
-#define 	PARA_A_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // AÏÂÐÐÊäÈëÇ·¹¦ÂÊ¸æ¾¯
-#define 	PARA_B_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // BÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯
-#define 	PARA_B_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // BÏÂÐÐÊäÈëÇ·¹¦ÂÊ¸æ¾¯
-#define 	PARA_C_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // CÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯
-#define 	PARA_C_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // CÏÂÐÐÊäÈëÇ·¹¦ÂÊ¸æ¾¯
-#define 	PARA_D_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // DÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯
-#define 	PARA_D_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // DÏÂÐÐÊäÈëÇ·¹¦ÂÊ¸æ¾¯
-#define 	PARA_TD_D_OVER_SLOT1_THR_ALARM 			0x8a66			 // TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯
-#define 	PARA_TD_D_OWE_SLOT1_THR_ALARM 			0x8a67			 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯
-#define 	PARA_RE_DATA_LAN_ST1     0x8a40     //Êý¾ÝPHYÐ¾Æ¬¹¤×÷×´Ì¬  0: Õý³££¬1: ¸æ¾¯
-#define 	PARA_RE_CASCADE_LAN_ST1   0x8a48     //¼¶ÁªÍø¿ÚµÄ¹¤×÷×´Ì¬  0: Õý³££¬1: ¸æ¾¯
-#define 	PARA_RE_DATA_LAN_SYS_ST1  0x8a4a     //Êý¾ÝÍø¿ÚÍ¬²½×´Ì¬  0: Í¬²½£¬1: Ê§²½
-#define 	PARA_RE_CASCADE_LAN_SYS_ST1  0x8a52     //¼¶ÁªÍø¿ÚÍ¬²½×´Ì¬  0: Í¬²½£¬1: Ê§²½
-#define 	PARA_A_RF_POW_SWR           	0x8a32     //A¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È
-#define 	PARA_A_RF_OUT_POW_H_THR   		0x0a50     //A¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ
-#define 	PARA_A_RF_OUT_POW_L_THR   		0x0a51     //A¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ
-#define 	PARA_B_RF_POW_SWR            	0x8a32     //B¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È
-#define 	PARA_B_RF_OUT_POW_H_THR   		0x0a50     //A¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ
-#define 	PARA_B_RF_OUT_POW_L_THR   		0x0a51     //A¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ
-#define 	PARA_C_RF_POW_SWR           	0x8a32     //A¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È
-#define 	PARA_C_RF_OUT_POW_H_THR   		0x0a50     //A¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ
-#define 	PARA_C_RF_OUT_POW_L_THR   		0x0a51     //A¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ
-#define 	PARA_D_RF_POW_SWR            	0x8a32     //B¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È
-#define 	PARA_D_RF_OUT_POW_H_THR   		0x0a50     //A¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ
-#define 	PARA_D_RF_OUT_POW_L_THR   		0x0a51     //A¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ
-#define 	PARA_PWR_3V3_1_VT	0		// 3.3VµçÔ´µçÑ¹
-#define 	PARA_PWR_3V3_2_VT	0		//	3.3VµçÔ´µçÑ¹
-#define 	PARA_PWR_1V8_VT		0			// 1.8VµçÔ´µçÑ¹
-#define 	PARA_PWR_1V5_VT		0			 // 1.5VµçÔ´µçÑ¹
-#define 	PARA_A_DL_RF_EN 	0x0a67	// 	A¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_A_UL_RF_EN 	0x0a68	// 	A¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_B_DL_RF_EN 	0x0a67	// 	B¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_B_UL_RF_EN		0x0a68	// 	B¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_C_DL_RF_EN 	0x0a67	// 	C¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_C_UL_RF_EN 	0x0a68	// 	C¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_D_DL_RF_EN 	0x0a67	// 	D¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_D_UL_RF_EN 	0x0a68	// 	D¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ	
-#define 	PARA_METER_OFFSET	0x0a66	//	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-#define 	PARA_METER_OFFSET_B	0x0a66	//	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-#define 	PARA_METER_OFFSET_C	0x0a66	//	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-#define 	PARA_METER_OFFSET_D	0x0a66	//	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-#define 	PARA_C_TD_TYPE_SELECT	0x0a6a	//686	// TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯					
-#define 	PARA_C_TD_NORMAL_CP	0x0a6b	//716	//	TDDÌØÊâÊ±Ï¶ NORMAL_CP
-#define 	PARA_C_TD_EXTENDED_CP	0x0a6c	//717	//	TDDÌØÊâÊ±Ï¶ NORMAL_CP
-#define 	PARA_C_TD_SYNC_ST	0x7620	//687	//	TDÍ¬²½×´Ì¬:	0-ÒÑÍ¬²½£¬1-Î´Í¬²½			
-#define 	PARA_C_TD_WORK_MODE	0x08ac	//688	//	[WR]TD:TD_SCDMA¿ØÖÆÄ£Ê½£¬00Õý³£Ä£Ê½£¬01ÉÏÐÐ³£¿ª£¬10ÊÇÏÂÐÐ³£¿ª,	Ã¿´ÎÉÏµçºóÇåÁã			
-#define 	PARA_C_TD_DL_OVER_SLOT1_THR_ALARM	0x8a66	//689	// TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯					
-#define 	PARA_C_TD_DL_OWE_SLOT1_THR_ALARM	0x8a67	//690	 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯					
-#define 	PARA_D_TD_TYPE_SELECT	0x0a6a	//691	// TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯					
-#define 	PARA_D_TD_NORMAL_CP	0x0a6b	//718	//	TDDÌØÊâÊ±Ï¶ NORMAL_CP
-#define 	PARA_D_TD_EXTENDED_CP	0x0a6c	//719	//	TDDÌØÊâÊ±Ï¶ NORMAL_CP
-#define 	PARA_D_TD_SYNC_ST	0x7620	//692	//	TDÍ¬²½×´Ì¬:	0-ÒÑÍ¬²½£¬1-Î´Í¬²½			
-#define 	PARA_D_TD_WORK_MODE	0x08ac	//693	//	[WR]TD:TD_SCDMA¿ØÖÆÄ£Ê½£¬00Õý³£Ä£Ê½£¬01ÉÏÐÐ³£¿ª£¬10ÊÇÏÂÐÐ³£¿ª,	Ã¿´ÎÉÏµçºóÇåÁã			
-#define 	PARA_D_TD_DL_OVER_SLOT1_THR_ALARM	0x8a66	//694	// TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯					
-#define 	PARA_D_TD_DL_OWE_SLOT1_THR_ALARM	0x8a67	//695	 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯					
-#define 	PARA_C_TD_T0_UD	0	//696	//	TDÊ±Ï¶0ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T1_UD	0	//697	//	TDÊ±Ï¶1ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T2_UD	0	//698	//	TDÊ±Ï¶2ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T3_UD	0	//699	//	TDÊ±Ï¶3ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T4_UD	0	//700	//	TDÊ±Ï¶4ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T5_UD	0	//701	//	TDÊ±Ï¶5ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T6_UD	0	//702	//	TDÊ±Ï¶6ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T7_UD	0	//703	//	TDÊ±Ï¶7ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T8_UD	0	//704	//	TDÊ±Ï¶8ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_C_TD_T9_UD	0	//705	//	TDÊ±Ï¶9ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T0_UD	0	//706	//	TDÊ±Ï¶0ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T1_UD	0	//707	//	TDÊ±Ï¶1ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T2_UD	0	//708	//	TDÊ±Ï¶2ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T3_UD	0	//709	//	TDÊ±Ï¶3ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T4_UD	0	//710	//	TDÊ±Ï¶4ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T5_UD	0	//711	//	TDÊ±Ï¶5ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T6_UD	0	//712	//	TDÊ±Ï¶6ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T7_UD	0	//713	//	TDÊ±Ï¶7ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T8_UD	0	//714	//	TDÊ±Ï¶8ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define 	PARA_D_TD_T9_UD	0	//715	//	TDÊ±Ï¶9ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ//#endif
-#define	PARA_NOISE_TEST_EN	0	//	ÔëÉù²âÊÔ¿ª¹Ø		
-#define	PARA_FREQ_MODIF_VAL_D	0x0a6d		//	±¾ÕñÐÞÕýÖµ
-#define	PARA_FREQ_MODIF_VAL_B	0x0a6e		//	±¾ÕñÐÞÕýÖµ
-#define	PARA_FREQ_MODIF_VAL_A	0x0a6f		//	±¾ÕñÐÞÕýÖµ
-#define	PARA_B_TDS_2TH_BREAKING_POINT_SET	0x0609		//	TDS µÚ¶þ×ª»»µãÉèÖÃ
-#define 	PARA_DELAY_MODE_A	0x098f	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯
-#define 	PARA_DELAY_MODE_B	0x098f	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯
-#define 	PARA_DELAY_MODE_C	0x098f	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯
-#define 	PARA_DELAY_MODE_D	0x098f	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯
+#define 	PARA_WORK_ERROR	0	// ç³»ç»Ÿå·¥ä½œçŠ¶æ€ï¼Œ1-æœ‰æ•…éšœ
+#define 	PARA_TRAFFIC_END	0x88ac	// è¯åŠ¡é‡ç»Ÿè®¡ç»“æŸæ ‡å¿—
+#define 	PARA_DELAY_MODE	0x098e	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨
+#define	PARA_TD_SYNC_ST			0x7620		// TDåŒæ­¥çŠ¶æ€: 1-å·²åŒæ­¥ï¼Œ0-æœªåŒæ­¥
+#define	PARA_TD_WORK_MODE 		0x08ac	// [WR]TD:TD_SCDMAæŽ§åˆ¶æ¨¡å¼ï¼Œ00æ­£å¸¸æ¨¡å¼ï¼Œ01ä¸Šè¡Œå¸¸å¼€ï¼Œ10æ˜¯ä¸‹è¡Œå¸¸å¼€, æ¯æ¬¡ä¸Šç”µåŽæ¸…é›¶			
+#define 	PARA_TD_T0_UD		0x08a0	// TDæ—¶éš™0ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_TD_T1_UD		0x08a1	// TDæ—¶éš™1ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_TD_T2_UD		0x08a2	// TDæ—¶éš™2ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_TD_T3_UD		0x08a3	// TDæ—¶éš™3ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_TD_T4_UD		0x08a4	// TDæ—¶éš™4ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_TD_T5_UD		0x08a5	// TDæ—¶éš™5ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_TD_T6_UD		0x08a6	// TDæ—¶éš™6ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define	PARA_POWERUP_ST		0x8852	// 	æ•°å­—æ¿ä¸Šç”µçŠ¶æ€,æ¯æ¬¡å¯åŠ¨æ—¶ç½®1
+#define	PARA_LOW_POWER			0x88ff//0x08ad	//	ä½ŽåŠŸè€—æ¨¡å¼:1-ä½ŽåŠŸè€—;	0-æ­£å¸¸		å›½äºº x0778   ç”±è½¯ä»¶åˆå§‹åŒ–ï¼Œæ­¤å®åªä½œä¸ºå‚è€ƒ
+#define 	PARA_THR_PORT		0		// 	é€ä¼ ç«¯å£é€‰æ‹©0-485B, 1-RS232
+#define	PARA_THR_BAUD		0		//	é€ä¼ ç«¯å£æ³¢ç‰¹çŽ‡ 0-9600, 1-19200, 2-38400, 4-57600, 5-115200
+#define	PARA_CTRL_BAUD	0		//	æŽ§åˆ¶ç«¯å£æ³¢ç‰¹çŽ‡ 0-9600, 1-19200, 2-38400, 4-57600, 5-115200
+#define	PARA_WLAN_CONN_ST1		0x87b2	// WLANå£çŠ¶æ€1: 0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸
+#define	PARA_WLAN_CONN_ST2		0x87b3	// WLANå£çŠ¶æ€2: 0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸
+#define	PARA_WLAN_CONN_ST3		0x87b4	// WLANå£çŠ¶æ€3: 0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸
+#define	PARA_WLAN_CONN_ST4		0x87b7	// WLANå£çŠ¶æ€4: 0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸
+#define	PARA_WLAN_SPEED1			0x87b8	// WLANå£é€Ÿåº¦1: 0ï¼š10M  1ï¼š100M  2ï¼š1000M
+#define	PARA_WLAN_SPEED2			0x87b9		// WLANå£é€Ÿåº¦1: 0ï¼š10M  1ï¼š100M  2ï¼š1000M
+#define	PARA_WLAN_SPEED3			0x87ba		// WLANå£é€Ÿåº¦1: 0ï¼š10M  1ï¼š100M  2ï¼š1000M
+#define	PARA_WLAN_SPEED4			0x87bb		// WLANå£é€Ÿåº¦1: 0ï¼š10M  1ï¼š100M  2ï¼š1000M
+#define	PARA_GSM_BW_SEL			0		// å®½å¸¦ç‰ˆæœ¬GSMå¸¦å®½é€‰æ‹©: 0-6M, 1-20M, 2-24M, 3-25M, å…¶ä»–æ— æ•ˆ
+#define	PARA_HX_DET_UADDR 0 // è™¹ä¿¡DETæ¨¡å—ä¸Šè¡Œåœ°å€, é«˜4ä½ä¸ºBæ®µ, ä½Žå››ä½ä¸ºAæ®µ
+#define	PARA_HX_LNA_UADDR 0 // è™¹ä¿¡LNAæ¨¡å—ä¸Šè¡Œåœ°å€, é«˜4ä½ä¸ºBæ®µ, ä½Žå››ä½ä¸ºAæ®µ
+#define	PARA_HX_DET_DADDR 0 // è™¹ä¿¡DETæ¨¡å—ä¸‹è¡Œåœ°å€, é«˜4ä½ä¸ºBæ®µ, ä½Žå››ä½ä¸ºAæ®µ
+#define	PARA_HX_LNA_DADDR 0 // è™¹ä¿¡LNAæ¨¡å—ä¸‹è¡Œåœ°å€, é«˜4ä½ä¸ºBæ®µ, ä½Žå››ä½ä¸ºAæ®µ
+#define 	PARA_FPS_AUTO_SCAN		0x0932		// è‡ªåŠ¨é¢‘ç‚¹æœç´¢åŠŸèƒ½ä½¿èƒ½:1-è‡ªåŠ¨æœç´¢å’Œè®¾ç½®é¢‘ç‚¹, 0-æ‰‹åŠ¨æœç´¢
+#define 	PARA_FPS_SWITCH_THD 		0 		// è‡ªåŠ¨é¢‘ç‚¹æœç´¢çš„BCCHåŠŸçŽ‡åˆ‡æ¢é—¨é™
+#define 	PARA_FPS_MOSVC_SEL		0x0925	// é¢‘ç‚¹æœç´¢: è¿è¥å•†é€‰æ‹©: 0-ä¸­ç§»åŠ¨, 1-ä¸­è”é€š, 2-ä¸­ç§»åŠ¨, 255-è‡ªåŠ¨é€‰æ‹©
+#define	PARA_FPS_RFRANGE_SEL	0x0924	// é¢‘ç‚¹æœç´¢: é¢‘å®½é€‰æ‹©(å¿½ç•¥,ä»¥æ¨¡å—åˆ¶å¼ä¸ºå‡†): 0-å…¨é¢‘æ®µ, 1-900MHz, 2-1800MHz
+#define 	PARA_FPS_BS_ID			0x8959	// é¢‘ç‚¹æœç´¢: åŸºç«™è¯†åˆ«ç 
+#define	PARA_FPS_CA_COUNT		0x895b	// é¢‘ç‚¹æœç´¢: æœ‰æ•ˆä¿¡é“æ•°
+#define	PARA_FPS_BCCH_LK_ST		0x895c	// é¢‘ç‚¹æœç´¢: é”å®šBCCHçŠ¶æ€: 1-é”å®š, 0-å¤±è´¥
+#define	PARA_FPS_MOSVC_LK_ST		0x895d	// é¢‘ç‚¹æœç´¢: é”å®šè¿è¥å•†çŠ¶æ€: 1-é”å®š, 0-å¤±è´¥
+#define	PARA_FPS_RFRANGE_LK_ST	0x895e	// é¢‘ç‚¹æœç´¢: é”å®šé¢‘å¸¦çŠ¶æ€: 1-é”å®š, 0-å¤±è´¥
+#define	PARA_FPS_BCCH_POW_M		0x8960	// é¢‘ç‚¹æœç´¢: ä¸»å°åŒºBCCHæŽ¥æ”¶å¼ºåº¦
+#define	PARA_FPS_BCCH_POW_1		0x8961	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº1BCCHæŽ¥æ”¶å¼ºåº¦
+#define	PARA_FPS_BCCH_POW_2		0x8962	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº2BCCHæŽ¥æ”¶å¼ºåº¦
+#define	PARA_FPS_BCCH_POW_3		0x8963	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº3BCCHæŽ¥æ”¶å¼ºåº¦
+#define	PARA_FPS_BCCH_POW_4		0x8964	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº4BCCHæŽ¥æ”¶å¼ºåº¦
+#define	PARA_FPS_BCCH_POW_5		0x8965	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº5BCCHæŽ¥æ”¶å¼ºåº¦
+#define	PARA_FPS_BCCH_POW_6		0x8966	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº6BCCHæŽ¥æ”¶å¼ºåº¦
+#define	PARA_A_EXPA_WORK_EN		0xC401	// [WR]å¾®åŠŸæ”¾: å°„é¢‘ä¿¡å·å¼€å…³
+#define	PARA_A_EXPA_DL_ATT		0xC441	// [WR]å¾®åŠŸæ”¾: ä¸‹è¡Œè¡°å‡å€¼
+#define	PARA_A_EXPA_TEMP			0xC501	// [RO]å¾®åŠŸæ”¾: æ¸©åº¦
+#define	PARA_A_EXPA_DL_POW		0xC503	// [RO]å¾®åŠŸæ”¾: ä¸‹è¡Œè¾“å‡ºåŠŸçŽ‡ç”µå¹³
+#define	PARA_A_EXPA_SWR			0xC506	// [RO]å¾®åŠŸæ”¾: ä¸‹è¡Œé©»æ³¢æ¯”å€¼
+#define	PARA_A_EXPA_POWER_DN	0xC301	// [RO]å¾®åŠŸæ”¾: ç”µæºæŽ‰ç”µå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)
+#define	PARA_A_EXPA_POWER_ERR	0xC302	// [RO]å¾®åŠŸæ”¾: ç”µæºæ•…éšœå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)
+#define	PARA_A_EXPA_BATT_ERR		0xC304	// [RO]å¾®åŠŸæ”¾: ç›‘æŽ§æ¨¡å—ç”µæ± æ•…éšœå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)
+#define	PARA_A_EXPA_POS_ALM		0xC305	// [RO]å¾®åŠŸæ”¾: ä½ç½®å‘Šè­¦
+#define	PARA_A_EXPA_DOOR_ALM	0xC328	// [RO]å¾®åŠŸæ”¾: é—¨ç¦å‘Šè­¦
+#define	PARA_A_EXPA_WROK_ALM	0xC30D	// [RO]å¾®åŠŸæ”¾: ä¸‹è¡ŒåŠŸæ”¾æ•…éšœå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)
+#define	PARA_A_EXPA_EXT1_ALM		0xC320	// [RO]å¾®åŠŸæ”¾: å¤–éƒ¨å‘Šè­¦1
+#define	PARA_A_EXPA_EXT2_ALM		0xC321	// [RO]å¾®åŠŸæ”¾: å¤–éƒ¨å‘Šè­¦2
+#define	PARA_A_EXPA_EXT3_ALM		0xC322	// [RO]å¾®åŠŸæ”¾: å¤–éƒ¨å‘Šè­¦3
+#define	PARA_A_EXPA_MAX_GAIN	0		// å¾®åŠŸæ”¾: é›¶è¡°å‡å¢žç›Šï¼Œå³æœ€å¤§å¢žç›Š
+#define	PARA_A_EXPA_GAIN_THD		0		// å¾®åŠŸæ”¾: å¢žç›Šé—¨é™ï¼Œå³å…è®¸å·¥ä½œçš„å¢žç›Šæœ€å¤§å€¼
+#define	PARA_A_EXPA_POW_THD		0		// å¾®åŠŸæ”¾: åŠŸæ”¾è¾“å‡ºåŠŸçŽ‡é—¨é™
+#define	PARA_A_EXPA_POD_CMP 		0		// å¾®åŠŸæ”¾: æ£€æ³¢ç®¡åŠŸçŽ‡æ£€æµ‹è¡¥å¿å€¼,1å­—èŠ‚æœ‰ç¬¦å·æ•°,æœ€ç»ˆåŠŸçŽ‡ä¸ºæ£€æ³¢ç®¡åŠŸçŽ‡åŠ ä¸Šè¡¥å¿å€¼
+#define	PARA_MONITOR_VOL_OVER_THR 				0x0a62 			 // ç›‘æŽ§ç”µåŽ‹è¿‡é—¨é™
+#define 	PARA_MONITOR_VOL_OWE_THR 				0x0a63 			 // ç›‘æŽ§ç”µåŽ‹æ¬ é—¨é™
+#define 	PARA_DIGITAL_SINGNAL_ALARM 				0x8a68			 // æ•°å­—ä¿¡å·å¼‚å¸¸å‘Šè­¦
+#define 	PARA_HOST_DEVICE_LINK_SINGNAL_ALARM 	0x8a69			 // ä¸»ä»Žç›‘æŽ§é“¾è·¯å‘Šè­¦
+#define 	PARA_MONITOR_BATTERY_ALARM 				0x8a6a			 // ç›‘æŽ§æ¨¡å—ç”µæ± æ•…éšœå‘Šè­¦
+#define 	PARA_LOW_POWER_ALARM 					0x8a6b			 // ç”µæºæŽ‰ç”µå‘Šè­¦
+#define 	PARA_BATTERY_BREAKDOWN_ALARM 			0x8a6c			 // ç”µæºæ•…éšœå‘Šè­¦
+#define 	PARA_POSITION_MOVE_ALARM					0x8a6f			 // ä½ç½®å‘Šè­¦
+#define 	PARA_A_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // Aä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_A_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // Aä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_B_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // Bä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_B_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // Bä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_C_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // Cä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_C_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // Cä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_D_INPUT_OVER_DPOW_THR_ALARM 		0x8a6d			 // Dä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_D_INPUT_OWE_DPOW_THR_ALARM 		0x8a6e			 // Dä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_TD_D_OVER_SLOT1_THR_ALARM 			0x8a66			 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_TD_D_OWE_SLOT1_THR_ALARM 			0x8a67			 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦
+#define 	PARA_RE_DATA_LAN_ST1     0x8a40     //æ•°æ®PHYèŠ¯ç‰‡å·¥ä½œçŠ¶æ€  0: æ­£å¸¸ï¼Œ1: å‘Šè­¦
+#define 	PARA_RE_CASCADE_LAN_ST1   0x8a48     //çº§è”ç½‘å£çš„å·¥ä½œçŠ¶æ€  0: æ­£å¸¸ï¼Œ1: å‘Šè­¦
+#define 	PARA_RE_DATA_LAN_SYS_ST1  0x8a4a     //æ•°æ®ç½‘å£åŒæ­¥çŠ¶æ€  0: åŒæ­¥ï¼Œ1: å¤±æ­¥
+#define 	PARA_RE_CASCADE_LAN_SYS_ST1  0x8a52     //çº§è”ç½‘å£åŒæ­¥çŠ¶æ€  0: åŒæ­¥ï¼Œ1: å¤±æ­¥
+#define 	PARA_A_RF_POW_SWR           	0x8a32     //Aæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”
+#define 	PARA_A_RF_OUT_POW_H_THR   		0x0a50     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™
+#define 	PARA_A_RF_OUT_POW_L_THR   		0x0a51     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™
+#define 	PARA_B_RF_POW_SWR            	0x8a32     //Bæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”
+#define 	PARA_B_RF_OUT_POW_H_THR   		0x0a50     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™
+#define 	PARA_B_RF_OUT_POW_L_THR   		0x0a51     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™
+#define 	PARA_C_RF_POW_SWR           	0x8a32     //Aæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”
+#define 	PARA_C_RF_OUT_POW_H_THR   		0x0a50     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™
+#define 	PARA_C_RF_OUT_POW_L_THR   		0x0a51     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™
+#define 	PARA_D_RF_POW_SWR            	0x8a32     //Bæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”
+#define 	PARA_D_RF_OUT_POW_H_THR   		0x0a50     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™
+#define 	PARA_D_RF_OUT_POW_L_THR   		0x0a51     //Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™
+#define 	PARA_PWR_3V3_1_VT	0		// 3.3Vç”µæºç”µåŽ‹
+#define 	PARA_PWR_3V3_2_VT	0		//	3.3Vç”µæºç”µåŽ‹
+#define 	PARA_PWR_1V8_VT		0			// 1.8Vç”µæºç”µåŽ‹
+#define 	PARA_PWR_1V5_VT		0			 // 1.5Vç”µæºç”µåŽ‹
+#define 	PARA_A_DL_RF_EN 	0x0a67	// 	Aæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_A_UL_RF_EN 	0x0a68	// 	Aæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_B_DL_RF_EN 	0x0a67	// 	Bæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_B_UL_RF_EN		0x0a68	// 	Bæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_C_DL_RF_EN 	0x0a67	// 	Cæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_C_UL_RF_EN 	0x0a68	// 	Cæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_D_DL_RF_EN 	0x0a67	// 	Dæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_D_UL_RF_EN 	0x0a68	// 	Dæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½	
+#define 	PARA_METER_OFFSET	0x0a66	//	ä»ªå™¨åå·®å€¼è®¾ç½®
+#define 	PARA_METER_OFFSET_B	0x0a66	//	ä»ªå™¨åå·®å€¼è®¾ç½®
+#define 	PARA_METER_OFFSET_C	0x0a66	//	ä»ªå™¨åå·®å€¼è®¾ç½®
+#define 	PARA_METER_OFFSET_D	0x0a66	//	ä»ªå™¨åå·®å€¼è®¾ç½®
+#define 	PARA_C_TD_TYPE_SELECT	0x0a6a	//686	// TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦					
+#define 	PARA_C_TD_NORMAL_CP	0x0a6b	//716	//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP
+#define 	PARA_C_TD_EXTENDED_CP	0x0a6c	//717	//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP
+#define 	PARA_C_TD_SYNC_ST	0x7620	//687	//	TDåŒæ­¥çŠ¶æ€:	0-å·²åŒæ­¥ï¼Œ1-æœªåŒæ­¥			
+#define 	PARA_C_TD_WORK_MODE	0x08ac	//688	//	[WR]TD:TD_SCDMAæŽ§åˆ¶æ¨¡å¼ï¼Œ00æ­£å¸¸æ¨¡å¼ï¼Œ01ä¸Šè¡Œå¸¸å¼€ï¼Œ10æ˜¯ä¸‹è¡Œå¸¸å¼€,	æ¯æ¬¡ä¸Šç”µåŽæ¸…é›¶			
+#define 	PARA_C_TD_DL_OVER_SLOT1_THR_ALARM	0x8a66	//689	// TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦					
+#define 	PARA_C_TD_DL_OWE_SLOT1_THR_ALARM	0x8a67	//690	 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦					
+#define 	PARA_D_TD_TYPE_SELECT	0x0a6a	//691	// TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦					
+#define 	PARA_D_TD_NORMAL_CP	0x0a6b	//718	//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP
+#define 	PARA_D_TD_EXTENDED_CP	0x0a6c	//719	//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP
+#define 	PARA_D_TD_SYNC_ST	0x7620	//692	//	TDåŒæ­¥çŠ¶æ€:	0-å·²åŒæ­¥ï¼Œ1-æœªåŒæ­¥			
+#define 	PARA_D_TD_WORK_MODE	0x08ac	//693	//	[WR]TD:TD_SCDMAæŽ§åˆ¶æ¨¡å¼ï¼Œ00æ­£å¸¸æ¨¡å¼ï¼Œ01ä¸Šè¡Œå¸¸å¼€ï¼Œ10æ˜¯ä¸‹è¡Œå¸¸å¼€,	æ¯æ¬¡ä¸Šç”µåŽæ¸…é›¶			
+#define 	PARA_D_TD_DL_OVER_SLOT1_THR_ALARM	0x8a66	//694	// TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦					
+#define 	PARA_D_TD_DL_OWE_SLOT1_THR_ALARM	0x8a67	//695	 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦					
+#define 	PARA_C_TD_T0_UD	0	//696	//	TDæ—¶éš™0ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T1_UD	0	//697	//	TDæ—¶éš™1ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T2_UD	0	//698	//	TDæ—¶éš™2ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T3_UD	0	//699	//	TDæ—¶éš™3ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T4_UD	0	//700	//	TDæ—¶éš™4ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T5_UD	0	//701	//	TDæ—¶éš™5ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T6_UD	0	//702	//	TDæ—¶éš™6ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T7_UD	0	//703	//	TDæ—¶éš™7ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T8_UD	0	//704	//	TDæ—¶éš™8ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_C_TD_T9_UD	0	//705	//	TDæ—¶éš™9ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T0_UD	0	//706	//	TDæ—¶éš™0ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T1_UD	0	//707	//	TDæ—¶éš™1ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T2_UD	0	//708	//	TDæ—¶éš™2ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T3_UD	0	//709	//	TDæ—¶éš™3ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T4_UD	0	//710	//	TDæ—¶éš™4ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T5_UD	0	//711	//	TDæ—¶éš™5ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T6_UD	0	//712	//	TDæ—¶éš™6ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T7_UD	0	//713	//	TDæ—¶éš™7ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T8_UD	0	//714	//	TDæ—¶éš™8ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define 	PARA_D_TD_T9_UD	0	//715	//	TDæ—¶éš™9ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ//#endif
+#define	PARA_NOISE_TEST_EN	0	//	å™ªå£°æµ‹è¯•å¼€å…³		
+#define	PARA_FREQ_MODIF_VAL_D	0x0a6d		//	æœ¬æŒ¯ä¿®æ­£å€¼
+#define	PARA_FREQ_MODIF_VAL_B	0x0a6e		//	æœ¬æŒ¯ä¿®æ­£å€¼
+#define	PARA_FREQ_MODIF_VAL_A	0x0a6f		//	æœ¬æŒ¯ä¿®æ­£å€¼
+#define	PARA_B_TDS_2TH_BREAKING_POINT_SET	0x0609		//	TDS ç¬¬äºŒè½¬æ¢ç‚¹è®¾ç½®
+#define 	PARA_DELAY_MODE_A	0x098f	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨
+#define 	PARA_DELAY_MODE_B	0x098f	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨
+#define 	PARA_DELAY_MODE_C	0x098f	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨
+#define 	PARA_DELAY_MODE_D	0x098f	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨
 #define	PARA_REE_CIRCUIT_ALARM	 		0
 #define	PARA_REE_WLAN_CONN_ST			0
 #define	PARA_DL_POWER_MAX			0
-#define 	PARA_SLOT_TIME_EN_B		0	// Ê±Ï¶Åä±È×Ô¶¯¼ì²â¿ª¹Ø		
-#define 	PARA_SLOT_TIME_DISTRI_B	0 // Ê±Ï¶Åä±È·Ö²¼	BIT0£º1´ú±í15Åä±È,BIT1£º1´ú±í24Åä±È,	BIT2£º1´ú±í33Åä±È			
-#define 	PARA_VERSION_FLAG		0	// °æ±¾±êÊ¶		
-#define 	PARA_SLOT_TIME_EN_C	0	// Ê±Ï¶Åä±È×Ô¶¯¼ì²â¿ª¹Ø		
-#define 	PARA_SLOT_TIME_DISTRI_C	0	// Ê±Ï¶Åä±È·Ö²¼	BIT0£º1´ú±í15Åä±È,BIT1£º1´ú±í24Åä±È,	BIT2£º1´ú±í33Åä±È			
-#define 	PARA_A_1197_LOCK_ST		0	// A¶Î1197Ëø¶¨×´Ì¬	
-#define 	PARA_A_IF_ST	0	// A¶ÎÖÐÆµÆµÂÊ,0/1---300M/500M		
-#define 	PARA_ENCRYPTION_ST	0	//¼ÓÃÜ×´Ì¬,0/1---²»¼ÓÃÜ/¼ÓÃÜ
-#define 	PARA_PWR_1V6_VT	0	//¼ÓÃÜ×´Ì¬,0/1---²»¼ÓÃÜ/¼ÓÃÜ
-#define		PARA_A_90_VALUE			0				//A¶Î9363 90¼Ä´æÆ÷µÄÖµ
-#define		PARA_A_91_VALUE			0				//A¶Î9363 91¼Ä´æÆ÷µÄÖµ
-#define		PARA_A_94_VALUE			0				//A¶Î9363 94¼Ä´æÆ÷µÄÖµ
-#define		PARA_A_95_VALUE			0				//A¶Î9363 95¼Ä´æÆ÷µÄÖµ
-#define		PARA_B_90_VALUE			0				//B¶Î9363 90¼Ä´æÆ÷µÄÖµ
-#define		PARA_B_91_VALUE			0				//B¶Î9363 91¼Ä´æÆ÷µÄÖµ
-#define		PARA_B_94_VALUE			0				//B¶Î9363 94¼Ä´æÆ÷µÄÖµ
-#define		PARA_B_95_VALUE			0				//B¶Î9363 95¼Ä´æÆ÷µÄÖµ
-#define		PARA_C_90_VALUE			0				//C¶Î9363 90¼Ä´æÆ÷µÄÖµ
-#define		PARA_C_91_VALUE			0				//C¶Î9363 91¼Ä´æÆ÷µÄÖµ
-#define		PARA_C_94_VALUE			0				//C¶Î9363 94¼Ä´æÆ÷µÄÖµ
-#define		PARA_C_95_VALUE			0				//C¶Î9363 95¼Ä´æÆ÷µÄÖµ
-#define		PARA_D_90_VALUE			0				//D¶Î9363 90¼Ä´æÆ÷µÄÖµ
-#define		PARA_D_91_VALUE			0				//D¶Î9363 91¼Ä´æÆ÷µÄÖµ
-#define		PARA_D_94_VALUE			0				//D¶Î9363 94¼Ä´æÆ÷µÄÖµ
-#define		PARA_D_95_VALUE			0				//D¶Î9363 95¼Ä´æÆ÷µÄÖµ
-#define		PARA_PASSTHROUGH_EN			0				//²âÊÔÍ¸´«Ê¹ÄÜ
+#define 	PARA_SLOT_TIME_EN_B		0	// æ—¶éš™é…æ¯”è‡ªåŠ¨æ£€æµ‹å¼€å…³		
+#define 	PARA_SLOT_TIME_DISTRI_B	0 // æ—¶éš™é…æ¯”åˆ†å¸ƒ	BIT0ï¼š1ä»£è¡¨15é…æ¯”,BIT1ï¼š1ä»£è¡¨24é…æ¯”,	BIT2ï¼š1ä»£è¡¨33é…æ¯”			
+#define 	PARA_VERSION_FLAG		0	// ç‰ˆæœ¬æ ‡è¯†		
+#define 	PARA_SLOT_TIME_EN_C	0	// æ—¶éš™é…æ¯”è‡ªåŠ¨æ£€æµ‹å¼€å…³		
+#define 	PARA_SLOT_TIME_DISTRI_C	0	// æ—¶éš™é…æ¯”åˆ†å¸ƒ	BIT0ï¼š1ä»£è¡¨15é…æ¯”,BIT1ï¼š1ä»£è¡¨24é…æ¯”,	BIT2ï¼š1ä»£è¡¨33é…æ¯”			
+#define 	PARA_A_1197_LOCK_ST		0	// Aæ®µ1197é”å®šçŠ¶æ€	
+#define 	PARA_A_IF_ST	0	// Aæ®µä¸­é¢‘é¢‘çŽ‡,0/1---300M/500M		
+#define 	PARA_ENCRYPTION_ST	0	//åŠ å¯†çŠ¶æ€,0/1---ä¸åŠ å¯†/åŠ å¯†
+#define 	PARA_PWR_1V6_VT	0	//åŠ å¯†çŠ¶æ€,0/1---ä¸åŠ å¯†/åŠ å¯†
+#define		PARA_A_90_VALUE			0				//Aæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+#define		PARA_A_91_VALUE			0				//Aæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+#define		PARA_A_94_VALUE			0				//Aæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+#define		PARA_A_95_VALUE			0				//Aæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+#define		PARA_B_90_VALUE			0				//Bæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+#define		PARA_B_91_VALUE			0				//Bæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+#define		PARA_B_94_VALUE			0				//Bæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+#define		PARA_B_95_VALUE			0				//Bæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+#define		PARA_C_90_VALUE			0				//Cæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+#define		PARA_C_91_VALUE			0				//Cæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+#define		PARA_C_94_VALUE			0				//Cæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+#define		PARA_C_95_VALUE			0				//Cæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+#define		PARA_D_90_VALUE			0				//Dæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+#define		PARA_D_91_VALUE			0				//Dæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+#define		PARA_D_94_VALUE			0				//Dæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+#define		PARA_D_95_VALUE			0				//Dæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+#define		PARA_PASSTHROUGH_EN			0				//æµ‹è¯•é€ä¼ ä½¿èƒ½
 #define		PARA_A_DL_POW_ADJ			0			
 #define		PARA_B_DL_POW_ADJ			0			
 #define		PARA_C_DL_POW_ADJ			0			
 #define		PARA_D_DL_POW_ADJ			0			
 #define		PARA_SoftwareLoadTimes			0		
-#define     PARA_A_LNA_EN_ST 		   0	// 	A¶ÎÏÂÐÐµÍÔë·ÅLNA¿ª¹ØÊ¹ÄÜ
+#define     PARA_A_LNA_EN_ST 		   0	// 	Aæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAå¼€å…³ä½¿èƒ½
 
 #endif
 
-// ·ÃÎÊµØÖ·>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 1B
-#define 	MADD_A_CHANNEL_COUNT 	0	// 	A¶ÎÖ§³ÖµÄÍ¨µÀÊý
-#define 	MADD_A_DL_WORK_EN 	1	// 	A¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ
-#define 	MADD_A_UL_WORK_EN 	2	// 	A¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ
-#define 	MADD_A_DPOW_MODE 	3	// 	A¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define 	MADD_A_UPOW_MODE 	4	// 	A¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define 	MADD_A_LTHR_EN 	5	// 	A¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ
-#define 	MADD_A_LTHR_UP 	6	// 	A¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ
-#define 	MADD_A_LTHR_DN 	7	// 	A¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ
-#define 	MADD_A_DCH_EN1 	8	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define 	MADD_A_DCH_EN2 	9	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define 	MADD_A_DCH_EN3 	10	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define 	MADD_A_DCH_EN4 	11	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define 	MADD_A_DCH_EN5 	12	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define 	MADD_A_DCH_EN6 	13	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define 	MADD_A_DCH_EN7 	14	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define 	MADD_A_DCH_EN8 	15	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define 	MADD_A_DCH_EN9 	16	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define 	MADD_A_DCH_EN10 	17	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define 	MADD_A_DCH_EN11 	18	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-#define 	MADD_A_DCH_EN12 	19	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-#define 	MADD_A_DCH_EN13 	20	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-#define 	MADD_A_DCH_EN14 	21	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-#define 	MADD_A_DCH_EN15 	22	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-#define 	MADD_A_DCH_EN16 	23	// 	A¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-#define 	MADD_A_UCH_EN1 	24	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define 	MADD_A_UCH_EN2 	25	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define 	MADD_A_UCH_EN3 	26	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define 	MADD_A_UCH_EN4 	27	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define 	MADD_A_UCH_EN5 	28	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define 	MADD_A_UCH_EN6 	29	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define 	MADD_A_UCH_EN7 	30	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define 	MADD_A_UCH_EN8 	31	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define 	MADD_A_UCH_EN9 	32	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define 	MADD_A_UCH_EN10 	33	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define 	MADD_A_UCH_EN11 	34	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-#define 	MADD_A_UCH_EN12 	35	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-#define 	MADD_A_UCH_EN13 	36	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-#define 	MADD_A_UCH_EN14 	37	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-#define 	MADD_A_UCH_EN15 	38	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-#define 	MADD_A_UCH_EN16 	39	// 	A¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-#define 	MADD_A_DCH_GAIN1 	40	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define 	MADD_A_DCH_GAIN2 	41	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define 	MADD_A_DCH_GAIN3 	42	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define 	MADD_A_DCH_GAIN4 	43	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define 	MADD_A_DCH_GAIN5 	44	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define 	MADD_A_DCH_GAIN6 	45	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define 	MADD_A_DCH_GAIN7 	46	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define 	MADD_A_DCH_GAIN8 	47	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define 	MADD_A_DCH_GAIN9 	48	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define 	MADD_A_DCH_GAIN10 	49	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define 	MADD_A_DCH_GAIN11 	50	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define 	MADD_A_DCH_GAIN12 	51	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define 	MADD_A_DCH_GAIN13 	52	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define 	MADD_A_DCH_GAIN14 	53	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define 	MADD_A_DCH_GAIN15 	54	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define 	MADD_A_DCH_GAIN16 	55	// 	A¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define 	MADD_A_UCH_GAIN1 	56	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define 	MADD_A_UCH_GAIN2 	57	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define 	MADD_A_UCH_GAIN3 	58	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define 	MADD_A_UCH_GAIN4 	59	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define 	MADD_A_UCH_GAIN5 	60	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define 	MADD_A_UCH_GAIN6 	61	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define 	MADD_A_UCH_GAIN7 	62	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define 	MADD_A_UCH_GAIN8 	63	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define 	MADD_A_UCH_GAIN9 	64	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define 	MADD_A_UCH_GAIN10 	65	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define 	MADD_A_UCH_GAIN11 	66	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define 	MADD_A_UCH_GAIN12 	67	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define 	MADD_A_UCH_GAIN13 	68	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define 	MADD_A_UCH_GAIN14 	69	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define 	MADD_A_UCH_GAIN15 	70	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define 	MADD_A_UCH_GAIN16 	71	// 	A¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define 	MADD_A_DCH_ATT1 	72	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿1
-#define 	MADD_A_DCH_ATT2 	73	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿2
-#define 	MADD_A_DCH_ATT3 	74	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿3
-#define 	MADD_A_DCH_ATT4 	75	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿4
-#define 	MADD_A_DCH_ATT5 	76	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿5
-#define 	MADD_A_DCH_ATT6 	77	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿6
-#define 	MADD_A_DCH_ATT7 	78	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿7
-#define 	MADD_A_DCH_ATT8 	79	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿8
-#define 	MADD_A_DCH_ATT9 	80	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿9
-#define 	MADD_A_DCH_ATT10 	81	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿10
-#define 	MADD_A_DCH_ATT11 	82	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿11
-#define 	MADD_A_DCH_ATT12 	83	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿12
-#define 	MADD_A_DCH_ATT13 	84	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿13
-#define 	MADD_A_DCH_ATT14 	85	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿14
-#define 	MADD_A_DCH_ATT15 	86	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿15
-#define 	MADD_A_DCH_ATT16 	87	// 	A¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿16
-#define 	MADD_A_UCH_ATT1 	88	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿1
-#define 	MADD_A_UCH_ATT2 	89	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿2
-#define 	MADD_A_UCH_ATT3 	90	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿3
-#define 	MADD_A_UCH_ATT4 	91	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿4
-#define 	MADD_A_UCH_ATT5 	92	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿5
-#define 	MADD_A_UCH_ATT6 	93	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿6
-#define 	MADD_A_UCH_ATT7 	94	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿7
-#define 	MADD_A_UCH_ATT8 	95	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿8
-#define 	MADD_A_UCH_ATT9 	96	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿9	
-#define 	MADD_A_UCH_ATT10 	97	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿10	
-#define 	MADD_A_UCH_ATT11 	98	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿11	
-#define 	MADD_A_UCH_ATT12 	99	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿12	
-#define 	MADD_A_UCH_ATT13 	100	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿13	
-#define 	MADD_A_UCH_ATT14 	101	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿14	
-#define 	MADD_A_UCH_ATT15 	102	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿15	
-#define 	MADD_A_UCH_ATT16 	103	// 	A¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿16	
-#define 	MADD_A_DL_PA_GAIN 	104	// 	A¶ÎÏÂÐÐ¹¦·ÅÔöÒæ	
-#define 	MADD_A_UL_PA_GAIN 	105	// 	A¶ÎÉÏÐÐ¹¦·ÅÔöÒæ	
-#define 	MADD_A_TX_PLL_ST 	106	// 	A¶ÎÏÂÐÐPLL×´Ì¬,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø	
-#define 	MADD_A_RX_PLL_ST 	107	// 	A¶ÎÉÏÐÐPLL×´Ì¬	,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define 	MADD_A_INIT_DA_ST 	108	// 	³õÊ¼»¯A¶ÎDA×´Ì¬	,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£
-#define 	MADD_A_BB_PLL_LOCK 	109	// 	A¶ÎBB 	PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-#define 	MADD_A_FSAT 	110	// 	A¶ÎÇ°¶ËADÊäÈë×´Ì¬	
-#define 	MADD_A_DSAT 	111	// 	A¶Îºó¶ËDAÊä³ö×´Ì¬	
-#define 	MADD_A_PA_VG_EN 	112	// 	A¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-#define 	MADD_A_PA_VT 	113	// 	A¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾
-#define 	MADD_A_Modulator_EN 	114	// 	A¶Îµ÷ÖÆÆ÷×´Ì¬
-#define 	MADD_A_LNA_VT 	115	// 	A¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹	
-#define 	MADD_A_LNA1_ST 	116	// 	ÉÏÐÐLNA1×´Ì¬	
-#define 	MADD_A_LNA2_ST 	117	// 	ÉÏÐÐLNA2×´Ì¬	
-#define 	MADD_A_BUSY_TIME 	118	// 	A¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ	
-#define 	MADD_A_PRI_ADD 	119	// 	A¶ÎÄ£¿éµØÖ·	
-#define 	MADD_A_UL_POW_1B 	120	// 	A¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ	
-#define 	MADD_A_DL_POW_1B 	121	// 	A¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ	
-#define 	MADD_A_DCH_REC_RF_ATT1	122	//// 	REC¶ËµÄÏÂÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÏÂÐÐË¥¼õÁ¿ 	ÔÚrf
-#define 	MADD_A_UCH_REC_RF_ATT1	123	//// 	REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿ 	ÔÚrf
-#define 	MADD_B_CHANNEL_COUNT 	124	// 	B¶ÎÖ§³ÖµÄÍ¨µÀÊý	
-#define 	MADD_B_DL_WORK_EN 	125	// 	B¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ	
-#define 	MADD_B_UL_WORK_EN 	126	// 	B¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ	
-#define 	MADD_B_DPOW_MODE 	127	// 	B¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½	
-#define 	MADD_B_UPOW_MODE 	128	// 	B¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½
-#define 	MADD_B_LTHR_EN 	129	// 	B¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ
-#define 	MADD_B_LTHR_UP 	130	// 	B¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ
-#define 	MADD_B_LTHR_DN 	131	// 	B¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ
-#define 	MADD_B_DCH_EN1 	132	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define 	MADD_B_DCH_EN2 	133	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define 	MADD_B_DCH_EN3 	134	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define 	MADD_B_DCH_EN4 	135	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define 	MADD_B_DCH_EN5 	136	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define 	MADD_B_DCH_EN6 	137	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define 	MADD_B_DCH_EN7 	138	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define 	MADD_B_DCH_EN8 	139	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define 	MADD_B_DCH_EN9 	140	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define 	MADD_B_DCH_EN10 	141	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define 	MADD_B_DCH_EN11 	142	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-#define 	MADD_B_DCH_EN12 	143	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-#define 	MADD_B_DCH_EN13 	144	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-#define 	MADD_B_DCH_EN14 	145	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-#define 	MADD_B_DCH_EN15 	146	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-#define 	MADD_B_DCH_EN16 	147	// 	B¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-#define 	MADD_B_UCH_EN1 	148	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define 	MADD_B_UCH_EN2 	149	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define 	MADD_B_UCH_EN3 	150	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define 	MADD_B_UCH_EN4 	151	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define 	MADD_B_UCH_EN5 	152	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define 	MADD_B_UCH_EN6 	153	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define 	MADD_B_UCH_EN7 	154	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define 	MADD_B_UCH_EN8 	155	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define 	MADD_B_UCH_EN9 	156	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define 	MADD_B_UCH_EN10 	157	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define 	MADD_B_UCH_EN11 	158	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ11
-#define 	MADD_B_UCH_EN12 	159	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ12
-#define 	MADD_B_UCH_EN13 	160	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ13
-#define 	MADD_B_UCH_EN14 	161	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ14
-#define 	MADD_B_UCH_EN15 	162	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ15
-#define 	MADD_B_UCH_EN16 	163	// 	B¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ16
-#define 	MADD_B_DCH_GAIN1 	164	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define 	MADD_B_DCH_GAIN2 	165	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define 	MADD_B_DCH_GAIN3 	166	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define 	MADD_B_DCH_GAIN4 	167	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define 	MADD_B_DCH_GAIN5 	168	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define 	MADD_B_DCH_GAIN6 	169	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define 	MADD_B_DCH_GAIN7 	170	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define 	MADD_B_DCH_GAIN8 	171	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define 	MADD_B_DCH_GAIN9 	172	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define 	MADD_B_DCH_GAIN10 	173	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define 	MADD_B_DCH_GAIN11 	174	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define 	MADD_B_DCH_GAIN12 	175	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define 	MADD_B_DCH_GAIN13 	176	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define 	MADD_B_DCH_GAIN14 	177	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define 	MADD_B_DCH_GAIN15 	178	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define 	MADD_B_DCH_GAIN16 	179	// 	B¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define 	MADD_B_UCH_GAIN1 	180	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define 	MADD_B_UCH_GAIN2 	181	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define 	MADD_B_UCH_GAIN3 	182	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define 	MADD_B_UCH_GAIN4 	183	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define 	MADD_B_UCH_GAIN5 	184	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define 	MADD_B_UCH_GAIN6 	185	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define 	MADD_B_UCH_GAIN7 	186	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define 	MADD_B_UCH_GAIN8 	187	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define 	MADD_B_UCH_GAIN9 	188	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define 	MADD_B_UCH_GAIN10 	189	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define 	MADD_B_UCH_GAIN11 	190	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define 	MADD_B_UCH_GAIN12 	191	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define 	MADD_B_UCH_GAIN13 	192	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define 	MADD_B_UCH_GAIN14 	193	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define 	MADD_B_UCH_GAIN15 	194	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define 	MADD_B_UCH_GAIN16 	195	// 	B¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define 	MADD_B_DCH_ATT1 	196	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿1
-#define 	MADD_B_DCH_ATT2 	197	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿2
-#define 	MADD_B_DCH_ATT3 	198	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿3
-#define 	MADD_B_DCH_ATT4 	199	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿4
-#define 	MADD_B_DCH_ATT5 	200	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿5
-#define 	MADD_B_DCH_ATT6 	201	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿6
-#define 	MADD_B_DCH_ATT7 	202	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿7
-#define 	MADD_B_DCH_ATT8 	203	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿8
-#define 	MADD_B_DCH_ATT9 	204	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿9
-#define 	MADD_B_DCH_ATT10 	205	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿10
-#define 	MADD_B_DCH_ATT11 	206	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿11
-#define 	MADD_B_DCH_ATT12 	207	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿12
-#define 	MADD_B_DCH_ATT13 	208	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿13
-#define 	MADD_B_DCH_ATT14 	209	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿14
-#define 	MADD_B_DCH_ATT15 	210	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿15
-#define 	MADD_B_DCH_ATT16 	211	// 	B¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿16
-#define 	MADD_B_UCH_ATT1 	212	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿1
-#define 	MADD_B_UCH_ATT2 	213	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿2
-#define 	MADD_B_UCH_ATT3 	214	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿3
-#define 	MADD_B_UCH_ATT4 	215	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿4
-#define 	MADD_B_UCH_ATT5 	216	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿5
-#define 	MADD_B_UCH_ATT6 	217	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿6
-#define 	MADD_B_UCH_ATT7 	218	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿7
-#define 	MADD_B_UCH_ATT8 	219	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿8
-#define 	MADD_B_UCH_ATT9 	220	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿9
-#define 	MADD_B_UCH_ATT10 	221	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿10
-#define 	MADD_B_UCH_ATT11 	222	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿11
-#define 	MADD_B_UCH_ATT12 	223	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿12
-#define 	MADD_B_UCH_ATT13 	224	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿13	
-#define 	MADD_B_UCH_ATT14 	225	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿14	
-#define 	MADD_B_UCH_ATT15 	226	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿15	
-#define 	MADD_B_UCH_ATT16 	227	// 	B¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿16	
-#define 	MADD_B_DL_PA_GAIN 	228	// 	B¶ÎÏÂÐÐ¹¦·ÅÔöÒæ	
-#define 	MADD_B_UL_PA_GAIN 	229	// 	B¶ÎÉÏÐÐ¹¦·ÅÔöÒæ	
-#define 	MADD_B_TX_PLL_ST 	230	// 	B¶ÎÏÂÐÐPLL×´Ì¬	,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define 	MADD_B_RX_PLL_ST 	231	// 	B¶ÎÉÏÐÐPLL×´Ì¬,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø	
-#define 	MADD_B_INIT_DA_ST 	232	// 	³õÊ¼»¯B¶ÎDA×´Ì¬,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£	
-#define 	MADD_B_BB_PLL_LOCK 	233	// 	B¶ÎBB 	PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-#define 	MADD_B_FSAT 	234	// 	B¶ÎÇ°¶ËADÊäÈë×´Ì¬	
-#define 	MADD_B_DSAT 	235	// 	B¶Îºó¶ËDAÊä³ö×´Ì¬	
-#define 	MADD_B_PA_VG_EN 	236	// 	B¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-#define 	MADD_B_PA_VT 	237	// 	B¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾
-#define 	MADD_B_Modulator_EN 	238	// 	B¶Îµ÷ÖÆÆ÷×´Ì¬
-#define 	MADD_B_LNA_VT 	239	// 	B¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹	
-#define 	MADD_B_LNA1_ST 	240	// 	ÉÏÐÐLNA1×´Ì¬		
-#define 	MADD_B_LNA2_ST 	241	// 	ÉÏÐÐLNA2×´Ì¬		
-#define 	MADD_B_BUSY_TIME 	242	// 	B¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ		
-#define 	MADD_B_PRI_ADD 	243	// 	B¶ÎÄ£¿éµØÖ·		
-#define 	MADD_B_UL_POW_1B 	244	// 	B¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ		
-#define 	MADD_B_DL_POW_1B 	245	// 	B¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ		
-#define 	MADD_B_DCH_REC_RF_ATT1	246	//// 	REC¶ËµÄÏÂÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÏÂÐÐË¥¼õÁ¿ 	ÔÚrf
-#define 	MADD_B_UCH_REC_RF_ATT1  	247	 //// 	REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿ 	 	ÔÚrf
-#define 	MADD_C_CHANNEL_COUNT 	248	// 	C¶ÎÖ§³ÖµÄÍ¨µÀÊý		
-#define 	MADD_C_DL_WORK_EN 	249	// 	C¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ		
-#define 	MADD_C_UL_WORK_EN 	250	// 	C¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ		
-#define 	MADD_C_DPOW_MODE 	251	// 	C¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½		
-#define 	MADD_C_UPOW_MODE 	252	// 	C¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½		
-#define 	MADD_C_LTHR_EN 	253	// 	C¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ		
-#define 	MADD_C_LTHR_UP 	254	// 	C¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ		
-#define 	MADD_C_LTHR_DN 	255	// 	C¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ		
-#define 	MADD_C_DCH_EN1 	256	// 	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define 	MADD_C_DCH_EN2 	257	// 	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define 	MADD_C_DCH_EN3 	258	// 	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define 	MADD_C_DCH_EN4 	259	// 	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define 	MADD_C_DCH_EN5 	260	// 	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define 	MADD_C_DCH_EN6 	261	// 	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define 	MADD_C_DCH_EN7 	262	// 	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define 	MADD_C_DCH_EN8 	263	// 	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define 	MADD_C_DCH_EN9 	264	// 	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define 	MADD_C_DCH_EN10 	265	// 	C¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define 	MADD_C_UCH_EN1 	266	// 	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define 	MADD_C_UCH_EN2 	267	// 	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define 	MADD_C_UCH_EN3 	268	// 	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define 	MADD_C_UCH_EN4 	269	// 	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define 	MADD_C_UCH_EN5 	270	// 	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define 	MADD_C_UCH_EN6 	271	// 	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define 	MADD_C_UCH_EN7 	272	// 	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define 	MADD_C_UCH_EN8 	273	// 	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define 	MADD_C_UCH_EN9 	274	// 	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define 	MADD_C_UCH_EN10 	275	// 	C¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define 	MADD_C_DCH_GAIN1 	276	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define 	MADD_C_DCH_GAIN2 	277	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define 	MADD_C_DCH_GAIN3 	278	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define 	MADD_C_DCH_GAIN4 	279	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define 	MADD_C_DCH_GAIN5 	280	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define 	MADD_C_DCH_GAIN6 	281	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define 	MADD_C_DCH_GAIN7 	282	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define 	MADD_C_DCH_GAIN8 	283	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define 	MADD_C_DCH_GAIN9 	284	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define 	MADD_C_DCH_GAIN10 	285	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define 	MADD_C_DCH_GAIN11 	286	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define 	MADD_C_DCH_GAIN12 	287	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define 	MADD_C_DCH_GAIN13 	288	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define 	MADD_C_DCH_GAIN14 	289	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define 	MADD_C_DCH_GAIN15 	290	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define 	MADD_C_DCH_GAIN16 	291	// 	C¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define 	MADD_C_UCH_GAIN1 	292	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define 	MADD_C_UCH_GAIN2 	293	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define 	MADD_C_UCH_GAIN3 	294	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define 	MADD_C_UCH_GAIN4 	295	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define 	MADD_C_UCH_GAIN5 	296	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define 	MADD_C_UCH_GAIN6 	297	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define 	MADD_C_UCH_GAIN7 	298	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define 	MADD_C_UCH_GAIN8 	299	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define 	MADD_C_UCH_GAIN9 	300	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define 	MADD_C_UCH_GAIN10 	301	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define 	MADD_C_UCH_GAIN11 	302	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define 	MADD_C_UCH_GAIN12 	303	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define 	MADD_C_UCH_GAIN13 	304	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define 	MADD_C_UCH_GAIN14 	305	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define 	MADD_C_UCH_GAIN15 	306	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define 	MADD_C_UCH_GAIN16 	307	// 	C¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define 	MADD_C_DCH_ATT1 	308	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿1
-#define 	MADD_C_DCH_ATT2 	309	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿2
-#define 	MADD_C_DCH_ATT3 	310	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿3
-#define 	MADD_C_DCH_ATT4 	311	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿4
-#define 	MADD_C_DCH_ATT5 	312	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿5
-#define 	MADD_C_DCH_ATT6 	313	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿6
-#define 	MADD_C_DCH_ATT7 	314	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿7
-#define 	MADD_C_DCH_ATT8 	315	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿8
-#define 	MADD_C_DCH_ATT9 	316	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿9
-#define 	MADD_C_DCH_ATT10 	317	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿10
-#define 	MADD_C_DCH_ATT11 	318	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿11
-#define 	MADD_C_DCH_ATT12 	319	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿12
-#define 	MADD_C_DCH_ATT13 	320	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿13
-#define 	MADD_C_DCH_ATT14 	321	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿14
-#define 	MADD_C_DCH_ATT15 	322	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿15
-#define 	MADD_C_DCH_ATT16 	323	// 	C¶ÎÏÂÐÐÊý¿ØË¥¼õÁ¿16
-#define 	MADD_C_UCH_ATT1 	324	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿1
-#define 	MADD_C_UCH_ATT2 	325	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿2
-#define 	MADD_C_UCH_ATT3 	326	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿3
-#define 	MADD_C_UCH_ATT4 	327	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿4
-#define 	MADD_C_UCH_ATT5 	328	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿5
-#define 	MADD_C_UCH_ATT6 	329	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿6
-#define 	MADD_C_UCH_ATT7 	330	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿7
-#define 	MADD_C_UCH_ATT8 	331	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿8
-#define 	MADD_C_UCH_ATT9 	332	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿9
-#define 	MADD_C_UCH_ATT10 	333	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿10
-#define 	MADD_C_UCH_ATT11 	334	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿11
-#define 	MADD_C_UCH_ATT12 	335	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿12
-#define 	MADD_C_UCH_ATT13 	336	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿13	
-#define 	MADD_C_UCH_ATT14 	337	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿14	
-#define 	MADD_C_UCH_ATT15 	338	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿15	
-#define 	MADD_C_UCH_ATT16 	339	// 	C¶ÎÉÏÐÐÊý¿ØË¥¼õÁ¿16	
-#define 	MADD_C_DL_PA_GAIN 	340	// 	C¶ÎÏÂÐÐ¹¦·ÅÔöÒæ	
-#define 	MADD_C_UL_PA_GAIN 	341	// 	C¶ÎÉÏÐÐ¹¦·ÅÔöÒæ	
-#define 	MADD_C_TX_PLL_ST 	342	// 	C¶ÎÏÂÐÐPLL×´Ì¬,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø	
-#define 	MADD_C_RX_PLL_ST 	343	// 	C¶ÎÉÏÐÐPLL×´Ì¬,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø	
-#define 	MADD_C_INIT_DA_ST 	344	// 	³õÊ¼»¯A¶ÎDA×´Ì¬	,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£
-#define 	MADD_C_BB_PLL_LOCK 	345	// 	C¶ÎBB 	PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-#define 	MADD_C_FSAT 	346	// 	C¶ÎÇ°¶ËADÊäÈë×´Ì¬	
-#define 	MADD_C_DSAT 	347	// 	C¶Îºó¶ËDAÊä³ö×´Ì¬	
-#define 	MADD_C_PA_VG_EN 	348	// 	C¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-#define 	MADD_C_PA_VT 	349	// 	C¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾
-#define 	MADD_C_Modulator_EN 	350	// 	C¶Îµ÷ÖÆÆ÷×´Ì¬
-#define 	MADD_C_LNA_VT 	351	// 	C¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹	
-#define 	MADD_C_LNA1_ST 	352	// 	ÉÏÐÐLNA1×´Ì¬	
-#define 	MADD_C_LNA2_ST 	353	// 	ÉÏÐÐLNA2×´Ì¬	
-#define 	MADD_C_BUSY_TIME 	354	// 	C¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ	
-#define 	MADD_C_PRI_ADD 	355	// 	C¶ÎÄ£¿éµØÖ·	
-#define 	MADD_C_UL_POW_1B 	356	// 	C¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ	
-#define 	MADD_C_DL_POW_1B 	357	// 	C¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ	
-#define 	MADD_C_DCH_REC_RF_ATT1	358	//// 	REC¶ËµÄÏÂÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÏÂÐÐË¥¼õÁ¿ 	ÔÚrf
-#define 	MADD_C_UCH_REC_RF_ATT1	359	//// 	REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿ 	ÔÚrf
-#define 	MADD_D_CHANNEL_COUNT 	360	// 	D¶ÎÖ§³ÖµÄÍ¨µÀÊý	
-#define 	MADD_D_DL_WORK_EN 	361	// 	D¶ÎÏÂÐÐ¹¤×÷Ê¹ÄÜ	
-#define 	MADD_D_UL_WORK_EN 	362	// 	D¶ÎÉÏÐÐ¹¤×÷Ê¹ÄÜ	
-#define 	MADD_D_DPOW_MODE 	363	// 	D¶ÎÏÂÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½	
-#define 	MADD_D_UPOW_MODE 	364	// 	D¶ÎÉÏÐÐ¹¦ÂÊ¿ØÖÆ·½Ê½	
-#define 	MADD_D_LTHR_EN 	365	// 	D¶ÎÉÏÐÐµ×ÔëÒÖÖÆÊ¹ÄÜ	
-#define 	MADD_D_LTHR_UP 	366	// 	D¶Îµ×ÔëÒÖÖÆÉÏÃÅÏÞ	
-#define 	MADD_D_LTHR_DN 	367	// 	D¶Îµ×ÔëÒÖÖÆÏÂÃÅÏÞ	
-#define 	MADD_D_DCH_EN1 	368	// 	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define 	MADD_D_DCH_EN2 	369	// 	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define 	MADD_D_DCH_EN3 	370	// 	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define 	MADD_D_DCH_EN4 	371	// 	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define 	MADD_D_DCH_EN5 	372	// 	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define 	MADD_D_DCH_EN6 	373	// 	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define 	MADD_D_DCH_EN7 	374	// 	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define 	MADD_D_DCH_EN8 	375	// 	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define 	MADD_D_DCH_EN9 	376	// 	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define 	MADD_D_DCH_EN10 	377	// 	D¶ÎÏÂÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define 	MADD_D_UCH_EN1 	378	// 	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ1
-#define 	MADD_D_UCH_EN2 	379	// 	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ2
-#define 	MADD_D_UCH_EN3 	380	// 	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ3
-#define 	MADD_D_UCH_EN4 	381	// 	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ4
-#define 	MADD_D_UCH_EN5 	382	// 	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ5
-#define 	MADD_D_UCH_EN6 	383	// 	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ6
-#define 	MADD_D_UCH_EN7 	384	// 	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ7
-#define 	MADD_D_UCH_EN8 	385	// 	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ8
-#define 	MADD_D_UCH_EN9 	386	// 	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ9
-#define 	MADD_D_UCH_EN10 	387	// 	D¶ÎÉÏÐÐÍ¨µÀ¹¤×÷Ê¹ÄÜ10
-#define 	MADD_D_DCH_GAIN1 	388	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define 	MADD_D_DCH_GAIN2 	389	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define 	MADD_D_DCH_GAIN3 	390	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define 	MADD_D_DCH_GAIN4 	391	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define 	MADD_D_DCH_GAIN5 	392	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define 	MADD_D_DCH_GAIN6 	393	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define 	MADD_D_DCH_GAIN7 	394	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define 	MADD_D_DCH_GAIN8 	395	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define 	MADD_D_DCH_GAIN9 	396	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define 	MADD_D_DCH_GAIN10 	397	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define 	MADD_D_DCH_GAIN11 	398	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define 	MADD_D_DCH_GAIN12 	399	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define 	MADD_D_DCH_GAIN13 	400	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define 	MADD_D_DCH_GAIN14 	401	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define 	MADD_D_DCH_GAIN15 	402	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define 	MADD_D_DCH_GAIN16 	403	// 	D¶ÎÏÂÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define 	MADD_D_UCH_GAIN1 	404	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ1
-#define 	MADD_D_UCH_GAIN2 	405	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ2
-#define 	MADD_D_UCH_GAIN3 	406	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ3
-#define 	MADD_D_UCH_GAIN4 	407	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ4
-#define 	MADD_D_UCH_GAIN5 	408	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ5
-#define 	MADD_D_UCH_GAIN6 	409	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ6
-#define 	MADD_D_UCH_GAIN7 	410	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ7
-#define 	MADD_D_UCH_GAIN8 	411	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ8
-#define 	MADD_D_UCH_GAIN9 	412	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ9
-#define 	MADD_D_UCH_GAIN10 	413	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ10
-#define 	MADD_D_UCH_GAIN11 	414	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ11
-#define 	MADD_D_UCH_GAIN12 	415	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ12
-#define 	MADD_D_UCH_GAIN13 	416	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ13
-#define 	MADD_D_UCH_GAIN14 	417	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ14
-#define 	MADD_D_UCH_GAIN15 	418	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ15
-#define 	MADD_D_UCH_GAIN16 	419	// 	D¶ÎÉÏÐÐÑ¡ÆµÍ¨µÀ·Å´óÆ÷ÔöÒæ16
-#define 	MADD_D_DCH_ATT1 	420	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿1
-#define 	MADD_D_DCH_ATT2 	421	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿2
-#define 	MADD_D_DCH_ATT3 	422	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿3
-#define 	MADD_D_DCH_ATT4 	423	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿4
-#define 	MADD_D_DCH_ATT5 	424	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿5
-#define 	MADD_D_DCH_ATT6 	425	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿6
-#define 	MADD_D_DCH_ATT7 	426	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿7
-#define 	MADD_D_DCH_ATT8 	427	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿8
-#define 	MADD_D_DCH_ATT9 	428	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿9
-#define 	MADD_D_DCH_ATT10 	429	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿10
-#define 	MADD_D_DCH_ATT11 	430	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿11
-#define 	MADD_D_DCH_ATT12 	431	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿12
-#define 	MADD_D_DCH_ATT13 	432	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿13
-#define 	MADD_D_DCH_ATT14	433	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿14
-#define 	MADD_D_DCH_ATT15 	434	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿15
-#define 	MADD_D_DCH_ATT16 	435	// 	D¶ÎÏÂÐÐÊä³öÊý¿ØË¥¼õÁ¿16
-#define 	MADD_D_UCH_ATT1 	436	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿1
-#define 	MADD_D_UCH_ATT2 	437	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿2
-#define 	MADD_D_UCH_ATT3 	438	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿3
-#define 	MADD_D_UCH_ATT4 	439	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿4
-#define 	MADD_D_UCH_ATT5 	440	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿5
-#define 	MADD_D_UCH_ATT6 	441	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿6
-#define 	MADD_D_UCH_ATT7 	442	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿7
-#define 	MADD_D_UCH_ATT8 	443	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿8
-#define 	MADD_D_UCH_ATT9 	444	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿9
-#define 	MADD_D_UCH_ATT10 	445	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿10
-#define 	MADD_D_UCH_ATT11 	446	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿11
-#define 	MADD_D_UCH_ATT12 	447	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿12
-#define 	MADD_D_UCH_ATT13 	448	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿13	
-#define 	MADD_D_UCH_ATT14 	449	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿14	
-#define 	MADD_D_UCH_ATT15	450	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿15	
-#define 	MADD_D_UCH_ATT16 	451	// 	D¶ÎÉÏÐÐÊäÈëÊý¿ØË¥¼õÁ¿16	
-#define 	MADD_D_DL_PA_GAIN 	452	// 	D¶ÎÏÂÐÐ¹¦·ÅÔöÒæ	
-#define 	MADD_D_UL_PA_GAIN 	453	// 	D¶ÎÉÏÐÐ¹¦·ÅÔöÒæ	
-#define 	MADD_D_TX_PLL_ST 	454	// 	D¶ÎÏÂÐÐPLL×´Ì¬	,287 2ÎªTX_VCOËø¶¨£¬ÆäËûÊ§Ëø
-#define 	MADD_D_RX_PLL_ST 	455	// 	D¶ÎÉÏÐÐPLL×´Ì¬,247 2ÎªRX_VCOËø¶¨£¬ÆäËûÊ§Ëø	
-#define 	MADD_D_INIT_DA_ST 	456	// 	³õÊ¼»¯B¶ÎDA×´Ì¬,17 1AÎªËø¶¨+·¢ËÍ½ÓÊÕÊ¹ÄÜ´ò¿ª£¬ÆäËûÒì³£	
-#define 	MADD_D_BB_PLL_LOCK 	457	// 	D¶ÎBB 	PLLËø¶¨×´Ì¬,5E 80ÎªBBPLLÊý×ÖËøÏà»·Ëø¶¨£¬ÆäËûÊ§Ëø
-#define 	MADD_D_FSAT 	458	// 	D¶ÎÇ°¶ËADÊäÈë×´Ì¬	
-#define 	MADD_D_DSAT 	459	// 	D¶Îºó¶ËDAÊä³ö×´Ì¬	
-#define 	MADD_D_PA_VG_EN 	460	// 	D¶Î¹¦·ÅÕ¤Ñ¹×´Ì¬
-#define 	MADD_D_PA_VT 	461	// 	D¶Î¹¦·Å¹ÜµçÑ¹ÏÔÊ¾	
-#define 	MADD_D_Modulator_EN 	462	// 	D¶Îµ÷ÖÆÆ÷×´Ì¬
-#define 	MADD_D_LNA_VT 	463	// 	D¶ÎÏÂÐÐµÍÔë·ÅLNAµçÑ¹	
-#define 	MADD_D_LNA1_ST 	464	// 	ÉÏÐÐLNA1×´Ì¬		
-#define 	MADD_D_LNA2_ST 	465	// 	ÉÏÐÐLNA2×´Ì¬		
-#define 	MADD_D_BUSY_TIME 	466	// 	D¶ÎÉÏÐÐÊ±Ï¶Õ¼ÓÃÂÊ		
-#define 	MADD_D_PRI_ADD 	467	// 	D¶ÎÄ£¿éµØÖ·		
-#define 	MADD_D_UL_POW_1B 	468	// 	D¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ		
-#define 	MADD_D_DL_POW_1B 	469	// 	D¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ		
-#define 	MADD_D_DCH_REC_RF_ATT1	470	//// 	REC¶ËµÄÏÂÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÏÂÐÐË¥¼õÁ¿ 	ÔÚrf
-#define 	MADD_D_UCH_REC_RF_ATT1  	471	 //// 	REC¶ËµÄÉÏÐÐÊý¿ØË¥¼õÁ¿¡£¼´RF¶ËµÄÁ´Â·ÉÏÐÐË¥¼õÁ¿ 	 	ÔÚrf
-#define	MADD_FP1_EN	472	//	¹â¿Ú·¢ËÍÊ¹ÄÜ1		
-#define	MADD_FP2_EN	473	//	¹â¿Ú·¢ËÍÊ¹ÄÜ2		
-#define	MADD_FP3_EN	474	//	¹â¿Ú·¢ËÍÊ¹ÄÜ3		
-#define	MADD_FP4_EN	475	//	¹â¿Ú·¢ËÍÊ¹ÄÜ4		
-#define	MADD_FP5_EN	476	//	¹â¿Ú·¢ËÍÊ¹ÄÜ5		
-#define	MADD_FP6_EN	477	//	¹â¿Ú·¢ËÍÊ¹ÄÜ6		
-#define	MADD_FP7_EN	478	//	¹â¿Ú·¢ËÍÊ¹ÄÜ7		
-#define	MADD_FP8_EN	479	//	¹â¿Ú·¢ËÍÊ¹ÄÜ8		
-#define	MADD_FP9_EN	480	//	¹â¿Ú·¢ËÍÊ¹ÄÜ9	
-#define	MADD_FP10_EN	481	//	¹â¿Ú·¢ËÍÊ¹ÄÜ10	
-#define	MADD_FP11_EN	482	//	¹â¿Ú·¢ËÍÊ¹ÄÜ11	
-#define	MADD_FP12_EN	483	//	¹â¿Ú·¢ËÍÊ¹ÄÜ12	
-#define	MADD_FP13_EN	484	//	¹â¿Ú·¢ËÍÊ¹ÄÜ13	
-#define	MADD_FP14_EN	485	//	¹â¿Ú·¢ËÍÊ¹ÄÜ14	
-#define	MADD_FP15_EN	486	//	¹â¿Ú·¢ËÍÊ¹ÄÜ15	
-#define	MADD_FP16_EN	487	//	¹â¿Ú·¢ËÍÊ¹ÄÜ16	
-#define	MADD_FP1_ON_POS	488	//	¹â¿ÚÔÚÎ»×´Ì¬1,	0-ÔÚÎ»
-#define	MADD_FP2_ON_POS	489	//	¹â¿ÚÔÚÎ»×´Ì¬2,	0-ÔÚÎ»
-#define	MADD_FP3_ON_POS	490	//	¹â¿ÚÔÚÎ»×´Ì¬3,	0-ÔÚÎ»
-#define	MADD_FP4_ON_POS	491	//	¹â¿ÚÔÚÎ»×´Ì¬4,	0-ÔÚÎ»
-#define	MADD_FP5_ON_POS	492	//	¹â¿ÚÔÚÎ»×´Ì¬5,	0-ÔÚÎ»
-#define	MADD_FP6_ON_POS	493	//	¹â¿ÚÔÚÎ»×´Ì¬6,	0-ÔÚÎ»
-#define	MADD_FP7_ON_POS	494	//	¹â¿ÚÔÚÎ»×´Ì¬7,	0-ÔÚÎ»
-#define	MADD_FP8_ON_POS	495	//	¹â¿ÚÔÚÎ»×´Ì¬8,	0-ÔÚÎ»
-#define	MADD_FP9_ON_POS	496	//	¹â¿ÚÔÚÎ»×´Ì¬9,	0-ÔÚÎ»
-#define	MADD_FP10_ON_POS	497	//	¹â¿ÚÔÚÎ»×´Ì¬10,	0-ÔÚÎ»
-#define	MADD_FP11_ON_POS	498	//	¹â¿ÚÔÚÎ»×´Ì¬11,	0-ÔÚÎ»
-#define	MADD_FP12_ON_POS	499	//	¹â¿ÚÔÚÎ»×´Ì¬12,	0-ÔÚÎ»
-#define	MADD_FP13_ON_POS	500	//	¹â¿ÚÔÚÎ»×´Ì¬13,	0-ÔÚÎ»
-#define	MADD_FP14_ON_POS	501	//	¹â¿ÚÔÚÎ»×´Ì¬14,	0-ÔÚÎ»
-#define	MADD_FP15_ON_POS	502	//	¹â¿ÚÔÚÎ»×´Ì¬15,	0-ÔÚÎ»
-#define	MADD_FP16_ON_POS	503	//	¹â¿ÚÔÚÎ»×´Ì¬16,	0-ÔÚÎ»
-#define	MADD_FP1_LOS	504	//	¹â¿Ú1ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	MADD_FP2_LOS	505	//	¹â¿Ú2ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	MADD_FP3_LOS	506	//	¹â¿Ú3ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	MADD_FP4_LOS	507	//	¹â¿Ú4ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	MADD_FP5_LOS	508	//	¹â¿Ú5ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	MADD_FP6_LOS	509	//	¹â¿Ú6ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	MADD_FP7_LOS	510	//	¹â¿Ú7ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	MADD_FP8_LOS	511	//	¹â¿Ú8ÐÅºÅ¶ªÊ§×´Ì¬	
-#define	MADD_FP9_LOS	512	//	¹â¿Ú9ÐÅºÅ¶ªÊ§×´Ì¬
-#define	MADD_FP10_LOS	513	//	¹â¿Ú10ÐÅºÅ¶ªÊ§×´Ì¬
-#define	MADD_FP11_LOS	514	//	¹â¿Ú11ÐÅºÅ¶ªÊ§×´Ì¬
-#define	MADD_FP12_LOS	515	//	¹â¿Ú12ÐÅºÅ¶ªÊ§×´Ì¬
-#define	MADD_FP13_LOS	516	//	¹â¿Ú13ÐÅºÅ¶ªÊ§×´Ì¬
-#define	MADD_FP14_LOS	517	//	¹â¿Ú14ÐÅºÅ¶ªÊ§×´Ì¬
-#define	MADD_FP15_LOS	518	//	¹â¿Ú15ÐÅºÅ¶ªÊ§×´Ì¬
-#define	MADD_FP16_LOS	519	//	¹â¿Ú16ÐÅºÅ¶ªÊ§×´Ì¬
-#define	MADD_FP1_LOF	520	//	¹â¿Ú1Ö¡¶ªÊ§×´Ì¬
-#define	MADD_FP2_LOF	521	//	¹â¿Ú2Ö¡¶ªÊ§×´Ì¬
-#define	MADD_FP3_LOF	522	//	¹â¿Ú3Ö¡¶ªÊ§×´Ì¬
-#define	MADD_FP4_LOF	523	//	¹â¿Ú4Ö¡¶ªÊ§×´Ì¬
-#define	MADD_FP5_LOF	524	//	¹â¿Ú5Ö¡¶ªÊ§×´Ì¬
-#define	MADD_FP6_LOF	525	//	¹â¿Ú6Ö¡¶ªÊ§×´Ì¬
-#define	MADD_FP7_LOF	526	//	¹â¿Ú7Ö¡¶ªÊ§×´Ì¬
-#define	MADD_FP8_LOF	527	//	¹â¿Ú8Ö¡¶ªÊ§×´Ì¬
-#define	MADD_FP9_LOF	528	//	¹â¿Ú9Ö¡¶ªÊ§×´Ì¬
-#define	MADD_FP10_LOF	529	//	¹â¿Ú10Ö¡¶ªÊ§×´Ì¬
-#define	MADD_FP11_LOF	530	//	¹â¿Ú11Ö¡¶ªÊ§×´Ì¬
-#define	MADD_FP12_LOF	531	//	¹â¿Ú12Ö¡¶ªÊ§×´Ì¬
-#define	MADD_FP13_LOF	532	//	¹â¿Ú13Ö¡¶ªÊ§×´Ì¬
-#define	MADD_FP14_LOF	533	//	¹â¿Ú14Ö¡¶ªÊ§×´Ì¬
-#define	MADD_FP15_LOF	534	//	¹â¿Ú15Ö¡¶ªÊ§×´Ì¬
-#define	MADD_FP16_LOF	535	//	¹â¿Ú16Ö¡¶ªÊ§×´Ì¬
-#define	MADD_OPT_LOF	536	//	Ö¡¶ªÊ§×´Ì¬
-#define	MADD_SERDES1_PLL_ST	537	//	SerDesÐ¾Æ¬PLL×´Ì¬1
-#define	MADD_SERDES2_PLL_ST	538	//	SerDesÐ¾Æ¬PLL×´Ì¬2
-#define	MADD_SERDES3_PLL_ST	539	//	SerDesÐ¾Æ¬PLL×´Ì¬3
-#define	MADD_SERDES4_PLL_ST	540	//	SerDesÐ¾Æ¬PLL×´Ì¬4
-#define	MADD_SERDES5_PLL_ST	541	//	SerDesÐ¾Æ¬PLL×´Ì¬5
-#define	MADD_SERDES6_PLL_ST	542	//	SerDesÐ¾Æ¬PLL×´Ì¬6
-#define	MADD_SERDES7_PLL_ST	543	//	SerDesÐ¾Æ¬PLL×´Ì¬7
-#define	MADD_SERDES8_PLL_ST	544	//	SerDesÐ¾Æ¬PLL×´Ì¬8
-#define	MADD_SERDES9_PLL_ST	545	//	SerDesÐ¾Æ¬PLL×´Ì¬9
-#define	MADD_SERDES10_PLL_ST	546	//	SerDesÐ¾Æ¬PLL×´Ì¬10
-#define	MADD_SERDES11_PLL_ST	547	//	SerDesÐ¾Æ¬PLL×´Ì¬11
-#define	MADD_SERDES12_PLL_ST	548	//	SerDesÐ¾Æ¬PLL×´Ì¬12
-#define	MADD_SERDES13_PLL_ST	549	//	SerDesÐ¾Æ¬PLL×´Ì¬13
-#define	MADD_SERDES14_PLL_ST	550	//	SerDesÐ¾Æ¬PLL×´Ì¬14
-#define	MADD_SERDES15_PLL_ST	551	//	SerDesÐ¾Æ¬PLL×´Ì¬15
-#define	MADD_SERDES16_PLL_ST	552	//	SerDesÐ¾Æ¬PLL×´Ì¬16
-#define	MADD_TOPO_CHG_ALM	553	//	»·Â·×´Ì¬¸æ¾¯
-#define	MADD_BER_ALARM	554	//	ÎóÂëÂÊÆ«¸ß¸æ¾¯
-#define	MADD_LOAD_FPGA_ST	555	//	¼ÓÔØFPGA×´Ì¬
-#define	MADD_FPGA_CLK_ST	556	//	FPGA±¾Õñ×´Ì¬
-#define	MADD_INIT_CLK_ST	557	//	³õÊ¼»¯Ê±ÖÓ×´Ì¬
-#define	MADD_INIT_AD_ST	558	//	³õÊ¼»¯AD×´Ì¬
-#define	MADD_INIT_FB_AD_ST	559	//	³õÊ¼»¯·´À¡AD×´Ì¬
-#define	MADD_CLK_PLL_ST	560	//	CLK	PLL×´Ì¬		
-#define	MADD_CLK_REF_ST	561	//	CLK	²Î¿¼×´Ì¬		
-#define	MADD_RE_NODE_MODE	562	//	RE½ÚµãÄ£Ê½:0-Î´ÁªÍø,1-Á´ÍøÄ©¶Ë,2-Á´ÍøÖÐ¼ä,3-»·ÍøÄ©¶Ë,4-»·ÍøÖÐ¼ä			
-#define	MADD_BOARD_TEMP	563	//	µ¥°åÎÂ¶È			
-#define	MADD_CLK_VCO_VT	564	//	Ê±ÖÓVCOµçÑ¹			
-#define	MADD_PWR_9V0_VT	565	//	9VµçÔ´µçÑ¹			
-#define	MADD_PWR_5V5_VT	566	//	5.5VµçÔ´µçÑ¹			
-#define	MADD_PWR_3V6_VT	567	//	3.6VµçÔ´µçÑ¹			
-#define	MADD_PWR_1V2_VT	568	//	1.2VµçÔ´µçÑ¹			
-#define	MADD_PWR_2V5_VT	569	//	1.2VµçÔ´µçÑ¹			
-#define	MADD_PRI_PROTOCAL_V	570	//	Ð­Òé°æ±¾			
+// è®¿é—®åœ°å€>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 1B
+#define 	MADD_A_CHANNEL_COUNT 	0	// 	Aæ®µæ”¯æŒçš„é€šé“æ•°
+#define 	MADD_A_DL_WORK_EN 	1	// 	Aæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½
+#define 	MADD_A_UL_WORK_EN 	2	// 	Aæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½
+#define 	MADD_A_DPOW_MODE 	3	// 	Aæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define 	MADD_A_UPOW_MODE 	4	// 	Aæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define 	MADD_A_LTHR_EN 	5	// 	Aæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½
+#define 	MADD_A_LTHR_UP 	6	// 	Aæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™
+#define 	MADD_A_LTHR_DN 	7	// 	Aæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
+#define 	MADD_A_DCH_EN1 	8	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define 	MADD_A_DCH_EN2 	9	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define 	MADD_A_DCH_EN3 	10	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define 	MADD_A_DCH_EN4 	11	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define 	MADD_A_DCH_EN5 	12	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define 	MADD_A_DCH_EN6 	13	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define 	MADD_A_DCH_EN7 	14	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define 	MADD_A_DCH_EN8 	15	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define 	MADD_A_DCH_EN9 	16	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define 	MADD_A_DCH_EN10 	17	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define 	MADD_A_DCH_EN11 	18	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½11
+#define 	MADD_A_DCH_EN12 	19	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½12
+#define 	MADD_A_DCH_EN13 	20	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½13
+#define 	MADD_A_DCH_EN14 	21	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½14
+#define 	MADD_A_DCH_EN15 	22	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½15
+#define 	MADD_A_DCH_EN16 	23	// 	Aæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½16
+#define 	MADD_A_UCH_EN1 	24	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define 	MADD_A_UCH_EN2 	25	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define 	MADD_A_UCH_EN3 	26	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define 	MADD_A_UCH_EN4 	27	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define 	MADD_A_UCH_EN5 	28	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define 	MADD_A_UCH_EN6 	29	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define 	MADD_A_UCH_EN7 	30	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define 	MADD_A_UCH_EN8 	31	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define 	MADD_A_UCH_EN9 	32	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define 	MADD_A_UCH_EN10 	33	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define 	MADD_A_UCH_EN11 	34	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½11
+#define 	MADD_A_UCH_EN12 	35	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½12
+#define 	MADD_A_UCH_EN13 	36	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½13
+#define 	MADD_A_UCH_EN14 	37	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½14
+#define 	MADD_A_UCH_EN15 	38	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½15
+#define 	MADD_A_UCH_EN16 	39	// 	Aæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½16
+#define 	MADD_A_DCH_GAIN1 	40	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define 	MADD_A_DCH_GAIN2 	41	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define 	MADD_A_DCH_GAIN3 	42	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define 	MADD_A_DCH_GAIN4 	43	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define 	MADD_A_DCH_GAIN5 	44	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define 	MADD_A_DCH_GAIN6 	45	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define 	MADD_A_DCH_GAIN7 	46	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define 	MADD_A_DCH_GAIN8 	47	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define 	MADD_A_DCH_GAIN9 	48	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define 	MADD_A_DCH_GAIN10 	49	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define 	MADD_A_DCH_GAIN11 	50	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define 	MADD_A_DCH_GAIN12 	51	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define 	MADD_A_DCH_GAIN13 	52	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define 	MADD_A_DCH_GAIN14 	53	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define 	MADD_A_DCH_GAIN15 	54	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define 	MADD_A_DCH_GAIN16 	55	// 	Aæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define 	MADD_A_UCH_GAIN1 	56	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define 	MADD_A_UCH_GAIN2 	57	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define 	MADD_A_UCH_GAIN3 	58	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define 	MADD_A_UCH_GAIN4 	59	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define 	MADD_A_UCH_GAIN5 	60	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define 	MADD_A_UCH_GAIN6 	61	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define 	MADD_A_UCH_GAIN7 	62	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define 	MADD_A_UCH_GAIN8 	63	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define 	MADD_A_UCH_GAIN9 	64	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define 	MADD_A_UCH_GAIN10 	65	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define 	MADD_A_UCH_GAIN11 	66	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define 	MADD_A_UCH_GAIN12 	67	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define 	MADD_A_UCH_GAIN13 	68	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define 	MADD_A_UCH_GAIN14 	69	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define 	MADD_A_UCH_GAIN15 	70	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define 	MADD_A_UCH_GAIN16 	71	// 	Aæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define 	MADD_A_DCH_ATT1 	72	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡1
+#define 	MADD_A_DCH_ATT2 	73	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡2
+#define 	MADD_A_DCH_ATT3 	74	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡3
+#define 	MADD_A_DCH_ATT4 	75	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡4
+#define 	MADD_A_DCH_ATT5 	76	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡5
+#define 	MADD_A_DCH_ATT6 	77	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡6
+#define 	MADD_A_DCH_ATT7 	78	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡7
+#define 	MADD_A_DCH_ATT8 	79	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡8
+#define 	MADD_A_DCH_ATT9 	80	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡9
+#define 	MADD_A_DCH_ATT10 	81	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡10
+#define 	MADD_A_DCH_ATT11 	82	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡11
+#define 	MADD_A_DCH_ATT12 	83	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡12
+#define 	MADD_A_DCH_ATT13 	84	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡13
+#define 	MADD_A_DCH_ATT14 	85	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡14
+#define 	MADD_A_DCH_ATT15 	86	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡15
+#define 	MADD_A_DCH_ATT16 	87	// 	Aæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡16
+#define 	MADD_A_UCH_ATT1 	88	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡1
+#define 	MADD_A_UCH_ATT2 	89	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡2
+#define 	MADD_A_UCH_ATT3 	90	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡3
+#define 	MADD_A_UCH_ATT4 	91	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡4
+#define 	MADD_A_UCH_ATT5 	92	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡5
+#define 	MADD_A_UCH_ATT6 	93	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡6
+#define 	MADD_A_UCH_ATT7 	94	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡7
+#define 	MADD_A_UCH_ATT8 	95	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡8
+#define 	MADD_A_UCH_ATT9 	96	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡9	
+#define 	MADD_A_UCH_ATT10 	97	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡10	
+#define 	MADD_A_UCH_ATT11 	98	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡11	
+#define 	MADD_A_UCH_ATT12 	99	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡12	
+#define 	MADD_A_UCH_ATT13 	100	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡13	
+#define 	MADD_A_UCH_ATT14 	101	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡14	
+#define 	MADD_A_UCH_ATT15 	102	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡15	
+#define 	MADD_A_UCH_ATT16 	103	// 	Aæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡16	
+#define 	MADD_A_DL_PA_GAIN 	104	// 	Aæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š	
+#define 	MADD_A_UL_PA_GAIN 	105	// 	Aæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š	
+#define 	MADD_A_TX_PLL_ST 	106	// 	Aæ®µä¸‹è¡ŒPLLçŠ¶æ€,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”	
+#define 	MADD_A_RX_PLL_ST 	107	// 	Aæ®µä¸Šè¡ŒPLLçŠ¶æ€	,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define 	MADD_A_INIT_DA_ST 	108	// 	åˆå§‹åŒ–Aæ®µDAçŠ¶æ€	,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸
+#define 	MADD_A_BB_PLL_LOCK 	109	// 	Aæ®µBB 	PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+#define 	MADD_A_FSAT 	110	// 	Aæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€	
+#define 	MADD_A_DSAT 	111	// 	Aæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€	
+#define 	MADD_A_PA_VG_EN 	112	// 	Aæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+#define 	MADD_A_PA_VT 	113	// 	Aæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º
+#define 	MADD_A_Modulator_EN 	114	// 	Aæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+#define 	MADD_A_LNA_VT 	115	// 	Aæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹	
+#define 	MADD_A_LNA1_ST 	116	// 	ä¸Šè¡ŒLNA1çŠ¶æ€	
+#define 	MADD_A_LNA2_ST 	117	// 	ä¸Šè¡ŒLNA2çŠ¶æ€	
+#define 	MADD_A_BUSY_TIME 	118	// 	Aæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡	
+#define 	MADD_A_PRI_ADD 	119	// 	Aæ®µæ¨¡å—åœ°å€	
+#define 	MADD_A_UL_POW_1B 	120	// 	Aæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡	
+#define 	MADD_A_DL_POW_1B 	121	// 	Aæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡	
+#define 	MADD_A_DCH_REC_RF_ATT1	122	//// 	RECç«¯çš„ä¸‹è¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸‹è¡Œè¡°å‡é‡ 	åœ¨rf
+#define 	MADD_A_UCH_REC_RF_ATT1	123	//// 	RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡ 	åœ¨rf
+#define 	MADD_B_CHANNEL_COUNT 	124	// 	Bæ®µæ”¯æŒçš„é€šé“æ•°	
+#define 	MADD_B_DL_WORK_EN 	125	// 	Bæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½	
+#define 	MADD_B_UL_WORK_EN 	126	// 	Bæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½	
+#define 	MADD_B_DPOW_MODE 	127	// 	Bæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼	
+#define 	MADD_B_UPOW_MODE 	128	// 	Bæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼
+#define 	MADD_B_LTHR_EN 	129	// 	Bæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½
+#define 	MADD_B_LTHR_UP 	130	// 	Bæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™
+#define 	MADD_B_LTHR_DN 	131	// 	Bæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
+#define 	MADD_B_DCH_EN1 	132	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define 	MADD_B_DCH_EN2 	133	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define 	MADD_B_DCH_EN3 	134	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define 	MADD_B_DCH_EN4 	135	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define 	MADD_B_DCH_EN5 	136	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define 	MADD_B_DCH_EN6 	137	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define 	MADD_B_DCH_EN7 	138	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define 	MADD_B_DCH_EN8 	139	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define 	MADD_B_DCH_EN9 	140	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define 	MADD_B_DCH_EN10 	141	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define 	MADD_B_DCH_EN11 	142	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½11
+#define 	MADD_B_DCH_EN12 	143	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½12
+#define 	MADD_B_DCH_EN13 	144	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½13
+#define 	MADD_B_DCH_EN14 	145	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½14
+#define 	MADD_B_DCH_EN15 	146	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½15
+#define 	MADD_B_DCH_EN16 	147	// 	Bæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½16
+#define 	MADD_B_UCH_EN1 	148	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define 	MADD_B_UCH_EN2 	149	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define 	MADD_B_UCH_EN3 	150	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define 	MADD_B_UCH_EN4 	151	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define 	MADD_B_UCH_EN5 	152	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define 	MADD_B_UCH_EN6 	153	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define 	MADD_B_UCH_EN7 	154	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define 	MADD_B_UCH_EN8 	155	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define 	MADD_B_UCH_EN9 	156	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define 	MADD_B_UCH_EN10 	157	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define 	MADD_B_UCH_EN11 	158	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½11
+#define 	MADD_B_UCH_EN12 	159	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½12
+#define 	MADD_B_UCH_EN13 	160	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½13
+#define 	MADD_B_UCH_EN14 	161	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½14
+#define 	MADD_B_UCH_EN15 	162	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½15
+#define 	MADD_B_UCH_EN16 	163	// 	Bæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½16
+#define 	MADD_B_DCH_GAIN1 	164	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define 	MADD_B_DCH_GAIN2 	165	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define 	MADD_B_DCH_GAIN3 	166	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define 	MADD_B_DCH_GAIN4 	167	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define 	MADD_B_DCH_GAIN5 	168	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define 	MADD_B_DCH_GAIN6 	169	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define 	MADD_B_DCH_GAIN7 	170	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define 	MADD_B_DCH_GAIN8 	171	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define 	MADD_B_DCH_GAIN9 	172	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define 	MADD_B_DCH_GAIN10 	173	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define 	MADD_B_DCH_GAIN11 	174	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define 	MADD_B_DCH_GAIN12 	175	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define 	MADD_B_DCH_GAIN13 	176	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define 	MADD_B_DCH_GAIN14 	177	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define 	MADD_B_DCH_GAIN15 	178	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define 	MADD_B_DCH_GAIN16 	179	// 	Bæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define 	MADD_B_UCH_GAIN1 	180	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define 	MADD_B_UCH_GAIN2 	181	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define 	MADD_B_UCH_GAIN3 	182	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define 	MADD_B_UCH_GAIN4 	183	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define 	MADD_B_UCH_GAIN5 	184	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define 	MADD_B_UCH_GAIN6 	185	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define 	MADD_B_UCH_GAIN7 	186	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define 	MADD_B_UCH_GAIN8 	187	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define 	MADD_B_UCH_GAIN9 	188	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define 	MADD_B_UCH_GAIN10 	189	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define 	MADD_B_UCH_GAIN11 	190	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define 	MADD_B_UCH_GAIN12 	191	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define 	MADD_B_UCH_GAIN13 	192	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define 	MADD_B_UCH_GAIN14 	193	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define 	MADD_B_UCH_GAIN15 	194	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define 	MADD_B_UCH_GAIN16 	195	// 	Bæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define 	MADD_B_DCH_ATT1 	196	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡1
+#define 	MADD_B_DCH_ATT2 	197	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡2
+#define 	MADD_B_DCH_ATT3 	198	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡3
+#define 	MADD_B_DCH_ATT4 	199	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡4
+#define 	MADD_B_DCH_ATT5 	200	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡5
+#define 	MADD_B_DCH_ATT6 	201	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡6
+#define 	MADD_B_DCH_ATT7 	202	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡7
+#define 	MADD_B_DCH_ATT8 	203	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡8
+#define 	MADD_B_DCH_ATT9 	204	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡9
+#define 	MADD_B_DCH_ATT10 	205	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡10
+#define 	MADD_B_DCH_ATT11 	206	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡11
+#define 	MADD_B_DCH_ATT12 	207	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡12
+#define 	MADD_B_DCH_ATT13 	208	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡13
+#define 	MADD_B_DCH_ATT14 	209	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡14
+#define 	MADD_B_DCH_ATT15 	210	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡15
+#define 	MADD_B_DCH_ATT16 	211	// 	Bæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡16
+#define 	MADD_B_UCH_ATT1 	212	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡1
+#define 	MADD_B_UCH_ATT2 	213	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡2
+#define 	MADD_B_UCH_ATT3 	214	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡3
+#define 	MADD_B_UCH_ATT4 	215	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡4
+#define 	MADD_B_UCH_ATT5 	216	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡5
+#define 	MADD_B_UCH_ATT6 	217	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡6
+#define 	MADD_B_UCH_ATT7 	218	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡7
+#define 	MADD_B_UCH_ATT8 	219	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡8
+#define 	MADD_B_UCH_ATT9 	220	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡9
+#define 	MADD_B_UCH_ATT10 	221	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡10
+#define 	MADD_B_UCH_ATT11 	222	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡11
+#define 	MADD_B_UCH_ATT12 	223	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡12
+#define 	MADD_B_UCH_ATT13 	224	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡13	
+#define 	MADD_B_UCH_ATT14 	225	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡14	
+#define 	MADD_B_UCH_ATT15 	226	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡15	
+#define 	MADD_B_UCH_ATT16 	227	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡16	
+#define 	MADD_B_DL_PA_GAIN 	228	// 	Bæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š	
+#define 	MADD_B_UL_PA_GAIN 	229	// 	Bæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š	
+#define 	MADD_B_TX_PLL_ST 	230	// 	Bæ®µä¸‹è¡ŒPLLçŠ¶æ€	,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define 	MADD_B_RX_PLL_ST 	231	// 	Bæ®µä¸Šè¡ŒPLLçŠ¶æ€,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”	
+#define 	MADD_B_INIT_DA_ST 	232	// 	åˆå§‹åŒ–Bæ®µDAçŠ¶æ€,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸	
+#define 	MADD_B_BB_PLL_LOCK 	233	// 	Bæ®µBB 	PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+#define 	MADD_B_FSAT 	234	// 	Bæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€	
+#define 	MADD_B_DSAT 	235	// 	Bæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€	
+#define 	MADD_B_PA_VG_EN 	236	// 	Bæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+#define 	MADD_B_PA_VT 	237	// 	Bæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º
+#define 	MADD_B_Modulator_EN 	238	// 	Bæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+#define 	MADD_B_LNA_VT 	239	// 	Bæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹	
+#define 	MADD_B_LNA1_ST 	240	// 	ä¸Šè¡ŒLNA1çŠ¶æ€		
+#define 	MADD_B_LNA2_ST 	241	// 	ä¸Šè¡ŒLNA2çŠ¶æ€		
+#define 	MADD_B_BUSY_TIME 	242	// 	Bæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡		
+#define 	MADD_B_PRI_ADD 	243	// 	Bæ®µæ¨¡å—åœ°å€		
+#define 	MADD_B_UL_POW_1B 	244	// 	Bæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡		
+#define 	MADD_B_DL_POW_1B 	245	// 	Bæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡		
+#define 	MADD_B_DCH_REC_RF_ATT1	246	//// 	RECç«¯çš„ä¸‹è¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸‹è¡Œè¡°å‡é‡ 	åœ¨rf
+#define 	MADD_B_UCH_REC_RF_ATT1  	247	 //// 	RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡ 	 	åœ¨rf
+#define 	MADD_C_CHANNEL_COUNT 	248	// 	Cæ®µæ”¯æŒçš„é€šé“æ•°		
+#define 	MADD_C_DL_WORK_EN 	249	// 	Cæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½		
+#define 	MADD_C_UL_WORK_EN 	250	// 	Cæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½		
+#define 	MADD_C_DPOW_MODE 	251	// 	Cæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼		
+#define 	MADD_C_UPOW_MODE 	252	// 	Cæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼		
+#define 	MADD_C_LTHR_EN 	253	// 	Cæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½		
+#define 	MADD_C_LTHR_UP 	254	// 	Cæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™		
+#define 	MADD_C_LTHR_DN 	255	// 	Cæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™		
+#define 	MADD_C_DCH_EN1 	256	// 	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define 	MADD_C_DCH_EN2 	257	// 	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define 	MADD_C_DCH_EN3 	258	// 	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define 	MADD_C_DCH_EN4 	259	// 	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define 	MADD_C_DCH_EN5 	260	// 	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define 	MADD_C_DCH_EN6 	261	// 	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define 	MADD_C_DCH_EN7 	262	// 	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define 	MADD_C_DCH_EN8 	263	// 	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define 	MADD_C_DCH_EN9 	264	// 	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define 	MADD_C_DCH_EN10 	265	// 	Cæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define 	MADD_C_UCH_EN1 	266	// 	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define 	MADD_C_UCH_EN2 	267	// 	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define 	MADD_C_UCH_EN3 	268	// 	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define 	MADD_C_UCH_EN4 	269	// 	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define 	MADD_C_UCH_EN5 	270	// 	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define 	MADD_C_UCH_EN6 	271	// 	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define 	MADD_C_UCH_EN7 	272	// 	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define 	MADD_C_UCH_EN8 	273	// 	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define 	MADD_C_UCH_EN9 	274	// 	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define 	MADD_C_UCH_EN10 	275	// 	Cæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define 	MADD_C_DCH_GAIN1 	276	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define 	MADD_C_DCH_GAIN2 	277	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define 	MADD_C_DCH_GAIN3 	278	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define 	MADD_C_DCH_GAIN4 	279	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define 	MADD_C_DCH_GAIN5 	280	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define 	MADD_C_DCH_GAIN6 	281	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define 	MADD_C_DCH_GAIN7 	282	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define 	MADD_C_DCH_GAIN8 	283	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define 	MADD_C_DCH_GAIN9 	284	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define 	MADD_C_DCH_GAIN10 	285	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define 	MADD_C_DCH_GAIN11 	286	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define 	MADD_C_DCH_GAIN12 	287	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define 	MADD_C_DCH_GAIN13 	288	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define 	MADD_C_DCH_GAIN14 	289	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define 	MADD_C_DCH_GAIN15 	290	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define 	MADD_C_DCH_GAIN16 	291	// 	Cæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define 	MADD_C_UCH_GAIN1 	292	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define 	MADD_C_UCH_GAIN2 	293	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define 	MADD_C_UCH_GAIN3 	294	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define 	MADD_C_UCH_GAIN4 	295	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define 	MADD_C_UCH_GAIN5 	296	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define 	MADD_C_UCH_GAIN6 	297	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define 	MADD_C_UCH_GAIN7 	298	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define 	MADD_C_UCH_GAIN8 	299	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define 	MADD_C_UCH_GAIN9 	300	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define 	MADD_C_UCH_GAIN10 	301	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define 	MADD_C_UCH_GAIN11 	302	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define 	MADD_C_UCH_GAIN12 	303	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define 	MADD_C_UCH_GAIN13 	304	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define 	MADD_C_UCH_GAIN14 	305	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define 	MADD_C_UCH_GAIN15 	306	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define 	MADD_C_UCH_GAIN16 	307	// 	Cæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define 	MADD_C_DCH_ATT1 	308	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡1
+#define 	MADD_C_DCH_ATT2 	309	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡2
+#define 	MADD_C_DCH_ATT3 	310	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡3
+#define 	MADD_C_DCH_ATT4 	311	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡4
+#define 	MADD_C_DCH_ATT5 	312	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡5
+#define 	MADD_C_DCH_ATT6 	313	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡6
+#define 	MADD_C_DCH_ATT7 	314	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡7
+#define 	MADD_C_DCH_ATT8 	315	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡8
+#define 	MADD_C_DCH_ATT9 	316	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡9
+#define 	MADD_C_DCH_ATT10 	317	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡10
+#define 	MADD_C_DCH_ATT11 	318	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡11
+#define 	MADD_C_DCH_ATT12 	319	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡12
+#define 	MADD_C_DCH_ATT13 	320	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡13
+#define 	MADD_C_DCH_ATT14 	321	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡14
+#define 	MADD_C_DCH_ATT15 	322	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡15
+#define 	MADD_C_DCH_ATT16 	323	// 	Cæ®µä¸‹è¡Œæ•°æŽ§è¡°å‡é‡16
+#define 	MADD_C_UCH_ATT1 	324	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡1
+#define 	MADD_C_UCH_ATT2 	325	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡2
+#define 	MADD_C_UCH_ATT3 	326	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡3
+#define 	MADD_C_UCH_ATT4 	327	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡4
+#define 	MADD_C_UCH_ATT5 	328	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡5
+#define 	MADD_C_UCH_ATT6 	329	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡6
+#define 	MADD_C_UCH_ATT7 	330	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡7
+#define 	MADD_C_UCH_ATT8 	331	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡8
+#define 	MADD_C_UCH_ATT9 	332	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡9
+#define 	MADD_C_UCH_ATT10 	333	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡10
+#define 	MADD_C_UCH_ATT11 	334	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡11
+#define 	MADD_C_UCH_ATT12 	335	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡12
+#define 	MADD_C_UCH_ATT13 	336	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡13	
+#define 	MADD_C_UCH_ATT14 	337	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡14	
+#define 	MADD_C_UCH_ATT15 	338	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡15	
+#define 	MADD_C_UCH_ATT16 	339	// 	Cæ®µä¸Šè¡Œæ•°æŽ§è¡°å‡é‡16	
+#define 	MADD_C_DL_PA_GAIN 	340	// 	Cæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š	
+#define 	MADD_C_UL_PA_GAIN 	341	// 	Cæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š	
+#define 	MADD_C_TX_PLL_ST 	342	// 	Cæ®µä¸‹è¡ŒPLLçŠ¶æ€,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”	
+#define 	MADD_C_RX_PLL_ST 	343	// 	Cæ®µä¸Šè¡ŒPLLçŠ¶æ€,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”	
+#define 	MADD_C_INIT_DA_ST 	344	// 	åˆå§‹åŒ–Aæ®µDAçŠ¶æ€	,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸
+#define 	MADD_C_BB_PLL_LOCK 	345	// 	Cæ®µBB 	PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+#define 	MADD_C_FSAT 	346	// 	Cæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€	
+#define 	MADD_C_DSAT 	347	// 	Cæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€	
+#define 	MADD_C_PA_VG_EN 	348	// 	Cæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+#define 	MADD_C_PA_VT 	349	// 	Cæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º
+#define 	MADD_C_Modulator_EN 	350	// 	Cæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+#define 	MADD_C_LNA_VT 	351	// 	Cæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹	
+#define 	MADD_C_LNA1_ST 	352	// 	ä¸Šè¡ŒLNA1çŠ¶æ€	
+#define 	MADD_C_LNA2_ST 	353	// 	ä¸Šè¡ŒLNA2çŠ¶æ€	
+#define 	MADD_C_BUSY_TIME 	354	// 	Cæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡	
+#define 	MADD_C_PRI_ADD 	355	// 	Cæ®µæ¨¡å—åœ°å€	
+#define 	MADD_C_UL_POW_1B 	356	// 	Cæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡	
+#define 	MADD_C_DL_POW_1B 	357	// 	Cæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡	
+#define 	MADD_C_DCH_REC_RF_ATT1	358	//// 	RECç«¯çš„ä¸‹è¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸‹è¡Œè¡°å‡é‡ 	åœ¨rf
+#define 	MADD_C_UCH_REC_RF_ATT1	359	//// 	RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡ 	åœ¨rf
+#define 	MADD_D_CHANNEL_COUNT 	360	// 	Dæ®µæ”¯æŒçš„é€šé“æ•°	
+#define 	MADD_D_DL_WORK_EN 	361	// 	Dæ®µä¸‹è¡Œå·¥ä½œä½¿èƒ½	
+#define 	MADD_D_UL_WORK_EN 	362	// 	Dæ®µä¸Šè¡Œå·¥ä½œä½¿èƒ½	
+#define 	MADD_D_DPOW_MODE 	363	// 	Dæ®µä¸‹è¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼	
+#define 	MADD_D_UPOW_MODE 	364	// 	Dæ®µä¸Šè¡ŒåŠŸçŽ‡æŽ§åˆ¶æ–¹å¼	
+#define 	MADD_D_LTHR_EN 	365	// 	Dæ®µä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä½¿èƒ½	
+#define 	MADD_D_LTHR_UP 	366	// 	Dæ®µåº•å™ªæŠ‘åˆ¶ä¸Šé—¨é™	
+#define 	MADD_D_LTHR_DN 	367	// 	Dæ®µåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™	
+#define 	MADD_D_DCH_EN1 	368	// 	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define 	MADD_D_DCH_EN2 	369	// 	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define 	MADD_D_DCH_EN3 	370	// 	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define 	MADD_D_DCH_EN4 	371	// 	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define 	MADD_D_DCH_EN5 	372	// 	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define 	MADD_D_DCH_EN6 	373	// 	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define 	MADD_D_DCH_EN7 	374	// 	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define 	MADD_D_DCH_EN8 	375	// 	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define 	MADD_D_DCH_EN9 	376	// 	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define 	MADD_D_DCH_EN10 	377	// 	Dæ®µä¸‹è¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define 	MADD_D_UCH_EN1 	378	// 	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½1
+#define 	MADD_D_UCH_EN2 	379	// 	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½2
+#define 	MADD_D_UCH_EN3 	380	// 	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½3
+#define 	MADD_D_UCH_EN4 	381	// 	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½4
+#define 	MADD_D_UCH_EN5 	382	// 	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½5
+#define 	MADD_D_UCH_EN6 	383	// 	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½6
+#define 	MADD_D_UCH_EN7 	384	// 	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½7
+#define 	MADD_D_UCH_EN8 	385	// 	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½8
+#define 	MADD_D_UCH_EN9 	386	// 	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½9
+#define 	MADD_D_UCH_EN10 	387	// 	Dæ®µä¸Šè¡Œé€šé“å·¥ä½œä½¿èƒ½10
+#define 	MADD_D_DCH_GAIN1 	388	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define 	MADD_D_DCH_GAIN2 	389	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define 	MADD_D_DCH_GAIN3 	390	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define 	MADD_D_DCH_GAIN4 	391	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define 	MADD_D_DCH_GAIN5 	392	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define 	MADD_D_DCH_GAIN6 	393	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define 	MADD_D_DCH_GAIN7 	394	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define 	MADD_D_DCH_GAIN8 	395	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define 	MADD_D_DCH_GAIN9 	396	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define 	MADD_D_DCH_GAIN10 	397	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define 	MADD_D_DCH_GAIN11 	398	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define 	MADD_D_DCH_GAIN12 	399	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define 	MADD_D_DCH_GAIN13 	400	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define 	MADD_D_DCH_GAIN14 	401	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define 	MADD_D_DCH_GAIN15 	402	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define 	MADD_D_DCH_GAIN16 	403	// 	Dæ®µä¸‹è¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define 	MADD_D_UCH_GAIN1 	404	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š1
+#define 	MADD_D_UCH_GAIN2 	405	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š2
+#define 	MADD_D_UCH_GAIN3 	406	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š3
+#define 	MADD_D_UCH_GAIN4 	407	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š4
+#define 	MADD_D_UCH_GAIN5 	408	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š5
+#define 	MADD_D_UCH_GAIN6 	409	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š6
+#define 	MADD_D_UCH_GAIN7 	410	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š7
+#define 	MADD_D_UCH_GAIN8 	411	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š8
+#define 	MADD_D_UCH_GAIN9 	412	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š9
+#define 	MADD_D_UCH_GAIN10 	413	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š10
+#define 	MADD_D_UCH_GAIN11 	414	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š11
+#define 	MADD_D_UCH_GAIN12 	415	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š12
+#define 	MADD_D_UCH_GAIN13 	416	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š13
+#define 	MADD_D_UCH_GAIN14 	417	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š14
+#define 	MADD_D_UCH_GAIN15 	418	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š15
+#define 	MADD_D_UCH_GAIN16 	419	// 	Dæ®µä¸Šè¡Œé€‰é¢‘é€šé“æ”¾å¤§å™¨å¢žç›Š16
+#define 	MADD_D_DCH_ATT1 	420	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡1
+#define 	MADD_D_DCH_ATT2 	421	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡2
+#define 	MADD_D_DCH_ATT3 	422	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡3
+#define 	MADD_D_DCH_ATT4 	423	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡4
+#define 	MADD_D_DCH_ATT5 	424	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡5
+#define 	MADD_D_DCH_ATT6 	425	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡6
+#define 	MADD_D_DCH_ATT7 	426	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡7
+#define 	MADD_D_DCH_ATT8 	427	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡8
+#define 	MADD_D_DCH_ATT9 	428	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡9
+#define 	MADD_D_DCH_ATT10 	429	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡10
+#define 	MADD_D_DCH_ATT11 	430	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡11
+#define 	MADD_D_DCH_ATT12 	431	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡12
+#define 	MADD_D_DCH_ATT13 	432	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡13
+#define 	MADD_D_DCH_ATT14	433	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡14
+#define 	MADD_D_DCH_ATT15 	434	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡15
+#define 	MADD_D_DCH_ATT16 	435	// 	Dæ®µä¸‹è¡Œè¾“å‡ºæ•°æŽ§è¡°å‡é‡16
+#define 	MADD_D_UCH_ATT1 	436	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡1
+#define 	MADD_D_UCH_ATT2 	437	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡2
+#define 	MADD_D_UCH_ATT3 	438	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡3
+#define 	MADD_D_UCH_ATT4 	439	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡4
+#define 	MADD_D_UCH_ATT5 	440	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡5
+#define 	MADD_D_UCH_ATT6 	441	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡6
+#define 	MADD_D_UCH_ATT7 	442	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡7
+#define 	MADD_D_UCH_ATT8 	443	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡8
+#define 	MADD_D_UCH_ATT9 	444	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡9
+#define 	MADD_D_UCH_ATT10 	445	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡10
+#define 	MADD_D_UCH_ATT11 	446	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡11
+#define 	MADD_D_UCH_ATT12 	447	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡12
+#define 	MADD_D_UCH_ATT13 	448	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡13	
+#define 	MADD_D_UCH_ATT14 	449	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡14	
+#define 	MADD_D_UCH_ATT15	450	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡15	
+#define 	MADD_D_UCH_ATT16 	451	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ•°æŽ§è¡°å‡é‡16	
+#define 	MADD_D_DL_PA_GAIN 	452	// 	Dæ®µä¸‹è¡ŒåŠŸæ”¾å¢žç›Š	
+#define 	MADD_D_UL_PA_GAIN 	453	// 	Dæ®µä¸Šè¡ŒåŠŸæ”¾å¢žç›Š	
+#define 	MADD_D_TX_PLL_ST 	454	// 	Dæ®µä¸‹è¡ŒPLLçŠ¶æ€	,287 2ä¸ºTX_VCOé”å®šï¼Œå…¶ä»–å¤±é”
+#define 	MADD_D_RX_PLL_ST 	455	// 	Dæ®µä¸Šè¡ŒPLLçŠ¶æ€,247 2ä¸ºRX_VCOé”å®šï¼Œå…¶ä»–å¤±é”	
+#define 	MADD_D_INIT_DA_ST 	456	// 	åˆå§‹åŒ–Bæ®µDAçŠ¶æ€,17 1Aä¸ºé”å®š+å‘é€æŽ¥æ”¶ä½¿èƒ½æ‰“å¼€ï¼Œå…¶ä»–å¼‚å¸¸	
+#define 	MADD_D_BB_PLL_LOCK 	457	// 	Dæ®µBB 	PLLé”å®šçŠ¶æ€,5E 80ä¸ºBBPLLæ•°å­—é”ç›¸çŽ¯é”å®šï¼Œå…¶ä»–å¤±é”
+#define 	MADD_D_FSAT 	458	// 	Dæ®µå‰ç«¯ADè¾“å…¥çŠ¶æ€	
+#define 	MADD_D_DSAT 	459	// 	Dæ®µåŽç«¯DAè¾“å‡ºçŠ¶æ€	
+#define 	MADD_D_PA_VG_EN 	460	// 	Dæ®µåŠŸæ”¾æ …åŽ‹çŠ¶æ€
+#define 	MADD_D_PA_VT 	461	// 	Dæ®µåŠŸæ”¾ç®¡ç”µåŽ‹æ˜¾ç¤º	
+#define 	MADD_D_Modulator_EN 	462	// 	Dæ®µè°ƒåˆ¶å™¨çŠ¶æ€
+#define 	MADD_D_LNA_VT 	463	// 	Dæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAç”µåŽ‹	
+#define 	MADD_D_LNA1_ST 	464	// 	ä¸Šè¡ŒLNA1çŠ¶æ€		
+#define 	MADD_D_LNA2_ST 	465	// 	ä¸Šè¡ŒLNA2çŠ¶æ€		
+#define 	MADD_D_BUSY_TIME 	466	// 	Dæ®µä¸Šè¡Œæ—¶éš™å ç”¨çŽ‡		
+#define 	MADD_D_PRI_ADD 	467	// 	Dæ®µæ¨¡å—åœ°å€		
+#define 	MADD_D_UL_POW_1B 	468	// 	Dæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡		
+#define 	MADD_D_DL_POW_1B 	469	// 	Dæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡		
+#define 	MADD_D_DCH_REC_RF_ATT1	470	//// 	RECç«¯çš„ä¸‹è¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸‹è¡Œè¡°å‡é‡ 	åœ¨rf
+#define 	MADD_D_UCH_REC_RF_ATT1  	471	 //// 	RECç«¯çš„ä¸Šè¡Œæ•°æŽ§è¡°å‡é‡ã€‚å³RFç«¯çš„é“¾è·¯ä¸Šè¡Œè¡°å‡é‡ 	 	åœ¨rf
+#define	MADD_FP1_EN	472	//	å…‰å£å‘é€ä½¿èƒ½1		
+#define	MADD_FP2_EN	473	//	å…‰å£å‘é€ä½¿èƒ½2		
+#define	MADD_FP3_EN	474	//	å…‰å£å‘é€ä½¿èƒ½3		
+#define	MADD_FP4_EN	475	//	å…‰å£å‘é€ä½¿èƒ½4		
+#define	MADD_FP5_EN	476	//	å…‰å£å‘é€ä½¿èƒ½5		
+#define	MADD_FP6_EN	477	//	å…‰å£å‘é€ä½¿èƒ½6		
+#define	MADD_FP7_EN	478	//	å…‰å£å‘é€ä½¿èƒ½7		
+#define	MADD_FP8_EN	479	//	å…‰å£å‘é€ä½¿èƒ½8		
+#define	MADD_FP9_EN	480	//	å…‰å£å‘é€ä½¿èƒ½9	
+#define	MADD_FP10_EN	481	//	å…‰å£å‘é€ä½¿èƒ½10	
+#define	MADD_FP11_EN	482	//	å…‰å£å‘é€ä½¿èƒ½11	
+#define	MADD_FP12_EN	483	//	å…‰å£å‘é€ä½¿èƒ½12	
+#define	MADD_FP13_EN	484	//	å…‰å£å‘é€ä½¿èƒ½13	
+#define	MADD_FP14_EN	485	//	å…‰å£å‘é€ä½¿èƒ½14	
+#define	MADD_FP15_EN	486	//	å…‰å£å‘é€ä½¿èƒ½15	
+#define	MADD_FP16_EN	487	//	å…‰å£å‘é€ä½¿èƒ½16	
+#define	MADD_FP1_ON_POS	488	//	å…‰å£åœ¨ä½çŠ¶æ€1,	0-åœ¨ä½
+#define	MADD_FP2_ON_POS	489	//	å…‰å£åœ¨ä½çŠ¶æ€2,	0-åœ¨ä½
+#define	MADD_FP3_ON_POS	490	//	å…‰å£åœ¨ä½çŠ¶æ€3,	0-åœ¨ä½
+#define	MADD_FP4_ON_POS	491	//	å…‰å£åœ¨ä½çŠ¶æ€4,	0-åœ¨ä½
+#define	MADD_FP5_ON_POS	492	//	å…‰å£åœ¨ä½çŠ¶æ€5,	0-åœ¨ä½
+#define	MADD_FP6_ON_POS	493	//	å…‰å£åœ¨ä½çŠ¶æ€6,	0-åœ¨ä½
+#define	MADD_FP7_ON_POS	494	//	å…‰å£åœ¨ä½çŠ¶æ€7,	0-åœ¨ä½
+#define	MADD_FP8_ON_POS	495	//	å…‰å£åœ¨ä½çŠ¶æ€8,	0-åœ¨ä½
+#define	MADD_FP9_ON_POS	496	//	å…‰å£åœ¨ä½çŠ¶æ€9,	0-åœ¨ä½
+#define	MADD_FP10_ON_POS	497	//	å…‰å£åœ¨ä½çŠ¶æ€10,	0-åœ¨ä½
+#define	MADD_FP11_ON_POS	498	//	å…‰å£åœ¨ä½çŠ¶æ€11,	0-åœ¨ä½
+#define	MADD_FP12_ON_POS	499	//	å…‰å£åœ¨ä½çŠ¶æ€12,	0-åœ¨ä½
+#define	MADD_FP13_ON_POS	500	//	å…‰å£åœ¨ä½çŠ¶æ€13,	0-åœ¨ä½
+#define	MADD_FP14_ON_POS	501	//	å…‰å£åœ¨ä½çŠ¶æ€14,	0-åœ¨ä½
+#define	MADD_FP15_ON_POS	502	//	å…‰å£åœ¨ä½çŠ¶æ€15,	0-åœ¨ä½
+#define	MADD_FP16_ON_POS	503	//	å…‰å£åœ¨ä½çŠ¶æ€16,	0-åœ¨ä½
+#define	MADD_FP1_LOS	504	//	å…‰å£1ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	MADD_FP2_LOS	505	//	å…‰å£2ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	MADD_FP3_LOS	506	//	å…‰å£3ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	MADD_FP4_LOS	507	//	å…‰å£4ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	MADD_FP5_LOS	508	//	å…‰å£5ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	MADD_FP6_LOS	509	//	å…‰å£6ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	MADD_FP7_LOS	510	//	å…‰å£7ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	MADD_FP8_LOS	511	//	å…‰å£8ä¿¡å·ä¸¢å¤±çŠ¶æ€	
+#define	MADD_FP9_LOS	512	//	å…‰å£9ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP10_LOS	513	//	å…‰å£10ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP11_LOS	514	//	å…‰å£11ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP12_LOS	515	//	å…‰å£12ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP13_LOS	516	//	å…‰å£13ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP14_LOS	517	//	å…‰å£14ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP15_LOS	518	//	å…‰å£15ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP16_LOS	519	//	å…‰å£16ä¿¡å·ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP1_LOF	520	//	å…‰å£1å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP2_LOF	521	//	å…‰å£2å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP3_LOF	522	//	å…‰å£3å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP4_LOF	523	//	å…‰å£4å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP5_LOF	524	//	å…‰å£5å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP6_LOF	525	//	å…‰å£6å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP7_LOF	526	//	å…‰å£7å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP8_LOF	527	//	å…‰å£8å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP9_LOF	528	//	å…‰å£9å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP10_LOF	529	//	å…‰å£10å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP11_LOF	530	//	å…‰å£11å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP12_LOF	531	//	å…‰å£12å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP13_LOF	532	//	å…‰å£13å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP14_LOF	533	//	å…‰å£14å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP15_LOF	534	//	å…‰å£15å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_FP16_LOF	535	//	å…‰å£16å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_OPT_LOF	536	//	å¸§ä¸¢å¤±çŠ¶æ€
+#define	MADD_SERDES1_PLL_ST	537	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€1
+#define	MADD_SERDES2_PLL_ST	538	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€2
+#define	MADD_SERDES3_PLL_ST	539	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€3
+#define	MADD_SERDES4_PLL_ST	540	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€4
+#define	MADD_SERDES5_PLL_ST	541	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€5
+#define	MADD_SERDES6_PLL_ST	542	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€6
+#define	MADD_SERDES7_PLL_ST	543	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€7
+#define	MADD_SERDES8_PLL_ST	544	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€8
+#define	MADD_SERDES9_PLL_ST	545	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€9
+#define	MADD_SERDES10_PLL_ST	546	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€10
+#define	MADD_SERDES11_PLL_ST	547	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€11
+#define	MADD_SERDES12_PLL_ST	548	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€12
+#define	MADD_SERDES13_PLL_ST	549	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€13
+#define	MADD_SERDES14_PLL_ST	550	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€14
+#define	MADD_SERDES15_PLL_ST	551	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€15
+#define	MADD_SERDES16_PLL_ST	552	//	SerDesèŠ¯ç‰‡PLLçŠ¶æ€16
+#define	MADD_TOPO_CHG_ALM	553	//	çŽ¯è·¯çŠ¶æ€å‘Šè­¦
+#define	MADD_BER_ALARM	554	//	è¯¯ç çŽ‡åé«˜å‘Šè­¦
+#define	MADD_LOAD_FPGA_ST	555	//	åŠ è½½FPGAçŠ¶æ€
+#define	MADD_FPGA_CLK_ST	556	//	FPGAæœ¬æŒ¯çŠ¶æ€
+#define	MADD_INIT_CLK_ST	557	//	åˆå§‹åŒ–æ—¶é’ŸçŠ¶æ€
+#define	MADD_INIT_AD_ST	558	//	åˆå§‹åŒ–ADçŠ¶æ€
+#define	MADD_INIT_FB_AD_ST	559	//	åˆå§‹åŒ–åé¦ˆADçŠ¶æ€
+#define	MADD_CLK_PLL_ST	560	//	CLK	PLLçŠ¶æ€		
+#define	MADD_CLK_REF_ST	561	//	CLK	å‚è€ƒçŠ¶æ€		
+#define	MADD_RE_NODE_MODE	562	//	REèŠ‚ç‚¹æ¨¡å¼:0-æœªè”ç½‘,1-é“¾ç½‘æœ«ç«¯,2-é“¾ç½‘ä¸­é—´,3-çŽ¯ç½‘æœ«ç«¯,4-çŽ¯ç½‘ä¸­é—´			
+#define	MADD_BOARD_TEMP	563	//	å•æ¿æ¸©åº¦			
+#define	MADD_CLK_VCO_VT	564	//	æ—¶é’ŸVCOç”µåŽ‹			
+#define	MADD_PWR_9V0_VT	565	//	9Vç”µæºç”µåŽ‹			
+#define	MADD_PWR_5V5_VT	566	//	5.5Vç”µæºç”µåŽ‹			
+#define	MADD_PWR_3V6_VT	567	//	3.6Vç”µæºç”µåŽ‹			
+#define	MADD_PWR_1V2_VT	568	//	1.2Vç”µæºç”µåŽ‹			
+#define	MADD_PWR_2V5_VT	569	//	1.2Vç”µæºç”µåŽ‹			
+#define	MADD_PRI_PROTOCAL_V	570	//	åè®®ç‰ˆæœ¬			
 #define	MADD_MODULE_HRI_ID	571	//	ID			
-#define	MADD_WORK_ERROR	572	//	ÏµÍ³¹¤×÷×´Ì¬£¬1-ÓÐ¹ÊÕÏ			
-#define	MADD_TRAFFIC_END	573	//	»°ÎñÁ¿Í³¼Æ½áÊø±êÖ¾,	¹úÈË°æ±¾Ã¿´ÎÍ³¼ÆÍê³ÉÔò+1,ÆäËû¿Í»§Í³¼ÆÍê³ÉÖÃ1		
-#define	MADD_DELAY_MODE	574	//		ÑÓÊ±Ä£Ê½:	0-ÊÖ¶¯,	1-×Ô¶¯
-#define	MADD_TD_SYNC_ST	575	//	TDÍ¬²½×´Ì¬:	0-ÒÑÍ¬²½£¬1-Î´Í¬²½		
-#define	MADD_TD_WORK_MODE	576	//	[WR]TD:TD_SCDMA¿ØÖÆÄ£Ê½£¬00Õý³£Ä£Ê½£¬01ÉÏÐÐ³£¿ª£¬10ÊÇÏÂÐÐ³£¿ª,	Ã¿´ÎÉÏµçºóÇåÁã		
-#define	MADD_TD_T0_UD	577	//	TDÊ±Ï¶0ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define	MADD_TD_T1_UD	578	//	TDÊ±Ï¶1ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define	MADD_TD_T2_UD	579	//	TDÊ±Ï¶2ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define	MADD_TD_T3_UD	580	//	TDÊ±Ï¶3ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define	MADD_TD_T4_UD	581	//	TDÊ±Ï¶4ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define	MADD_TD_T5_UD	582	//	TDÊ±Ï¶5ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define	MADD_TD_T6_UD	583	//	TDÊ±Ï¶6ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ			
-#define	MADD_POWERUP_ST	584	//		Êý×Ö°åÉÏµç×´Ì¬,Ã¿´ÎÆô¶¯Ê±ÖÃÒ»		
-#define	MADD_LOW_POWER	585	//	µÍ¹¦ºÄÄ£Ê½:1-µÍ¹¦ºÄ;	0-Õý³£		
-#define	MADD_THR_PORT	586	//		Í¸´«¶Ë¿ÚÑ¡Ôñ0-485B,	1-RS232	
-#define	MADD_THR_BAUD	587	//	Í¸´«¶Ë¿Ú²¨ÌØÂÊ	0-9600,	1-19200,	2-38400,
-#define	MADD_CTRL_BAUD	588	//	¿ØÖÆ¶Ë¿Ú²¨ÌØÂÊ	0-9600,	1-19200,	2-38400,
-#define	MADD_WLAN_CONN_ST1	589	//	WLAN¿Ú×´Ì¬1:	0-Õý³££¬1-Òì³£		
-#define	MADD_WLAN_CONN_ST2	590	//	WLAN¿Ú×´Ì¬2:	0-Õý³££¬1-Òì³£		
-#define	MADD_WLAN_CONN_ST3	591	//	WLAN¿Ú×´Ì¬3:	0-Õý³££¬1-Òì³£		
-#define	MADD_WLAN_CONN_ST4	592	//	WLAN¿Ú×´Ì¬4:	0-Õý³££¬1-Òì³£		
-#define	MADD_WLAN_SPEED1	593	//	WLAN¿ÚËÙ¶È1:	0£º10M		1£º100M
-#define	MADD_WLAN_SPEED2	594	//	WLAN¿ÚËÙ¶È1:	0£º10M		1£º100M
-#define	MADD_WLAN_SPEED3	595	//	WLAN¿ÚËÙ¶È1:	0£º10M		1£º100M
-#define	MADD_WLAN_SPEED4	596	//	WLAN¿ÚËÙ¶È1:	0£º10M		1£º100M
-#define	MADD_GSM_BW_SEL	597	//	¿í´ø°æ±¾GSM´ø¿íÑ¡Ôñ:	0-6M,	1-20M,	2-24M,
-#define	MADD_HX_DET_UADDR	598	//	ºçÐÅDETÄ£¿éÉÏÐÐµØÖ·,	¸ß4Î»ÎªB¶Î,	µÍËÄÎ»ÎªA¶Î	
-#define	MADD_HX_LNA_UADDR	599	//	ºçÐÅLNAÄ£¿éÉÏÐÐµØÖ·,	¸ß4Î»ÎªB¶Î,	µÍËÄÎ»ÎªA¶Î	
-#define	MADD_HX_DET_DADDR	600	//	ºçÐÅDETÄ£¿éÏÂÐÐµØÖ·,	¸ß4Î»ÎªB¶Î,	µÍËÄÎ»ÎªA¶Î	
-#define	MADD_HX_LNA_DADDR	601	//	ºçÐÅLNAÄ£¿éÏÂÐÐµØÖ·,	¸ß4Î»ÎªB¶Î,	µÍËÄÎ»ÎªA¶Î	
-#define	MADD_FPS_AUTO_SCAN	602	//	×Ô¶¯ÆµµãËÑË÷¹¦ÄÜÊ¹ÄÜ:1-×Ô¶¯ËÑË÷ºÍÉèÖÃÆµµã,	0-ÊÖ¶¯ËÑË÷		
-#define	MADD_FPS_SWITCH_THD	603	//	×Ô¶¯ÆµµãËÑË÷µÄBCCH¹¦ÂÊÇÐ»»ÃÅÏÞ			
-#define	MADD_FPS_MOSVC_SEL	604	//	ÆµµãËÑË÷:	ÔËÓªÉÌÑ¡Ôñ:	0-ÖÐÒÆ¶¯,	1-ÖÐÁªÍ¨,
-#define	MADD_FPS_RFRANGE_SEL	605	//	ÆµµãËÑË÷:	Æµ¿íÑ¡Ôñ(ºöÂÔ,ÒÔÄ£¿éÖÆÊ½Îª×¼):	0-È«Æµ¶Î,	1-900MHz,
-#define	MADD_FPS_BS_ID	606	//	ÆµµãËÑË÷:	»ùÕ¾Ê¶±ðÂë		
-#define	MADD_FPS_CA_COUNT	607	//	ÆµµãËÑË÷:	ÓÐÐ§ÐÅµÀÊý		
-#define	MADD_FPS_BCCH_LK_ST	608	//	ÆµµãËÑË÷:	Ëø¶¨BCCH×´Ì¬:	1-Ëø¶¨,	0-Ê§°Ü
-#define	MADD_FPS_MOSVC_LK_ST	609	//	ÆµµãËÑË÷:	Ëø¶¨ÔËÓªÉÌ×´Ì¬:	1-Ëø¶¨,	0-Ê§°Ü
-#define	MADD_FPS_RFRANGE_LK_ST	610	//	ÆµµãËÑË÷:	Ëø¶¨Æµ´ø×´Ì¬:	1-Ëø¶¨,	0-Ê§°Ü
-#define	MADD_FPS_BCCH_POW_M	611	//	ÆµµãËÑË÷:	Ö÷Ð¡ÇøBCCH½ÓÊÕÇ¿¶È		
-#define	MADD_FPS_BCCH_POW_1	612	//	ÆµµãËÑË÷:	ÁÚÐ¡Çø1BCCH½ÓÊÕÇ¿¶È		
-#define	MADD_FPS_BCCH_POW_2	613	//	ÆµµãËÑË÷:	ÁÚÐ¡Çø2BCCH½ÓÊÕÇ¿¶È		
-#define	MADD_FPS_BCCH_POW_3	614	//	ÆµµãËÑË÷:	ÁÚÐ¡Çø3BCCH½ÓÊÕÇ¿¶È		
-#define	MADD_FPS_BCCH_POW_4	615	//	ÆµµãËÑË÷:	ÁÚÐ¡Çø4BCCH½ÓÊÕÇ¿¶È		
-#define	MADD_FPS_BCCH_POW_5	616	//	ÆµµãËÑË÷:	ÁÚÐ¡Çø5BCCH½ÓÊÕÇ¿¶È		
-#define	MADD_FPS_BCCH_POW_6	617	//	ÆµµãËÑË÷:	ÁÚÐ¡Çø6BCCH½ÓÊÕÇ¿¶È		
-#define	MADD_A_EXPA_WORK_EN	618	//	[WR]Î¢¹¦·Å:	ÉäÆµÐÅºÅ¿ª¹Ø		
-#define	MADD_A_EXPA_DL_ATT	619	//	[WR]Î¢¹¦·Å:	ÏÂÐÐË¥¼õÖµ		
-#define	MADD_A_EXPA_TEMP	620	//	[RO]Î¢¹¦·Å:	ÎÂ¶È		
-#define	MADD_A_EXPA_DL_POW	621	//	[RO]Î¢¹¦·Å:	ÏÂÐÐÊä³ö¹¦ÂÊµçÆ½		
-#define	MADD_A_EXPA_SWR	622	//	[RO]Î¢¹¦·Å:	ÏÂÐÐ×¤²¨±ÈÖµ,x100±£Áô2Î»Ð¡Êý£¬×î´ó²»³¬¹ý1.5		
-#define	MADD_A_EXPA_POWER_DN	623	//	[RO]Î¢¹¦·Å:	µçÔ´µôµç¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)		
-#define	MADD_A_EXPA_POWER_ERR	624	//	[RO]Î¢¹¦·Å:	µçÔ´¹ÊÕÏ¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)	
-#define	MADD_A_EXPA_BATT_ERR	625	//	[RO]Î¢¹¦·Å:	¼à¿ØÄ£¿éµç³Ø¹ÊÕÏ¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)	
-#define	MADD_A_EXPA_POS_ALM	626	//	[RO]Î¢¹¦·Å:	Î»ÖÃ¸æ¾¯	
-#define	MADD_A_EXPA_DOOR_ALM	627	//	[RO]Î¢¹¦·Å:	ÃÅ½û¸æ¾¯	
-#define	MADD_A_EXPA_WROK_ALM	628	//	[RO]Î¢¹¦·Å:	ÏÂÐÐ¹¦·Å¹ÊÕÏ¸æ¾¯(3·ÖÖÓ¸ÅÂÊÅÐ¶¨)	
-#define	MADD_A_EXPA_EXT1_ALM	629	//	[RO]Î¢¹¦·Å:	Íâ²¿¸æ¾¯1	
-#define	MADD_A_EXPA_EXT2_ALM	630	//	[RO]Î¢¹¦·Å:	Íâ²¿¸æ¾¯2	
-#define	MADD_A_EXPA_EXT3_ALM	631	//	[RO]Î¢¹¦·Å:	Íâ²¿¸æ¾¯3	
-#define	MADD_A_EXPA_MAX_GAIN	632	//	Î¢¹¦·Å:	ÁãË¥¼õÔöÒæ£¬¼´×î´óÔöÒæ	
-#define	MADD_A_EXPA_GAIN_THD	633	//	Î¢¹¦·Å:	ÔöÒæÃÅÏÞ£¬¼´ÔÊÐí¹¤×÷µÄÔöÒæ×î´óÖµ	
-#define	MADD_A_EXPA_POW_THD	634	//	Î¢¹¦·Å:	¹¦·ÅÊä³ö¹¦ÂÊÃÅÏÞ	
-#define	MADD_A_EXPA_POD_CMP	635	//	Î¢¹¦·Å:	¼ì²¨¹Ü¹¦ÂÊ¼ì²â²¹³¥Öµ,1×Ö½ÚÓÐ·ûºÅÊý,×îÖÕ¹¦ÂÊÎª¼ì²¨¹Ü¹¦ÂÊ¼ÓÉÏ²¹³¥Öµ	
-#define	MADD_MONITOR_VOL_OVER_THR 		636			 // ¼à¿ØµçÑ¹¹ýÃÅÏÞ
-#define 	MADD_MONITOR_VOL_OWE_THR 		637			 // ¼à¿ØµçÑ¹Ç·ÃÅÏÞ
-#define 	MADD_DIGITAL_SINGNAL_ALARM 		638			 // Êý×ÖÐÅºÅÒì³£¸æ¾¯
-#define 	MADD_HOST_DEVICE_LINK_SINGNAL_ALARM 		639			 // Ö÷´Ó¼à¿ØÁ´Â·¸æ¾¯
-#define 	MADD_MONITOR_BATTERY_ALARM 		640			 // ¼à¿ØÄ£¿éµç³Ø¹ÊÕÏ¸æ¾¯	
-#define 	MADD_LOW_POWER_ALARM 		641			 // µçÔ´µôµç¸æ¾¯	
-#define 	MADD_BATTERY_BREAKDOWN_ALARM 		642			 // µçÔ´¹ÊÕÏ¸æ¾¯	
-#define 	MADD_POSITION_MOVE_ALARM		643			 // Î»ÖÃ¸æ¾¯	
-#define 	MADD_A_INPUT_OVER_DPOW_THR_ALARM 		644			 // AÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯	
-#define 	MADD_A_INPUT_OWE_DPOW_THR_ALARM 		645			 // AÏÂÐÐÊäÈëÇ·¹¦ÂÊ¸æ¾¯	
-#define 	MADD_B_INPUT_OVER_DPOW_THR_ALARM 		646	// AÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯			
-#define 	MADD_B_INPUT_OWE_DPOW_THR_ALARM 		647	// AÏÂÐÐÊäÈëÇ·¹¦ÂÊ¸æ¾¯			
-#define 	MADD_C_INPUT_OVER_DPOW_THR_ALARM 		648	//248			 // AÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯
-#define 	MADD_C_INPUT_OWE_DPOW_THR_ALARM 		649	//249			 // AÏÂÐÐÊäÈëÇ·¹¦ÂÊ¸æ¾¯
-#define 	MADD_D_INPUT_OVER_DPOW_THR_ALARM		650	//248			 // AÏÂÐÐÊäÈë¹ý¹¦ÂÊ¸æ¾¯
+#define	MADD_WORK_ERROR	572	//	ç³»ç»Ÿå·¥ä½œçŠ¶æ€ï¼Œ1-æœ‰æ•…éšœ			
+#define	MADD_TRAFFIC_END	573	//	è¯åŠ¡é‡ç»Ÿè®¡ç»“æŸæ ‡å¿—,	å›½äººç‰ˆæœ¬æ¯æ¬¡ç»Ÿè®¡å®Œæˆåˆ™+1,å…¶ä»–å®¢æˆ·ç»Ÿè®¡å®Œæˆç½®1		
+#define	MADD_DELAY_MODE	574	//		å»¶æ—¶æ¨¡å¼:	0-æ‰‹åŠ¨,	1-è‡ªåŠ¨
+#define	MADD_TD_SYNC_ST	575	//	TDåŒæ­¥çŠ¶æ€:	0-å·²åŒæ­¥ï¼Œ1-æœªåŒæ­¥		
+#define	MADD_TD_WORK_MODE	576	//	[WR]TD:TD_SCDMAæŽ§åˆ¶æ¨¡å¼ï¼Œ00æ­£å¸¸æ¨¡å¼ï¼Œ01ä¸Šè¡Œå¸¸å¼€ï¼Œ10æ˜¯ä¸‹è¡Œå¸¸å¼€,	æ¯æ¬¡ä¸Šç”µåŽæ¸…é›¶		
+#define	MADD_TD_T0_UD	577	//	TDæ—¶éš™0ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define	MADD_TD_T1_UD	578	//	TDæ—¶éš™1ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define	MADD_TD_T2_UD	579	//	TDæ—¶éš™2ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define	MADD_TD_T3_UD	580	//	TDæ—¶éš™3ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define	MADD_TD_T4_UD	581	//	TDæ—¶éš™4ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define	MADD_TD_T5_UD	582	//	TDæ—¶éš™5ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define	MADD_TD_T6_UD	583	//	TDæ—¶éš™6ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ			
+#define	MADD_POWERUP_ST	584	//		æ•°å­—æ¿ä¸Šç”µçŠ¶æ€,æ¯æ¬¡å¯åŠ¨æ—¶ç½®ä¸€		
+#define	MADD_LOW_POWER	585	//	ä½ŽåŠŸè€—æ¨¡å¼:1-ä½ŽåŠŸè€—;	0-æ­£å¸¸		
+#define	MADD_THR_PORT	586	//		é€ä¼ ç«¯å£é€‰æ‹©0-485B,	1-RS232	
+#define	MADD_THR_BAUD	587	//	é€ä¼ ç«¯å£æ³¢ç‰¹çŽ‡	0-9600,	1-19200,	2-38400,
+#define	MADD_CTRL_BAUD	588	//	æŽ§åˆ¶ç«¯å£æ³¢ç‰¹çŽ‡	0-9600,	1-19200,	2-38400,
+#define	MADD_WLAN_CONN_ST1	589	//	WLANå£çŠ¶æ€1:	0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸		
+#define	MADD_WLAN_CONN_ST2	590	//	WLANå£çŠ¶æ€2:	0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸		
+#define	MADD_WLAN_CONN_ST3	591	//	WLANå£çŠ¶æ€3:	0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸		
+#define	MADD_WLAN_CONN_ST4	592	//	WLANå£çŠ¶æ€4:	0-æ­£å¸¸ï¼Œ1-å¼‚å¸¸		
+#define	MADD_WLAN_SPEED1	593	//	WLANå£é€Ÿåº¦1:	0ï¼š10M		1ï¼š100M
+#define	MADD_WLAN_SPEED2	594	//	WLANå£é€Ÿåº¦1:	0ï¼š10M		1ï¼š100M
+#define	MADD_WLAN_SPEED3	595	//	WLANå£é€Ÿåº¦1:	0ï¼š10M		1ï¼š100M
+#define	MADD_WLAN_SPEED4	596	//	WLANå£é€Ÿåº¦1:	0ï¼š10M		1ï¼š100M
+#define	MADD_GSM_BW_SEL	597	//	å®½å¸¦ç‰ˆæœ¬GSMå¸¦å®½é€‰æ‹©:	0-6M,	1-20M,	2-24M,
+#define	MADD_HX_DET_UADDR	598	//	è™¹ä¿¡DETæ¨¡å—ä¸Šè¡Œåœ°å€,	é«˜4ä½ä¸ºBæ®µ,	ä½Žå››ä½ä¸ºAæ®µ	
+#define	MADD_HX_LNA_UADDR	599	//	è™¹ä¿¡LNAæ¨¡å—ä¸Šè¡Œåœ°å€,	é«˜4ä½ä¸ºBæ®µ,	ä½Žå››ä½ä¸ºAæ®µ	
+#define	MADD_HX_DET_DADDR	600	//	è™¹ä¿¡DETæ¨¡å—ä¸‹è¡Œåœ°å€,	é«˜4ä½ä¸ºBæ®µ,	ä½Žå››ä½ä¸ºAæ®µ	
+#define	MADD_HX_LNA_DADDR	601	//	è™¹ä¿¡LNAæ¨¡å—ä¸‹è¡Œåœ°å€,	é«˜4ä½ä¸ºBæ®µ,	ä½Žå››ä½ä¸ºAæ®µ	
+#define	MADD_FPS_AUTO_SCAN	602	//	è‡ªåŠ¨é¢‘ç‚¹æœç´¢åŠŸèƒ½ä½¿èƒ½:1-è‡ªåŠ¨æœç´¢å’Œè®¾ç½®é¢‘ç‚¹,	0-æ‰‹åŠ¨æœç´¢		
+#define	MADD_FPS_SWITCH_THD	603	//	è‡ªåŠ¨é¢‘ç‚¹æœç´¢çš„BCCHåŠŸçŽ‡åˆ‡æ¢é—¨é™			
+#define	MADD_FPS_MOSVC_SEL	604	//	é¢‘ç‚¹æœç´¢:	è¿è¥å•†é€‰æ‹©:	0-ä¸­ç§»åŠ¨,	1-ä¸­è”é€š,
+#define	MADD_FPS_RFRANGE_SEL	605	//	é¢‘ç‚¹æœç´¢:	é¢‘å®½é€‰æ‹©(å¿½ç•¥,ä»¥æ¨¡å—åˆ¶å¼ä¸ºå‡†):	0-å…¨é¢‘æ®µ,	1-900MHz,
+#define	MADD_FPS_BS_ID	606	//	é¢‘ç‚¹æœç´¢:	åŸºç«™è¯†åˆ«ç 		
+#define	MADD_FPS_CA_COUNT	607	//	é¢‘ç‚¹æœç´¢:	æœ‰æ•ˆä¿¡é“æ•°		
+#define	MADD_FPS_BCCH_LK_ST	608	//	é¢‘ç‚¹æœç´¢:	é”å®šBCCHçŠ¶æ€:	1-é”å®š,	0-å¤±è´¥
+#define	MADD_FPS_MOSVC_LK_ST	609	//	é¢‘ç‚¹æœç´¢:	é”å®šè¿è¥å•†çŠ¶æ€:	1-é”å®š,	0-å¤±è´¥
+#define	MADD_FPS_RFRANGE_LK_ST	610	//	é¢‘ç‚¹æœç´¢:	é”å®šé¢‘å¸¦çŠ¶æ€:	1-é”å®š,	0-å¤±è´¥
+#define	MADD_FPS_BCCH_POW_M	611	//	é¢‘ç‚¹æœç´¢:	ä¸»å°åŒºBCCHæŽ¥æ”¶å¼ºåº¦		
+#define	MADD_FPS_BCCH_POW_1	612	//	é¢‘ç‚¹æœç´¢:	é‚»å°åŒº1BCCHæŽ¥æ”¶å¼ºåº¦		
+#define	MADD_FPS_BCCH_POW_2	613	//	é¢‘ç‚¹æœç´¢:	é‚»å°åŒº2BCCHæŽ¥æ”¶å¼ºåº¦		
+#define	MADD_FPS_BCCH_POW_3	614	//	é¢‘ç‚¹æœç´¢:	é‚»å°åŒº3BCCHæŽ¥æ”¶å¼ºåº¦		
+#define	MADD_FPS_BCCH_POW_4	615	//	é¢‘ç‚¹æœç´¢:	é‚»å°åŒº4BCCHæŽ¥æ”¶å¼ºåº¦		
+#define	MADD_FPS_BCCH_POW_5	616	//	é¢‘ç‚¹æœç´¢:	é‚»å°åŒº5BCCHæŽ¥æ”¶å¼ºåº¦		
+#define	MADD_FPS_BCCH_POW_6	617	//	é¢‘ç‚¹æœç´¢:	é‚»å°åŒº6BCCHæŽ¥æ”¶å¼ºåº¦		
+#define	MADD_A_EXPA_WORK_EN	618	//	[WR]å¾®åŠŸæ”¾:	å°„é¢‘ä¿¡å·å¼€å…³		
+#define	MADD_A_EXPA_DL_ATT	619	//	[WR]å¾®åŠŸæ”¾:	ä¸‹è¡Œè¡°å‡å€¼		
+#define	MADD_A_EXPA_TEMP	620	//	[RO]å¾®åŠŸæ”¾:	æ¸©åº¦		
+#define	MADD_A_EXPA_DL_POW	621	//	[RO]å¾®åŠŸæ”¾:	ä¸‹è¡Œè¾“å‡ºåŠŸçŽ‡ç”µå¹³		
+#define	MADD_A_EXPA_SWR	622	//	[RO]å¾®åŠŸæ”¾:	ä¸‹è¡Œé©»æ³¢æ¯”å€¼,x100ä¿ç•™2ä½å°æ•°ï¼Œæœ€å¤§ä¸è¶…è¿‡1.5		
+#define	MADD_A_EXPA_POWER_DN	623	//	[RO]å¾®åŠŸæ”¾:	ç”µæºæŽ‰ç”µå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)		
+#define	MADD_A_EXPA_POWER_ERR	624	//	[RO]å¾®åŠŸæ”¾:	ç”µæºæ•…éšœå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)	
+#define	MADD_A_EXPA_BATT_ERR	625	//	[RO]å¾®åŠŸæ”¾:	ç›‘æŽ§æ¨¡å—ç”µæ± æ•…éšœå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)	
+#define	MADD_A_EXPA_POS_ALM	626	//	[RO]å¾®åŠŸæ”¾:	ä½ç½®å‘Šè­¦	
+#define	MADD_A_EXPA_DOOR_ALM	627	//	[RO]å¾®åŠŸæ”¾:	é—¨ç¦å‘Šè­¦	
+#define	MADD_A_EXPA_WROK_ALM	628	//	[RO]å¾®åŠŸæ”¾:	ä¸‹è¡ŒåŠŸæ”¾æ•…éšœå‘Šè­¦(3åˆ†é’Ÿæ¦‚çŽ‡åˆ¤å®š)	
+#define	MADD_A_EXPA_EXT1_ALM	629	//	[RO]å¾®åŠŸæ”¾:	å¤–éƒ¨å‘Šè­¦1	
+#define	MADD_A_EXPA_EXT2_ALM	630	//	[RO]å¾®åŠŸæ”¾:	å¤–éƒ¨å‘Šè­¦2	
+#define	MADD_A_EXPA_EXT3_ALM	631	//	[RO]å¾®åŠŸæ”¾:	å¤–éƒ¨å‘Šè­¦3	
+#define	MADD_A_EXPA_MAX_GAIN	632	//	å¾®åŠŸæ”¾:	é›¶è¡°å‡å¢žç›Šï¼Œå³æœ€å¤§å¢žç›Š	
+#define	MADD_A_EXPA_GAIN_THD	633	//	å¾®åŠŸæ”¾:	å¢žç›Šé—¨é™ï¼Œå³å…è®¸å·¥ä½œçš„å¢žç›Šæœ€å¤§å€¼	
+#define	MADD_A_EXPA_POW_THD	634	//	å¾®åŠŸæ”¾:	åŠŸæ”¾è¾“å‡ºåŠŸçŽ‡é—¨é™	
+#define	MADD_A_EXPA_POD_CMP	635	//	å¾®åŠŸæ”¾:	æ£€æ³¢ç®¡åŠŸçŽ‡æ£€æµ‹è¡¥å¿å€¼,1å­—èŠ‚æœ‰ç¬¦å·æ•°,æœ€ç»ˆåŠŸçŽ‡ä¸ºæ£€æ³¢ç®¡åŠŸçŽ‡åŠ ä¸Šè¡¥å¿å€¼	
+#define	MADD_MONITOR_VOL_OVER_THR 		636			 // ç›‘æŽ§ç”µåŽ‹è¿‡é—¨é™
+#define 	MADD_MONITOR_VOL_OWE_THR 		637			 // ç›‘æŽ§ç”µåŽ‹æ¬ é—¨é™
+#define 	MADD_DIGITAL_SINGNAL_ALARM 		638			 // æ•°å­—ä¿¡å·å¼‚å¸¸å‘Šè­¦
+#define 	MADD_HOST_DEVICE_LINK_SINGNAL_ALARM 		639			 // ä¸»ä»Žç›‘æŽ§é“¾è·¯å‘Šè­¦
+#define 	MADD_MONITOR_BATTERY_ALARM 		640			 // ç›‘æŽ§æ¨¡å—ç”µæ± æ•…éšœå‘Šè­¦	
+#define 	MADD_LOW_POWER_ALARM 		641			 // ç”µæºæŽ‰ç”µå‘Šè­¦	
+#define 	MADD_BATTERY_BREAKDOWN_ALARM 		642			 // ç”µæºæ•…éšœå‘Šè­¦	
+#define 	MADD_POSITION_MOVE_ALARM		643			 // ä½ç½®å‘Šè­¦	
+#define 	MADD_A_INPUT_OVER_DPOW_THR_ALARM 		644			 // Aä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦	
+#define 	MADD_A_INPUT_OWE_DPOW_THR_ALARM 		645			 // Aä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡å‘Šè­¦	
+#define 	MADD_B_INPUT_OVER_DPOW_THR_ALARM 		646	// Aä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦			
+#define 	MADD_B_INPUT_OWE_DPOW_THR_ALARM 		647	// Aä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡å‘Šè­¦			
+#define 	MADD_C_INPUT_OVER_DPOW_THR_ALARM 		648	//248			 // Aä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦
+#define 	MADD_C_INPUT_OWE_DPOW_THR_ALARM 		649	//249			 // Aä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡å‘Šè­¦
+#define 	MADD_D_INPUT_OVER_DPOW_THR_ALARM		650	//248			 // Aä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡å‘Šè­¦
 #define 	MADD_D_INPUT_OWE_DPOW_THR_ALARM		651	//339	//249		
-#define 	MADD_TD_D_OVER_SLOT1_THR_ALARM 		652			 // TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯	
-#define 	MADD_TD_D_OWE_SLOT1_THR_ALARM 		653			 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯	
-#define	MADD_RE_DATA_LAN_ST1	654	//	PHYÐ¾Æ¬¹¤×÷×´Ì¬		0:00	Õý³££¬1:
-#define	MADD_RE_CASCADE_LAN_ST1	655	//	¼¶ÁªÍø¿ÚµÄ¹¤×÷×´Ì¬		0:00	Õý³££¬1:
-#define	MADD_RE_DATA_LAN_SYS_ST1	656	//	Êý¾ÝÍø¿ÚÍ¬²½×´Ì¬		0:00	Í¬²½£¬1:
-#define	MADD_RE_CASCADE_LAN_SYS_ST1	657	//	¼¶ÁªÍø¿ÚÍ¬²½×´Ì¬		0:00	Í¬²½£¬1:
-#define	MADD_A_RF_POW_SWR	658	//	A¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È			
-#define	MADD_A_RF_OUT_POW_H_THR 	659	//	A¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ			
-#define	MADD_A_RF_OUT_POW_L_THR 	660	//	A¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ			
-#define	MADD_B_RF_POW_SWR	661	 //	B¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È			
-#define	MADD_B_RF_OUT_POW_H_THR 	662	 //	B¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ			
-#define	MADD_B_RF_OUT_POW_L_THR 	663	 //	B¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ			
-#define	MADD_C_RF_POW_SWR	664	//	A¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È			
-#define	MADD_C_RF_OUT_POW_H_THR 	665	//	A¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ			
-#define	MADD_C_RF_OUT_POW_L_THR 	666	//	A¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ			
-#define	MADD_D_RF_POW_SWR	667	 // 	D¶Î¸²¸Çµ¥Ôª¹¦·Å×¤²¨±È			
-#define	MADD_D_RF_OUT_POW_H_THR 	668	 // 	D¶Î¸²¸Çµ¥ÔªÊä³ö¹ý¹¦ÂÊÃÅÏÞ			
-#define	MADD_D_RF_OUT_POW_L_THR 	669	 // 	D¶Î¸²¸Çµ¥ÔªÊä³öÇ·¹¦ÂÊÃÅÏÞ			
-#define	MADD_PWR_3V3_1_VT	670		//	3.3VµçÔ´µçÑ¹		
-#define	MADD_PWR_3V3_2_VT	671		//	3.3VµçÔ´µçÑ¹		
-#define	MADD_PWR_1V8_VT	672			//	1.8VµçÔ´µçÑ¹	
-#define	MADD_PWR_1V5_VT	673				//	1.5VµçÔ´µçÑ¹
-#define	MADD_A_DL_RF_EN 	674	// 	A¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ	
-#define	MADD_A_UL_RF_EN 	675	// 	A¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ	
-#define	MADD_B_DL_RF_EN 	676	// 	B¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ	
-#define	MADD_B_UL_RF_EN 	677	// 	B¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ	
-#define	MADD_C_DL_RF_EN 	678	// 	C¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ	
-#define	MADD_C_UL_RF_EN 	679	// 	C¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ	
-#define	MADD_D_DL_RF_EN 	680	// 	D¶ÎÏÂÐÐÉäÆµÊ¹ÄÜ	
-#define	MADD_D_UL_RF_EN 	681	// 	D¶ÎÉÏÐÐÉäÆµÊ¹ÄÜ
-#define	MADD_METER_OFFSET	682				//	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-#define	MADD_METER_OFFSET_B	683				//	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-#define	MADD_METER_OFFSET_C	684				//	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-#define	MADD_METER_OFFSET_D	685				//	ÒÇÆ÷Æ«²îÖµÉèÖÃ
-#define	MADD_C_TD_TYPE_SELECT	686	// TD_TLEÊ±Ï¶Åä±È				
-#define	MADD_C_TD_NORMAL_CP	687		//	TDDÌØÊâÊ±Ï¶ NORMAL_CP		
-#define	MADD_C_TD_EXTENDED_CP	688		//	TDDÌØÊâÊ±Ï¶ NORMAL_CP		
-#define	MADD_C_TD_SYNC_ST	689	//	TDÍ¬²½×´Ì¬:	0-ÒÑÍ¬²½£¬1-Î´Í¬²½		
-#define	MADD_C_TD_WORK_MODE	690	//	[WR]TD:TD_SCDMA¿ØÖÆÄ£Ê½£¬00Õý³£Ä£Ê½£¬01ÉÏÐÐ³£¿ª£¬10ÊÇÏÂÐÐ³£¿ª,	Ã¿´ÎÉÏµçºóÇåÁã		
-#define	MADD_C_TD_DL_OVER_SLOT1_THR_ALARM	691	// TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯				
-#define	MADD_C_TD_DL_OWE_SLOT1_THR_ALARM	692	 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯				
-#define	MADD_D_TD_TYPE_SELECT	693	// TD_TLEÊ±Ï¶Åä±È				
-#define	MADD_D_TD_NORMAL_CP	694	//718	//	TDDÌØÊâÊ±Ï¶ NORMAL_CP		
-#define	MADD_D_TD_EXTENDED_CP	695	//719	//	TDDÌØÊâÊ±Ï¶ NORMAL_CP		
-#define	MADD_D_TD_SYNC_ST	696	//	TDÍ¬²½×´Ì¬:	0-ÒÑÍ¬²½£¬1-Î´Í¬²½		
-#define	MADD_D_TD_WORK_MODE	697	//	[WR]TD:TD_SCDMA¿ØÖÆÄ£Ê½£¬00Õý³£Ä£Ê½£¬01ÉÏÐÐ³£¿ª£¬10ÊÇÏÂÐÐ³£¿ª,	Ã¿´ÎÉÏµçºóÇåÁã		
-#define	MADD_D_TD_DL_OVER_SLOT1_THR_ALARM	698	// TDÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊ¸æ¾¯				
-#define	MADD_D_TD_DL_OWE_SLOT1_THR_ALARM	699	 // TDÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊ¸æ¾¯				
-#define	MADD_C_TD_T0_UD	700		//	TDÊ±Ï¶0ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_C_TD_T1_UD	701		//	TDÊ±Ï¶1ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_C_TD_T2_UD	702		//	TDÊ±Ï¶2ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_C_TD_T3_UD	703		//	TDÊ±Ï¶3ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_C_TD_T4_UD	704		//	TDÊ±Ï¶4ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_C_TD_T5_UD	705		//	TDÊ±Ï¶5ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_C_TD_T6_UD	706		//	TDÊ±Ï¶6ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_C_TD_T7_UD	707		//	TDÊ±Ï¶7ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_C_TD_T8_UD	708		//	TDÊ±Ï¶8ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_C_TD_T9_UD	709		//	TDÊ±Ï¶9ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_D_TD_T0_UD	710		//	TDÊ±Ï¶0ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_D_TD_T1_UD	711		//	TDÊ±Ï¶1ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_D_TD_T2_UD	712		//	TDÊ±Ï¶2ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_D_TD_T3_UD	713		//	TDÊ±Ï¶3ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_D_TD_T4_UD	714		//	TDÊ±Ï¶4ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_D_TD_T5_UD	715		//	TDÊ±Ï¶5ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_D_TD_T6_UD	716		//	TDÊ±Ï¶6ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_D_TD_T7_UD	717		//	TDÊ±Ï¶7ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_D_TD_T8_UD	718		//	TDÊ±Ï¶8ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_D_TD_T9_UD	719		//	TDÊ±Ï¶9ÉÏÏÂÐÐ±êÖ¾:0-ÉÏÐÐ£¬1-ÏÂÐÐ		
-#define	MADD_NOISE_TEST_EN	720		//	ÔëÉù²âÊÔ¿ª¹Ø		
-#define	MADD_FREQ_MODIF_VAL_D	721		//	±¾ÕñÐÞÕý
-#define	MADD_FREQ_MODIF_VAL_B	722		//	±¾ÕñÐÞÕý
-#define	MADD_FREQ_MODIF_VAL_A	723		//	±¾ÕñÐÞÕý
-#define	MADD_B_TDS_2TH_BREAKING_POINT_SET	724		//	TDS µÚ¶þ×ª»»µãÉèÖÃÈ¡Öµ[1£¬5]
-#define	MADD_DELAY_MODE_A				725	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯
-#define	MADD_DELAY_MODE_B				726	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯
-#define	MADD_DELAY_MODE_C				727	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯
-#define	MADD_DELAY_MODE_D				728	// 	ÑÓÊ±Ä£Ê½: 0-ÊÖ¶¯, 1-×Ô¶¯
+#define 	MADD_TD_D_OVER_SLOT1_THR_ALARM 		652			 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦	
+#define 	MADD_TD_D_OWE_SLOT1_THR_ALARM 		653			 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦	
+#define	MADD_RE_DATA_LAN_ST1	654	//	PHYèŠ¯ç‰‡å·¥ä½œçŠ¶æ€		0:00	æ­£å¸¸ï¼Œ1:
+#define	MADD_RE_CASCADE_LAN_ST1	655	//	çº§è”ç½‘å£çš„å·¥ä½œçŠ¶æ€		0:00	æ­£å¸¸ï¼Œ1:
+#define	MADD_RE_DATA_LAN_SYS_ST1	656	//	æ•°æ®ç½‘å£åŒæ­¥çŠ¶æ€		0:00	åŒæ­¥ï¼Œ1:
+#define	MADD_RE_CASCADE_LAN_SYS_ST1	657	//	çº§è”ç½‘å£åŒæ­¥çŠ¶æ€		0:00	åŒæ­¥ï¼Œ1:
+#define	MADD_A_RF_POW_SWR	658	//	Aæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”			
+#define	MADD_A_RF_OUT_POW_H_THR 	659	//	Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™			
+#define	MADD_A_RF_OUT_POW_L_THR 	660	//	Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™			
+#define	MADD_B_RF_POW_SWR	661	 //	Bæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”			
+#define	MADD_B_RF_OUT_POW_H_THR 	662	 //	Bæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™			
+#define	MADD_B_RF_OUT_POW_L_THR 	663	 //	Bæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™			
+#define	MADD_C_RF_POW_SWR	664	//	Aæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”			
+#define	MADD_C_RF_OUT_POW_H_THR 	665	//	Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™			
+#define	MADD_C_RF_OUT_POW_L_THR 	666	//	Aæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™			
+#define	MADD_D_RF_POW_SWR	667	 // 	Dæ®µè¦†ç›–å•å…ƒåŠŸæ”¾é©»æ³¢æ¯”			
+#define	MADD_D_RF_OUT_POW_H_THR 	668	 // 	Dæ®µè¦†ç›–å•å…ƒè¾“å‡ºè¿‡åŠŸçŽ‡é—¨é™			
+#define	MADD_D_RF_OUT_POW_L_THR 	669	 // 	Dæ®µè¦†ç›–å•å…ƒè¾“å‡ºæ¬ åŠŸçŽ‡é—¨é™			
+#define	MADD_PWR_3V3_1_VT	670		//	3.3Vç”µæºç”µåŽ‹		
+#define	MADD_PWR_3V3_2_VT	671		//	3.3Vç”µæºç”µåŽ‹		
+#define	MADD_PWR_1V8_VT	672			//	1.8Vç”µæºç”µåŽ‹	
+#define	MADD_PWR_1V5_VT	673				//	1.5Vç”µæºç”µåŽ‹
+#define	MADD_A_DL_RF_EN 	674	// 	Aæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½	
+#define	MADD_A_UL_RF_EN 	675	// 	Aæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½	
+#define	MADD_B_DL_RF_EN 	676	// 	Bæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½	
+#define	MADD_B_UL_RF_EN 	677	// 	Bæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½	
+#define	MADD_C_DL_RF_EN 	678	// 	Cæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½	
+#define	MADD_C_UL_RF_EN 	679	// 	Cæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½	
+#define	MADD_D_DL_RF_EN 	680	// 	Dæ®µä¸‹è¡Œå°„é¢‘ä½¿èƒ½	
+#define	MADD_D_UL_RF_EN 	681	// 	Dæ®µä¸Šè¡Œå°„é¢‘ä½¿èƒ½
+#define	MADD_METER_OFFSET	682				//	ä»ªå™¨åå·®å€¼è®¾ç½®
+#define	MADD_METER_OFFSET_B	683				//	ä»ªå™¨åå·®å€¼è®¾ç½®
+#define	MADD_METER_OFFSET_C	684				//	ä»ªå™¨åå·®å€¼è®¾ç½®
+#define	MADD_METER_OFFSET_D	685				//	ä»ªå™¨åå·®å€¼è®¾ç½®
+#define	MADD_C_TD_TYPE_SELECT	686	// TD_TLEæ—¶éš™é…æ¯”				
+#define	MADD_C_TD_NORMAL_CP	687		//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP		
+#define	MADD_C_TD_EXTENDED_CP	688		//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP		
+#define	MADD_C_TD_SYNC_ST	689	//	TDåŒæ­¥çŠ¶æ€:	0-å·²åŒæ­¥ï¼Œ1-æœªåŒæ­¥		
+#define	MADD_C_TD_WORK_MODE	690	//	[WR]TD:TD_SCDMAæŽ§åˆ¶æ¨¡å¼ï¼Œ00æ­£å¸¸æ¨¡å¼ï¼Œ01ä¸Šè¡Œå¸¸å¼€ï¼Œ10æ˜¯ä¸‹è¡Œå¸¸å¼€,	æ¯æ¬¡ä¸Šç”µåŽæ¸…é›¶		
+#define	MADD_C_TD_DL_OVER_SLOT1_THR_ALARM	691	// TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦				
+#define	MADD_C_TD_DL_OWE_SLOT1_THR_ALARM	692	 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦				
+#define	MADD_D_TD_TYPE_SELECT	693	// TD_TLEæ—¶éš™é…æ¯”				
+#define	MADD_D_TD_NORMAL_CP	694	//718	//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP		
+#define	MADD_D_TD_EXTENDED_CP	695	//719	//	TDDç‰¹æ®Šæ—¶éš™ NORMAL_CP		
+#define	MADD_D_TD_SYNC_ST	696	//	TDåŒæ­¥çŠ¶æ€:	0-å·²åŒæ­¥ï¼Œ1-æœªåŒæ­¥		
+#define	MADD_D_TD_WORK_MODE	697	//	[WR]TD:TD_SCDMAæŽ§åˆ¶æ¨¡å¼ï¼Œ00æ­£å¸¸æ¨¡å¼ï¼Œ01ä¸Šè¡Œå¸¸å¼€ï¼Œ10æ˜¯ä¸‹è¡Œå¸¸å¼€,	æ¯æ¬¡ä¸Šç”µåŽæ¸…é›¶		
+#define	MADD_D_TD_DL_OVER_SLOT1_THR_ALARM	698	// TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡å‘Šè­¦				
+#define	MADD_D_TD_DL_OWE_SLOT1_THR_ALARM	699	 // TDä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡å‘Šè­¦				
+#define	MADD_C_TD_T0_UD	700		//	TDæ—¶éš™0ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_C_TD_T1_UD	701		//	TDæ—¶éš™1ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_C_TD_T2_UD	702		//	TDæ—¶éš™2ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_C_TD_T3_UD	703		//	TDæ—¶éš™3ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_C_TD_T4_UD	704		//	TDæ—¶éš™4ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_C_TD_T5_UD	705		//	TDæ—¶éš™5ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_C_TD_T6_UD	706		//	TDæ—¶éš™6ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_C_TD_T7_UD	707		//	TDæ—¶éš™7ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_C_TD_T8_UD	708		//	TDæ—¶éš™8ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_C_TD_T9_UD	709		//	TDæ—¶éš™9ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_D_TD_T0_UD	710		//	TDæ—¶éš™0ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_D_TD_T1_UD	711		//	TDæ—¶éš™1ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_D_TD_T2_UD	712		//	TDæ—¶éš™2ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_D_TD_T3_UD	713		//	TDæ—¶éš™3ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_D_TD_T4_UD	714		//	TDæ—¶éš™4ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_D_TD_T5_UD	715		//	TDæ—¶éš™5ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_D_TD_T6_UD	716		//	TDæ—¶éš™6ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_D_TD_T7_UD	717		//	TDæ—¶éš™7ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_D_TD_T8_UD	718		//	TDæ—¶éš™8ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_D_TD_T9_UD	719		//	TDæ—¶éš™9ä¸Šä¸‹è¡Œæ ‡å¿—:0-ä¸Šè¡Œï¼Œ1-ä¸‹è¡Œ		
+#define	MADD_NOISE_TEST_EN	720		//	å™ªå£°æµ‹è¯•å¼€å…³		
+#define	MADD_FREQ_MODIF_VAL_D	721		//	æœ¬æŒ¯ä¿®æ­£
+#define	MADD_FREQ_MODIF_VAL_B	722		//	æœ¬æŒ¯ä¿®æ­£
+#define	MADD_FREQ_MODIF_VAL_A	723		//	æœ¬æŒ¯ä¿®æ­£
+#define	MADD_B_TDS_2TH_BREAKING_POINT_SET	724		//	TDS ç¬¬äºŒè½¬æ¢ç‚¹è®¾ç½®å–å€¼[1ï¼Œ5]
+#define	MADD_DELAY_MODE_A				725	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨
+#define	MADD_DELAY_MODE_B				726	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨
+#define	MADD_DELAY_MODE_C				727	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨
+#define	MADD_DELAY_MODE_D				728	// 	å»¶æ—¶æ¨¡å¼: 0-æ‰‹åŠ¨, 1-è‡ªåŠ¨
 #define	MADD_REE_CIRCUIT_ALARM	 		729
 #define	MADD_REE_WLAN_CONN_ST			730
-#define	MADD_DL_POWER_MAX				731//ÇóÏÂÐÐÄ£¿é¹¦ÂÊ×î´óÖµ	
-#define 	MADD_SLOT_TIME_EN_B				732	// Ê±Ï¶Åä±È×Ô¶¯¼ì²â¿ª¹Ø		
-#define 	MADD_SLOT_TIME_DISTRI_B			733	// Ê±Ï¶Åä±È·Ö²¼			
-#define 	MADD_VERSION_FLAG				734	// °æ±¾±êÊ¶Ê¶±ð
-#define 	MADD_SLOT_TIME_EN_C				735	// Ê±Ï¶Åä±È×Ô¶¯¼ì²â¿ª¹Ø		
-#define 	MADD_SLOT_TIME_DISTRI_C			736	// TD-LTEÊ±Ï¶Åä±È×´Ì¬ D3-0:ÌØÊâ×ÓÖ¡Åä±È TDL_SP_SubFrm_CFG_check  µÈÓÚ15Ê±±íÊ¾¼ì²âÊ§°Ü	D7-4:ÉÏÏÂÐÐÊ±Ï¶Åä±È TDL_TS_EN_check  µÈÓÚ15Ê±±íÊ¾¼ì²âÊ§°Ü			
-#define 	MADD_A_1197_LOCK_ST 	737	// 	A¶Î1197Ëø¶¨×´Ì¬,
-#define 	MADD_A_IF_ST 	738	// 	A¶ÎÖÐÆµÆµÂÊ,0/1---300M/500M
-#define 	MADD_ENCRYPTION_ST 	739	// 	¼ÓÃÜ×´Ì¬,0/1---²»¼ÓÃÜ/¼ÓÃÜ
-#define	MADD_PWR_1V6_VT			740				//	1.6VµçÔ´µçÑ¹
-#define	MADD_A_90_VALUE			741				//A¶Î9363 90¼Ä´æÆ÷µÄÖµ
-#define	MADD_A_91_VALUE			742				//A¶Î9363 91¼Ä´æÆ÷µÄÖµ
-#define	MADD_A_94_VALUE			743				//A¶Î9363 94¼Ä´æÆ÷µÄÖµ
-#define	MADD_A_95_VALUE			744				//A¶Î9363 95¼Ä´æÆ÷µÄÖµ
-#define	MADD_B_90_VALUE			745				//B¶Î9363 90¼Ä´æÆ÷µÄÖµ
-#define	MADD_B_91_VALUE			746				//B¶Î9363 91¼Ä´æÆ÷µÄÖµ
-#define	MADD_B_94_VALUE			747				//B¶Î9363 94¼Ä´æÆ÷µÄÖµ
-#define	MADD_B_95_VALUE			748				//B¶Î9363 95¼Ä´æÆ÷µÄÖµ
-#define	MADD_C_90_VALUE			749				//C¶Î9363 90¼Ä´æÆ÷µÄÖµ
-#define	MADD_C_91_VALUE			750				//C¶Î9363 91¼Ä´æÆ÷µÄÖµ
-#define	MADD_C_94_VALUE			751				//C¶Î9363 94¼Ä´æÆ÷µÄÖµ
-#define	MADD_C_95_VALUE			752				//C¶Î9363 95¼Ä´æÆ÷µÄÖµ
-#define	MADD_D_90_VALUE			753				//D¶Î9363 90¼Ä´æÆ÷µÄÖµ
-#define	MADD_D_91_VALUE			754				//D¶Î9363 91¼Ä´æÆ÷µÄÖµ
-#define	MADD_D_94_VALUE			755				//D¶Î9363 94¼Ä´æÆ÷µÄÖµ
-#define	MADD_D_95_VALUE			756				//D¶Î9363 95¼Ä´æÆ÷µÄÖµ
-#define	MADD_PASSTHROUGH_EN		757				//Í¸´«Ê¹ÄÜ
-#define	MADD_A_DL_POW_ADJ		758				//¹¦ÂÊµ÷½Ú             
-#define	MADD_B_DL_POW_ADJ		759				//¹¦ÂÊµ÷½Ú             
-#define	MADD_C_DL_POW_ADJ		760				//¹¦ÂÊµ÷½Ú             
-#define	MADD_D_DL_POW_ADJ		761				//¹¦ÂÊµ÷½Ú             
-#define	MADD_SoftwareLoadTimes	762				//Èí¼þÖØÆô´ÎÊý£¬Ã¿´ÎÉÏµç¼ÓÒ»
-#define	MADD_A_LNA_EN_ST 		763	           		 // 	A¶ÎÏÂÐÐµÍÔë·ÅLNA¿ª¹Ø
+#define	MADD_DL_POWER_MAX				731//æ±‚ä¸‹è¡Œæ¨¡å—åŠŸçŽ‡æœ€å¤§å€¼	
+#define 	MADD_SLOT_TIME_EN_B				732	// æ—¶éš™é…æ¯”è‡ªåŠ¨æ£€æµ‹å¼€å…³		
+#define 	MADD_SLOT_TIME_DISTRI_B			733	// æ—¶éš™é…æ¯”åˆ†å¸ƒ			
+#define 	MADD_VERSION_FLAG				734	// ç‰ˆæœ¬æ ‡è¯†è¯†åˆ«
+#define 	MADD_SLOT_TIME_EN_C				735	// æ—¶éš™é…æ¯”è‡ªåŠ¨æ£€æµ‹å¼€å…³		
+#define 	MADD_SLOT_TIME_DISTRI_C			736	// TD-LTEæ—¶éš™é…æ¯”çŠ¶æ€ D3-0:ç‰¹æ®Šå­å¸§é…æ¯” TDL_SP_SubFrm_CFG_check  ç­‰äºŽ15æ—¶è¡¨ç¤ºæ£€æµ‹å¤±è´¥	D7-4:ä¸Šä¸‹è¡Œæ—¶éš™é…æ¯” TDL_TS_EN_check  ç­‰äºŽ15æ—¶è¡¨ç¤ºæ£€æµ‹å¤±è´¥			
+#define 	MADD_A_1197_LOCK_ST 	737	// 	Aæ®µ1197é”å®šçŠ¶æ€,
+#define 	MADD_A_IF_ST 	738	// 	Aæ®µä¸­é¢‘é¢‘çŽ‡,0/1---300M/500M
+#define 	MADD_ENCRYPTION_ST 	739	// 	åŠ å¯†çŠ¶æ€,0/1---ä¸åŠ å¯†/åŠ å¯†
+#define	MADD_PWR_1V6_VT			740				//	1.6Vç”µæºç”µåŽ‹
+#define	MADD_A_90_VALUE			741				//Aæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+#define	MADD_A_91_VALUE			742				//Aæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+#define	MADD_A_94_VALUE			743				//Aæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+#define	MADD_A_95_VALUE			744				//Aæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+#define	MADD_B_90_VALUE			745				//Bæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+#define	MADD_B_91_VALUE			746				//Bæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+#define	MADD_B_94_VALUE			747				//Bæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+#define	MADD_B_95_VALUE			748				//Bæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+#define	MADD_C_90_VALUE			749				//Cæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+#define	MADD_C_91_VALUE			750				//Cæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+#define	MADD_C_94_VALUE			751				//Cæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+#define	MADD_C_95_VALUE			752				//Cæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+#define	MADD_D_90_VALUE			753				//Dæ®µ9363 90å¯„å­˜å™¨çš„å€¼
+#define	MADD_D_91_VALUE			754				//Dæ®µ9363 91å¯„å­˜å™¨çš„å€¼
+#define	MADD_D_94_VALUE			755				//Dæ®µ9363 94å¯„å­˜å™¨çš„å€¼
+#define	MADD_D_95_VALUE			756				//Dæ®µ9363 95å¯„å­˜å™¨çš„å€¼
+#define	MADD_PASSTHROUGH_EN		757				//é€ä¼ ä½¿èƒ½
+#define	MADD_A_DL_POW_ADJ		758				//åŠŸçŽ‡è°ƒèŠ‚             
+#define	MADD_B_DL_POW_ADJ		759				//åŠŸçŽ‡è°ƒèŠ‚             
+#define	MADD_C_DL_POW_ADJ		760				//åŠŸçŽ‡è°ƒèŠ‚             
+#define	MADD_D_DL_POW_ADJ		761				//åŠŸçŽ‡è°ƒèŠ‚             
+#define	MADD_SoftwareLoadTimes	762				//è½¯ä»¶é‡å¯æ¬¡æ•°ï¼Œæ¯æ¬¡ä¸Šç”µåŠ ä¸€
+#define	MADD_A_LNA_EN_ST 		763	           		 // 	Aæ®µä¸‹è¡Œä½Žå™ªæ”¾LNAå¼€å…³
 
 #define SYS_PARAM_1B_COUNT		764
 
 
 #if defined ( CLIENT_JIZHUN)
-	// ¹úÈË²ÎÊý
-	// ²ÎÊýµØÖ·¶¨Òå==================================================== 2b
-#define	PARA_A_DL_CHANNEL1	0x0900	//	A¶ÎÏÂÐÐÐÅµÀºÅ1
-#define	PARA_A_DL_CHANNEL2	0x0901	//	A¶ÎÏÂÐÐÐÅµÀºÅ2
-#define	PARA_A_DL_CHANNEL3	0x0902	//	A¶ÎÏÂÐÐÐÅµÀºÅ3
-#define	PARA_A_DL_CHANNEL4	0x0903	//	A¶ÎÏÂÐÐÐÅµÀºÅ4
-#define	PARA_A_DL_CHANNEL5	0x0904	//	A¶ÎÏÂÐÐÐÅµÀºÅ5
-#define	PARA_A_DL_CHANNEL6	0x0905	//	A¶ÎÏÂÐÐÐÅµÀºÅ6
-#define	PARA_A_DL_CHANNEL7	0x0906	//	A¶ÎÏÂÐÐÐÅµÀºÅ7
-#define	PARA_A_DL_CHANNEL8	0x0907	//	A¶ÎÏÂÐÐÐÅµÀºÅ8
-#define	PARA_A_DL_CHANNEL9	0x0908	//	A¶ÎÏÂÐÐÐÅµÀºÅ9
-#define	PARA_A_DL_CHANNEL10	0x0909	//	A¶ÎÏÂÐÐÐÅµÀºÅ10
-#define	PARA_A_DL_CHANNEL11	0x090A	//	A¶ÎÏÂÐÐÐÅµÀºÅ11
-#define	PARA_A_DL_CHANNEL12	0x090B	//	A¶ÎÏÂÐÐÐÅµÀºÅ12
-#define	PARA_A_DL_CHANNEL13	0x090C	//	A¶ÎÏÂÐÐÐÅµÀºÅ13
-#define	PARA_A_DL_CHANNEL14	0x090D	//	A¶ÎÏÂÐÐÐÅµÀºÅ14
-#define	PARA_A_DL_CHANNEL15	0x090E	//	A¶ÎÏÂÐÐÐÅµÀºÅ15
-#define	PARA_A_DL_CHANNEL16	0x090F	//	A¶ÎÏÂÐÐÐÅµÀºÅ16
-#define	PARA_A_UL_CHANNEL1	0x0900	//	A¶ÎÉÏÐÐÐÅµÀºÅ1
-#define	PARA_A_UL_CHANNEL2	0x0901	//	A¶ÎÉÏÐÐÐÅµÀºÅ2
-#define	PARA_A_UL_CHANNEL3	0x0902	//	A¶ÎÉÏÐÐÐÅµÀºÅ3
-#define	PARA_A_UL_CHANNEL4	0x0903	//	A¶ÎÉÏÐÐÐÅµÀºÅ4
-#define	PARA_A_UL_CHANNEL5	0x0904	//	A¶ÎÉÏÐÐÐÅµÀºÅ5
-#define	PARA_A_UL_CHANNEL6	0x0905	//	A¶ÎÉÏÐÐÐÅµÀºÅ6
-#define	PARA_A_UL_CHANNEL7	0x0906	//	A¶ÎÉÏÐÐÐÅµÀºÅ7
-#define	PARA_A_UL_CHANNEL8	0x0907	//	A¶ÎÉÏÐÐÐÅµÀºÅ8
-#define	PARA_A_UL_CHANNEL9	0x0908	//	A¶ÎÉÏÐÐÐÅµÀºÅ9
-#define	PARA_A_UL_CHANNEL10	0x0909	//	A¶ÎÉÏÐÐÐÅµÀºÅ10
-#define	PARA_A_UL_CHANNEL11	0x090A	//	A¶ÎÉÏÐÐÐÅµÀºÅ11
-#define	PARA_A_UL_CHANNEL12	0x090B	//	A¶ÎÉÏÐÐÐÅµÀºÅ12
-#define	PARA_A_UL_CHANNEL13	0x090C	//	A¶ÎÉÏÐÐÐÅµÀºÅ13
-#define	PARA_A_UL_CHANNEL14	0x090D	//	A¶ÎÉÏÐÐÐÅµÀºÅ14
-#define	PARA_A_UL_CHANNEL15	0x090E	//	A¶ÎÉÏÐÐÐÅµÀºÅ15
-#define	PARA_A_UL_CHANNEL16	0x090F	//	A¶ÎÉÏÐÐÐÅµÀºÅ16
-#define	PARA_A_DCH_MAX_POW1	0x0348	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1
-#define	PARA_A_DCH_MAX_POW2	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2
-#define	PARA_A_DCH_MAX_POW3	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3
-#define	PARA_A_DCH_MAX_POW4	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4
-#define	PARA_A_DCH_MAX_POW5	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5
-#define	PARA_A_DCH_MAX_POW6	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6
-#define	PARA_A_DCH_MAX_POW7	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7
-#define	PARA_A_DCH_MAX_POW8	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8
-#define	PARA_A_DCH_MAX_POW9	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9
-#define	PARA_A_DCH_MAX_POW10	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10
-#define	PARA_A_DCH_MAX_POW11	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11
-#define	PARA_A_DCH_MAX_POW12	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12
-#define	PARA_A_DCH_MAX_POW13	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13
-#define	PARA_A_DCH_MAX_POW14	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14
-#define	PARA_A_DCH_MAX_POW15	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15
-#define	PARA_A_DCH_MAX_POW16	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16
-#define	PARA_A_UCH_MAX_POW1		0x0340	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1
-#define	PARA_A_UCH_MAX_POW2		0x8269	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2
-#define	PARA_A_UCH_MAX_POW3	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3
-#define	PARA_A_UCH_MAX_POW4	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4
-#define	PARA_A_UCH_MAX_POW5	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5
-#define	PARA_A_UCH_MAX_POW6	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6
-#define	PARA_A_UCH_MAX_POW7	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7
-#define	PARA_A_UCH_MAX_POW8	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8
-#define	PARA_A_UCH_MAX_POW9	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9
-#define	PARA_A_UCH_MAX_POW10	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10
-#define	PARA_A_UCH_MAX_POW11	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11
-#define	PARA_A_UCH_MAX_POW12	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12
-#define	PARA_A_UCH_MAX_POW13	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13
-#define	PARA_A_UCH_MAX_POW14	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14
-#define	PARA_A_UCH_MAX_POW15	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15
-#define	PARA_A_UCH_MAX_POW16	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16
-#define	PARA_A_DCH_POW1	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1
-#define	PARA_A_DCH_POW2	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2
-#define	PARA_A_DCH_POW3	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3
-#define	PARA_A_DCH_POW4	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4
-#define	PARA_A_DCH_POW5	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5
-#define	PARA_A_DCH_POW6	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6
-#define	PARA_A_DCH_POW7	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7
-#define	PARA_A_DCH_POW8	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8
-#define	PARA_A_DCH_POW9	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9
-#define	PARA_A_DCH_POW10	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10
-#define	PARA_A_DCH_POW11	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11
-#define	PARA_A_DCH_POW12	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12
-#define	PARA_A_DCH_POW13	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13
-#define	PARA_A_DCH_POW14	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14
-#define	PARA_A_DCH_POW15	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15
-#define	PARA_A_DCH_POW16	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16
-#define	PARA_A_UCH_POW1	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1
-#define	PARA_A_UCH_POW2	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2
-#define	PARA_A_UCH_POW3	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3
-#define	PARA_A_UCH_POW4	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4
-#define	PARA_A_UCH_POW5	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5
-#define	PARA_A_UCH_POW6	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6
-#define	PARA_A_UCH_POW7	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7
-#define	PARA_A_UCH_POW8	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8
-#define	PARA_A_UCH_POW9	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9
-#define	PARA_A_UCH_POW10	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_A_UCH_POW11	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ11
-#define	PARA_A_UCH_POW12	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ12
-#define	PARA_A_UCH_POW13	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ13
-#define	PARA_A_UCH_POW14	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ14
-#define	PARA_A_UCH_POW15	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ15
-#define	PARA_A_UCH_POW16	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ16
-#define	PARA_A_UDPX_IN_GAIN		0x08AB	//	A¶ÎÏÂÐÐÊäÈëË«¹¤Æ÷ÔöÒæ
-#define	PARA_A_UDPX_OUT_GAIN	0x08AA	//	A¶ÎÉÏÐÐÊä³öË«¹¤Æ÷ÔöÒæ
-#define	PARA_A_DL_TOTAL_POW	0x8390	//	A¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define	PARA_A_UL_TOTAL_POW	0x831e	//	A¶ÎÉÏÐÐÊä³ö×Ü¹¦ÂÊ
-#define	PARA_A_REC_DPX_IG		0		//		RECµÄA¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á							
-#define	PARA_A_REC_DPX_OG		0		//		RECµÄA¶ÎÊä³öË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á	
-#define	PARA_B_DL_CHANNEL1	0x0900	//	B¶ÎÏÂÐÐÐÅµÀºÅ1
-#define	PARA_B_DL_CHANNEL2	0x0901	//	B¶ÎÏÂÐÐÐÅµÀºÅ2
-#define	PARA_B_DL_CHANNEL3	0x0902	//	B¶ÎÏÂÐÐÐÅµÀºÅ3
-#define	PARA_B_DL_CHANNEL4	0x0903	//	B¶ÎÏÂÐÐÐÅµÀºÅ4
-#define	PARA_B_DL_CHANNEL5	0x0904	//	B¶ÎÏÂÐÐÐÅµÀºÅ5
-#define	PARA_B_DL_CHANNEL6	0x0905	//	B¶ÎÏÂÐÐÐÅµÀºÅ6
-#define	PARA_B_DL_CHANNEL7	0x0906	//	B¶ÎÏÂÐÐÐÅµÀºÅ7
-#define	PARA_B_DL_CHANNEL8	0x0907	//	B¶ÎÏÂÐÐÐÅµÀºÅ8
-#define	PARA_B_DL_CHANNEL9	0x0908	//	B¶ÎÏÂÐÐÐÅµÀºÅ9
-#define	PARA_B_DL_CHANNEL10	0x0909	//	B¶ÎÏÂÐÐÐÅµÀºÅ10
-#define	PARA_B_DL_CHANNEL11	0x090A	//	B¶ÎÏÂÐÐÐÅµÀºÅ11
-#define	PARA_B_DL_CHANNEL12	0x090B	//	B¶ÎÏÂÐÐÐÅµÀºÅ12
-#define	PARA_B_DL_CHANNEL13	0x090C	//	B¶ÎÏÂÐÐÐÅµÀºÅ13
-#define	PARA_B_DL_CHANNEL14	0x090D	//	B¶ÎÏÂÐÐÐÅµÀºÅ14
-#define	PARA_B_DL_CHANNEL15	0x090E	//	B¶ÎÏÂÐÐÐÅµÀºÅ15
-#define	PARA_B_DL_CHANNEL16	0x090F	//	B¶ÎÏÂÐÐÐÅµÀºÅ16
-#define	PARA_B_UL_CHANNEL1	0x0900	//	B¶ÎÉÏÐÐÐÅµÀºÅ1
-#define	PARA_B_UL_CHANNEL2	0x0901	//	B¶ÎÉÏÐÐÐÅµÀºÅ2
-#define	PARA_B_UL_CHANNEL3	0x0902	//	B¶ÎÉÏÐÐÐÅµÀºÅ3
-#define	PARA_B_UL_CHANNEL4	0x0903	//	B¶ÎÉÏÐÐÐÅµÀºÅ4
-#define	PARA_B_UL_CHANNEL5	0x0904	//	B¶ÎÉÏÐÐÐÅµÀºÅ5
-#define	PARA_B_UL_CHANNEL6	0x0905	//	B¶ÎÉÏÐÐÐÅµÀºÅ6
-#define	PARA_B_UL_CHANNEL7	0x0906	//	B¶ÎÉÏÐÐÐÅµÀºÅ7
-#define	PARA_B_UL_CHANNEL8	0x0907	//	B¶ÎÉÏÐÐÐÅµÀºÅ8
-#define	PARA_B_UL_CHANNEL9	0x0908	//	B¶ÎÉÏÐÐÐÅµÀºÅ9
-#define	PARA_B_UL_CHANNEL10	0x0909	//	B¶ÎÉÏÐÐÐÅµÀºÅ10
-#define	PARA_B_UL_CHANNEL11	0x090A	//	B¶ÎÉÏÐÐÐÅµÀºÅ11
-#define	PARA_B_UL_CHANNEL12	0x090B	//	B¶ÎÉÏÐÐÐÅµÀºÅ12
-#define	PARA_B_UL_CHANNEL13	0x090C	//	B¶ÎÉÏÐÐÐÅµÀºÅ13
-#define	PARA_B_UL_CHANNEL14	0x090D	//	B¶ÎÉÏÐÐÐÅµÀºÅ14
-#define	PARA_B_UL_CHANNEL15	0x090E	//	B¶ÎÉÏÐÐÐÅµÀºÅ15
-#define	PARA_B_UL_CHANNEL16	0x090F	//	B¶ÎÉÏÐÐÐÅµÀºÅ16
-#define	PARA_B_DCH_MAX_POW1	0x0348	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1
-#define	PARA_B_DCH_MAX_POW2	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2
-#define	PARA_B_DCH_MAX_POW3	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3
-#define	PARA_B_DCH_MAX_POW4	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4
-#define	PARA_B_DCH_MAX_POW5	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5
-#define	PARA_B_DCH_MAX_POW6	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6
-#define	PARA_B_DCH_MAX_POW7	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7
-#define	PARA_B_DCH_MAX_POW8	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8
-#define	PARA_B_DCH_MAX_POW9	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9
-#define	PARA_B_DCH_MAX_POW10	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10
-#define	PARA_B_DCH_MAX_POW11	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11
-#define	PARA_B_DCH_MAX_POW12	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12
-#define	PARA_B_DCH_MAX_POW13	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13
-#define	PARA_B_DCH_MAX_POW14	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14
-#define	PARA_B_DCH_MAX_POW15	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15
-#define	PARA_B_DCH_MAX_POW16	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16
-#define	PARA_B_UCH_MAX_POW1		0x0340	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1
-#define	PARA_B_UCH_MAX_POW2		0x8269//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2
-#define	PARA_B_UCH_MAX_POW3	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3
-#define	PARA_B_UCH_MAX_POW4	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4
-#define	PARA_B_UCH_MAX_POW5	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5
-#define	PARA_B_UCH_MAX_POW6	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6
-#define	PARA_B_UCH_MAX_POW7	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7
-#define	PARA_B_UCH_MAX_POW8	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8
-#define	PARA_B_UCH_MAX_POW9	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9
-#define	PARA_B_UCH_MAX_POW10	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10
-#define	PARA_B_UCH_MAX_POW11	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11
-#define	PARA_B_UCH_MAX_POW12	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12
-#define	PARA_B_UCH_MAX_POW13	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13
-#define	PARA_B_UCH_MAX_POW14	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14
-#define	PARA_B_UCH_MAX_POW15	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15
-#define	PARA_B_UCH_MAX_POW16	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16
-#define	PARA_B_DCH_POW1	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1
-#define	PARA_B_DCH_POW2	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2
-#define	PARA_B_DCH_POW3	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3
-#define	PARA_B_DCH_POW4	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4
-#define	PARA_B_DCH_POW5	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5
-#define	PARA_B_DCH_POW6	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6
-#define	PARA_B_DCH_POW7	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7
-#define	PARA_B_DCH_POW8	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8
-#define	PARA_B_DCH_POW9	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9
-#define	PARA_B_DCH_POW10	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10
-#define	PARA_B_DCH_POW11	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11
-#define	PARA_B_DCH_POW12	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12
-#define	PARA_B_DCH_POW13	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13
-#define	PARA_B_DCH_POW14	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14
-#define	PARA_B_DCH_POW15	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15
-#define	PARA_B_DCH_POW16	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16
-#define	PARA_B_UCH_POW1	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1
-#define	PARA_B_UCH_POW2	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2
-#define	PARA_B_UCH_POW3	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3
-#define	PARA_B_UCH_POW4	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4
-#define	PARA_B_UCH_POW5	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5
-#define	PARA_B_UCH_POW6	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6
-#define	PARA_B_UCH_POW7	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7
-#define	PARA_B_UCH_POW8	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8
-#define	PARA_B_UCH_POW9	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9
-#define	PARA_B_UCH_POW10	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_B_UCH_POW11	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ11
-#define	PARA_B_UCH_POW12	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ12
-#define	PARA_B_UCH_POW13	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ13
-#define	PARA_B_UCH_POW14	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ14
-#define	PARA_B_UCH_POW15	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ15
-#define	PARA_B_UCH_POW16	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ16
-#define	PARA_B_UDPX_IN_GAIN	0x08AB	//	B¶ÎÏÂÐÐÊäÈëË«¹¤Æ÷ÔöÒæ
-#define	PARA_B_UDPX_OUT_GAIN	0x08AA	//	B¶ÎÉÏÐÐÊä³öË«¹¤Æ÷ÔöÒæ
-#define	PARA_B_DL_TOTAL_POW	0x8390	//	B¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define	PARA_B_UL_TOTAL_POW	0x831e	//	B¶ÎÉÏÐÐÊä³ö×Ü¹¦ÂÊ
-#define	PARA_B_REC_DPX_IG		0		//		RECµÄA¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á							
-#define	PARA_B_REC_DPX_OG		0		//		RECµÄA¶ÎÊä³öË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á	
-#define	PARA_C_DL_CHANNEL1	0x0900	//	C¶ÎÏÂÐÐÐÅµÀºÅ1
-#define	PARA_C_DL_CHANNEL2	0x0901	//	C¶ÎÏÂÐÐÐÅµÀºÅ2
-#define	PARA_C_DL_CHANNEL3	0x0902	//	C¶ÎÏÂÐÐÐÅµÀºÅ3
-#define	PARA_C_DL_CHANNEL4	0x0903	//	C¶ÎÏÂÐÐÐÅµÀºÅ4
-#define	PARA_C_DL_CHANNEL5	0x0904	//	C¶ÎÏÂÐÐÐÅµÀºÅ5
-#define	PARA_C_DL_CHANNEL6	0x0905	//	C¶ÎÏÂÐÐÐÅµÀºÅ6
-#define	PARA_C_DL_CHANNEL7	0x0906	//	C¶ÎÏÂÐÐÐÅµÀºÅ7
-#define	PARA_C_DL_CHANNEL8	0x0907	//	C¶ÎÏÂÐÐÐÅµÀºÅ8
-#define	PARA_C_DL_CHANNEL9	0x0908	//	C¶ÎÏÂÐÐÐÅµÀºÅ9
-#define	PARA_C_DL_CHANNEL10	0x0909	//	C¶ÎÏÂÐÐÐÅµÀºÅ10
-#define	PARA_C_UL_CHANNEL1	0x0900	//	C¶ÎÉÏÐÐÐÅµÀºÅ1
-#define	PARA_C_UL_CHANNEL2	0x0901	//	C¶ÎÉÏÐÐÐÅµÀºÅ2
-#define	PARA_C_UL_CHANNEL3	0x0902	//	C¶ÎÉÏÐÐÐÅµÀºÅ3
-#define	PARA_C_UL_CHANNEL4	0x0903	//	C¶ÎÉÏÐÐÐÅµÀºÅ4
-#define	PARA_C_UL_CHANNEL5	0x0904	//	C¶ÎÉÏÐÐÐÅµÀºÅ5
-#define	PARA_C_UL_CHANNEL6	0x0905	//	C¶ÎÉÏÐÐÐÅµÀºÅ6
-#define	PARA_C_UL_CHANNEL7	0x0906	//	C¶ÎÉÏÐÐÐÅµÀºÅ7
-#define	PARA_C_UL_CHANNEL8	0x0907	//	C¶ÎÉÏÐÐÐÅµÀºÅ8
-#define	PARA_C_UL_CHANNEL9	0x0908	//	C¶ÎÉÏÐÐÐÅµÀºÅ9
-#define	PARA_C_UL_CHANNEL10	0x0909	//	C¶ÎÉÏÐÐÐÅµÀºÅ10
-#define	PARA_C_DCH_MAX_POW1	0x0348	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1
-#define	PARA_C_DCH_MAX_POW2	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2
-#define	PARA_C_DCH_MAX_POW3	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3
-#define	PARA_C_DCH_MAX_POW4	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4
-#define	PARA_C_DCH_MAX_POW5	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5
-#define	PARA_C_DCH_MAX_POW6	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6
-#define	PARA_C_DCH_MAX_POW7	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7
-#define	PARA_C_DCH_MAX_POW8	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8
-#define	PARA_C_DCH_MAX_POW9	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9
-#define	PARA_C_DCH_MAX_POW10	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10
-#define	PARA_C_DCH_MAX_POW11	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11
-#define	PARA_C_DCH_MAX_POW12	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12
-#define	PARA_C_DCH_MAX_POW13	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13
-#define	PARA_C_DCH_MAX_POW14	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14
-#define	PARA_C_DCH_MAX_POW15	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15
-#define	PARA_C_DCH_MAX_POW16	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16
-#define	PARA_C_UCH_MAX_POW1	0x0340	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1
-#define	PARA_C_UCH_MAX_POW2	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2
-#define	PARA_C_UCH_MAX_POW3	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3
-#define	PARA_C_UCH_MAX_POW4	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4
-#define	PARA_C_UCH_MAX_POW5	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5
-#define	PARA_C_UCH_MAX_POW6	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6
-#define	PARA_C_UCH_MAX_POW7	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7
-#define	PARA_C_UCH_MAX_POW8	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8
-#define	PARA_C_UCH_MAX_POW9	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9
-#define	PARA_C_UCH_MAX_POW10		0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10
-#define	PARA_C_UCH_MAX_POW11		0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11
-#define	PARA_C_UCH_MAX_POW12		0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12
-#define	PARA_C_UCH_MAX_POW13		0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13
-#define	PARA_C_UCH_MAX_POW14		0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14
-#define	PARA_C_UCH_MAX_POW15		0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15
-#define	PARA_C_UCH_MAX_POW16		0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16
-#define	PARA_C_DCH_POW1	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1
-#define	PARA_C_DCH_POW2	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2
-#define	PARA_C_DCH_POW3	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3
-#define	PARA_C_DCH_POW4	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4
-#define	PARA_C_DCH_POW5	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5
-#define	PARA_C_DCH_POW6	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6
-#define	PARA_C_DCH_POW7	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7
-#define	PARA_C_DCH_POW8	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8
-#define	PARA_C_DCH_POW9	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9
-#define	PARA_C_DCH_POW10	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10
-#define	PARA_C_DCH_POW11	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11
-#define	PARA_C_DCH_POW12	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12
-#define	PARA_C_DCH_POW13	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13
-#define	PARA_C_DCH_POW14	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14
-#define	PARA_C_DCH_POW15	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15
-#define	PARA_C_DCH_POW16	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16
-#define	PARA_C_UCH_POW1	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1
-#define	PARA_C_UCH_POW2	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2
-#define	PARA_C_UCH_POW3	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3
-#define	PARA_C_UCH_POW4	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4
-#define	PARA_C_UCH_POW5	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5
-#define	PARA_C_UCH_POW6	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6
-#define	PARA_C_UCH_POW7	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7
-#define	PARA_C_UCH_POW8	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8
-#define	PARA_C_UCH_POW9	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9
-#define	PARA_C_UCH_POW10	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_C_UCH_POW11	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ11
-#define	PARA_C_UCH_POW12	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ12
-#define	PARA_C_UCH_POW13	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ13
-#define	PARA_C_UCH_POW14	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ14
-#define	PARA_C_UCH_POW15	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ15
-#define	PARA_C_UCH_POW16	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ16
-#define	PARA_C_UDPX_IN_GAIN	0x08AB	//	C¶ÎÏÂÐÐÊäÈëË«¹¤Æ÷ÔöÒæ
-#define	PARA_C_UDPX_OUT_GAIN	0x08AA	//	C¶ÎÉÏÐÐÊä³öË«¹¤Æ÷ÔöÒæ
-#define	PARA_C_DL_TOTAL_POW	0x8390	//	C¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define	PARA_C_UL_TOTAL_POW	0x831e	//	C¶ÎÉÏÐÐÊä³ö×Ü¹¦ÂÊ
-#define	PARA_C_REC_DPX_IG		0		//		RECµÄA¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á							
-#define	PARA_C_REC_DPX_OG		0		//		RECµÄA¶ÎÊä³öË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á	
-#define	PARA_D_DL_CHANNEL1	0x0900	//	D¶ÎÏÂÐÐÐÅµÀºÅ1
-#define	PARA_D_DL_CHANNEL2	0x0901	//	D¶ÎÏÂÐÐÐÅµÀºÅ2
-#define	PARA_D_DL_CHANNEL3	0x0902	//	D¶ÎÏÂÐÐÐÅµÀºÅ3
-#define	PARA_D_DL_CHANNEL4	0x0903	//	D¶ÎÏÂÐÐÐÅµÀºÅ4
-#define	PARA_D_DL_CHANNEL5	0x0904	//	D¶ÎÏÂÐÐÐÅµÀºÅ5
-#define	PARA_D_DL_CHANNEL6	0x0905	//	D¶ÎÏÂÐÐÐÅµÀºÅ6
-#define	PARA_D_DL_CHANNEL7	0x0906	//	D¶ÎÏÂÐÐÐÅµÀºÅ7
-#define	PARA_D_DL_CHANNEL8	0x0907	//	D¶ÎÏÂÐÐÐÅµÀºÅ8
-#define	PARA_D_DL_CHANNEL9	0x0908	//	D¶ÎÏÂÐÐÐÅµÀºÅ9
-#define	PARA_D_DL_CHANNEL10	0x0909	//	D¶ÎÏÂÐÐÐÅµÀºÅ10
-#define	PARA_D_UL_CHANNEL1	0x0900	//	D¶ÎÉÏÐÐÐÅµÀºÅ1
-#define	PARA_D_UL_CHANNEL2	0x0901	//	D¶ÎÉÏÐÐÐÅµÀºÅ2
-#define	PARA_D_UL_CHANNEL3	0x0902	//	D¶ÎÉÏÐÐÐÅµÀºÅ3
-#define	PARA_D_UL_CHANNEL4	0x0903	//	D¶ÎÉÏÐÐÐÅµÀºÅ4
-#define	PARA_D_UL_CHANNEL5	0x0904	//	D¶ÎÉÏÐÐÐÅµÀºÅ5
-#define	PARA_D_UL_CHANNEL6	0x0905	//	D¶ÎÉÏÐÐÐÅµÀºÅ6
-#define	PARA_D_UL_CHANNEL7	0x0906	//	D¶ÎÉÏÐÐÐÅµÀºÅ7
-#define	PARA_D_UL_CHANNEL8	0x0907	//	D¶ÎÉÏÐÐÐÅµÀºÅ8
-#define	PARA_D_UL_CHANNEL9	0x0908	//	D¶ÎÉÏÐÐÐÅµÀºÅ9
-#define	PARA_D_UL_CHANNEL10	0x0909	//	D¶ÎÉÏÐÐÐÅµÀºÅ10
-#define	PARA_D_DCH_MAX_POW1	0x0348	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1
-#define	PARA_D_DCH_MAX_POW2	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2
-#define	PARA_D_DCH_MAX_POW3	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3
-#define	PARA_D_DCH_MAX_POW4	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4
-#define	PARA_D_DCH_MAX_POW5	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5
-#define	PARA_D_DCH_MAX_POW6	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6
-#define	PARA_D_DCH_MAX_POW7	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7
-#define	PARA_D_DCH_MAX_POW8	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8
-#define	PARA_D_DCH_MAX_POW9	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9
-#define	PARA_D_DCH_MAX_POW10	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10
-#define	PARA_D_DCH_MAX_POW11	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11
-#define	PARA_D_DCH_MAX_POW12	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12
-#define	PARA_D_DCH_MAX_POW13	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13
-#define	PARA_D_DCH_MAX_POW14	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14
-#define	PARA_D_DCH_MAX_POW15	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15
-#define	PARA_D_DCH_MAX_POW16	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16
-#define	PARA_D_UCH_MAX_POW1	0x0340	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1
-#define	PARA_D_UCH_MAX_POW2	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2
-#define	PARA_D_UCH_MAX_POW3	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3
-#define	PARA_D_UCH_MAX_POW4	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4
-#define	PARA_D_UCH_MAX_POW5	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5
-#define	PARA_D_UCH_MAX_POW6	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6
-#define	PARA_D_UCH_MAX_POW7	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7
-#define	PARA_D_UCH_MAX_POW8	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8
-#define	PARA_D_UCH_MAX_POW9	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9
-#define	PARA_D_UCH_MAX_POW10	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10
-#define	PARA_D_UCH_MAX_POW11	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11
-#define	PARA_D_UCH_MAX_POW12	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12
-#define	PARA_D_UCH_MAX_POW13	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13
-#define	PARA_D_UCH_MAX_POW14	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14
-#define	PARA_D_UCH_MAX_POW15	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15
-#define	PARA_D_UCH_MAX_POW16	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16
-#define	PARA_D_DCH_POW1	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1
-#define	PARA_D_DCH_POW2	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2
-#define	PARA_D_DCH_POW3	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3
-#define	PARA_D_DCH_POW4	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4
-#define	PARA_D_DCH_POW5	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5
-#define	PARA_D_DCH_POW6	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6
-#define	PARA_D_DCH_POW7	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7
-#define	PARA_D_DCH_POW8	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8
-#define	PARA_D_DCH_POW9	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9
-#define	PARA_D_DCH_POW10	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10
-#define	PARA_D_DCH_POW11	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11
-#define	PARA_D_DCH_POW12	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12
-#define	PARA_D_DCH_POW13	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13
-#define	PARA_D_DCH_POW14	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14
-#define	PARA_D_DCH_POW15	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15
-#define	PARA_D_DCH_POW16	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16
-#define	PARA_D_UCH_POW1	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1
-#define	PARA_D_UCH_POW2	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2
-#define	PARA_D_UCH_POW3	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3
-#define	PARA_D_UCH_POW4	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4
-#define	PARA_D_UCH_POW5	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5
-#define	PARA_D_UCH_POW6	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6
-#define	PARA_D_UCH_POW7	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7
-#define	PARA_D_UCH_POW8	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8
-#define	PARA_D_UCH_POW9	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9
-#define	PARA_D_UCH_POW10	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_D_UCH_POW11	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_D_UCH_POW12	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_D_UCH_POW13	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_D_UCH_POW14	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_D_UCH_POW15	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_D_UCH_POW16	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_D_UDPX_IN_GAIN	0x08AB	//	D¶ÎÏÂÐÐÊäÈëË«¹¤Æ÷ÔöÒæ
-#define	PARA_D_UDPX_OUT_GAIN	0x08AA	//	D¶ÎÉÏÐÐÊä³öË«¹¤Æ÷ÔöÒæ
-#define	PARA_D_DL_TOTAL_POW	0x8390	//	D¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define	PARA_D_UL_TOTAL_POW	0x831e	//	D¶ÎÉÏÐÐÊä³ö×Ü¹¦ÂÊ
-#define	PARA_D_REC_DPX_IG		0		//		RECµÄD¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á							
-#define	PARA_D_REC_DPX_OG		0		//		RECµÄD¶ÎÊä³öË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á	
-#define	PARA_REC_TO_RE_DELAY		0x889e	// RECµ½REµÄ¹âÏËÑÓÊ±
-#define	PARA_RE_RF_DELAY			0x889f	// REµÄÉäÆµÑÓÊ±
-#define	PARA_MAX_T14	0x889c	//	¹â¿Ú×î´óÑÓÊ±
-#define	PARA_DL_DELAY_OFFSET	0x0768	//	ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿
-#define	PARA_UL_DELAY_OFFSET	0x0769	//	ÉÏÐÐÑÓÊ±Æ«ÒÆÁ¿
-#define	PARA_PRI_SOFT_V	0xf018	//	³ÌÐò°æ±¾ºÅ£¨ÓÃASCIIÂë£©
-#define	PARA_PRI_HARD_V	0xf026	//	PCB°æ±¾ºÅ(ÓÃASCIIÂë)
-#define	PARA_TD_1ST_CP_TIME		0x08a7	// TDµÚ1×ª»»µãÊ±¼äns, ÓÐ·ûºÅÊý
-#define	PARA_TD_2ND_CP_TIME		0x08a8	// TDµÚ2×ª»»µãÊ±¼äns, ÓÐ·ûºÅÊý
-#define	PARA_TD_LNA_ON_TIME		0x08ae	// LNA¿ªÆô³ÙºóDN_PA¹Ø±ÕµÄ±£»¤Ê±¼äns
-#define	PARA_TD_LNA_OFF_TIME		0x08af	// LNA¹Ø±Õ³¬Ç°DN_PA¿ªÆôµÄ±£»¤Ê±¼äns
-#define	PARA_TD_SLOT1_UPOW	0x7501	// TDÊ±Ï¶1ÉÏÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT2_UPOW	0x7502	// TDÊ±Ï¶2ÉÏÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT3_UPOW	0x7503	// TDÊ±Ï¶3ÉÏÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT4_UPOW	0x7504	// TDÊ±Ï¶4ÉÏÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT5_UPOW	0x7505	// TDÊ±Ï¶5ÉÏÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT6_UPOW	0x7506	// TDÊ±Ï¶6ÉÏÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT7_UPOW	0x7507	// TDÊ±Ï¶7ÉÏÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT1_DPOW	0x7511	// TDÊ±Ï¶1ÏÂÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT2_DPOW	0x7512	// TDÊ±Ï¶2ÏÂÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT3_DPOW	0x7513	// TDÊ±Ï¶3ÏÂÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT4_DPOW	0x7514	// TDÊ±Ï¶4ÏÂÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT5_DPOW	0x7515	// TDÊ±Ï¶5ÏÂÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT6_DPOW	0x7516	// TDÊ±Ï¶6ÏÂÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT7_DPOW	0x7517	// TDÊ±Ï¶7ÏÂÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_FPS_S1 0 // ÆµµãËÑËØ: ·¶Î§1ÆðÊ¼Æµµã
-#define	PARA_FPS_E1 0 // ÆµµãËÑËØ: ·¶Î§1½áÊøÆµµã
-#define	PARA_FPS_S2 0 // ÆµµãËÑËØ: ·¶Î§2ÆðÊ¼Æµµã
-#define	PARA_FPS_E2 0 // ÆµµãËÑËØ: ·¶Î§2½áÊøÆµµã
-#define	PARA_FPS_BCCH_LK_SET	0x0923	// ÆµµãËÑË÷: ËøÆµÐÅµÀºÅ: ±ê×¼ÐÅµÀºÅ, 65535-ÍË³öËøÆµ
-#define	PARA_FPS_CID_LK_SET	0x0926	// ÆµµãËÑË÷: Ð¡ÇøÊ¶±ðÂë²Î¿¼Öµ, 0-ÍË³öÐ¡ÇøËø¶¨¹¦ÄÜ
-#define	PARA_FPS_BCCH_FC_M	0x8940	// ÆµµãËÑË÷: Ö÷Ð¡ÇøBCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-#define	PARA_FPS_CA_FC_0	0x8941	// ÆµµãËÑË÷: CAÔØ²¨0ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_1	0x8942	// ÆµµãËÑË÷: CAÔØ²¨1ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_2	0x8943	// ÆµµãËÑË÷: CAÔØ²¨2ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_3	0x8944	// ÆµµãËÑË÷: CAÔØ²¨3ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_4	0x8945	// ÆµµãËÑË÷: CAÔØ²¨4ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_5	0x8946	// ÆµµãËÑË÷: CAÔØ²¨5ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_6	0x8947	// ÆµµãËÑË÷: CAÔØ²¨6ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_7	0x8948	// ÆµµãËÑË÷: CAÔØ²¨7ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_8	0x8949	// ÆµµãËÑË÷: CAÔØ²¨8ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_9	0x894A	// ÆµµãËÑË÷: CAÔØ²¨9ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_10	0x894B	// ÆµµãËÑË÷: CAÔØ²¨10ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_11	0x894C	// ÆµµãËÑË÷: CAÔØ²¨11ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_12	0x894D	// ÆµµãËÑË÷: CAÔØ²¨12ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_13	0x894E	// ÆµµãËÑË÷: CAÔØ²¨13ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_14	0x894F	// ÆµµãËÑË÷: CAÔØ²¨14ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_15	0x8950	// ÆµµãËÑË÷: CAÔØ²¨15ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_BCCH_FC_1	0x8951	// ÆµµãËÑË÷: ÁÚÐ¡Çø1 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-#define	PARA_FPS_BCCH_FC_2	0x8952	// ÆµµãËÑË÷: ÁÚÐ¡Çø2 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-#define	PARA_FPS_BCCH_FC_3	0x8953	// ÆµµãËÑË÷: ÁÚÐ¡Çø3 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-#define	PARA_FPS_BCCH_FC_4	0x8954	// ÆµµãËÑË÷: ÁÚÐ¡Çø4 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-#define	PARA_FPS_BCCH_FC_5	0x8955	// ÆµµãËÑË÷: ÁÚÐ¡Çø5 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-#define	PARA_FPS_BCCH_FC_6	0x8956	// ÆµµãËÑË÷: ÁÚÐ¡Çø6 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-#define	PARA_FPS_AREA_ID	0x8958	// ÆµµãËÑË÷: Î»ÖÃÇø±àÂë
-#define	PARA_FPS_CID		0x895A	// ÆµµãËÑË÷: Ð¡ÇøÊ¶±ðÂëÊµÊ±Öµ
-#define	PARA_FPS_CID_1 0 // ÆµµãËÑË÷: ÁÚÐ¡Çø1 CIDÐ¡ÇøÊ¶±ðÂë
-#define	PARA_FPS_CID_2 0 // ÆµµãËÑË÷: ÁÚÐ¡Çø2 CIDÐ¡ÇøÊ¶±ðÂë
-#define	PARA_FPS_CID_3 0 // ÆµµãËÑË÷: ÁÚÐ¡Çø3 CIDÐ¡ÇøÊ¶±ðÂë
-#define	PARA_FPS_CID_4 0 // ÆµµãËÑË÷: ÁÚÐ¡Çø4 CIDÐ¡ÇøÊ¶±ðÂë
-#define	PARA_FPS_CID_5 0 // ÆµµãËÑË÷: ÁÚÐ¡Çø5 CIDÐ¡ÇøÊ¶±ðÂë
-#define	PARA_FPS_CID_6 0 // ÆµµãËÑË÷: ÁÚÐ¡Çø6 CIDÐ¡ÇøÊ¶±ðÂë
-#define	PARA_A_EXPA_IDRAIN_SET	0	// Î¢¹¦·Å: Â©¼«µçÁ÷ÉèÖÃ,mA
-#define	PARA_TD_SLOT1_DPOW_OVER_THR				0x0a60       //tdÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊÃÅÏÞ
-#define	PARA_TD_SLOT1_DPOW_OWE_THR				0x0a61      //tdÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊÃÅÏÞ	
-#define PARA_A_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ÏÂÐÐÊäÈë¹ý¹¦ÂÊÃÅÏÞ
-#define PARA_A_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ÏÂÐÐÊäÈëÇ·¹¦ÂÊÃÅÏÞ
-#define PARA_B_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ÏÂÐÐÊäÈë¹ý¹¦ÂÊÃÅÏÞ
-#define PARA_B_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ÏÂÐÐÊäÈëÇ·¹¦ÂÊÃÅÏÞ
-#define PARA_C_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ÏÂÐÐÊäÈë¹ý¹¦ÂÊÃÅÏÞ
-#define PARA_C_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ÏÂÐÐÊäÈëÇ·¹¦ÂÊÃÅÏÞ
-#define PARA_D_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ÏÂÐÐÊäÈë¹ý¹¦ÂÊÃÅÏÞ
-#define PARA_D_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ÏÂÐÐÊäÈëÇ·¹¦ÂÊÃÅÏÞ
-#define PARA_REE_A_DL_OUT_TOTAL_POW_DETECT     	0x8004      //A¶ÎREÏÂÐÐÊä³ö×Ü¹¦ÂÊ//×¢REC\REÊ¹ÓÃ MADD_A_DL_TOTAL_POW
-#define PARA_A_RE_LOCAL_ST_ALARM     			0x8a33      	//¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬
-#define PARA_REE_B_DL_OUT_TOTAL_POW_DETECT     	0x8004      //B¶ÎREÏÂÐÐÊä³ö×Ü¹¦ÂÊ //×¢REC\REÊ¹ÓÃ MADD_B_DL_TOTAL_POW
-#define PARA_B_RE_LOCAL_ST_ALARM     			0x8a33      	//¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬
-#define PARA_REE_C_DL_OUT_TOTAL_POW_DETECT     	0x8004      //A¶ÎREÏÂÐÐÊä³ö×Ü¹¦ÂÊ//×¢REC\REÊ¹ÓÃ MADD_C_DL_TOTAL_POW
-#define PARA_C_RE_LOCAL_ST_ALARM     			0x8a33      	//¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬
-#define PARA_REE_D_DL_OUT_TOTAL_POW_DETECT     	0x8004      //	D¶ÎREÏÂÐÐÊä³ö×Ü¹¦ÂÊ //×¢REC\REÊ¹ÓÃ MADD_D_DL_TOTAL_POW
-#define PARA_D_RE_LOCAL_ST_ALARM     			0x8a33      	//	D¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬
-#define PARA_C_TD_1ST_CP_TIME	0x08a7	//		//465		TDµÚ1×ª»»µãÊ±¼ä,ns,		
-#define PARA_C_TD_2ND_CP_TIME	0x08a8	//		//466		TDµÚ2×ª»»µãÊ±¼ä,ns,		
-#define PARA_C_TD_LNA_ON_TIME	0x08ae	//		//467		LNA¿ªÆô³ÙºóDN_PA¹Ø±ÕµÄ±£»¤Ê±¼äns		
-#define PARA_C_TD_LNA_OFF_TIME	0x08af	//		//468		LNA¹Ø±Õ³¬Ç°DN_PA¿ªÆôµÄ±£»¤Ê±¼äns		
+	// å›½äººå‚æ•°
+	// å‚æ•°åœ°å€å®šä¹‰==================================================== 2b
+#define	PARA_A_DL_CHANNEL1	0x0900	//	Aæ®µä¸‹è¡Œä¿¡é“å·1
+#define	PARA_A_DL_CHANNEL2	0x0901	//	Aæ®µä¸‹è¡Œä¿¡é“å·2
+#define	PARA_A_DL_CHANNEL3	0x0902	//	Aæ®µä¸‹è¡Œä¿¡é“å·3
+#define	PARA_A_DL_CHANNEL4	0x0903	//	Aæ®µä¸‹è¡Œä¿¡é“å·4
+#define	PARA_A_DL_CHANNEL5	0x0904	//	Aæ®µä¸‹è¡Œä¿¡é“å·5
+#define	PARA_A_DL_CHANNEL6	0x0905	//	Aæ®µä¸‹è¡Œä¿¡é“å·6
+#define	PARA_A_DL_CHANNEL7	0x0906	//	Aæ®µä¸‹è¡Œä¿¡é“å·7
+#define	PARA_A_DL_CHANNEL8	0x0907	//	Aæ®µä¸‹è¡Œä¿¡é“å·8
+#define	PARA_A_DL_CHANNEL9	0x0908	//	Aæ®µä¸‹è¡Œä¿¡é“å·9
+#define	PARA_A_DL_CHANNEL10	0x0909	//	Aæ®µä¸‹è¡Œä¿¡é“å·10
+#define	PARA_A_DL_CHANNEL11	0x090A	//	Aæ®µä¸‹è¡Œä¿¡é“å·11
+#define	PARA_A_DL_CHANNEL12	0x090B	//	Aæ®µä¸‹è¡Œä¿¡é“å·12
+#define	PARA_A_DL_CHANNEL13	0x090C	//	Aæ®µä¸‹è¡Œä¿¡é“å·13
+#define	PARA_A_DL_CHANNEL14	0x090D	//	Aæ®µä¸‹è¡Œä¿¡é“å·14
+#define	PARA_A_DL_CHANNEL15	0x090E	//	Aæ®µä¸‹è¡Œä¿¡é“å·15
+#define	PARA_A_DL_CHANNEL16	0x090F	//	Aæ®µä¸‹è¡Œä¿¡é“å·16
+#define	PARA_A_UL_CHANNEL1	0x0900	//	Aæ®µä¸Šè¡Œä¿¡é“å·1
+#define	PARA_A_UL_CHANNEL2	0x0901	//	Aæ®µä¸Šè¡Œä¿¡é“å·2
+#define	PARA_A_UL_CHANNEL3	0x0902	//	Aæ®µä¸Šè¡Œä¿¡é“å·3
+#define	PARA_A_UL_CHANNEL4	0x0903	//	Aæ®µä¸Šè¡Œä¿¡é“å·4
+#define	PARA_A_UL_CHANNEL5	0x0904	//	Aæ®µä¸Šè¡Œä¿¡é“å·5
+#define	PARA_A_UL_CHANNEL6	0x0905	//	Aæ®µä¸Šè¡Œä¿¡é“å·6
+#define	PARA_A_UL_CHANNEL7	0x0906	//	Aæ®µä¸Šè¡Œä¿¡é“å·7
+#define	PARA_A_UL_CHANNEL8	0x0907	//	Aæ®µä¸Šè¡Œä¿¡é“å·8
+#define	PARA_A_UL_CHANNEL9	0x0908	//	Aæ®µä¸Šè¡Œä¿¡é“å·9
+#define	PARA_A_UL_CHANNEL10	0x0909	//	Aæ®µä¸Šè¡Œä¿¡é“å·10
+#define	PARA_A_UL_CHANNEL11	0x090A	//	Aæ®µä¸Šè¡Œä¿¡é“å·11
+#define	PARA_A_UL_CHANNEL12	0x090B	//	Aæ®µä¸Šè¡Œä¿¡é“å·12
+#define	PARA_A_UL_CHANNEL13	0x090C	//	Aæ®µä¸Šè¡Œä¿¡é“å·13
+#define	PARA_A_UL_CHANNEL14	0x090D	//	Aæ®µä¸Šè¡Œä¿¡é“å·14
+#define	PARA_A_UL_CHANNEL15	0x090E	//	Aæ®µä¸Šè¡Œä¿¡é“å·15
+#define	PARA_A_UL_CHANNEL16	0x090F	//	Aæ®µä¸Šè¡Œä¿¡é“å·16
+#define	PARA_A_DCH_MAX_POW1	0x0348	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1
+#define	PARA_A_DCH_MAX_POW2	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2
+#define	PARA_A_DCH_MAX_POW3	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3
+#define	PARA_A_DCH_MAX_POW4	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4
+#define	PARA_A_DCH_MAX_POW5	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5
+#define	PARA_A_DCH_MAX_POW6	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6
+#define	PARA_A_DCH_MAX_POW7	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7
+#define	PARA_A_DCH_MAX_POW8	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8
+#define	PARA_A_DCH_MAX_POW9	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9
+#define	PARA_A_DCH_MAX_POW10	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10
+#define	PARA_A_DCH_MAX_POW11	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11
+#define	PARA_A_DCH_MAX_POW12	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12
+#define	PARA_A_DCH_MAX_POW13	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13
+#define	PARA_A_DCH_MAX_POW14	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14
+#define	PARA_A_DCH_MAX_POW15	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15
+#define	PARA_A_DCH_MAX_POW16	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16
+#define	PARA_A_UCH_MAX_POW1		0x0340	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1
+#define	PARA_A_UCH_MAX_POW2		0x8269	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2
+#define	PARA_A_UCH_MAX_POW3	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3
+#define	PARA_A_UCH_MAX_POW4	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4
+#define	PARA_A_UCH_MAX_POW5	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5
+#define	PARA_A_UCH_MAX_POW6	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6
+#define	PARA_A_UCH_MAX_POW7	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7
+#define	PARA_A_UCH_MAX_POW8	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8
+#define	PARA_A_UCH_MAX_POW9	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9
+#define	PARA_A_UCH_MAX_POW10	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10
+#define	PARA_A_UCH_MAX_POW11	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11
+#define	PARA_A_UCH_MAX_POW12	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12
+#define	PARA_A_UCH_MAX_POW13	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13
+#define	PARA_A_UCH_MAX_POW14	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14
+#define	PARA_A_UCH_MAX_POW15	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15
+#define	PARA_A_UCH_MAX_POW16	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16
+#define	PARA_A_DCH_POW1	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1
+#define	PARA_A_DCH_POW2	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2
+#define	PARA_A_DCH_POW3	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3
+#define	PARA_A_DCH_POW4	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4
+#define	PARA_A_DCH_POW5	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5
+#define	PARA_A_DCH_POW6	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6
+#define	PARA_A_DCH_POW7	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7
+#define	PARA_A_DCH_POW8	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8
+#define	PARA_A_DCH_POW9	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9
+#define	PARA_A_DCH_POW10	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10
+#define	PARA_A_DCH_POW11	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11
+#define	PARA_A_DCH_POW12	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12
+#define	PARA_A_DCH_POW13	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13
+#define	PARA_A_DCH_POW14	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14
+#define	PARA_A_DCH_POW15	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15
+#define	PARA_A_DCH_POW16	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16
+#define	PARA_A_UCH_POW1	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1
+#define	PARA_A_UCH_POW2	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2
+#define	PARA_A_UCH_POW3	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3
+#define	PARA_A_UCH_POW4	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4
+#define	PARA_A_UCH_POW5	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5
+#define	PARA_A_UCH_POW6	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6
+#define	PARA_A_UCH_POW7	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7
+#define	PARA_A_UCH_POW8	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8
+#define	PARA_A_UCH_POW9	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9
+#define	PARA_A_UCH_POW10	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_A_UCH_POW11	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡11
+#define	PARA_A_UCH_POW12	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡12
+#define	PARA_A_UCH_POW13	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡13
+#define	PARA_A_UCH_POW14	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡14
+#define	PARA_A_UCH_POW15	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡15
+#define	PARA_A_UCH_POW16	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡16
+#define	PARA_A_UDPX_IN_GAIN		0x08AB	//	Aæ®µä¸‹è¡Œè¾“å…¥åŒå·¥å™¨å¢žç›Š
+#define	PARA_A_UDPX_OUT_GAIN	0x08AA	//	Aæ®µä¸Šè¡Œè¾“å‡ºåŒå·¥å™¨å¢žç›Š
+#define	PARA_A_DL_TOTAL_POW	0x8390	//	Aæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define	PARA_A_UL_TOTAL_POW	0x831e	//	Aæ®µä¸Šè¡Œè¾“å‡ºæ€»åŠŸçŽ‡
+#define	PARA_A_REC_DPX_IG		0		//		RECçš„Aæ®µè¾“å…¥åŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»							
+#define	PARA_A_REC_DPX_OG		0		//		RECçš„Aæ®µè¾“å‡ºåŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»	
+#define	PARA_B_DL_CHANNEL1	0x0900	//	Bæ®µä¸‹è¡Œä¿¡é“å·1
+#define	PARA_B_DL_CHANNEL2	0x0901	//	Bæ®µä¸‹è¡Œä¿¡é“å·2
+#define	PARA_B_DL_CHANNEL3	0x0902	//	Bæ®µä¸‹è¡Œä¿¡é“å·3
+#define	PARA_B_DL_CHANNEL4	0x0903	//	Bæ®µä¸‹è¡Œä¿¡é“å·4
+#define	PARA_B_DL_CHANNEL5	0x0904	//	Bæ®µä¸‹è¡Œä¿¡é“å·5
+#define	PARA_B_DL_CHANNEL6	0x0905	//	Bæ®µä¸‹è¡Œä¿¡é“å·6
+#define	PARA_B_DL_CHANNEL7	0x0906	//	Bæ®µä¸‹è¡Œä¿¡é“å·7
+#define	PARA_B_DL_CHANNEL8	0x0907	//	Bæ®µä¸‹è¡Œä¿¡é“å·8
+#define	PARA_B_DL_CHANNEL9	0x0908	//	Bæ®µä¸‹è¡Œä¿¡é“å·9
+#define	PARA_B_DL_CHANNEL10	0x0909	//	Bæ®µä¸‹è¡Œä¿¡é“å·10
+#define	PARA_B_DL_CHANNEL11	0x090A	//	Bæ®µä¸‹è¡Œä¿¡é“å·11
+#define	PARA_B_DL_CHANNEL12	0x090B	//	Bæ®µä¸‹è¡Œä¿¡é“å·12
+#define	PARA_B_DL_CHANNEL13	0x090C	//	Bæ®µä¸‹è¡Œä¿¡é“å·13
+#define	PARA_B_DL_CHANNEL14	0x090D	//	Bæ®µä¸‹è¡Œä¿¡é“å·14
+#define	PARA_B_DL_CHANNEL15	0x090E	//	Bæ®µä¸‹è¡Œä¿¡é“å·15
+#define	PARA_B_DL_CHANNEL16	0x090F	//	Bæ®µä¸‹è¡Œä¿¡é“å·16
+#define	PARA_B_UL_CHANNEL1	0x0900	//	Bæ®µä¸Šè¡Œä¿¡é“å·1
+#define	PARA_B_UL_CHANNEL2	0x0901	//	Bæ®µä¸Šè¡Œä¿¡é“å·2
+#define	PARA_B_UL_CHANNEL3	0x0902	//	Bæ®µä¸Šè¡Œä¿¡é“å·3
+#define	PARA_B_UL_CHANNEL4	0x0903	//	Bæ®µä¸Šè¡Œä¿¡é“å·4
+#define	PARA_B_UL_CHANNEL5	0x0904	//	Bæ®µä¸Šè¡Œä¿¡é“å·5
+#define	PARA_B_UL_CHANNEL6	0x0905	//	Bæ®µä¸Šè¡Œä¿¡é“å·6
+#define	PARA_B_UL_CHANNEL7	0x0906	//	Bæ®µä¸Šè¡Œä¿¡é“å·7
+#define	PARA_B_UL_CHANNEL8	0x0907	//	Bæ®µä¸Šè¡Œä¿¡é“å·8
+#define	PARA_B_UL_CHANNEL9	0x0908	//	Bæ®µä¸Šè¡Œä¿¡é“å·9
+#define	PARA_B_UL_CHANNEL10	0x0909	//	Bæ®µä¸Šè¡Œä¿¡é“å·10
+#define	PARA_B_UL_CHANNEL11	0x090A	//	Bæ®µä¸Šè¡Œä¿¡é“å·11
+#define	PARA_B_UL_CHANNEL12	0x090B	//	Bæ®µä¸Šè¡Œä¿¡é“å·12
+#define	PARA_B_UL_CHANNEL13	0x090C	//	Bæ®µä¸Šè¡Œä¿¡é“å·13
+#define	PARA_B_UL_CHANNEL14	0x090D	//	Bæ®µä¸Šè¡Œä¿¡é“å·14
+#define	PARA_B_UL_CHANNEL15	0x090E	//	Bæ®µä¸Šè¡Œä¿¡é“å·15
+#define	PARA_B_UL_CHANNEL16	0x090F	//	Bæ®µä¸Šè¡Œä¿¡é“å·16
+#define	PARA_B_DCH_MAX_POW1	0x0348	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1
+#define	PARA_B_DCH_MAX_POW2	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2
+#define	PARA_B_DCH_MAX_POW3	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3
+#define	PARA_B_DCH_MAX_POW4	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4
+#define	PARA_B_DCH_MAX_POW5	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5
+#define	PARA_B_DCH_MAX_POW6	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6
+#define	PARA_B_DCH_MAX_POW7	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7
+#define	PARA_B_DCH_MAX_POW8	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8
+#define	PARA_B_DCH_MAX_POW9	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9
+#define	PARA_B_DCH_MAX_POW10	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10
+#define	PARA_B_DCH_MAX_POW11	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11
+#define	PARA_B_DCH_MAX_POW12	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12
+#define	PARA_B_DCH_MAX_POW13	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13
+#define	PARA_B_DCH_MAX_POW14	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14
+#define	PARA_B_DCH_MAX_POW15	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15
+#define	PARA_B_DCH_MAX_POW16	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16
+#define	PARA_B_UCH_MAX_POW1		0x0340	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1
+#define	PARA_B_UCH_MAX_POW2		0x8269//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2
+#define	PARA_B_UCH_MAX_POW3	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3
+#define	PARA_B_UCH_MAX_POW4	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4
+#define	PARA_B_UCH_MAX_POW5	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5
+#define	PARA_B_UCH_MAX_POW6	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6
+#define	PARA_B_UCH_MAX_POW7	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7
+#define	PARA_B_UCH_MAX_POW8	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8
+#define	PARA_B_UCH_MAX_POW9	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9
+#define	PARA_B_UCH_MAX_POW10	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10
+#define	PARA_B_UCH_MAX_POW11	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11
+#define	PARA_B_UCH_MAX_POW12	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12
+#define	PARA_B_UCH_MAX_POW13	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13
+#define	PARA_B_UCH_MAX_POW14	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14
+#define	PARA_B_UCH_MAX_POW15	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15
+#define	PARA_B_UCH_MAX_POW16	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16
+#define	PARA_B_DCH_POW1	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1
+#define	PARA_B_DCH_POW2	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2
+#define	PARA_B_DCH_POW3	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3
+#define	PARA_B_DCH_POW4	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4
+#define	PARA_B_DCH_POW5	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5
+#define	PARA_B_DCH_POW6	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6
+#define	PARA_B_DCH_POW7	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7
+#define	PARA_B_DCH_POW8	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8
+#define	PARA_B_DCH_POW9	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9
+#define	PARA_B_DCH_POW10	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10
+#define	PARA_B_DCH_POW11	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11
+#define	PARA_B_DCH_POW12	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12
+#define	PARA_B_DCH_POW13	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13
+#define	PARA_B_DCH_POW14	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14
+#define	PARA_B_DCH_POW15	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15
+#define	PARA_B_DCH_POW16	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16
+#define	PARA_B_UCH_POW1	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1
+#define	PARA_B_UCH_POW2	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2
+#define	PARA_B_UCH_POW3	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3
+#define	PARA_B_UCH_POW4	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4
+#define	PARA_B_UCH_POW5	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5
+#define	PARA_B_UCH_POW6	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6
+#define	PARA_B_UCH_POW7	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7
+#define	PARA_B_UCH_POW8	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8
+#define	PARA_B_UCH_POW9	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9
+#define	PARA_B_UCH_POW10	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_B_UCH_POW11	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡11
+#define	PARA_B_UCH_POW12	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡12
+#define	PARA_B_UCH_POW13	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡13
+#define	PARA_B_UCH_POW14	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡14
+#define	PARA_B_UCH_POW15	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡15
+#define	PARA_B_UCH_POW16	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡16
+#define	PARA_B_UDPX_IN_GAIN	0x08AB	//	Bæ®µä¸‹è¡Œè¾“å…¥åŒå·¥å™¨å¢žç›Š
+#define	PARA_B_UDPX_OUT_GAIN	0x08AA	//	Bæ®µä¸Šè¡Œè¾“å‡ºåŒå·¥å™¨å¢žç›Š
+#define	PARA_B_DL_TOTAL_POW	0x8390	//	Bæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define	PARA_B_UL_TOTAL_POW	0x831e	//	Bæ®µä¸Šè¡Œè¾“å‡ºæ€»åŠŸçŽ‡
+#define	PARA_B_REC_DPX_IG		0		//		RECçš„Aæ®µè¾“å…¥åŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»							
+#define	PARA_B_REC_DPX_OG		0		//		RECçš„Aæ®µè¾“å‡ºåŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»	
+#define	PARA_C_DL_CHANNEL1	0x0900	//	Cæ®µä¸‹è¡Œä¿¡é“å·1
+#define	PARA_C_DL_CHANNEL2	0x0901	//	Cæ®µä¸‹è¡Œä¿¡é“å·2
+#define	PARA_C_DL_CHANNEL3	0x0902	//	Cæ®µä¸‹è¡Œä¿¡é“å·3
+#define	PARA_C_DL_CHANNEL4	0x0903	//	Cæ®µä¸‹è¡Œä¿¡é“å·4
+#define	PARA_C_DL_CHANNEL5	0x0904	//	Cæ®µä¸‹è¡Œä¿¡é“å·5
+#define	PARA_C_DL_CHANNEL6	0x0905	//	Cæ®µä¸‹è¡Œä¿¡é“å·6
+#define	PARA_C_DL_CHANNEL7	0x0906	//	Cæ®µä¸‹è¡Œä¿¡é“å·7
+#define	PARA_C_DL_CHANNEL8	0x0907	//	Cæ®µä¸‹è¡Œä¿¡é“å·8
+#define	PARA_C_DL_CHANNEL9	0x0908	//	Cæ®µä¸‹è¡Œä¿¡é“å·9
+#define	PARA_C_DL_CHANNEL10	0x0909	//	Cæ®µä¸‹è¡Œä¿¡é“å·10
+#define	PARA_C_UL_CHANNEL1	0x0900	//	Cæ®µä¸Šè¡Œä¿¡é“å·1
+#define	PARA_C_UL_CHANNEL2	0x0901	//	Cæ®µä¸Šè¡Œä¿¡é“å·2
+#define	PARA_C_UL_CHANNEL3	0x0902	//	Cæ®µä¸Šè¡Œä¿¡é“å·3
+#define	PARA_C_UL_CHANNEL4	0x0903	//	Cæ®µä¸Šè¡Œä¿¡é“å·4
+#define	PARA_C_UL_CHANNEL5	0x0904	//	Cæ®µä¸Šè¡Œä¿¡é“å·5
+#define	PARA_C_UL_CHANNEL6	0x0905	//	Cæ®µä¸Šè¡Œä¿¡é“å·6
+#define	PARA_C_UL_CHANNEL7	0x0906	//	Cæ®µä¸Šè¡Œä¿¡é“å·7
+#define	PARA_C_UL_CHANNEL8	0x0907	//	Cæ®µä¸Šè¡Œä¿¡é“å·8
+#define	PARA_C_UL_CHANNEL9	0x0908	//	Cæ®µä¸Šè¡Œä¿¡é“å·9
+#define	PARA_C_UL_CHANNEL10	0x0909	//	Cæ®µä¸Šè¡Œä¿¡é“å·10
+#define	PARA_C_DCH_MAX_POW1	0x0348	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1
+#define	PARA_C_DCH_MAX_POW2	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2
+#define	PARA_C_DCH_MAX_POW3	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3
+#define	PARA_C_DCH_MAX_POW4	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4
+#define	PARA_C_DCH_MAX_POW5	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5
+#define	PARA_C_DCH_MAX_POW6	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6
+#define	PARA_C_DCH_MAX_POW7	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7
+#define	PARA_C_DCH_MAX_POW8	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8
+#define	PARA_C_DCH_MAX_POW9	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9
+#define	PARA_C_DCH_MAX_POW10	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10
+#define	PARA_C_DCH_MAX_POW11	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11
+#define	PARA_C_DCH_MAX_POW12	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12
+#define	PARA_C_DCH_MAX_POW13	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13
+#define	PARA_C_DCH_MAX_POW14	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14
+#define	PARA_C_DCH_MAX_POW15	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15
+#define	PARA_C_DCH_MAX_POW16	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16
+#define	PARA_C_UCH_MAX_POW1	0x0340	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1
+#define	PARA_C_UCH_MAX_POW2	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2
+#define	PARA_C_UCH_MAX_POW3	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3
+#define	PARA_C_UCH_MAX_POW4	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4
+#define	PARA_C_UCH_MAX_POW5	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5
+#define	PARA_C_UCH_MAX_POW6	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6
+#define	PARA_C_UCH_MAX_POW7	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7
+#define	PARA_C_UCH_MAX_POW8	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8
+#define	PARA_C_UCH_MAX_POW9	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9
+#define	PARA_C_UCH_MAX_POW10		0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10
+#define	PARA_C_UCH_MAX_POW11		0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11
+#define	PARA_C_UCH_MAX_POW12		0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12
+#define	PARA_C_UCH_MAX_POW13		0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13
+#define	PARA_C_UCH_MAX_POW14		0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14
+#define	PARA_C_UCH_MAX_POW15		0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15
+#define	PARA_C_UCH_MAX_POW16		0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16
+#define	PARA_C_DCH_POW1	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1
+#define	PARA_C_DCH_POW2	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2
+#define	PARA_C_DCH_POW3	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3
+#define	PARA_C_DCH_POW4	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4
+#define	PARA_C_DCH_POW5	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5
+#define	PARA_C_DCH_POW6	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6
+#define	PARA_C_DCH_POW7	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7
+#define	PARA_C_DCH_POW8	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8
+#define	PARA_C_DCH_POW9	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9
+#define	PARA_C_DCH_POW10	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10
+#define	PARA_C_DCH_POW11	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11
+#define	PARA_C_DCH_POW12	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12
+#define	PARA_C_DCH_POW13	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13
+#define	PARA_C_DCH_POW14	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14
+#define	PARA_C_DCH_POW15	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15
+#define	PARA_C_DCH_POW16	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16
+#define	PARA_C_UCH_POW1	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1
+#define	PARA_C_UCH_POW2	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2
+#define	PARA_C_UCH_POW3	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3
+#define	PARA_C_UCH_POW4	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4
+#define	PARA_C_UCH_POW5	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5
+#define	PARA_C_UCH_POW6	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6
+#define	PARA_C_UCH_POW7	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7
+#define	PARA_C_UCH_POW8	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8
+#define	PARA_C_UCH_POW9	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9
+#define	PARA_C_UCH_POW10	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_C_UCH_POW11	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡11
+#define	PARA_C_UCH_POW12	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡12
+#define	PARA_C_UCH_POW13	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡13
+#define	PARA_C_UCH_POW14	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡14
+#define	PARA_C_UCH_POW15	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡15
+#define	PARA_C_UCH_POW16	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡16
+#define	PARA_C_UDPX_IN_GAIN	0x08AB	//	Cæ®µä¸‹è¡Œè¾“å…¥åŒå·¥å™¨å¢žç›Š
+#define	PARA_C_UDPX_OUT_GAIN	0x08AA	//	Cæ®µä¸Šè¡Œè¾“å‡ºåŒå·¥å™¨å¢žç›Š
+#define	PARA_C_DL_TOTAL_POW	0x8390	//	Cæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define	PARA_C_UL_TOTAL_POW	0x831e	//	Cæ®µä¸Šè¡Œè¾“å‡ºæ€»åŠŸçŽ‡
+#define	PARA_C_REC_DPX_IG		0		//		RECçš„Aæ®µè¾“å…¥åŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»							
+#define	PARA_C_REC_DPX_OG		0		//		RECçš„Aæ®µè¾“å‡ºåŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»	
+#define	PARA_D_DL_CHANNEL1	0x0900	//	Dæ®µä¸‹è¡Œä¿¡é“å·1
+#define	PARA_D_DL_CHANNEL2	0x0901	//	Dæ®µä¸‹è¡Œä¿¡é“å·2
+#define	PARA_D_DL_CHANNEL3	0x0902	//	Dæ®µä¸‹è¡Œä¿¡é“å·3
+#define	PARA_D_DL_CHANNEL4	0x0903	//	Dæ®µä¸‹è¡Œä¿¡é“å·4
+#define	PARA_D_DL_CHANNEL5	0x0904	//	Dæ®µä¸‹è¡Œä¿¡é“å·5
+#define	PARA_D_DL_CHANNEL6	0x0905	//	Dæ®µä¸‹è¡Œä¿¡é“å·6
+#define	PARA_D_DL_CHANNEL7	0x0906	//	Dæ®µä¸‹è¡Œä¿¡é“å·7
+#define	PARA_D_DL_CHANNEL8	0x0907	//	Dæ®µä¸‹è¡Œä¿¡é“å·8
+#define	PARA_D_DL_CHANNEL9	0x0908	//	Dæ®µä¸‹è¡Œä¿¡é“å·9
+#define	PARA_D_DL_CHANNEL10	0x0909	//	Dæ®µä¸‹è¡Œä¿¡é“å·10
+#define	PARA_D_UL_CHANNEL1	0x0900	//	Dæ®µä¸Šè¡Œä¿¡é“å·1
+#define	PARA_D_UL_CHANNEL2	0x0901	//	Dæ®µä¸Šè¡Œä¿¡é“å·2
+#define	PARA_D_UL_CHANNEL3	0x0902	//	Dæ®µä¸Šè¡Œä¿¡é“å·3
+#define	PARA_D_UL_CHANNEL4	0x0903	//	Dæ®µä¸Šè¡Œä¿¡é“å·4
+#define	PARA_D_UL_CHANNEL5	0x0904	//	Dæ®µä¸Šè¡Œä¿¡é“å·5
+#define	PARA_D_UL_CHANNEL6	0x0905	//	Dæ®µä¸Šè¡Œä¿¡é“å·6
+#define	PARA_D_UL_CHANNEL7	0x0906	//	Dæ®µä¸Šè¡Œä¿¡é“å·7
+#define	PARA_D_UL_CHANNEL8	0x0907	//	Dæ®µä¸Šè¡Œä¿¡é“å·8
+#define	PARA_D_UL_CHANNEL9	0x0908	//	Dæ®µä¸Šè¡Œä¿¡é“å·9
+#define	PARA_D_UL_CHANNEL10	0x0909	//	Dæ®µä¸Šè¡Œä¿¡é“å·10
+#define	PARA_D_DCH_MAX_POW1	0x0348	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1
+#define	PARA_D_DCH_MAX_POW2	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2
+#define	PARA_D_DCH_MAX_POW3	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3
+#define	PARA_D_DCH_MAX_POW4	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4
+#define	PARA_D_DCH_MAX_POW5	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5
+#define	PARA_D_DCH_MAX_POW6	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6
+#define	PARA_D_DCH_MAX_POW7	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7
+#define	PARA_D_DCH_MAX_POW8	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8
+#define	PARA_D_DCH_MAX_POW9	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9
+#define	PARA_D_DCH_MAX_POW10	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10
+#define	PARA_D_DCH_MAX_POW11	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11
+#define	PARA_D_DCH_MAX_POW12	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12
+#define	PARA_D_DCH_MAX_POW13	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13
+#define	PARA_D_DCH_MAX_POW14	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14
+#define	PARA_D_DCH_MAX_POW15	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15
+#define	PARA_D_DCH_MAX_POW16	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16
+#define	PARA_D_UCH_MAX_POW1	0x0340	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1
+#define	PARA_D_UCH_MAX_POW2	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2
+#define	PARA_D_UCH_MAX_POW3	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3
+#define	PARA_D_UCH_MAX_POW4	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4
+#define	PARA_D_UCH_MAX_POW5	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5
+#define	PARA_D_UCH_MAX_POW6	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6
+#define	PARA_D_UCH_MAX_POW7	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7
+#define	PARA_D_UCH_MAX_POW8	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8
+#define	PARA_D_UCH_MAX_POW9	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9
+#define	PARA_D_UCH_MAX_POW10	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10
+#define	PARA_D_UCH_MAX_POW11	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11
+#define	PARA_D_UCH_MAX_POW12	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12
+#define	PARA_D_UCH_MAX_POW13	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13
+#define	PARA_D_UCH_MAX_POW14	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14
+#define	PARA_D_UCH_MAX_POW15	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15
+#define	PARA_D_UCH_MAX_POW16	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16
+#define	PARA_D_DCH_POW1	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1
+#define	PARA_D_DCH_POW2	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2
+#define	PARA_D_DCH_POW3	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3
+#define	PARA_D_DCH_POW4	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4
+#define	PARA_D_DCH_POW5	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5
+#define	PARA_D_DCH_POW6	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6
+#define	PARA_D_DCH_POW7	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7
+#define	PARA_D_DCH_POW8	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8
+#define	PARA_D_DCH_POW9	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9
+#define	PARA_D_DCH_POW10	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10
+#define	PARA_D_DCH_POW11	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11
+#define	PARA_D_DCH_POW12	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12
+#define	PARA_D_DCH_POW13	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13
+#define	PARA_D_DCH_POW14	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14
+#define	PARA_D_DCH_POW15	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15
+#define	PARA_D_DCH_POW16	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16
+#define	PARA_D_UCH_POW1	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1
+#define	PARA_D_UCH_POW2	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2
+#define	PARA_D_UCH_POW3	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3
+#define	PARA_D_UCH_POW4	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4
+#define	PARA_D_UCH_POW5	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5
+#define	PARA_D_UCH_POW6	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6
+#define	PARA_D_UCH_POW7	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7
+#define	PARA_D_UCH_POW8	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8
+#define	PARA_D_UCH_POW9	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9
+#define	PARA_D_UCH_POW10	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_D_UCH_POW11	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_D_UCH_POW12	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_D_UCH_POW13	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_D_UCH_POW14	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_D_UCH_POW15	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_D_UCH_POW16	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_D_UDPX_IN_GAIN	0x08AB	//	Dæ®µä¸‹è¡Œè¾“å…¥åŒå·¥å™¨å¢žç›Š
+#define	PARA_D_UDPX_OUT_GAIN	0x08AA	//	Dæ®µä¸Šè¡Œè¾“å‡ºåŒå·¥å™¨å¢žç›Š
+#define	PARA_D_DL_TOTAL_POW	0x8390	//	Dæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define	PARA_D_UL_TOTAL_POW	0x831e	//	Dæ®µä¸Šè¡Œè¾“å‡ºæ€»åŠŸçŽ‡
+#define	PARA_D_REC_DPX_IG		0		//		RECçš„Dæ®µè¾“å…¥åŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»							
+#define	PARA_D_REC_DPX_OG		0		//		RECçš„Dæ®µè¾“å‡ºåŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»	
+#define	PARA_REC_TO_RE_DELAY		0x889e	// RECåˆ°REçš„å…‰çº¤å»¶æ—¶
+#define	PARA_RE_RF_DELAY			0x889f	// REçš„å°„é¢‘å»¶æ—¶
+#define	PARA_MAX_T14	0x889c	//	å…‰å£æœ€å¤§å»¶æ—¶
+#define	PARA_DL_DELAY_OFFSET	0x0768	//	ä¸‹è¡Œå»¶æ—¶åç§»é‡
+#define	PARA_UL_DELAY_OFFSET	0x0769	//	ä¸Šè¡Œå»¶æ—¶åç§»é‡
+#define	PARA_PRI_SOFT_V	0xf018	//	ç¨‹åºç‰ˆæœ¬å·ï¼ˆç”¨ASCIIç ï¼‰
+#define	PARA_PRI_HARD_V	0xf026	//	PCBç‰ˆæœ¬å·(ç”¨ASCIIç )
+#define	PARA_TD_1ST_CP_TIME		0x08a7	// TDç¬¬1è½¬æ¢ç‚¹æ—¶é—´ns, æœ‰ç¬¦å·æ•°
+#define	PARA_TD_2ND_CP_TIME		0x08a8	// TDç¬¬2è½¬æ¢ç‚¹æ—¶é—´ns, æœ‰ç¬¦å·æ•°
+#define	PARA_TD_LNA_ON_TIME		0x08ae	// LNAå¼€å¯è¿ŸåŽDN_PAå…³é—­çš„ä¿æŠ¤æ—¶é—´ns
+#define	PARA_TD_LNA_OFF_TIME		0x08af	// LNAå…³é—­è¶…å‰DN_PAå¼€å¯çš„ä¿æŠ¤æ—¶é—´ns
+#define	PARA_TD_SLOT1_UPOW	0x7501	// TDæ—¶éš™1ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT2_UPOW	0x7502	// TDæ—¶éš™2ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT3_UPOW	0x7503	// TDæ—¶éš™3ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT4_UPOW	0x7504	// TDæ—¶éš™4ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT5_UPOW	0x7505	// TDæ—¶éš™5ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT6_UPOW	0x7506	// TDæ—¶éš™6ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT7_UPOW	0x7507	// TDæ—¶éš™7ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT1_DPOW	0x7511	// TDæ—¶éš™1ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT2_DPOW	0x7512	// TDæ—¶éš™2ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT3_DPOW	0x7513	// TDæ—¶éš™3ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT4_DPOW	0x7514	// TDæ—¶éš™4ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT5_DPOW	0x7515	// TDæ—¶éš™5ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT6_DPOW	0x7516	// TDæ—¶éš™6ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT7_DPOW	0x7517	// TDæ—¶éš™7ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_FPS_S1 0 // é¢‘ç‚¹æœç´ : èŒƒå›´1èµ·å§‹é¢‘ç‚¹
+#define	PARA_FPS_E1 0 // é¢‘ç‚¹æœç´ : èŒƒå›´1ç»“æŸé¢‘ç‚¹
+#define	PARA_FPS_S2 0 // é¢‘ç‚¹æœç´ : èŒƒå›´2èµ·å§‹é¢‘ç‚¹
+#define	PARA_FPS_E2 0 // é¢‘ç‚¹æœç´ : èŒƒå›´2ç»“æŸé¢‘ç‚¹
+#define	PARA_FPS_BCCH_LK_SET	0x0923	// é¢‘ç‚¹æœç´¢: é”é¢‘ä¿¡é“å·: æ ‡å‡†ä¿¡é“å·, 65535-é€€å‡ºé”é¢‘
+#define	PARA_FPS_CID_LK_SET	0x0926	// é¢‘ç‚¹æœç´¢: å°åŒºè¯†åˆ«ç å‚è€ƒå€¼, 0-é€€å‡ºå°åŒºé”å®šåŠŸèƒ½
+#define	PARA_FPS_BCCH_FC_M	0x8940	// é¢‘ç‚¹æœç´¢: ä¸»å°åŒºBCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+#define	PARA_FPS_CA_FC_0	0x8941	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢0ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_1	0x8942	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢1ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_2	0x8943	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢2ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_3	0x8944	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢3ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_4	0x8945	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢4ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_5	0x8946	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢5ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_6	0x8947	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢6ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_7	0x8948	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢7ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_8	0x8949	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢8ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_9	0x894A	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢9ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_10	0x894B	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢10ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_11	0x894C	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢11ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_12	0x894D	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢12ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_13	0x894E	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢13ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_14	0x894F	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢14ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_15	0x8950	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢15ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_BCCH_FC_1	0x8951	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº1 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+#define	PARA_FPS_BCCH_FC_2	0x8952	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº2 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+#define	PARA_FPS_BCCH_FC_3	0x8953	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº3 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+#define	PARA_FPS_BCCH_FC_4	0x8954	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº4 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+#define	PARA_FPS_BCCH_FC_5	0x8955	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº5 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+#define	PARA_FPS_BCCH_FC_6	0x8956	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº6 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+#define	PARA_FPS_AREA_ID	0x8958	// é¢‘ç‚¹æœç´¢: ä½ç½®åŒºç¼–ç 
+#define	PARA_FPS_CID		0x895A	// é¢‘ç‚¹æœç´¢: å°åŒºè¯†åˆ«ç å®žæ—¶å€¼
+#define	PARA_FPS_CID_1 0 // é¢‘ç‚¹æœç´¢: é‚»å°åŒº1 CIDå°åŒºè¯†åˆ«ç 
+#define	PARA_FPS_CID_2 0 // é¢‘ç‚¹æœç´¢: é‚»å°åŒº2 CIDå°åŒºè¯†åˆ«ç 
+#define	PARA_FPS_CID_3 0 // é¢‘ç‚¹æœç´¢: é‚»å°åŒº3 CIDå°åŒºè¯†åˆ«ç 
+#define	PARA_FPS_CID_4 0 // é¢‘ç‚¹æœç´¢: é‚»å°åŒº4 CIDå°åŒºè¯†åˆ«ç 
+#define	PARA_FPS_CID_5 0 // é¢‘ç‚¹æœç´¢: é‚»å°åŒº5 CIDå°åŒºè¯†åˆ«ç 
+#define	PARA_FPS_CID_6 0 // é¢‘ç‚¹æœç´¢: é‚»å°åŒº6 CIDå°åŒºè¯†åˆ«ç 
+#define	PARA_A_EXPA_IDRAIN_SET	0	// å¾®åŠŸæ”¾: æ¼æžç”µæµè®¾ç½®,mA
+#define	PARA_TD_SLOT1_DPOW_OVER_THR				0x0a60       //tdä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡é—¨é™
+#define	PARA_TD_SLOT1_DPOW_OWE_THR				0x0a61      //tdä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡é—¨é™	
+#define PARA_A_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡é—¨é™
+#define PARA_A_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡é—¨é™
+#define PARA_B_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡é—¨é™
+#define PARA_B_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡é—¨é™
+#define PARA_C_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡é—¨é™
+#define PARA_C_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡é—¨é™
+#define PARA_D_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡é—¨é™
+#define PARA_D_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡é—¨é™
+#define PARA_REE_A_DL_OUT_TOTAL_POW_DETECT     	0x8004      //Aæ®µREä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡//æ³¨REC\REä½¿ç”¨ MADD_A_DL_TOTAL_POW
+#define PARA_A_RE_LOCAL_ST_ALARM     			0x8a33      	//è¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€
+#define PARA_REE_B_DL_OUT_TOTAL_POW_DETECT     	0x8004      //Bæ®µREä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡ //æ³¨REC\REä½¿ç”¨ MADD_B_DL_TOTAL_POW
+#define PARA_B_RE_LOCAL_ST_ALARM     			0x8a33      	//è¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€
+#define PARA_REE_C_DL_OUT_TOTAL_POW_DETECT     	0x8004      //Aæ®µREä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡//æ³¨REC\REä½¿ç”¨ MADD_C_DL_TOTAL_POW
+#define PARA_C_RE_LOCAL_ST_ALARM     			0x8a33      	//è¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€
+#define PARA_REE_D_DL_OUT_TOTAL_POW_DETECT     	0x8004      //	Dæ®µREä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡ //æ³¨REC\REä½¿ç”¨ MADD_D_DL_TOTAL_POW
+#define PARA_D_RE_LOCAL_ST_ALARM     			0x8a33      	//	Dè¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€
+#define PARA_C_TD_1ST_CP_TIME	0x08a7	//		//465		TDç¬¬1è½¬æ¢ç‚¹æ—¶é—´,ns,		
+#define PARA_C_TD_2ND_CP_TIME	0x08a8	//		//466		TDç¬¬2è½¬æ¢ç‚¹æ—¶é—´,ns,		
+#define PARA_C_TD_LNA_ON_TIME	0x08ae	//		//467		LNAå¼€å¯è¿ŸåŽDN_PAå…³é—­çš„ä¿æŠ¤æ—¶é—´ns		
+#define PARA_C_TD_LNA_OFF_TIME	0x08af	//		//468		LNAå…³é—­è¶…å‰DN_PAå¼€å¯çš„ä¿æŠ¤æ—¶é—´ns		
 #define PARA_C_TD_SLOT1_DPOW_OVER_THR	0x0a60	//		//469	0	//		//5625
 #define PARA_C_TD_SLOT1_DPOW_OWE_THR	0x0a61	//		//470	0	//		//5626
-#define PARA_D_TD_1ST_CP_TIME	0x08a7	//		//471		TDµÚ1×ª»»µãÊ±¼ä,ns,		
-#define PARA_D_TD_2ND_CP_TIME	0x08a7	//		//472		TDµÚ2×ª»»µãÊ±¼ä,ns,		
-#define PARA_D_TD_LNA_ON_TIME	0x08ae	//		//473		LNA¿ªÆô³ÙºóDN_PA¹Ø±ÕµÄ±£»¤Ê±¼äns		
-#define PARA_D_TD_LNA_OFF_TIME	0x08af	//		//474		LNA¹Ø±Õ³¬Ç°DN_PA¿ªÆôµÄ±£»¤Ê±¼äns		
+#define PARA_D_TD_1ST_CP_TIME	0x08a7	//		//471		TDç¬¬1è½¬æ¢ç‚¹æ—¶é—´,ns,		
+#define PARA_D_TD_2ND_CP_TIME	0x08a7	//		//472		TDç¬¬2è½¬æ¢ç‚¹æ—¶é—´,ns,		
+#define PARA_D_TD_LNA_ON_TIME	0x08ae	//		//473		LNAå¼€å¯è¿ŸåŽDN_PAå…³é—­çš„ä¿æŠ¤æ—¶é—´ns		
+#define PARA_D_TD_LNA_OFF_TIME	0x08af	//		//474		LNAå…³é—­è¶…å‰DN_PAå¼€å¯çš„ä¿æŠ¤æ—¶é—´ns		
 #define PARA_D_TD_SLOT1_DPOW_OVER_THR	0x0a60	//		//475	0	//		//5625
 #define PARA_D_TD_SLOT1_DPOW_OWE_THR	0x0a61	//		//476	0	//		//5626
-#define PARA_C_TD_SLOT1_POW	0	//		//477		TDÊ±Ï¶1ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT2_POW	0	//		//478		TDÊ±Ï¶2ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT3_POW	0	//		//479		TDÊ±Ï¶3ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT4_POW	0	//		//480		TDÊ±Ï¶4ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT5_POW	0	//		//481		TDÊ±Ï¶5ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT6_POW	0	//		//482		TDÊ±Ï¶6ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT7_POW	0	//		//483		TDÊ±Ï¶7ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT8_POW	0	//		//484		TDÊ±Ï¶8ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT9_POW	0	//		//485		TDÊ±Ï¶9ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT10_POW	0	//		//486		TDÊ±Ï¶10ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT11_POW	0	//		//487		TDÊ±Ï¶11ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT12_POW	0	//		//488		TDÊ±Ï¶12ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT13_POW	0	//		//489		TDÊ±Ï¶13ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT14_POW	0	//		//490		TDÊ±Ï¶14ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT15_POW	0	//		//491		TDÊ±Ï¶15ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT16_POW	0	//		//492		TDÊ±Ï¶16ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT17_POW	0	//		//493		TDÊ±Ï¶17ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_C_TD_SLOT18_POW	0	//		//494		TDÊ±Ï¶18ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_C_TD_SLOT19_POW	0	//		//495		TDÊ±Ï¶19ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_C_TD_SLOT20_POW	0	//		//496		TDÊ±Ï¶20ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT1_POW	0	//		//497		TDÊ±Ï¶1ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT2_POW	0	//		//498		TDÊ±Ï¶2ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT3_POW	0	//		//499		TDÊ±Ï¶3ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT4_POW	0	//		//500		TDÊ±Ï¶4ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT5_POW	0	//		//501		TDÊ±Ï¶5ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT6_POW	0	//		//502		TDÊ±Ï¶6ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT7_POW	0	//		//503		TDÊ±Ï¶7ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT8_POW	0	//		//504		TDÊ±Ï¶8ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT9_POW	0	//		//505		TDÊ±Ï¶9ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT10_POW	0	//		//506		TDÊ±Ï¶10ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT11_POW	0	//		//507		TDÊ±Ï¶11ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT12_POW	0	//		//508		TDÊ±Ï¶12ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT13_POW	0	//		//509		TDÊ±Ï¶13ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT14_POW	0	//		//510		TDÊ±Ï¶14ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT15_POW	0	//		//511		TDÊ±Ï¶15ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT16_POW	0	//		//512		TDÊ±Ï¶16ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT17_POW	0	//		//513		TDÊ±Ï¶17ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT18_POW	0	//		//514		TDÊ±Ï¶18ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT19_POW	0	//		//515		TDÊ±Ï¶19ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT20_POW	0	//		//516		TDÊ±Ï¶20ÊäÈë¼ì²â¹¦ÂÊ
-#define	PARA_DL_DELAY_OFFSET_B		0//0x889c		//		ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿		
-#define	PARA_DL_DELAY_OFFSET_C		0//0x889c		//		ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿		
-#define	PARA_DL_DELAY_OFFSET_D		0//0x889c		//		ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿		
-#define	PARA_VGS_A		            0		//	         A¶ÎÕ¤Ñ¹		
-#define	PARA_VGS_B          		0		//		 B¶ÎÕ¤Ñ¹		
-#define	PARA_VGS_C          		0		//		 C¶ÎÕ¤Ñ¹
-#define	PARA_VGS_D          		0		//		 D¶ÎÕ¤Ñ¹
-#define	PARA_VGS_COMP_A		        0		//	     A¶ÎÕ¤Ñ¹²¹³¥		
-#define	PARA_VGS_COMP_B             0		//		 B¶ÎÕ¤Ñ¹²¹³¥			
-#define	PARA_VGS_COMP_C             0		//		 C¶ÎÕ¤Ñ¹²¹³¥	
-#define	PARA_VGS_COMP_D          	0		//		 C¶ÎÕ¤Ñ¹²¹³¥	
-#define	PARA_ATT_DATA_COMP_A		0				//ATT²¹³¥Êý¾Ý
-#define	PARA_ATT_DATA_COMP_B		0				//ATT²¹³¥Êý¾Ý
-#define	PARA_ATT_DATA_COMP_C		0				//ATT²¹³¥Êý¾Ý
-#define	PARA_ATT_DATA_COMP_D		0				//ATT²¹³¥Êý¾Ý
-#define	PARA_MAX_T14_A	0x889c	//	¹â¿Ú×î´óÑÓÊ±
-#define	PARA_MAX_T14_B	0x889c	//	¹â¿Ú×î´óÑÓÊ±
-#define	PARA_MAX_T14_C	0x889c	//	¹â¿Ú×î´óÑÓÊ±
-#define	PARA_MAX_T14_D	0x889c	//	¹â¿Ú×î´óÑÓÊ±
-#define PARA_ERL_JG_A		0// A¶Î»°ÎñÁ¿Í³¼Æ½á¹û
+#define PARA_C_TD_SLOT1_POW	0	//		//477		TDæ—¶éš™1è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT2_POW	0	//		//478		TDæ—¶éš™2è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT3_POW	0	//		//479		TDæ—¶éš™3è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT4_POW	0	//		//480		TDæ—¶éš™4è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT5_POW	0	//		//481		TDæ—¶éš™5è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT6_POW	0	//		//482		TDæ—¶éš™6è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT7_POW	0	//		//483		TDæ—¶éš™7è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT8_POW	0	//		//484		TDæ—¶éš™8è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT9_POW	0	//		//485		TDæ—¶éš™9è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT10_POW	0	//		//486		TDæ—¶éš™10è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT11_POW	0	//		//487		TDæ—¶éš™11è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT12_POW	0	//		//488		TDæ—¶éš™12è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT13_POW	0	//		//489		TDæ—¶éš™13è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT14_POW	0	//		//490		TDæ—¶éš™14è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT15_POW	0	//		//491		TDæ—¶éš™15è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT16_POW	0	//		//492		TDæ—¶éš™16è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT17_POW	0	//		//493		TDæ—¶éš™17è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_C_TD_SLOT18_POW	0	//		//494		TDæ—¶éš™18è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_C_TD_SLOT19_POW	0	//		//495		TDæ—¶éš™19è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_C_TD_SLOT20_POW	0	//		//496		TDæ—¶éš™20è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT1_POW	0	//		//497		TDæ—¶éš™1è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT2_POW	0	//		//498		TDæ—¶éš™2è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT3_POW	0	//		//499		TDæ—¶éš™3è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT4_POW	0	//		//500		TDæ—¶éš™4è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT5_POW	0	//		//501		TDæ—¶éš™5è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT6_POW	0	//		//502		TDæ—¶éš™6è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT7_POW	0	//		//503		TDæ—¶éš™7è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT8_POW	0	//		//504		TDæ—¶éš™8è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT9_POW	0	//		//505		TDæ—¶éš™9è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT10_POW	0	//		//506		TDæ—¶éš™10è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT11_POW	0	//		//507		TDæ—¶éš™11è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT12_POW	0	//		//508		TDæ—¶éš™12è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT13_POW	0	//		//509		TDæ—¶éš™13è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT14_POW	0	//		//510		TDæ—¶éš™14è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT15_POW	0	//		//511		TDæ—¶éš™15è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT16_POW	0	//		//512		TDæ—¶éš™16è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT17_POW	0	//		//513		TDæ—¶éš™17è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT18_POW	0	//		//514		TDæ—¶éš™18è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT19_POW	0	//		//515		TDæ—¶éš™19è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT20_POW	0	//		//516		TDæ—¶éš™20è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define	PARA_DL_DELAY_OFFSET_B		0//0x889c		//		ä¸‹è¡Œå»¶æ—¶åç§»é‡		
+#define	PARA_DL_DELAY_OFFSET_C		0//0x889c		//		ä¸‹è¡Œå»¶æ—¶åç§»é‡		
+#define	PARA_DL_DELAY_OFFSET_D		0//0x889c		//		ä¸‹è¡Œå»¶æ—¶åç§»é‡		
+#define	PARA_VGS_A		            0		//	         Aæ®µæ …åŽ‹		
+#define	PARA_VGS_B          		0		//		 Bæ®µæ …åŽ‹		
+#define	PARA_VGS_C          		0		//		 Cæ®µæ …åŽ‹
+#define	PARA_VGS_D          		0		//		 Dæ®µæ …åŽ‹
+#define	PARA_VGS_COMP_A		        0		//	     Aæ®µæ …åŽ‹è¡¥å¿		
+#define	PARA_VGS_COMP_B             0		//		 Bæ®µæ …åŽ‹è¡¥å¿			
+#define	PARA_VGS_COMP_C             0		//		 Cæ®µæ …åŽ‹è¡¥å¿	
+#define	PARA_VGS_COMP_D          	0		//		 Cæ®µæ …åŽ‹è¡¥å¿	
+#define	PARA_ATT_DATA_COMP_A		0				//ATTè¡¥å¿æ•°æ®
+#define	PARA_ATT_DATA_COMP_B		0				//ATTè¡¥å¿æ•°æ®
+#define	PARA_ATT_DATA_COMP_C		0				//ATTè¡¥å¿æ•°æ®
+#define	PARA_ATT_DATA_COMP_D		0				//ATTè¡¥å¿æ•°æ®
+#define	PARA_MAX_T14_A	0x889c	//	å…‰å£æœ€å¤§å»¶æ—¶
+#define	PARA_MAX_T14_B	0x889c	//	å…‰å£æœ€å¤§å»¶æ—¶
+#define	PARA_MAX_T14_C	0x889c	//	å…‰å£æœ€å¤§å»¶æ—¶
+#define	PARA_MAX_T14_D	0x889c	//	å…‰å£æœ€å¤§å»¶æ—¶
+#define PARA_ERL_JG_A		0// Aæ®µè¯åŠ¡é‡ç»Ÿè®¡ç»“æžœ
 #define PARA_ERL_JG_B		0
 #define PARA_ERL_JG_C		0
 #define PARA_ERL_JG_D		0
-#define	PARA_MOVE_CENTER_FRE_D		0//¸Ä±äÏÂÐÐÖÐÆµÆµÂÊ
-#define	PARA_MOVE_CENTER_FRE_U		0//¸Ä±äÉÏÐÐÖÐÆµÆµÂÊ
+#define	PARA_MOVE_CENTER_FRE_D		0//æ”¹å˜ä¸‹è¡Œä¸­é¢‘é¢‘çŽ‡
+#define	PARA_MOVE_CENTER_FRE_U		0//æ”¹å˜ä¸Šè¡Œä¸­é¢‘é¢‘çŽ‡
 
 
 
 #else
-	// ÆÕÍ¨²ÎÊý
-// ²ÎÊýµØÖ·¶¨Òå==================================================== 2b
-#define	PARA_A_DL_CHANNEL1	0x0900	//	A¶ÎÏÂÐÐÐÅµÀºÅ1
-#define	PARA_A_DL_CHANNEL2	0x0901	//	A¶ÎÏÂÐÐÐÅµÀºÅ2
-#define	PARA_A_DL_CHANNEL3	0x0902	//	A¶ÎÏÂÐÐÐÅµÀºÅ3
-#define	PARA_A_DL_CHANNEL4	0x0903	//	A¶ÎÏÂÐÐÐÅµÀºÅ4
-#define	PARA_A_DL_CHANNEL5	0x0904	//	A¶ÎÏÂÐÐÐÅµÀºÅ5
-#define	PARA_A_DL_CHANNEL6	0x0905	//	A¶ÎÏÂÐÐÐÅµÀºÅ6
-#define	PARA_A_DL_CHANNEL7	0x0906	//	A¶ÎÏÂÐÐÐÅµÀºÅ7
-#define	PARA_A_DL_CHANNEL8	0x0907	//	A¶ÎÏÂÐÐÐÅµÀºÅ8
-#define	PARA_A_DL_CHANNEL9	0x0908	//	A¶ÎÏÂÐÐÐÅµÀºÅ9
-#define	PARA_A_DL_CHANNEL10	0x0909	//	A¶ÎÏÂÐÐÐÅµÀºÅ10
-#define	PARA_A_DL_CHANNEL11	0x090A	//	A¶ÎÏÂÐÐÐÅµÀºÅ11
-#define	PARA_A_DL_CHANNEL12	0x090B	//	A¶ÎÏÂÐÐÐÅµÀºÅ12
-#define	PARA_A_DL_CHANNEL13	0x090C	//	A¶ÎÏÂÐÐÐÅµÀºÅ13
-#define	PARA_A_DL_CHANNEL14	0x090D	//	A¶ÎÏÂÐÐÐÅµÀºÅ14
-#define	PARA_A_DL_CHANNEL15	0x090E	//	A¶ÎÏÂÐÐÐÅµÀºÅ15
-#define	PARA_A_DL_CHANNEL16	0x090F	//	A¶ÎÏÂÐÐÐÅµÀºÅ16
-#define	PARA_A_UL_CHANNEL1	0x0900	//	A¶ÎÉÏÐÐÐÅµÀºÅ1
-#define	PARA_A_UL_CHANNEL2	0x0901	//	A¶ÎÉÏÐÐÐÅµÀºÅ2
-#define	PARA_A_UL_CHANNEL3	0x0902	//	A¶ÎÉÏÐÐÐÅµÀºÅ3
-#define	PARA_A_UL_CHANNEL4	0x0903	//	A¶ÎÉÏÐÐÐÅµÀºÅ4
-#define	PARA_A_UL_CHANNEL5	0x0904	//	A¶ÎÉÏÐÐÐÅµÀºÅ5
-#define	PARA_A_UL_CHANNEL6	0x0905	//	A¶ÎÉÏÐÐÐÅµÀºÅ6
-#define	PARA_A_UL_CHANNEL7	0x0906	//	A¶ÎÉÏÐÐÐÅµÀºÅ7
-#define	PARA_A_UL_CHANNEL8	0x0907	//	A¶ÎÉÏÐÐÐÅµÀºÅ8
-#define	PARA_A_UL_CHANNEL9	0x0908	//	A¶ÎÉÏÐÐÐÅµÀºÅ9
-#define	PARA_A_UL_CHANNEL10	0x0909	//	A¶ÎÉÏÐÐÐÅµÀºÅ10
-#define	PARA_A_UL_CHANNEL11	0x090A	//	A¶ÎÉÏÐÐÐÅµÀºÅ11
-#define	PARA_A_UL_CHANNEL12	0x090B	//	A¶ÎÉÏÐÐÐÅµÀºÅ12
-#define	PARA_A_UL_CHANNEL13	0x090C	//	A¶ÎÉÏÐÐÐÅµÀºÅ13
-#define	PARA_A_UL_CHANNEL14	0x090D	//	A¶ÎÉÏÐÐÐÅµÀºÅ14
-#define	PARA_A_UL_CHANNEL15	0x090E	//	A¶ÎÉÏÐÐÐÅµÀºÅ15
-#define	PARA_A_UL_CHANNEL16	0x090F	//	A¶ÎÉÏÐÐÐÅµÀºÅ16
-#define	PARA_A_DCH_MAX_POW1	0x0348	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1
-#define	PARA_A_DCH_MAX_POW2	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2
-#define	PARA_A_DCH_MAX_POW3	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3
-#define	PARA_A_DCH_MAX_POW4	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4
-#define	PARA_A_DCH_MAX_POW5	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5
-#define	PARA_A_DCH_MAX_POW6	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6
-#define	PARA_A_DCH_MAX_POW7	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7
-#define	PARA_A_DCH_MAX_POW8	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8
-#define	PARA_A_DCH_MAX_POW9	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9
-#define	PARA_A_DCH_MAX_POW10	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10
-#define	PARA_A_DCH_MAX_POW11	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11
-#define	PARA_A_DCH_MAX_POW12	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12
-#define	PARA_A_DCH_MAX_POW13	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13
-#define	PARA_A_DCH_MAX_POW14	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14
-#define	PARA_A_DCH_MAX_POW15	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15
-#define	PARA_A_DCH_MAX_POW16	0	//	A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16
-#define	PARA_A_UCH_MAX_POW1	0x0340	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1
-#define	PARA_A_UCH_MAX_POW2	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2
-#define	PARA_A_UCH_MAX_POW3	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3
-#define	PARA_A_UCH_MAX_POW4	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4
-#define	PARA_A_UCH_MAX_POW5	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5
-#define	PARA_A_UCH_MAX_POW6	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6
-#define	PARA_A_UCH_MAX_POW7	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7
-#define	PARA_A_UCH_MAX_POW8	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8
-#define	PARA_A_UCH_MAX_POW9	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9
-#define	PARA_A_UCH_MAX_POW10	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10
-#define	PARA_A_UCH_MAX_POW11	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11
-#define	PARA_A_UCH_MAX_POW12	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12
-#define	PARA_A_UCH_MAX_POW13	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13
-#define	PARA_A_UCH_MAX_POW14	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14
-#define	PARA_A_UCH_MAX_POW15	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15
-#define	PARA_A_UCH_MAX_POW16	0	//	A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16
-#define	PARA_A_DCH_POW1	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1
-#define	PARA_A_DCH_POW2	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2
-#define	PARA_A_DCH_POW3	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3
-#define	PARA_A_DCH_POW4	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4
-#define	PARA_A_DCH_POW5	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5
-#define	PARA_A_DCH_POW6	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6
-#define	PARA_A_DCH_POW7	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7
-#define	PARA_A_DCH_POW8	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8
-#define	PARA_A_DCH_POW9	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9
-#define	PARA_A_DCH_POW10	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10
-#define	PARA_A_DCH_POW11	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11
-#define	PARA_A_DCH_POW12	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12
-#define	PARA_A_DCH_POW13	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13
-#define	PARA_A_DCH_POW14	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14
-#define	PARA_A_DCH_POW15	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15
-#define	PARA_A_DCH_POW16	0	//	A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16
-#define	PARA_A_UCH_POW1	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1
-#define	PARA_A_UCH_POW2	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2
-#define	PARA_A_UCH_POW3	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3
-#define	PARA_A_UCH_POW4	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4
-#define	PARA_A_UCH_POW5	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5
-#define	PARA_A_UCH_POW6	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6
-#define	PARA_A_UCH_POW7	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7
-#define	PARA_A_UCH_POW8	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8
-#define	PARA_A_UCH_POW9	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9
-#define	PARA_A_UCH_POW10	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_A_UCH_POW11	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ11
-#define	PARA_A_UCH_POW12	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ12
-#define	PARA_A_UCH_POW13	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ13
-#define	PARA_A_UCH_POW14	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ14
-#define	PARA_A_UCH_POW15	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ15
-#define	PARA_A_UCH_POW16	0	//	A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ16
-#define	PARA_A_UDPX_IN_GAIN		0x08AB	//	A¶ÎÏÂÐÐÊäÈëË«¹¤Æ÷ÔöÒæ
-#define	PARA_A_UDPX_OUT_GAIN	0x08AA	//	A¶ÎÉÏÐÐÊä³öË«¹¤Æ÷ÔöÒæ
-#define	PARA_A_DL_TOTAL_POW	0x8390	//	A¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define	PARA_A_UL_TOTAL_POW	0x831e	//	A¶ÎÉÏÐÐÊä³ö×Ü¹¦ÂÊ
-#define	PARA_A_REC_DPX_IG		0		//		RECµÄA¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á							
-#define	PARA_A_REC_DPX_OG		0		//		RECµÄA¶ÎÊä³öË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á	
-#define	PARA_B_DL_CHANNEL1	0x0900	//	B¶ÎÏÂÐÐÐÅµÀºÅ1
-#define	PARA_B_DL_CHANNEL2	0x0901	//	B¶ÎÏÂÐÐÐÅµÀºÅ2
-#define	PARA_B_DL_CHANNEL3	0x0902	//	B¶ÎÏÂÐÐÐÅµÀºÅ3
-#define	PARA_B_DL_CHANNEL4	0x0903	//	B¶ÎÏÂÐÐÐÅµÀºÅ4
-#define	PARA_B_DL_CHANNEL5	0x0904	//	B¶ÎÏÂÐÐÐÅµÀºÅ5
-#define	PARA_B_DL_CHANNEL6	0x0905	//	B¶ÎÏÂÐÐÐÅµÀºÅ6
-#define	PARA_B_DL_CHANNEL7	0x0906	//	B¶ÎÏÂÐÐÐÅµÀºÅ7
-#define	PARA_B_DL_CHANNEL8	0x0907	//	B¶ÎÏÂÐÐÐÅµÀºÅ8
-#define	PARA_B_DL_CHANNEL9	0x0908	//	B¶ÎÏÂÐÐÐÅµÀºÅ9
-#define	PARA_B_DL_CHANNEL10	0x0909	//	B¶ÎÏÂÐÐÐÅµÀºÅ10
-#define	PARA_B_DL_CHANNEL11	0x090A	//	B¶ÎÏÂÐÐÐÅµÀºÅ11
-#define	PARA_B_DL_CHANNEL12	0x090B	//	B¶ÎÏÂÐÐÐÅµÀºÅ12
-#define	PARA_B_DL_CHANNEL13	0x090C	//	B¶ÎÏÂÐÐÐÅµÀºÅ13
-#define	PARA_B_DL_CHANNEL14	0x090D	//	B¶ÎÏÂÐÐÐÅµÀºÅ14
-#define	PARA_B_DL_CHANNEL15	0x090E	//	B¶ÎÏÂÐÐÐÅµÀºÅ15
-#define	PARA_B_DL_CHANNEL16	0x090F	//	B¶ÎÏÂÐÐÐÅµÀºÅ16
-#define	PARA_B_UL_CHANNEL1	0x0900	//	B¶ÎÉÏÐÐÐÅµÀºÅ1
-#define	PARA_B_UL_CHANNEL2	0x0901	//	B¶ÎÉÏÐÐÐÅµÀºÅ2
-#define	PARA_B_UL_CHANNEL3	0x0902	//	B¶ÎÉÏÐÐÐÅµÀºÅ3
-#define	PARA_B_UL_CHANNEL4	0x0903	//	B¶ÎÉÏÐÐÐÅµÀºÅ4
-#define	PARA_B_UL_CHANNEL5	0x0904	//	B¶ÎÉÏÐÐÐÅµÀºÅ5
-#define	PARA_B_UL_CHANNEL6	0x0905	//	B¶ÎÉÏÐÐÐÅµÀºÅ6
-#define	PARA_B_UL_CHANNEL7	0x0906	//	B¶ÎÉÏÐÐÐÅµÀºÅ7
-#define	PARA_B_UL_CHANNEL8	0x0907	//	B¶ÎÉÏÐÐÐÅµÀºÅ8
-#define	PARA_B_UL_CHANNEL9	0x0908	//	B¶ÎÉÏÐÐÐÅµÀºÅ9
-#define	PARA_B_UL_CHANNEL10	0x0909	//	B¶ÎÉÏÐÐÐÅµÀºÅ10
-#define	PARA_B_UL_CHANNEL11	0x090A	//	B¶ÎÉÏÐÐÐÅµÀºÅ11
-#define	PARA_B_UL_CHANNEL12	0x090B	//	B¶ÎÉÏÐÐÐÅµÀºÅ12
-#define	PARA_B_UL_CHANNEL13	0x090C	//	B¶ÎÉÏÐÐÐÅµÀºÅ13
-#define	PARA_B_UL_CHANNEL14	0x090D	//	B¶ÎÉÏÐÐÐÅµÀºÅ14
-#define	PARA_B_UL_CHANNEL15	0x090E	//	B¶ÎÉÏÐÐÐÅµÀºÅ15
-#define	PARA_B_UL_CHANNEL16	0x090F	//	B¶ÎÉÏÐÐÐÅµÀºÅ16
-#define	PARA_B_DCH_MAX_POW1	0x0348	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1
-#define	PARA_B_DCH_MAX_POW2	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2
-#define	PARA_B_DCH_MAX_POW3	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3
-#define	PARA_B_DCH_MAX_POW4	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4
-#define	PARA_B_DCH_MAX_POW5	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5
-#define	PARA_B_DCH_MAX_POW6	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6
-#define	PARA_B_DCH_MAX_POW7	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7
-#define	PARA_B_DCH_MAX_POW8	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8
-#define	PARA_B_DCH_MAX_POW9	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9
-#define	PARA_B_DCH_MAX_POW10	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10
-#define	PARA_B_DCH_MAX_POW11	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11
-#define	PARA_B_DCH_MAX_POW12	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12
-#define	PARA_B_DCH_MAX_POW13	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13
-#define	PARA_B_DCH_MAX_POW14	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14
-#define	PARA_B_DCH_MAX_POW15	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15
-#define	PARA_B_DCH_MAX_POW16	0	//	B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16
-#define	PARA_B_UCH_MAX_POW1	0x0340	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1
-#define	PARA_B_UCH_MAX_POW2	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2
-#define	PARA_B_UCH_MAX_POW3	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3
-#define	PARA_B_UCH_MAX_POW4	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4
-#define	PARA_B_UCH_MAX_POW5	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5
-#define	PARA_B_UCH_MAX_POW6	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6
-#define	PARA_B_UCH_MAX_POW7	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7
-#define	PARA_B_UCH_MAX_POW8	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8
-#define	PARA_B_UCH_MAX_POW9	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9
-#define	PARA_B_UCH_MAX_POW10	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10
-#define	PARA_B_UCH_MAX_POW11	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11
-#define	PARA_B_UCH_MAX_POW12	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12
-#define	PARA_B_UCH_MAX_POW13	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13
-#define	PARA_B_UCH_MAX_POW14	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14
-#define	PARA_B_UCH_MAX_POW15	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15
-#define	PARA_B_UCH_MAX_POW16	0	//	B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16
-#define	PARA_B_DCH_POW1	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1
-#define	PARA_B_DCH_POW2	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2
-#define	PARA_B_DCH_POW3	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3
-#define	PARA_B_DCH_POW4	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4
-#define	PARA_B_DCH_POW5	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5
-#define	PARA_B_DCH_POW6	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6
-#define	PARA_B_DCH_POW7	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7
-#define	PARA_B_DCH_POW8	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8
-#define	PARA_B_DCH_POW9	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9
-#define	PARA_B_DCH_POW10	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10
-#define	PARA_B_DCH_POW11	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11
-#define	PARA_B_DCH_POW12	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12
-#define	PARA_B_DCH_POW13	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13
-#define	PARA_B_DCH_POW14	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14
-#define	PARA_B_DCH_POW15	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15
-#define	PARA_B_DCH_POW16	0	//	B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16
-#define	PARA_B_UCH_POW1	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1
-#define	PARA_B_UCH_POW2	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2
-#define	PARA_B_UCH_POW3	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3
-#define	PARA_B_UCH_POW4	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4
-#define	PARA_B_UCH_POW5	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5
-#define	PARA_B_UCH_POW6	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6
-#define	PARA_B_UCH_POW7	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7
-#define	PARA_B_UCH_POW8	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8
-#define	PARA_B_UCH_POW9	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9
-#define	PARA_B_UCH_POW10	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_B_UCH_POW11	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ11
-#define	PARA_B_UCH_POW12	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ12
-#define	PARA_B_UCH_POW13	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ13
-#define	PARA_B_UCH_POW14	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ14
-#define	PARA_B_UCH_POW15	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ15
-#define	PARA_B_UCH_POW16	0	//	B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ16
-#define	PARA_B_UDPX_IN_GAIN	0x08AB	//	B¶ÎÏÂÐÐÊäÈëË«¹¤Æ÷ÔöÒæ
-#define	PARA_B_UDPX_OUT_GAIN	0x08AA	//	B¶ÎÉÏÐÐÊä³öË«¹¤Æ÷ÔöÒæ
-#define	PARA_B_DL_TOTAL_POW	0x8390	//	B¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define	PARA_B_UL_TOTAL_POW	0x831e	//	B¶ÎÉÏÐÐÊä³ö×Ü¹¦ÂÊ
-#define	PARA_B_REC_DPX_IG		0		//		RECµÄA¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á							
-#define	PARA_B_REC_DPX_OG		0		//		RECµÄA¶ÎÊä³öË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á	
-#define	PARA_C_DL_CHANNEL1	0x0900	//	C¶ÎÏÂÐÐÐÅµÀºÅ1
-#define	PARA_C_DL_CHANNEL2	0x0901	//	C¶ÎÏÂÐÐÐÅµÀºÅ2
-#define	PARA_C_DL_CHANNEL3	0x0902	//	C¶ÎÏÂÐÐÐÅµÀºÅ3
-#define	PARA_C_DL_CHANNEL4	0x0903	//	C¶ÎÏÂÐÐÐÅµÀºÅ4
-#define	PARA_C_DL_CHANNEL5	0x0904	//	C¶ÎÏÂÐÐÐÅµÀºÅ5
-#define	PARA_C_DL_CHANNEL6	0x0905	//	C¶ÎÏÂÐÐÐÅµÀºÅ6
-#define	PARA_C_DL_CHANNEL7	0x0906	//	C¶ÎÏÂÐÐÐÅµÀºÅ7
-#define	PARA_C_DL_CHANNEL8	0x0907	//	C¶ÎÏÂÐÐÐÅµÀºÅ8
-#define	PARA_C_DL_CHANNEL9	0x0908	//	C¶ÎÏÂÐÐÐÅµÀºÅ9
-#define	PARA_C_DL_CHANNEL10	0x0909	//	C¶ÎÏÂÐÐÐÅµÀºÅ10
-#define	PARA_C_UL_CHANNEL1	0x0900	//	C¶ÎÉÏÐÐÐÅµÀºÅ1
-#define	PARA_C_UL_CHANNEL2	0x0901	//	C¶ÎÉÏÐÐÐÅµÀºÅ2
-#define	PARA_C_UL_CHANNEL3	0x0902	//	C¶ÎÉÏÐÐÐÅµÀºÅ3
-#define	PARA_C_UL_CHANNEL4	0x0903	//	C¶ÎÉÏÐÐÐÅµÀºÅ4
-#define	PARA_C_UL_CHANNEL5	0x0904	//	C¶ÎÉÏÐÐÐÅµÀºÅ5
-#define	PARA_C_UL_CHANNEL6	0x0905	//	C¶ÎÉÏÐÐÐÅµÀºÅ6
-#define	PARA_C_UL_CHANNEL7	0x0906	//	C¶ÎÉÏÐÐÐÅµÀºÅ7
-#define	PARA_C_UL_CHANNEL8	0x0907	//	C¶ÎÉÏÐÐÐÅµÀºÅ8
-#define	PARA_C_UL_CHANNEL9	0x0908	//	C¶ÎÉÏÐÐÐÅµÀºÅ9
-#define	PARA_C_UL_CHANNEL10	0x0909	//	C¶ÎÉÏÐÐÐÅµÀºÅ10
-#define	PARA_C_DCH_MAX_POW1	0x0348	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1
-#define	PARA_C_DCH_MAX_POW2	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2
-#define	PARA_C_DCH_MAX_POW3	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3
-#define	PARA_C_DCH_MAX_POW4	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4
-#define	PARA_C_DCH_MAX_POW5	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5
-#define	PARA_C_DCH_MAX_POW6	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6
-#define	PARA_C_DCH_MAX_POW7	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7
-#define	PARA_C_DCH_MAX_POW8	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8
-#define	PARA_C_DCH_MAX_POW9	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9
-#define	PARA_C_DCH_MAX_POW10	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10
-#define	PARA_C_DCH_MAX_POW11	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11
-#define	PARA_C_DCH_MAX_POW12	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12
-#define	PARA_C_DCH_MAX_POW13	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13
-#define	PARA_C_DCH_MAX_POW14	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14
-#define	PARA_C_DCH_MAX_POW15	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15
-#define	PARA_C_DCH_MAX_POW16	0	//	C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16
-#define	PARA_C_UCH_MAX_POW1	0x0340	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1
-#define	PARA_C_UCH_MAX_POW2	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2
-#define	PARA_C_UCH_MAX_POW3	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3
-#define	PARA_C_UCH_MAX_POW4	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4
-#define	PARA_C_UCH_MAX_POW5	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5
-#define	PARA_C_UCH_MAX_POW6	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6
-#define	PARA_C_UCH_MAX_POW7	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7
-#define	PARA_C_UCH_MAX_POW8	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8
-#define	PARA_C_UCH_MAX_POW9	0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9
-#define	PARA_C_UCH_MAX_POW10		0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10
-#define	PARA_C_UCH_MAX_POW11		0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11
-#define	PARA_C_UCH_MAX_POW12		0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12
-#define	PARA_C_UCH_MAX_POW13		0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13
-#define	PARA_C_UCH_MAX_POW14		0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14
-#define	PARA_C_UCH_MAX_POW15		0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15
-#define	PARA_C_UCH_MAX_POW16		0	//	C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16
-#define	PARA_C_DCH_POW1	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1
-#define	PARA_C_DCH_POW2	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2
-#define	PARA_C_DCH_POW3	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3
-#define	PARA_C_DCH_POW4	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4
-#define	PARA_C_DCH_POW5	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5
-#define	PARA_C_DCH_POW6	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6
-#define	PARA_C_DCH_POW7	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7
-#define	PARA_C_DCH_POW8	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8
-#define	PARA_C_DCH_POW9	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9
-#define	PARA_C_DCH_POW10	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10
-#define	PARA_C_DCH_POW11	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11
-#define	PARA_C_DCH_POW12	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12
-#define	PARA_C_DCH_POW13	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13
-#define	PARA_C_DCH_POW14	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14
-#define	PARA_C_DCH_POW15	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15
-#define	PARA_C_DCH_POW16	0	//	C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16
-#define	PARA_C_UCH_POW1	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1
-#define	PARA_C_UCH_POW2	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2
-#define	PARA_C_UCH_POW3	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3
-#define	PARA_C_UCH_POW4	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4
-#define	PARA_C_UCH_POW5	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5
-#define	PARA_C_UCH_POW6	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6
-#define	PARA_C_UCH_POW7	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7
-#define	PARA_C_UCH_POW8	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8
-#define	PARA_C_UCH_POW9	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9
-#define	PARA_C_UCH_POW10	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_C_UCH_POW11	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ11
-#define	PARA_C_UCH_POW12	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ12
-#define	PARA_C_UCH_POW13	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ13
-#define	PARA_C_UCH_POW14	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ14
-#define	PARA_C_UCH_POW15	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ15
-#define	PARA_C_UCH_POW16	0	//	C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ16
-#define	PARA_C_UDPX_IN_GAIN	0x08AB	//	C¶ÎÏÂÐÐÊäÈëË«¹¤Æ÷ÔöÒæ
-#define	PARA_C_UDPX_OUT_GAIN	0x08AA	//	C¶ÎÉÏÐÐÊä³öË«¹¤Æ÷ÔöÒæ
-#define	PARA_C_DL_TOTAL_POW	0x8390	//	C¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define	PARA_C_UL_TOTAL_POW	0x831e	//	C¶ÎÉÏÐÐÊä³ö×Ü¹¦ÂÊ
-#define	PARA_C_REC_DPX_IG		0		//		RECµÄA¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á							
-#define	PARA_C_REC_DPX_OG		0		//		RECµÄA¶ÎÊä³öË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á	
-#define	PARA_D_DL_CHANNEL1	0x0900	//	D¶ÎÏÂÐÐÐÅµÀºÅ1
-#define	PARA_D_DL_CHANNEL2	0x0901	//	D¶ÎÏÂÐÐÐÅµÀºÅ2
-#define	PARA_D_DL_CHANNEL3	0x0902	//	D¶ÎÏÂÐÐÐÅµÀºÅ3
-#define	PARA_D_DL_CHANNEL4	0x0903	//	D¶ÎÏÂÐÐÐÅµÀºÅ4
-#define	PARA_D_DL_CHANNEL5	0x0904	//	D¶ÎÏÂÐÐÐÅµÀºÅ5
-#define	PARA_D_DL_CHANNEL6	0x0905	//	D¶ÎÏÂÐÐÐÅµÀºÅ6
-#define	PARA_D_DL_CHANNEL7	0x0906	//	D¶ÎÏÂÐÐÐÅµÀºÅ7
-#define	PARA_D_DL_CHANNEL8	0x0907	//	D¶ÎÏÂÐÐÐÅµÀºÅ8
-#define	PARA_D_DL_CHANNEL9	0x0908	//	D¶ÎÏÂÐÐÐÅµÀºÅ9
-#define	PARA_D_DL_CHANNEL10	0x0909	//	D¶ÎÏÂÐÐÐÅµÀºÅ10
-#define	PARA_D_UL_CHANNEL1	0x0900	//	D¶ÎÉÏÐÐÐÅµÀºÅ1
-#define	PARA_D_UL_CHANNEL2	0x0901	//	D¶ÎÉÏÐÐÐÅµÀºÅ2
-#define	PARA_D_UL_CHANNEL3	0x0902	//	D¶ÎÉÏÐÐÐÅµÀºÅ3
-#define	PARA_D_UL_CHANNEL4	0x0903	//	D¶ÎÉÏÐÐÐÅµÀºÅ4
-#define	PARA_D_UL_CHANNEL5	0x0904	//	D¶ÎÉÏÐÐÐÅµÀºÅ5
-#define	PARA_D_UL_CHANNEL6	0x0905	//	D¶ÎÉÏÐÐÐÅµÀºÅ6
-#define	PARA_D_UL_CHANNEL7	0x0906	//	D¶ÎÉÏÐÐÐÅµÀºÅ7
-#define	PARA_D_UL_CHANNEL8	0x0907	//	D¶ÎÉÏÐÐÐÅµÀºÅ8
-#define	PARA_D_UL_CHANNEL9	0x0908	//	D¶ÎÉÏÐÐÐÅµÀºÅ9
-#define	PARA_D_UL_CHANNEL10	0x0909	//	D¶ÎÉÏÐÐÐÅµÀºÅ10
-#define	PARA_D_DCH_MAX_POW1	0x0348	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1
-#define	PARA_D_DCH_MAX_POW2	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2
-#define	PARA_D_DCH_MAX_POW3	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3
-#define	PARA_D_DCH_MAX_POW4	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4
-#define	PARA_D_DCH_MAX_POW5	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5
-#define	PARA_D_DCH_MAX_POW6	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6
-#define	PARA_D_DCH_MAX_POW7	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7
-#define	PARA_D_DCH_MAX_POW8	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8
-#define	PARA_D_DCH_MAX_POW9	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9
-#define	PARA_D_DCH_MAX_POW10	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10
-#define	PARA_D_DCH_MAX_POW11	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11
-#define	PARA_D_DCH_MAX_POW12	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12
-#define	PARA_D_DCH_MAX_POW13	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13
-#define	PARA_D_DCH_MAX_POW14	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14
-#define	PARA_D_DCH_MAX_POW15	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15
-#define	PARA_D_DCH_MAX_POW16	0	//	D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16
-#define	PARA_D_UCH_MAX_POW1	0x0340	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1
-#define	PARA_D_UCH_MAX_POW2	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2
-#define	PARA_D_UCH_MAX_POW3	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3
-#define	PARA_D_UCH_MAX_POW4	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4
-#define	PARA_D_UCH_MAX_POW5	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5
-#define	PARA_D_UCH_MAX_POW6	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6
-#define	PARA_D_UCH_MAX_POW7	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7
-#define	PARA_D_UCH_MAX_POW8	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8
-#define	PARA_D_UCH_MAX_POW9	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9
-#define	PARA_D_UCH_MAX_POW10	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10
-#define	PARA_D_UCH_MAX_POW11	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11
-#define	PARA_D_UCH_MAX_POW12	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12
-#define	PARA_D_UCH_MAX_POW13	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13
-#define	PARA_D_UCH_MAX_POW14	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14
-#define	PARA_D_UCH_MAX_POW15	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15
-#define	PARA_D_UCH_MAX_POW16	0	//	D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16
-#define	PARA_D_DCH_POW1	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1
-#define	PARA_D_DCH_POW2	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2
-#define	PARA_D_DCH_POW3	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3
-#define	PARA_D_DCH_POW4	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4
-#define	PARA_D_DCH_POW5	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5
-#define	PARA_D_DCH_POW6	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6
-#define	PARA_D_DCH_POW7	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7
-#define	PARA_D_DCH_POW8	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8
-#define	PARA_D_DCH_POW9	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9
-#define	PARA_D_DCH_POW10	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10
-#define	PARA_D_DCH_POW11	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11
-#define	PARA_D_DCH_POW12	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12
-#define	PARA_D_DCH_POW13	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13
-#define	PARA_D_DCH_POW14	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14
-#define	PARA_D_DCH_POW15	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15
-#define	PARA_D_DCH_POW16	0	//	D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16
-#define	PARA_D_UCH_POW1	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1
-#define	PARA_D_UCH_POW2	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2
-#define	PARA_D_UCH_POW3	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3
-#define	PARA_D_UCH_POW4	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4
-#define	PARA_D_UCH_POW5	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5
-#define	PARA_D_UCH_POW6	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6
-#define	PARA_D_UCH_POW7	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7
-#define	PARA_D_UCH_POW8	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8
-#define	PARA_D_UCH_POW9	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9
-#define	PARA_D_UCH_POW10	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_D_UCH_POW11	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_D_UCH_POW12	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_D_UCH_POW13	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_D_UCH_POW14	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_D_UCH_POW15	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_D_UCH_POW16	0	//	D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10
-#define	PARA_D_UDPX_IN_GAIN	0x08AB	//	D¶ÎÏÂÐÐÊäÈëË«¹¤Æ÷ÔöÒæ
-#define	PARA_D_UDPX_OUT_GAIN	0x08AA	//	D¶ÎÉÏÐÐÊä³öË«¹¤Æ÷ÔöÒæ
-#define	PARA_D_DL_TOTAL_POW	0x8390	//	D¶ÎÏÂÐÐÊäÈë×Ü¹¦ÂÊ
-#define	PARA_D_UL_TOTAL_POW	0x831e	//	D¶ÎÉÏÐÐÊä³ö×Ü¹¦ÂÊ
-#define	PARA_D_REC_DPX_IG		0		//		RECµÄD¶ÎÊäÈëË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á							
-#define	PARA_D_REC_DPX_OG		0		//		RECµÄD¶ÎÊä³öË«¹¤Æ÷ÔöÒæ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á	
-#define	PARA_REC_TO_RE_DELAY		0x889e	// RECµ½REµÄ¹âÏËÑÓÊ±
-#define	PARA_RE_RF_DELAY			0x889f	// REµÄÉäÆµÑÓÊ±
-#define	PARA_MAX_T14	0//0x889c	//	¹â¿Ú×î´óÑÓÊ±
-#define	PARA_DL_DELAY_OFFSET	0//0x0768	//	ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿
-#define	PARA_UL_DELAY_OFFSET	0x0769	//	ÉÏÐÐÑÓÊ±Æ«ÒÆÁ¿
-#define	PARA_PRI_SOFT_V	0xf018	//	³ÌÐò°æ±¾ºÅ£¨ÓÃASCIIÂë£©
-#define	PARA_PRI_HARD_V	0xf026	//	PCB°æ±¾ºÅ(ÓÃASCIIÂë)
-#define	PARA_TD_1ST_CP_TIME		0x08a7	// TDµÚ1×ª»»µãÊ±¼äns, ÓÐ·ûºÅÊý
-#define	PARA_TD_2ND_CP_TIME		0x08a8	// TDµÚ2×ª»»µãÊ±¼äns, ÓÐ·ûºÅÊý
-#define	PARA_TD_LNA_ON_TIME		0x08ae	// LNA¿ªÆô³ÙºóDN_PA¹Ø±ÕµÄ±£»¤Ê±¼äns
-#define	PARA_TD_LNA_OFF_TIME		0x08af	// LNA¹Ø±Õ³¬Ç°DN_PA¿ªÆôµÄ±£»¤Ê±¼äns
-#define	PARA_TD_SLOT1_UPOW	0x7501	// TDÊ±Ï¶1ÉÏÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT2_UPOW	0x7502	// TDÊ±Ï¶2ÉÏÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT3_UPOW	0x7503	// TDÊ±Ï¶3ÉÏÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT4_UPOW	0x7504	// TDÊ±Ï¶4ÉÏÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT5_UPOW	0x7505	// TDÊ±Ï¶5ÉÏÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT6_UPOW	0x7506	// TDÊ±Ï¶6ÉÏÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT7_UPOW	0x7507	// TDÊ±Ï¶7ÉÏÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT1_DPOW	0x7511	// TDÊ±Ï¶1ÏÂÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT2_DPOW	0x7512	// TDÊ±Ï¶2ÏÂÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT3_DPOW	0x7513	// TDÊ±Ï¶3ÏÂÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT4_DPOW	0x7514	// TDÊ±Ï¶4ÏÂÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT5_DPOW	0x7515	// TDÊ±Ï¶5ÏÂÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT6_DPOW	0x7516	// TDÊ±Ï¶6ÏÂÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_TD_SLOT7_DPOW	0x7517	// TDÊ±Ï¶7ÏÂÐÐ¼ì²â¹¦ÂÊ
-#define	PARA_FPS_S1 0 // ÆµµãËÑËØ: ·¶Î§1ÆðÊ¼Æµµã
-#define	PARA_FPS_E1 0 // ÆµµãËÑËØ: ·¶Î§1½áÊøÆµµã
-#define	PARA_FPS_S2 0 // ÆµµãËÑËØ: ·¶Î§2ÆðÊ¼Æµµã
-#define	PARA_FPS_E2 0 // ÆµµãËÑËØ: ·¶Î§2½áÊøÆµµã
-#define	PARA_FPS_BCCH_LK_SET	0x0923	// ÆµµãËÑË÷: ËøÆµÐÅµÀºÅ: ±ê×¼ÐÅµÀºÅ, 65535-ÍË³öËøÆµ
-#define	PARA_FPS_CID_LK_SET	0x0926	// ÆµµãËÑË÷: Ð¡ÇøÊ¶±ðÂë²Î¿¼Öµ, 0-ÍË³öÐ¡ÇøËø¶¨¹¦ÄÜ
-#define	PARA_FPS_BCCH_FC_M	0x8940	// ÆµµãËÑË÷: Ö÷Ð¡ÇøBCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-#define	PARA_FPS_CA_FC_0	0x8941	// ÆµµãËÑË÷: CAÔØ²¨0ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_1	0x8942	// ÆµµãËÑË÷: CAÔØ²¨1ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_2	0x8943	// ÆµµãËÑË÷: CAÔØ²¨2ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_3	0x8944	// ÆµµãËÑË÷: CAÔØ²¨3ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_4	0x8945	// ÆµµãËÑË÷: CAÔØ²¨4ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_5	0x8946	// ÆµµãËÑË÷: CAÔØ²¨5ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_6	0x8947	// ÆµµãËÑË÷: CAÔØ²¨6ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_7	0x8948	// ÆµµãËÑË÷: CAÔØ²¨7ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_8	0x8949	// ÆµµãËÑË÷: CAÔØ²¨8ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_9	0x894A	// ÆµµãËÑË÷: CAÔØ²¨9ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_10	0x894B	// ÆµµãËÑË÷: CAÔØ²¨10ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_11	0x894C	// ÆµµãËÑË÷: CAÔØ²¨11ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_12	0x894D	// ÆµµãËÑË÷: CAÔØ²¨12ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_13	0x894E	// ÆµµãËÑË÷: CAÔØ²¨13ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_14	0x894F	// ÆµµãËÑË÷: CAÔØ²¨14ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_CA_FC_15	0x8950	// ÆµµãËÑË÷: CAÔØ²¨15ÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞCA
-#define	PARA_FPS_BCCH_FC_1	0x8951	// ÆµµãËÑË÷: ÁÚÐ¡Çø1 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-#define	PARA_FPS_BCCH_FC_2	0x8952	// ÆµµãËÑË÷: ÁÚÐ¡Çø2 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-#define	PARA_FPS_BCCH_FC_3	0x8953	// ÆµµãËÑË÷: ÁÚÐ¡Çø3 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-#define	PARA_FPS_BCCH_FC_4	0x8954	// ÆµµãËÑË÷: ÁÚÐ¡Çø4 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-#define	PARA_FPS_BCCH_FC_5	0x8955	// ÆµµãËÑË÷: ÁÚÐ¡Çø5 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-#define	PARA_FPS_BCCH_FC_6	0x8956	// ÆµµãËÑË÷: ÁÚÐ¡Çø6 BCCHÐÅµÀºÅ, ±ê×¼ÐÅµÀºÅ, 65535-ÎÞBCCH
-#define	PARA_FPS_AREA_ID	0x8958	// ÆµµãËÑË÷: Î»ÖÃÇø±àÂë
-#define	PARA_FPS_CID		0x895A	// ÆµµãËÑË÷: Ð¡ÇøÊ¶±ðÂëÊµÊ±Öµ
-#define	PARA_FPS_CID_1 0 // ÆµµãËÑË÷: ÁÚÐ¡Çø1 CIDÐ¡ÇøÊ¶±ðÂë
-#define	PARA_FPS_CID_2 0 // ÆµµãËÑË÷: ÁÚÐ¡Çø2 CIDÐ¡ÇøÊ¶±ðÂë
-#define	PARA_FPS_CID_3 0 // ÆµµãËÑË÷: ÁÚÐ¡Çø3 CIDÐ¡ÇøÊ¶±ðÂë
-#define	PARA_FPS_CID_4 0 // ÆµµãËÑË÷: ÁÚÐ¡Çø4 CIDÐ¡ÇøÊ¶±ðÂë
-#define	PARA_FPS_CID_5 0 // ÆµµãËÑË÷: ÁÚÐ¡Çø5 CIDÐ¡ÇøÊ¶±ðÂë
-#define	PARA_FPS_CID_6 0 // ÆµµãËÑË÷: ÁÚÐ¡Çø6 CIDÐ¡ÇøÊ¶±ðÂë
-#define	PARA_A_EXPA_IDRAIN_SET	0	// Î¢¹¦·Å: Â©¼«µçÁ÷ÉèÖÃ,mA
-#define	PARA_TD_SLOT1_DPOW_OVER_THR				0x0a60       //tdÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊÃÅÏÞ
-#define	PARA_TD_SLOT1_DPOW_OWE_THR				0x0a61      //tdÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊÃÅÏÞ	
-#define PARA_A_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ÏÂÐÐÊäÈë¹ý¹¦ÂÊÃÅÏÞ
-#define PARA_A_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ÏÂÐÐÊäÈëÇ·¹¦ÂÊÃÅÏÞ
-#define PARA_B_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ÏÂÐÐÊäÈë¹ý¹¦ÂÊÃÅÏÞ
-#define PARA_B_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ÏÂÐÐÊäÈëÇ·¹¦ÂÊÃÅÏÞ
-#define PARA_C_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ÏÂÐÐÊäÈë¹ý¹¦ÂÊÃÅÏÞ
-#define PARA_C_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ÏÂÐÐÊäÈëÇ·¹¦ÂÊÃÅÏÞ
-#define PARA_D_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ÏÂÐÐÊäÈë¹ý¹¦ÂÊÃÅÏÞ
-#define PARA_D_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ÏÂÐÐÊäÈëÇ·¹¦ÂÊÃÅÏÞ
-#define PARA_REE_A_DL_OUT_TOTAL_POW_DETECT     	0x8004      //A¶ÎREÏÂÐÐÊä³ö×Ü¹¦ÂÊ//×¢REC\REÊ¹ÓÃ MADD_A_DL_TOTAL_POW
-#define PARA_A_RE_LOCAL_ST_ALARM     			0x8a33      	//¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬
-#define PARA_REE_B_DL_OUT_TOTAL_POW_DETECT     	0x8004      //B¶ÎREÏÂÐÐÊä³ö×Ü¹¦ÂÊ //×¢REC\REÊ¹ÓÃ MADD_B_DL_TOTAL_POW
-#define PARA_B_RE_LOCAL_ST_ALARM     			0x8a33      	//¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬
-#define PARA_REE_C_DL_OUT_TOTAL_POW_DETECT     	0x8004      //A¶ÎREÏÂÐÐÊä³ö×Ü¹¦ÂÊ//×¢REC\REÊ¹ÓÃ MADD_C_DL_TOTAL_POW
-#define PARA_C_RE_LOCAL_ST_ALARM     			0x8a33      	//¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬
-#define PARA_REE_D_DL_OUT_TOTAL_POW_DETECT     	0x8004      //	D¶ÎREÏÂÐÐÊä³ö×Ü¹¦ÂÊ //×¢REC\REÊ¹ÓÃ MADD_D_DL_TOTAL_POW
-#define PARA_D_RE_LOCAL_ST_ALARM     			0x8a33      	//	D¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬
-#define PARA_C_TD_1ST_CP_TIME	0x08a7	//		//465		TDµÚ1×ª»»µãÊ±¼ä,ns,		
-#define PARA_C_TD_2ND_CP_TIME	0x08a8	//		//466		TDµÚ2×ª»»µãÊ±¼ä,ns,		
-#define PARA_C_TD_LNA_ON_TIME	0x08ae	//		//467		LNA¿ªÆô³ÙºóDN_PA¹Ø±ÕµÄ±£»¤Ê±¼äns		
-#define PARA_C_TD_LNA_OFF_TIME	0x08af	//		//468		LNA¹Ø±Õ³¬Ç°DN_PA¿ªÆôµÄ±£»¤Ê±¼äns		
+	// æ™®é€šå‚æ•°
+// å‚æ•°åœ°å€å®šä¹‰==================================================== 2b
+#define	PARA_A_DL_CHANNEL1	0x0900	//	Aæ®µä¸‹è¡Œä¿¡é“å·1
+#define	PARA_A_DL_CHANNEL2	0x0901	//	Aæ®µä¸‹è¡Œä¿¡é“å·2
+#define	PARA_A_DL_CHANNEL3	0x0902	//	Aæ®µä¸‹è¡Œä¿¡é“å·3
+#define	PARA_A_DL_CHANNEL4	0x0903	//	Aæ®µä¸‹è¡Œä¿¡é“å·4
+#define	PARA_A_DL_CHANNEL5	0x0904	//	Aæ®µä¸‹è¡Œä¿¡é“å·5
+#define	PARA_A_DL_CHANNEL6	0x0905	//	Aæ®µä¸‹è¡Œä¿¡é“å·6
+#define	PARA_A_DL_CHANNEL7	0x0906	//	Aæ®µä¸‹è¡Œä¿¡é“å·7
+#define	PARA_A_DL_CHANNEL8	0x0907	//	Aæ®µä¸‹è¡Œä¿¡é“å·8
+#define	PARA_A_DL_CHANNEL9	0x0908	//	Aæ®µä¸‹è¡Œä¿¡é“å·9
+#define	PARA_A_DL_CHANNEL10	0x0909	//	Aæ®µä¸‹è¡Œä¿¡é“å·10
+#define	PARA_A_DL_CHANNEL11	0x090A	//	Aæ®µä¸‹è¡Œä¿¡é“å·11
+#define	PARA_A_DL_CHANNEL12	0x090B	//	Aæ®µä¸‹è¡Œä¿¡é“å·12
+#define	PARA_A_DL_CHANNEL13	0x090C	//	Aæ®µä¸‹è¡Œä¿¡é“å·13
+#define	PARA_A_DL_CHANNEL14	0x090D	//	Aæ®µä¸‹è¡Œä¿¡é“å·14
+#define	PARA_A_DL_CHANNEL15	0x090E	//	Aæ®µä¸‹è¡Œä¿¡é“å·15
+#define	PARA_A_DL_CHANNEL16	0x090F	//	Aæ®µä¸‹è¡Œä¿¡é“å·16
+#define	PARA_A_UL_CHANNEL1	0x0900	//	Aæ®µä¸Šè¡Œä¿¡é“å·1
+#define	PARA_A_UL_CHANNEL2	0x0901	//	Aæ®µä¸Šè¡Œä¿¡é“å·2
+#define	PARA_A_UL_CHANNEL3	0x0902	//	Aæ®µä¸Šè¡Œä¿¡é“å·3
+#define	PARA_A_UL_CHANNEL4	0x0903	//	Aæ®µä¸Šè¡Œä¿¡é“å·4
+#define	PARA_A_UL_CHANNEL5	0x0904	//	Aæ®µä¸Šè¡Œä¿¡é“å·5
+#define	PARA_A_UL_CHANNEL6	0x0905	//	Aæ®µä¸Šè¡Œä¿¡é“å·6
+#define	PARA_A_UL_CHANNEL7	0x0906	//	Aæ®µä¸Šè¡Œä¿¡é“å·7
+#define	PARA_A_UL_CHANNEL8	0x0907	//	Aæ®µä¸Šè¡Œä¿¡é“å·8
+#define	PARA_A_UL_CHANNEL9	0x0908	//	Aæ®µä¸Šè¡Œä¿¡é“å·9
+#define	PARA_A_UL_CHANNEL10	0x0909	//	Aæ®µä¸Šè¡Œä¿¡é“å·10
+#define	PARA_A_UL_CHANNEL11	0x090A	//	Aæ®µä¸Šè¡Œä¿¡é“å·11
+#define	PARA_A_UL_CHANNEL12	0x090B	//	Aæ®µä¸Šè¡Œä¿¡é“å·12
+#define	PARA_A_UL_CHANNEL13	0x090C	//	Aæ®µä¸Šè¡Œä¿¡é“å·13
+#define	PARA_A_UL_CHANNEL14	0x090D	//	Aæ®µä¸Šè¡Œä¿¡é“å·14
+#define	PARA_A_UL_CHANNEL15	0x090E	//	Aæ®µä¸Šè¡Œä¿¡é“å·15
+#define	PARA_A_UL_CHANNEL16	0x090F	//	Aæ®µä¸Šè¡Œä¿¡é“å·16
+#define	PARA_A_DCH_MAX_POW1	0x0348	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1
+#define	PARA_A_DCH_MAX_POW2	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2
+#define	PARA_A_DCH_MAX_POW3	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3
+#define	PARA_A_DCH_MAX_POW4	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4
+#define	PARA_A_DCH_MAX_POW5	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5
+#define	PARA_A_DCH_MAX_POW6	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6
+#define	PARA_A_DCH_MAX_POW7	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7
+#define	PARA_A_DCH_MAX_POW8	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8
+#define	PARA_A_DCH_MAX_POW9	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9
+#define	PARA_A_DCH_MAX_POW10	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10
+#define	PARA_A_DCH_MAX_POW11	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11
+#define	PARA_A_DCH_MAX_POW12	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12
+#define	PARA_A_DCH_MAX_POW13	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13
+#define	PARA_A_DCH_MAX_POW14	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14
+#define	PARA_A_DCH_MAX_POW15	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15
+#define	PARA_A_DCH_MAX_POW16	0	//	Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16
+#define	PARA_A_UCH_MAX_POW1	0x0340	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1
+#define	PARA_A_UCH_MAX_POW2	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2
+#define	PARA_A_UCH_MAX_POW3	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3
+#define	PARA_A_UCH_MAX_POW4	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4
+#define	PARA_A_UCH_MAX_POW5	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5
+#define	PARA_A_UCH_MAX_POW6	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6
+#define	PARA_A_UCH_MAX_POW7	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7
+#define	PARA_A_UCH_MAX_POW8	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8
+#define	PARA_A_UCH_MAX_POW9	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9
+#define	PARA_A_UCH_MAX_POW10	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10
+#define	PARA_A_UCH_MAX_POW11	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11
+#define	PARA_A_UCH_MAX_POW12	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12
+#define	PARA_A_UCH_MAX_POW13	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13
+#define	PARA_A_UCH_MAX_POW14	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14
+#define	PARA_A_UCH_MAX_POW15	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15
+#define	PARA_A_UCH_MAX_POW16	0	//	Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16
+#define	PARA_A_DCH_POW1	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1
+#define	PARA_A_DCH_POW2	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2
+#define	PARA_A_DCH_POW3	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3
+#define	PARA_A_DCH_POW4	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4
+#define	PARA_A_DCH_POW5	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5
+#define	PARA_A_DCH_POW6	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6
+#define	PARA_A_DCH_POW7	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7
+#define	PARA_A_DCH_POW8	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8
+#define	PARA_A_DCH_POW9	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9
+#define	PARA_A_DCH_POW10	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10
+#define	PARA_A_DCH_POW11	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11
+#define	PARA_A_DCH_POW12	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12
+#define	PARA_A_DCH_POW13	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13
+#define	PARA_A_DCH_POW14	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14
+#define	PARA_A_DCH_POW15	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15
+#define	PARA_A_DCH_POW16	0	//	Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16
+#define	PARA_A_UCH_POW1	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1
+#define	PARA_A_UCH_POW2	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2
+#define	PARA_A_UCH_POW3	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3
+#define	PARA_A_UCH_POW4	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4
+#define	PARA_A_UCH_POW5	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5
+#define	PARA_A_UCH_POW6	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6
+#define	PARA_A_UCH_POW7	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7
+#define	PARA_A_UCH_POW8	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8
+#define	PARA_A_UCH_POW9	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9
+#define	PARA_A_UCH_POW10	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_A_UCH_POW11	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡11
+#define	PARA_A_UCH_POW12	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡12
+#define	PARA_A_UCH_POW13	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡13
+#define	PARA_A_UCH_POW14	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡14
+#define	PARA_A_UCH_POW15	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡15
+#define	PARA_A_UCH_POW16	0	//	Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡16
+#define	PARA_A_UDPX_IN_GAIN		0x08AB	//	Aæ®µä¸‹è¡Œè¾“å…¥åŒå·¥å™¨å¢žç›Š
+#define	PARA_A_UDPX_OUT_GAIN	0x08AA	//	Aæ®µä¸Šè¡Œè¾“å‡ºåŒå·¥å™¨å¢žç›Š
+#define	PARA_A_DL_TOTAL_POW	0x8390	//	Aæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define	PARA_A_UL_TOTAL_POW	0x831e	//	Aæ®µä¸Šè¡Œè¾“å‡ºæ€»åŠŸçŽ‡
+#define	PARA_A_REC_DPX_IG		0		//		RECçš„Aæ®µè¾“å…¥åŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»							
+#define	PARA_A_REC_DPX_OG		0		//		RECçš„Aæ®µè¾“å‡ºåŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»	
+#define	PARA_B_DL_CHANNEL1	0x0900	//	Bæ®µä¸‹è¡Œä¿¡é“å·1
+#define	PARA_B_DL_CHANNEL2	0x0901	//	Bæ®µä¸‹è¡Œä¿¡é“å·2
+#define	PARA_B_DL_CHANNEL3	0x0902	//	Bæ®µä¸‹è¡Œä¿¡é“å·3
+#define	PARA_B_DL_CHANNEL4	0x0903	//	Bæ®µä¸‹è¡Œä¿¡é“å·4
+#define	PARA_B_DL_CHANNEL5	0x0904	//	Bæ®µä¸‹è¡Œä¿¡é“å·5
+#define	PARA_B_DL_CHANNEL6	0x0905	//	Bæ®µä¸‹è¡Œä¿¡é“å·6
+#define	PARA_B_DL_CHANNEL7	0x0906	//	Bæ®µä¸‹è¡Œä¿¡é“å·7
+#define	PARA_B_DL_CHANNEL8	0x0907	//	Bæ®µä¸‹è¡Œä¿¡é“å·8
+#define	PARA_B_DL_CHANNEL9	0x0908	//	Bæ®µä¸‹è¡Œä¿¡é“å·9
+#define	PARA_B_DL_CHANNEL10	0x0909	//	Bæ®µä¸‹è¡Œä¿¡é“å·10
+#define	PARA_B_DL_CHANNEL11	0x090A	//	Bæ®µä¸‹è¡Œä¿¡é“å·11
+#define	PARA_B_DL_CHANNEL12	0x090B	//	Bæ®µä¸‹è¡Œä¿¡é“å·12
+#define	PARA_B_DL_CHANNEL13	0x090C	//	Bæ®µä¸‹è¡Œä¿¡é“å·13
+#define	PARA_B_DL_CHANNEL14	0x090D	//	Bæ®µä¸‹è¡Œä¿¡é“å·14
+#define	PARA_B_DL_CHANNEL15	0x090E	//	Bæ®µä¸‹è¡Œä¿¡é“å·15
+#define	PARA_B_DL_CHANNEL16	0x090F	//	Bæ®µä¸‹è¡Œä¿¡é“å·16
+#define	PARA_B_UL_CHANNEL1	0x0900	//	Bæ®µä¸Šè¡Œä¿¡é“å·1
+#define	PARA_B_UL_CHANNEL2	0x0901	//	Bæ®µä¸Šè¡Œä¿¡é“å·2
+#define	PARA_B_UL_CHANNEL3	0x0902	//	Bæ®µä¸Šè¡Œä¿¡é“å·3
+#define	PARA_B_UL_CHANNEL4	0x0903	//	Bæ®µä¸Šè¡Œä¿¡é“å·4
+#define	PARA_B_UL_CHANNEL5	0x0904	//	Bæ®µä¸Šè¡Œä¿¡é“å·5
+#define	PARA_B_UL_CHANNEL6	0x0905	//	Bæ®µä¸Šè¡Œä¿¡é“å·6
+#define	PARA_B_UL_CHANNEL7	0x0906	//	Bæ®µä¸Šè¡Œä¿¡é“å·7
+#define	PARA_B_UL_CHANNEL8	0x0907	//	Bæ®µä¸Šè¡Œä¿¡é“å·8
+#define	PARA_B_UL_CHANNEL9	0x0908	//	Bæ®µä¸Šè¡Œä¿¡é“å·9
+#define	PARA_B_UL_CHANNEL10	0x0909	//	Bæ®µä¸Šè¡Œä¿¡é“å·10
+#define	PARA_B_UL_CHANNEL11	0x090A	//	Bæ®µä¸Šè¡Œä¿¡é“å·11
+#define	PARA_B_UL_CHANNEL12	0x090B	//	Bæ®µä¸Šè¡Œä¿¡é“å·12
+#define	PARA_B_UL_CHANNEL13	0x090C	//	Bæ®µä¸Šè¡Œä¿¡é“å·13
+#define	PARA_B_UL_CHANNEL14	0x090D	//	Bæ®µä¸Šè¡Œä¿¡é“å·14
+#define	PARA_B_UL_CHANNEL15	0x090E	//	Bæ®µä¸Šè¡Œä¿¡é“å·15
+#define	PARA_B_UL_CHANNEL16	0x090F	//	Bæ®µä¸Šè¡Œä¿¡é“å·16
+#define	PARA_B_DCH_MAX_POW1	0x0348	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1
+#define	PARA_B_DCH_MAX_POW2	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2
+#define	PARA_B_DCH_MAX_POW3	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3
+#define	PARA_B_DCH_MAX_POW4	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4
+#define	PARA_B_DCH_MAX_POW5	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5
+#define	PARA_B_DCH_MAX_POW6	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6
+#define	PARA_B_DCH_MAX_POW7	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7
+#define	PARA_B_DCH_MAX_POW8	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8
+#define	PARA_B_DCH_MAX_POW9	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9
+#define	PARA_B_DCH_MAX_POW10	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10
+#define	PARA_B_DCH_MAX_POW11	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11
+#define	PARA_B_DCH_MAX_POW12	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12
+#define	PARA_B_DCH_MAX_POW13	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13
+#define	PARA_B_DCH_MAX_POW14	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14
+#define	PARA_B_DCH_MAX_POW15	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15
+#define	PARA_B_DCH_MAX_POW16	0	//	Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16
+#define	PARA_B_UCH_MAX_POW1	0x0340	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1
+#define	PARA_B_UCH_MAX_POW2	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2
+#define	PARA_B_UCH_MAX_POW3	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3
+#define	PARA_B_UCH_MAX_POW4	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4
+#define	PARA_B_UCH_MAX_POW5	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5
+#define	PARA_B_UCH_MAX_POW6	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6
+#define	PARA_B_UCH_MAX_POW7	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7
+#define	PARA_B_UCH_MAX_POW8	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8
+#define	PARA_B_UCH_MAX_POW9	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9
+#define	PARA_B_UCH_MAX_POW10	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10
+#define	PARA_B_UCH_MAX_POW11	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11
+#define	PARA_B_UCH_MAX_POW12	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12
+#define	PARA_B_UCH_MAX_POW13	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13
+#define	PARA_B_UCH_MAX_POW14	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14
+#define	PARA_B_UCH_MAX_POW15	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15
+#define	PARA_B_UCH_MAX_POW16	0	//	Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16
+#define	PARA_B_DCH_POW1	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1
+#define	PARA_B_DCH_POW2	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2
+#define	PARA_B_DCH_POW3	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3
+#define	PARA_B_DCH_POW4	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4
+#define	PARA_B_DCH_POW5	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5
+#define	PARA_B_DCH_POW6	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6
+#define	PARA_B_DCH_POW7	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7
+#define	PARA_B_DCH_POW8	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8
+#define	PARA_B_DCH_POW9	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9
+#define	PARA_B_DCH_POW10	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10
+#define	PARA_B_DCH_POW11	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11
+#define	PARA_B_DCH_POW12	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12
+#define	PARA_B_DCH_POW13	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13
+#define	PARA_B_DCH_POW14	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14
+#define	PARA_B_DCH_POW15	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15
+#define	PARA_B_DCH_POW16	0	//	Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16
+#define	PARA_B_UCH_POW1	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1
+#define	PARA_B_UCH_POW2	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2
+#define	PARA_B_UCH_POW3	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3
+#define	PARA_B_UCH_POW4	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4
+#define	PARA_B_UCH_POW5	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5
+#define	PARA_B_UCH_POW6	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6
+#define	PARA_B_UCH_POW7	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7
+#define	PARA_B_UCH_POW8	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8
+#define	PARA_B_UCH_POW9	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9
+#define	PARA_B_UCH_POW10	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_B_UCH_POW11	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡11
+#define	PARA_B_UCH_POW12	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡12
+#define	PARA_B_UCH_POW13	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡13
+#define	PARA_B_UCH_POW14	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡14
+#define	PARA_B_UCH_POW15	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡15
+#define	PARA_B_UCH_POW16	0	//	Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡16
+#define	PARA_B_UDPX_IN_GAIN	0x08AB	//	Bæ®µä¸‹è¡Œè¾“å…¥åŒå·¥å™¨å¢žç›Š
+#define	PARA_B_UDPX_OUT_GAIN	0x08AA	//	Bæ®µä¸Šè¡Œè¾“å‡ºåŒå·¥å™¨å¢žç›Š
+#define	PARA_B_DL_TOTAL_POW	0x8390	//	Bæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define	PARA_B_UL_TOTAL_POW	0x831e	//	Bæ®µä¸Šè¡Œè¾“å‡ºæ€»åŠŸçŽ‡
+#define	PARA_B_REC_DPX_IG		0		//		RECçš„Aæ®µè¾“å…¥åŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»							
+#define	PARA_B_REC_DPX_OG		0		//		RECçš„Aæ®µè¾“å‡ºåŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»	
+#define	PARA_C_DL_CHANNEL1	0x0900	//	Cæ®µä¸‹è¡Œä¿¡é“å·1
+#define	PARA_C_DL_CHANNEL2	0x0901	//	Cæ®µä¸‹è¡Œä¿¡é“å·2
+#define	PARA_C_DL_CHANNEL3	0x0902	//	Cæ®µä¸‹è¡Œä¿¡é“å·3
+#define	PARA_C_DL_CHANNEL4	0x0903	//	Cæ®µä¸‹è¡Œä¿¡é“å·4
+#define	PARA_C_DL_CHANNEL5	0x0904	//	Cæ®µä¸‹è¡Œä¿¡é“å·5
+#define	PARA_C_DL_CHANNEL6	0x0905	//	Cæ®µä¸‹è¡Œä¿¡é“å·6
+#define	PARA_C_DL_CHANNEL7	0x0906	//	Cæ®µä¸‹è¡Œä¿¡é“å·7
+#define	PARA_C_DL_CHANNEL8	0x0907	//	Cæ®µä¸‹è¡Œä¿¡é“å·8
+#define	PARA_C_DL_CHANNEL9	0x0908	//	Cæ®µä¸‹è¡Œä¿¡é“å·9
+#define	PARA_C_DL_CHANNEL10	0x0909	//	Cæ®µä¸‹è¡Œä¿¡é“å·10
+#define	PARA_C_UL_CHANNEL1	0x0900	//	Cæ®µä¸Šè¡Œä¿¡é“å·1
+#define	PARA_C_UL_CHANNEL2	0x0901	//	Cæ®µä¸Šè¡Œä¿¡é“å·2
+#define	PARA_C_UL_CHANNEL3	0x0902	//	Cæ®µä¸Šè¡Œä¿¡é“å·3
+#define	PARA_C_UL_CHANNEL4	0x0903	//	Cæ®µä¸Šè¡Œä¿¡é“å·4
+#define	PARA_C_UL_CHANNEL5	0x0904	//	Cæ®µä¸Šè¡Œä¿¡é“å·5
+#define	PARA_C_UL_CHANNEL6	0x0905	//	Cæ®µä¸Šè¡Œä¿¡é“å·6
+#define	PARA_C_UL_CHANNEL7	0x0906	//	Cæ®µä¸Šè¡Œä¿¡é“å·7
+#define	PARA_C_UL_CHANNEL8	0x0907	//	Cæ®µä¸Šè¡Œä¿¡é“å·8
+#define	PARA_C_UL_CHANNEL9	0x0908	//	Cæ®µä¸Šè¡Œä¿¡é“å·9
+#define	PARA_C_UL_CHANNEL10	0x0909	//	Cæ®µä¸Šè¡Œä¿¡é“å·10
+#define	PARA_C_DCH_MAX_POW1	0x0348	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1
+#define	PARA_C_DCH_MAX_POW2	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2
+#define	PARA_C_DCH_MAX_POW3	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3
+#define	PARA_C_DCH_MAX_POW4	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4
+#define	PARA_C_DCH_MAX_POW5	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5
+#define	PARA_C_DCH_MAX_POW6	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6
+#define	PARA_C_DCH_MAX_POW7	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7
+#define	PARA_C_DCH_MAX_POW8	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8
+#define	PARA_C_DCH_MAX_POW9	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9
+#define	PARA_C_DCH_MAX_POW10	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10
+#define	PARA_C_DCH_MAX_POW11	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11
+#define	PARA_C_DCH_MAX_POW12	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12
+#define	PARA_C_DCH_MAX_POW13	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13
+#define	PARA_C_DCH_MAX_POW14	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14
+#define	PARA_C_DCH_MAX_POW15	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15
+#define	PARA_C_DCH_MAX_POW16	0	//	Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16
+#define	PARA_C_UCH_MAX_POW1	0x0340	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1
+#define	PARA_C_UCH_MAX_POW2	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2
+#define	PARA_C_UCH_MAX_POW3	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3
+#define	PARA_C_UCH_MAX_POW4	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4
+#define	PARA_C_UCH_MAX_POW5	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5
+#define	PARA_C_UCH_MAX_POW6	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6
+#define	PARA_C_UCH_MAX_POW7	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7
+#define	PARA_C_UCH_MAX_POW8	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8
+#define	PARA_C_UCH_MAX_POW9	0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9
+#define	PARA_C_UCH_MAX_POW10		0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10
+#define	PARA_C_UCH_MAX_POW11		0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11
+#define	PARA_C_UCH_MAX_POW12		0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12
+#define	PARA_C_UCH_MAX_POW13		0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13
+#define	PARA_C_UCH_MAX_POW14		0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14
+#define	PARA_C_UCH_MAX_POW15		0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15
+#define	PARA_C_UCH_MAX_POW16		0	//	Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16
+#define	PARA_C_DCH_POW1	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1
+#define	PARA_C_DCH_POW2	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2
+#define	PARA_C_DCH_POW3	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3
+#define	PARA_C_DCH_POW4	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4
+#define	PARA_C_DCH_POW5	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5
+#define	PARA_C_DCH_POW6	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6
+#define	PARA_C_DCH_POW7	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7
+#define	PARA_C_DCH_POW8	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8
+#define	PARA_C_DCH_POW9	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9
+#define	PARA_C_DCH_POW10	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10
+#define	PARA_C_DCH_POW11	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11
+#define	PARA_C_DCH_POW12	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12
+#define	PARA_C_DCH_POW13	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13
+#define	PARA_C_DCH_POW14	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14
+#define	PARA_C_DCH_POW15	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15
+#define	PARA_C_DCH_POW16	0	//	Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16
+#define	PARA_C_UCH_POW1	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1
+#define	PARA_C_UCH_POW2	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2
+#define	PARA_C_UCH_POW3	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3
+#define	PARA_C_UCH_POW4	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4
+#define	PARA_C_UCH_POW5	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5
+#define	PARA_C_UCH_POW6	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6
+#define	PARA_C_UCH_POW7	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7
+#define	PARA_C_UCH_POW8	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8
+#define	PARA_C_UCH_POW9	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9
+#define	PARA_C_UCH_POW10	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_C_UCH_POW11	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡11
+#define	PARA_C_UCH_POW12	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡12
+#define	PARA_C_UCH_POW13	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡13
+#define	PARA_C_UCH_POW14	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡14
+#define	PARA_C_UCH_POW15	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡15
+#define	PARA_C_UCH_POW16	0	//	Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡16
+#define	PARA_C_UDPX_IN_GAIN	0x08AB	//	Cæ®µä¸‹è¡Œè¾“å…¥åŒå·¥å™¨å¢žç›Š
+#define	PARA_C_UDPX_OUT_GAIN	0x08AA	//	Cæ®µä¸Šè¡Œè¾“å‡ºåŒå·¥å™¨å¢žç›Š
+#define	PARA_C_DL_TOTAL_POW	0x8390	//	Cæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define	PARA_C_UL_TOTAL_POW	0x831e	//	Cæ®µä¸Šè¡Œè¾“å‡ºæ€»åŠŸçŽ‡
+#define	PARA_C_REC_DPX_IG		0		//		RECçš„Aæ®µè¾“å…¥åŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»							
+#define	PARA_C_REC_DPX_OG		0		//		RECçš„Aæ®µè¾“å‡ºåŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»	
+#define	PARA_D_DL_CHANNEL1	0x0900	//	Dæ®µä¸‹è¡Œä¿¡é“å·1
+#define	PARA_D_DL_CHANNEL2	0x0901	//	Dæ®µä¸‹è¡Œä¿¡é“å·2
+#define	PARA_D_DL_CHANNEL3	0x0902	//	Dæ®µä¸‹è¡Œä¿¡é“å·3
+#define	PARA_D_DL_CHANNEL4	0x0903	//	Dæ®µä¸‹è¡Œä¿¡é“å·4
+#define	PARA_D_DL_CHANNEL5	0x0904	//	Dæ®µä¸‹è¡Œä¿¡é“å·5
+#define	PARA_D_DL_CHANNEL6	0x0905	//	Dæ®µä¸‹è¡Œä¿¡é“å·6
+#define	PARA_D_DL_CHANNEL7	0x0906	//	Dæ®µä¸‹è¡Œä¿¡é“å·7
+#define	PARA_D_DL_CHANNEL8	0x0907	//	Dæ®µä¸‹è¡Œä¿¡é“å·8
+#define	PARA_D_DL_CHANNEL9	0x0908	//	Dæ®µä¸‹è¡Œä¿¡é“å·9
+#define	PARA_D_DL_CHANNEL10	0x0909	//	Dæ®µä¸‹è¡Œä¿¡é“å·10
+#define	PARA_D_UL_CHANNEL1	0x0900	//	Dæ®µä¸Šè¡Œä¿¡é“å·1
+#define	PARA_D_UL_CHANNEL2	0x0901	//	Dæ®µä¸Šè¡Œä¿¡é“å·2
+#define	PARA_D_UL_CHANNEL3	0x0902	//	Dæ®µä¸Šè¡Œä¿¡é“å·3
+#define	PARA_D_UL_CHANNEL4	0x0903	//	Dæ®µä¸Šè¡Œä¿¡é“å·4
+#define	PARA_D_UL_CHANNEL5	0x0904	//	Dæ®µä¸Šè¡Œä¿¡é“å·5
+#define	PARA_D_UL_CHANNEL6	0x0905	//	Dæ®µä¸Šè¡Œä¿¡é“å·6
+#define	PARA_D_UL_CHANNEL7	0x0906	//	Dæ®µä¸Šè¡Œä¿¡é“å·7
+#define	PARA_D_UL_CHANNEL8	0x0907	//	Dæ®µä¸Šè¡Œä¿¡é“å·8
+#define	PARA_D_UL_CHANNEL9	0x0908	//	Dæ®µä¸Šè¡Œä¿¡é“å·9
+#define	PARA_D_UL_CHANNEL10	0x0909	//	Dæ®µä¸Šè¡Œä¿¡é“å·10
+#define	PARA_D_DCH_MAX_POW1	0x0348	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1
+#define	PARA_D_DCH_MAX_POW2	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2
+#define	PARA_D_DCH_MAX_POW3	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3
+#define	PARA_D_DCH_MAX_POW4	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4
+#define	PARA_D_DCH_MAX_POW5	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5
+#define	PARA_D_DCH_MAX_POW6	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6
+#define	PARA_D_DCH_MAX_POW7	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7
+#define	PARA_D_DCH_MAX_POW8	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8
+#define	PARA_D_DCH_MAX_POW9	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9
+#define	PARA_D_DCH_MAX_POW10	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10
+#define	PARA_D_DCH_MAX_POW11	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11
+#define	PARA_D_DCH_MAX_POW12	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12
+#define	PARA_D_DCH_MAX_POW13	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13
+#define	PARA_D_DCH_MAX_POW14	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14
+#define	PARA_D_DCH_MAX_POW15	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15
+#define	PARA_D_DCH_MAX_POW16	0	//	Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16
+#define	PARA_D_UCH_MAX_POW1	0x0340	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1
+#define	PARA_D_UCH_MAX_POW2	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2
+#define	PARA_D_UCH_MAX_POW3	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3
+#define	PARA_D_UCH_MAX_POW4	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4
+#define	PARA_D_UCH_MAX_POW5	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5
+#define	PARA_D_UCH_MAX_POW6	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6
+#define	PARA_D_UCH_MAX_POW7	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7
+#define	PARA_D_UCH_MAX_POW8	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8
+#define	PARA_D_UCH_MAX_POW9	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9
+#define	PARA_D_UCH_MAX_POW10	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10
+#define	PARA_D_UCH_MAX_POW11	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11
+#define	PARA_D_UCH_MAX_POW12	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12
+#define	PARA_D_UCH_MAX_POW13	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13
+#define	PARA_D_UCH_MAX_POW14	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14
+#define	PARA_D_UCH_MAX_POW15	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15
+#define	PARA_D_UCH_MAX_POW16	0	//	Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16
+#define	PARA_D_DCH_POW1	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1
+#define	PARA_D_DCH_POW2	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2
+#define	PARA_D_DCH_POW3	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3
+#define	PARA_D_DCH_POW4	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4
+#define	PARA_D_DCH_POW5	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5
+#define	PARA_D_DCH_POW6	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6
+#define	PARA_D_DCH_POW7	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7
+#define	PARA_D_DCH_POW8	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8
+#define	PARA_D_DCH_POW9	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9
+#define	PARA_D_DCH_POW10	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10
+#define	PARA_D_DCH_POW11	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11
+#define	PARA_D_DCH_POW12	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12
+#define	PARA_D_DCH_POW13	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13
+#define	PARA_D_DCH_POW14	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14
+#define	PARA_D_DCH_POW15	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15
+#define	PARA_D_DCH_POW16	0	//	Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16
+#define	PARA_D_UCH_POW1	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1
+#define	PARA_D_UCH_POW2	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2
+#define	PARA_D_UCH_POW3	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3
+#define	PARA_D_UCH_POW4	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4
+#define	PARA_D_UCH_POW5	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5
+#define	PARA_D_UCH_POW6	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6
+#define	PARA_D_UCH_POW7	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7
+#define	PARA_D_UCH_POW8	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8
+#define	PARA_D_UCH_POW9	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9
+#define	PARA_D_UCH_POW10	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_D_UCH_POW11	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_D_UCH_POW12	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_D_UCH_POW13	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_D_UCH_POW14	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_D_UCH_POW15	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_D_UCH_POW16	0	//	Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10
+#define	PARA_D_UDPX_IN_GAIN	0x08AB	//	Dæ®µä¸‹è¡Œè¾“å…¥åŒå·¥å™¨å¢žç›Š
+#define	PARA_D_UDPX_OUT_GAIN	0x08AA	//	Dæ®µä¸Šè¡Œè¾“å‡ºåŒå·¥å™¨å¢žç›Š
+#define	PARA_D_DL_TOTAL_POW	0x8390	//	Dæ®µä¸‹è¡Œè¾“å…¥æ€»åŠŸçŽ‡
+#define	PARA_D_UL_TOTAL_POW	0x831e	//	Dæ®µä¸Šè¡Œè¾“å‡ºæ€»åŠŸçŽ‡
+#define	PARA_D_REC_DPX_IG		0		//		RECçš„Dæ®µè¾“å…¥åŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»							
+#define	PARA_D_REC_DPX_OG		0		//		RECçš„Dæ®µè¾“å‡ºåŒå·¥å™¨å¢žç›Šï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»	
+#define	PARA_REC_TO_RE_DELAY		0x889e	// RECåˆ°REçš„å…‰çº¤å»¶æ—¶
+#define	PARA_RE_RF_DELAY			0x889f	// REçš„å°„é¢‘å»¶æ—¶
+#define	PARA_MAX_T14	0//0x889c	//	å…‰å£æœ€å¤§å»¶æ—¶
+#define	PARA_DL_DELAY_OFFSET	0//0x0768	//	ä¸‹è¡Œå»¶æ—¶åç§»é‡
+#define	PARA_UL_DELAY_OFFSET	0x0769	//	ä¸Šè¡Œå»¶æ—¶åç§»é‡
+#define	PARA_PRI_SOFT_V	0xf018	//	ç¨‹åºç‰ˆæœ¬å·ï¼ˆç”¨ASCIIç ï¼‰
+#define	PARA_PRI_HARD_V	0xf026	//	PCBç‰ˆæœ¬å·(ç”¨ASCIIç )
+#define	PARA_TD_1ST_CP_TIME		0x08a7	// TDç¬¬1è½¬æ¢ç‚¹æ—¶é—´ns, æœ‰ç¬¦å·æ•°
+#define	PARA_TD_2ND_CP_TIME		0x08a8	// TDç¬¬2è½¬æ¢ç‚¹æ—¶é—´ns, æœ‰ç¬¦å·æ•°
+#define	PARA_TD_LNA_ON_TIME		0x08ae	// LNAå¼€å¯è¿ŸåŽDN_PAå…³é—­çš„ä¿æŠ¤æ—¶é—´ns
+#define	PARA_TD_LNA_OFF_TIME		0x08af	// LNAå…³é—­è¶…å‰DN_PAå¼€å¯çš„ä¿æŠ¤æ—¶é—´ns
+#define	PARA_TD_SLOT1_UPOW	0x7501	// TDæ—¶éš™1ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT2_UPOW	0x7502	// TDæ—¶éš™2ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT3_UPOW	0x7503	// TDæ—¶éš™3ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT4_UPOW	0x7504	// TDæ—¶éš™4ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT5_UPOW	0x7505	// TDæ—¶éš™5ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT6_UPOW	0x7506	// TDæ—¶éš™6ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT7_UPOW	0x7507	// TDæ—¶éš™7ä¸Šè¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT1_DPOW	0x7511	// TDæ—¶éš™1ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT2_DPOW	0x7512	// TDæ—¶éš™2ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT3_DPOW	0x7513	// TDæ—¶éš™3ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT4_DPOW	0x7514	// TDæ—¶éš™4ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT5_DPOW	0x7515	// TDæ—¶éš™5ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT6_DPOW	0x7516	// TDæ—¶éš™6ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_TD_SLOT7_DPOW	0x7517	// TDæ—¶éš™7ä¸‹è¡Œæ£€æµ‹åŠŸçŽ‡
+#define	PARA_FPS_S1 0 // é¢‘ç‚¹æœç´ : èŒƒå›´1èµ·å§‹é¢‘ç‚¹
+#define	PARA_FPS_E1 0 // é¢‘ç‚¹æœç´ : èŒƒå›´1ç»“æŸé¢‘ç‚¹
+#define	PARA_FPS_S2 0 // é¢‘ç‚¹æœç´ : èŒƒå›´2èµ·å§‹é¢‘ç‚¹
+#define	PARA_FPS_E2 0 // é¢‘ç‚¹æœç´ : èŒƒå›´2ç»“æŸé¢‘ç‚¹
+#define	PARA_FPS_BCCH_LK_SET	0x0923	// é¢‘ç‚¹æœç´¢: é”é¢‘ä¿¡é“å·: æ ‡å‡†ä¿¡é“å·, 65535-é€€å‡ºé”é¢‘
+#define	PARA_FPS_CID_LK_SET	0x0926	// é¢‘ç‚¹æœç´¢: å°åŒºè¯†åˆ«ç å‚è€ƒå€¼, 0-é€€å‡ºå°åŒºé”å®šåŠŸèƒ½
+#define	PARA_FPS_BCCH_FC_M	0x8940	// é¢‘ç‚¹æœç´¢: ä¸»å°åŒºBCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+#define	PARA_FPS_CA_FC_0	0x8941	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢0ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_1	0x8942	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢1ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_2	0x8943	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢2ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_3	0x8944	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢3ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_4	0x8945	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢4ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_5	0x8946	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢5ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_6	0x8947	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢6ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_7	0x8948	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢7ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_8	0x8949	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢8ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_9	0x894A	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢9ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_10	0x894B	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢10ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_11	0x894C	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢11ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_12	0x894D	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢12ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_13	0x894E	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢13ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_14	0x894F	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢14ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_CA_FC_15	0x8950	// é¢‘ç‚¹æœç´¢: CAè½½æ³¢15ä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— CA
+#define	PARA_FPS_BCCH_FC_1	0x8951	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº1 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+#define	PARA_FPS_BCCH_FC_2	0x8952	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº2 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+#define	PARA_FPS_BCCH_FC_3	0x8953	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº3 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+#define	PARA_FPS_BCCH_FC_4	0x8954	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº4 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+#define	PARA_FPS_BCCH_FC_5	0x8955	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº5 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+#define	PARA_FPS_BCCH_FC_6	0x8956	// é¢‘ç‚¹æœç´¢: é‚»å°åŒº6 BCCHä¿¡é“å·, æ ‡å‡†ä¿¡é“å·, 65535-æ— BCCH
+#define	PARA_FPS_AREA_ID	0x8958	// é¢‘ç‚¹æœç´¢: ä½ç½®åŒºç¼–ç 
+#define	PARA_FPS_CID		0x895A	// é¢‘ç‚¹æœç´¢: å°åŒºè¯†åˆ«ç å®žæ—¶å€¼
+#define	PARA_FPS_CID_1 0 // é¢‘ç‚¹æœç´¢: é‚»å°åŒº1 CIDå°åŒºè¯†åˆ«ç 
+#define	PARA_FPS_CID_2 0 // é¢‘ç‚¹æœç´¢: é‚»å°åŒº2 CIDå°åŒºè¯†åˆ«ç 
+#define	PARA_FPS_CID_3 0 // é¢‘ç‚¹æœç´¢: é‚»å°åŒº3 CIDå°åŒºè¯†åˆ«ç 
+#define	PARA_FPS_CID_4 0 // é¢‘ç‚¹æœç´¢: é‚»å°åŒº4 CIDå°åŒºè¯†åˆ«ç 
+#define	PARA_FPS_CID_5 0 // é¢‘ç‚¹æœç´¢: é‚»å°åŒº5 CIDå°åŒºè¯†åˆ«ç 
+#define	PARA_FPS_CID_6 0 // é¢‘ç‚¹æœç´¢: é‚»å°åŒº6 CIDå°åŒºè¯†åˆ«ç 
+#define	PARA_A_EXPA_IDRAIN_SET	0	// å¾®åŠŸæ”¾: æ¼æžç”µæµè®¾ç½®,mA
+#define	PARA_TD_SLOT1_DPOW_OVER_THR				0x0a60       //tdä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡é—¨é™
+#define	PARA_TD_SLOT1_DPOW_OWE_THR				0x0a61      //tdä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡é—¨é™	
+#define PARA_A_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡é—¨é™
+#define PARA_A_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡é—¨é™
+#define PARA_B_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡é—¨é™
+#define PARA_B_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡é—¨é™
+#define PARA_C_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡é—¨é™
+#define PARA_C_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡é—¨é™
+#define PARA_D_INPUT_TOTAL_DPOW_OVER_THR     	0x0a64      //ä¸‹è¡Œè¾“å…¥è¿‡åŠŸçŽ‡é—¨é™
+#define PARA_D_INPUT_TOTAL_DPOW_OWE_THR			0x0a65      //ä¸‹è¡Œè¾“å…¥æ¬ åŠŸçŽ‡é—¨é™
+#define PARA_REE_A_DL_OUT_TOTAL_POW_DETECT     	0x8004      //Aæ®µREä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡//æ³¨REC\REä½¿ç”¨ MADD_A_DL_TOTAL_POW
+#define PARA_A_RE_LOCAL_ST_ALARM     			0x8a33      	//è¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€
+#define PARA_REE_B_DL_OUT_TOTAL_POW_DETECT     	0x8004      //Bæ®µREä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡ //æ³¨REC\REä½¿ç”¨ MADD_B_DL_TOTAL_POW
+#define PARA_B_RE_LOCAL_ST_ALARM     			0x8a33      	//è¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€
+#define PARA_REE_C_DL_OUT_TOTAL_POW_DETECT     	0x8004      //Aæ®µREä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡//æ³¨REC\REä½¿ç”¨ MADD_C_DL_TOTAL_POW
+#define PARA_C_RE_LOCAL_ST_ALARM     			0x8a33      	//è¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€
+#define PARA_REE_D_DL_OUT_TOTAL_POW_DETECT     	0x8004      //	Dæ®µREä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡ //æ³¨REC\REä½¿ç”¨ MADD_D_DL_TOTAL_POW
+#define PARA_D_RE_LOCAL_ST_ALARM     			0x8a33      	//	Dè¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€
+#define PARA_C_TD_1ST_CP_TIME	0x08a7	//		//465		TDç¬¬1è½¬æ¢ç‚¹æ—¶é—´,ns,		
+#define PARA_C_TD_2ND_CP_TIME	0x08a8	//		//466		TDç¬¬2è½¬æ¢ç‚¹æ—¶é—´,ns,		
+#define PARA_C_TD_LNA_ON_TIME	0x08ae	//		//467		LNAå¼€å¯è¿ŸåŽDN_PAå…³é—­çš„ä¿æŠ¤æ—¶é—´ns		
+#define PARA_C_TD_LNA_OFF_TIME	0x08af	//		//468		LNAå…³é—­è¶…å‰DN_PAå¼€å¯çš„ä¿æŠ¤æ—¶é—´ns		
 #define PARA_C_TD_SLOT1_DPOW_OVER_THR	0x0a60	//		//469	0	//		//5625
 #define PARA_C_TD_SLOT1_DPOW_OWE_THR	0x0a61	//		//470	0	//		//5626
-#define PARA_D_TD_1ST_CP_TIME	0x08a7	//		//471		TDµÚ1×ª»»µãÊ±¼ä,ns,		
-#define PARA_D_TD_2ND_CP_TIME	0x08a7	//		//472		TDµÚ2×ª»»µãÊ±¼ä,ns,		
-#define PARA_D_TD_LNA_ON_TIME	0x08ae	//		//473		LNA¿ªÆô³ÙºóDN_PA¹Ø±ÕµÄ±£»¤Ê±¼äns		
-#define PARA_D_TD_LNA_OFF_TIME	0x08af	//		//474		LNA¹Ø±Õ³¬Ç°DN_PA¿ªÆôµÄ±£»¤Ê±¼äns		
+#define PARA_D_TD_1ST_CP_TIME	0x08a7	//		//471		TDç¬¬1è½¬æ¢ç‚¹æ—¶é—´,ns,		
+#define PARA_D_TD_2ND_CP_TIME	0x08a7	//		//472		TDç¬¬2è½¬æ¢ç‚¹æ—¶é—´,ns,		
+#define PARA_D_TD_LNA_ON_TIME	0x08ae	//		//473		LNAå¼€å¯è¿ŸåŽDN_PAå…³é—­çš„ä¿æŠ¤æ—¶é—´ns		
+#define PARA_D_TD_LNA_OFF_TIME	0x08af	//		//474		LNAå…³é—­è¶…å‰DN_PAå¼€å¯çš„ä¿æŠ¤æ—¶é—´ns		
 #define PARA_D_TD_SLOT1_DPOW_OVER_THR	0x0a60	//		//475	0	//		//5625
 #define PARA_D_TD_SLOT1_DPOW_OWE_THR	0x0a61	//		//476	0	//		//5626
-#define PARA_C_TD_SLOT1_POW	0x7511	//		//477		TDÊ±Ï¶1ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT2_POW	0	//		//478		TDÊ±Ï¶2ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT3_POW	0	//		//479		TDÊ±Ï¶3ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT4_POW	0	//		//480		TDÊ±Ï¶4ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT5_POW	0	//		//481		TDÊ±Ï¶5ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT6_POW	0	//		//482		TDÊ±Ï¶6ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT7_POW	0	//		//483		TDÊ±Ï¶7ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT8_POW	0	//		//484		TDÊ±Ï¶8ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT9_POW	0	//		//485		TDÊ±Ï¶9ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT10_POW	0	//		//486		TDÊ±Ï¶10ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT11_POW	0	//		//487		TDÊ±Ï¶11ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT12_POW	0	//		//488		TDÊ±Ï¶12ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT13_POW	0	//		//489		TDÊ±Ï¶13ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT14_POW	0	//		//490		TDÊ±Ï¶14ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT15_POW	0	//		//491		TDÊ±Ï¶15ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT16_POW	0	//		//492		TDÊ±Ï¶16ÊäÈë¼ì²â¹¦ÂÊ	
-#define PARA_C_TD_SLOT17_POW	0	//		//493		TDÊ±Ï¶17ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_C_TD_SLOT18_POW	0	//		//494		TDÊ±Ï¶18ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_C_TD_SLOT19_POW	0	//		//495		TDÊ±Ï¶19ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_C_TD_SLOT20_POW	0	//		//496		TDÊ±Ï¶20ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT1_POW	0x7511	//		//497		TDÊ±Ï¶1ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT2_POW	0	//		//498		TDÊ±Ï¶2ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT3_POW	0	//		//499		TDÊ±Ï¶3ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT4_POW	0	//		//500		TDÊ±Ï¶4ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT5_POW	0	//		//501		TDÊ±Ï¶5ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT6_POW	0	//		//502		TDÊ±Ï¶6ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT7_POW	0	//		//503		TDÊ±Ï¶7ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT8_POW	0	//		//504		TDÊ±Ï¶8ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT9_POW	0	//		//505		TDÊ±Ï¶9ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT10_POW	0	//		//506		TDÊ±Ï¶10ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT11_POW	0	//		//507		TDÊ±Ï¶11ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT12_POW	0	//		//508		TDÊ±Ï¶12ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT13_POW	0	//		//509		TDÊ±Ï¶13ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT14_POW	0	//		//510		TDÊ±Ï¶14ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT15_POW	0	//		//511		TDÊ±Ï¶15ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT16_POW	0	//		//512		TDÊ±Ï¶16ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT17_POW	0	//		//513		TDÊ±Ï¶17ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT18_POW	0	//		//514		TDÊ±Ï¶18ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT19_POW	0	//		//515		TDÊ±Ï¶19ÊäÈë¼ì²â¹¦ÂÊ
-#define PARA_D_TD_SLOT20_POW	0	//		//516		TDÊ±Ï¶20ÊäÈë¼ì²â¹¦ÂÊ
-#define	PARA_DL_DELAY_OFFSET_B		0//0x889c		//		ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿		
-#define	PARA_DL_DELAY_OFFSET_C		0//0x889c		//		ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿		
-#define	PARA_DL_DELAY_OFFSET_D		0//0x889c		//		ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿		
-#define	PARA_VGS_A		            0		//	         A¶ÎÕ¤Ñ¹		
-#define	PARA_VGS_B          		0		//		 B¶ÎÕ¤Ñ¹		
-#define	PARA_VGS_C          		0		//		 C¶ÎÕ¤Ñ¹
-#define	PARA_VGS_D          		0		//		 D¶ÎÕ¤Ñ¹
-#define	PARA_VGS_COMP_A		        0		//	     A¶ÎÕ¤Ñ¹²¹³¥		
-#define	PARA_VGS_COMP_B             0		//		 B¶ÎÕ¤Ñ¹²¹³¥			
-#define	PARA_VGS_COMP_C             0		//		 C¶ÎÕ¤Ñ¹²¹³¥	
-#define	PARA_VGS_COMP_D          	0		//		 C¶ÎÕ¤Ñ¹²¹³¥	
-#define	PARA_ATT_DATA_COMP_A		0				//ATT²¹³¥Êý¾Ý
-#define	PARA_ATT_DATA_COMP_B		0				//ATT²¹³¥Êý¾Ý
-#define	PARA_ATT_DATA_COMP_C		0				//ATT²¹³¥Êý¾Ý
-#define	PARA_ATT_DATA_COMP_D		0				//ATT²¹³¥Êý¾Ý
-#define	PARA_MAX_T14_A	0x889c	//	¹â¿Ú×î´óÑÓÊ±
-#define	PARA_MAX_T14_B	0x889c	//	¹â¿Ú×î´óÑÓÊ±
-#define	PARA_MAX_T14_C	0x889c	//	¹â¿Ú×î´óÑÓÊ±
-#define	PARA_MAX_T14_D	0x889c	//	¹â¿Ú×î´óÑÓÊ±
-#define PARA_ERL_JG_A		0// A¶Î»°ÎñÁ¿Í³¼Æ½á¹û
+#define PARA_C_TD_SLOT1_POW	0x7511	//		//477		TDæ—¶éš™1è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT2_POW	0	//		//478		TDæ—¶éš™2è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT3_POW	0	//		//479		TDæ—¶éš™3è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT4_POW	0	//		//480		TDæ—¶éš™4è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT5_POW	0	//		//481		TDæ—¶éš™5è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT6_POW	0	//		//482		TDæ—¶éš™6è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT7_POW	0	//		//483		TDæ—¶éš™7è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT8_POW	0	//		//484		TDæ—¶éš™8è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT9_POW	0	//		//485		TDæ—¶éš™9è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT10_POW	0	//		//486		TDæ—¶éš™10è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT11_POW	0	//		//487		TDæ—¶éš™11è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT12_POW	0	//		//488		TDæ—¶éš™12è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT13_POW	0	//		//489		TDæ—¶éš™13è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT14_POW	0	//		//490		TDæ—¶éš™14è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT15_POW	0	//		//491		TDæ—¶éš™15è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT16_POW	0	//		//492		TDæ—¶éš™16è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define PARA_C_TD_SLOT17_POW	0	//		//493		TDæ—¶éš™17è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_C_TD_SLOT18_POW	0	//		//494		TDæ—¶éš™18è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_C_TD_SLOT19_POW	0	//		//495		TDæ—¶éš™19è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_C_TD_SLOT20_POW	0	//		//496		TDæ—¶éš™20è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT1_POW	0x7511	//		//497		TDæ—¶éš™1è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT2_POW	0	//		//498		TDæ—¶éš™2è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT3_POW	0	//		//499		TDæ—¶éš™3è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT4_POW	0	//		//500		TDæ—¶éš™4è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT5_POW	0	//		//501		TDæ—¶éš™5è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT6_POW	0	//		//502		TDæ—¶éš™6è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT7_POW	0	//		//503		TDæ—¶éš™7è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT8_POW	0	//		//504		TDæ—¶éš™8è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT9_POW	0	//		//505		TDæ—¶éš™9è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT10_POW	0	//		//506		TDæ—¶éš™10è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT11_POW	0	//		//507		TDæ—¶éš™11è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT12_POW	0	//		//508		TDæ—¶éš™12è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT13_POW	0	//		//509		TDæ—¶éš™13è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT14_POW	0	//		//510		TDæ—¶éš™14è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT15_POW	0	//		//511		TDæ—¶éš™15è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT16_POW	0	//		//512		TDæ—¶éš™16è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT17_POW	0	//		//513		TDæ—¶éš™17è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT18_POW	0	//		//514		TDæ—¶éš™18è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT19_POW	0	//		//515		TDæ—¶éš™19è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define PARA_D_TD_SLOT20_POW	0	//		//516		TDæ—¶éš™20è¾“å…¥æ£€æµ‹åŠŸçŽ‡
+#define	PARA_DL_DELAY_OFFSET_B		0//0x889c		//		ä¸‹è¡Œå»¶æ—¶åç§»é‡		
+#define	PARA_DL_DELAY_OFFSET_C		0//0x889c		//		ä¸‹è¡Œå»¶æ—¶åç§»é‡		
+#define	PARA_DL_DELAY_OFFSET_D		0//0x889c		//		ä¸‹è¡Œå»¶æ—¶åç§»é‡		
+#define	PARA_VGS_A		            0		//	         Aæ®µæ …åŽ‹		
+#define	PARA_VGS_B          		0		//		 Bæ®µæ …åŽ‹		
+#define	PARA_VGS_C          		0		//		 Cæ®µæ …åŽ‹
+#define	PARA_VGS_D          		0		//		 Dæ®µæ …åŽ‹
+#define	PARA_VGS_COMP_A		        0		//	     Aæ®µæ …åŽ‹è¡¥å¿		
+#define	PARA_VGS_COMP_B             0		//		 Bæ®µæ …åŽ‹è¡¥å¿			
+#define	PARA_VGS_COMP_C             0		//		 Cæ®µæ …åŽ‹è¡¥å¿	
+#define	PARA_VGS_COMP_D          	0		//		 Cæ®µæ …åŽ‹è¡¥å¿	
+#define	PARA_ATT_DATA_COMP_A		0				//ATTè¡¥å¿æ•°æ®
+#define	PARA_ATT_DATA_COMP_B		0				//ATTè¡¥å¿æ•°æ®
+#define	PARA_ATT_DATA_COMP_C		0				//ATTè¡¥å¿æ•°æ®
+#define	PARA_ATT_DATA_COMP_D		0				//ATTè¡¥å¿æ•°æ®
+#define	PARA_MAX_T14_A	0x889c	//	å…‰å£æœ€å¤§å»¶æ—¶
+#define	PARA_MAX_T14_B	0x889c	//	å…‰å£æœ€å¤§å»¶æ—¶
+#define	PARA_MAX_T14_C	0x889c	//	å…‰å£æœ€å¤§å»¶æ—¶
+#define	PARA_MAX_T14_D	0x889c	//	å…‰å£æœ€å¤§å»¶æ—¶
+#define PARA_ERL_JG_A		0// Aæ®µè¯åŠ¡é‡ç»Ÿè®¡ç»“æžœ
 #define PARA_ERL_JG_B		0
 #define PARA_ERL_JG_C		0
 #define PARA_ERL_JG_D		0
-#define	PARA_MOVE_CENTER_FRE_D		0//¸Ä±äÏÂÐÐÖÐÐÄÆµÂÊ
-#define	PARA_MOVE_CENTER_FRE_U		0//¸Ä±äÉÏÐÐÖÐÐÄÆµÂÊ
+#define	PARA_MOVE_CENTER_FRE_D		0//æ”¹å˜ä¸‹è¡Œä¸­å¿ƒé¢‘çŽ‡
+#define	PARA_MOVE_CENTER_FRE_U		0//æ”¹å˜ä¸Šè¡Œä¸­å¿ƒé¢‘çŽ‡
 
 #endif
 
-// ·ÃÎÊµØÖ·>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 2B
-#define	MADD_A_DL_CHANNEL1		0		//		A¶ÎÏÂÐÐÐÅµÀºÅ1		
-#define	MADD_A_DL_CHANNEL2		1		//		A¶ÎÏÂÐÐÐÅµÀºÅ2		
-#define	MADD_A_DL_CHANNEL3		2		//		A¶ÎÏÂÐÐÐÅµÀºÅ3		
-#define	MADD_A_DL_CHANNEL4		3		//		A¶ÎÏÂÐÐÐÅµÀºÅ4		
-#define	MADD_A_DL_CHANNEL5		4		//		A¶ÎÏÂÐÐÐÅµÀºÅ5		
-#define	MADD_A_DL_CHANNEL6		5		//		A¶ÎÏÂÐÐÐÅµÀºÅ6		
-#define	MADD_A_DL_CHANNEL7		6		//		A¶ÎÏÂÐÐÐÅµÀºÅ7		
-#define	MADD_A_DL_CHANNEL8		7		//		A¶ÎÏÂÐÐÐÅµÀºÅ8		
-#define	MADD_A_DL_CHANNEL9		8		//		A¶ÎÏÂÐÐÐÅµÀºÅ9		
-#define	MADD_A_DL_CHANNEL10		9		//		A¶ÎÏÂÐÐÐÅµÀºÅ10		
-#define	MADD_A_DL_CHANNEL11		10		//		A¶ÎÏÂÐÐÐÅµÀºÅ11		
-#define	MADD_A_DL_CHANNEL12		11		//		A¶ÎÏÂÐÐÐÅµÀºÅ12		
-#define	MADD_A_DL_CHANNEL13		12		//		A¶ÎÏÂÐÐÐÅµÀºÅ13		
-#define	MADD_A_DL_CHANNEL14		13		//		A¶ÎÏÂÐÐÐÅµÀºÅ14		
-#define	MADD_A_DL_CHANNEL15		14		//		A¶ÎÏÂÐÐÐÅµÀºÅ15		
-#define	MADD_A_DL_CHANNEL16		15		//		A¶ÎÏÂÐÐÐÅµÀºÅ16		
-#define	MADD_A_UL_CHANNEL1		16		//		A¶ÎÉÏÐÐÐÅµÀºÅ1		
-#define	MADD_A_UL_CHANNEL2		17		//		A¶ÎÉÏÐÐÐÅµÀºÅ2		
-#define	MADD_A_UL_CHANNEL3		18		//		A¶ÎÉÏÐÐÐÅµÀºÅ3		
-#define	MADD_A_UL_CHANNEL4		19		//		A¶ÎÉÏÐÐÐÅµÀºÅ4		
-#define	MADD_A_UL_CHANNEL5		20		//		A¶ÎÉÏÐÐÐÅµÀºÅ5		
-#define	MADD_A_UL_CHANNEL6		21		//		A¶ÎÉÏÐÐÐÅµÀºÅ6		
-#define	MADD_A_UL_CHANNEL7		22		//		A¶ÎÉÏÐÐÐÅµÀºÅ7		
-#define	MADD_A_UL_CHANNEL8		23		//		A¶ÎÉÏÐÐÐÅµÀºÅ8		
-#define	MADD_A_UL_CHANNEL9		24		//		A¶ÎÉÏÐÐÐÅµÀºÅ9		
-#define	MADD_A_UL_CHANNEL10		25		//		A¶ÎÉÏÐÐÐÅµÀºÅ10		
-#define	MADD_A_UL_CHANNEL11		26		//		A¶ÎÉÏÐÐÐÅµÀºÅ11		
-#define	MADD_A_UL_CHANNEL12		27		//		A¶ÎÉÏÐÐÐÅµÀºÅ12		
-#define	MADD_A_UL_CHANNEL13		28		//		A¶ÎÉÏÐÐÐÅµÀºÅ13		
-#define	MADD_A_UL_CHANNEL14		29		//		A¶ÎÉÏÐÐÐÅµÀºÅ14		
-#define	MADD_A_UL_CHANNEL15		30		//		A¶ÎÉÏÐÐÐÅµÀºÅ15		
-#define	MADD_A_UL_CHANNEL16		31		//		A¶ÎÉÏÐÐÐÅµÀºÅ16		
-#define	MADD_A_DCH_MAX_POW1		32		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1		
-#define	MADD_A_DCH_MAX_POW2		33		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2		
-#define	MADD_A_DCH_MAX_POW3		34		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3		
-#define	MADD_A_DCH_MAX_POW4		35		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4		
-#define	MADD_A_DCH_MAX_POW5		36		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5		
-#define	MADD_A_DCH_MAX_POW6		37		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6		
-#define	MADD_A_DCH_MAX_POW7		38		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7		
-#define	MADD_A_DCH_MAX_POW8		39		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8		
-#define	MADD_A_DCH_MAX_POW9		40		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9		
-#define	MADD_A_DCH_MAX_POW10		41		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10		
-#define	MADD_A_DCH_MAX_POW11		42		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11		
-#define	MADD_A_DCH_MAX_POW12		43		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12		
-#define	MADD_A_DCH_MAX_POW13		44		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13		
-#define	MADD_A_DCH_MAX_POW14		45		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14		
-#define	MADD_A_DCH_MAX_POW15		46		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15		
-#define	MADD_A_DCH_MAX_POW16		47		//		A¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16		
-#define	MADD_A_UCH_MAX_POW1		48		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1		
-#define	MADD_A_UCH_MAX_POW2		49		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2		
-#define	MADD_A_UCH_MAX_POW3		50		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3		
-#define	MADD_A_UCH_MAX_POW4		51		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4		
-#define	MADD_A_UCH_MAX_POW5		52		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5		
-#define	MADD_A_UCH_MAX_POW6		53		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6		
-#define	MADD_A_UCH_MAX_POW7		54		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7		
-#define	MADD_A_UCH_MAX_POW8		55		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8		
-#define	MADD_A_UCH_MAX_POW9		56		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9		
-#define	MADD_A_UCH_MAX_POW10		57		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10		
-#define	MADD_A_UCH_MAX_POW11		58		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11		
-#define	MADD_A_UCH_MAX_POW12		59		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12		
-#define	MADD_A_UCH_MAX_POW13		60		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13		
-#define	MADD_A_UCH_MAX_POW14		61		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14		
-#define	MADD_A_UCH_MAX_POW15		62		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15		
-#define	MADD_A_UCH_MAX_POW16		63		//		A¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16		
-#define	MADD_A_DCH_POW1		64		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1		
-#define	MADD_A_DCH_POW2		65		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2		
-#define	MADD_A_DCH_POW3		66		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3		
-#define	MADD_A_DCH_POW4		67		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4		
-#define	MADD_A_DCH_POW5		68		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5		
-#define	MADD_A_DCH_POW6		69		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6		
-#define	MADD_A_DCH_POW7		70		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7		
-#define	MADD_A_DCH_POW8		71		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8		
-#define	MADD_A_DCH_POW9		72		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9		
-#define	MADD_A_DCH_POW10		73		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10		
-#define	MADD_A_DCH_POW11		74		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11		
-#define	MADD_A_DCH_POW12		75		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12		
-#define	MADD_A_DCH_POW13		76		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13		
-#define	MADD_A_DCH_POW14		77		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14		
-#define	MADD_A_DCH_POW15		78		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15		
-#define	MADD_A_DCH_POW16		79		//		A¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16		
-#define	MADD_A_UCH_POW1		80		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1		
-#define	MADD_A_UCH_POW2		81		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2		
-#define	MADD_A_UCH_POW3		82		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3		
-#define	MADD_A_UCH_POW4		83		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4		
-#define	MADD_A_UCH_POW5		84		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5		
-#define	MADD_A_UCH_POW6		85		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6		
-#define	MADD_A_UCH_POW7		86		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7		
-#define	MADD_A_UCH_POW8		87		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8		
-#define	MADD_A_UCH_POW9		88		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9		
-#define	MADD_A_UCH_POW10		89		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10		
-#define	MADD_A_UCH_POW11		90		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ11		
-#define	MADD_A_UCH_POW12		91		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ12		
-#define	MADD_A_UCH_POW13		92		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ13		
-#define	MADD_A_UCH_POW14		93		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ14		
-#define	MADD_A_UCH_POW15		94		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ15		
-#define	MADD_A_UCH_POW16		95		//		A¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ16		
-#define	MADD_A_UDPX_IN_GAIN		96		//		A¶ÎÊäÈëË«¹¤Æ÷Ë¥¼õ,		
-#define	MADD_A_UDPX_OUT_GAIN		97		//		A¶ÎÊä³öË«¹¤Æ÷Ë¥¼õ,		
-#define	MADD_A_DL_TOTAL_POW		98		//		A¶ÎÏÂÐÐÊä³ö×Ü¹¦ÂÊ£¬x10Ëã·¨±£ÁôÒ»Î»Ð¡Êý		
-#define	MADD_A_UL_TOTAL_POW		99		//		A¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ£¬x10Ëã·¨±£ÁôÒ»Î»Ð¡Êý		
-#define	MADD_A_REC_DPX_IG		100		//		RECµÄA¶ÎÊäÈëË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,		
-#define	MADD_A_REC_DPX_OG		101		//		RECµÄA¶ÎÊä³öË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,		
-#define	MADD_B_DL_CHANNEL1		102		//		B¶ÎÏÂÐÐÐÅµÀºÅ1		
-#define	MADD_B_DL_CHANNEL2		103		//		B¶ÎÏÂÐÐÐÅµÀºÅ2		
-#define	MADD_B_DL_CHANNEL3		104		//		B¶ÎÏÂÐÐÐÅµÀºÅ3		
-#define	MADD_B_DL_CHANNEL4		105		//		B¶ÎÏÂÐÐÐÅµÀºÅ4		
-#define	MADD_B_DL_CHANNEL5		106		//		B¶ÎÏÂÐÐÐÅµÀºÅ5		
-#define	MADD_B_DL_CHANNEL6		107		//		B¶ÎÏÂÐÐÐÅµÀºÅ6		
-#define	MADD_B_DL_CHANNEL7		108		//		B¶ÎÏÂÐÐÐÅµÀºÅ7		
-#define	MADD_B_DL_CHANNEL8		109		//		B¶ÎÏÂÐÐÐÅµÀºÅ8		
-#define	MADD_B_DL_CHANNEL9		110		//		B¶ÎÏÂÐÐÐÅµÀºÅ9		
-#define	MADD_B_DL_CHANNEL10		111		//		B¶ÎÏÂÐÐÐÅµÀºÅ10		
-#define	MADD_B_DL_CHANNEL11		112		//		B¶ÎÏÂÐÐÐÅµÀºÅ11		
-#define	MADD_B_DL_CHANNEL12		113		//		B¶ÎÏÂÐÐÐÅµÀºÅ12		
-#define	MADD_B_DL_CHANNEL13		114		//		B¶ÎÏÂÐÐÐÅµÀºÅ13		
-#define	MADD_B_DL_CHANNEL14		115		//		B¶ÎÏÂÐÐÐÅµÀºÅ14		
-#define	MADD_B_DL_CHANNEL15		116		//		B¶ÎÏÂÐÐÐÅµÀºÅ15		
-#define	MADD_B_DL_CHANNEL16		117		//		B¶ÎÏÂÐÐÐÅµÀºÅ16		
-#define	MADD_B_UL_CHANNEL1		118		//		B¶ÎÉÏÐÐÐÅµÀºÅ1		
-#define	MADD_B_UL_CHANNEL2		119		//		B¶ÎÉÏÐÐÐÅµÀºÅ2		
-#define	MADD_B_UL_CHANNEL3		120		//		B¶ÎÉÏÐÐÐÅµÀºÅ3		
-#define	MADD_B_UL_CHANNEL4		121		//		B¶ÎÉÏÐÐÐÅµÀºÅ4		
-#define	MADD_B_UL_CHANNEL5		122		//		B¶ÎÉÏÐÐÐÅµÀºÅ5		
-#define	MADD_B_UL_CHANNEL6		123		//		B¶ÎÉÏÐÐÐÅµÀºÅ6		
-#define	MADD_B_UL_CHANNEL7		124		//		B¶ÎÉÏÐÐÐÅµÀºÅ7		
-#define	MADD_B_UL_CHANNEL8		125		//		B¶ÎÉÏÐÐÐÅµÀºÅ8		
-#define	MADD_B_UL_CHANNEL9		126		//		B¶ÎÉÏÐÐÐÅµÀºÅ9		
-#define	MADD_B_UL_CHANNEL10		127		//		B¶ÎÉÏÐÐÐÅµÀºÅ10		
-#define	MADD_B_UL_CHANNEL11		128		//		B¶ÎÉÏÐÐÐÅµÀºÅ11		
-#define	MADD_B_UL_CHANNEL12		129		//		B¶ÎÉÏÐÐÐÅµÀºÅ12		
-#define	MADD_B_UL_CHANNEL13		130		//		B¶ÎÉÏÐÐÐÅµÀºÅ13		
-#define	MADD_B_UL_CHANNEL14		131		//		B¶ÎÉÏÐÐÐÅµÀºÅ14		
-#define	MADD_B_UL_CHANNEL15		132		//		B¶ÎÉÏÐÐÐÅµÀºÅ15		
-#define	MADD_B_UL_CHANNEL16		133		//		B¶ÎÉÏÐÐÐÅµÀºÅ16		
-#define	MADD_B_DCH_MAX_POW1		134		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1		
-#define	MADD_B_DCH_MAX_POW2		135		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2		
-#define	MADD_B_DCH_MAX_POW3		136		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3		
-#define	MADD_B_DCH_MAX_POW4		137		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4		
-#define	MADD_B_DCH_MAX_POW5		138		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5		
-#define	MADD_B_DCH_MAX_POW6		139		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6		
-#define	MADD_B_DCH_MAX_POW7		140		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7		
-#define	MADD_B_DCH_MAX_POW8		141		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8		
-#define	MADD_B_DCH_MAX_POW9		142		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9		
-#define	MADD_B_DCH_MAX_POW10		143		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10		
-#define	MADD_B_DCH_MAX_POW11		144		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11		
-#define	MADD_B_DCH_MAX_POW12		145		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12		
-#define	MADD_B_DCH_MAX_POW13		146		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13		
-#define	MADD_B_DCH_MAX_POW14		147		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14		
-#define	MADD_B_DCH_MAX_POW15		148		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15		
-#define	MADD_B_DCH_MAX_POW16		149		//		B¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16		
-#define	MADD_B_UCH_MAX_POW1		150		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1		
-#define	MADD_B_UCH_MAX_POW2		151		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2		
-#define	MADD_B_UCH_MAX_POW3		152		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3		
-#define	MADD_B_UCH_MAX_POW4		153		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4		
-#define	MADD_B_UCH_MAX_POW5		154		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5		
-#define	MADD_B_UCH_MAX_POW6		155		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6		
-#define	MADD_B_UCH_MAX_POW7		156		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7		
-#define	MADD_B_UCH_MAX_POW8		157		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8		
-#define	MADD_B_UCH_MAX_POW9		158		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9		
-#define	MADD_B_UCH_MAX_POW10		159		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10		
-#define	MADD_B_UCH_MAX_POW11		160		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11		
-#define	MADD_B_UCH_MAX_POW12		161		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12		
-#define	MADD_B_UCH_MAX_POW13		162		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13		
-#define	MADD_B_UCH_MAX_POW14		163		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14		
-#define	MADD_B_UCH_MAX_POW15		164		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15		
-#define	MADD_B_UCH_MAX_POW16		165		//		B¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16		
-#define	MADD_B_DCH_POW1		166		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1		
-#define	MADD_B_DCH_POW2		167		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2		
-#define	MADD_B_DCH_POW3		168		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3		
-#define	MADD_B_DCH_POW4		169		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4		
-#define	MADD_B_DCH_POW5		170		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5		
-#define	MADD_B_DCH_POW6		171		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6		
-#define	MADD_B_DCH_POW7		172		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7		
-#define	MADD_B_DCH_POW8		173		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8		
-#define	MADD_B_DCH_POW9		174		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9		
-#define	MADD_B_DCH_POW10		175		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10		
-#define	MADD_B_DCH_POW11		176		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11		
-#define	MADD_B_DCH_POW12		177		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12		
-#define	MADD_B_DCH_POW13		178		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13		
-#define	MADD_B_DCH_POW14		179		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14		
-#define	MADD_B_DCH_POW15		180		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15		
-#define	MADD_B_DCH_POW16		181		//		B¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16		
-#define	MADD_B_UCH_POW1		182		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1		
-#define	MADD_B_UCH_POW2		183		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2		
-#define	MADD_B_UCH_POW3		184		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3		
-#define	MADD_B_UCH_POW4		185		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4		
-#define	MADD_B_UCH_POW5		186		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5		
-#define	MADD_B_UCH_POW6		187		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6		
-#define	MADD_B_UCH_POW7		188		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7		
-#define	MADD_B_UCH_POW8		189		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8		
-#define	MADD_B_UCH_POW9		190		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9		
-#define	MADD_B_UCH_POW10		191		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10		
-#define	MADD_B_UCH_POW11		192		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ11		
-#define	MADD_B_UCH_POW12		193		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ12		
-#define	MADD_B_UCH_POW13		194		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ13		
-#define	MADD_B_UCH_POW14		195		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ14		
-#define	MADD_B_UCH_POW15		196		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ15		
-#define	MADD_B_UCH_POW16		197		//		B¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ16		
-#define	MADD_B_UDPX_IN_GAIN		198		//		B¶ÎÊäÈëË«¹¤Æ÷Ë¥¼õ,		
-#define	MADD_B_UDPX_OUT_GAIN		199		//		B¶ÎÊä³öË«¹¤Æ÷Ë¥¼õ,		
-#define	MADD_B_DL_TOTAL_POW		200		//		B¶ÎÏÂÐÐÊä³ö×Ü¹¦ÂÊ		
-#define	MADD_B_UL_TOTAL_POW		201		//		B¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ£¬x10Ëã·¨±£ÁôÒ»Î»Ð¡Êý		
-#define	MADD_B_REC_DPX_IG		202		//		RECµÄB¶ÎÊäÈëË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,		
-#define	MADD_B_REC_DPX_OG		203		//		RECµÄB¶ÎÊä³öË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,		
-#define	MADD_C_DL_CHANNEL1		204		//		C¶ÎÏÂÐÐÐÅµÀºÅ1		
-#define	MADD_C_DL_CHANNEL2		205		//		C¶ÎÏÂÐÐÐÅµÀºÅ2		
-#define	MADD_C_DL_CHANNEL3		206		//		C¶ÎÏÂÐÐÐÅµÀºÅ3		
-#define	MADD_C_DL_CHANNEL4		207		//		C¶ÎÏÂÐÐÐÅµÀºÅ4		
-#define	MADD_C_DL_CHANNEL5		208		//		C¶ÎÏÂÐÐÐÅµÀºÅ5		
-#define	MADD_C_DL_CHANNEL6		209		//		C¶ÎÏÂÐÐÐÅµÀºÅ6		
-#define	MADD_C_DL_CHANNEL7		210		//		C¶ÎÏÂÐÐÐÅµÀºÅ7		
-#define	MADD_C_DL_CHANNEL8		211		//		C¶ÎÏÂÐÐÐÅµÀºÅ8		
-#define	MADD_C_DL_CHANNEL9		212		//		C¶ÎÏÂÐÐÐÅµÀºÅ9		
-#define	MADD_C_DL_CHANNEL10		213		//		C¶ÎÏÂÐÐÐÅµÀºÅ10		
-#define	MADD_C_UL_CHANNEL1		214		//		C¶ÎÉÏÐÐÐÅµÀºÅ1		
-#define	MADD_C_UL_CHANNEL2		215		//		C¶ÎÉÏÐÐÐÅµÀºÅ2		
-#define	MADD_C_UL_CHANNEL3		216		//		C¶ÎÉÏÐÐÐÅµÀºÅ3		
-#define	MADD_C_UL_CHANNEL4		217		//		C¶ÎÉÏÐÐÐÅµÀºÅ4		
-#define	MADD_C_UL_CHANNEL5		218		//		C¶ÎÉÏÐÐÐÅµÀºÅ5		
-#define	MADD_C_UL_CHANNEL6		219		//		C¶ÎÉÏÐÐÐÅµÀºÅ6		
-#define	MADD_C_UL_CHANNEL7		220		//		C¶ÎÉÏÐÐÐÅµÀºÅ7		
-#define	MADD_C_UL_CHANNEL8		221		//		C¶ÎÉÏÐÐÐÅµÀºÅ8		
-#define	MADD_C_UL_CHANNEL9		222		//		C¶ÎÉÏÐÐÐÅµÀºÅ9		
-#define	MADD_C_UL_CHANNEL10		223		//		C¶ÎÉÏÐÐÐÅµÀºÅ10		
-#define	MADD_C_DCH_MAX_POW1		224		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1		
-#define	MADD_C_DCH_MAX_POW2		225		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2		
-#define	MADD_C_DCH_MAX_POW3		226		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3		
-#define	MADD_C_DCH_MAX_POW4		227		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4		
-#define	MADD_C_DCH_MAX_POW5		228		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5		
-#define	MADD_C_DCH_MAX_POW6		229		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6		
-#define	MADD_C_DCH_MAX_POW7		230		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7		
-#define	MADD_C_DCH_MAX_POW8		231		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8		
-#define	MADD_C_DCH_MAX_POW9		232		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9		
-#define	MADD_C_DCH_MAX_POW10		233		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10		
-#define	MADD_C_DCH_MAX_POW11		234		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11		
-#define	MADD_C_DCH_MAX_POW12		235		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12		
-#define	MADD_C_DCH_MAX_POW13		236		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13		
-#define	MADD_C_DCH_MAX_POW14		237		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14		
-#define	MADD_C_DCH_MAX_POW15		238		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15		
-#define	MADD_C_DCH_MAX_POW16		239		//		C¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16		
-#define	MADD_C_UCH_MAX_POW1		240		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1		
-#define	MADD_C_UCH_MAX_POW2		241		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2		
-#define	MADD_C_UCH_MAX_POW3		242		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3		
-#define	MADD_C_UCH_MAX_POW4		243		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4		
-#define	MADD_C_UCH_MAX_POW5		244		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5		
-#define	MADD_C_UCH_MAX_POW6		245		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6		
-#define	MADD_C_UCH_MAX_POW7		246		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7		
-#define	MADD_C_UCH_MAX_POW8		247		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8		
-#define	MADD_C_UCH_MAX_POW9		248		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9		
-#define	MADD_C_UCH_MAX_POW10		249		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10		
-#define	MADD_C_UCH_MAX_POW11		250		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11		
-#define	MADD_C_UCH_MAX_POW12		251		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12		
-#define	MADD_C_UCH_MAX_POW13		252		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13		
-#define	MADD_C_UCH_MAX_POW14		253		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14		
-#define	MADD_C_UCH_MAX_POW15		254		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15		
-#define	MADD_C_UCH_MAX_POW16		255		//		C¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16		
-#define	MADD_C_DCH_POW1		256		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1		
-#define	MADD_C_DCH_POW2		257		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2		
-#define	MADD_C_DCH_POW3		258		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3		
-#define	MADD_C_DCH_POW4		259		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4		
-#define	MADD_C_DCH_POW5		260		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5		
-#define	MADD_C_DCH_POW6		261		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6		
-#define	MADD_C_DCH_POW7		262		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7		
-#define	MADD_C_DCH_POW8		263		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8		
-#define	MADD_C_DCH_POW9		264		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9		
-#define	MADD_C_DCH_POW10		265		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10		
-#define	MADD_C_DCH_POW11		266		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11		
-#define	MADD_C_DCH_POW12		267		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12		
-#define	MADD_C_DCH_POW13		268		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13		
-#define	MADD_C_DCH_POW14		269		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14		
-#define	MADD_C_DCH_POW15		270		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15		
-#define	MADD_C_DCH_POW16		271		//		C¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16		
-#define	MADD_C_UCH_POW1		272		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1		
-#define	MADD_C_UCH_POW2		273		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2		
-#define	MADD_C_UCH_POW3		274		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3		
-#define	MADD_C_UCH_POW4		275		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4		
-#define	MADD_C_UCH_POW5		276		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5		
-#define	MADD_C_UCH_POW6		277		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6		
-#define	MADD_C_UCH_POW7		278		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7		
-#define	MADD_C_UCH_POW8		279		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8		
-#define	MADD_C_UCH_POW9		280		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9		
-#define	MADD_C_UCH_POW10		281		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10		
-#define	MADD_C_UCH_POW11		282		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ11		
-#define	MADD_C_UCH_POW12		283		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ12		
-#define	MADD_C_UCH_POW13		284		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ13		
-#define	MADD_C_UCH_POW14		285		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ14		
-#define	MADD_C_UCH_POW15		286		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ15		
-#define	MADD_C_UCH_POW16		287		//		C¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ16		
-#define	MADD_C_UDPX_IN_GAIN		288		//		C¶ÎÊäÈëË«¹¤Æ÷Ë¥¼õ,		
-#define	MADD_C_UDPX_OUT_GAIN		289		//		C¶ÎÊä³öË«¹¤Æ÷Ë¥¼õ,		
-#define	MADD_C_DL_TOTAL_POW		290		//		C¶ÎÏÂÐÐÊä³ö×Ü¹¦ÂÊ£¬x10Ëã·¨±£ÁôÒ»Î»Ð¡Êý		
-#define	MADD_C_UL_TOTAL_POW		291		//		C¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ£¬x10Ëã·¨±£ÁôÒ»Î»Ð¡Êý		
-#define	MADD_C_REC_DPX_IG		292		//		RECµÄC¶ÎÊäÈëË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,		
-#define	MADD_C_REC_DPX_OG		293		//		RECµÄC¶ÎÊä³öË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,		
-#define	MADD_D_DL_CHANNEL1		294		//		D¶ÎÏÂÐÐÐÅµÀºÅ1		
-#define	MADD_D_DL_CHANNEL2		295		//		D¶ÎÏÂÐÐÐÅµÀºÅ2		
-#define	MADD_D_DL_CHANNEL3		296		//		D¶ÎÏÂÐÐÐÅµÀºÅ3		
-#define	MADD_D_DL_CHANNEL4		297		//		D¶ÎÏÂÐÐÐÅµÀºÅ4		
-#define	MADD_D_DL_CHANNEL5		298		//		D¶ÎÏÂÐÐÐÅµÀºÅ5		
-#define	MADD_D_DL_CHANNEL6		299		//		D¶ÎÏÂÐÐÐÅµÀºÅ6		
-#define	MADD_D_DL_CHANNEL7		300		//		D¶ÎÏÂÐÐÐÅµÀºÅ7		
-#define	MADD_D_DL_CHANNEL8		301		//		D¶ÎÏÂÐÐÐÅµÀºÅ8		
-#define	MADD_D_DL_CHANNEL9		302		//		D¶ÎÏÂÐÐÐÅµÀºÅ9		
-#define	MADD_D_DL_CHANNEL10		303		//		D¶ÎÏÂÐÐÐÅµÀºÅ10		
-#define	MADD_D_UL_CHANNEL1		304		//		D¶ÎÉÏÐÐÐÅµÀºÅ1		
-#define	MADD_D_UL_CHANNEL2		305		//		D¶ÎÉÏÐÐÐÅµÀºÅ2		
-#define	MADD_D_UL_CHANNEL3		306		//		D¶ÎÉÏÐÐÐÅµÀºÅ3		
-#define	MADD_D_UL_CHANNEL4		307		//		D¶ÎÉÏÐÐÐÅµÀºÅ4		
-#define	MADD_D_UL_CHANNEL5		308		//		D¶ÎÉÏÐÐÐÅµÀºÅ5		
-#define	MADD_D_UL_CHANNEL6		309		//		D¶ÎÉÏÐÐÐÅµÀºÅ6		
-#define	MADD_D_UL_CHANNEL7		310		//		D¶ÎÉÏÐÐÐÅµÀºÅ7		
-#define	MADD_D_UL_CHANNEL8		311		//		D¶ÎÉÏÐÐÐÅµÀºÅ8		
-#define	MADD_D_UL_CHANNEL9		312		//		D¶ÎÉÏÐÐÐÅµÀºÅ9		
-#define	MADD_D_UL_CHANNEL10		313		//		D¶ÎÉÏÐÐÐÅµÀºÅ10		
-#define	MADD_D_DCH_MAX_POW1		314		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ1		
-#define	MADD_D_DCH_MAX_POW2		315		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ2		
-#define	MADD_D_DCH_MAX_POW3		316		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ3		
-#define	MADD_D_DCH_MAX_POW4		317		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ4		
-#define	MADD_D_DCH_MAX_POW5		318		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ5		
-#define	MADD_D_DCH_MAX_POW6		319		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ6		
-#define	MADD_D_DCH_MAX_POW7		320		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ7		
-#define	MADD_D_DCH_MAX_POW8		321		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ8		
-#define	MADD_D_DCH_MAX_POW9		322		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ9		
-#define	MADD_D_DCH_MAX_POW10		323		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ10		
-#define	MADD_D_DCH_MAX_POW11		324		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ11		
-#define	MADD_D_DCH_MAX_POW12		325		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ12		
-#define	MADD_D_DCH_MAX_POW13		326		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ13		
-#define	MADD_D_DCH_MAX_POW14		327		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ14		
-#define	MADD_D_DCH_MAX_POW15		328		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ15		
-#define	MADD_D_DCH_MAX_POW16		329		//		D¶ÎÏÂÐÐÍ¨µÀ×î´óÊä³ö¹¦ÂÊ16		
-#define	MADD_D_UCH_MAX_POW1		330		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ1		
-#define	MADD_D_UCH_MAX_POW2		331		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ2		
-#define	MADD_D_UCH_MAX_POW3		332		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ3		
-#define	MADD_D_UCH_MAX_POW4		333		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ4		
-#define	MADD_D_UCH_MAX_POW5		334		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ5		
-#define	MADD_D_UCH_MAX_POW6		335		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ6		
-#define	MADD_D_UCH_MAX_POW7		336		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ7		
-#define	MADD_D_UCH_MAX_POW8		337		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ8		
-#define	MADD_D_UCH_MAX_POW9		338		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ9		
-#define	MADD_D_UCH_MAX_POW10		339		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ10		
-#define	MADD_D_UCH_MAX_POW11		340		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ11		
-#define	MADD_D_UCH_MAX_POW12		341		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ12		
-#define	MADD_D_UCH_MAX_POW13		342		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ13		
-#define	MADD_D_UCH_MAX_POW14		343		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ14		
-#define	MADD_D_UCH_MAX_POW15		344		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ15		
-#define	MADD_D_UCH_MAX_POW16		345		//		D¶ÎÉÏÐÐÍ¨µÀ×î´óÊäÈë¹¦ÂÊ16		
-#define	MADD_D_DCH_POW1		346		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ1		
-#define	MADD_D_DCH_POW2		347		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ2		
-#define	MADD_D_DCH_POW3		348		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ3		
-#define	MADD_D_DCH_POW4		349		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ4		
-#define	MADD_D_DCH_POW5		350		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ5		
-#define	MADD_D_DCH_POW6		351		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ6		
-#define	MADD_D_DCH_POW7		352		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ7		
-#define	MADD_D_DCH_POW8		353		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ8		
-#define	MADD_D_DCH_POW9		354		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ9		
-#define	MADD_D_DCH_POW10		355		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ10		
-#define	MADD_D_DCH_POW11		356		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ11		
-#define	MADD_D_DCH_POW12		357		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ12		
-#define	MADD_D_DCH_POW13		358		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ13		
-#define	MADD_D_DCH_POW14		359		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ14		
-#define	MADD_D_DCH_POW15		360		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ15		
-#define	MADD_D_DCH_POW16		361		//		D¶ÎÑ¡ÆµÍ¨µÀÏÂÐÐ¹¦ÂÊ16		
-#define	MADD_D_UCH_POW1		362		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ1		
-#define	MADD_D_UCH_POW2		363		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ2		
-#define	MADD_D_UCH_POW3		364		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ3		
-#define	MADD_D_UCH_POW4		365		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ4		
-#define	MADD_D_UCH_POW5		366		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ5		
-#define	MADD_D_UCH_POW6		367		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ6		
-#define	MADD_D_UCH_POW7		368		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ7		
-#define	MADD_D_UCH_POW8		369		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ8		
-#define	MADD_D_UCH_POW9		370		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ9		
-#define	MADD_D_UCH_POW10		371		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ10		
-#define	MADD_D_UCH_POW11		372		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ11		
-#define	MADD_D_UCH_POW12		373		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ12		
-#define	MADD_D_UCH_POW13		374		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ13		
-#define	MADD_D_UCH_POW14		375		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ14		
-#define	MADD_D_UCH_POW15		376		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ15		
-#define	MADD_D_UCH_POW16		377		//		D¶ÎÑ¡ÆµÍ¨µÀÉÏÐÐ¹¦ÂÊ16		
-#define	MADD_D_UDPX_IN_GAIN		378		//		D¶ÎÊäÈëË«¹¤Æ÷Ë¥¼õ,		
-#define	MADD_D_UDPX_OUT_GAIN		379		//		D¶ÎÊä³öË«¹¤Æ÷Ë¥¼õ,		
-#define	MADD_D_DL_TOTAL_POW		380		//		D¶ÎÏÂÐÐÊä³ö×Ü¹¦ÂÊ		
-#define	MADD_D_UL_TOTAL_POW		381		//		D¶ÎÉÏÐÐÊäÈë×Ü¹¦ÂÊ£¬x10Ëã·¨±£ÁôÒ»Î»Ð¡Êý		
-#define	MADD_D_REC_DPX_IG		382		//		RECµÄD¶ÎÊäÈëË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,		
-#define	MADD_D_REC_DPX_OG		383		//		RECµÄD¶ÎÊä³öË«¹¤Æ÷Ë¥¼õ£¬ÓÃÀ´½øÐÐÔöÒæ¼ÆËã£¬Ö»¶Á,		
-#define	MADD_REC_TO_RE_DELAY		384		//		RECµ½REµÄ¹âÏËÑÓÊ±		
+// è®¿é—®åœ°å€>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 2B
+#define	MADD_A_DL_CHANNEL1		0		//		Aæ®µä¸‹è¡Œä¿¡é“å·1		
+#define	MADD_A_DL_CHANNEL2		1		//		Aæ®µä¸‹è¡Œä¿¡é“å·2		
+#define	MADD_A_DL_CHANNEL3		2		//		Aæ®µä¸‹è¡Œä¿¡é“å·3		
+#define	MADD_A_DL_CHANNEL4		3		//		Aæ®µä¸‹è¡Œä¿¡é“å·4		
+#define	MADD_A_DL_CHANNEL5		4		//		Aæ®µä¸‹è¡Œä¿¡é“å·5		
+#define	MADD_A_DL_CHANNEL6		5		//		Aæ®µä¸‹è¡Œä¿¡é“å·6		
+#define	MADD_A_DL_CHANNEL7		6		//		Aæ®µä¸‹è¡Œä¿¡é“å·7		
+#define	MADD_A_DL_CHANNEL8		7		//		Aæ®µä¸‹è¡Œä¿¡é“å·8		
+#define	MADD_A_DL_CHANNEL9		8		//		Aæ®µä¸‹è¡Œä¿¡é“å·9		
+#define	MADD_A_DL_CHANNEL10		9		//		Aæ®µä¸‹è¡Œä¿¡é“å·10		
+#define	MADD_A_DL_CHANNEL11		10		//		Aæ®µä¸‹è¡Œä¿¡é“å·11		
+#define	MADD_A_DL_CHANNEL12		11		//		Aæ®µä¸‹è¡Œä¿¡é“å·12		
+#define	MADD_A_DL_CHANNEL13		12		//		Aæ®µä¸‹è¡Œä¿¡é“å·13		
+#define	MADD_A_DL_CHANNEL14		13		//		Aæ®µä¸‹è¡Œä¿¡é“å·14		
+#define	MADD_A_DL_CHANNEL15		14		//		Aæ®µä¸‹è¡Œä¿¡é“å·15		
+#define	MADD_A_DL_CHANNEL16		15		//		Aæ®µä¸‹è¡Œä¿¡é“å·16		
+#define	MADD_A_UL_CHANNEL1		16		//		Aæ®µä¸Šè¡Œä¿¡é“å·1		
+#define	MADD_A_UL_CHANNEL2		17		//		Aæ®µä¸Šè¡Œä¿¡é“å·2		
+#define	MADD_A_UL_CHANNEL3		18		//		Aæ®µä¸Šè¡Œä¿¡é“å·3		
+#define	MADD_A_UL_CHANNEL4		19		//		Aæ®µä¸Šè¡Œä¿¡é“å·4		
+#define	MADD_A_UL_CHANNEL5		20		//		Aæ®µä¸Šè¡Œä¿¡é“å·5		
+#define	MADD_A_UL_CHANNEL6		21		//		Aæ®µä¸Šè¡Œä¿¡é“å·6		
+#define	MADD_A_UL_CHANNEL7		22		//		Aæ®µä¸Šè¡Œä¿¡é“å·7		
+#define	MADD_A_UL_CHANNEL8		23		//		Aæ®µä¸Šè¡Œä¿¡é“å·8		
+#define	MADD_A_UL_CHANNEL9		24		//		Aæ®µä¸Šè¡Œä¿¡é“å·9		
+#define	MADD_A_UL_CHANNEL10		25		//		Aæ®µä¸Šè¡Œä¿¡é“å·10		
+#define	MADD_A_UL_CHANNEL11		26		//		Aæ®µä¸Šè¡Œä¿¡é“å·11		
+#define	MADD_A_UL_CHANNEL12		27		//		Aæ®µä¸Šè¡Œä¿¡é“å·12		
+#define	MADD_A_UL_CHANNEL13		28		//		Aæ®µä¸Šè¡Œä¿¡é“å·13		
+#define	MADD_A_UL_CHANNEL14		29		//		Aæ®µä¸Šè¡Œä¿¡é“å·14		
+#define	MADD_A_UL_CHANNEL15		30		//		Aæ®µä¸Šè¡Œä¿¡é“å·15		
+#define	MADD_A_UL_CHANNEL16		31		//		Aæ®µä¸Šè¡Œä¿¡é“å·16		
+#define	MADD_A_DCH_MAX_POW1		32		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1		
+#define	MADD_A_DCH_MAX_POW2		33		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2		
+#define	MADD_A_DCH_MAX_POW3		34		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3		
+#define	MADD_A_DCH_MAX_POW4		35		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4		
+#define	MADD_A_DCH_MAX_POW5		36		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5		
+#define	MADD_A_DCH_MAX_POW6		37		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6		
+#define	MADD_A_DCH_MAX_POW7		38		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7		
+#define	MADD_A_DCH_MAX_POW8		39		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8		
+#define	MADD_A_DCH_MAX_POW9		40		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9		
+#define	MADD_A_DCH_MAX_POW10		41		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10		
+#define	MADD_A_DCH_MAX_POW11		42		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11		
+#define	MADD_A_DCH_MAX_POW12		43		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12		
+#define	MADD_A_DCH_MAX_POW13		44		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13		
+#define	MADD_A_DCH_MAX_POW14		45		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14		
+#define	MADD_A_DCH_MAX_POW15		46		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15		
+#define	MADD_A_DCH_MAX_POW16		47		//		Aæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16		
+#define	MADD_A_UCH_MAX_POW1		48		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1		
+#define	MADD_A_UCH_MAX_POW2		49		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2		
+#define	MADD_A_UCH_MAX_POW3		50		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3		
+#define	MADD_A_UCH_MAX_POW4		51		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4		
+#define	MADD_A_UCH_MAX_POW5		52		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5		
+#define	MADD_A_UCH_MAX_POW6		53		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6		
+#define	MADD_A_UCH_MAX_POW7		54		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7		
+#define	MADD_A_UCH_MAX_POW8		55		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8		
+#define	MADD_A_UCH_MAX_POW9		56		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9		
+#define	MADD_A_UCH_MAX_POW10		57		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10		
+#define	MADD_A_UCH_MAX_POW11		58		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11		
+#define	MADD_A_UCH_MAX_POW12		59		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12		
+#define	MADD_A_UCH_MAX_POW13		60		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13		
+#define	MADD_A_UCH_MAX_POW14		61		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14		
+#define	MADD_A_UCH_MAX_POW15		62		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15		
+#define	MADD_A_UCH_MAX_POW16		63		//		Aæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16		
+#define	MADD_A_DCH_POW1		64		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1		
+#define	MADD_A_DCH_POW2		65		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2		
+#define	MADD_A_DCH_POW3		66		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3		
+#define	MADD_A_DCH_POW4		67		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4		
+#define	MADD_A_DCH_POW5		68		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5		
+#define	MADD_A_DCH_POW6		69		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6		
+#define	MADD_A_DCH_POW7		70		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7		
+#define	MADD_A_DCH_POW8		71		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8		
+#define	MADD_A_DCH_POW9		72		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9		
+#define	MADD_A_DCH_POW10		73		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10		
+#define	MADD_A_DCH_POW11		74		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11		
+#define	MADD_A_DCH_POW12		75		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12		
+#define	MADD_A_DCH_POW13		76		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13		
+#define	MADD_A_DCH_POW14		77		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14		
+#define	MADD_A_DCH_POW15		78		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15		
+#define	MADD_A_DCH_POW16		79		//		Aæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16		
+#define	MADD_A_UCH_POW1		80		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1		
+#define	MADD_A_UCH_POW2		81		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2		
+#define	MADD_A_UCH_POW3		82		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3		
+#define	MADD_A_UCH_POW4		83		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4		
+#define	MADD_A_UCH_POW5		84		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5		
+#define	MADD_A_UCH_POW6		85		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6		
+#define	MADD_A_UCH_POW7		86		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7		
+#define	MADD_A_UCH_POW8		87		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8		
+#define	MADD_A_UCH_POW9		88		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9		
+#define	MADD_A_UCH_POW10		89		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10		
+#define	MADD_A_UCH_POW11		90		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡11		
+#define	MADD_A_UCH_POW12		91		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡12		
+#define	MADD_A_UCH_POW13		92		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡13		
+#define	MADD_A_UCH_POW14		93		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡14		
+#define	MADD_A_UCH_POW15		94		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡15		
+#define	MADD_A_UCH_POW16		95		//		Aæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡16		
+#define	MADD_A_UDPX_IN_GAIN		96		//		Aæ®µè¾“å…¥åŒå·¥å™¨è¡°å‡,		
+#define	MADD_A_UDPX_OUT_GAIN		97		//		Aæ®µè¾“å‡ºåŒå·¥å™¨è¡°å‡,		
+#define	MADD_A_DL_TOTAL_POW		98		//		Aæ®µä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡ï¼Œx10ç®—æ³•ä¿ç•™ä¸€ä½å°æ•°		
+#define	MADD_A_UL_TOTAL_POW		99		//		Aæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡ï¼Œx10ç®—æ³•ä¿ç•™ä¸€ä½å°æ•°		
+#define	MADD_A_REC_DPX_IG		100		//		RECçš„Aæ®µè¾“å…¥åŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,		
+#define	MADD_A_REC_DPX_OG		101		//		RECçš„Aæ®µè¾“å‡ºåŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,		
+#define	MADD_B_DL_CHANNEL1		102		//		Bæ®µä¸‹è¡Œä¿¡é“å·1		
+#define	MADD_B_DL_CHANNEL2		103		//		Bæ®µä¸‹è¡Œä¿¡é“å·2		
+#define	MADD_B_DL_CHANNEL3		104		//		Bæ®µä¸‹è¡Œä¿¡é“å·3		
+#define	MADD_B_DL_CHANNEL4		105		//		Bæ®µä¸‹è¡Œä¿¡é“å·4		
+#define	MADD_B_DL_CHANNEL5		106		//		Bæ®µä¸‹è¡Œä¿¡é“å·5		
+#define	MADD_B_DL_CHANNEL6		107		//		Bæ®µä¸‹è¡Œä¿¡é“å·6		
+#define	MADD_B_DL_CHANNEL7		108		//		Bæ®µä¸‹è¡Œä¿¡é“å·7		
+#define	MADD_B_DL_CHANNEL8		109		//		Bæ®µä¸‹è¡Œä¿¡é“å·8		
+#define	MADD_B_DL_CHANNEL9		110		//		Bæ®µä¸‹è¡Œä¿¡é“å·9		
+#define	MADD_B_DL_CHANNEL10		111		//		Bæ®µä¸‹è¡Œä¿¡é“å·10		
+#define	MADD_B_DL_CHANNEL11		112		//		Bæ®µä¸‹è¡Œä¿¡é“å·11		
+#define	MADD_B_DL_CHANNEL12		113		//		Bæ®µä¸‹è¡Œä¿¡é“å·12		
+#define	MADD_B_DL_CHANNEL13		114		//		Bæ®µä¸‹è¡Œä¿¡é“å·13		
+#define	MADD_B_DL_CHANNEL14		115		//		Bæ®µä¸‹è¡Œä¿¡é“å·14		
+#define	MADD_B_DL_CHANNEL15		116		//		Bæ®µä¸‹è¡Œä¿¡é“å·15		
+#define	MADD_B_DL_CHANNEL16		117		//		Bæ®µä¸‹è¡Œä¿¡é“å·16		
+#define	MADD_B_UL_CHANNEL1		118		//		Bæ®µä¸Šè¡Œä¿¡é“å·1		
+#define	MADD_B_UL_CHANNEL2		119		//		Bæ®µä¸Šè¡Œä¿¡é“å·2		
+#define	MADD_B_UL_CHANNEL3		120		//		Bæ®µä¸Šè¡Œä¿¡é“å·3		
+#define	MADD_B_UL_CHANNEL4		121		//		Bæ®µä¸Šè¡Œä¿¡é“å·4		
+#define	MADD_B_UL_CHANNEL5		122		//		Bæ®µä¸Šè¡Œä¿¡é“å·5		
+#define	MADD_B_UL_CHANNEL6		123		//		Bæ®µä¸Šè¡Œä¿¡é“å·6		
+#define	MADD_B_UL_CHANNEL7		124		//		Bæ®µä¸Šè¡Œä¿¡é“å·7		
+#define	MADD_B_UL_CHANNEL8		125		//		Bæ®µä¸Šè¡Œä¿¡é“å·8		
+#define	MADD_B_UL_CHANNEL9		126		//		Bæ®µä¸Šè¡Œä¿¡é“å·9		
+#define	MADD_B_UL_CHANNEL10		127		//		Bæ®µä¸Šè¡Œä¿¡é“å·10		
+#define	MADD_B_UL_CHANNEL11		128		//		Bæ®µä¸Šè¡Œä¿¡é“å·11		
+#define	MADD_B_UL_CHANNEL12		129		//		Bæ®µä¸Šè¡Œä¿¡é“å·12		
+#define	MADD_B_UL_CHANNEL13		130		//		Bæ®µä¸Šè¡Œä¿¡é“å·13		
+#define	MADD_B_UL_CHANNEL14		131		//		Bæ®µä¸Šè¡Œä¿¡é“å·14		
+#define	MADD_B_UL_CHANNEL15		132		//		Bæ®µä¸Šè¡Œä¿¡é“å·15		
+#define	MADD_B_UL_CHANNEL16		133		//		Bæ®µä¸Šè¡Œä¿¡é“å·16		
+#define	MADD_B_DCH_MAX_POW1		134		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1		
+#define	MADD_B_DCH_MAX_POW2		135		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2		
+#define	MADD_B_DCH_MAX_POW3		136		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3		
+#define	MADD_B_DCH_MAX_POW4		137		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4		
+#define	MADD_B_DCH_MAX_POW5		138		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5		
+#define	MADD_B_DCH_MAX_POW6		139		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6		
+#define	MADD_B_DCH_MAX_POW7		140		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7		
+#define	MADD_B_DCH_MAX_POW8		141		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8		
+#define	MADD_B_DCH_MAX_POW9		142		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9		
+#define	MADD_B_DCH_MAX_POW10		143		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10		
+#define	MADD_B_DCH_MAX_POW11		144		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11		
+#define	MADD_B_DCH_MAX_POW12		145		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12		
+#define	MADD_B_DCH_MAX_POW13		146		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13		
+#define	MADD_B_DCH_MAX_POW14		147		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14		
+#define	MADD_B_DCH_MAX_POW15		148		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15		
+#define	MADD_B_DCH_MAX_POW16		149		//		Bæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16		
+#define	MADD_B_UCH_MAX_POW1		150		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1		
+#define	MADD_B_UCH_MAX_POW2		151		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2		
+#define	MADD_B_UCH_MAX_POW3		152		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3		
+#define	MADD_B_UCH_MAX_POW4		153		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4		
+#define	MADD_B_UCH_MAX_POW5		154		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5		
+#define	MADD_B_UCH_MAX_POW6		155		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6		
+#define	MADD_B_UCH_MAX_POW7		156		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7		
+#define	MADD_B_UCH_MAX_POW8		157		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8		
+#define	MADD_B_UCH_MAX_POW9		158		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9		
+#define	MADD_B_UCH_MAX_POW10		159		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10		
+#define	MADD_B_UCH_MAX_POW11		160		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11		
+#define	MADD_B_UCH_MAX_POW12		161		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12		
+#define	MADD_B_UCH_MAX_POW13		162		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13		
+#define	MADD_B_UCH_MAX_POW14		163		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14		
+#define	MADD_B_UCH_MAX_POW15		164		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15		
+#define	MADD_B_UCH_MAX_POW16		165		//		Bæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16		
+#define	MADD_B_DCH_POW1		166		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1		
+#define	MADD_B_DCH_POW2		167		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2		
+#define	MADD_B_DCH_POW3		168		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3		
+#define	MADD_B_DCH_POW4		169		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4		
+#define	MADD_B_DCH_POW5		170		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5		
+#define	MADD_B_DCH_POW6		171		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6		
+#define	MADD_B_DCH_POW7		172		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7		
+#define	MADD_B_DCH_POW8		173		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8		
+#define	MADD_B_DCH_POW9		174		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9		
+#define	MADD_B_DCH_POW10		175		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10		
+#define	MADD_B_DCH_POW11		176		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11		
+#define	MADD_B_DCH_POW12		177		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12		
+#define	MADD_B_DCH_POW13		178		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13		
+#define	MADD_B_DCH_POW14		179		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14		
+#define	MADD_B_DCH_POW15		180		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15		
+#define	MADD_B_DCH_POW16		181		//		Bæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16		
+#define	MADD_B_UCH_POW1		182		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1		
+#define	MADD_B_UCH_POW2		183		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2		
+#define	MADD_B_UCH_POW3		184		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3		
+#define	MADD_B_UCH_POW4		185		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4		
+#define	MADD_B_UCH_POW5		186		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5		
+#define	MADD_B_UCH_POW6		187		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6		
+#define	MADD_B_UCH_POW7		188		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7		
+#define	MADD_B_UCH_POW8		189		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8		
+#define	MADD_B_UCH_POW9		190		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9		
+#define	MADD_B_UCH_POW10		191		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10		
+#define	MADD_B_UCH_POW11		192		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡11		
+#define	MADD_B_UCH_POW12		193		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡12		
+#define	MADD_B_UCH_POW13		194		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡13		
+#define	MADD_B_UCH_POW14		195		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡14		
+#define	MADD_B_UCH_POW15		196		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡15		
+#define	MADD_B_UCH_POW16		197		//		Bæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡16		
+#define	MADD_B_UDPX_IN_GAIN		198		//		Bæ®µè¾“å…¥åŒå·¥å™¨è¡°å‡,		
+#define	MADD_B_UDPX_OUT_GAIN		199		//		Bæ®µè¾“å‡ºåŒå·¥å™¨è¡°å‡,		
+#define	MADD_B_DL_TOTAL_POW		200		//		Bæ®µä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡		
+#define	MADD_B_UL_TOTAL_POW		201		//		Bæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡ï¼Œx10ç®—æ³•ä¿ç•™ä¸€ä½å°æ•°		
+#define	MADD_B_REC_DPX_IG		202		//		RECçš„Bæ®µè¾“å…¥åŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,		
+#define	MADD_B_REC_DPX_OG		203		//		RECçš„Bæ®µè¾“å‡ºåŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,		
+#define	MADD_C_DL_CHANNEL1		204		//		Cæ®µä¸‹è¡Œä¿¡é“å·1		
+#define	MADD_C_DL_CHANNEL2		205		//		Cæ®µä¸‹è¡Œä¿¡é“å·2		
+#define	MADD_C_DL_CHANNEL3		206		//		Cæ®µä¸‹è¡Œä¿¡é“å·3		
+#define	MADD_C_DL_CHANNEL4		207		//		Cæ®µä¸‹è¡Œä¿¡é“å·4		
+#define	MADD_C_DL_CHANNEL5		208		//		Cæ®µä¸‹è¡Œä¿¡é“å·5		
+#define	MADD_C_DL_CHANNEL6		209		//		Cæ®µä¸‹è¡Œä¿¡é“å·6		
+#define	MADD_C_DL_CHANNEL7		210		//		Cæ®µä¸‹è¡Œä¿¡é“å·7		
+#define	MADD_C_DL_CHANNEL8		211		//		Cæ®µä¸‹è¡Œä¿¡é“å·8		
+#define	MADD_C_DL_CHANNEL9		212		//		Cæ®µä¸‹è¡Œä¿¡é“å·9		
+#define	MADD_C_DL_CHANNEL10		213		//		Cæ®µä¸‹è¡Œä¿¡é“å·10		
+#define	MADD_C_UL_CHANNEL1		214		//		Cæ®µä¸Šè¡Œä¿¡é“å·1		
+#define	MADD_C_UL_CHANNEL2		215		//		Cæ®µä¸Šè¡Œä¿¡é“å·2		
+#define	MADD_C_UL_CHANNEL3		216		//		Cæ®µä¸Šè¡Œä¿¡é“å·3		
+#define	MADD_C_UL_CHANNEL4		217		//		Cæ®µä¸Šè¡Œä¿¡é“å·4		
+#define	MADD_C_UL_CHANNEL5		218		//		Cæ®µä¸Šè¡Œä¿¡é“å·5		
+#define	MADD_C_UL_CHANNEL6		219		//		Cæ®µä¸Šè¡Œä¿¡é“å·6		
+#define	MADD_C_UL_CHANNEL7		220		//		Cæ®µä¸Šè¡Œä¿¡é“å·7		
+#define	MADD_C_UL_CHANNEL8		221		//		Cæ®µä¸Šè¡Œä¿¡é“å·8		
+#define	MADD_C_UL_CHANNEL9		222		//		Cæ®µä¸Šè¡Œä¿¡é“å·9		
+#define	MADD_C_UL_CHANNEL10		223		//		Cæ®µä¸Šè¡Œä¿¡é“å·10		
+#define	MADD_C_DCH_MAX_POW1		224		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1		
+#define	MADD_C_DCH_MAX_POW2		225		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2		
+#define	MADD_C_DCH_MAX_POW3		226		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3		
+#define	MADD_C_DCH_MAX_POW4		227		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4		
+#define	MADD_C_DCH_MAX_POW5		228		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5		
+#define	MADD_C_DCH_MAX_POW6		229		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6		
+#define	MADD_C_DCH_MAX_POW7		230		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7		
+#define	MADD_C_DCH_MAX_POW8		231		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8		
+#define	MADD_C_DCH_MAX_POW9		232		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9		
+#define	MADD_C_DCH_MAX_POW10		233		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10		
+#define	MADD_C_DCH_MAX_POW11		234		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11		
+#define	MADD_C_DCH_MAX_POW12		235		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12		
+#define	MADD_C_DCH_MAX_POW13		236		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13		
+#define	MADD_C_DCH_MAX_POW14		237		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14		
+#define	MADD_C_DCH_MAX_POW15		238		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15		
+#define	MADD_C_DCH_MAX_POW16		239		//		Cæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16		
+#define	MADD_C_UCH_MAX_POW1		240		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1		
+#define	MADD_C_UCH_MAX_POW2		241		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2		
+#define	MADD_C_UCH_MAX_POW3		242		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3		
+#define	MADD_C_UCH_MAX_POW4		243		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4		
+#define	MADD_C_UCH_MAX_POW5		244		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5		
+#define	MADD_C_UCH_MAX_POW6		245		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6		
+#define	MADD_C_UCH_MAX_POW7		246		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7		
+#define	MADD_C_UCH_MAX_POW8		247		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8		
+#define	MADD_C_UCH_MAX_POW9		248		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9		
+#define	MADD_C_UCH_MAX_POW10		249		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10		
+#define	MADD_C_UCH_MAX_POW11		250		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11		
+#define	MADD_C_UCH_MAX_POW12		251		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12		
+#define	MADD_C_UCH_MAX_POW13		252		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13		
+#define	MADD_C_UCH_MAX_POW14		253		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14		
+#define	MADD_C_UCH_MAX_POW15		254		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15		
+#define	MADD_C_UCH_MAX_POW16		255		//		Cæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16		
+#define	MADD_C_DCH_POW1		256		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1		
+#define	MADD_C_DCH_POW2		257		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2		
+#define	MADD_C_DCH_POW3		258		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3		
+#define	MADD_C_DCH_POW4		259		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4		
+#define	MADD_C_DCH_POW5		260		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5		
+#define	MADD_C_DCH_POW6		261		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6		
+#define	MADD_C_DCH_POW7		262		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7		
+#define	MADD_C_DCH_POW8		263		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8		
+#define	MADD_C_DCH_POW9		264		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9		
+#define	MADD_C_DCH_POW10		265		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10		
+#define	MADD_C_DCH_POW11		266		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11		
+#define	MADD_C_DCH_POW12		267		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12		
+#define	MADD_C_DCH_POW13		268		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13		
+#define	MADD_C_DCH_POW14		269		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14		
+#define	MADD_C_DCH_POW15		270		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15		
+#define	MADD_C_DCH_POW16		271		//		Cæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16		
+#define	MADD_C_UCH_POW1		272		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1		
+#define	MADD_C_UCH_POW2		273		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2		
+#define	MADD_C_UCH_POW3		274		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3		
+#define	MADD_C_UCH_POW4		275		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4		
+#define	MADD_C_UCH_POW5		276		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5		
+#define	MADD_C_UCH_POW6		277		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6		
+#define	MADD_C_UCH_POW7		278		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7		
+#define	MADD_C_UCH_POW8		279		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8		
+#define	MADD_C_UCH_POW9		280		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9		
+#define	MADD_C_UCH_POW10		281		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10		
+#define	MADD_C_UCH_POW11		282		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡11		
+#define	MADD_C_UCH_POW12		283		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡12		
+#define	MADD_C_UCH_POW13		284		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡13		
+#define	MADD_C_UCH_POW14		285		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡14		
+#define	MADD_C_UCH_POW15		286		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡15		
+#define	MADD_C_UCH_POW16		287		//		Cæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡16		
+#define	MADD_C_UDPX_IN_GAIN		288		//		Cæ®µè¾“å…¥åŒå·¥å™¨è¡°å‡,		
+#define	MADD_C_UDPX_OUT_GAIN		289		//		Cæ®µè¾“å‡ºåŒå·¥å™¨è¡°å‡,		
+#define	MADD_C_DL_TOTAL_POW		290		//		Cæ®µä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡ï¼Œx10ç®—æ³•ä¿ç•™ä¸€ä½å°æ•°		
+#define	MADD_C_UL_TOTAL_POW		291		//		Cæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡ï¼Œx10ç®—æ³•ä¿ç•™ä¸€ä½å°æ•°		
+#define	MADD_C_REC_DPX_IG		292		//		RECçš„Cæ®µè¾“å…¥åŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,		
+#define	MADD_C_REC_DPX_OG		293		//		RECçš„Cæ®µè¾“å‡ºåŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,		
+#define	MADD_D_DL_CHANNEL1		294		//		Dæ®µä¸‹è¡Œä¿¡é“å·1		
+#define	MADD_D_DL_CHANNEL2		295		//		Dæ®µä¸‹è¡Œä¿¡é“å·2		
+#define	MADD_D_DL_CHANNEL3		296		//		Dæ®µä¸‹è¡Œä¿¡é“å·3		
+#define	MADD_D_DL_CHANNEL4		297		//		Dæ®µä¸‹è¡Œä¿¡é“å·4		
+#define	MADD_D_DL_CHANNEL5		298		//		Dæ®µä¸‹è¡Œä¿¡é“å·5		
+#define	MADD_D_DL_CHANNEL6		299		//		Dæ®µä¸‹è¡Œä¿¡é“å·6		
+#define	MADD_D_DL_CHANNEL7		300		//		Dæ®µä¸‹è¡Œä¿¡é“å·7		
+#define	MADD_D_DL_CHANNEL8		301		//		Dæ®µä¸‹è¡Œä¿¡é“å·8		
+#define	MADD_D_DL_CHANNEL9		302		//		Dæ®µä¸‹è¡Œä¿¡é“å·9		
+#define	MADD_D_DL_CHANNEL10		303		//		Dæ®µä¸‹è¡Œä¿¡é“å·10		
+#define	MADD_D_UL_CHANNEL1		304		//		Dæ®µä¸Šè¡Œä¿¡é“å·1		
+#define	MADD_D_UL_CHANNEL2		305		//		Dæ®µä¸Šè¡Œä¿¡é“å·2		
+#define	MADD_D_UL_CHANNEL3		306		//		Dæ®µä¸Šè¡Œä¿¡é“å·3		
+#define	MADD_D_UL_CHANNEL4		307		//		Dæ®µä¸Šè¡Œä¿¡é“å·4		
+#define	MADD_D_UL_CHANNEL5		308		//		Dæ®µä¸Šè¡Œä¿¡é“å·5		
+#define	MADD_D_UL_CHANNEL6		309		//		Dæ®µä¸Šè¡Œä¿¡é“å·6		
+#define	MADD_D_UL_CHANNEL7		310		//		Dæ®µä¸Šè¡Œä¿¡é“å·7		
+#define	MADD_D_UL_CHANNEL8		311		//		Dæ®µä¸Šè¡Œä¿¡é“å·8		
+#define	MADD_D_UL_CHANNEL9		312		//		Dæ®µä¸Šè¡Œä¿¡é“å·9		
+#define	MADD_D_UL_CHANNEL10		313		//		Dæ®µä¸Šè¡Œä¿¡é“å·10		
+#define	MADD_D_DCH_MAX_POW1		314		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡1		
+#define	MADD_D_DCH_MAX_POW2		315		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡2		
+#define	MADD_D_DCH_MAX_POW3		316		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡3		
+#define	MADD_D_DCH_MAX_POW4		317		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡4		
+#define	MADD_D_DCH_MAX_POW5		318		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡5		
+#define	MADD_D_DCH_MAX_POW6		319		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡6		
+#define	MADD_D_DCH_MAX_POW7		320		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡7		
+#define	MADD_D_DCH_MAX_POW8		321		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡8		
+#define	MADD_D_DCH_MAX_POW9		322		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡9		
+#define	MADD_D_DCH_MAX_POW10		323		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡10		
+#define	MADD_D_DCH_MAX_POW11		324		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡11		
+#define	MADD_D_DCH_MAX_POW12		325		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡12		
+#define	MADD_D_DCH_MAX_POW13		326		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡13		
+#define	MADD_D_DCH_MAX_POW14		327		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡14		
+#define	MADD_D_DCH_MAX_POW15		328		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡15		
+#define	MADD_D_DCH_MAX_POW16		329		//		Dæ®µä¸‹è¡Œé€šé“æœ€å¤§è¾“å‡ºåŠŸçŽ‡16		
+#define	MADD_D_UCH_MAX_POW1		330		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡1		
+#define	MADD_D_UCH_MAX_POW2		331		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡2		
+#define	MADD_D_UCH_MAX_POW3		332		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡3		
+#define	MADD_D_UCH_MAX_POW4		333		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡4		
+#define	MADD_D_UCH_MAX_POW5		334		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡5		
+#define	MADD_D_UCH_MAX_POW6		335		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡6		
+#define	MADD_D_UCH_MAX_POW7		336		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡7		
+#define	MADD_D_UCH_MAX_POW8		337		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡8		
+#define	MADD_D_UCH_MAX_POW9		338		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡9		
+#define	MADD_D_UCH_MAX_POW10		339		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡10		
+#define	MADD_D_UCH_MAX_POW11		340		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡11		
+#define	MADD_D_UCH_MAX_POW12		341		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡12		
+#define	MADD_D_UCH_MAX_POW13		342		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡13		
+#define	MADD_D_UCH_MAX_POW14		343		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡14		
+#define	MADD_D_UCH_MAX_POW15		344		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡15		
+#define	MADD_D_UCH_MAX_POW16		345		//		Dæ®µä¸Šè¡Œé€šé“æœ€å¤§è¾“å…¥åŠŸçŽ‡16		
+#define	MADD_D_DCH_POW1		346		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡1		
+#define	MADD_D_DCH_POW2		347		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡2		
+#define	MADD_D_DCH_POW3		348		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡3		
+#define	MADD_D_DCH_POW4		349		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡4		
+#define	MADD_D_DCH_POW5		350		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡5		
+#define	MADD_D_DCH_POW6		351		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡6		
+#define	MADD_D_DCH_POW7		352		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡7		
+#define	MADD_D_DCH_POW8		353		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡8		
+#define	MADD_D_DCH_POW9		354		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡9		
+#define	MADD_D_DCH_POW10		355		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡10		
+#define	MADD_D_DCH_POW11		356		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡11		
+#define	MADD_D_DCH_POW12		357		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡12		
+#define	MADD_D_DCH_POW13		358		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡13		
+#define	MADD_D_DCH_POW14		359		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡14		
+#define	MADD_D_DCH_POW15		360		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡15		
+#define	MADD_D_DCH_POW16		361		//		Dæ®µé€‰é¢‘é€šé“ä¸‹è¡ŒåŠŸçŽ‡16		
+#define	MADD_D_UCH_POW1		362		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡1		
+#define	MADD_D_UCH_POW2		363		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡2		
+#define	MADD_D_UCH_POW3		364		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡3		
+#define	MADD_D_UCH_POW4		365		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡4		
+#define	MADD_D_UCH_POW5		366		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡5		
+#define	MADD_D_UCH_POW6		367		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡6		
+#define	MADD_D_UCH_POW7		368		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡7		
+#define	MADD_D_UCH_POW8		369		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡8		
+#define	MADD_D_UCH_POW9		370		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡9		
+#define	MADD_D_UCH_POW10		371		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡10		
+#define	MADD_D_UCH_POW11		372		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡11		
+#define	MADD_D_UCH_POW12		373		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡12		
+#define	MADD_D_UCH_POW13		374		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡13		
+#define	MADD_D_UCH_POW14		375		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡14		
+#define	MADD_D_UCH_POW15		376		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡15		
+#define	MADD_D_UCH_POW16		377		//		Dæ®µé€‰é¢‘é€šé“ä¸Šè¡ŒåŠŸçŽ‡16		
+#define	MADD_D_UDPX_IN_GAIN		378		//		Dæ®µè¾“å…¥åŒå·¥å™¨è¡°å‡,		
+#define	MADD_D_UDPX_OUT_GAIN		379		//		Dæ®µè¾“å‡ºåŒå·¥å™¨è¡°å‡,		
+#define	MADD_D_DL_TOTAL_POW		380		//		Dæ®µä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡		
+#define	MADD_D_UL_TOTAL_POW		381		//		Dæ®µä¸Šè¡Œè¾“å…¥æ€»åŠŸçŽ‡ï¼Œx10ç®—æ³•ä¿ç•™ä¸€ä½å°æ•°		
+#define	MADD_D_REC_DPX_IG		382		//		RECçš„Dæ®µè¾“å…¥åŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,		
+#define	MADD_D_REC_DPX_OG		383		//		RECçš„Dæ®µè¾“å‡ºåŒå·¥å™¨è¡°å‡ï¼Œç”¨æ¥è¿›è¡Œå¢žç›Šè®¡ç®—ï¼Œåªè¯»,		
+#define	MADD_REC_TO_RE_DELAY		384		//		RECåˆ°REçš„å…‰çº¤å»¶æ—¶		
 #define	MADD_RE_RF_DELAY		385						
-#define	MADD_MAX_T14		386		//		¹â¿Ú×î´óÑÓÊ±,µ¥Î»10ns		
-#define	MADD_DL_DELAY_OFFSET		387		//		ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿		
-#define	MADD_UL_DELAY_OFFSET		388		//		ÉÏÐÐÑÓÊ±Æ«ÒÆÁ¿		
-#define	MADD_PRI_SOFT_V		389		//		³ÌÐò°æ±¾ºÅ£¨ÓÃASCIIÂë£©		
-#define	MADD_PRI_HARD_V		390		//		PCB°æ±¾ºÅ(ÓÃASCIIÂë)		
-#define	MADD_TD_1ST_CP_TIME		391		//		TDµÚ1×ª»»µãÊ±¼ä,ns,		
-#define	MADD_TD_2ND_CP_TIME		392		//		TDµÚ2×ª»»µãÊ±¼ä,ns,		
-#define	MADD_TD_LNA_ON_TIME		393		//		LNA¿ªÆô³ÙºóDN_PA¹Ø±ÕµÄ±£»¤Ê±¼äns		
-#define	MADD_TD_LNA_OFF_TIME		394		//		LNA¹Ø±Õ³¬Ç°DN_PA¿ªÆôµÄ±£»¤Ê±¼äns		
-#define	MADD_TD_SLOT1_UPOW		395		//		TDÊ±Ï¶1ÉÏÐÐÊäÈë¼ì²â¹¦ÂÊ		
-#define	MADD_TD_SLOT2_UPOW		396		//		TDÊ±Ï¶2ÉÏÐÐÊäÈë¼ì²â¹¦ÂÊ		
-#define	MADD_TD_SLOT3_UPOW		397		//		TDÊ±Ï¶3ÉÏÐÐÊäÈë¼ì²â¹¦ÂÊ		
-#define	MADD_TD_SLOT4_UPOW		398		//		TDÊ±Ï¶4ÉÏÐÐÊäÈë¼ì²â¹¦ÂÊ		
-#define	MADD_TD_SLOT5_UPOW		399		//		TDÊ±Ï¶5ÉÏÐÐÊäÈë¼ì²â¹¦ÂÊ		
-#define	MADD_TD_SLOT6_UPOW		400		//		TDÊ±Ï¶6ÉÏÐÐÊäÈë¼ì²â¹¦ÂÊ		
-#define	MADD_TD_SLOT7_UPOW		401		//		TDÊ±Ï¶7ÉÏÐÐÊäÈë¼ì²â¹¦ÂÊ		
-#define	MADD_TD_SLOT1_DPOW		402		//		TDÊ±Ï¶1ÏÂÐÐÊäÈë¼ì²â¹¦ÂÊ		
-#define	MADD_TD_SLOT2_DPOW		403		//		TDÊ±Ï¶2ÏÂÐÐÊäÈë¼ì²â¹¦ÂÊ		
-#define	MADD_TD_SLOT3_DPOW		404		//		TDÊ±Ï¶3ÏÂÐÐÊäÈë¼ì²â¹¦ÂÊ		
-#define	MADD_TD_SLOT4_DPOW		405		//		TDÊ±Ï¶4ÏÂÐÐÊäÈë¼ì²â¹¦ÂÊ		
-#define	MADD_TD_SLOT5_DPOW		406		//		TDÊ±Ï¶5ÏÂÐÐÊäÈë¼ì²â¹¦ÂÊ		
-#define	MADD_TD_SLOT6_DPOW		407		//		TDÊ±Ï¶6ÏÂÐÐÊäÈë¼ì²â¹¦ÂÊ		
-#define	MADD_TD_SLOT7_DPOW		408		//		TDÊ±Ï¶7ÏÂÐÐÊäÈë¼ì²â¹¦ÂÊ		
-#define	MADD_FPS_S1		409		//		ÆµµãËÑËØ·¶Î§1ÆðÊ¼Æµµã		
-#define	MADD_FPS_E1		410		//		ÆµµãËÑËØ·¶Î§1½áÊøÆµµã		
-#define	MADD_FPS_S2		411		//		ÆµµãËÑËØ·¶Î§2ÆðÊ¼Æµµã		
-#define	MADD_FPS_E2		412		//		ÆµµãËÑËØ·¶Î§2½áÊøÆµµã		
-#define	MADD_FPS_BCCH_LK_SET		413		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CID_LK_SET		414		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_BCCH_FC_M		415		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_0		416		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_1		417		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_2		418		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_3		419		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_4		420		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_5		421		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_6		422		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_7		423		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_8		424		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_9		425		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_10		426		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_11		427		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_12		428		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_13		429		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_14		430		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CA_FC_15		431		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_BCCH_FC_1		432		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_BCCH_FC_2		433		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_BCCH_FC_3		434		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_BCCH_FC_4		435		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_BCCH_FC_5		436		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_BCCH_FC_6		437		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_AREA_ID		438		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CID		439		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CID_1		440		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CID_2		441		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CID_3		442		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CID_4		443		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CID_5		444		//		ÆµµãËÑË÷:		
-#define	MADD_FPS_CID_6		445		//		ÆµµãËÑË÷:		
-#define	MADD_A_EXPA_IDRAIN_SET		446		//		Î¢¹¦·Å:		
-#define	MADD_TD_SLOT1_DPOW_OVER_THR		447		//625		//ÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊÃÅÏÞ		
-#define	MADD_TD_SLOT1_DPOW_OWE_THR		448		//626		//ÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊÃÅÏÞ		
+#define	MADD_MAX_T14		386		//		å…‰å£æœ€å¤§å»¶æ—¶,å•ä½10ns		
+#define	MADD_DL_DELAY_OFFSET		387		//		ä¸‹è¡Œå»¶æ—¶åç§»é‡		
+#define	MADD_UL_DELAY_OFFSET		388		//		ä¸Šè¡Œå»¶æ—¶åç§»é‡		
+#define	MADD_PRI_SOFT_V		389		//		ç¨‹åºç‰ˆæœ¬å·ï¼ˆç”¨ASCIIç ï¼‰		
+#define	MADD_PRI_HARD_V		390		//		PCBç‰ˆæœ¬å·(ç”¨ASCIIç )		
+#define	MADD_TD_1ST_CP_TIME		391		//		TDç¬¬1è½¬æ¢ç‚¹æ—¶é—´,ns,		
+#define	MADD_TD_2ND_CP_TIME		392		//		TDç¬¬2è½¬æ¢ç‚¹æ—¶é—´,ns,		
+#define	MADD_TD_LNA_ON_TIME		393		//		LNAå¼€å¯è¿ŸåŽDN_PAå…³é—­çš„ä¿æŠ¤æ—¶é—´ns		
+#define	MADD_TD_LNA_OFF_TIME		394		//		LNAå…³é—­è¶…å‰DN_PAå¼€å¯çš„ä¿æŠ¤æ—¶é—´ns		
+#define	MADD_TD_SLOT1_UPOW		395		//		TDæ—¶éš™1ä¸Šè¡Œè¾“å…¥æ£€æµ‹åŠŸçŽ‡		
+#define	MADD_TD_SLOT2_UPOW		396		//		TDæ—¶éš™2ä¸Šè¡Œè¾“å…¥æ£€æµ‹åŠŸçŽ‡		
+#define	MADD_TD_SLOT3_UPOW		397		//		TDæ—¶éš™3ä¸Šè¡Œè¾“å…¥æ£€æµ‹åŠŸçŽ‡		
+#define	MADD_TD_SLOT4_UPOW		398		//		TDæ—¶éš™4ä¸Šè¡Œè¾“å…¥æ£€æµ‹åŠŸçŽ‡		
+#define	MADD_TD_SLOT5_UPOW		399		//		TDæ—¶éš™5ä¸Šè¡Œè¾“å…¥æ£€æµ‹åŠŸçŽ‡		
+#define	MADD_TD_SLOT6_UPOW		400		//		TDæ—¶éš™6ä¸Šè¡Œè¾“å…¥æ£€æµ‹åŠŸçŽ‡		
+#define	MADD_TD_SLOT7_UPOW		401		//		TDæ—¶éš™7ä¸Šè¡Œè¾“å…¥æ£€æµ‹åŠŸçŽ‡		
+#define	MADD_TD_SLOT1_DPOW		402		//		TDæ—¶éš™1ä¸‹è¡Œè¾“å…¥æ£€æµ‹åŠŸçŽ‡		
+#define	MADD_TD_SLOT2_DPOW		403		//		TDæ—¶éš™2ä¸‹è¡Œè¾“å…¥æ£€æµ‹åŠŸçŽ‡		
+#define	MADD_TD_SLOT3_DPOW		404		//		TDæ—¶éš™3ä¸‹è¡Œè¾“å…¥æ£€æµ‹åŠŸçŽ‡		
+#define	MADD_TD_SLOT4_DPOW		405		//		TDæ—¶éš™4ä¸‹è¡Œè¾“å…¥æ£€æµ‹åŠŸçŽ‡		
+#define	MADD_TD_SLOT5_DPOW		406		//		TDæ—¶éš™5ä¸‹è¡Œè¾“å…¥æ£€æµ‹åŠŸçŽ‡		
+#define	MADD_TD_SLOT6_DPOW		407		//		TDæ—¶éš™6ä¸‹è¡Œè¾“å…¥æ£€æµ‹åŠŸçŽ‡		
+#define	MADD_TD_SLOT7_DPOW		408		//		TDæ—¶éš™7ä¸‹è¡Œè¾“å…¥æ£€æµ‹åŠŸçŽ‡		
+#define	MADD_FPS_S1		409		//		é¢‘ç‚¹æœç´ èŒƒå›´1èµ·å§‹é¢‘ç‚¹		
+#define	MADD_FPS_E1		410		//		é¢‘ç‚¹æœç´ èŒƒå›´1ç»“æŸé¢‘ç‚¹		
+#define	MADD_FPS_S2		411		//		é¢‘ç‚¹æœç´ èŒƒå›´2èµ·å§‹é¢‘ç‚¹		
+#define	MADD_FPS_E2		412		//		é¢‘ç‚¹æœç´ èŒƒå›´2ç»“æŸé¢‘ç‚¹		
+#define	MADD_FPS_BCCH_LK_SET		413		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CID_LK_SET		414		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_BCCH_FC_M		415		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_0		416		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_1		417		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_2		418		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_3		419		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_4		420		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_5		421		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_6		422		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_7		423		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_8		424		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_9		425		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_10		426		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_11		427		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_12		428		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_13		429		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_14		430		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CA_FC_15		431		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_BCCH_FC_1		432		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_BCCH_FC_2		433		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_BCCH_FC_3		434		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_BCCH_FC_4		435		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_BCCH_FC_5		436		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_BCCH_FC_6		437		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_AREA_ID		438		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CID		439		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CID_1		440		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CID_2		441		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CID_3		442		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CID_4		443		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CID_5		444		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_FPS_CID_6		445		//		é¢‘ç‚¹æœç´¢:		
+#define	MADD_A_EXPA_IDRAIN_SET		446		//		å¾®åŠŸæ”¾:		
+#define	MADD_TD_SLOT1_DPOW_OVER_THR		447		//625		//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡é—¨é™		
+#define	MADD_TD_SLOT1_DPOW_OWE_THR		448		//626		//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡é—¨é™		
 #define	MADD_A_INPUT_TOTAL_DPOW_OVER_THR		449		//				
 #define	MADD_A_INPUT_TOTAL_DPOW_OWE_THR		450		//				
 #define	MADD_B_INPUT_TOTAL_DPOW_OVER_THR		451		//				
@@ -3971,217 +3971,217 @@ typedef struct _S_PARAM_ASC
 #define	MADD_C_INPUT_TOTAL_DPOW_OWE_THR		454		//				
 #define	MADD_D_INPUT_TOTAL_DPOW_OVER_THR		455		//				
 #define	MADD_D_INPUT_TOTAL_DPOW_OWE_THR		456		//				
-#define	MADD_REE_A_DL_OUT_TOTAL_POW_DETECT		457		//A¶ÎREÏÂÐÐÊä³ö×Ü¹¦ÂÊ				
-#define	MADD_A_RE_LOCAL_ST_ALARM		458		//¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬				
-#define	MADD_REE_B_DL_OUT_TOTAL_POW_DETECT		459		//B¶ÎREÏÂÐÐÊä³ö×Ü¹¦ÂÊ				
-#define	MADD_B_RE_LOCAL_ST_ALARM		460		//¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬				
-#define	MADD_REE_C_DL_OUT_TOTAL_POW_DETECT		461		//A¶ÎREÏÂÐÐÊä³ö×Ü¹¦ÂÊ				
-#define	MADD_C_RE_LOCAL_ST_ALARM		462		//¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬				
-#define	MADD_REE_D_DL_OUT_TOTAL_POW_DETECT		463		//D¶ÎREÏÂÐÐÊä³ö×Ü¹¦ÂÊ				
-#define	MADD_D_RE_LOCAL_ST_ALARM		464		//¸²¸Çµ¥Ôª±¾µØ¸æ¾¯×´Ì¬	
-#define	MADD_C_TD_1ST_CP_TIME		465		//		TDµÚ1×ª»»µãÊ±¼ä,ns,	
-#define	MADD_C_TD_2ND_CP_TIME		466		//		TDµÚ2×ª»»µãÊ±¼ä,ns,	
-#define	MADD_C_TD_LNA_ON_TIME		467		//		LNA¿ªÆô³ÙºóDN_PA¹Ø±ÕµÄ±£»¤Ê±¼äns	
-#define	MADD_C_TD_LNA_OFF_TIME		468		//		LNA¹Ø±Õ³¬Ç°DN_PA¿ªÆôµÄ±£»¤Ê±¼äns	
-#define	MADD_C_TD_SLOT1_DPOW_OVER_THR		469		//625		//ÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊÃÅÏÞ	
-#define	MADD_C_TD_SLOT1_DPOW_OWE_THR		470		//626		//ÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊÃÅÏÞ	
-#define	MADD_D_TD_1ST_CP_TIME		471		//		TDµÚ1×ª»»µãÊ±¼ä,ns,	
-#define	MADD_D_TD_2ND_CP_TIME		472		//		TDµÚ2×ª»»µãÊ±¼ä,ns,	
-#define	MADD_D_TD_LNA_ON_TIME		473		//		LNA¿ªÆô³ÙºóDN_PA¹Ø±ÕµÄ±£»¤Ê±¼äns	
-#define	MADD_D_TD_LNA_OFF_TIME		474		//		LNA¹Ø±Õ³¬Ç°DN_PA¿ªÆôµÄ±£»¤Ê±¼äns	
-#define	MADD_D_TD_SLOT1_DPOW_OVER_THR		475		//625		//ÏÂÐÐÊäÈëµ¼Æµ¹ý¹¦ÂÊÃÅÏÞ	
-#define	MADD_D_TD_SLOT1_DPOW_OWE_THR		476		//626		//ÏÂÐÐÊäÈëµ¼ÆµÇ·¹¦ÂÊÃÅÏÞ	
-#define	MADD_C_TD_SLOT1_POW		477		//		TDÊ±Ï¶1ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT2_POW		478		//		TDÊ±Ï¶2ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT3_POW		479		//		TDÊ±Ï¶3ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT4_POW		480		//		TDÊ±Ï¶4ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT5_POW		481		//		TDÊ±Ï¶5ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT6_POW		482		//		TDÊ±Ï¶6ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT7_POW		483		//		TDÊ±Ï¶7ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT8_POW		484		//		TDÊ±Ï¶8ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT9_POW		485		//		TDÊ±Ï¶9ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT10_POW		486		//		TDÊ±Ï¶10ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT11_POW		487		//		TDÊ±Ï¶11ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT12_POW		488		//		TDÊ±Ï¶12ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT13_POW		489		//		TDÊ±Ï¶13ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT14_POW		490		//		TDÊ±Ï¶14ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT15_POW		491		//		TDÊ±Ï¶15ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT16_POW		492		//		TDÊ±Ï¶16ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT17_POW		493		//		TDÊ±Ï¶17ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT18_POW		494		//		TDÊ±Ï¶18ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT19_POW		495		//		TDÊ±Ï¶19ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_C_TD_SLOT20_POW		496		//		TDÊ±Ï¶20ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT1_POW		497		//		TDÊ±Ï¶1ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT2_POW		498		//		TDÊ±Ï¶2ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT3_POW		499		//		TDÊ±Ï¶3ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT4_POW		500		//		TDÊ±Ï¶4ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT5_POW		501		//		TDÊ±Ï¶5ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT6_POW		502		//		TDÊ±Ï¶6ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT7_POW		503		//		TDÊ±Ï¶7ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT8_POW		504		//		TDÊ±Ï¶8ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT9_POW		505		//		TDÊ±Ï¶9ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT10_POW		506		//		TDÊ±Ï¶10ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT11_POW		507		//		TDÊ±Ï¶11ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT12_POW		508		//		TDÊ±Ï¶12ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT13_POW		509		//		TDÊ±Ï¶13ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT14_POW		510		//		TDÊ±Ï¶14ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT15_POW		511		//		TDÊ±Ï¶15ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT16_POW		512		//		TDÊ±Ï¶16ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT17_POW		513		//		TDÊ±Ï¶17ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT18_POW		514		//		TDÊ±Ï¶18ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT19_POW		515		//		TDÊ±Ï¶19ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_D_TD_SLOT20_POW		516		//		TDÊ±Ï¶20ÊäÈë¼ì²â¹¦ÂÊ	
-#define	MADD_DL_DELAY_OFFSET_B		517		//		ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿		
-#define	MADD_DL_DELAY_OFFSET_C		518		//		ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿		
-#define	MADD_DL_DELAY_OFFSET_D		519		//		ÏÂÐÐÑÓÊ±Æ«ÒÆÁ¿		
-#define	MADD_PARA_VGS_A		            520		//	         A¶ÎÕ¤Ñ¹		
-#define	MADD_PARA_VGS_B          		521		//		 B¶ÎÕ¤Ñ¹		
-#define	MADD_PARA_VGS_C          		522		//		 C¶ÎÕ¤Ñ¹
-#define	MADD_PARA_VGS_D          		523		//		 D¶ÎÕ¤Ñ¹
-#define	MADD_PARA_VGS_COMP_A		        524	//	     A¶ÎÕ¤Ñ¹		
-#define	MADD_PARA_VGS_COMP_B          		525		//		 B¶ÎÕ¤Ñ¹		
-#define	MADD_PARA_VGS_COMP_C          		526		//		 C¶ÎÕ¤Ñ¹
-#define	MADD_PARA_VGS_COMP_D          		527		//		 C¶ÎÕ¤Ñ¹
-#define	MADD_ATT_DATA_COMP_A		528				//ATT²¹³¥Êý¾Ý
-#define	MADD_ATT_DATA_COMP_B		529				//ATT²¹³¥Êý¾Ý
-#define	MADD_ATT_DATA_COMP_C		530				//ATT²¹³¥Êý¾Ý
-#define	MADD_ATT_DATA_COMP_D		531				//ATT²¹³¥Êý¾Ý
-#define	MADD_MAX_T14_A		532		//	¹â¿Ú×î´óÑÓÊ±
-#define	MADD_MAX_T14_B		533		//	¹â¿Ú×î´óÑÓÊ±
-#define	MADD_MAX_T14_C		534		//	¹â¿Ú×î´óÑÓÊ±
-#define	MADD_MAX_T14_D		535		//	¹â¿Ú×î´óÑÓÊ±
-#define	MADD_ERL_JG_A		536// A¶Î»°ÎñÁ¿Í³¼Æ½á¹û
+#define	MADD_REE_A_DL_OUT_TOTAL_POW_DETECT		457		//Aæ®µREä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡				
+#define	MADD_A_RE_LOCAL_ST_ALARM		458		//è¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€				
+#define	MADD_REE_B_DL_OUT_TOTAL_POW_DETECT		459		//Bæ®µREä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡				
+#define	MADD_B_RE_LOCAL_ST_ALARM		460		//è¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€				
+#define	MADD_REE_C_DL_OUT_TOTAL_POW_DETECT		461		//Aæ®µREä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡				
+#define	MADD_C_RE_LOCAL_ST_ALARM		462		//è¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€				
+#define	MADD_REE_D_DL_OUT_TOTAL_POW_DETECT		463		//Dæ®µREä¸‹è¡Œè¾“å‡ºæ€»åŠŸçŽ‡				
+#define	MADD_D_RE_LOCAL_ST_ALARM		464		//è¦†ç›–å•å…ƒæœ¬åœ°å‘Šè­¦çŠ¶æ€	
+#define	MADD_C_TD_1ST_CP_TIME		465		//		TDç¬¬1è½¬æ¢ç‚¹æ—¶é—´,ns,	
+#define	MADD_C_TD_2ND_CP_TIME		466		//		TDç¬¬2è½¬æ¢ç‚¹æ—¶é—´,ns,	
+#define	MADD_C_TD_LNA_ON_TIME		467		//		LNAå¼€å¯è¿ŸåŽDN_PAå…³é—­çš„ä¿æŠ¤æ—¶é—´ns	
+#define	MADD_C_TD_LNA_OFF_TIME		468		//		LNAå…³é—­è¶…å‰DN_PAå¼€å¯çš„ä¿æŠ¤æ—¶é—´ns	
+#define	MADD_C_TD_SLOT1_DPOW_OVER_THR		469		//625		//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡é—¨é™	
+#define	MADD_C_TD_SLOT1_DPOW_OWE_THR		470		//626		//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡é—¨é™	
+#define	MADD_D_TD_1ST_CP_TIME		471		//		TDç¬¬1è½¬æ¢ç‚¹æ—¶é—´,ns,	
+#define	MADD_D_TD_2ND_CP_TIME		472		//		TDç¬¬2è½¬æ¢ç‚¹æ—¶é—´,ns,	
+#define	MADD_D_TD_LNA_ON_TIME		473		//		LNAå¼€å¯è¿ŸåŽDN_PAå…³é—­çš„ä¿æŠ¤æ—¶é—´ns	
+#define	MADD_D_TD_LNA_OFF_TIME		474		//		LNAå…³é—­è¶…å‰DN_PAå¼€å¯çš„ä¿æŠ¤æ—¶é—´ns	
+#define	MADD_D_TD_SLOT1_DPOW_OVER_THR		475		//625		//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘è¿‡åŠŸçŽ‡é—¨é™	
+#define	MADD_D_TD_SLOT1_DPOW_OWE_THR		476		//626		//ä¸‹è¡Œè¾“å…¥å¯¼é¢‘æ¬ åŠŸçŽ‡é—¨é™	
+#define	MADD_C_TD_SLOT1_POW		477		//		TDæ—¶éš™1è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT2_POW		478		//		TDæ—¶éš™2è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT3_POW		479		//		TDæ—¶éš™3è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT4_POW		480		//		TDæ—¶éš™4è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT5_POW		481		//		TDæ—¶éš™5è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT6_POW		482		//		TDæ—¶éš™6è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT7_POW		483		//		TDæ—¶éš™7è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT8_POW		484		//		TDæ—¶éš™8è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT9_POW		485		//		TDæ—¶éš™9è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT10_POW		486		//		TDæ—¶éš™10è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT11_POW		487		//		TDæ—¶éš™11è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT12_POW		488		//		TDæ—¶éš™12è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT13_POW		489		//		TDæ—¶éš™13è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT14_POW		490		//		TDæ—¶éš™14è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT15_POW		491		//		TDæ—¶éš™15è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT16_POW		492		//		TDæ—¶éš™16è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT17_POW		493		//		TDæ—¶éš™17è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT18_POW		494		//		TDæ—¶éš™18è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT19_POW		495		//		TDæ—¶éš™19è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_C_TD_SLOT20_POW		496		//		TDæ—¶éš™20è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT1_POW		497		//		TDæ—¶éš™1è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT2_POW		498		//		TDæ—¶éš™2è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT3_POW		499		//		TDæ—¶éš™3è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT4_POW		500		//		TDæ—¶éš™4è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT5_POW		501		//		TDæ—¶éš™5è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT6_POW		502		//		TDæ—¶éš™6è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT7_POW		503		//		TDæ—¶éš™7è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT8_POW		504		//		TDæ—¶éš™8è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT9_POW		505		//		TDæ—¶éš™9è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT10_POW		506		//		TDæ—¶éš™10è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT11_POW		507		//		TDæ—¶éš™11è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT12_POW		508		//		TDæ—¶éš™12è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT13_POW		509		//		TDæ—¶éš™13è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT14_POW		510		//		TDæ—¶éš™14è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT15_POW		511		//		TDæ—¶éš™15è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT16_POW		512		//		TDæ—¶éš™16è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT17_POW		513		//		TDæ—¶éš™17è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT18_POW		514		//		TDæ—¶éš™18è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT19_POW		515		//		TDæ—¶éš™19è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_D_TD_SLOT20_POW		516		//		TDæ—¶éš™20è¾“å…¥æ£€æµ‹åŠŸçŽ‡	
+#define	MADD_DL_DELAY_OFFSET_B		517		//		ä¸‹è¡Œå»¶æ—¶åç§»é‡		
+#define	MADD_DL_DELAY_OFFSET_C		518		//		ä¸‹è¡Œå»¶æ—¶åç§»é‡		
+#define	MADD_DL_DELAY_OFFSET_D		519		//		ä¸‹è¡Œå»¶æ—¶åç§»é‡		
+#define	MADD_PARA_VGS_A		            520		//	         Aæ®µæ …åŽ‹		
+#define	MADD_PARA_VGS_B          		521		//		 Bæ®µæ …åŽ‹		
+#define	MADD_PARA_VGS_C          		522		//		 Cæ®µæ …åŽ‹
+#define	MADD_PARA_VGS_D          		523		//		 Dæ®µæ …åŽ‹
+#define	MADD_PARA_VGS_COMP_A		        524	//	     Aæ®µæ …åŽ‹		
+#define	MADD_PARA_VGS_COMP_B          		525		//		 Bæ®µæ …åŽ‹		
+#define	MADD_PARA_VGS_COMP_C          		526		//		 Cæ®µæ …åŽ‹
+#define	MADD_PARA_VGS_COMP_D          		527		//		 Cæ®µæ …åŽ‹
+#define	MADD_ATT_DATA_COMP_A		528				//ATTè¡¥å¿æ•°æ®
+#define	MADD_ATT_DATA_COMP_B		529				//ATTè¡¥å¿æ•°æ®
+#define	MADD_ATT_DATA_COMP_C		530				//ATTè¡¥å¿æ•°æ®
+#define	MADD_ATT_DATA_COMP_D		531				//ATTè¡¥å¿æ•°æ®
+#define	MADD_MAX_T14_A		532		//	å…‰å£æœ€å¤§å»¶æ—¶
+#define	MADD_MAX_T14_B		533		//	å…‰å£æœ€å¤§å»¶æ—¶
+#define	MADD_MAX_T14_C		534		//	å…‰å£æœ€å¤§å»¶æ—¶
+#define	MADD_MAX_T14_D		535		//	å…‰å£æœ€å¤§å»¶æ—¶
+#define	MADD_ERL_JG_A		536// Aæ®µè¯åŠ¡é‡ç»Ÿè®¡ç»“æžœ
 #define	MADD_ERL_JG_C		537
 #define	MADD_ERL_JG_D		538
-#define	MADD_MOVE_CENTER_FRE_D		539//¸Ä±äÏÂÐÐÖÐÐÄÆµÂÊ
-#define	MADD_MOVE_CENTER_FRE_U		540//¸Ä±äÉÏÐÐÖÐÐÄÆµÂÊ
+#define	MADD_MOVE_CENTER_FRE_D		539//æ”¹å˜ä¸‹è¡Œä¸­å¿ƒé¢‘çŽ‡
+#define	MADD_MOVE_CENTER_FRE_U		540//æ”¹å˜ä¸Šè¡Œä¸­å¿ƒé¢‘çŽ‡
 
 #define	SYS_PARAM_2B_COUNT				541//					
 
 				
 
 
-// ²ÎÊýµØÖ·¶¨Òå==================================================== 4b
-#define PARA_DEV_ADDR	0x8893	//	Éè±¸Â·ÓÉµÇ¼ÇµØÖ·
-#define PARA_BIT_ERR_COUNT	0	// 	Êý¾Ý°ü´íÎóÍ³¼Æ
-#define PARA_TOPO_CHG_COUNT	0	// ÍØÆË±ä»¯¼ÆÊý
-#define PARA_FPGA_PKT_COUNT	0	// FPGAÊý¾Ý°ü¸öÊý¼ÆÊý
-#define PARA_OPT_RE_COUNT1	0x88ee	// Ô¶¶Ë»ú½Úµã¼ÆÊý1
-#define PARA_OPT_RE_COUNT2	0x88ef	// Ô¶¶Ë»ú½Úµã¼ÆÊý2
-#define PARA_OPS_PORT			0x88ec	// ¹â¿ÚµÄ¶Ô¶Ë¹â¿ÚºÅ
+// å‚æ•°åœ°å€å®šä¹‰==================================================== 4b
+#define PARA_DEV_ADDR	0x8893	//	è®¾å¤‡è·¯ç”±ç™»è®°åœ°å€
+#define PARA_BIT_ERR_COUNT	0	// 	æ•°æ®åŒ…é”™è¯¯ç»Ÿè®¡
+#define PARA_TOPO_CHG_COUNT	0	// æ‹“æ‰‘å˜åŒ–è®¡æ•°
+#define PARA_FPGA_PKT_COUNT	0	// FPGAæ•°æ®åŒ…ä¸ªæ•°è®¡æ•°
+#define PARA_OPT_RE_COUNT1	0x88ee	// è¿œç«¯æœºèŠ‚ç‚¹è®¡æ•°1
+#define PARA_OPT_RE_COUNT2	0x88ef	// è¿œç«¯æœºèŠ‚ç‚¹è®¡æ•°2
+#define PARA_OPS_PORT			0x88ec	// å…‰å£çš„å¯¹ç«¯å…‰å£å·
 
 
-// ·ÃÎÊµØÖ·>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 4B
-#define MADD_DEV_ADDR			0	// Éè±¸Â·ÓÉµÇ¼ÇµØÖ·
-#define MADD_BIT_ERR_COUNT	1	// Êý¾Ý°ü´íÎóÍ³¼Æ
-#define MADD_TOPO_CHG_COUNT	2	// ÍØÆË±ä»¯¼ÆÊý
-#define MADD_FPGA_PKT_COUNT	3	// FPGAÊý¾Ý°ü¸öÊý¼ÆÊý
-#define MADD_OPT_RE_COUNT1	4	// Ô¶¶Ë»ú½Úµã¼ÆÊý1
-#define MADD_OPT_RE_COUNT2	5	// Ô¶¶Ë»ú½Úµã¼ÆÊý2
-#define MADD_OPS_PORT			6	// ¹â¿ÚµÄ¶Ô¶Ë¹â¿ÚºÅ
+// è®¿é—®åœ°å€>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 4B
+#define MADD_DEV_ADDR			0	// è®¾å¤‡è·¯ç”±ç™»è®°åœ°å€
+#define MADD_BIT_ERR_COUNT	1	// æ•°æ®åŒ…é”™è¯¯ç»Ÿè®¡
+#define MADD_TOPO_CHG_COUNT	2	// æ‹“æ‰‘å˜åŒ–è®¡æ•°
+#define MADD_FPGA_PKT_COUNT	3	// FPGAæ•°æ®åŒ…ä¸ªæ•°è®¡æ•°
+#define MADD_OPT_RE_COUNT1	4	// è¿œç«¯æœºèŠ‚ç‚¹è®¡æ•°1
+#define MADD_OPT_RE_COUNT2	5	// è¿œç«¯æœºèŠ‚ç‚¹è®¡æ•°2
+#define MADD_OPS_PORT			6	// å…‰å£çš„å¯¹ç«¯å…‰å£å·
 
 #define SYS_PARAM_4B_COUNT	7
 
-// ²ÎÊýµØÖ·¶¨Òå==================================================== ASC
-#define PARA_PRI_TYPE	0xf001	//	Ä£¿éÀàÐÍ(ÓÃASCIIÂë)
-#define PARA_PRI_ID	0xf000	//	Ä£¿éÊ¶±ðIDºÅ(ÓÃASCIIÂë)
-#define PARA_PRI_MCU_DATE	0xf02a	//	MCU³ÌÐòÈÕÆÚ(ÓÃASCIIÂë)
-#define PARA_PRI_GL_ROM_ID	0xf029	//	Î¨Ò»Ê¶±ðID(ÓÃASCIIÂë)
-#define PARA_PRI_GL_SEQ	0xf028	//	³§¼ÒÉú²úÐòÁÐºÅ(ÓÃASCIIÂë)
-#define PARA_PRI_GL_PRODUCT	0xf027	//	³§¼Ò²úÆ·±àºÅ(ÓÃASCIIÂë)
-#define PARA_PRI_SEQ	0xf019	//	Éú²úÐòÁÐºÅ(ÓÃASCIIÂë)
-#define PARA_MODULE_HRI_STR	0	//	IDÊ¶±ð×Ö·û´®(ÓÃASCIIÂë)
-#define PARA_PRI_FPGA_DATE	0xf02b	//	FPGA³ÌÐòÈÕÆÚ(ÓÃASCIIÂë)
-#define PARA_PRI_FPGA2_DATE	0xf02c	//	FPGA2³ÌÐòÈÕÆÚ(ÓÃASCIIÂë)
-#define PARA_A_PRI_9363_UPDATA_DATE	(0)	//	9363ÅäÖÃÎÄ¼þ¸üÐÂÈÕÆÚ(ÓÃASCIIÂë)
-#define PARA_B_PRI_9363_UPDATA_DATE	(0)	//	9363ÅäÖÃÎÄ¼þ¸üÐÂÈÕÆÚ(ÓÃASCIIÂë)
-#define PARA_C_PRI_9363_UPDATA_DATE	(0)	//	9363ÅäÖÃÎÄ¼þ¸üÐÂÈÕÆÚ(ÓÃASCIIÂë)
-#define PARA_REE_POSITION_INF		(0xF01E)	//	À©Õ¹µ¥ÔªÎ»ÖÃÐÅÏ¢£¨Éè±¸°²·ÅÎ»ÖÃ£¬¼´ÎïÀíµØÖ·£¬
-#define PARA_MCU_VERSION_NEW		(0) //  MCUÐÂµÄ°æ±¾ÐÅÏ¢
+// å‚æ•°åœ°å€å®šä¹‰==================================================== ASC
+#define PARA_PRI_TYPE	0xf001	//	æ¨¡å—ç±»åž‹(ç”¨ASCIIç )
+#define PARA_PRI_ID	0xf000	//	æ¨¡å—è¯†åˆ«IDå·(ç”¨ASCIIç )
+#define PARA_PRI_MCU_DATE	0xf02a	//	MCUç¨‹åºæ—¥æœŸ(ç”¨ASCIIç )
+#define PARA_PRI_GL_ROM_ID	0xf029	//	å”¯ä¸€è¯†åˆ«ID(ç”¨ASCIIç )
+#define PARA_PRI_GL_SEQ	0xf028	//	åŽ‚å®¶ç”Ÿäº§åºåˆ—å·(ç”¨ASCIIç )
+#define PARA_PRI_GL_PRODUCT	0xf027	//	åŽ‚å®¶äº§å“ç¼–å·(ç”¨ASCIIç )
+#define PARA_PRI_SEQ	0xf019	//	ç”Ÿäº§åºåˆ—å·(ç”¨ASCIIç )
+#define PARA_MODULE_HRI_STR	0	//	IDè¯†åˆ«å­—ç¬¦ä¸²(ç”¨ASCIIç )
+#define PARA_PRI_FPGA_DATE	0xf02b	//	FPGAç¨‹åºæ—¥æœŸ(ç”¨ASCIIç )
+#define PARA_PRI_FPGA2_DATE	0xf02c	//	FPGA2ç¨‹åºæ—¥æœŸ(ç”¨ASCIIç )
+#define PARA_A_PRI_9363_UPDATA_DATE	(0)	//	9363é…ç½®æ–‡ä»¶æ›´æ–°æ—¥æœŸ(ç”¨ASCIIç )
+#define PARA_B_PRI_9363_UPDATA_DATE	(0)	//	9363é…ç½®æ–‡ä»¶æ›´æ–°æ—¥æœŸ(ç”¨ASCIIç )
+#define PARA_C_PRI_9363_UPDATA_DATE	(0)	//	9363é…ç½®æ–‡ä»¶æ›´æ–°æ—¥æœŸ(ç”¨ASCIIç )
+#define PARA_REE_POSITION_INF		(0xF01E)	//	æ‰©å±•å•å…ƒä½ç½®ä¿¡æ¯ï¼ˆè®¾å¤‡å®‰æ”¾ä½ç½®ï¼Œå³ç‰©ç†åœ°å€ï¼Œ
+#define PARA_MCU_VERSION_NEW		(0) //  MCUæ–°çš„ç‰ˆæœ¬ä¿¡æ¯
 
-// ·ÃÎÊµØÖ·>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ASC
-#define MADD_PRI_TYPE			(0)	//	Ä£¿éÀàÐÍ(ÓÃASCIIÂë)
-#define MADD_PRI_ID				(MADD_PRI_TYPE+1)	//	Ä£¿éÊ¶±ðIDºÅ(ÓÃASCIIÂë)
-#define MADD_PRI_MCU_DATE		(MADD_PRI_ID+1)	//	MCU³ÌÐòÈÕÆÚ(ÓÃASCIIÂë)
-#define MADD_PRI_GL_ROM_ID	(MADD_PRI_MCU_DATE+1)	//	Î¨Ò»Ê¶±ðID(ÓÃASCIIÂë)
-#define MADD_PRI_GL_SEQ		(MADD_PRI_GL_ROM_ID+1)	//	³§¼ÒÉú²úÐòÁÐºÅ(ÓÃASCIIÂë)
-#define MADD_PRI_GL_PRODUCT	(MADD_PRI_GL_SEQ+1)	//	³§¼Ò²úÆ·±àºÅ(ÓÃASCIIÂë)
-#define MADD_PRI_SEQ			(MADD_PRI_GL_PRODUCT+1)	//	Éú²úÐòÁÐºÅ(ÓÃASCIIÂë)
-#define MADD_MODULE_HRI_STR	(MADD_PRI_SEQ+1)	//	IDÊ¶±ð×Ö·û´®(ÓÃASCIIÂë)
-#define MADD_PRI_FPGA_DATE	(MADD_MODULE_HRI_STR+1)	//	FPGA³ÌÐòÈÕÆÚ(ÓÃASCIIÂë)
-#define MADD_PRI_FPGA2_DATE	(MADD_PRI_FPGA_DATE+1)	//	FPGA2³ÌÐòÈÕÆÚ(ÓÃASCIIÂë)
-#define MADD_A_PRI_9363_UPDATA_DATE	(MADD_PRI_FPGA2_DATE+1)	//	9363ÅäÖÃÎÄ¼þ¸üÐÂÈÕÆÚ(ÓÃASCIIÂë)
-#define MADD_B_PRI_9363_UPDATA_DATE	(MADD_A_PRI_9363_UPDATA_DATE+1)	//	9363ÅäÖÃÎÄ¼þ¸üÐÂÈÕÆÚ(ÓÃASCIIÂë)
-#define MADD_C_PRI_9363_UPDATA_DATE	(MADD_B_PRI_9363_UPDATA_DATE+1)	//	9363ÅäÖÃÎÄ¼þ¸üÐÂÈÕÆÚ(ÓÃASCIIÂë)
-#define MADD_REE_POSITION_INF		(MADD_C_PRI_9363_UPDATA_DATE+1)	//	À©Õ¹µ¥ÔªÎ»ÖÃÐÅÏ¢£¨Éè±¸°²·ÅÎ»ÖÃ£¬¼´ÎïÀíµØÖ·£¬
-#define MADD_MCU_VERSION_NEW		(MADD_REE_POSITION_INF+1) //  MCUÐÂµÄ°æ±¾ÐÅÏ¢
+// è®¿é—®åœ°å€>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ASC
+#define MADD_PRI_TYPE			(0)	//	æ¨¡å—ç±»åž‹(ç”¨ASCIIç )
+#define MADD_PRI_ID				(MADD_PRI_TYPE+1)	//	æ¨¡å—è¯†åˆ«IDå·(ç”¨ASCIIç )
+#define MADD_PRI_MCU_DATE		(MADD_PRI_ID+1)	//	MCUç¨‹åºæ—¥æœŸ(ç”¨ASCIIç )
+#define MADD_PRI_GL_ROM_ID	(MADD_PRI_MCU_DATE+1)	//	å”¯ä¸€è¯†åˆ«ID(ç”¨ASCIIç )
+#define MADD_PRI_GL_SEQ		(MADD_PRI_GL_ROM_ID+1)	//	åŽ‚å®¶ç”Ÿäº§åºåˆ—å·(ç”¨ASCIIç )
+#define MADD_PRI_GL_PRODUCT	(MADD_PRI_GL_SEQ+1)	//	åŽ‚å®¶äº§å“ç¼–å·(ç”¨ASCIIç )
+#define MADD_PRI_SEQ			(MADD_PRI_GL_PRODUCT+1)	//	ç”Ÿäº§åºåˆ—å·(ç”¨ASCIIç )
+#define MADD_MODULE_HRI_STR	(MADD_PRI_SEQ+1)	//	IDè¯†åˆ«å­—ç¬¦ä¸²(ç”¨ASCIIç )
+#define MADD_PRI_FPGA_DATE	(MADD_MODULE_HRI_STR+1)	//	FPGAç¨‹åºæ—¥æœŸ(ç”¨ASCIIç )
+#define MADD_PRI_FPGA2_DATE	(MADD_PRI_FPGA_DATE+1)	//	FPGA2ç¨‹åºæ—¥æœŸ(ç”¨ASCIIç )
+#define MADD_A_PRI_9363_UPDATA_DATE	(MADD_PRI_FPGA2_DATE+1)	//	9363é…ç½®æ–‡ä»¶æ›´æ–°æ—¥æœŸ(ç”¨ASCIIç )
+#define MADD_B_PRI_9363_UPDATA_DATE	(MADD_A_PRI_9363_UPDATA_DATE+1)	//	9363é…ç½®æ–‡ä»¶æ›´æ–°æ—¥æœŸ(ç”¨ASCIIç )
+#define MADD_C_PRI_9363_UPDATA_DATE	(MADD_B_PRI_9363_UPDATA_DATE+1)	//	9363é…ç½®æ–‡ä»¶æ›´æ–°æ—¥æœŸ(ç”¨ASCIIç )
+#define MADD_REE_POSITION_INF		(MADD_C_PRI_9363_UPDATA_DATE+1)	//	æ‰©å±•å•å…ƒä½ç½®ä¿¡æ¯ï¼ˆè®¾å¤‡å®‰æ”¾ä½ç½®ï¼Œå³ç‰©ç†åœ°å€ï¼Œ
+#define MADD_MCU_VERSION_NEW		(MADD_REE_POSITION_INF+1) //  MCUæ–°çš„ç‰ˆæœ¬ä¿¡æ¯
 
 #define SYS_PARAM_ASC_COUNT	(MADD_MCU_VERSION_NEW+1)
 
 
 
-//****************************EU²ÎÊý1×Ö½Ú********************************
-#define PARA_EU_ALARM_FLAG1     			0	//EU1¸æ¾¯Ö¸Ê¾		
-#define PARA_EU_ALARM_FLAG2     			0	//EU2¸æ¾¯Ö¸Ê¾		
-#define PARA_EU_ALARM_FLAG3     			0	//EU3¸æ¾¯Ö¸Ê¾		
-#define PARA_EU_ALARM_FLAG4     			0	//EU4¸æ¾¯Ö¸Ê¾		
-#define PARA_EU_ALARM_FLAG5     			0	//EU5¸æ¾¯Ö¸Ê¾		
-#define PARA_EU_ALARM_FLAG6     			0	//EU6¸æ¾¯Ö¸Ê¾		
-#define PARA_EU_ALARM_FLAG7     			0	//EU7¸æ¾¯Ö¸Ê¾		
-#define PARA_EU_ALARM_FLAG8     			0	//EU8¸æ¾¯Ö¸Ê¾		
+//****************************EUå‚æ•°1å­—èŠ‚********************************
+#define PARA_EU_ALARM_FLAG1     			0	//EU1å‘Šè­¦æŒ‡ç¤º		
+#define PARA_EU_ALARM_FLAG2     			0	//EU2å‘Šè­¦æŒ‡ç¤º		
+#define PARA_EU_ALARM_FLAG3     			0	//EU3å‘Šè­¦æŒ‡ç¤º		
+#define PARA_EU_ALARM_FLAG4     			0	//EU4å‘Šè­¦æŒ‡ç¤º		
+#define PARA_EU_ALARM_FLAG5     			0	//EU5å‘Šè­¦æŒ‡ç¤º		
+#define PARA_EU_ALARM_FLAG6     			0	//EU6å‘Šè­¦æŒ‡ç¤º		
+#define PARA_EU_ALARM_FLAG7     			0	//EU7å‘Šè­¦æŒ‡ç¤º		
+#define PARA_EU_ALARM_FLAG8     			0	//EU8å‘Šè­¦æŒ‡ç¤º		
 
 
-#define MADD_EU_ALARM_FLAG1     			0	//EU1¸æ¾¯Ö¸Ê¾		
-#define MADD_EU_ALARM_FLAG2     			1	//EU2¸æ¾¯Ö¸Ê¾		
-#define MADD_EU_ALARM_FLAG3     			2	//EU3¸æ¾¯Ö¸Ê¾		
-#define MADD_EU_ALARM_FLAG4     			3	//EU4¸æ¾¯Ö¸Ê¾		
-#define MADD_EU_ALARM_FLAG5     			4	//EU5¸æ¾¯Ö¸Ê¾		
-#define MADD_EU_ALARM_FLAG6     			5	//EU6¸æ¾¯Ö¸Ê¾		
-#define MADD_EU_ALARM_FLAG7     			6	//EU7¸æ¾¯Ö¸Ê¾		
-#define MADD_EU_ALARM_FLAG8     			7	//EU8¸æ¾¯Ö¸Ê¾		
+#define MADD_EU_ALARM_FLAG1     			0	//EU1å‘Šè­¦æŒ‡ç¤º		
+#define MADD_EU_ALARM_FLAG2     			1	//EU2å‘Šè­¦æŒ‡ç¤º		
+#define MADD_EU_ALARM_FLAG3     			2	//EU3å‘Šè­¦æŒ‡ç¤º		
+#define MADD_EU_ALARM_FLAG4     			3	//EU4å‘Šè­¦æŒ‡ç¤º		
+#define MADD_EU_ALARM_FLAG5     			4	//EU5å‘Šè­¦æŒ‡ç¤º		
+#define MADD_EU_ALARM_FLAG6     			5	//EU6å‘Šè­¦æŒ‡ç¤º		
+#define MADD_EU_ALARM_FLAG7     			6	//EU7å‘Šè­¦æŒ‡ç¤º		
+#define MADD_EU_ALARM_FLAG8     			7	//EU8å‘Šè­¦æŒ‡ç¤º		
 
 
 
 #define	SYS_PARAM_EU_1B_COUNT						8
 
 
-//****************************EU²ÎÊý2×Ö½Ú********************************
-#define PARA_EU_ALARM_CONTENT1     			0	//EU1¸æ¾¯ÄÚÈÝ		
-#define PARA_EU_ALARM_CONTENT2     			0	//EU2¸æ¾¯ÄÚÈÝ		
-#define PARA_EU_ALARM_CONTENT3     			0	//EU3¸æ¾¯ÄÚÈÝ		
-#define PARA_EU_ALARM_CONTENT4     			0	//EU4¸æ¾¯ÄÚÈÝ		
-#define PARA_EU_ALARM_CONTENT5     			0	//EU5¸æ¾¯ÄÚÈÝ		
-#define PARA_EU_ALARM_CONTENT6     			0	//EU6¸æ¾¯ÄÚÈÝ		
-#define PARA_EU_ALARM_CONTENT7     			0	//EU7¸æ¾¯ÄÚÈÝ		
-#define PARA_EU_ALARM_CONTENT8     			0	//EU8¸æ¾¯ÄÚÈÝ
-#define PARA_EU_RUALARM_FLAG1     				8	//EU1ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾		
-#define PARA_EU_RUALARM_FLAG2     				9	//EU2ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾		
-#define PARA_EU_RUALARM_FLAG3     				10	//EU3ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾		
-#define PARA_EU_RUALARM_FLAG4     				11	//EU4ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾		
-#define PARA_EU_RUALARM_FLAG5     				12	//EU5ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾		
-#define PARA_EU_RUALARM_FLAG6     				13	//EU6ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾		
-#define PARA_EU_RUALARM_FLAG7     				14	//EU7ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾		
-#define PARA_EU_RUALARM_FLAG8     				15	//EU8ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾	
+//****************************EUå‚æ•°2å­—èŠ‚********************************
+#define PARA_EU_ALARM_CONTENT1     			0	//EU1å‘Šè­¦å†…å®¹		
+#define PARA_EU_ALARM_CONTENT2     			0	//EU2å‘Šè­¦å†…å®¹		
+#define PARA_EU_ALARM_CONTENT3     			0	//EU3å‘Šè­¦å†…å®¹		
+#define PARA_EU_ALARM_CONTENT4     			0	//EU4å‘Šè­¦å†…å®¹		
+#define PARA_EU_ALARM_CONTENT5     			0	//EU5å‘Šè­¦å†…å®¹		
+#define PARA_EU_ALARM_CONTENT6     			0	//EU6å‘Šè­¦å†…å®¹		
+#define PARA_EU_ALARM_CONTENT7     			0	//EU7å‘Šè­¦å†…å®¹		
+#define PARA_EU_ALARM_CONTENT8     			0	//EU8å‘Šè­¦å†…å®¹
+#define PARA_EU_RUALARM_FLAG1     				8	//EU1ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º		
+#define PARA_EU_RUALARM_FLAG2     				9	//EU2ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º		
+#define PARA_EU_RUALARM_FLAG3     				10	//EU3ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º		
+#define PARA_EU_RUALARM_FLAG4     				11	//EU4ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º		
+#define PARA_EU_RUALARM_FLAG5     				12	//EU5ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º		
+#define PARA_EU_RUALARM_FLAG6     				13	//EU6ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º		
+#define PARA_EU_RUALARM_FLAG7     				14	//EU7ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º		
+#define PARA_EU_RUALARM_FLAG8     				15	//EU8ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º	
 
 
 
-#define MADD_EU_ALARM_CONTENT1     			0	//EU1¸æ¾¯ÄÚÈÝ		
-#define MADD_EU_ALARM_CONTENT2     			1	//EU2¸æ¾¯ÄÚÈÝ		
-#define MADD_EU_ALARM_CONTENT3     			2	//EU3¸æ¾¯ÄÚÈÝ		
-#define MADD_EU_ALARM_CONTENT4     			3	//EU4¸æ¾¯ÄÚÈÝ		
-#define MADD_EU_ALARM_CONTENT5     			4	//EU5¸æ¾¯ÄÚÈÝ		
-#define MADD_EU_ALARM_CONTENT6     			5	//EU6¸æ¾¯ÄÚÈÝ		
-#define MADD_EU_ALARM_CONTENT7     			6	//EU7¸æ¾¯ÄÚÈÝ		
-#define MADD_EU_ALARM_CONTENT8     			7	//EU8¸æ¾¯ÄÚÈÝ
+#define MADD_EU_ALARM_CONTENT1     			0	//EU1å‘Šè­¦å†…å®¹		
+#define MADD_EU_ALARM_CONTENT2     			1	//EU2å‘Šè­¦å†…å®¹		
+#define MADD_EU_ALARM_CONTENT3     			2	//EU3å‘Šè­¦å†…å®¹		
+#define MADD_EU_ALARM_CONTENT4     			3	//EU4å‘Šè­¦å†…å®¹		
+#define MADD_EU_ALARM_CONTENT5     			4	//EU5å‘Šè­¦å†…å®¹		
+#define MADD_EU_ALARM_CONTENT6     			5	//EU6å‘Šè­¦å†…å®¹		
+#define MADD_EU_ALARM_CONTENT7     			6	//EU7å‘Šè­¦å†…å®¹		
+#define MADD_EU_ALARM_CONTENT8     			7	//EU8å‘Šè­¦å†…å®¹
 
-#define MADD_EU_RUALARM_FLAG1     				8	//EU1ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾		
-#define MADD_EU_RUALARM_FLAG2     				9	//EU2ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾		
-#define MADD_EU_RUALARM_FLAG3     				10	//EU3ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾		
-#define MADD_EU_RUALARM_FLAG4     				11	//EU4ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾		
-#define MADD_EU_RUALARM_FLAG5     				12	//EU5ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾		
-#define MADD_EU_RUALARM_FLAG6     				13	//EU6ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾		
-#define MADD_EU_RUALARM_FLAG7     				14	//EU7ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾		
-#define MADD_EU_RUALARM_FLAG8     				15	//EU8ÏÂµÄ16¸öRU¸æ¾¯Ö¸Ê¾	
+#define MADD_EU_RUALARM_FLAG1     				8	//EU1ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º		
+#define MADD_EU_RUALARM_FLAG2     				9	//EU2ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º		
+#define MADD_EU_RUALARM_FLAG3     				10	//EU3ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º		
+#define MADD_EU_RUALARM_FLAG4     				11	//EU4ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º		
+#define MADD_EU_RUALARM_FLAG5     				12	//EU5ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º		
+#define MADD_EU_RUALARM_FLAG6     				13	//EU6ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º		
+#define MADD_EU_RUALARM_FLAG7     				14	//EU7ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º		
+#define MADD_EU_RUALARM_FLAG8     				15	//EU8ä¸‹çš„16ä¸ªRUå‘Šè­¦æŒ‡ç¤º	
 
 
 #define	SYS_PARAM_EU_2B_COUNT						16
@@ -4212,15 +4212,15 @@ extern UCHAR8 str_pri_seq[];
 extern UCHAR8 str_module_hri_str[];
 extern UCHAR8 str_pri_fpga_date[];
 extern UCHAR8 str_pri_fpga2_date[];
-//	9363_AÅäÖÃÎÄ¼þ¸üÐÂÈÕÆÚ(ÓÃASCIIÂë)
+//	9363_Aé…ç½®æ–‡ä»¶æ›´æ–°æ—¥æœŸ(ç”¨ASCIIç )
 extern UCHAR8 str_a_pri_9363_date[];
-//	9363_BÅäÖÃÎÄ¼þ¸üÐÂÈÕÆÚ(ÓÃASCIIÂë)
+//	9363_Bé…ç½®æ–‡ä»¶æ›´æ–°æ—¥æœŸ(ç”¨ASCIIç )
 extern UCHAR8 str_b_pri_9363_date[];
-//	9363_CÅäÖÃÎÄ¼þ¸üÐÂÈÕÆÚ(ÓÃASCIIÂë)
+//	9363_Cé…ç½®æ–‡ä»¶æ›´æ–°æ—¥æœŸ(ç”¨ASCIIç )
 extern UCHAR8 str_c_pri_9363_date[];
-//	reeÉè±¸Î»ÖÃÐÅÏ¢
+//	reeè®¾å¤‡ä½ç½®ä¿¡æ¯
 extern UCHAR8 str_mau_position_inf[];
-// MCU³ÌÐò°æ±¾(ÓÃASCIIÂë)
+// MCUç¨‹åºç‰ˆæœ¬(ç”¨ASCIIç )
 extern UCHAR8 str_pri_mcu_version_new[];
 
 

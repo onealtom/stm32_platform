@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :timer.c
-* Description :Ê±¼ä´¦ÀíÏà¹Øº¯Êı
+* Description :æ—¶é—´å¤„ç†ç›¸å…³å‡½æ•°
 * Version     :v0.1
 * Author      :shiyang
 * Date        :2008-01-29
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*shiyang		2008-01-29	v0.1			³õÊ¼°æ±¾
+*shiyang		2008-01-29	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #include "Header.h"
 //#include "driver.h"
@@ -20,8 +20,8 @@ extern volatile UINT32 sys_work_info;
 #if 0
 /*************************************************************
 Name:UsNopDelay          
-Description:ÓÃnop×÷ÎªÑÓÊ±
-Input:us¼¶±ğµÄÊ±¼ä            
+Description:ç”¨nopä½œä¸ºå»¶æ—¶
+Input:usçº§åˆ«çš„æ—¶é—´            
 Output:void         
 Return:void         
 **************************************************************/
@@ -54,7 +54,7 @@ void UsNopDelay(UINT32 ustime)
 /*************************************************************
 Name:UsDelay          
 Description:
-Input:us¼¶±ğµÄÊ±¼ä            
+Input:usçº§åˆ«çš„æ—¶é—´            
 Output:void         
 Return:void         
 **************************************************************/
@@ -64,8 +64,8 @@ void UsDelay(UINT32 ustime)
 }
 /*************************************************************
 Name:RS485Delay          
-Description:485·¢ËÍÍê×îºóÒ»¸ö×Ö½ÚºóÑÓÊ±ºó
-			½«·¢Ê¹ÄÜ¹Ø±Õ
+Description:485å‘é€å®Œæœ€åä¸€ä¸ªå­—èŠ‚åå»¶æ—¶å
+			å°†å‘ä½¿èƒ½å…³é—­
 Input:void      
 Output:void         
 Return:void         
@@ -74,7 +74,7 @@ void Rs485Delay(void)
 {
 #if 0
 	T2CON = (0x01<<6)|(0x01<<10);			//32.768,periodic mode,disable timer
-	T2LD = (15*32768)/RS485_BAUD;				//ÑÓÊ±15¸öbits
+	T2LD = (15*32768)/RS485_BAUD;				//å»¶æ—¶15ä¸ªbits
 	T2CLRI  = 1;					//Clear
 	T2CON |= (0x01<<7);			//Timer start
 	IRQEN |= (0x01<<INT_TIMER2);
@@ -83,7 +83,7 @@ void Rs485Delay(void)
 }
 /*************************************************************
 Name:Timer100msHandle          
-Description:100msµÄÏµÍ³¶¨Ê±Æ÷´¦Àíº¯Êı
+Description:100msçš„ç³»ç»Ÿå®šæ—¶å™¨å¤„ç†å‡½æ•°
 Input:void            
 Output:void         
 Return:void         
@@ -107,13 +107,13 @@ void Timer100msHandle(void)
 		if (fpga_read_second++==THREE_S_COUNT)
 		{
 			fpga_read_second = 0;		
-			sys_work_info |= SYSTEM_FLAG_3S_EVENT;		//ÖÃÌî³ä¼à¿Ø¶È²ÎÊı±êÖ¾
+			sys_work_info |= SYSTEM_FLAG_3S_EVENT;		//ç½®å¡«å……ç›‘æ§åº¦å‚æ•°æ ‡å¿—
 		}
 		
 		if (read_coff_second++==FIVE_S_COUNT)
 		{
 			read_coff_second = 0;		
-			sys_work_info |= SYSTEM_FLAG_5S_EVENT;		//¶ÁÈ¡ÂË²¨ÏµÊı£¬¼ÆËã¸ôÀë¶È
+			sys_work_info |= SYSTEM_FLAG_5S_EVENT;		//è¯»å–æ»¤æ³¢ç³»æ•°ï¼Œè®¡ç®—éš”ç¦»åº¦
 		}
 		//TRACE_INFO( "Tisr_%d_%d\r\n",one_second, fpga_read_second );
 	}

@@ -1,22 +1,22 @@
-/************************************************************
+ï»¿/************************************************************
 
-     Copyright (C), 2011-2111, ¸ñÀ¼Ì©¿Ë¿Æ¼¼ÓĞÏŞ¹«Ë¾
+     Copyright (C), 2011-2111, æ ¼å…°æ³°å…‹ç§‘æŠ€æœ‰é™å…¬å¸
 
 *************************************************************
-ÎÄ¼şÃû£º   ADC_DRV_C_
-°æ±¾ºÅ£º   V03
-×÷Õß£º     Î¤Èğ½õ 
-Éú³ÉÈÕÆÚ£º 2010Äê08ÔÂ05ÈÕ
-×î½üĞŞ¸Ä£º 
-¹¦ÄÜÃèÊö£º ADC_DRV_C_µÄµ×²ãÇı¶¯ÎÄ¼ş 
-º¯ÊıÁĞ±í£º 
-ĞŞ¸ÄÈÕÆÚ£º 
-        1.ÈÕÆÚ:      2010Äê08ÔÂ05ÈÕ  
-          ×÷Õß£º     Î¤Èğ½õ 
-          ĞŞ¸ÄÄÚÈİ£º Ô­°æ
-        2.ÈÕÆÚ:      2012Äê04ÔÂ17ÈÕ  
-          ×÷Õß£º     µË×ÓÇ«
-          ĞŞ¸ÄÄÚÈİ£º Î¢ĞÍ¹âÇ¥V02 
+æ–‡ä»¶åï¼š   ADC_DRV_C_
+ç‰ˆæœ¬å·ï¼š   V03
+ä½œè€…ï¼š     éŸ¦ç‘é”¦ 
+ç”Ÿæˆæ—¥æœŸï¼š 2010å¹´08æœˆ05æ—¥
+æœ€è¿‘ä¿®æ”¹ï¼š 
+åŠŸèƒ½æè¿°ï¼š ADC_DRV_C_çš„åº•å±‚é©±åŠ¨æ–‡ä»¶ 
+å‡½æ•°åˆ—è¡¨ï¼š 
+ä¿®æ”¹æ—¥æœŸï¼š 
+        1.æ—¥æœŸ:      2010å¹´08æœˆ05æ—¥  
+          ä½œè€…ï¼š     éŸ¦ç‘é”¦ 
+          ä¿®æ”¹å†…å®¹ï¼š åŸç‰ˆ
+        2.æ—¥æœŸ:      2012å¹´04æœˆ17æ—¥  
+          ä½œè€…ï¼š     é‚“å­è°¦
+          ä¿®æ”¹å†…å®¹ï¼š å¾®å‹å…‰é’V02 
 **************************************************************/
 #include "Header.h"
 
@@ -29,7 +29,7 @@ volatile UINT16 ex_channel=0;
 
 /*************************************************************
 Name:          InitAdcInterrupt        
-Description:   ADCµÄÖĞ¶ÏÅäÖÃ
+Description:   ADCçš„ä¸­æ–­é…ç½®
 Input:         void          
 Output:        void         
 Return:        void         
@@ -49,7 +49,7 @@ void InitAdcInterrupt(void)
 
 /*************************************************************
 Name:          AdcDmaConfig        
-Description:   ADCµÄDMAÅäÖÃ
+Description:   ADCçš„DMAé…ç½®
 Input:         void          
 Output:        void         
 Return:        void         
@@ -58,7 +58,7 @@ void AdcDmaConfig()
 {
 	DMA_InitTypeDef DMA_InitStructure;
 
-	//Æô¶¯DMAÊ±ÖÓ
+	//å¯åŠ¨DMAæ—¶é’Ÿ
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
 	
 	DMA_DeInit(DMA1_Channel1);
@@ -70,7 +70,7 @@ void AdcDmaConfig()
 	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
 	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;
 	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;
-	DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;		    //Ñ­»·Ä£Ê½¿ªÆô£¬BufferĞ´Âúºó£¬×Ô¶¯»Øµ½³õÊ¼µØÖ·¿ªÊ¼´«Êä
+	DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;		    //å¾ªç¯æ¨¡å¼å¼€å¯ï¼ŒBufferå†™æ»¡åï¼Œè‡ªåŠ¨å›åˆ°åˆå§‹åœ°å€å¼€å§‹ä¼ è¾“
 	DMA_InitStructure.DMA_Priority = DMA_Priority_High;
 	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
 	DMA_Init(DMA1_Channel1, &DMA_InitStructure);
@@ -82,7 +82,7 @@ void AdcDmaConfig()
 
 /*************************************************************
 Name:          AdcConfig        
-Description:   ADCµÄ¹æÔò×éÅäÖÃ
+Description:   ADCçš„è§„åˆ™ç»„é…ç½®
 Input:         void          
 Output:        void         
 Return:        void         
@@ -91,15 +91,15 @@ void AdcConfig()
 {
 	ADC_InitTypeDef ADC_InitStructure;
 
-	//Æô¶¯ADC1Ê±ÖÓ
+	//å¯åŠ¨ADC1æ—¶é’Ÿ
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
 
 	ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;
-	ADC_InitStructure.ADC_ScanConvMode = ENABLE;				// É¨ÃèÄ£Ê½¿ªÆô
-	ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;			// Á¬Ğø×ª»»¿ªÆô
+	ADC_InitStructure.ADC_ScanConvMode = ENABLE;				// æ‰«ææ¨¡å¼å¼€å¯
+	ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;			// è¿ç»­è½¬æ¢å¼€å¯
 	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
-	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;		// ÓÒ¶ÔÆë
-	ADC_InitStructure.ADC_NbrOfChannel = 9;						// Í¨µÀÊı9
+	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;		// å³å¯¹é½
+	ADC_InitStructure.ADC_NbrOfChannel = 9;						// é€šé“æ•°9
 	ADC_Init(ADC1, &ADC_InitStructure);
 
 	ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_13Cycles5);
@@ -113,21 +113,21 @@ void AdcConfig()
 
 
 	ADC_TempSensorVrefintCmd(ENABLE);
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_16, 9, ADC_SampleTime_239Cycles5);	// ÄÚ²¿ÎÂ¶È´«¸ĞÆ÷,Í¨µÀ16,·ÅÔÚ×ª»»½á¹û×îºó
+	ADC_RegularChannelConfig(ADC1, ADC_Channel_16, 9, ADC_SampleTime_239Cycles5);	// å†…éƒ¨æ¸©åº¦ä¼ æ„Ÿå™¨,é€šé“16,æ”¾åœ¨è½¬æ¢ç»“æœæœ€å
 	
 }
 
 
 /*************************************************************
 Name:          AdcConfig        
-Description:   ADCµÄ×¢Èë×éÅäÖÃ
+Description:   ADCçš„æ³¨å…¥ç»„é…ç½®
 Input:         void          
 Output:        void         
 Return:        void         
 **************************************************************/
 void AdcExConfig()
 {
-	ADC_InjectedSequencerLengthConfig(ADC1, 1);			// ×¢Èë×ª»»Í¨µÀÊı
+	ADC_InjectedSequencerLengthConfig(ADC1, 1);			// æ³¨å…¥è½¬æ¢é€šé“æ•°
 	/* ADC1 injected channel Configuration */ 
 	ADC_InjectedChannelConfig(ADC1, ADC_Channel_13, 1, ADC_SampleTime_71Cycles5);		
 	/* ADC1 injected external trigger configuration */
@@ -141,14 +141,14 @@ void AdcExConfig()
 
 /*************************************************************
 Name:          AdcConfig        
-Description:   ADCµÄĞ£×¼
+Description:   ADCçš„æ ¡å‡†
 Input:         void          
 Output:        void         
 Return:        void         
 **************************************************************/
 void AdcAdj()
 {
-	// ÏÂÃæÊÇADC×Ô¶¯Ğ£×¼£¬¿ª»úºóĞèÖ´ĞĞÒ»´Î£¬±£Ö¤¾«¶È
+	// ä¸‹é¢æ˜¯ADCè‡ªåŠ¨æ ¡å‡†ï¼Œå¼€æœºåéœ€æ‰§è¡Œä¸€æ¬¡ï¼Œä¿è¯ç²¾åº¦
 	// Enable ADC1 reset calibaration register
 	ADC_ResetCalibration(ADC1);
 	// Check the end of ADC1 reset calibration register
@@ -158,14 +158,14 @@ void AdcAdj()
 	ADC_StartCalibration(ADC1);
 	// Check the end of ADC1 calibration
 	while(ADC_GetCalibrationStatus(ADC1));
-	// ADC×Ô¶¯Ğ£×¼½áÊø---------------
+	// ADCè‡ªåŠ¨æ ¡å‡†ç»“æŸ---------------
 
 }
 
 
 /*************************************************************
 Name:          InitAdc        
-Description:   ³õÊ¼»¯ADC
+Description:   åˆå§‹åŒ–ADC
 Input:         void          
 Output:        void         
 Return:        void         
@@ -188,14 +188,14 @@ void InitAdc()
 
 /*************************************************************
 Name:          AdcStartConv        
-Description:   Æô¶¯ADC¹æÔò×éµÄ×ª»¯
+Description:   å¯åŠ¨ADCè§„åˆ™ç»„çš„è½¬åŒ–
 Input:         void          
 Output:        void         
 Return:        void         
 **************************************************************/
 void AdcStartConv()
 {
-	//Æô¶¯µÚÒ»´ÎAD×ª»»
+	//å¯åŠ¨ç¬¬ä¸€æ¬¡ADè½¬æ¢
 	ADC_SoftwareStartConvCmd(ADC1, ENABLE);
 }
 
@@ -203,7 +203,7 @@ void AdcStartConv()
 
 /*************************************************************
 Name:          AdcStartExConv        
-Description:   Æô¶¯ADC×¢Èë×éµÄ×ª»¯
+Description:   å¯åŠ¨ADCæ³¨å…¥ç»„çš„è½¬åŒ–
 Input:         void          
 Output:        void         
 Return:        void         
@@ -211,13 +211,13 @@ Return:        void
 void AdcStartExConv()
 {
 	ADC_SoftwareStartInjectedConvCmd(ADC1, ENABLE);
-	ADC_ITConfig(ADC1, ADC_IT_JEOC, ENABLE);		// Ê¹ÄÜ×ª»»Íê³ÉÖĞ¶Ï
+	ADC_ITConfig(ADC1, ADC_IT_JEOC, ENABLE);		// ä½¿èƒ½è½¬æ¢å®Œæˆä¸­æ–­
 }
 
 
 /*************************************************************
 Name:          SwitchExChannel        
-Description:   ÇĞ»»8Ñ¡1¿ª¹Ø
+Description:   åˆ‡æ¢8é€‰1å¼€å…³
 Input:         void          
 Output:        void         
 Return:        void         
@@ -283,7 +283,7 @@ void SwitchExChannel()
 
 /*************************************************************
 Name:          SaveExAdcResult        
-Description:   ±£´æÖĞ¶ÏÍê³ÉµÄADC×ª»»½á¹û²¢ÇĞ»»8Ñ¡1¿ª¹Ø
+Description:   ä¿å­˜ä¸­æ–­å®Œæˆçš„ADCè½¬æ¢ç»“æœå¹¶åˆ‡æ¢8é€‰1å¼€å…³
 Input:         void          
 Output:        void         
 Return:        void         
@@ -291,7 +291,7 @@ Return:        void
 void SaveExAdcResult()
 {
 	ex_adc_result[ex_channel] = ADC_GetInjectedConversionValue(ADC1, ADC_InjectedChannel_1);
-	ADC_ITConfig(ADC1, ADC_IT_JEOC, DISABLE);		// ¹Ø±Õ×ª»»Íê³ÉÖĞ¶Ï
+	ADC_ITConfig(ADC1, ADC_IT_JEOC, DISABLE);		// å…³é—­è½¬æ¢å®Œæˆä¸­æ–­
 	SwitchExChannel();
 }
 

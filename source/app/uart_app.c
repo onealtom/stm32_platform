@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    : uart_app.c
-* Description : RS485½Ó¿Ú²Ù×÷, 485-AÖ÷¿ØÍ¨Ñ¶¶Ë¿Ú, 485-BÍ¸´«¶Ë¿Ú
+* Description : RS485æ¥å£æ“ä½œ, 485-Aä¸»æ§é€šè®¯ç«¯å£, 485-Bé€ä¼ ç«¯å£
 * Version     :v0.1
 * Author      :RJ
 * Date        :2008-08-29
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*	RJ		2010-06-11	v0.1			³õÊ¼°æ±¾
+*	RJ		2010-06-11	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 
 #include "Header.h"
@@ -20,11 +20,11 @@ extern _T_PARAM_1B sys_param_1b[];
 extern _T_PARAM_2B sys_param_2b[];
 extern _T_PARAM_4B sys_param_4b[];
 extern _T_MODULE_CFG mod_cfg_a;
-extern UINT32 module_param_chg_flag;		//ÏµÍ³¹¤×÷²ÎÊıĞŞ¸Ä±êÖ¾
-extern _T_FP_INFO fp_inf[];		            // ¹â¿ÚÍØÆËĞÅÏ¢
+extern UINT32 module_param_chg_flag;		//ç³»ç»Ÿå·¥ä½œå‚æ•°ä¿®æ”¹æ ‡å¿—
+extern _T_FP_INFO fp_inf[];		            // å…‰å£æ‹“æ‰‘ä¿¡æ¯
 extern _T_VALID_FP_TOPO valid_fp_topo[FP_MAX];
 extern _T_FP_INFO fp_inf[FP_MAX];
-extern _T_RE_INFO tmp_re_inf[FP_MAX][RE_MAX];		// REĞÅÏ¢µÄÁÙÊ±»º´æ
+extern _T_RE_INFO tmp_re_inf[FP_MAX][RE_MAX];		// REä¿¡æ¯çš„ä¸´æ—¶ç¼“å­˜
 
 UCHAR8 uart_rx_buff[ UART_BUFF_SIZE ]; 
 UCHAR8 uart_tx_buff[ UART_BUFF_SIZE ]; 
@@ -34,44 +34,44 @@ UCHAR8 uart_index=0;
 UCHAR8 uart_flag=0;
 
 
-UCHAR8 re_trans_head_bk[4];		// Ô¶³Ì²éÑ¯ÉèÖÃREÃüÁîµÄ485Êı¾İ°üÍ·±¸·İ:type, ver, device, address
-UCHAR8 re_trans_cmd = 0;	// Ô¶³Ì²éÑ¯ÉèÖÃREÃüÁîµÄ×ÓÃüÁî×Ö
-UCHAR8 re_trans_fp = 0;		// Ô¶³Ì²éÑ¯ÉèÖÃREÃüÁîµÄÄ¿µÄ¹â¿Ú
-UCHAR8 re_trans_node = 0;	// Ô¶³Ì²éÑ¯ÉèÖÃREÃüÁîµÄÄ¿µÄ½Úµã
-UCHAR8 re_trans_rf = 0;	// Ô¶³Ì²éÑ¯ÉèÖÃREÃüÁîµÄÄ¿µÄÉäÆµ½Úµã
+UCHAR8 re_trans_head_bk[4];		// è¿œç¨‹æŸ¥è¯¢è®¾ç½®REå‘½ä»¤çš„485æ•°æ®åŒ…å¤´å¤‡ä»½:type, ver, device, address
+UCHAR8 re_trans_cmd = 0;	// è¿œç¨‹æŸ¥è¯¢è®¾ç½®REå‘½ä»¤çš„å­å‘½ä»¤å­—
+UCHAR8 re_trans_fp = 0;		// è¿œç¨‹æŸ¥è¯¢è®¾ç½®REå‘½ä»¤çš„ç›®çš„å…‰å£
+UCHAR8 re_trans_node = 0;	// è¿œç¨‹æŸ¥è¯¢è®¾ç½®REå‘½ä»¤çš„ç›®çš„èŠ‚ç‚¹
+UCHAR8 re_trans_rf = 0;	// è¿œç¨‹æŸ¥è¯¢è®¾ç½®REå‘½ä»¤çš„ç›®çš„å°„é¢‘èŠ‚ç‚¹
 
 _T_UART_RECE uart_rece_info={0,0,uart_rx_buff,0};
 _T_UART_TRANS uart_trans_info = {0,0,uart_tx_buff,0};
 volatile _T_UART_TRANS pc_trans_info = {0,0,pc_tx_buff,0};
-UCHAR8 trans_4e_flag = 0;		//½ÓÊÕÊ±0X4E×ªÒå±êÖ¾
+UCHAR8 trans_4e_flag = 0;		//æ¥æ”¶æ—¶0X4Eè½¬ä¹‰æ ‡å¿—
 
-//UCHAR8 rs485_rx_pkt_flag = 0;	// 485½ÓÊÕÖĞ¶Ï±êÖ¾
+//UCHAR8 rs485_rx_pkt_flag = 0;	// 485æ¥æ”¶ä¸­æ–­æ ‡å¿—
 
-// Í¸´«FIFOÊ¹ÓÃË«»º³å»úÖÆ£¬ÊÕºÍ·¢¸÷ÓÃÒ»¸ö£¬Ã¿´Î·¢ËÍÍê³ÉºóÇĞ»»
-_T_THR_FIFO uart_thr_tx_fifo[2];	// Í¸´«´®¿Ú·¢ËÍFPGA½ÓÊÕFIFO
-_T_THR_FIFO uart_thr_rx_fifo[2];	// Í¸´«´®¿Ú½ÓÊÕFPGA·¢ËÍFIFO
-UCHAR8 thr_utx_fifo_use;		// ±êÊ¶Í¸´«´®¿Ú·¢ËÍÊ¹ÓÃµÄFIFO£¬FPGA½ÓÊÕÊ¹ÓÃÁíÒ»¸öFIFO
-UCHAR8 thr_urx_fifo_use;		// ±êÊ¶Í¸´«´®¿Ú½ÓÊÕÊ¹ÓÃµÄFIFO£¬FPGA·¢ËÍÊ¹ÓÃÁíÒ»¸öFIFO
-UCHAR8 uart_thr_tx_end;		// ´®¿ÚÍ¸´«Êı¾İ·¢ËÍÍê³É±êÖ¾
-UCHAR8 fpga_thr_tx_end;		// FPGAÍ¸´«Êı¾İ·¢ËÍÍê³É±êÖ¾
+// é€ä¼ FIFOä½¿ç”¨åŒç¼“å†²æœºåˆ¶ï¼Œæ”¶å’Œå‘å„ç”¨ä¸€ä¸ªï¼Œæ¯æ¬¡å‘é€å®Œæˆååˆ‡æ¢
+_T_THR_FIFO uart_thr_tx_fifo[2];	// é€ä¼ ä¸²å£å‘é€FPGAæ¥æ”¶FIFO
+_T_THR_FIFO uart_thr_rx_fifo[2];	// é€ä¼ ä¸²å£æ¥æ”¶FPGAå‘é€FIFO
+UCHAR8 thr_utx_fifo_use;		// æ ‡è¯†é€ä¼ ä¸²å£å‘é€ä½¿ç”¨çš„FIFOï¼ŒFPGAæ¥æ”¶ä½¿ç”¨å¦ä¸€ä¸ªFIFO
+UCHAR8 thr_urx_fifo_use;		// æ ‡è¯†é€ä¼ ä¸²å£æ¥æ”¶ä½¿ç”¨çš„FIFOï¼ŒFPGAå‘é€ä½¿ç”¨å¦ä¸€ä¸ªFIFO
+UCHAR8 uart_thr_tx_end;		// ä¸²å£é€ä¼ æ•°æ®å‘é€å®Œæˆæ ‡å¿—
+UCHAR8 fpga_thr_tx_end;		// FPGAé€ä¼ æ•°æ®å‘é€å®Œæˆæ ‡å¿—
 
-// ¸´Î»Í¸´«FIFO¼°×´Ì¬
+// å¤ä½é€ä¼ FIFOåŠçŠ¶æ€
 void ResetThrFifo()
 {
 	memset( (UCHAR8*)uart_thr_tx_fifo, 0, sizeof(uart_thr_tx_fifo)*2 );
-	thr_utx_fifo_use = 0;	// ´®¿Ú·¢ËÍÊ¹ÓÃFIFOÇø0
+	thr_utx_fifo_use = 0;	// ä¸²å£å‘é€ä½¿ç”¨FIFOåŒº0
 	memset( (UCHAR8*)uart_thr_rx_fifo, 0, sizeof(uart_thr_rx_fifo)*2 );
-	thr_urx_fifo_use = 0;	// ´®¿Ú½ÓÊÕÊ¹ÓÃFIFOÇø0
-	uart_thr_tx_end = 1;	// ´®¿ÚÍ¸´«Êı¾İ·¢ËÍÍê³É
-	fpga_thr_tx_end = 1;	// FPGAÍ¸´«Êı¾İ·¢ËÍÍê³É
+	thr_urx_fifo_use = 0;	// ä¸²å£æ¥æ”¶ä½¿ç”¨FIFOåŒº0
+	uart_thr_tx_end = 1;	// ä¸²å£é€ä¼ æ•°æ®å‘é€å®Œæˆ
+	fpga_thr_tx_end = 1;	// FPGAé€ä¼ æ•°æ®å‘é€å®Œæˆ
 }
 
-// Í¸´«´®¿ÚÖĞ¶Ïº¯Êı: ½ÓÊÕÖĞ¶Ï
+// é€ä¼ ä¸²å£ä¸­æ–­å‡½æ•°: æ¥æ”¶ä¸­æ–­
 void ThrUartIsrRxDat( UCHAR8 thr_dat )
 {
-	_T_THR_FIFO * p_fifo = &uart_thr_rx_fifo[thr_urx_fifo_use];	// FIFOÖ¸Õë
+	_T_THR_FIFO * p_fifo = &uart_thr_rx_fifo[thr_urx_fifo_use];	// FIFOæŒ‡é’ˆ
 
-	// FIFOÎ´Âú, ±£´æÊı¾İµ½FIFO, Êı¾İ¼ÆÊı+1
+	// FIFOæœªæ»¡, ä¿å­˜æ•°æ®åˆ°FIFO, æ•°æ®è®¡æ•°+1
 	if ( p_fifo->count < THR_FIFO_SIZE )	
 	{
 		p_fifo->p_dat[ p_fifo->count++ ] = thr_dat;	
@@ -80,94 +80,94 @@ void ThrUartIsrRxDat( UCHAR8 thr_dat )
 	//printf("s");
 }
 
-// Í¸´«´®¿ÚÖĞ¶Ïº¯Êı: ·¢ËÍ¾ÍĞ÷
+// é€ä¼ ä¸²å£ä¸­æ–­å‡½æ•°: å‘é€å°±ç»ª
 void ThrUartIsrTxReady( void )
 {
-	_T_THR_FIFO * p_fifo = &uart_thr_tx_fifo[thr_utx_fifo_use];	// FIFOÖ¸Õë
+	_T_THR_FIFO * p_fifo = &uart_thr_tx_fifo[thr_utx_fifo_use];	// FIFOæŒ‡é’ˆ
 	UCHAR8 tmp;
 
-	// FIFOÖĞÓĞÊı¾İÔò¼ÌĞø·¢ËÍ
+	// FIFOä¸­æœ‰æ•°æ®åˆ™ç»§ç»­å‘é€
 	if ( p_fifo->count > 0 )
 	{
-		// ´ÓFIFOÈ¡Êı¾İ,¶ÁÖ¸ÕëºóÒÆ
+		// ä»FIFOå–æ•°æ®,è¯»æŒ‡é’ˆåç§»
 		tmp = p_fifo->p_dat[ p_fifo->index++ ];
 				
-		// FIFOÊı¾İ¼ÆÊı-1
+		// FIFOæ•°æ®è®¡æ•°-1
 		p_fifo->count --;
 
-		// Êı¾İĞ´Èë´®¿Ú·¢ËÍ»º³å
+		// æ•°æ®å†™å…¥ä¸²å£å‘é€ç¼“å†²
 		thr_func.pf_send_byte( tmp );
 	}
 
-	// »º³åÖĞÒÑÎŞÊı¾İ
+	// ç¼“å†²ä¸­å·²æ— æ•°æ®
 	if ( 0 == p_fifo->count )
 	{
-		// ¹Ø±Õ·¢ËÍ»º³å¿ÕÖĞ¶Ï
+		// å…³é—­å‘é€ç¼“å†²ç©ºä¸­æ–­
 		thr_func.pf_ie_tx_ready(0);
 		
-		// Ê¹ÄÜ·¢ËÍÍê³ÉÖĞ¶Ï
+		// ä½¿èƒ½å‘é€å®Œæˆä¸­æ–­
 		thr_func.pf_ie_tx_complete(1);
 	}
 
 }
 
-// Í¸´«´®¿ÚÖĞ¶Ïº¯Êı: ·¢ËÍÍê³É
+// é€ä¼ ä¸²å£ä¸­æ–­å‡½æ•°: å‘é€å®Œæˆ
 void ThrUartIsrTxComplete( void )
 {
-	_T_THR_FIFO * p_fifo = &uart_thr_tx_fifo[thr_utx_fifo_use];	// FIFOÖ¸Õë
+	_T_THR_FIFO * p_fifo = &uart_thr_tx_fifo[thr_utx_fifo_use];	// FIFOæŒ‡é’ˆ
 
-	// ¹Ø±Õ·¢ËÍÍê³ÉÖĞ¶Ï
+	// å…³é—­å‘é€å®Œæˆä¸­æ–­
 	thr_func.pf_ie_tx_complete(0);
 	
-	// »º³åÖĞÒÑÎŞÊı¾İ
+	// ç¼“å†²ä¸­å·²æ— æ•°æ®
 	if ( 0 == p_fifo->count )
 	{
 		p_fifo->index = 0;
 		
-		// ·¢ËÍÍê³É£¬½øÈë½ÓÊÕÄ£Ê½
+		// å‘é€å®Œæˆï¼Œè¿›å…¥æ¥æ”¶æ¨¡å¼
 		thr_func.pf_tx_finish();
 		
-		// ÖÃ·¢ËÍÍê³É±êÖ¾
+		// ç½®å‘é€å®Œæˆæ ‡å¿—
 		uart_thr_tx_end = 1;
 	}
-	else	// »º³å»¹ÓĞÊı¾İ(!!!Õı³£Çé¿öÏÂ²»¿ÉÄÜ³öÏÖ´ËÇé¿ö)
+	else	// ç¼“å†²è¿˜æœ‰æ•°æ®(!!!æ­£å¸¸æƒ…å†µä¸‹ä¸å¯èƒ½å‡ºç°æ­¤æƒ…å†µ)
 	{
-		// Ê¹ÄÜ·¢ËÍ»º³å¿ÕÖĞ¶Ï£¬¼ÌĞø·¢ËÍ
+		// ä½¿èƒ½å‘é€ç¼“å†²ç©ºä¸­æ–­ï¼Œç»§ç»­å‘é€
 		thr_func.pf_ie_tx_ready(1);
 	}
 }
 
 /*************************************************************
 Name:UartBTransTSW0      
-Description:·¢ËÍÍ¸´«Êı¾İ
-Input:tsw0_dat:Í¸´«Êı¾İÄÚÈİ         
+Description:å‘é€é€ä¼ æ•°æ®
+Input:tsw0_dat:é€ä¼ æ•°æ®å†…å®¹         
 Output:void         
 Return:void         
 **************************************************************/
 void UartTransThrDat()
 {
-	_T_THR_FIFO * p_fifo;	// FIFOÖ¸Õë
+	_T_THR_FIFO * p_fifo;	// FIFOæŒ‡é’ˆ
 	UCHAR8 fifo_id;
 
-	// µÃµ½FPGA½ÓÊÕÊ¹ÓÃµÄFIFO ID
+	// å¾—åˆ°FPGAæ¥æ”¶ä½¿ç”¨çš„FIFO ID
 	fifo_id = (0==thr_utx_fifo_use) ? 1 : 0;
 
-	// FPGA½ÓÊÕFIFOµÄÖ¸Õë
+	// FPGAæ¥æ”¶FIFOçš„æŒ‡é’ˆ
 	p_fifo = &uart_thr_tx_fifo[fifo_id];
 	//TRACE_INFO("p_fifo->count---------[%x],thr_utx_fifo_use=[%x]\r\n",p_fifo->count,thr_utx_fifo_use);
-	// ÈôFIFO²»Îª¿ÕÔòÇĞ»»FIFO²¢Æô¶¯·¢ËÍ
+	// è‹¥FIFOä¸ä¸ºç©ºåˆ™åˆ‡æ¢FIFOå¹¶å¯åŠ¨å‘é€
 	if ( 0 != p_fifo->count )
 	{
-		// FIFO½»»»£¬½«FPGA½ÓÊÕFIFO×÷Îª´®¿ÚµÄ·¢ËÍFIFO
+		// FIFOäº¤æ¢ï¼Œå°†FPGAæ¥æ”¶FIFOä½œä¸ºä¸²å£çš„å‘é€FIFO
 		thr_utx_fifo_use = fifo_id;
 
-		// ½«Ö®Ç°µÄ´®¿ÚµÄ·¢ËÍFIFO×÷ÎªFPGAµÄ½ÓÊÕFIFO
+		// å°†ä¹‹å‰çš„ä¸²å£çš„å‘é€FIFOä½œä¸ºFPGAçš„æ¥æ”¶FIFO
 		fifo_id = 1 - thr_utx_fifo_use;
 
-		// Çå¿ÕFPGA½ÓÊÕFIFO
+		// æ¸…ç©ºFPGAæ¥æ”¶FIFO
 		memset( (UCHAR8*)&(uart_thr_tx_fifo[fifo_id]), 0, sizeof(_T_THR_FIFO) );
 		
-		// Æô¶¯·¢ËÍ
+		// å¯åŠ¨å‘é€
 		p_fifo->index = 0;
 		uart_thr_tx_end = 0;
 		thr_func.pf_tx_start();
@@ -180,7 +180,7 @@ void UartTransThrDat()
 
 /*************************************************************
 Name:UartReceInterrupt          
-Description:ÖĞ¶Ïµ÷ÓÃ½ÓÊÕ´¦Àí³ÌĞò
+Description:ä¸­æ–­è°ƒç”¨æ¥æ”¶å¤„ç†ç¨‹åº
 Input:void            
 Output:void         
 Return:void         
@@ -190,20 +190,20 @@ void UartReceInterrupt( UCHAR8 rx_dat )
 	uart_rece_info.rx_data = rx_dat;
 	
 	WTD_CLR;
-	if (0 != (sys_work_info&SYSTEM_FLAG_232_RECE))	// ÉÏÒ»±Ê°ü»¹Ã»´¦ÀíÍê
+	if (0 != (sys_work_info&SYSTEM_FLAG_232_RECE))	// ä¸Šä¸€ç¬”åŒ…è¿˜æ²¡å¤„ç†å®Œ
 	{
 		return;
 	}
 
-	//¼à¿Ø½Ó¿Ú
+	//ç›‘æ§æ¥å£
 	switch(uart_rece_info.rx_count)
 	{
-		//°üÍ·
+		//åŒ…å¤´
 		case 0:
 			if (uart_rece_info.rx_data != 0x7E)
 				return;
 		break;	
-		//Ä£¿é±àºÅ
+		//æ¨¡å—ç¼–å·
 		case 1:
 			if ( (uart_rece_info.rx_data != HXCT_DDF_MODULE_NUM)
 				&&( uart_rece_info.rx_data != HXCT_DET_MODULE_NUM )
@@ -214,15 +214,15 @@ void UartReceInterrupt( UCHAR8 rx_dat )
 			}
 			uart_rece_info.rx_buffer[uart_rece_info.rx_count-1] = uart_rece_info.rx_data;
 		break;
-		//ÃüÁîÌå³¤¶È
+		//å‘½ä»¤ä½“é•¿åº¦
 		case 4:
-			//ÊÕÈ¡Êı¾İ³¤¶È¸ß4Î»
+			//æ”¶å–æ•°æ®é•¿åº¦é«˜4ä½
 			uart_rece_info.rx_len = (uart_rece_info.rx_data&0xf0)>>4;
-			uart_rece_info.rx_buffer[uart_rece_info.rx_count-1] = uart_rece_info.rx_data;	// Ó¦´ğ±êÖ¾
+			uart_rece_info.rx_buffer[uart_rece_info.rx_count-1] = uart_rece_info.rx_data;	// åº”ç­”æ ‡å¿—
 		break;
 		
 		case 5:
-			//ÊÕÈ¡Êı¾İ³¤¶ÈµÍ8Î»
+			//æ”¶å–æ•°æ®é•¿åº¦ä½8ä½
 			uart_rece_info.rx_len = (uart_rece_info.rx_len<<8)|uart_rece_info.rx_data;
 			uart_rece_info.rx_buffer[uart_rece_info.rx_count-1] = uart_rece_info.rx_data;
 			if (uart_rece_info.rx_len > (UART_BUFF_SIZE-10))
@@ -236,7 +236,7 @@ void UartReceInterrupt( UCHAR8 rx_dat )
 			if ((uart_rece_info.rx_count>5) && (uart_rece_info.rx_count>=(uart_rece_info.rx_len+8)) 
 				&& ((uart_rece_info.rx_data==0x7F)))
 			{
-				//Êı¾İÊÕÈ¡Íê±Ï				
+				//æ•°æ®æ”¶å–å®Œæ¯•				
 				uart_rece_info.rx_count = 0;
 				sys_work_info |= SYSTEM_FLAG_232_RECE;
 				return;
@@ -254,7 +254,7 @@ void UartReceInterrupt( UCHAR8 rx_dat )
 			
 	}
 	uart_rece_info.rx_count++;
-	if (uart_rece_info.rx_count > (UART_BUFF_SIZE-2))	// Êı¾İ¹ı³¤,ÅĞ¶¨ÎªÎŞĞ§Êı¾İ°ü
+	if (uart_rece_info.rx_count > (UART_BUFF_SIZE-2))	// æ•°æ®è¿‡é•¿,åˆ¤å®šä¸ºæ— æ•ˆæ•°æ®åŒ…
 		uart_rece_info.rx_count = 0;
 
 }
@@ -262,26 +262,26 @@ void UartReceInterrupt( UCHAR8 rx_dat )
 
 /*************************************************************
 Name:UartTransInterrupt          
-Description:ÖĞ¶Ïµ÷ÓÃ·¢ËÍ´¦Àíº¯Êı
+Description:ä¸­æ–­è°ƒç”¨å‘é€å¤„ç†å‡½æ•°
 Input:void            
 Output:void         
 Return:void         
 **************************************************************/
 void UartTransInterrupt(void)
 {
-	//ÖĞ¶Ï·¢ÉúÊ±ÉÏÒ»¸öÊı¾İÒÑ¾­·¢ËÍ³öÈ¥ÁË
+	//ä¸­æ–­å‘ç”Ÿæ—¶ä¸Šä¸€ä¸ªæ•°æ®å·²ç»å‘é€å‡ºå»äº†
 	if (uart_trans_info.tx_count<= uart_trans_info.tx_len)
 	{
 		CtrlUartSendDat( uart_trans_info.tx_buffer[uart_trans_info.tx_count++] );
 	}
-	else if (uart_trans_info.tx_count == uart_trans_info.tx_len+1)	// ¶à·¢ËÍÒ»¸ö×Ö·û
+	else if (uart_trans_info.tx_count == uart_trans_info.tx_len+1)	// å¤šå‘é€ä¸€ä¸ªå­—ç¬¦
 	{	
 		CtrlUartSendDat(0x00);
 		uart_trans_info.tx_count++;
 	}
 	else
 	{
-		//ÑÓÊ±ºó½«485·¢ËÍÊ¹ÄÜ¹Ø±Õ			
+		//å»¶æ—¶åå°†485å‘é€ä½¿èƒ½å…³é—­			
 		EnableUartTx(0, 0);	
 		return;
 	}
@@ -290,7 +290,7 @@ void UartTransInterrupt(void)
 //#if 0
 /*************************************************************
 Name:UartStartTrans          
-Description:¿ªÊ¼·¢ËÍ
+Description:å¼€å§‹å‘é€
 Input:void            
 Output:void         
 Return:void         
@@ -304,8 +304,8 @@ void UartStartTrans(void)
 //#endif 
 /*************************************************************
 Name:UartPacketHXTransHead          
-Description:´ò°ü°üÍ·
-Input:Ä£¿éµØÖ·£¬ÃüÁî×Ö£¬Ó¦´ğ±êÖ¾            
+Description:æ‰“åŒ…åŒ…å¤´
+Input:æ¨¡å—åœ°å€ï¼Œå‘½ä»¤å­—ï¼Œåº”ç­”æ ‡å¿—            
 Output:void         
 Return:void         
 **************************************************************/
@@ -321,12 +321,12 @@ void UartPacketHXTransHead(UCHAR8 type,UCHAR8 address,UCHAR8 command,UCHAR8 ack,
 
 /*************************************************************
 Name:MonHXGetStatusPara
-Description:±í12		À©Õ¹ICSÄ£¿é²éÑ¯ÃüÁî»ØÓ¦Êı¾İ
+Description:è¡¨12		æ‰©å±•ICSæ¨¡å—æŸ¥è¯¢å‘½ä»¤å›åº”æ•°æ®
 Input:up_down:0-UL, 1-DL; ab_flag:0-A, 1-B
 Output:void         
-Return:Êı¾İ³¤¶È
+Return:æ•°æ®é•¿åº¦
 **************************************************************/
-#ifdef HX_PROTOCOL_1230		// ºçĞÅ20111230Ğ­Òé
+#ifdef HX_PROTOCOL_1230		// è™¹ä¿¡20111230åè®®
 UINT16 MonHXGetStatusPara(UCHAR8 * data ,UCHAR8 up_down, UCHAR8 ab_flag)
 {
 	UCHAR8 * bak_data = data;
@@ -334,23 +334,23 @@ UINT16 MonHXGetStatusPara(UCHAR8 * data ,UCHAR8 up_down, UCHAR8 ab_flag)
 	UCHAR8 tmp;
 	UINT16 val;
 	
-	//¿ª¹Ø×´Ì¬(1×Ö½Ú)
+	//å¼€å…³çŠ¶æ€(1å­—èŠ‚)
 	tmp = 0;
-	if ( 0 != sys_param_1b[MADD_FPS_BCCH_LK_ST].val ) { tmp |= (1<<7); }	// Ëø¶¨BCCHÊÇ·ñ³É¹¦,1-³É¹¦
-	if ( 0 != sys_param_1b[MADD_FPS_MOSVC_LK_ST].val ) { tmp |= (1<<6); }	// Ëø¶¨ÔËÓªÉÌÊÇ·ñ³É¹¦,1-³É¹¦
-	if ( 0 != sys_param_1b[MADD_FPS_RFRANGE_LK_ST].val ) { tmp |= (1<<5); }	// Ëø¶¨Æµ¶ÎÊÇ·ñ³É¹¦,1-³É¹¦
-	if ( 0 != sys_param_1b[MADD_LOW_POWER].val ) { tmp |= (1<<3); }	// µÍ¹¦ºÄ¿ª¹Ø,1-ON
+	if ( 0 != sys_param_1b[MADD_FPS_BCCH_LK_ST].val ) { tmp |= (1<<7); }	// é”å®šBCCHæ˜¯å¦æˆåŠŸ,1-æˆåŠŸ
+	if ( 0 != sys_param_1b[MADD_FPS_MOSVC_LK_ST].val ) { tmp |= (1<<6); }	// é”å®šè¿è¥å•†æ˜¯å¦æˆåŠŸ,1-æˆåŠŸ
+	if ( 0 != sys_param_1b[MADD_FPS_RFRANGE_LK_ST].val ) { tmp |= (1<<5); }	// é”å®šé¢‘æ®µæ˜¯å¦æˆåŠŸ,1-æˆåŠŸ
+	if ( 0 != sys_param_1b[MADD_LOW_POWER].val ) { tmp |= (1<<3); }	// ä½åŠŸè€—å¼€å…³,1-ON
 	if (( 0==up_down )&&( 0!=sys_param_1b[(0==ab_flag) ? MADD_A_LTHR_EN : MADD_B_LTHR_EN].val ))
 	{ 
-		tmp |= (1<<2); 		// µ×ÔëÒÖÖÆÊ¹ÄÜ¿ª¹Ø,1-ON
+		tmp |= (1<<2); 		// åº•å™ªæŠ‘åˆ¶ä½¿èƒ½å¼€å…³,1-ON
 	}
 	if ( 0!=sys_param_1b[(0==ab_flag) ? MADD_A_UL_WORK_EN : MADD_B_UL_WORK_EN].val )
 	{
-		tmp |= (1<<0);		// ´¦ÀíÄ£¿é×Ü¿ª¹Ø, 1-ON
+		tmp |= (1<<0);		// å¤„ç†æ¨¡å—æ€»å¼€å…³, 1-ON
 	}
 	*data++ = tmp;
 
-	//ĞÅµÀ¿ª¹Ø(4×Ö½Ú)
+	//ä¿¡é“å¼€å…³(4å­—èŠ‚)
 	for ( i=0; i<32; i++ )
 	{
 		if ( 0==(i%8) )
@@ -364,30 +364,30 @@ UINT16 MonHXGetStatusPara(UCHAR8 * data ,UCHAR8 up_down, UCHAR8 ab_flag)
 		tmp <<= 1;
 		if ( 0!= sys_param_1b[(0==ab_flag) ? (MADD_A_DCH_EN32-i) : (MADD_B_DCH_EN32-i)].val )
 		{
-			tmp |= 1;	// Í¨µÀ¿ª¹Ø, 1-ON
+			tmp |= 1;	// é€šé“å¼€å…³, 1-ON
 		}
 	}
 	*data++ = tmp;
 
-	// ¹¤×÷×´Ì¬(4×Ö½Ú)
+	// å·¥ä½œçŠ¶æ€(4å­—èŠ‚)
 	*data++ = 0;
 	*data++ = 0;
 	tmp = 0;
 	for ( i=0; i<8; i++ )
 	{
 		tmp <<= 1;
-		if ( 0 != sys_param_1b[MADD_FP8_LOF-i].val ) { tmp |= 1; }	// ¹âÊÕ·¢×´Ì¬¸æ¾¯, 1-ALARM, REÖ»ÓĞ¹â¿Ú1ºÍ2
+		if ( 0 != sys_param_1b[MADD_FP8_LOF-i].val ) { tmp |= 1; }	// å…‰æ”¶å‘çŠ¶æ€å‘Šè­¦, 1-ALARM, REåªæœ‰å…‰å£1å’Œ2
 	}
 	*data++ = tmp;
 	tmp = 0;
-	if ( 0 != sys_param_1b[MADD_TOPO_CHG_ALM].val ) { tmp |= (1<<7); }		// »·Â·×´Ì¬¸æ¾¯,1-ALARM
-	if ( 0 != sys_param_1b[MADD_BER_ALARM].val ) { tmp |= (1<<6); }		// ÎóÂëÂÊÆ«¸ß¸æ¾¯,1-ALARM
-	if ( 0 != sys_param_1b[MADD_CLK_PLL_ST].val ) { tmp |= (1<<4); }		// Ê±ÖÓÊ§Ëø,1-UNLOCK
-	if ( 0 != sys_param_1b[MADD_FPGA_CLK_ST].val ) { tmp |= (1<<3); }		// FPGA±¾Õñ×´Ì¬,1-UNLOCK
-	tmp |= (0x03 & sys_param_1b[MADD_LOAD_FPGA_ST].val );		// Ä£¿é³õÊ¼»¯FPGA×´Ì¬
+	if ( 0 != sys_param_1b[MADD_TOPO_CHG_ALM].val ) { tmp |= (1<<7); }		// ç¯è·¯çŠ¶æ€å‘Šè­¦,1-ALARM
+	if ( 0 != sys_param_1b[MADD_BER_ALARM].val ) { tmp |= (1<<6); }		// è¯¯ç ç‡åé«˜å‘Šè­¦,1-ALARM
+	if ( 0 != sys_param_1b[MADD_CLK_PLL_ST].val ) { tmp |= (1<<4); }		// æ—¶é’Ÿå¤±é”,1-UNLOCK
+	if ( 0 != sys_param_1b[MADD_FPGA_CLK_ST].val ) { tmp |= (1<<3); }		// FPGAæœ¬æŒ¯çŠ¶æ€,1-UNLOCK
+	tmp |= (0x03 & sys_param_1b[MADD_LOAD_FPGA_ST].val );		// æ¨¡å—åˆå§‹åŒ–FPGAçŠ¶æ€
 	*data++ = tmp;
 
-	//Ñ¡ÆµÆµ¶Î(1×Ö½Ú), 0:GSM,1:WCDMA
+	//é€‰é¢‘é¢‘æ®µ(1å­—èŠ‚), 0:GSM,1:WCDMA
 	if ( 0==ab_flag )
 	{
 		tmp = fpga_cfg.a_net_type;
@@ -413,81 +413,81 @@ UINT16 MonHXGetStatusPara(UCHAR8 * data ,UCHAR8 up_down, UCHAR8 ab_flag)
 		*data++ = 1;
 	}
 	
-	// ÉÏĞĞÊä³ö¹¦ÂÊÃÅÏŞ(2×Ö½Ú)
+	// ä¸Šè¡Œè¾“å‡ºåŠŸç‡é—¨é™(2å­—èŠ‚)
 	val = sys_param_2b[(0==ab_flag) ? MADD_A_UCH_MAX_POW1 : MADD_B_UCH_MAX_POW1].val;
 	*data++ = (UCHAR8)(val);
 	*data++ = (UCHAR8)(val>>8);
 
-	//ÊäÈë¹¦ÂÊ(2×Ö½Ú)
+	//è¾“å…¥åŠŸç‡(2å­—èŠ‚)
 	val = sys_param_2b[(0==ab_flag) ? MADD_A_DL_TOTAL_POW : MADD_B_DL_TOTAL_POW].val;
 	*data++ = (UCHAR8)(val);
 	*data++ = (UCHAR8)(val>>8);
 	
-	//Êä³ö¹¦ÂÊ(2×Ö½Ú)
+	//è¾“å‡ºåŠŸç‡(2å­—èŠ‚)
 	val = sys_param_2b[(0==ab_flag) ? MADD_A_UL_TOTAL_POW : MADD_B_UL_TOTAL_POW].val;
 	*data++ = (UCHAR8)(val);
 	*data++ = (UCHAR8)(val>>8);
 
-	//ATT(1×Ö½Ú)
+	//ATT(1å­—èŠ‚)
 	if ( 0==up_down )
-	{// ÉÏĞĞ
+	{// ä¸Šè¡Œ
 		*data++ = sys_param_1b[(0==ab_flag) ? MADD_A_UCH_ATT1 : MADD_B_UCH_ATT1].val;
 	}
 	else
-	{// ÏÂĞĞ
+	{// ä¸‹è¡Œ
 		*data++ = sys_param_1b[(0==ab_flag) ? MADD_A_DCH_ATT1 : MADD_B_DCH_ATT1].val;
 	}
 
-	//ÔëÉùµçÆ½ÃÅÏŞ(1×Ö½Ú)
-	*data++ = sys_param_1b[(0==ab_flag) ? MADD_A_LTHR_DN: MADD_B_LTHR_DN].val;		// ÉÏĞĞµ×ÔëÒÖÖÆÏÂÃÅÏŞ
+	//å™ªå£°ç”µå¹³é—¨é™(1å­—èŠ‚)
+	*data++ = sys_param_1b[(0==ab_flag) ? MADD_A_LTHR_DN: MADD_B_LTHR_DN].val;		// ä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
 
-	//¹¦·ÅÔöÒæ(1×Ö½Ú)
-	*data++ = sys_param_1b[(0==ab_flag) ? MADD_A_DL_PA_GAIN: MADD_B_DL_PA_GAIN].val;		// ÏÂĞĞ¹¦·ÅÔöÒæ
+	//åŠŸæ”¾å¢ç›Š(1å­—èŠ‚)
+	*data++ = sys_param_1b[(0==ab_flag) ? MADD_A_DL_PA_GAIN: MADD_B_DL_PA_GAIN].val;		// ä¸‹è¡ŒåŠŸæ”¾å¢ç›Š
 
-	//Ë«¹¤Æ÷Ë¥¼õ(1×Ö½Ú)
-	val = sys_param_2b[(0==ab_flag) ? MADD_A_UDPX_IN_GAIN: MADD_B_UDPX_IN_GAIN].val;		// ÊäÈëË«¹¤Æ÷Ë¥¼õ
+	//åŒå·¥å™¨è¡°å‡(1å­—èŠ‚)
+	val = sys_param_2b[(0==ab_flag) ? MADD_A_UDPX_IN_GAIN: MADD_B_UDPX_IN_GAIN].val;		// è¾“å…¥åŒå·¥å™¨è¡°å‡
 	*data++ = (UCHAR8)(val&0xFF);
 	*data++ = (UCHAR8)(val>>8);
-	val = sys_param_2b[(0==ab_flag) ? MADD_A_UDPX_OUT_GAIN: MADD_B_UDPX_OUT_GAIN].val;		// Êä³öË«¹¤Æ÷Ë¥¼õ
+	val = sys_param_2b[(0==ab_flag) ? MADD_A_UDPX_OUT_GAIN: MADD_B_UDPX_OUT_GAIN].val;		// è¾“å‡ºåŒå·¥å™¨è¡°å‡
 	*data++ = (UCHAR8)(val&0xFF);
 	*data++ = (UCHAR8)(val>>8);
 
-	// Ô¶¶Ë»ú½Úµã×´Ì¬
+	// è¿œç«¯æœºèŠ‚ç‚¹çŠ¶æ€
 	*data++ = sys_param_1b[MADD_RE_NODE_MODE].val;
 
-//#ifdef FUNC_FREQ_POINT_SEARCH_EN	// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
-	// ÆµµãËÑË÷Ïà¹Ø²ÎÊı BCCH
-	*data++ = sys_param_1b[MADD_FPS_RFRANGE_SEL].val;		// Æµ¶ÎÑ¡Ôñ
-	*data++ = sys_param_1b[MADD_FPS_MOSVC_SEL].val;		// ÔËÓªÉÌÑ¡Ôñ
-	val = sys_param_2b[MADD_FPS_BCCH_FC_M].val;			// Ö÷Ğ¡ÇøBCCHĞÅµÀºÅ
+//#ifdef FUNC_FREQ_POINT_SEARCH_EN	// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
+	// é¢‘ç‚¹æœç´¢ç›¸å…³å‚æ•° BCCH
+	*data++ = sys_param_1b[MADD_FPS_RFRANGE_SEL].val;		// é¢‘æ®µé€‰æ‹©
+	*data++ = sys_param_1b[MADD_FPS_MOSVC_SEL].val;		// è¿è¥å•†é€‰æ‹©
+	val = sys_param_2b[MADD_FPS_BCCH_FC_M].val;			// ä¸»å°åŒºBCCHä¿¡é“å·
 	*data++ = (UCHAR8)(val&0xFF);
 	*data++ = (UCHAR8)(val>>8);
-	*data++ = sys_param_1b[MADD_FPS_BCCH_POW_M].val;		// Ö÷Ğ¡ÇøBCCH½ÓÊÕÇ¿¶È
-	val = sys_param_2b[MADD_FPS_CID].val;					// Ğ¡ÇøÊ¶±ğÂëÊµÊ±Öµ
+	*data++ = sys_param_1b[MADD_FPS_BCCH_POW_M].val;		// ä¸»å°åŒºBCCHæ¥æ”¶å¼ºåº¦
+	val = sys_param_2b[MADD_FPS_CID].val;					// å°åŒºè¯†åˆ«ç å®æ—¶å€¼
 	*data++ = (UCHAR8)(val&0xFF);
 	*data++ = (UCHAR8)(val>>8);
-	val = sys_param_2b[MADD_FPS_AREA_ID].val;				// Î»ÖÃÇø±àÂë
+	val = sys_param_2b[MADD_FPS_AREA_ID].val;				// ä½ç½®åŒºç¼–ç 
 	*data++ = (UCHAR8)(val&0xFF);
 	*data++ = (UCHAR8)(val>>8);
-	*data++ = sys_param_1b[MADD_FPS_BS_ID].val;			// »ùÕ¾Ê¶±ğÂë
-	for ( i=0; i<6; i++ )										// ÁÚĞ¡ÇøBCCHĞÅµÀºÅ
+	*data++ = sys_param_1b[MADD_FPS_BS_ID].val;			// åŸºç«™è¯†åˆ«ç 
+	for ( i=0; i<6; i++ )										// é‚»å°åŒºBCCHä¿¡é“å·
 	{
 		val = sys_param_2b[MADD_FPS_BCCH_FC_1+i].val;			
 		*data++ = (UCHAR8)(val&0xFF);
 		*data++ = (UCHAR8)(val>>8);
 	}
-	for ( i=0; i<6; i++ )										// ÁÚĞ¡ÇøBCCH½ÓÊÕÇ¿¶È
+	for ( i=0; i<6; i++ )										// é‚»å°åŒºBCCHæ¥æ”¶å¼ºåº¦
 	{
 		*data++ = sys_param_1b[MADD_FPS_BCCH_POW_1+i].val;
 	}
-	for ( i=0; i<6; i++ )										// ÁÚĞ¡ÇøCIDÊ¶±ğÂë
+	for ( i=0; i<6; i++ )										// é‚»å°åŒºCIDè¯†åˆ«ç 
 	{
 		val = sys_param_2b[MADD_FPS_CID_1+i].val;	
 		*data++ = (UCHAR8)(val&0xFF);
 		*data++ = (UCHAR8)(val>>8);
 	}
 
-	//Í¨µÀÊıN(1×Ö½Ú)+¹¤×÷ĞÅµÀºÅ(N*2×Ö½Ú)
+	//é€šé“æ•°N(1å­—èŠ‚)+å·¥ä½œä¿¡é“å·(N*2å­—èŠ‚)
 	if ( 0==ab_flag )
 	{
 		tmp = sys_param_1b[MADD_A_CHANNEL_COUNT].val;
@@ -509,9 +509,9 @@ UINT16 MonHXGetStatusPara(UCHAR8 * data ,UCHAR8 up_down, UCHAR8 ab_flag)
 		}
 	}
 
-	// ÆµµãËÑË÷Ïà¹Ø²ÎÊı CA
-	*data++ = sys_param_1b[MADD_FPS_CA_COUNT].val;		// ÓĞĞ§ĞÅµÀÊı
-	for ( i=0; i<sys_param_1b[MADD_FPS_CA_COUNT].val; i++ )		// CAĞÅµÀºÅ
+	// é¢‘ç‚¹æœç´¢ç›¸å…³å‚æ•° CA
+	*data++ = sys_param_1b[MADD_FPS_CA_COUNT].val;		// æœ‰æ•ˆä¿¡é“æ•°
+	for ( i=0; i<sys_param_1b[MADD_FPS_CA_COUNT].val; i++ )		// CAä¿¡é“å·
 	{
 		val = sys_param_2b[MADD_FPS_CA_FC_0+i].val;			
 		*data++ = (UCHAR8)(val&0xFF);
@@ -521,27 +521,27 @@ UINT16 MonHXGetStatusPara(UCHAR8 * data ,UCHAR8 up_down, UCHAR8 ab_flag)
 	return (data-bak_data);	
 	
 }
-#else	// ºçĞÅ20110629Ğ­Òé
+#else	// è™¹ä¿¡20110629åè®®
 UINT16 MonHXGetStatusPara(UCHAR8 * data ,UCHAR8 up_down, UCHAR8 ab_flag)
 {
 	UCHAR8 * bak_data = data;
 	UINT16 i;
 	UCHAR8 tmp;
 	
-	//¿ª¹Ø×´Ì¬(1×Ö½Ú)
+	//å¼€å…³çŠ¶æ€(1å­—èŠ‚)
 	tmp = 0;
-	if ( 0 != sys_param_1b[MADD_LOW_POWER].val ) { tmp |= (1<<3); }	// µÍ¹¦ºÄ¿ª¹Ø,1-ON
+	if ( 0 != sys_param_1b[MADD_LOW_POWER].val ) { tmp |= (1<<3); }	// ä½åŠŸè€—å¼€å…³,1-ON
 	if (( 0==up_down )&&( 0!=sys_param_1b[(0==ab_flag) ? MADD_A_LTHR_EN : MADD_B_LTHR_EN].val ))
 	{ 
-		tmp |= (1<<2); 		// µ×ÔëÒÖÖÆÊ¹ÄÜ¿ª¹Ø,1-ON
+		tmp |= (1<<2); 		// åº•å™ªæŠ‘åˆ¶ä½¿èƒ½å¼€å…³,1-ON
 	}
 	if ( 0!=sys_param_1b[(0==ab_flag) ? MADD_A_UL_WORK_EN : MADD_B_UL_WORK_EN].val )
 	{
-		tmp |= (1<<0);		// ´¦ÀíÄ£¿é×Ü¿ª¹Ø, 1-ON
+		tmp |= (1<<0);		// å¤„ç†æ¨¡å—æ€»å¼€å…³, 1-ON
 	}
 	*data++ = tmp;
 
-	//ĞÅµÀ¿ª¹Ø(4×Ö½Ú)
+	//ä¿¡é“å¼€å…³(4å­—èŠ‚)
 	for ( i=0; i<32; i++ )
 	{
 		if ( 0==(i%8) )
@@ -556,30 +556,30 @@ UINT16 MonHXGetStatusPara(UCHAR8 * data ,UCHAR8 up_down, UCHAR8 ab_flag)
 		tmp <<= 1;
 		if ( 0!= sys_param_1b[(0==ab_flag) ? (MADD_A_DCH_EN32-i) : (MADD_B_DCH_EN32-i)].val )
 		{
-			tmp |= 1;	// Í¨µÀ¿ª¹Ø, 1-ON
+			tmp |= 1;	// é€šé“å¼€å…³, 1-ON
 		}
 	}
 	*data++ = tmp;
 
-	// ¹¤×÷×´Ì¬(4×Ö½Ú)
+	// å·¥ä½œçŠ¶æ€(4å­—èŠ‚)
 	*data++ = 0;
 	*data++ = 0;
 	tmp = 0;
 	for ( i=0; i<8; i++ )
 	{
 		tmp <<= 1;
-		if ( 0 != sys_param_1b[MADD_FP8_LOF-i].val ) { tmp |= 1; }	// ¹âÊÕ·¢×´Ì¬¸æ¾¯, 1-ALARM
+		if ( 0 != sys_param_1b[MADD_FP8_LOF-i].val ) { tmp |= 1; }	// å…‰æ”¶å‘çŠ¶æ€å‘Šè­¦, 1-ALARM
 	}
 	*data++ = tmp;
 	tmp = 0;
-	if ( 0 != sys_param_1b[MADD_TOPO_CHG_ALM].val ) { tmp |= (1<<7); }		// »·Â·×´Ì¬¸æ¾¯,1-ALARM
-	if ( 0 != sys_param_1b[MADD_BER_ALARM].val ) { tmp |= (1<<6); }		// ÎóÂëÂÊÆ«¸ß¸æ¾¯,1-ALARM
-	if ( 0 != sys_param_1b[MADD_CLK_PLL_ST].val ) { tmp |= (1<<4); }		// Ê±ÖÓÊ§Ëø,1-UNLOCK
-	if ( 0 != sys_param_1b[MADD_FPGA_CLK_ST].val ) { tmp |= (1<<3); }		// FPGA±¾Õñ×´Ì¬,1-UNLOCK
-	tmp |= (0x03 & sys_param_1b[MADD_LOAD_FPGA_ST].val );		// Ä£¿é³õÊ¼»¯FPGA×´Ì¬
+	if ( 0 != sys_param_1b[MADD_TOPO_CHG_ALM].val ) { tmp |= (1<<7); }		// ç¯è·¯çŠ¶æ€å‘Šè­¦,1-ALARM
+	if ( 0 != sys_param_1b[MADD_BER_ALARM].val ) { tmp |= (1<<6); }		// è¯¯ç ç‡åé«˜å‘Šè­¦,1-ALARM
+	if ( 0 != sys_param_1b[MADD_CLK_PLL_ST].val ) { tmp |= (1<<4); }		// æ—¶é’Ÿå¤±é”,1-UNLOCK
+	if ( 0 != sys_param_1b[MADD_FPGA_CLK_ST].val ) { tmp |= (1<<3); }		// FPGAæœ¬æŒ¯çŠ¶æ€,1-UNLOCK
+	tmp |= (0x03 & sys_param_1b[MADD_LOAD_FPGA_ST].val );		// æ¨¡å—åˆå§‹åŒ–FPGAçŠ¶æ€
 	*data++ = tmp;
 
-	//Ñ¡ÆµÆµ¶Î(1×Ö½Ú), 0:GSM,1:WCDMA
+	//é€‰é¢‘é¢‘æ®µ(1å­—èŠ‚), 0:GSM,1:WCDMA
 	if ( 0==ab_flag )
 	{
 		tmp = fpga_cfg.a_net_type;
@@ -605,32 +605,32 @@ UINT16 MonHXGetStatusPara(UCHAR8 * data ,UCHAR8 up_down, UCHAR8 ab_flag)
 		*data++ = 1;
 	}
 	
-	// ÉÏĞĞÊä³ö¹¦ÂÊÃÅÏŞ(2×Ö½Ú)
+	// ä¸Šè¡Œè¾“å‡ºåŠŸç‡é—¨é™(2å­—èŠ‚)
 	*data++ = (UCHAR8)(sys_param_2b[(0==ab_flag) ? MADD_A_UCH_MAX_POW1 : MADD_B_UCH_MAX_POW1].val);
 	*data++ = (UCHAR8)(sys_param_2b[(0==ab_flag) ? MADD_A_UCH_MAX_POW1 : MADD_B_UCH_MAX_POW1].val>>8);
 
-	//ÊäÈë¹¦ÂÊ(2×Ö½Ú)
+	//è¾“å…¥åŠŸç‡(2å­—èŠ‚)
 	*data++ = (UCHAR8)(sys_param_2b[(0==ab_flag) ? MADD_A_DL_TOTAL_POW : MADD_B_DL_TOTAL_POW].val);
 	*data++ = (UCHAR8)(sys_param_2b[(0==ab_flag) ? MADD_A_DL_TOTAL_POW : MADD_B_DL_TOTAL_POW].val>>8);
 	
-	//Êä³ö¹¦ÂÊ(2×Ö½Ú)
+	//è¾“å‡ºåŠŸç‡(2å­—èŠ‚)
 	*data++ = (UCHAR8)(sys_param_2b[(0==ab_flag) ? MADD_A_UL_TOTAL_POW : MADD_B_UL_TOTAL_POW].val);
 	*data++ = (UCHAR8)(sys_param_2b[(0==ab_flag) ? MADD_A_UL_TOTAL_POW : MADD_B_UL_TOTAL_POW].val>>8);
 
-	//ATT(1×Ö½Ú)
+	//ATT(1å­—èŠ‚)
 	if ( 0==up_down )
-	{// ÉÏĞĞ
+	{// ä¸Šè¡Œ
 		*data++ = sys_param_1b[(0==ab_flag) ? MADD_A_UCH_ATT1 : MADD_B_UCH_ATT1].val;
 	}
 	else
-	{// ÏÂĞĞ
+	{// ä¸‹è¡Œ
 		*data++ = sys_param_1b[(0==ab_flag) ? MADD_A_DCH_ATT1 : MADD_B_DCH_ATT1].val;
 	}
 
-	//ÔëÉùµçÆ½ÃÅÏŞ(1×Ö½Ú)
-	*data++ = sys_param_1b[(0==ab_flag) ? MADD_A_LTHR_DN: MADD_B_LTHR_DN].val;		// ÉÏĞĞµ×ÔëÒÖÖÆÏÂÃÅÏŞ
+	//å™ªå£°ç”µå¹³é—¨é™(1å­—èŠ‚)
+	*data++ = sys_param_1b[(0==ab_flag) ? MADD_A_LTHR_DN: MADD_B_LTHR_DN].val;		// ä¸Šè¡Œåº•å™ªæŠ‘åˆ¶ä¸‹é—¨é™
 
-	//Í¨µÀÊıN(1×Ö½Ú)+¹¤×÷ĞÅµÀºÅ(N*2×Ö½Ú)
+	//é€šé“æ•°N(1å­—èŠ‚)+å·¥ä½œä¿¡é“å·(N*2å­—èŠ‚)
 	if ( 0==ab_flag )
 	{
 		tmp = sys_param_1b[MADD_A_CHANNEL_COUNT].val;
@@ -659,10 +659,10 @@ UINT16 MonHXGetStatusPara(UCHAR8 * data ,UCHAR8 up_down, UCHAR8 ab_flag)
 
 /*************************************************************
 Name:MonHXGetSubPara
-Description:À©Õ¹ÉèÖÃ²éÑ¯ÏîµÄ²éÑ¯ÃüÁî»Ø¸´
+Description:æ‰©å±•è®¾ç½®æŸ¥è¯¢é¡¹çš„æŸ¥è¯¢å‘½ä»¤å›å¤
 Input:up_down:0-UL, 1-DL; ab_flag:0-A, 1-B
 Output:void         
-Return:Êı¾İ³¤¶È
+Return:æ•°æ®é•¿åº¦
 **************************************************************/
 UINT16 MonHXGetSubPara(UCHAR8 * data ,UCHAR8 up_down, UCHAR8 ab_flag)
 {
@@ -670,27 +670,27 @@ UINT16 MonHXGetSubPara(UCHAR8 * data ,UCHAR8 up_down, UCHAR8 ab_flag)
 	UINT16 i;
 	UCHAR8 tmp;
 
-	//¹âÄ£¿é¿ª¹Ø(2×Ö½Ú)
-	*data++ = 0;		// ¸ß8Î»ÎŞ¹âÄ£¿é£¬Îª0
+	//å…‰æ¨¡å—å¼€å…³(2å­—èŠ‚)
+	*data++ = 0;		// é«˜8ä½æ— å…‰æ¨¡å—ï¼Œä¸º0
 	tmp = 0;
 	for ( i=0; i<8; i++ )
 	{
 		tmp <<= 1;
-		if ( 0 != sys_param_1b[MADD_FP8_EN-i].val ) { tmp |= 1; }	// ¹âÄ£¿é¿ª¹Ø, 1-ON
+		if ( 0 != sys_param_1b[MADD_FP8_EN-i].val ) { tmp |= 1; }	// å…‰æ¨¡å—å¼€å…³, 1-ON
 	}
 	*data++ = tmp;
 
-	//¹âÄ£¿é¸öÊı(1×Ö½Ú)
+	//å…‰æ¨¡å—ä¸ªæ•°(1å­—èŠ‚)
 	*data++ = FP_MAX;
 
-	//Í¨µÀÊıN(1×Ö½Ú)+Í¨µÀÔöÒæÖµ(N*1×Ö½Ú)
+	//é€šé“æ•°N(1å­—èŠ‚)+é€šé“å¢ç›Šå€¼(N*1å­—èŠ‚)
 	if ( 0==ab_flag )
 	{
 		tmp = sys_param_1b[MADD_A_CHANNEL_COUNT].val;
 		*data++ = tmp;
 		for ( i=0; i<tmp; i++ )
 		{
-			*data++ = 0;		// REC²»Ö§³ÖÉèÖÃºÍ²éÑ¯Í¨µÀÔöÒæÖµ
+			*data++ = 0;		// RECä¸æ”¯æŒè®¾ç½®å’ŒæŸ¥è¯¢é€šé“å¢ç›Šå€¼
 		}
 	}
 	else
@@ -703,86 +703,86 @@ UINT16 MonHXGetSubPara(UCHAR8 * data ,UCHAR8 up_down, UCHAR8 ab_flag)
 		}
 	}
 
-	//ÑÓÊ±²¹³¥(2×Ö½Ú)
-	*data++ = 0;			// REC²»Ö§³ÖÉèÖÃºÍ²éÑ¯ÑÓÊ±²¹³¥
+	//å»¶æ—¶è¡¥å¿(2å­—èŠ‚)
+	*data++ = 0;			// RECä¸æ”¯æŒè®¾ç½®å’ŒæŸ¥è¯¢å»¶æ—¶è¡¥å¿
 	*data++ = 0;
 
-	//×Ô¶¯Ê±ÑÓ¿ª¹Ø(1×Ö½Ú)
-	*data++ = sys_param_1b[MADD_DELAY_MODE].val;		// ×Ô¶¯Ê±ÑÓ¿ª¹Ø, 1-ON
+	//è‡ªåŠ¨æ—¶å»¶å¼€å…³(1å­—èŠ‚)
+	*data++ = sys_param_1b[MADD_DELAY_MODE].val;		// è‡ªåŠ¨æ—¶å»¶å¼€å…³, 1-ON
 
-	//McuÎÂ¶È(1×Ö½Ú)
+	//Mcuæ¸©åº¦(1å­—èŠ‚)
 	*data++ = sys_param_1b[MADD_BOARD_TEMP].val;
 
-	//µÍ¹¦ºÄ¿ª¹Ø(1×Ö½Ú)
-	*data++ = sys_param_1b[MADD_LOW_POWER].val;		// µÍ¹¦ºÄ¿ª¹Ø,1-ON
+	//ä½åŠŸè€—å¼€å…³(1å­—èŠ‚)
+	*data++ = sys_param_1b[MADD_LOW_POWER].val;		// ä½åŠŸè€—å¼€å…³,1-ON
 
-	//×Ô¶¯/ÊÖ¶¯Ñ¡Æµ(1×Ö½Ú)
-	*data++ = 0;		// 1£º×Ô¶¯Ñ¡Æµ, 0£ºÊÖ¶¯Ñ¡Æµ
+	//è‡ªåŠ¨/æ‰‹åŠ¨é€‰é¢‘(1å­—èŠ‚)
+	*data++ = 0;		// 1ï¼šè‡ªåŠ¨é€‰é¢‘, 0ï¼šæ‰‹åŠ¨é€‰é¢‘
 
-	//ÉÏĞĞÊ±Ï¶Õ¼ÓÃÂÊ(1×Ö½Ú)
+	//ä¸Šè¡Œæ—¶éš™å ç”¨ç‡(1å­—èŠ‚)
 	*data++ = sys_param_1b[(0==ab_flag) ? MADD_A_BUSY_TIME : MADD_B_BUSY_TIME].val;
 	
-	//ÉÏĞĞÊ±Ï¶Õ¼ÓÃÂÊÍ³¼Æ×´Ì¬(1×Ö½Ú)
+	//ä¸Šè¡Œæ—¶éš™å ç”¨ç‡ç»Ÿè®¡çŠ¶æ€(1å­—èŠ‚)
 	*data++ = sys_param_1b[MADD_TRAFFIC_END].val;
 
-	//Éè±¸Â·ÓÉµÇ¼ÇµØÖ·(4×Ö½Ú)
+	//è®¾å¤‡è·¯ç”±ç™»è®°åœ°å€(4å­—èŠ‚)
 	*data++ = (UCHAR8)(sys_param_4b[MADD_DEV_ADDR].val);
 	*data++ = (UCHAR8)(sys_param_4b[MADD_DEV_ADDR].val>>8);
 	*data++ = (UCHAR8)(sys_param_4b[MADD_DEV_ADDR].val>>16);
 	*data++ = (UCHAR8)(sys_param_4b[MADD_DEV_ADDR].val>>24);
 
-	//»·Íø¶Ô¶Ë¹â¿ÚºÅ1(4×Ö½Ú)
+	//ç¯ç½‘å¯¹ç«¯å…‰å£å·1(4å­—èŠ‚)
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPS_PORT].val);
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPS_PORT].val>>8);
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPS_PORT].val>>16);
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPS_PORT].val>>24);
 
-	//»·Íø¶Ô¶Ë¹â¿ÚºÅ1(4×Ö½Ú)
+	//ç¯ç½‘å¯¹ç«¯å…‰å£å·1(4å­—èŠ‚)
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPS_PORT].val);
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPS_PORT].val>>8);
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPS_PORT].val>>16);
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPS_PORT].val>>24);
 
-	//Ô¶¶Ë»ú½Úµã¼ÆÊı1(4×Ö½Ú), ¹â¿Ú1-4
+	//è¿œç«¯æœºèŠ‚ç‚¹è®¡æ•°1(4å­—èŠ‚), å…‰å£1-4
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPT_RE_COUNT1].val);
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPT_RE_COUNT1].val>>8);
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPT_RE_COUNT1].val>>16);
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPT_RE_COUNT1].val>>24);
 
-	//Ô¶¶Ë»ú½Úµã¼ÆÊı2(4×Ö½Ú), ¹â¿Ú5-8
+	//è¿œç«¯æœºèŠ‚ç‚¹è®¡æ•°2(4å­—èŠ‚), å…‰å£5-8
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPT_RE_COUNT2].val);
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPT_RE_COUNT2].val>>8);
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPT_RE_COUNT2].val>>16);
 	*data++ = (UCHAR8)(sys_param_4b[MADD_OPT_RE_COUNT2].val>>24);
 
-	//Ô¶¶Ë»ú½Úµã¼ÆÊı3,4(2*4×Ö½Ú), ¹â¿Ú9-16
+	//è¿œç«¯æœºèŠ‚ç‚¹è®¡æ•°3,4(2*4å­—èŠ‚), å…‰å£9-16
 	for ( i=0; i<8; i++ )
 	{
 		*data++ = 0;
 	}
 
-	//Ô¶¶Ë»ú½Úµã×´Ì¬(1×Ö½Ú)
-	*data++ = 0;		// RECÎŞĞ§
+	//è¿œç«¯æœºèŠ‚ç‚¹çŠ¶æ€(1å­—èŠ‚)
+	*data++ = 0;		// RECæ— æ•ˆ
 
-	//Á´Â·×î´óÑÓÊ±(2×Ö½Ú)
+	//é“¾è·¯æœ€å¤§å»¶æ—¶(2å­—èŠ‚)
 	*data++ = (UCHAR8)(sys_param_2b[MADD_MAX_T14].val);
 	*data++ = (UCHAR8)(sys_param_2b[MADD_MAX_T14].val>>8);
 
-	//½Úµã¹âÂ·ÑÓÊ±(2×Ö½Ú)
-	*data++ = 0;		// RECÎŞĞ§
-	*data++ = 0;		// RECÎŞĞ§
+	//èŠ‚ç‚¹å…‰è·¯å»¶æ—¶(2å­—èŠ‚)
+	*data++ = 0;		// RECæ— æ•ˆ
+	*data++ = 0;		// RECæ— æ•ˆ
 
-	//½Úµã¹âÂ·ÑÓÊ±(2×Ö½Ú)
-	*data++ = 0;		// RECÎŞĞ§
-	*data++ = 0;		// RECÎŞĞ§
+	//èŠ‚ç‚¹å…‰è·¯å»¶æ—¶(2å­—èŠ‚)
+	*data++ = 0;		// RECæ— æ•ˆ
+	*data++ = 0;		// RECæ— æ•ˆ
 
-	//WLANÍø¿Ú1-4×´Ì¬(4*1×Ö½Ú)
+	//WLANç½‘å£1-4çŠ¶æ€(4*1å­—èŠ‚)
 	*data++ = sys_param_1b[MADD_WLAN_CONN_ST1].val;
 	*data++ = sys_param_1b[MADD_WLAN_CONN_ST2].val;
 	*data++ = sys_param_1b[MADD_WLAN_CONN_ST3].val;
 	*data++ = sys_param_1b[MADD_WLAN_CONN_ST4].val;
 
-	//WLANÍø¿ÚËÙ¶ÈÁ÷Á¿1-4(4*1×Ö½Ú)
+	//WLANç½‘å£é€Ÿåº¦æµé‡1-4(4*1å­—èŠ‚)
 	*data++ = sys_param_1b[MADD_WLAN_SPEED1].val;
 	*data++ = sys_param_1b[MADD_WLAN_SPEED2].val;
 	*data++ = sys_param_1b[MADD_WLAN_SPEED3].val;
@@ -794,10 +794,10 @@ UINT16 MonHXGetSubPara(UCHAR8 * data ,UCHAR8 up_down, UCHAR8 ab_flag)
 
 /*************************************************************
 Name:MonHXSetNormalPara
-Description:À©Õ¹ÉèÖÃ²éÑ¯ÏîµÄ²éÑ¯ÃüÁî»Ø¸´
+Description:æ‰©å±•è®¾ç½®æŸ¥è¯¢é¡¹çš„æŸ¥è¯¢å‘½ä»¤å›å¤
 Input:up_down:0-UL, 1-DL; ab_flag:0-A, 1-B
 Output:void         
-Return:´¦Àí½á¹û:0-Ê§°Ü£¬1-ÉèÖÃ³É¹¦£¬2-ÎŞĞè¸Ä±ä£¬0xFF-Î´ÖªÃüÁî
+Return:å¤„ç†ç»“æœ:0-å¤±è´¥ï¼Œ1-è®¾ç½®æˆåŠŸï¼Œ2-æ— éœ€æ”¹å˜ï¼Œ0xFF-æœªçŸ¥å‘½ä»¤
 **************************************************************/
 UCHAR8 MonHXSetNormalPara(UCHAR8 cmd, UCHAR8 * data , UINT16 body_len, UCHAR8 up_down, UCHAR8 ab_flag)
 {
@@ -824,25 +824,25 @@ UCHAR8 MonHXSetNormalPara(UCHAR8 cmd, UCHAR8 * data , UINT16 body_len, UCHAR8 up
 			sys_param_1b[addr].val = data[0]&0x7F;
 			if ( 0==ab_flag )
 			{
-				module_param_chg_flag |= PCHG_A_POW_GAIN;//((0==up_down) ? PCHG_A_UL_GAIN : PCHG_A_DL_GAIN);	// ÖÃĞŞ¸Ä²ÎÊı±êÖ¾
+				module_param_chg_flag |= PCHG_A_POW_GAIN;//((0==up_down) ? PCHG_A_UL_GAIN : PCHG_A_DL_GAIN);	// ç½®ä¿®æ”¹å‚æ•°æ ‡å¿—
 			}
 			else
 			{
-				module_param_chg_flag |= PCHG_B_POW_GAIN;//((0==up_down) ? PCHG_A_UL_GAIN : PCHG_A_DL_GAIN);	// ÖÃĞŞ¸Ä²ÎÊı±êÖ¾
+				module_param_chg_flag |= PCHG_B_POW_GAIN;//((0==up_down) ? PCHG_A_UL_GAIN : PCHG_A_DL_GAIN);	// ç½®ä¿®æ”¹å‚æ•°æ ‡å¿—
 			}
 		}
 		else
 		{
 			return 0;
 		}
-		//ÊÇ·ñ±£´æATT
-		if ( 0 != (data[0]&0x80) )	// ×î¸ßÎ»µÈÓÚ1£¬´Ë´ÎÉèÖÃµÄATT²ÎÊıÖµ²»ÓÃ±£´æ
+		//æ˜¯å¦ä¿å­˜ATT
+		if ( 0 != (data[0]&0x80) )	// æœ€é«˜ä½ç­‰äº1ï¼Œæ­¤æ¬¡è®¾ç½®çš„ATTå‚æ•°å€¼ä¸ç”¨ä¿å­˜
 		{
 			return 2;
 		}
 	break;
 	
-	case HXCT_CMD_SET_ONOFF:		// ¹¤×÷Ê¹ÄÜ
+	case HXCT_CMD_SET_ONOFF:		// å·¥ä½œä½¿èƒ½
 		if ( data[0]>1 ) return 0;
 		
 		if ( 0==ab_flag )
@@ -873,7 +873,7 @@ UCHAR8 MonHXSetNormalPara(UCHAR8 cmd, UCHAR8 * data , UINT16 body_len, UCHAR8 up
 		}	
 	break;
 
-	case HXCT_CMD_SET_NOISE_ON:		// µ×ÔëÒÖÖÆÊ¹ÄÜ
+	case HXCT_CMD_SET_NOISE_ON:		// åº•å™ªæŠ‘åˆ¶ä½¿èƒ½
 		if ( data[0]>1 ) return 0;
 
 		addr = (0==ab_flag) ? MADD_A_LTHR_EN : MADD_B_LTHR_EN;
@@ -885,7 +885,7 @@ UCHAR8 MonHXSetNormalPara(UCHAR8 cmd, UCHAR8 * data , UINT16 body_len, UCHAR8 up
 		module_param_chg_flag |= ((0==ab_flag) ? PCHG_A_LTHR: PCHG_B_LTHR);
 	break;
 
-	case HXCT_CMD_SET_NOISE_GATE:		// ÔêÉùÒÖÖÆµçÆ½ÏÂÃÅÏŞMADD_B_LTHR_DN
+	case HXCT_CMD_SET_NOISE_GATE:		// èºå£°æŠ‘åˆ¶ç”µå¹³ä¸‹é—¨é™MADD_B_LTHR_DN
 		addr = (0==ab_flag) ? MADD_A_LTHR_DN : MADD_B_LTHR_DN;
 		if ( sys_param_1b[addr].val == data[0] )
 		{
@@ -899,42 +899,42 @@ UCHAR8 MonHXSetNormalPara(UCHAR8 cmd, UCHAR8 * data , UINT16 body_len, UCHAR8 up
 		return 0xFF;
 	}
 
-	return 1;	// ÉèÖÃ³É¹¦£¬ĞèÒª±£´æ²ÎÊı
+	return 1;	// è®¾ç½®æˆåŠŸï¼Œéœ€è¦ä¿å­˜å‚æ•°
 }
 
 
-#ifdef HX_PROTOCOL_1230		// ºçĞÅ20111230Ğ­Òé
+#ifdef HX_PROTOCOL_1230		// è™¹ä¿¡20111230åè®®
 /*************************************************************
 Name: HxExtraSetLowPowerMode
-Description: À©Õ¹ÉèÖÃ->µÍ¹¦ºÄÄ£Ê½¿ª¹Ø
+Description: æ‰©å±•è®¾ç½®->ä½åŠŸè€—æ¨¡å¼å¼€å…³
 Input: up_down:0-UL, 1-DL; ab_flag:0-A, 1-B
 Output: void         
-Return: ´¦Àí½á¹û:0-Ê§°Ü£¬1-ÉèÖÃ³É¹¦£¬2-ÎŞĞè¸Ä±ä£¬0xFF-Î´ÖªÃüÁî
+Return: å¤„ç†ç»“æœ:0-å¤±è´¥ï¼Œ1-è®¾ç½®æˆåŠŸï¼Œ2-æ— éœ€æ”¹å˜ï¼Œ0xFF-æœªçŸ¥å‘½ä»¤
 **************************************************************/
 UCHAR8 HxExtraSetLowPowerMode( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 {
-	return 0;		// REC½ûÖ¹µÍ¹¦ºÄ
+	return 0;		// RECç¦æ­¢ä½åŠŸè€—
 }
 
 
 /*************************************************************
 Name: HxExtraSetPaGain
-Description: À©Õ¹ÉèÖÃ->¹¦·ÅÔöÒæ
+Description: æ‰©å±•è®¾ç½®->åŠŸæ”¾å¢ç›Š
 Input: up_down:0-UL, 1-DL; ab_flag:0-A, 1-B
 Output: void         
-Return: ´¦Àí½á¹û:0-Ê§°Ü£¬1-ÉèÖÃ³É¹¦£¬2-ÎŞĞè¸Ä±ä£¬0xFF-Î´ÖªÃüÁî
+Return: å¤„ç†ç»“æœ:0-å¤±è´¥ï¼Œ1-è®¾ç½®æˆåŠŸï¼Œ2-æ— éœ€æ”¹å˜ï¼Œ0xFF-æœªçŸ¥å‘½ä»¤
 **************************************************************/
 UCHAR8 HxExtraSetPaGain( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 {
-	return 0;	// REC²»Ö§³ÖÉèÖÃ¹¦·ÅÔöÒæ
+	return 0;	// RECä¸æ”¯æŒè®¾ç½®åŠŸæ”¾å¢ç›Š
 }
 
 /*************************************************************
 Name: HxExtraSetDpxInAtt
-Description: À©Õ¹ÉèÖÃ->ÊäÈëË«¹¤Æ÷Ë¥¼õ
+Description: æ‰©å±•è®¾ç½®->è¾“å…¥åŒå·¥å™¨è¡°å‡
 Input: up_down:0-UL, 1-DL; ab_flag:0-A, 1-B
 Output: void         
-Return: ´¦Àí½á¹û:0-Ê§°Ü£¬1-ÉèÖÃ³É¹¦£¬2-ÎŞĞè¸Ä±ä£¬0xFF-Î´ÖªÃüÁî
+Return: å¤„ç†ç»“æœ:0-å¤±è´¥ï¼Œ1-è®¾ç½®æˆåŠŸï¼Œ2-æ— éœ€æ”¹å˜ï¼Œ0xFF-æœªçŸ¥å‘½ä»¤
 **************************************************************/
 UCHAR8 HxExtraSetDpxInAtt( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 {
@@ -942,7 +942,7 @@ UCHAR8 HxExtraSetDpxInAtt( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 	UINT16 addr;
 	UINT16 val16;
 
-	if ( up_down==0 ) return 0;	// ²»Ö§³ÖÉèÖÃÉÏĞĞ
+	if ( up_down==0 ) return 0;	// ä¸æ”¯æŒè®¾ç½®ä¸Šè¡Œ
 
 	val16 = data[0]|(data[1]<<8);
 	if ( val16>315 ) return 0;
@@ -977,10 +977,10 @@ UCHAR8 HxExtraSetDpxInAtt( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 
 /*************************************************************
 Name: HxExtraSetDpxOutAtt
-Description: À©Õ¹ÉèÖÃ->Êä³öË«¹¤Æ÷Ë¥¼õ
+Description: æ‰©å±•è®¾ç½®->è¾“å‡ºåŒå·¥å™¨è¡°å‡
 Input: up_down:0-UL, 1-DL; ab_flag:0-A, 1-B
 Output: void         
-Return: ´¦Àí½á¹û:0-Ê§°Ü£¬1-ÉèÖÃ³É¹¦£¬2-ÎŞĞè¸Ä±ä£¬0xFF-Î´ÖªÃüÁî
+Return: å¤„ç†ç»“æœ:0-å¤±è´¥ï¼Œ1-è®¾ç½®æˆåŠŸï¼Œ2-æ— éœ€æ”¹å˜ï¼Œ0xFF-æœªçŸ¥å‘½ä»¤
 **************************************************************/
 UCHAR8 HxExtraSetDpxOutAtt( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 {
@@ -988,7 +988,7 @@ UCHAR8 HxExtraSetDpxOutAtt( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 	UINT16 addr;
 	UINT16 val16;
 
-	if ( up_down==1 ) return 0;	// ²»Ö§³ÖÉèÖÃÏÂĞĞ
+	if ( up_down==1 ) return 0;	// ä¸æ”¯æŒè®¾ç½®ä¸‹è¡Œ
 
 	val16 = data[0]|(data[1]<<8);
 	if ( val16>315 ) return 0;
@@ -1023,14 +1023,14 @@ UCHAR8 HxExtraSetDpxOutAtt( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 
 /*************************************************************
 Name: HxExtraSetFpsLockBcch
-Description: À©Õ¹ÉèÖÃ->ÆµµãËÑË÷:ËøÆµĞÅµÀºÅBCCH
+Description: æ‰©å±•è®¾ç½®->é¢‘ç‚¹æœç´¢:é”é¢‘ä¿¡é“å·BCCH
 Input: up_down:0-UL, 1-DL; ab_flag:0-A, 1-B
 Output: void         
-Return: ´¦Àí½á¹û:0-Ê§°Ü£¬1-ÉèÖÃ³É¹¦£¬2-ÎŞĞè¸Ä±ä£¬0xFF-Î´ÖªÃüÁî
+Return: å¤„ç†ç»“æœ:0-å¤±è´¥ï¼Œ1-è®¾ç½®æˆåŠŸï¼Œ2-æ— éœ€æ”¹å˜ï¼Œ0xFF-æœªçŸ¥å‘½ä»¤
 **************************************************************/
 UCHAR8 HxExtraSetFpsLockBcch( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN	// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN	// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 
 	UINT16 val16;
 
@@ -1041,14 +1041,14 @@ UCHAR8 HxExtraSetFpsLockBcch( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 		sys_param_2b[MADD_FPS_BCCH_LK_SET].val = val16;
 		if ( b_FALSE==FPS_CheckParam(SYS_A_FLAG) )
 		{
-			return 0;	// ³ö´í
+			return 0;	// å‡ºé”™
 		}
 		module_param_chg_flag |= PCHG_FPS_RANGE;
 		return 1;
 	}
 	else
 	{
-		return 2;		// ÉèÖÃÖµÃ»¸Ä±ä
+		return 2;		// è®¾ç½®å€¼æ²¡æ”¹å˜
 	}
 	
 #else
@@ -1058,24 +1058,24 @@ UCHAR8 HxExtraSetFpsLockBcch( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 
 /*************************************************************
 Name: HxExtraSetAutoDelayMode
-Description: À©Õ¹ÉèÖÃ->×Ô¶¯ÑÓÊ±µ÷Õû¿ª¹Ø
+Description: æ‰©å±•è®¾ç½®->è‡ªåŠ¨å»¶æ—¶è°ƒæ•´å¼€å…³
 Input: up_down:0-UL, 1-DL; ab_flag:0-A, 1-B
 Output: void         
-Return: ´¦Àí½á¹û:0-Ê§°Ü£¬1-ÉèÖÃ³É¹¦£¬2-ÎŞĞè¸Ä±ä£¬0xFF-Î´ÖªÃüÁî
+Return: å¤„ç†ç»“æœ:0-å¤±è´¥ï¼Œ1-è®¾ç½®æˆåŠŸï¼Œ2-æ— éœ€æ”¹å˜ï¼Œ0xFF-æœªçŸ¥å‘½ä»¤
 **************************************************************/
 UCHAR8 HxExtraSetFpsParam( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN	// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN	// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 
 	UCHAR8 chg_flag = 0;
 	
-	if ( data[0]!=sys_param_1b[MADD_FPS_RFRANGE_SEL].val )	// Æµ¶ÎÑ¡Ôñ
+	if ( data[0]!=sys_param_1b[MADD_FPS_RFRANGE_SEL].val )	// é¢‘æ®µé€‰æ‹©
 	{
 		sys_param_1b[MADD_FPS_RFRANGE_SEL].val = data[0];
 		chg_flag = 1;
 	}
 
-	if ( data[1]!=sys_param_1b[MADD_FPS_MOSVC_SEL].val )		// ÔËÓªÉÌÑ¡Ôñ
+	if ( data[1]!=sys_param_1b[MADD_FPS_MOSVC_SEL].val )		// è¿è¥å•†é€‰æ‹©
 	{
 		sys_param_1b[MADD_FPS_MOSVC_SEL].val = data[1];
 		chg_flag = 1;
@@ -1083,13 +1083,13 @@ UCHAR8 HxExtraSetFpsParam( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 
 	if ( 0==chg_flag )
 	{
-		return 2;		// ÉèÖÃÖµÃ»¸Ä±ä
+		return 2;		// è®¾ç½®å€¼æ²¡æ”¹å˜
 	}
 	else
 	{
 		if ( b_FALSE==FPS_CheckParam(SYS_A_FLAG) )
 		{
-			return 0;	// ³ö´í
+			return 0;	// å‡ºé”™
 		}
 		module_param_chg_flag |= PCHG_FPS_RANGE;
 		return 1;		
@@ -1102,14 +1102,14 @@ UCHAR8 HxExtraSetFpsParam( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 
 /*************************************************************
 Name: HxExtraSetFpsLockCid
-Description: À©Õ¹ÉèÖÃ->ÆµµãËÑË÷:ËøĞ¡ÇøÊ¶±ğÂëCID
+Description: æ‰©å±•è®¾ç½®->é¢‘ç‚¹æœç´¢:é”å°åŒºè¯†åˆ«ç CID
 Input: up_down:0-UL, 1-DL; ab_flag:0-A, 1-B
 Output: void         
-Return: ´¦Àí½á¹û:0-Ê§°Ü£¬1-ÉèÖÃ³É¹¦£¬2-ÎŞĞè¸Ä±ä£¬0xFF-Î´ÖªÃüÁî
+Return: å¤„ç†ç»“æœ:0-å¤±è´¥ï¼Œ1-è®¾ç½®æˆåŠŸï¼Œ2-æ— éœ€æ”¹å˜ï¼Œ0xFF-æœªçŸ¥å‘½ä»¤
 **************************************************************/
 UCHAR8 HxExtraSetFpsLockCid( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 {
-#ifdef FUNC_FREQ_POINT_SEARCH_EN	// ÆôÓÃÆµµãËÑË÷¹¦ÄÜ
+#ifdef FUNC_FREQ_POINT_SEARCH_EN	// å¯ç”¨é¢‘ç‚¹æœç´¢åŠŸèƒ½
 
 	UINT16 val16;
 
@@ -1120,14 +1120,14 @@ UCHAR8 HxExtraSetFpsLockCid( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 		sys_param_2b[MADD_FPS_CID_LK_SET].val = val16;
 		if ( b_FALSE==FPS_CheckParam(SYS_A_FLAG ) )
 		{
-			return 0;	// ³ö´í
+			return 0;	// å‡ºé”™
 		}
 		module_param_chg_flag |= PCHG_FPS_RANGE;
 		return 1;
 	}
 	else
 	{
-		return 2;		// ÉèÖÃÖµÃ»¸Ä±ä
+		return 2;		// è®¾ç½®å€¼æ²¡æ”¹å˜
 	}
 
 #else
@@ -1138,10 +1138,10 @@ UCHAR8 HxExtraSetFpsLockCid( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 
 /*************************************************************
 Name: HxExtraSetAutoDelayMode
-Description: À©Õ¹ÉèÖÃ->×Ô¶¯ÑÓÊ±µ÷Õû¿ª¹Ø
+Description: æ‰©å±•è®¾ç½®->è‡ªåŠ¨å»¶æ—¶è°ƒæ•´å¼€å…³
 Input: up_down:0-UL, 1-DL; ab_flag:0-A, 1-B
 Output: void         
-Return: ´¦Àí½á¹û:0-Ê§°Ü£¬1-ÉèÖÃ³É¹¦£¬2-ÎŞĞè¸Ä±ä£¬0xFF-Î´ÖªÃüÁî
+Return: å¤„ç†ç»“æœ:0-å¤±è´¥ï¼Œ1-è®¾ç½®æˆåŠŸï¼Œ2-æ— éœ€æ”¹å˜ï¼Œ0xFF-æœªçŸ¥å‘½ä»¤
 **************************************************************/
 UCHAR8 HxExtraSetAutoDelayMode( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 {
@@ -1156,16 +1156,16 @@ UCHAR8 HxExtraSetAutoDelayMode( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 	}
 	else
 	{
-		return 2;		// ÉèÖÃÖµÃ»¸Ä±ä
+		return 2;		// è®¾ç½®å€¼æ²¡æ”¹å˜
 	}
 }
 
 /*************************************************************
 Name: HxExtraSetDelayOffset
-Description: À©Õ¹ÉèÖÃ->¹âÂ·ÑÓÊ±²¹³¥
+Description: æ‰©å±•è®¾ç½®->å…‰è·¯å»¶æ—¶è¡¥å¿
 Input: up_down:0-UL, 1-DL; ab_flag:0-A, 1-B
 Output: void         
-Return: ´¦Àí½á¹û:0-Ê§°Ü£¬1-ÉèÖÃ³É¹¦£¬2-ÎŞĞè¸Ä±ä£¬0xFF-Î´ÖªÃüÁî
+Return: å¤„ç†ç»“æœ:0-å¤±è´¥ï¼Œ1-è®¾ç½®æˆåŠŸï¼Œ2-æ— éœ€æ”¹å˜ï¼Œ0xFF-æœªçŸ¥å‘½ä»¤
 **************************************************************/
 UCHAR8 HxExtraSetDelayOffset( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 {
@@ -1181,7 +1181,7 @@ UCHAR8 HxExtraSetDelayOffset( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 	}
 	else
 	{
-		return 2;		// ÉèÖÃÖµÃ»¸Ä±ä
+		return 2;		// è®¾ç½®å€¼æ²¡æ”¹å˜
 	}
 
 }
@@ -1189,10 +1189,10 @@ UCHAR8 HxExtraSetDelayOffset( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 
 /*************************************************************
 Name:MonHXSetExtraPara
-Description:À©Õ¹ÉèÖÃ²éÑ¯ÏîµÄ²éÑ¯ÃüÁî»Ø¸´
+Description:æ‰©å±•è®¾ç½®æŸ¥è¯¢é¡¹çš„æŸ¥è¯¢å‘½ä»¤å›å¤
 Input:up_down:0-UL, 1-DL; ab_flag:0-A, 1-B
 Output:void         
-Return:´¦Àí½á¹û:0-Ê§°Ü£¬1-ÉèÖÃ³É¹¦£¬2-ÎŞĞè¸Ä±ä£¬0xFF-Î´ÖªÃüÁî
+Return:å¤„ç†ç»“æœ:0-å¤±è´¥ï¼Œ1-è®¾ç½®æˆåŠŸï¼Œ2-æ— éœ€æ”¹å˜ï¼Œ0xFF-æœªçŸ¥å‘½ä»¤
 **************************************************************/
 UCHAR8 MonHXSetExtraPara(UCHAR8 sub_cmd, UCHAR8 * data , UINT16 body_len, UCHAR8 up_down, UCHAR8 ab_flag)
 {
@@ -1203,10 +1203,10 @@ UCHAR8 MonHXSetExtraPara(UCHAR8 sub_cmd, UCHAR8 * data , UINT16 body_len, UCHAR8
 
 	switch(sub_cmd)
 	{
-	case HXCT_SUBCMD_SET_POWER:		// ÉèÖÃÍ¨µÀÕû»ú×î´óÊä³ö¹¦ÂÊ
-		if ( up_down==1 ) return 0;	// REC²»Ö§³ÖÉèÖÃÏÂĞĞ×î´óÊä³ö¹¦ÂÊ
+	case HXCT_SUBCMD_SET_POWER:		// è®¾ç½®é€šé“æ•´æœºæœ€å¤§è¾“å‡ºåŠŸç‡
+		if ( up_down==1 ) return 0;	// RECä¸æ”¯æŒè®¾ç½®ä¸‹è¡Œæœ€å¤§è¾“å‡ºåŠŸç‡
 		val16 = data[0]|(data[1]<<8);
-//		if ( (INT16)val16>5 )		// ×î´ó5db
+//		if ( (INT16)val16>5 )		// æœ€å¤§5db
 //		{
 //			return 0;
 //		}
@@ -1219,18 +1219,18 @@ UCHAR8 MonHXSetExtraPara(UCHAR8 sub_cmd, UCHAR8 * data , UINT16 body_len, UCHAR8
 		module_param_chg_flag |= ((0==ab_flag) ? PCHG_A_POW_GAIN : PCHG_B_POW_GAIN);
 	break;
 	
-	case HXCT_SUBCMD_SET_GAIN:		// ÉèÖÃÕû»úÍ¨µÀ×î´óÔöÒæ
+	case HXCT_SUBCMD_SET_GAIN:		// è®¾ç½®æ•´æœºé€šé“æœ€å¤§å¢ç›Š
 //		tmp = (0==ab_flag) ? sys_param_1b[MADD_A_CHANNEL_COUNT].val : sys_param_1b[MADD_B_CHANNEL_COUNT].val;
 //		addr = (0==ab_flag) ? MADD_A_DCH_GAIN1 : MADD_B_DCH_GAIN1;
 //		for ( i=0; i<tmp; i++ )
 //		{
 //			
 //		}
-		return 0;		// REC²»Ö§³ÖÉèÖÃÍ¨µÀÔöÒæ
+		return 0;		// RECä¸æ”¯æŒè®¾ç½®é€šé“å¢ç›Š
 
 	break;
 
-	case HXCT_SUBCMD_SET_FRE_NUM:		// ÉèÖÃĞÅµÀºÅ
+	case HXCT_SUBCMD_SET_FRE_NUM:		// è®¾ç½®ä¿¡é“å·
 		tmp = 1;
 		if (0==ab_flag )
 		{
@@ -1245,14 +1245,14 @@ UCHAR8 MonHXSetExtraPara(UCHAR8 sub_cmd, UCHAR8 * data , UINT16 body_len, UCHAR8
 				}
 				if (( tmp != 0 )&&( val16!=sys_param_2b[MADD_A_DL_CHANNEL1+i].val )&&( val16!=sys_param_2b[MADD_A_UL_CHANNEL1+i].val ))
 				{
-					tmp = 0;		// ĞŞ¸Ä²ÎÊı±êÖ¾
+					tmp = 0;		// ä¿®æ”¹å‚æ•°æ ‡å¿—
 				}
 				sys_param_2b[MADD_A_DL_CHANNEL1+i].val = val16;
 				sys_param_2b[MADD_A_UL_CHANNEL1+i].val = val16;
 			}
 			//if ((i>0)&&( b_FALSE==CheckChannelSetA() ))
 			//{
-			//	return 0;	// ³ö´í
+			//	return 0;	// å‡ºé”™
 			//}
 		}
 		else
@@ -1268,21 +1268,21 @@ UCHAR8 MonHXSetExtraPara(UCHAR8 sub_cmd, UCHAR8 * data , UINT16 body_len, UCHAR8
 				}
 				if (( tmp != 0 )&&( val16!=sys_param_2b[MADD_B_DL_CHANNEL1+i].val )&&( val16!=sys_param_2b[MADD_B_UL_CHANNEL1+i].val ))
 				{
-					tmp = 0;		// ĞŞ¸Ä²ÎÊı±êÖ¾
+					tmp = 0;		// ä¿®æ”¹å‚æ•°æ ‡å¿—
 				}
 				sys_param_2b[MADD_B_DL_CHANNEL1+i].val = val16;
 				sys_param_2b[MADD_B_UL_CHANNEL1+i].val = val16;
 			}
 			//if ((i>0)&&( b_FALSE==CheckChannelSetB() ))
 			//{
-			//	return 0;	// ³ö´í
+			//	return 0;	// å‡ºé”™
 			//}
 		}
-		if ( tmp!=0 ) return 2;		// ²ÎÊıÃ»±ä£¬²»ĞèÒª±£´æ
+		if ( tmp!=0 ) return 2;		// å‚æ•°æ²¡å˜ï¼Œä¸éœ€è¦ä¿å­˜
 		module_param_chg_flag |= ((0==ab_flag) ? PCHG_A_CHANNEL: PCHG_B_CHANNEL);
 	break;
 
-	case HXCT_SUBCMD_SET_CH_EN:		// ÉèÖÃĞÅµÀ¿ª¹Ø
+	case HXCT_SUBCMD_SET_CH_EN:		// è®¾ç½®ä¿¡é“å¼€å…³
 		val16 = 1;
 		if (0==ab_flag )
 		{
@@ -1297,14 +1297,14 @@ UCHAR8 MonHXSetExtraPara(UCHAR8 sub_cmd, UCHAR8 * data , UINT16 body_len, UCHAR8
 				if ( tmp > 1 )	return 0;
 				if (( val16 != 0 )&&( tmp!=sys_param_1b[MADD_A_DCH_EN1+i].val )&&( tmp!=sys_param_1b[MADD_A_UCH_EN1+i].val ))
 				{
-					val16 = 0;		// ĞŞ¸Ä²ÎÊı±êÖ¾
+					val16 = 0;		// ä¿®æ”¹å‚æ•°æ ‡å¿—
 				}
 				sys_param_1b[MADD_A_DCH_EN1+i].val = tmp;
 				sys_param_1b[MADD_A_UCH_EN1+i].val = tmp;
 			}
 			//if ((i>0)&&( b_FALSE==CheckChannelSetA() ))
 			//{
-			//	return 0;	// ³ö´í
+			//	return 0;	// å‡ºé”™
 			//}
 		}
 		else
@@ -1320,21 +1320,21 @@ UCHAR8 MonHXSetExtraPara(UCHAR8 sub_cmd, UCHAR8 * data , UINT16 body_len, UCHAR8
 				if ( tmp > 1 )	return 0;
 				if (( val16 != 0 )&&( tmp != sys_param_1b[MADD_B_DCH_EN1+i].val )&&( tmp != sys_param_1b[MADD_B_UCH_EN1+i].val ))
 				{
-					val16 = 0;		// ĞŞ¸Ä²ÎÊı±êÖ¾
+					val16 = 0;		// ä¿®æ”¹å‚æ•°æ ‡å¿—
 				}
 				sys_param_1b[MADD_B_DCH_EN1+i].val = tmp;
 				sys_param_1b[MADD_B_UCH_EN1+i].val = tmp;
 			}
 			//if ((i>0)&&( b_FALSE==CheckChannelSetB() ))
 			//{
-			//	return 0;	// ³ö´í
+			//	return 0;	// å‡ºé”™
 			//}
 		}
-		if ( val16!=0 ) return 2;		// ²ÎÊıÃ»±ä£¬²»ĞèÒª±£´æ
+		if ( val16!=0 ) return 2;		// å‚æ•°æ²¡å˜ï¼Œä¸éœ€è¦ä¿å­˜
 		module_param_chg_flag |= ((0==ab_flag) ? PCHG_A_CHANNEL: PCHG_B_CHANNEL);
 	break;
 
-	case HXCT_SUBCMD_SET_OPT_EN:		// ¹âÄ£¿é¿ª¹Ø
+	case HXCT_SUBCMD_SET_OPT_EN:		// å…‰æ¨¡å—å¼€å…³
 		val16 = 1;
 		for ( i=0; i<FP_MAX; i++ )
 		{
@@ -1347,65 +1347,65 @@ UCHAR8 MonHXSetExtraPara(UCHAR8 sub_cmd, UCHAR8 * data , UINT16 body_len, UCHAR8
 			if ( tmp > 1 )	return 0;
 			if (( val16 != 0 )&&( tmp != sys_param_1b[MADD_FP1_EN+i].val ))
 			{
-				val16 = 0;		// ĞŞ¸Ä²ÎÊı±êÖ¾
+				val16 = 0;		// ä¿®æ”¹å‚æ•°æ ‡å¿—
 			}
 			sys_param_1b[MADD_FP1_EN+i].val = tmp;
 		}
-		if ( val16!=0 ) return 2;		// ²ÎÊıÃ»±ä£¬²»ĞèÒª±£´æ
+		if ( val16!=0 ) return 2;		// å‚æ•°æ²¡å˜ï¼Œä¸éœ€è¦ä¿å­˜
 		module_param_chg_flag |= PCHG_SYS_FP_EN;
 	break;
 
 
-#ifdef HX_PROTOCOL_1230		// ºçĞÅ20111230Ğ­Òé
-	case HXCT_SUBCMD_SET_PD_MODE:		// ÉèÖÃµÍ¹¦ºÄ¿ª¹Ø(1230Ğ­Òé)
+#ifdef HX_PROTOCOL_1230		// è™¹ä¿¡20111230åè®®
+	case HXCT_SUBCMD_SET_PD_MODE:		// è®¾ç½®ä½åŠŸè€—å¼€å…³(1230åè®®)
 		return HxExtraSetLowPowerMode( data, up_down, ab_flag );
 		break;
 	
-	case HXCT_SUBCMD_SET_PA_GAIN:		// ÉèÖÃÏÂĞĞ¹¦·ÅÔöÒæ(1230Ğ­Òé)
+	case HXCT_SUBCMD_SET_PA_GAIN:		// è®¾ç½®ä¸‹è¡ŒåŠŸæ”¾å¢ç›Š(1230åè®®)
 		return HxExtraSetPaGain( data, up_down, ab_flag );
 		break;
 
-	case HXCT_SUBCMD_SET_DPX_IA:		// ÉèÖÃÊäÈëË«¹¤Æ÷Ë¥¼õ(1230Ğ­Òé)
+	case HXCT_SUBCMD_SET_DPX_IA:		// è®¾ç½®è¾“å…¥åŒå·¥å™¨è¡°å‡(1230åè®®)
 		return HxExtraSetDpxInAtt( data, up_down, ab_flag );
 		break;
 
-	case HXCT_SUBCMD_SET_DPX_OA:		// ÉèÖÃÊä³öË«¹¤Æ÷Ë¥¼õ(1230Ğ­Òé)
+	case HXCT_SUBCMD_SET_DPX_OA:		// è®¾ç½®è¾“å‡ºåŒå·¥å™¨è¡°å‡(1230åè®®)
 		return HxExtraSetDpxOutAtt( data, up_down, ab_flag );
 		break;
 
-	case HXCT_SUBCMD_SET_FPS_BCCH:		// ÉèÖÃËøÆµĞÅµÀºÅ(1230Ğ­Òé)
+	case HXCT_SUBCMD_SET_FPS_BCCH:		// è®¾ç½®é”é¢‘ä¿¡é“å·(1230åè®®)
 		return HxExtraSetFpsLockBcch( data, up_down, ab_flag );
 		break;
 		
-	case HXCT_SUBCMD_SET_FPS_PARA:		// ÉèÖÃÔËÓªÉÌºÍÆµ¶ÎÑ¡Ôñ(1230Ğ­Òé)
+	case HXCT_SUBCMD_SET_FPS_PARA:		// è®¾ç½®è¿è¥å•†å’Œé¢‘æ®µé€‰æ‹©(1230åè®®)
 		return HxExtraSetFpsParam( data, up_down, ab_flag );
 		break;
 		
-	case HXCT_SUBCMD_SET_FPS_CID:		// ÉèÖÃËø¶¨Ğ¡ÇøÊ¶±ğÂëÊµÊ±Öµ(1230Ğ­Òé)
+	case HXCT_SUBCMD_SET_FPS_CID:		// è®¾ç½®é”å®šå°åŒºè¯†åˆ«ç å®æ—¶å€¼(1230åè®®)
 		return HxExtraSetFpsLockCid( data, up_down, ab_flag );
 		break;
 				
-	case HXCT_SUBCMD_SET_DELAY_M:		// ÉèÖÃ×Ô¶¯ÑÓÊ±¿ª¹Ø(1230Ğ­Òé)
+	case HXCT_SUBCMD_SET_DELAY_M:		// è®¾ç½®è‡ªåŠ¨å»¶æ—¶å¼€å…³(1230åè®®)
 		return HxExtraSetAutoDelayMode( data, up_down, ab_flag );
 		break;
 
-	case HXCT_SUBCMD_SET_RE_DELAY:		// ÉèÖÃ¹âÂ·ÑÓÊ±²¹³¥(1230Ğ­Òé)
+	case HXCT_SUBCMD_SET_RE_DELAY:		// è®¾ç½®å…‰è·¯å»¶æ—¶è¡¥å¿(1230åè®®)
 		return HxExtraSetDelayOffset( data, up_down, ab_flag );
 		break;
 
-#else	// ºçĞÅ20110629Ğ­Òé
-	case HXCT_SUBCMD_SET_DELAY:		// ÉèÖÃÑÓÊ±²¹³¥Öµ
+#else	// è™¹ä¿¡20110629åè®®
+	case HXCT_SUBCMD_SET_DELAY:		// è®¾ç½®å»¶æ—¶è¡¥å¿å€¼
 		tmp = 1;
-		// ×Ô¶¯Ê±ÑÓ¿ª¹Ø
+		// è‡ªåŠ¨æ—¶å»¶å¼€å…³
 		if ( data[0]>1 ) return 0;
 		if ( data[0]!=sys_param_1b[MADD_DELAY_MODE].val ) tmp = 0;
 		sys_param_1b[MADD_DELAY_MODE].val = *data++;
-		// ÑÓÊ±²¹³¥
+		// å»¶æ—¶è¡¥å¿
 		val16 = data[0]|(data[1]<<8);
 		data += 2;
 		if ( val16 != sys_param_2b[MADD_DL_DELAY_OFFSET].val ) tmp = 0;
 		sys_param_2b[MADD_DL_DELAY_OFFSET].val = val16;
-		// µÍ¹¦ºÄ¿ª¹Ø
+		// ä½åŠŸè€—å¼€å…³
 		if ( data[0]>1 ) return 0;
 		if ( data[0]!=sys_param_1b[MADD_LOW_POWER].val ) tmp = 0;
 		sys_param_1b[MADD_LOW_POWER].val = *data++;
@@ -1418,22 +1418,22 @@ UCHAR8 MonHXSetExtraPara(UCHAR8 sub_cmd, UCHAR8 * data , UINT16 body_len, UCHAR8
 		return 0xFF;
 	}
 
-	return 1;	// ÉèÖÃ³É¹¦£¬ĞèÒª±£´æ²ÎÊı
+	return 1;	// è®¾ç½®æˆåŠŸï¼Œéœ€è¦ä¿å­˜å‚æ•°
 }
 
 
 /*************************************************************
 Name:MonHXSetSubPara
-Description:À©Õ¹ÉèÖÃ²éÑ¯ÏîµÄ²éÑ¯ÃüÁî»Ø¸´
+Description:æ‰©å±•è®¾ç½®æŸ¥è¯¢é¡¹çš„æŸ¥è¯¢å‘½ä»¤å›å¤
 Input:up_down:0-UL, 1-DL; ab_flag:0-A, 1-B
 Output:void         
-Return:´¦Àí½á¹û:0-Ê§°Ü£¬1-ÉèÖÃ³É¹¦£¬2-ÎŞĞè¸Ä±ä£¬0xFF-Î´ÖªÃüÁî
+Return:å¤„ç†ç»“æœ:0-å¤±è´¥ï¼Œ1-è®¾ç½®æˆåŠŸï¼Œ2-æ— éœ€æ”¹å˜ï¼Œ0xFF-æœªçŸ¥å‘½ä»¤
 **************************************************************/
 UCHAR8 MonHXSetPara(UCHAR8 cmd, UCHAR8 * data , UINT16 body_len, UCHAR8 up_down, UCHAR8 ab_flag)
 {
 	UCHAR8 set_result = 0xff;
 	
-	BackupSystemPara(para_bak);	// ±¸·İ²ÎÊı
+	BackupSystemPara(para_bak);	// å¤‡ä»½å‚æ•°
 	
 	if ( cmd==HXCT_CMD_SET_DDF )
 	{
@@ -1444,7 +1444,7 @@ UCHAR8 MonHXSetPara(UCHAR8 cmd, UCHAR8 * data , UINT16 body_len, UCHAR8 up_down,
 		set_result = MonHXSetNormalPara( cmd, data, body_len, up_down, ab_flag );
 	}
 
-	if ( 0 == set_result )	// ²ÎÊı´íÎó£¬»Ö¸´Ô­Öµ
+	if ( 0 == set_result )	// å‚æ•°é”™è¯¯ï¼Œæ¢å¤åŸå€¼
 	{
 		RestoreSystemPara(para_bak);
 	}
@@ -1455,14 +1455,14 @@ UCHAR8 MonHXSetPara(UCHAR8 cmd, UCHAR8 * data , UINT16 body_len, UCHAR8 up_down,
 
 /*************************************************************
 Name:UartReceHandleHXSetAdd          
-Description:ºçĞÅĞ­ÒéÉèÖÃµØÖ·
-Input:Êı¾İÖ¸Õë£¬Êı¾İ³¤¶È    
+Description:è™¹ä¿¡åè®®è®¾ç½®åœ°å€
+Input:æ•°æ®æŒ‡é’ˆï¼Œæ•°æ®é•¿åº¦    
 Output:void         
-Return:1:³É¹¦£¬0:Ê§°Ü        
+Return:1:æˆåŠŸï¼Œ0:å¤±è´¥        
 **************************************************************/
 CHAR8 UartReceHandleHXSetAdd(UCHAR8 *data,UINT16 data_len)
 {
-	UCHAR8 cur_addr;	// µ±Ç°µØÖ·
+	UCHAR8 cur_addr;	// å½“å‰åœ°å€
 	UCHAR8 new_addr;
 	UCHAR8 ab_flag = 0xff;
 	UINT16 crc16,i;
@@ -1471,10 +1471,10 @@ CHAR8 UartReceHandleHXSetAdd(UCHAR8 *data,UINT16 data_len)
 	new_addr = data[1]&0x07;
 	cur_addr = uart_rece_info.rx_buffer[1]&0x07;
 
-	//ÉÏÏÂĞĞ
+	//ä¸Šä¸‹è¡Œ
 	if ( (0==(uart_rece_info.rx_buffer[1]&0x08)) )	// DL
 	{
-		if ( (0x0F&sys_param_1b[MADD_A_PRI_ADD].val) == cur_addr )	// ÉèÖÃA¶ÎÏÂĞĞµØÖ·
+		if ( (0x0F&sys_param_1b[MADD_A_PRI_ADD].val) == cur_addr )	// è®¾ç½®Aæ®µä¸‹è¡Œåœ°å€
 		{
 			if ( (0x0F&sys_param_1b[MADD_B_PRI_ADD].val)!=new_addr )
 			{
@@ -1482,7 +1482,7 @@ CHAR8 UartReceHandleHXSetAdd(UCHAR8 *data,UINT16 data_len)
 				save_flag = 1;
 			}
 		}
-		else if ( (0x0F&sys_param_1b[MADD_B_PRI_ADD].val) == cur_addr )	// ÉèÖÃB¶ÎÏÂĞĞµØÖ·
+		else if ( (0x0F&sys_param_1b[MADD_B_PRI_ADD].val) == cur_addr )	// è®¾ç½®Bæ®µä¸‹è¡Œåœ°å€
 		{
 			if ( (0x0F&sys_param_1b[MADD_A_PRI_ADD].val) != new_addr )
 			{
@@ -1497,7 +1497,7 @@ CHAR8 UartReceHandleHXSetAdd(UCHAR8 *data,UINT16 data_len)
 	}
 	else		// UL
 	{
-		if ( ((0xF0&sys_param_1b[MADD_A_PRI_ADD].val)>>4) == cur_addr )	// ÉèÖÃA¶ÎÉÏĞĞµØÖ·
+		if ( ((0xF0&sys_param_1b[MADD_A_PRI_ADD].val)>>4) == cur_addr )	// è®¾ç½®Aæ®µä¸Šè¡Œåœ°å€
 		{
 			if ( ((0xF0&sys_param_1b[MADD_B_PRI_ADD].val)>>4) != new_addr )
 			{
@@ -1505,7 +1505,7 @@ CHAR8 UartReceHandleHXSetAdd(UCHAR8 *data,UINT16 data_len)
 				save_flag = 1;
 			}
 		}
-		else if ( ((0xF0&sys_param_1b[MADD_B_PRI_ADD].val)>>4) == cur_addr )	// ÉèÖÃB¶ÎÉÏĞĞµØÖ·
+		else if ( ((0xF0&sys_param_1b[MADD_B_PRI_ADD].val)>>4) == cur_addr )	// è®¾ç½®Bæ®µä¸Šè¡Œåœ°å€
 		{
 			if ( ((0xF0&sys_param_1b[MADD_A_PRI_ADD].val)>>4) != new_addr )
 			{
@@ -1521,38 +1521,38 @@ CHAR8 UartReceHandleHXSetAdd(UCHAR8 *data,UINT16 data_len)
 
 	if ( 0!=save_flag )//( data[0]==HXCT_DDF_MODULE_NUM )
 	{
-		//ÉèÖÃµØÖ·
-//		sys_param_1b[MADD_A_PRI_ADD].val = data[1]&0x07;	// ÒÔ²ÎÊıµÄA¶ÎµØÖ·ÎªÄ£¿éµØÖ·
+		//è®¾ç½®åœ°å€
+//		sys_param_1b[MADD_A_PRI_ADD].val = data[1]&0x07;	// ä»¥å‚æ•°çš„Aæ®µåœ°å€ä¸ºæ¨¡å—åœ°å€
 //		sys_param_1b[MADD_B_PRI_ADD].val = sys_param_1b[MADD_A_PRI_ADD].val + 1;
-		//´ò°ü°üÍ·
+		//æ‰“åŒ…åŒ…å¤´
 		UartPacketHXTransHead(uart_rece_info.rx_buffer[0],(uart_rece_info.rx_buffer[1]&0xf8)|(data[1]&0x07),
 			uart_rece_info.rx_buffer[2],HXCT_ACK_OK,data_len);
 //		save_flag = 1;
 	}
 	else
 	{
-		//´íÎó£¬²»ÊÇÉèÖÃ¹âÏËÄ£¿é£¬´ò°ü°üÍ·
+		//é”™è¯¯ï¼Œä¸æ˜¯è®¾ç½®å…‰çº¤æ¨¡å—ï¼Œæ‰“åŒ…åŒ…å¤´
 		UartPacketHXTransHead(uart_rece_info.rx_buffer[0],(uart_rece_info.rx_buffer[1]&0xf8)|(data[1]&0x07),
 			uart_rece_info.rx_buffer[2],HXCT_ACK_SET_ERROR,data_len);
 	}
 
-	//COPY Êı¾İ
+	//COPY æ•°æ®
 	for (i=0; i<data_len; i++)
 		uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = data[i];	
 	
-	//¼ÆËãCRC
+	//è®¡ç®—CRC
 	crc16 = CalCrc16(uart_trans_info.tx_buffer,uart_trans_info.tx_len, HXCT_CRC_SEED);
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)crc16;
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)(crc16>>8);
 
-	//½áÊø±êÖ¾
+	//ç»“æŸæ ‡å¿—
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = 0x7F;
 
 	UartStartTrans();
 	
 	if ( save_flag != 0 )
 	{
-		SaveSysParamToFlash();	// ±£´æ²ÎÊı
+		SaveSysParamToFlash();	// ä¿å­˜å‚æ•°
 	}
 	return 1;	
 	
@@ -1560,30 +1560,30 @@ CHAR8 UartReceHandleHXSetAdd(UCHAR8 *data,UINT16 data_len)
 
 /*************************************************************
 Name:UartReceHandleHXCmdError          
-Description:ºçĞÅĞ­ÒéÃüÁî²»Ö§³Ö
-Input:Êı¾İÖ¸Õë£¬Êı¾İ³¤¶È    
+Description:è™¹ä¿¡åè®®å‘½ä»¤ä¸æ”¯æŒ
+Input:æ•°æ®æŒ‡é’ˆï¼Œæ•°æ®é•¿åº¦    
 Output:void         
-Return:1:³É¹¦£¬0:Ê§°Ü        
+Return:1:æˆåŠŸï¼Œ0:å¤±è´¥        
 **************************************************************/
 CHAR8 UartReceHandleHXCmdError(UCHAR8 *data,UINT16 data_len)
 {
 
 	UINT16 crc16,i;
 
-	//´ò°ü°üÍ·
+	//æ‰“åŒ…åŒ…å¤´
 	UartPacketHXTransHead(uart_rece_info.rx_buffer[0],uart_rece_info.rx_buffer[1],
 		uart_rece_info.rx_buffer[2],HXCT_ACK_CMD_ERROR,data_len);	
 
-	//COPY Êı¾İ
+	//COPY æ•°æ®
 	for (i=0; i<data_len; i++)
 		uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = data[i];	
 	
-	//¼ÆËãCRC
+	//è®¡ç®—CRC
 	crc16 = CalCrc16(uart_trans_info.tx_buffer,uart_trans_info.tx_len, HXCT_CRC_SEED);
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)crc16;
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)(crc16>>8);
 
-	//½áÊø±êÖ¾
+	//ç»“æŸæ ‡å¿—
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = 0x7F;
 
 	UartStartTrans();
@@ -1594,10 +1594,10 @@ CHAR8 UartReceHandleHXCmdError(UCHAR8 *data,UINT16 data_len)
 
 /*************************************************************
 Name:UartReceHandleHXReset          
-Description:ºçĞÅĞ­Òé¸´Î»
-Input:Êı¾İÖ¸Õë£¬Êı¾İ³¤¶È    
+Description:è™¹ä¿¡åè®®å¤ä½
+Input:æ•°æ®æŒ‡é’ˆï¼Œæ•°æ®é•¿åº¦    
 Output:void         
-Return:1:³É¹¦£¬0:Ê§°Ü        
+Return:1:æˆåŠŸï¼Œ0:å¤±è´¥        
 **************************************************************/
 CHAR8 UartReceHandleHXReset(UCHAR8 *data,UINT16 data_len)
 {
@@ -1609,27 +1609,27 @@ CHAR8 UartReceHandleHXReset(UCHAR8 *data,UINT16 data_len)
 		reset_flag = 1;
 	}
 
-	//´ò°ü°üÍ·
+	//æ‰“åŒ…åŒ…å¤´
 	UartPacketHXTransHead(uart_rece_info.rx_buffer[0],uart_rece_info.rx_buffer[1],
 		uart_rece_info.rx_buffer[2],HXCT_ACK_OK,data_len);	
 
-	//COPY Êı¾İ
+	//COPY æ•°æ®
 	for (i=0; i<data_len; i++)
 		uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = data[i];	
 	
-	//¼ÆËãCRC
+	//è®¡ç®—CRC
 	crc16 = CalCrc16(uart_trans_info.tx_buffer,uart_trans_info.tx_len, HXCT_CRC_SEED);
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)crc16;
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)(crc16>>8);
 
-	//½áÊø±êÖ¾
+	//ç»“æŸæ ‡å¿—
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = 0x7F;
 
 	UartStartTrans();
 
 	if ( reset_flag != 0 )
 	{
-		//µÈ´ı·¢ËÍÍê³ÉÔÙ¸´Î»
+		//ç­‰å¾…å‘é€å®Œæˆå†å¤ä½
 		while (uart_trans_info.tx_count!=uart_trans_info.tx_len+1);
 		UsNopDelay(10000);
 
@@ -1641,26 +1641,26 @@ CHAR8 UartReceHandleHXReset(UCHAR8 *data,UINT16 data_len)
 }
 /*************************************************************
 Name:UartReceHandleHXGet          
-Description:ºçĞÅĞ­Òé»ñÈ¡²ÎÊı
-Input:Êı¾İÖ¸Õë£¬Êı¾İ³¤¶È    
+Description:è™¹ä¿¡åè®®è·å–å‚æ•°
+Input:æ•°æ®æŒ‡é’ˆï¼Œæ•°æ®é•¿åº¦    
 Output:void         
-Return:1:³É¹¦£¬0:Ê§°Ü        
+Return:1:æˆåŠŸï¼Œ0:å¤±è´¥        
 **************************************************************/
 CHAR8 UartReceHandleHXGet(UCHAR8 *data,UINT16 data_len)
 {
 	UINT16 crc16;
 	UCHAR8 up_down, ab_flag;
 	
-	//ÉÏÏÂĞĞ±êÖ¾
+	//ä¸Šä¸‹è¡Œæ ‡å¿—
 	if ( (0==(uart_rece_info.rx_buffer[1]&0x08)) )	// DL
 	{
 		up_down = 1;
-		// AB¶Î±êÖ¾£¬A-0£¬B-1
-		if ( (0x0F&sys_param_1b[MADD_A_PRI_ADD].val) == (uart_rece_info.rx_buffer[1]&0x07) )	// A¶ÎÏÂĞĞµØÖ·
+		// ABæ®µæ ‡å¿—ï¼ŒA-0ï¼ŒB-1
+		if ( (0x0F&sys_param_1b[MADD_A_PRI_ADD].val) == (uart_rece_info.rx_buffer[1]&0x07) )	// Aæ®µä¸‹è¡Œåœ°å€
 		{
 			ab_flag = 0;
 		}
-		else if ( (0x0F&sys_param_1b[MADD_B_PRI_ADD].val) == (uart_rece_info.rx_buffer[1]&0x07) )	// B¶ÎÏÂĞĞµØÖ·
+		else if ( (0x0F&sys_param_1b[MADD_B_PRI_ADD].val) == (uart_rece_info.rx_buffer[1]&0x07) )	// Bæ®µä¸‹è¡Œåœ°å€
 		{
 			ab_flag = 1;
 		}
@@ -1672,12 +1672,12 @@ CHAR8 UartReceHandleHXGet(UCHAR8 *data,UINT16 data_len)
 	else		// UL
 	{
 		up_down = 0;
-		// AB¶Î±êÖ¾£¬A-0£¬B-1
-		if ( ((0xF0&sys_param_1b[MADD_A_PRI_ADD].val)>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// A¶ÎÉÏĞĞµØÖ·
+		// ABæ®µæ ‡å¿—ï¼ŒA-0ï¼ŒB-1
+		if ( ((0xF0&sys_param_1b[MADD_A_PRI_ADD].val)>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// Aæ®µä¸Šè¡Œåœ°å€
 		{
 			ab_flag = 0;
 		}
-		else if ( ((0xF0&sys_param_1b[MADD_B_PRI_ADD].val)>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// B¶ÎÉÏĞĞµØÖ·
+		else if ( ((0xF0&sys_param_1b[MADD_B_PRI_ADD].val)>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// Bæ®µä¸Šè¡Œåœ°å€
 		{
 			ab_flag = 1;
 		}
@@ -1689,20 +1689,20 @@ CHAR8 UartReceHandleHXGet(UCHAR8 *data,UINT16 data_len)
 
 	UartPacketHXTransHead(uart_rece_info.rx_buffer[0],uart_rece_info.rx_buffer[1],
 		uart_rece_info.rx_buffer[2],HXCT_ACK_OK,data_len);		
-	//¶ÁÈ¡Ïà¹Ø²ÎÊı
+	//è¯»å–ç›¸å…³å‚æ•°
 	uart_trans_info.tx_len += MonHXGetStatusPara(uart_trans_info.tx_buffer+5,up_down, ab_flag);		
-	//ÃüÁîµ¥Ôª³¤¶ÈÓĞ±ä»¯
+	//å‘½ä»¤å•å…ƒé•¿åº¦æœ‰å˜åŒ–
 	uart_trans_info.tx_buffer[3] = HXCT_ACK_OK|(((uart_trans_info.tx_len-5)>>4)&0x00f0);
 	uart_trans_info.tx_buffer[4] = (UCHAR8)(uart_trans_info.tx_len-5);	
 
-	//¼ÆËãCRC
+	//è®¡ç®—CRC
 	crc16 = CalCrc16(uart_trans_info.tx_buffer,uart_trans_info.tx_len, HXCT_CRC_SEED);
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)crc16;
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)(crc16>>8);
 
-	//½áÊø±êÖ¾
+	//ç»“æŸæ ‡å¿—
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = 0x7F;
-	//·¢ËÍÓ¦´ğ
+	//å‘é€åº”ç­”
 	UartStartTrans();	
 
 	return 1;
@@ -1711,10 +1711,10 @@ CHAR8 UartReceHandleHXGet(UCHAR8 *data,UINT16 data_len)
 
 /*************************************************************
 Name:UartReceHandleHXSetAtt          
-Description:ºçĞÅĞ­ÒéÉèÖÃ²ÎÊı
-Input:Êı¾İÖ¸Õë£¬Êı¾İ³¤¶È    £¬ÃüÁî×Ö
+Description:è™¹ä¿¡åè®®è®¾ç½®å‚æ•°
+Input:æ•°æ®æŒ‡é’ˆï¼Œæ•°æ®é•¿åº¦    ï¼Œå‘½ä»¤å­—
 Output:void         
-Return:1:³É¹¦£¬0:Ê§°Ü        
+Return:1:æˆåŠŸï¼Œ0:å¤±è´¥        
 **************************************************************/
 CHAR8 UartReceHandleHXSet(UCHAR8 *data,UINT16 data_len,UCHAR8 cmd)
 {
@@ -1723,16 +1723,16 @@ CHAR8 UartReceHandleHXSet(UCHAR8 *data,UINT16 data_len,UCHAR8 cmd)
 	UCHAR8 save_flag= 0;
 	UCHAR8 set_flag = 1;
 	
-	//ÉÏÏÂĞĞ±êÖ¾
+	//ä¸Šä¸‹è¡Œæ ‡å¿—
 	if ( (0==(uart_rece_info.rx_buffer[1]&0x08)) )	// DL
 	{
 		up_down = 1;
-		// AB¶Î±êÖ¾£¬A-0£¬B-1
-		if ( (0x0F&sys_param_1b[MADD_A_PRI_ADD].val) == (uart_rece_info.rx_buffer[1]&0x07) )	// A¶ÎÏÂĞĞµØÖ·
+		// ABæ®µæ ‡å¿—ï¼ŒA-0ï¼ŒB-1
+		if ( (0x0F&sys_param_1b[MADD_A_PRI_ADD].val) == (uart_rece_info.rx_buffer[1]&0x07) )	// Aæ®µä¸‹è¡Œåœ°å€
 		{
 			ab_flag = 0;
 		}
-		else if ( (0x0F&sys_param_1b[MADD_B_PRI_ADD].val) == (uart_rece_info.rx_buffer[1]&0x07) )	// B¶ÎÏÂĞĞµØÖ·
+		else if ( (0x0F&sys_param_1b[MADD_B_PRI_ADD].val) == (uart_rece_info.rx_buffer[1]&0x07) )	// Bæ®µä¸‹è¡Œåœ°å€
 		{
 			ab_flag = 1;
 		}
@@ -1744,12 +1744,12 @@ CHAR8 UartReceHandleHXSet(UCHAR8 *data,UINT16 data_len,UCHAR8 cmd)
 	else		// UL
 	{
 		up_down = 0;
-		// AB¶Î±êÖ¾£¬A-0£¬B-1
-		if ( ((0xF0&sys_param_1b[MADD_A_PRI_ADD].val)>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// A¶ÎÉÏĞĞµØÖ·
+		// ABæ®µæ ‡å¿—ï¼ŒA-0ï¼ŒB-1
+		if ( ((0xF0&sys_param_1b[MADD_A_PRI_ADD].val)>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// Aæ®µä¸Šè¡Œåœ°å€
 		{
 			ab_flag = 0;
 		}
-		else if ( ((0xF0&sys_param_1b[MADD_B_PRI_ADD].val)>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// B¶ÎÉÏĞĞµØÖ·
+		else if ( ((0xF0&sys_param_1b[MADD_B_PRI_ADD].val)>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// Bæ®µä¸Šè¡Œåœ°å€
 		{
 			ab_flag = 1;
 		}
@@ -1761,58 +1761,58 @@ CHAR8 UartReceHandleHXSet(UCHAR8 *data,UINT16 data_len,UCHAR8 cmd)
 	
 	switch ( MonHXSetPara(cmd, data, data_len, up_down, ab_flag) )
 	{
-	case 0:		// ÉèÖÃ´íÎó
+	case 0:		// è®¾ç½®é”™è¯¯
 		save_flag = 0;
 		UartPacketHXTransHead(uart_rece_info.rx_buffer[0],uart_rece_info.rx_buffer[1],
 			uart_rece_info.rx_buffer[2],HXCT_ACK_SET_ERROR,data_len);	
 	break;
 
-	case 1:		// ÉèÖÃ³É¹¦£¬Ğ´ÈëFlash
+	case 1:		// è®¾ç½®æˆåŠŸï¼Œå†™å…¥Flash
 		save_flag = 1;
 		
-	case 2:		// ÉèÖÃ³É¹¦£¬²»ĞèÒª±£´æ
+	case 2:		// è®¾ç½®æˆåŠŸï¼Œä¸éœ€è¦ä¿å­˜
 		UartPacketHXTransHead(uart_rece_info.rx_buffer[0],uart_rece_info.rx_buffer[1],
 			uart_rece_info.rx_buffer[2],HXCT_ACK_OK,data_len);
 	break;
 
-	default:		// Î´ÖªÃüÁî
+	default:		// æœªçŸ¥å‘½ä»¤
 		if ( cmd==HXCT_CMD_SET_DDF )
 		{
-			if (data[0] == HXCT_SUBCMD_GET_SETTING)		//±í25	À©Õ¹ÉèÖÃ²éÑ¯ÏîµÄ²éÑ¯ÃüÁî
+			if (data[0] == HXCT_SUBCMD_GET_SETTING)		//è¡¨25	æ‰©å±•è®¾ç½®æŸ¥è¯¢é¡¹çš„æŸ¥è¯¢å‘½ä»¤
 			{
-				//´ò°ü°üÍ·
+				//æ‰“åŒ…åŒ…å¤´
 				UartPacketHXTransHead(uart_rece_info.rx_buffer[0],uart_rece_info.rx_buffer[1],
 					uart_rece_info.rx_buffer[2],HXCT_ACK_OK,data_len);		
-				//Ìî³äÃüÁîÌå
+				//å¡«å……å‘½ä»¤ä½“
 				uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = data[0];
-				//¶ÁÈ¡Ïà¹Ø²ÎÊı
+				//è¯»å–ç›¸å…³å‚æ•°
 				uart_trans_info.tx_len += MonHXGetSubPara(uart_trans_info.tx_buffer+6,up_down, ab_flag);		
 
-				//ÃüÁîµ¥Ôª³¤¶ÈÓĞ±ä»¯
+				//å‘½ä»¤å•å…ƒé•¿åº¦æœ‰å˜åŒ–
 				uart_trans_info.tx_buffer[3] = HXCT_ACK_OK|(((uart_trans_info.tx_len-5)>>4)&0x00f0);
 				uart_trans_info.tx_buffer[4] = (UCHAR8)(uart_trans_info.tx_len-5);
 
 				set_flag = 0;
 				break;
 			}
-			else if (data[0] == HXCT_SUBCMD_GET_BASE)		//±í25	À©Õ¹ÉèÖÃ²éÑ¯ÏîµÄ²éÑ¯ÃüÁî
+			else if (data[0] == HXCT_SUBCMD_GET_BASE)		//è¡¨25	æ‰©å±•è®¾ç½®æŸ¥è¯¢é¡¹çš„æŸ¥è¯¢å‘½ä»¤
 			{	
 				UartPacketHXTransHead(uart_rece_info.rx_buffer[0],uart_rece_info.rx_buffer[1],
 					uart_rece_info.rx_buffer[2],HXCT_ACK_OK,data_len);		
-				//Ìî³äÃüÁîÌå
+				//å¡«å……å‘½ä»¤ä½“
 				uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = data[0];
-				//¶ÁÈ¡Ïà¹Ø²ÎÊı
-				//³§¼ÒÉú²úĞòÁĞºÅ
+				//è¯»å–ç›¸å…³å‚æ•°
+				//å‚å®¶ç”Ÿäº§åºåˆ—å·
 				for (i=0; i<20;i++)
 					uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = str_pri_gl_seq[i];
-				//MCU³ÌĞòÈÕÆÚ
+				//MCUç¨‹åºæ—¥æœŸ
 				for (i=0; i<20;i++)
 					uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = str_pri_mcu_date[i];		
-				//FPGA³ÌĞòÈÕÆÚ
+				//FPGAç¨‹åºæ—¥æœŸ
 				for (i=0; i<64;i++)
 					uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = str_pri_fpga_date[i];		
 
-				//ÃüÁîµ¥Ôª³¤¶ÈÓĞ±ä»¯
+				//å‘½ä»¤å•å…ƒé•¿åº¦æœ‰å˜åŒ–
 				uart_trans_info.tx_buffer[3] = HXCT_ACK_OK|(((uart_trans_info.tx_len-5)>>4)&0x00f0);
 				uart_trans_info.tx_buffer[4] = (UCHAR8)(uart_trans_info.tx_len-5);
 
@@ -1824,27 +1824,27 @@ CHAR8 UartReceHandleHXSet(UCHAR8 *data,UINT16 data_len,UCHAR8 cmd)
 		return 0;
 	}
 
-	if ( set_flag== 1 )	// ÉèÖÃÃüÁî£¬Ó¦´ğÊ±Ö±½Ó·µ»ØÔ­À´µÄÃüÁîÌå
+	if ( set_flag== 1 )	// è®¾ç½®å‘½ä»¤ï¼Œåº”ç­”æ—¶ç›´æ¥è¿”å›åŸæ¥çš„å‘½ä»¤ä½“
 	{
-		//COPY Êı¾İ
+		//COPY æ•°æ®
 		for (i=0; i<data_len; i++)
 			uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = data[i];	
 	}
 		
-	//¼ÆËãCRC
+	//è®¡ç®—CRC
 	crc16 = CalCrc16(uart_trans_info.tx_buffer,uart_trans_info.tx_len, HXCT_CRC_SEED);
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)crc16;
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)(crc16>>8);
 
-	//½áÊø±êÖ¾
+	//ç»“æŸæ ‡å¿—
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = 0x7F;
-	//·¢ËÍÓ¦´ğ
+	//å‘é€åº”ç­”
 	UartStartTrans();
 
-	//Èç¹ûÊÕµ½ÁË¹¤×÷Ä£Ê½±äµ÷ÊÔÄ£Ê½ÃüÁî
+	//å¦‚æœæ”¶åˆ°äº†å·¥ä½œæ¨¡å¼å˜è°ƒè¯•æ¨¡å¼å‘½ä»¤
 	if(1==save_flag)
 	{
-		SaveSysParamToFlash();	// ±£´æ²ÎÊı
+		SaveSysParamToFlash();	// ä¿å­˜å‚æ•°
 	}
 	return 1;	
 	
@@ -1852,8 +1852,8 @@ CHAR8 UartReceHandleHXSet(UCHAR8 *data,UINT16 data_len,UCHAR8 cmd)
 
 /*************************************************************
 Name:UartReceHXModuleDET          
-Description:ºçĞÅĞ­ÒéDETÄ£¿é´¦Àí
-Input: [p_dat:ÃüÁîÌåÖ¸Õë] [data_len:ÃüÁîÌåºÍÃüÁîÍ·µÄ×ÜÊı¾İ³¤¶È]           
+Description:è™¹ä¿¡åè®®DETæ¨¡å—å¤„ç†
+Input: [p_dat:å‘½ä»¤ä½“æŒ‡é’ˆ] [data_len:å‘½ä»¤ä½“å’Œå‘½ä»¤å¤´çš„æ€»æ•°æ®é•¿åº¦]           
 Output:void         
 Return:void         
 **************************************************************/
@@ -1864,20 +1864,20 @@ void UartReceHXModuleDET( UCHAR8 * p_dat, UINT16 data_len )
 	UCHAR8 ab_flag = 0xff;
 	UINT16 crc16;
 	UCHAR8 body_len = 0;
-	UCHAR8 * p_body = uart_trans_info.tx_buffer+5+data_len;	// Ö¸ÕëÖ¸ÏòÃüÁîÌåÆğÊ¼Î»ÖÃ
+	UCHAR8 * p_body = uart_trans_info.tx_buffer+5+data_len;	// æŒ‡é’ˆæŒ‡å‘å‘½ä»¤ä½“èµ·å§‹ä½ç½®
 	UCHAR8 ack = HXCT_ACK_OK;
 	UCHAR8 save_flag = 0;
 	
-	//ÉÏÏÂĞĞ±êÖ¾,0-UL, 1-DL
+	//ä¸Šä¸‹è¡Œæ ‡å¿—,0-UL, 1-DL
 	if ( 0==(uart_rece_info.rx_buffer[1]&0x08) )	// DL
 	{
 		up_down = 1;
-		// AB¶Î±êÖ¾£¬A-0£¬B-1
-		if ( (sys_param_1b[MADD_HX_DET_DADDR].val&0x0F) == (uart_rece_info.rx_buffer[1]&0x07) )	// A¶Î
+		// ABæ®µæ ‡å¿—ï¼ŒA-0ï¼ŒB-1
+		if ( (sys_param_1b[MADD_HX_DET_DADDR].val&0x0F) == (uart_rece_info.rx_buffer[1]&0x07) )	// Aæ®µ
 		{
 			ab_flag = 0;
 		}
-		else if ( (sys_param_1b[MADD_HX_DET_DADDR].val>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// B¶Î
+		else if ( (sys_param_1b[MADD_HX_DET_DADDR].val>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// Bæ®µ
 		{
 			ab_flag = 1;
 		}
@@ -1889,12 +1889,12 @@ void UartReceHXModuleDET( UCHAR8 * p_dat, UINT16 data_len )
 	else		// UL
 	{
 		up_down= 0;
-		// AB¶Î±êÖ¾£¬A-0£¬B-1
-		if ( (sys_param_1b[MADD_HX_DET_UADDR].val&0x0F) == (uart_rece_info.rx_buffer[1]&0x07) )	// A¶Î
+		// ABæ®µæ ‡å¿—ï¼ŒA-0ï¼ŒB-1
+		if ( (sys_param_1b[MADD_HX_DET_UADDR].val&0x0F) == (uart_rece_info.rx_buffer[1]&0x07) )	// Aæ®µ
 		{
 			ab_flag = 0;
 		}
-		else if ( (sys_param_1b[MADD_HX_DET_UADDR].val>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// B¶Î
+		else if ( (sys_param_1b[MADD_HX_DET_UADDR].val>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// Bæ®µ
 		{
 			ab_flag = 1;
 		}
@@ -1904,27 +1904,27 @@ void UartReceHXModuleDET( UCHAR8 * p_dat, UINT16 data_len )
 		}
 	}
 	
-	if ( HXCT_CMD_SET_ADD==uart_rece_info.rx_buffer[2] )	// ÉèÖÃÄ£¿éµØÖ·
+	if ( HXCT_CMD_SET_ADD==uart_rece_info.rx_buffer[2] )	// è®¾ç½®æ¨¡å—åœ°å€
 	{
-		tmp = p_dat[1]&0x07;		// ĞÂµØÖ·
+		tmp = p_dat[1]&0x07;		// æ–°åœ°å€
 
 		if ( 1==up_down )		// DL
 		{
-			if ( 0==ab_flag )	// A¶Î
+			if ( 0==ab_flag )	// Aæ®µ
 			{
-				if ( (sys_param_1b[MADD_HX_DET_DADDR].val>>4) != tmp )	// ĞÂµØÖ·²»µÈÓÚB¶ÎµØÖ·
+				if ( (sys_param_1b[MADD_HX_DET_DADDR].val>>4) != tmp )	// æ–°åœ°å€ä¸ç­‰äºBæ®µåœ°å€
 				{
-					sys_param_1b[MADD_HX_DET_DADDR].val = (sys_param_1b[MADD_HX_DET_DADDR].val & 0xF0)|tmp;	// ÉèÖÃĞÂµØÖ·
-					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// ÉèÖÃÓ¦´ğµØÖ·
+					sys_param_1b[MADD_HX_DET_DADDR].val = (sys_param_1b[MADD_HX_DET_DADDR].val & 0xF0)|tmp;	// è®¾ç½®æ–°åœ°å€
+					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// è®¾ç½®åº”ç­”åœ°å€
 					save_flag = 1;
 				}
 			}
-			else if ( 1==ab_flag )	// B¶Î
+			else if ( 1==ab_flag )	// Bæ®µ
 			{
-				if ( (sys_param_1b[MADD_HX_DET_DADDR].val & 0x0F) != tmp )	// ĞÂµØÖ·²»µÈÓÚA¶ÎµØÖ·
+				if ( (sys_param_1b[MADD_HX_DET_DADDR].val & 0x0F) != tmp )	// æ–°åœ°å€ä¸ç­‰äºAæ®µåœ°å€
 				{
-					sys_param_1b[MADD_HX_DET_DADDR].val = (sys_param_1b[MADD_HX_DET_DADDR].val & 0x0F)|(tmp<<4);	// ÉèÖÃĞÂµØÖ·
-					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// ÉèÖÃÓ¦´ğµØÖ·
+					sys_param_1b[MADD_HX_DET_DADDR].val = (sys_param_1b[MADD_HX_DET_DADDR].val & 0x0F)|(tmp<<4);	// è®¾ç½®æ–°åœ°å€
+					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// è®¾ç½®åº”ç­”åœ°å€
 					save_flag = 1;
 				}
 			}
@@ -1935,21 +1935,21 @@ void UartReceHXModuleDET( UCHAR8 * p_dat, UINT16 data_len )
 		}
 		else		// UL
 		{
-			if ( 0==ab_flag )	// A¶Î
+			if ( 0==ab_flag )	// Aæ®µ
 			{
-				if ( (sys_param_1b[MADD_HX_DET_UADDR].val>>4) != tmp )	// ĞÂµØÖ·²»µÈÓÚB¶ÎµØÖ·
+				if ( (sys_param_1b[MADD_HX_DET_UADDR].val>>4) != tmp )	// æ–°åœ°å€ä¸ç­‰äºBæ®µåœ°å€
 				{
-					sys_param_1b[MADD_HX_DET_UADDR].val = (sys_param_1b[MADD_HX_DET_UADDR].val & 0xF0)|tmp;	// ÉèÖÃĞÂµØÖ·
-					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// ÉèÖÃÓ¦´ğµØÖ·
+					sys_param_1b[MADD_HX_DET_UADDR].val = (sys_param_1b[MADD_HX_DET_UADDR].val & 0xF0)|tmp;	// è®¾ç½®æ–°åœ°å€
+					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// è®¾ç½®åº”ç­”åœ°å€
 					save_flag = 1;
 				}
 			}
-			else if ( 1==ab_flag )	// B¶Î
+			else if ( 1==ab_flag )	// Bæ®µ
 			{
-				if ( (sys_param_1b[MADD_HX_DET_UADDR].val & 0x0F) != tmp )	// ĞÂµØÖ·²»µÈÓÚA¶ÎµØÖ·
+				if ( (sys_param_1b[MADD_HX_DET_UADDR].val & 0x0F) != tmp )	// æ–°åœ°å€ä¸ç­‰äºAæ®µåœ°å€
 				{
-					sys_param_1b[MADD_HX_DET_UADDR].val = (sys_param_1b[MADD_HX_DET_UADDR].val & 0x0F)|(tmp<<4);	// ÉèÖÃĞÂµØÖ·
-					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// ÉèÖÃÓ¦´ğµØÖ·
+					sys_param_1b[MADD_HX_DET_UADDR].val = (sys_param_1b[MADD_HX_DET_UADDR].val & 0x0F)|(tmp<<4);	// è®¾ç½®æ–°åœ°å€
+					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// è®¾ç½®åº”ç­”åœ°å€
 					save_flag = 1;
 				}
 			}
@@ -1959,14 +1959,14 @@ void UartReceHXModuleDET( UCHAR8 * p_dat, UINT16 data_len )
 			}
 		}
 	}
-	else if ( (0==up_down) && ( ab_flag<2 ) )	// ´¦ÀíÆäËûÃüÁî,Ö»ÏìÓ¦ÉÏĞĞµØÖ·µÄÇëÇó
+	else if ( (0==up_down) && ( ab_flag<2 ) )	// å¤„ç†å…¶ä»–å‘½ä»¤,åªå“åº”ä¸Šè¡Œåœ°å€çš„è¯·æ±‚
 	{
-		if ( HXCT_CMD_GET_STA==uart_rece_info.rx_buffer[2] )	// Ä£¿é×´Ì¬²éÑ¯ÃüÁî
+		if ( HXCT_CMD_GET_STA==uart_rece_info.rx_buffer[2] )	// æ¨¡å—çŠ¶æ€æŸ¥è¯¢å‘½ä»¤
 		{
 			p_body[0] = 0;
-			p_body[1] = 0;	// ÎŞµÍÔë·Å£¬¹¦ÂÊÎª0
-			p_body[2] = 0;	// ÎŞµÍÔë·Å£¬¹¦ÂÊÎª0
-			p_body[3] = 0;	// ÎŞµÍÔë·Å£¬¹¦ÂÊÎª0
+			p_body[1] = 0;	// æ— ä½å™ªæ”¾ï¼ŒåŠŸç‡ä¸º0
+			p_body[2] = 0;	// æ— ä½å™ªæ”¾ï¼ŒåŠŸç‡ä¸º0
+			p_body[3] = 0;	// æ— ä½å™ªæ”¾ï¼ŒåŠŸç‡ä¸º0
 			body_len = 4;
 		}
 		else
@@ -1981,32 +1981,32 @@ void UartReceHXModuleDET( UCHAR8 * p_dat, UINT16 data_len )
 
 	UartPacketHXTransHead(
 		uart_rece_info.rx_buffer[0], uart_rece_info.rx_buffer[1], uart_rece_info.rx_buffer[2], ack, data_len+body_len );	
-	//COPY Êı¾İ
+	//COPY æ•°æ®
 	for (tmp=0; tmp<data_len; tmp++)
 		uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = p_dat[tmp];	
 
 	uart_trans_info.tx_len += body_len;
 	
-	//¼ÆËãCRC
+	//è®¡ç®—CRC
 	crc16 = CalCrc16(uart_trans_info.tx_buffer,uart_trans_info.tx_len, HXCT_CRC_SEED);
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)crc16;
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)(crc16>>8);
 
-	//½áÊø±êÖ¾
+	//ç»“æŸæ ‡å¿—
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = 0x7F;
-	//·¢ËÍÓ¦´ğ
+	//å‘é€åº”ç­”
 	UartStartTrans();	
 
 	if ( 0!= save_flag )
 	{
-		SaveSysParamToFlash();	// ±£´æ²ÎÊı
+		SaveSysParamToFlash();	// ä¿å­˜å‚æ•°
 	}
 }
 
 /*************************************************************
 Name:UartReceHXModuleDET          
-Description:ºçĞÅĞ­ÒéLNAÄ£¿é´¦Àí,¡¾²»¡¿Ó¦ÏìÓ¦ÏÂĞĞLNA Ä£¿éÃüÁî
-Input:[p_dat:ÃüÁîÌåÖ¸Õë] [data_len:ÃüÁîÌåºÍÃüÁîÍ·µÄ×ÜÊı¾İ³¤¶È]           
+Description:è™¹ä¿¡åè®®LNAæ¨¡å—å¤„ç†,ã€ä¸ã€‘åº”å“åº”ä¸‹è¡ŒLNA æ¨¡å—å‘½ä»¤
+Input:[p_dat:å‘½ä»¤ä½“æŒ‡é’ˆ] [data_len:å‘½ä»¤ä½“å’Œå‘½ä»¤å¤´çš„æ€»æ•°æ®é•¿åº¦]           
 Output:void         
 Return:void         
 **************************************************************/
@@ -2017,22 +2017,22 @@ void UartReceHXModuleLNA( UCHAR8 * p_dat, UINT16 data_len )
 	UCHAR8 ab_flag = 0xff;
 	UINT16 crc16;
 	UCHAR8 body_len = 0;
-	UCHAR8 * p_body = uart_trans_info.tx_buffer+5+data_len;	// Ö¸ÕëÖ¸ÏòÃüÁîÌåÆğÊ¼Î»ÖÃ
+	UCHAR8 * p_body = uart_trans_info.tx_buffer+5+data_len;	// æŒ‡é’ˆæŒ‡å‘å‘½ä»¤ä½“èµ·å§‹ä½ç½®
 	UCHAR8 ack = HXCT_ACK_OK;
 	UCHAR8 save_flag = 0;
 
-	//ÉÏÏÂĞĞ±êÖ¾,0-UL, 1-DL
+	//ä¸Šä¸‹è¡Œæ ‡å¿—,0-UL, 1-DL
 	if ( 0==(uart_rece_info.rx_buffer[1]&0x08) )	// DL
 	{
-		return;	// ²»ÏìÓ¦ÏÂĞĞLNA Ä£¿éÃüÁî
+		return;	// ä¸å“åº”ä¸‹è¡ŒLNA æ¨¡å—å‘½ä»¤
 	#if 0
 		up_down = 1;
-		// AB¶Î±êÖ¾£¬A-0£¬B-1
-		if ( (sys_param_1b[MADD_HX_LNA_DADDR].val&0x0F) == (uart_rece_info.rx_buffer[1]&0x07) )	// A¶Î
+		// ABæ®µæ ‡å¿—ï¼ŒA-0ï¼ŒB-1
+		if ( (sys_param_1b[MADD_HX_LNA_DADDR].val&0x0F) == (uart_rece_info.rx_buffer[1]&0x07) )	// Aæ®µ
 		{
 			ab_flag = 0;
 		}
-		else if ( (sys_param_1b[MADD_HX_LNA_DADDR].val>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// B¶Î
+		else if ( (sys_param_1b[MADD_HX_LNA_DADDR].val>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// Bæ®µ
 		{
 			ab_flag = 1;
 		}
@@ -2045,12 +2045,12 @@ void UartReceHXModuleLNA( UCHAR8 * p_dat, UINT16 data_len )
 	else		// UL
 	{
 		up_down= 0;
-		// AB¶Î±êÖ¾£¬A-0£¬B-1
-		if ( (sys_param_1b[MADD_HX_LNA_UADDR].val&0x07) == (uart_rece_info.rx_buffer[1]&0x07) )	// A¶Î
+		// ABæ®µæ ‡å¿—ï¼ŒA-0ï¼ŒB-1
+		if ( (sys_param_1b[MADD_HX_LNA_UADDR].val&0x07) == (uart_rece_info.rx_buffer[1]&0x07) )	// Aæ®µ
 		{
 			ab_flag = 0;
 		}
-		else if ( (sys_param_1b[MADD_HX_LNA_UADDR].val>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// B¶Î
+		else if ( (sys_param_1b[MADD_HX_LNA_UADDR].val>>4) == (uart_rece_info.rx_buffer[1]&0x07) )	// Bæ®µ
 		{
 			ab_flag = 1;
 		}
@@ -2060,27 +2060,27 @@ void UartReceHXModuleLNA( UCHAR8 * p_dat, UINT16 data_len )
 		}
 	}
 	
-	if ( HXCT_CMD_SET_ADD==uart_rece_info.rx_buffer[2] )	// ÉèÖÃÄ£¿éµØÖ·
+	if ( HXCT_CMD_SET_ADD==uart_rece_info.rx_buffer[2] )	// è®¾ç½®æ¨¡å—åœ°å€
 	{
-		tmp = p_dat[1]&0x07;	// ĞÂµØÖ·
+		tmp = p_dat[1]&0x07;	// æ–°åœ°å€
 
 		if ( 1==up_down )		// DL
 		{
-			if ( 0==ab_flag )	// A¶Î
+			if ( 0==ab_flag )	// Aæ®µ
 			{
-				if ( (sys_param_1b[MADD_HX_LNA_DADDR].val>>4) != tmp )	// ĞÂµØÖ·²»µÈÓÚB¶ÎµØÖ·
+				if ( (sys_param_1b[MADD_HX_LNA_DADDR].val>>4) != tmp )	// æ–°åœ°å€ä¸ç­‰äºBæ®µåœ°å€
 				{
-					sys_param_1b[MADD_HX_LNA_DADDR].val = (sys_param_1b[MADD_HX_LNA_DADDR].val & 0x70)|tmp;	// ÉèÖÃĞÂµØÖ·
-					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// ÉèÖÃÓ¦´ğµØÖ·
+					sys_param_1b[MADD_HX_LNA_DADDR].val = (sys_param_1b[MADD_HX_LNA_DADDR].val & 0x70)|tmp;	// è®¾ç½®æ–°åœ°å€
+					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// è®¾ç½®åº”ç­”åœ°å€
 					save_flag = 1;
 				}
 			}
-			else if ( 1==ab_flag )	// B¶Î
+			else if ( 1==ab_flag )	// Bæ®µ
 			{
-				if ( (sys_param_1b[MADD_HX_LNA_DADDR].val & 0x0F) != tmp )	// ĞÂµØÖ·²»µÈÓÚA¶ÎµØÖ·
+				if ( (sys_param_1b[MADD_HX_LNA_DADDR].val & 0x0F) != tmp )	// æ–°åœ°å€ä¸ç­‰äºAæ®µåœ°å€
 				{
-					sys_param_1b[MADD_HX_LNA_DADDR].val = (sys_param_1b[MADD_HX_LNA_DADDR].val & 0x07)|(tmp<<4);	// ÉèÖÃĞÂµØÖ·
-					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// ÉèÖÃÓ¦´ğµØÖ·
+					sys_param_1b[MADD_HX_LNA_DADDR].val = (sys_param_1b[MADD_HX_LNA_DADDR].val & 0x07)|(tmp<<4);	// è®¾ç½®æ–°åœ°å€
+					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// è®¾ç½®åº”ç­”åœ°å€
 					save_flag = 1;
 				}
 			}
@@ -2091,21 +2091,21 @@ void UartReceHXModuleLNA( UCHAR8 * p_dat, UINT16 data_len )
 		}
 		else		// UL
 		{
-			if ( 0==ab_flag )	// A¶Î
+			if ( 0==ab_flag )	// Aæ®µ
 			{
-				if ( (sys_param_1b[MADD_HX_LNA_UADDR].val>>4) != tmp )	// ĞÂµØÖ·²»µÈÓÚB¶ÎµØÖ·
+				if ( (sys_param_1b[MADD_HX_LNA_UADDR].val>>4) != tmp )	// æ–°åœ°å€ä¸ç­‰äºBæ®µåœ°å€
 				{
-					sys_param_1b[MADD_HX_LNA_UADDR].val = (sys_param_1b[MADD_HX_LNA_UADDR].val & 0x70)|tmp;	// ÉèÖÃĞÂµØÖ·
-					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// ÉèÖÃÓ¦´ğµØÖ·
+					sys_param_1b[MADD_HX_LNA_UADDR].val = (sys_param_1b[MADD_HX_LNA_UADDR].val & 0x70)|tmp;	// è®¾ç½®æ–°åœ°å€
+					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// è®¾ç½®åº”ç­”åœ°å€
 					save_flag = 1;
 				}
 			}
-			else if ( 1==ab_flag )	// B¶Î
+			else if ( 1==ab_flag )	// Bæ®µ
 			{
-				if ( (sys_param_1b[MADD_HX_LNA_UADDR].val & 0x0F) != tmp )	// ĞÂµØÖ·²»µÈÓÚA¶ÎµØÖ·
+				if ( (sys_param_1b[MADD_HX_LNA_UADDR].val & 0x0F) != tmp )	// æ–°åœ°å€ä¸ç­‰äºAæ®µåœ°å€
 				{
-					sys_param_1b[MADD_HX_LNA_UADDR].val = (sys_param_1b[MADD_HX_LNA_UADDR].val & 0x07)|(tmp<<4);	// ÉèÖÃĞÂµØÖ·
-					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// ÉèÖÃÓ¦´ğµØÖ·
+					sys_param_1b[MADD_HX_LNA_UADDR].val = (sys_param_1b[MADD_HX_LNA_UADDR].val & 0x07)|(tmp<<4);	// è®¾ç½®æ–°åœ°å€
+					uart_rece_info.rx_buffer[1] = (uart_rece_info.rx_buffer[1] & 0xf8)|tmp;								// è®¾ç½®åº”ç­”åœ°å€
 					save_flag = 1;
 				}
 			}
@@ -2116,14 +2116,14 @@ void UartReceHXModuleLNA( UCHAR8 * p_dat, UINT16 data_len )
 		}
 
 	}
-	else if ( (0==up_down) && ( ab_flag<2 ) )	// ´¦ÀíÆäËûÃüÁî,Ö»ÏìÓ¦ÉÏĞĞµØÖ·µÄÇëÇó
+	else if ( (0==up_down) && ( ab_flag<2 ) )	// å¤„ç†å…¶ä»–å‘½ä»¤,åªå“åº”ä¸Šè¡Œåœ°å€çš„è¯·æ±‚
 	{
-		if ( HXCT_CMD_GET_STA==uart_rece_info.rx_buffer[2] )	// Ä£¿é×´Ì¬²éÑ¯ÃüÁî
+		if ( HXCT_CMD_GET_STA==uart_rece_info.rx_buffer[2] )	// æ¨¡å—çŠ¶æ€æŸ¥è¯¢å‘½ä»¤
 		{
-			p_body[0] = 0;	// RECÎŞLNA
-			p_body[1] = 0;	// ²»Ö§³ÖATTÖµ²éÑ¯£¬·µ»Ø0
-			p_body[2] = 0;	// ²»Ö§³ÖLNA×î´óÔöÒæÖµ²éÑ¯£¬·µ»Ø0
-			p_body[3] = 0;	// ²»Ö§³ÖLNAµÄALCÊıÖµ²éÑ¯£¬·µ»Ø0
+			p_body[0] = 0;	// RECæ— LNA
+			p_body[1] = 0;	// ä¸æ”¯æŒATTå€¼æŸ¥è¯¢ï¼Œè¿”å›0
+			p_body[2] = 0;	// ä¸æ”¯æŒLNAæœ€å¤§å¢ç›Šå€¼æŸ¥è¯¢ï¼Œè¿”å›0
+			p_body[3] = 0;	// ä¸æ”¯æŒLNAçš„ALCæ•°å€¼æŸ¥è¯¢ï¼Œè¿”å›0
 			body_len = 4;
 		}
 		else if ( HXCT_CMD_SET_ATT == uart_rece_info.rx_buffer[2] )
@@ -2146,32 +2146,32 @@ void UartReceHXModuleLNA( UCHAR8 * p_dat, UINT16 data_len )
 	
 	UartPacketHXTransHead(
 		uart_rece_info.rx_buffer[0], uart_rece_info.rx_buffer[1], uart_rece_info.rx_buffer[2], ack, data_len+body_len );	
-	//COPY Êı¾İ
+	//COPY æ•°æ®
 	for (tmp=0; tmp<data_len; tmp++)
 		uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = p_dat[tmp];	
 
 	uart_trans_info.tx_len += body_len;
 	
-	//¼ÆËãCRC
+	//è®¡ç®—CRC
 	crc16 = CalCrc16(uart_trans_info.tx_buffer,uart_trans_info.tx_len, HXCT_CRC_SEED);
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)crc16;
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)(crc16>>8);
 
-	//½áÊø±êÖ¾
+	//ç»“æŸæ ‡å¿—
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = 0x7F;
-	//·¢ËÍÓ¦´ğ
+	//å‘é€åº”ç­”
 	UartStartTrans();	
 
 	if ( 0!= save_flag )
 	{
-		SaveSysParamToFlash();	// ±£´æ²ÎÊı
+		SaveSysParamToFlash();	// ä¿å­˜å‚æ•°
 	}
 
 }
 #if 0
 /*************************************************************
 Name:UartReceHandle          
-Description:½ÓÊÕÊı¾İ°ü´¦Àí
+Description:æ¥æ”¶æ•°æ®åŒ…å¤„ç†
 Input:void            
 Output:void         
 Return:void         
@@ -2179,40 +2179,40 @@ Return:void
 void UartReceHandle(void)
 {
 	UINT16 crc_val;
-	//ÅĞ¶ÏÓ¦´ğ±êÖ¾
+	//åˆ¤æ–­åº”ç­”æ ‡å¿—
 	if ((uart_rece_info.rx_buffer[3]&0x0f) != 0x00)
 		return;
 	
-	//ÅĞ¶ÏCRC
+	//åˆ¤æ–­CRC
 	crc_val = CalCrc16(uart_rece_info.rx_buffer,uart_rece_info.rx_len+5,HXCT_CRC_SEED);
 	if (crc_val != (uart_rece_info.rx_buffer[uart_rece_info.rx_len+5]|(uart_rece_info.rx_buffer[uart_rece_info.rx_len+6]<<8)))
 	{
-		return;		//crc´íÎó		
+		return;		//crcé”™è¯¯		
 	}
 
-	if ( HXCT_DET_MODULE_NUM==uart_rece_info.rx_buffer[0] )	// DETÄ£¿é´¦Àí
+	if ( HXCT_DET_MODULE_NUM==uart_rece_info.rx_buffer[0] )	// DETæ¨¡å—å¤„ç†
 	{
 		UartReceHXModuleDET( uart_rece_info.rx_buffer+5 , uart_rece_info.rx_len );
 		return;
 	}
-	else if ( HXCT_LNA_MODULE_NUM==uart_rece_info.rx_buffer[0] )	// LNAÄ£¿é´¦Àí
+	else if ( HXCT_LNA_MODULE_NUM==uart_rece_info.rx_buffer[0] )	// LNAæ¨¡å—å¤„ç†
 	{
 		UartReceHXModuleLNA( uart_rece_info.rx_buffer+5 , uart_rece_info.rx_len );
 		return;
 	}
-	else if ( HXCT_DDF_MODULE_NUM !=uart_rece_info.rx_buffer[0] )	// ·ÇÖĞÆµÄ£¿éÔò²»´¦Àí
+	else if ( HXCT_DDF_MODULE_NUM !=uart_rece_info.rx_buffer[0] )	// éä¸­é¢‘æ¨¡å—åˆ™ä¸å¤„ç†
 	{
 		return;
 	}
 
-	//ÅĞ¶ÏµØÖ·
+	//åˆ¤æ–­åœ°å€
 	if ((uart_rece_info.rx_buffer[2]!=HXCT_CMD_SET_ADD) 
 		&& ((uart_rece_info.rx_buffer[1]&0x07)!=(0x0F&sys_param_1b[MADD_A_PRI_ADD].val))
 		&& ((uart_rece_info.rx_buffer[1]&0x07)!=((0xF0&sys_param_1b[MADD_A_PRI_ADD].val)>>4))
 		&& ((uart_rece_info.rx_buffer[1]&0x07)!=(0x0F&sys_param_1b[MADD_B_PRI_ADD].val))
 		&& ((uart_rece_info.rx_buffer[1]&0x07)!=((0xF0&sys_param_1b[MADD_B_PRI_ADD].val)>>4)) )
 	{
-		//·ÇÉèÖÃµØÖ·ÃüÁî£¬²¢ÇÒµØÖ·²»Ïà·ûÔò²»´¦ÀíÊı¾İ°ü
+		//éè®¾ç½®åœ°å€å‘½ä»¤ï¼Œå¹¶ä¸”åœ°å€ä¸ç›¸ç¬¦åˆ™ä¸å¤„ç†æ•°æ®åŒ…
 		return;
 	}
 
@@ -2253,7 +2253,7 @@ void UartReceHandle(void)
 
 /*************************************************************
 Name:UartReceInterrupt          
-Description:ÖĞ¶Ïµ÷ÓÃ½ÓÊÕ´¦Àí³ÌĞò
+Description:ä¸­æ–­è°ƒç”¨æ¥æ”¶å¤„ç†ç¨‹åº
 Input:void            
 Output:void         
 Return:void         
@@ -2266,22 +2266,22 @@ void UartReceInterrupt( UCHAR8 rx_dat )
 	WTD_CLR;
 	if (0 != (sys_work_info&SYSTEM_FLAG_232_RECE))
 	{
-		// ÉÏÒ»±Ê°ü»¹Ã»´¦ÀíÍê
+		// ä¸Šä¸€ç¬”åŒ…è¿˜æ²¡å¤„ç†å®Œ
 		return;
 	}
 
-	//¼à¿Ø½Ó¿Ú
+	//ç›‘æ§æ¥å£
 	if (uart_rece_info.rx_count==0 && uart_rece_info.rx_data!=0x4E)
 	{
 		//trans_4e_flag = 0;
-		return;			//µÈ´ı¿ªÊ¼±êÖ¾
+		return;			//ç­‰å¾…å¼€å§‹æ ‡å¿—
 	}
 	
 	if (uart_rece_info.rx_count!=0 && uart_rece_info.rx_data==0x4E)
 	{
 		if ( uart_rece_info.rx_count>=10 )
 		{
-			//ÊÕµ½½áÊø±êÖ¾
+			//æ”¶åˆ°ç»“æŸæ ‡å¿—
 			uart_rece_info.rx_buffer[uart_rece_info.rx_count] = uart_rece_info.rx_data;
 			uart_rece_info.rx_len = uart_rece_info.rx_count+1;
 			uart_rece_info.rx_count = 0;
@@ -2293,7 +2293,7 @@ void UartReceInterrupt( UCHAR8 rx_dat )
 		else
 		{
 			//printf(" uart_rece_info.rx_count:%d",uart_rece_info.rx_count);
-			//¾À´í
+			//çº é”™
 			uart_rece_info.rx_count = 0;
 		}
 	}
@@ -2302,15 +2302,15 @@ void UartReceInterrupt( UCHAR8 rx_dat )
 	{
 		if (uart_rece_info.rx_data==0x4D && uart_rece_info.rx_buffer[uart_rece_info.rx_count-1]==0x5E) 
 		{
-			//×ªÒå
+			//è½¬ä¹‰
 			uart_rece_info.rx_buffer[uart_rece_info.rx_count-1] = 0x4E;
-			trans_4e_flag = 1;		//ÖÃ4E×ªÒå±êÖ¾
+			trans_4e_flag = 1;		//ç½®4Eè½¬ä¹‰æ ‡å¿—
 			return;
 		}
 		
 		if (uart_rece_info.rx_data==0x5D&& uart_rece_info.rx_buffer[uart_rece_info.rx_count-1]==0x5E) 
 		{
-			//×ªÒå
+			//è½¬ä¹‰
 			uart_rece_info.rx_buffer[uart_rece_info.rx_count-1] = 0x5E;
 			trans_4e_flag = 1;
 			return;
@@ -2322,7 +2322,7 @@ void UartReceInterrupt( UCHAR8 rx_dat )
 
 	if ( uart_rece_info.rx_count>=UART_BUFF_SIZE ) 
 	{
-		// Êı¾İ¹ı³¤,ÅĞ¶¨ÎªÎŞĞ§Êı¾İ°ü
+		// æ•°æ®è¿‡é•¿,åˆ¤å®šä¸ºæ— æ•ˆæ•°æ®åŒ…
 		uart_rece_info.rx_count = 0;
 	}
 	
@@ -2332,29 +2332,29 @@ void UartReceInterrupt( UCHAR8 rx_dat )
 
 /*************************************************************
 Name:UartTransInterrupt          
-Description:ÖĞ¶Ïµ÷ÓÃ·¢ËÍ´¦Àíº¯Êı
+Description:ä¸­æ–­è°ƒç”¨å‘é€å¤„ç†å‡½æ•°
 Input:void            
 Output:void         
 Return:void         
 **************************************************************/
 void UartTransInterrupt(void)
 {
-	//ÖĞ¶Ï·¢ÉúÊ±ÉÏÒ»¸öÊı¾İÒÑ¾­·¢ËÍ³öÈ¥ÁË
-	//uart_trans_info.tx_lenÎª²»°üÀ¨Ç°ºó0X4EµÄÊı¾İ³¤¶È
+	//ä¸­æ–­å‘ç”Ÿæ—¶ä¸Šä¸€ä¸ªæ•°æ®å·²ç»å‘é€å‡ºå»äº†
+	//uart_trans_info.tx_lenä¸ºä¸åŒ…æ‹¬å‰å0X4Eçš„æ•°æ®é•¿åº¦
 
-	if (uart_trans_info.tx_count == uart_trans_info.tx_len)			// ½áÊø±êÖ¾
+	if (uart_trans_info.tx_count == uart_trans_info.tx_len)			// ç»“æŸæ ‡å¿—
 	{	
 		CtrlUartSendDat(0x4E);
 		uart_trans_info.tx_count++;
 	}
-	else if (uart_trans_info.tx_count == uart_trans_info.tx_len+1)	// ¶à·¢ËÍÒ»¸ö×Ö·û
+	else if (uart_trans_info.tx_count == uart_trans_info.tx_len+1)	// å¤šå‘é€ä¸€ä¸ªå­—ç¬¦
 	{	
 		CtrlUartSendDat(0xFF);
 		uart_trans_info.tx_count++;
 	}
-	else if(uart_trans_info.tx_count == uart_trans_info.tx_len+2)		// ·¢ËÍÍê³É
+	else if(uart_trans_info.tx_count == uart_trans_info.tx_len+2)		// å‘é€å®Œæˆ
 	{
-		//ÑÓÊ±ºó½«485·¢ËÍÊ¹ÄÜ¹Ø±Õ			
+		//å»¶æ—¶åå°†485å‘é€ä½¿èƒ½å…³é—­			
 		EnableUartTx(0,0);	
 		return;
 	}
@@ -2362,14 +2362,14 @@ void UartTransInterrupt(void)
 	{
 		if (uart_trans_info.tx_buffer[uart_trans_info.tx_count] == 0x4E)
 		{
-			//×ªÒå
+			//è½¬ä¹‰
 			CtrlUartSendDat(0x5E);
 			uart_trans_info.tx_buffer[uart_trans_info.tx_count] = 0x4D;
 			return;
 		}
 		if (uart_trans_info.tx_buffer[uart_trans_info.tx_count] == 0x5E)
 		{
-			//×ªÒå
+			//è½¬ä¹‰
 			CtrlUartSendDat(0x5E);
 			uart_trans_info.tx_buffer[uart_trans_info.tx_count] = 0x5D;
 			return;
@@ -2381,7 +2381,7 @@ void UartTransInterrupt(void)
 //#if 0
 /*************************************************************
 Name:UartStartTrans          
-Description:¿ªÊ¼·¢ËÍ
+Description:å¼€å§‹å‘é€
 Input:void            
 Output:void         
 Return:void         
@@ -2396,8 +2396,8 @@ void UartStartTrans(void)
 //#endif 
 /*************************************************************
 Name:UartPacketTransHead          
-Description:´ò°ü°üÍ·
-Input:Ä£¿éµØÖ·£¬ÃüÁî×Ö£¬Ó¦´ğ±êÖ¾            
+Description:æ‰“åŒ…åŒ…å¤´
+Input:æ¨¡å—åœ°å€ï¼Œå‘½ä»¤å­—ï¼Œåº”ç­”æ ‡å¿—            
 Output:void         
 Return:void         
 **************************************************************/
@@ -2414,7 +2414,7 @@ void UartPacketTransHead(UCHAR8 type,UCHAR8 ver,UCHAR8 device,UCHAR8 address,UCH
 
 /*************************************************************
 Name:UartReceHandle          
-Description:½ÓÊÕÊı¾İ°ü´¦Àí
+Description:æ¥æ”¶æ•°æ®åŒ…å¤„ç†
 Input:void            
 Output:void         
 Return:void         
@@ -2431,7 +2431,7 @@ void UartReceHandle(void)
 	
 	if (uart_rece_info.rx_len < 10)
 	{
-//		printf("uart_rece_info.rx_len_to_short:%02X\r\n", uart_rece_info.rx_len);	//³¤¶ÈÓĞÏŞÖÆ
+//		printf("uart_rece_info.rx_len_to_short:%02X\r\n", uart_rece_info.rx_len);	//é•¿åº¦æœ‰é™åˆ¶
 
 		return;
 	}
@@ -2456,21 +2456,21 @@ void UartReceHandle(void)
 		&& (uart_rece_info.rx_buffer[4]!=sys_param_1b[MADD_C_PRI_ADD].val)
 		&& (uart_rece_info.rx_buffer[4]!=sys_param_1b[MADD_D_PRI_ADD].val))
 	{
-		//Ä£¿éµØÖ·²»Îª¹ã²¥µØÖ·»òÕß±¾»úµØÖ·Ôò²»´¦Àí
+		//æ¨¡å—åœ°å€ä¸ä¸ºå¹¿æ’­åœ°å€æˆ–è€…æœ¬æœºåœ°å€åˆ™ä¸å¤„ç†
 		TRACE_ERROR("485A Mo Addr Err:%02X\r\n", uart_rece_info.rx_buffer[4]);
 		return ;
 	}
 	
-	//ÊÕµ½Êı¾İºóÑÓÊ±20MSÔÙ´¦Àí
+	//æ”¶åˆ°æ•°æ®åå»¶æ—¶20MSå†å¤„ç†
 	UsNopDelay(25*1000);	
 	WTD_CLR;
-	//printf("485_ID_1:%02X\r\n", uart_rece_info.rx_buffer[5]);	//³¤¶ÈÓĞÏŞÖÆ
+	//printf("485_ID_1:%02X\r\n", uart_rece_info.rx_buffer[5]);	//é•¿åº¦æœ‰é™åˆ¶
 	
-	//Ğ£ÑéCRC
+	//æ ¡éªŒCRC
 	crc16 = CalCrc16(uart_rece_info.rx_buffer+1,uart_rece_info.rx_len-4,0x0000);
 	if (crc16 != (UINT16)(uart_rece_info.rx_buffer[uart_rece_info.rx_len-3]|(uart_rece_info.rx_buffer[uart_rece_info.rx_len-2]<<8)))
 	{
-		//crc´íÎó
+		//crcé”™è¯¯
 		UartReceHandleMoError(MONITOR_ERROR_CRC);			
 		return;
 	}
@@ -2479,7 +2479,7 @@ void UartReceHandle(void)
 	
 	if (uart_rece_info.rx_buffer[6] != 0xFF)
 	{
-		//Ö÷»ú·¢À´µÄ±êÖ¾´í
+		//ä¸»æœºå‘æ¥çš„æ ‡å¿—é”™
 		printf("crc error\r\n");
 		UartReceHandleMoError(MONITOR_ERROR_FLAG);
 		return;
@@ -2524,7 +2524,7 @@ void UartReceHandle(void)
 			ret = UartReceHandleMoTransRe( uart_rece_info.rx_buffer+7,uart_rece_info.rx_len-10 );
 			if (ret==0 )
 			{
-				// ÓĞ´íÎó£¬¸´Î»REÔ¶³Ì·ÃÎÊÖ¸ÁîµÄÏà¹Ø²ÎÊı
+				// æœ‰é”™è¯¯ï¼Œå¤ä½REè¿œç¨‹è®¿é—®æŒ‡ä»¤çš„ç›¸å…³å‚æ•°
 				re_trans_cmd = 0;
 				re_trans_fp = 0;
 				re_trans_node = 0;
@@ -2537,7 +2537,7 @@ void UartReceHandle(void)
 		break;
 			
 		default:
-			//ÃüÁî²»Ö§³Ö
+			//å‘½ä»¤ä¸æ”¯æŒ
 			UartReceHandleMoError(MONITOR_ERROR_COM);		
 		break;			
 	}
@@ -2548,10 +2548,10 @@ void UartReceHandle(void)
 
 /*************************************************************
 Name:UartReceHandleMonGetAllPara         
-Description:¼à¿ØÃüÁîÖĞµÄ»ñÈ¡ËùÓĞ²ÎÊıĞÅÏ¢
-Input:Êı¾İÖ¸Õë£¬Êı¾İ³¤¶È            
+Description:ç›‘æ§å‘½ä»¤ä¸­çš„è·å–æ‰€æœ‰å‚æ•°ä¿¡æ¯
+Input:æ•°æ®æŒ‡é’ˆï¼Œæ•°æ®é•¿åº¦            
 Output:void         
-Return:1:³É¹¦£¬0:Ê§°Ü        
+Return:1:æˆåŠŸï¼Œ0:å¤±è´¥        
 **************************************************************/
 CHAR8 UartReceHandleMoGetAllPara(UCHAR8 *data,UINT16 data_len)
 {
@@ -2611,10 +2611,10 @@ CHAR8 UartReceHandleMoGetAllPara(UCHAR8 *data,UINT16 data_len)
 
 /*************************************************************
 Name:UartReceHandleMonGetPrara        
-Description:¼à¿ØÃüÁîÖĞµÄ»ñÈ¡²ÎÊı
-Input:Êı¾İÖ¸Õë£¬Êı¾İ³¤¶È            
+Description:ç›‘æ§å‘½ä»¤ä¸­çš„è·å–å‚æ•°
+Input:æ•°æ®æŒ‡é’ˆï¼Œæ•°æ®é•¿åº¦            
 Output:void         
-Return:1:³É¹¦£¬0:Ê§°Ü   
+Return:1:æˆåŠŸï¼Œ0:å¤±è´¥   
 **************************************************************/
 CHAR8 UartReceHandleMoGetTopo(UCHAR8 *data,UINT16 data_len)
 {
@@ -2635,48 +2635,48 @@ CHAR8 UartReceHandleMoGetTopo(UCHAR8 *data,UINT16 data_len)
 	msg_tx_len =uart_trans_info.tx_len;
 
 
-//	if ( 0x00 == p_args[0] )		// ²éÑ¯ÀàĞÍ:µ±Ç°ÍØÆË
+//	if ( 0x00 == p_args[0] )		// æŸ¥è¯¢ç±»å‹:å½“å‰æ‹“æ‰‘
 //	{
 //		TRACE_INFO("[M]Msg Handle Get Topo  2\r\n"); 
 		for ( fp_no=0; fp_no<FP_MAX; fp_no++ )
 		{
-			// ¹â¿Ú×´Ì¬
+			// å…‰å£çŠ¶æ€
 			tmp = 0;
 			
-			if ( COMMA_LOCK==fp_inf[fp_no].comma_lock )	// ¶ººÅËø¶¨
+			if ( COMMA_LOCK==fp_inf[fp_no].comma_lock )	// é€—å·é”å®š
 			{
                   tmp |= (0x01<<7);
 			}
 			
-			if ( FRAME_LOCK==fp_inf[fp_no].frm_lock )	// ½ÓÊÕÖ¡Ëø¶¨
+			if ( FRAME_LOCK==fp_inf[fp_no].frm_lock )	// æ¥æ”¶å¸§é”å®š
 			{
 				 tmp |= (0x01<<6);
 			}
 
-			if ( 0 != ( OPS_RCV_FLAG & fp_inf[fp_no].ops_info ) )	// ÊÕµ½¶Ô¶Ë¹â¿ÚÊı¾İ£¬»·Íø
+			if ( 0 != ( OPS_RCV_FLAG & fp_inf[fp_no].ops_info ) )	// æ”¶åˆ°å¯¹ç«¯å…‰å£æ•°æ®ï¼Œç¯ç½‘
 			{
-				tmp |= (0x01<<4);		// »·Íø
-				tmp |= ( fp_inf[fp_no].ops_info & OPS_NO_MASK );		// ¶Ô¶Ë¹â¿ÚºÅ
+				tmp |= (0x01<<4);		// ç¯ç½‘
+				tmp |= ( fp_inf[fp_no].ops_info & OPS_NO_MASK );		// å¯¹ç«¯å…‰å£å·
 			}
 
-			uart_trans_info.tx_buffer[msg_tx_len++] = tmp;  //bit7~¶ººÅËø¶¨£¬bit6~Ö¡Ëø¶¨£¬bit4~»·Íø±êÖ¾£¬bit3~bit0 ¶Ô¶Ë¹â¿ÚºÅ 
-			uart_trans_info.tx_buffer[msg_tx_len++] = fp_inf[fp_no].re_cnt; //µ±Ç°¹â¿ÚµÄRE¸öÊı 
-//			p_tx_buff[msg_tx_len++] = fp_inf[fp_no].ree_cnt; //µ±Ç°¹â¿ÚµÄREe¸öÊı  
+			uart_trans_info.tx_buffer[msg_tx_len++] = tmp;  //bit7~é€—å·é”å®šï¼Œbit6~å¸§é”å®šï¼Œbit4~ç¯ç½‘æ ‡å¿—ï¼Œbit3~bit0 å¯¹ç«¯å…‰å£å· 
+			uart_trans_info.tx_buffer[msg_tx_len++] = fp_inf[fp_no].re_cnt; //å½“å‰å…‰å£çš„REä¸ªæ•° 
+//			p_tx_buff[msg_tx_len++] = fp_inf[fp_no].ree_cnt; //å½“å‰å…‰å£çš„REeä¸ªæ•°  
 //				TRACE_INFO("\r\n"); 
 //				TRACE_INFO("fp_inf[fp_no].re_cnt(%0x)\r\n",fp_inf[fp_no].re_cnt); 	
 
 			
 			for ( re_no=0; re_no< fp_inf[fp_no].re_cnt; re_no++ )  
 			{
-				uart_trans_info.tx_buffer[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].re_status; //°üº¬ÁË¹â¿Ú0¡¢1µÄËø¶¨×´Ì¬ºÍÉÏ¡¢ÏÂĞĞ¹â¿ÚµÄÅĞ¶Ï
-//				uart_trans_info.tx_buffer[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].re_id;     //¹â¿ÚID 
+				uart_trans_info.tx_buffer[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].re_status; //åŒ…å«äº†å…‰å£0ã€1çš„é”å®šçŠ¶æ€å’Œä¸Šã€ä¸‹è¡Œå…‰å£çš„åˆ¤æ–­
+//				uart_trans_info.tx_buffer[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].re_id;     //å…‰å£ID 
 				
-//				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].ree_count;           //µ±Ç°¹â¿Úµ±Ç°½ÚµãµÄREe¸öÊı 
-//				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].ree_sync_st_inf[0];     // 4¸öÁ¬½ÓRFµÄ¹â¿Ú×´Ì¬ºÍ8¸öÁ¬½ÓRFµÄÍø¿Ú×´Ì¬
+//				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].ree_count;           //å½“å‰å…‰å£å½“å‰èŠ‚ç‚¹çš„REeä¸ªæ•° 
+//				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].ree_sync_st_inf[0];     // 4ä¸ªè¿æ¥RFçš„å…‰å£çŠ¶æ€å’Œ8ä¸ªè¿æ¥RFçš„ç½‘å£çŠ¶æ€
 //				p_tx_buff[msg_tx_len++] = fp_inf[fp_no].re_info[re_no].ree_sync_st_inf[1];     // 	
-				uart_trans_info.tx_buffer[msg_tx_len++] = tmp_re_inf[fp_no][re_no].ree_nt_stat;     // 4¸öÁ¬½ÓRFµÄ¹â¿Ú×´Ì¬ºÍ8¸öÁ¬½ÓRFµÄÍø¿Ú×´Ì¬
+				uart_trans_info.tx_buffer[msg_tx_len++] = tmp_re_inf[fp_no][re_no].ree_nt_stat;     // 4ä¸ªè¿æ¥RFçš„å…‰å£çŠ¶æ€å’Œ8ä¸ªè¿æ¥RFçš„ç½‘å£çŠ¶æ€
 				uart_trans_info.tx_buffer[msg_tx_len++] =tmp_re_inf[fp_no][re_no].ree_fp_stat;     // 
-				uart_trans_info.tx_buffer[msg_tx_len++] =(0xff00&tmp_re_inf[fp_no][re_no].ree_work_status)>>8;     // 4¸öÁ¬½ÓRFµÄ¹â¿Ú×´Ì¬ºÍ8¸öÁ¬½ÓRFµÄÍø¿Ú×´Ì¬
+				uart_trans_info.tx_buffer[msg_tx_len++] =(0xff00&tmp_re_inf[fp_no][re_no].ree_work_status)>>8;     // 4ä¸ªè¿æ¥RFçš„å…‰å£çŠ¶æ€å’Œ8ä¸ªè¿æ¥RFçš„ç½‘å£çŠ¶æ€
 				uart_trans_info.tx_buffer[msg_tx_len++] =0xff&tmp_re_inf[fp_no][re_no].ree_work_status;     // 
 
 //				TRACE_INFO("fp_inf[fp_no].re_info[re_no].re_status(%0x)\r\n",fp_inf[fp_no].re_info[re_no].re_status); 
@@ -2711,10 +2711,10 @@ CHAR8 UartReceHandleMoGetTopo(UCHAR8 *data,UINT16 data_len)
 
 /*************************************************************
 Name:UartReceHandleMonGetPrara        
-Description:¼à¿ØÃüÁîÖĞµÄ»ñÈ¡²ÎÊı
-Input:Êı¾İÖ¸Õë£¬Êı¾İ³¤¶È            
+Description:ç›‘æ§å‘½ä»¤ä¸­çš„è·å–å‚æ•°
+Input:æ•°æ®æŒ‡é’ˆï¼Œæ•°æ®é•¿åº¦            
 Output:void         
-Return:1:³É¹¦£¬0:Ê§°Ü   
+Return:1:æˆåŠŸï¼Œ0:å¤±è´¥   
 **************************************************************/
 CHAR8 UartReceHandleMoGetPara(UCHAR8 *data,UINT16 data_len)
 {
@@ -2769,10 +2769,10 @@ CHAR8 UartReceHandleMoGetPara(UCHAR8 *data,UINT16 data_len)
 
 /*************************************************************
 Name:UartReceHandleMonSetPrara        
-Description:¼à¿ØÃüÁîÖĞµÄÉèÖÃ²ÎÊı
-Input:Êı¾İÖ¸Õë£¬Êı¾İ³¤¶È            
+Description:ç›‘æ§å‘½ä»¤ä¸­çš„è®¾ç½®å‚æ•°
+Input:æ•°æ®æŒ‡é’ˆï¼Œæ•°æ®é•¿åº¦            
 Output:void         
-Return:1:³É¹¦£¬0:Ê§°Ü      
+Return:1:æˆåŠŸï¼Œ0:å¤±è´¥      
 **************************************************************/
 CHAR8 UartReceHandleMoSetPara(UCHAR8 *data,UINT16 data_len)
 {
@@ -2816,10 +2816,10 @@ CHAR8 UartReceHandleMoSetPara(UCHAR8 *data,UINT16 data_len)
 
 	BackupSystemPara(para_bak);
 
-	// ÉèÖÃ²ÎÊı
+	// è®¾ç½®å‚æ•°
 	if ( 0 != SetSysParam( data_len, ex_flag, data, &err_add ) )
 	{
-		// ±£´æ²ÎÊı
+		// ä¿å­˜å‚æ•°
 		SaveSysParamToFlash();
 	}
 	else
@@ -2834,7 +2834,7 @@ CHAR8 UartReceHandleMoSetPara(UCHAR8 *data,UINT16 data_len)
 	}
 	
 
-	//ÉèÖÃÍê³ÉÓĞ¿ÉÄÜ¸Ä±äÁËÉè±¸µØÖ·
+	//è®¾ç½®å®Œæˆæœ‰å¯èƒ½æ”¹å˜äº†è®¾å¤‡åœ°å€
 	if ( SYS_A_FLAG==dev_add ) 
 	{
 		uart_trans_info.tx_buffer[3] = (UCHAR8)sys_param_1b[MADD_A_PRI_ADD].val;
@@ -2866,10 +2866,10 @@ CHAR8 UartReceHandleMoSetPara(UCHAR8 *data,UINT16 data_len)
 
 /*************************************************************
 Name:UartReceHandleMoTransRe        
-Description: Ô¶³Ì²éÑ¯ÉèÖÃREÃüÁî
-Input:Êı¾İÖ¸Õë£¬Êı¾İ³¤¶È            
+Description: è¿œç¨‹æŸ¥è¯¢è®¾ç½®REå‘½ä»¤
+Input:æ•°æ®æŒ‡é’ˆï¼Œæ•°æ®é•¿åº¦            
 Output:void         
-Return:1:³É¹¦£¬0:Ê§°Ü      
+Return:1:æˆåŠŸï¼Œ0:å¤±è´¥      
 **************************************************************/
 CHAR8 UartReceHandleMoTransRe(UCHAR8 *data,UINT16 data_len)
 {
@@ -2881,7 +2881,7 @@ CHAR8 UartReceHandleMoTransRe(UCHAR8 *data,UINT16 data_len)
 //	UCHAR8 re_cmd;//, re_fp, re_node;
 	
 	TRACE_DEBUG("485A Handle Trans RE-----------------\r\n");
-	// ±£´æÊı¾İ°üµÄÍ·ĞÅÏ¢£¬¹©REÓ¦´ğµÄÊ±ºòÉú³É485Êı¾İ°ü
+	// ä¿å­˜æ•°æ®åŒ…çš„å¤´ä¿¡æ¯ï¼Œä¾›REåº”ç­”çš„æ—¶å€™ç”Ÿæˆ485æ•°æ®åŒ…
 	re_trans_head_bk[0] = uart_rece_info.rx_buffer[1];
 	re_trans_head_bk[1] = uart_rece_info.rx_buffer[2];	
 	re_trans_head_bk[2] = uart_rece_info.rx_buffer[3];		
@@ -2895,7 +2895,7 @@ CHAR8 UartReceHandleMoTransRe(UCHAR8 *data,UINT16 data_len)
 //	TRACE_INFO("p_msg:[%02X]------------\r\n", data[data_len-1]);
 //	TRACE_INFO("uart_rece_info.rx_buffer[4]:[%02X]------------\r\n", uart_rece_info.rx_buffer[4]);
 //#if 0
-//	if ( uart_rece_info.rx_buffer[4] == sys_param_1b[MADD_A_PRI_ADD].val )	// A¶ÎµØÖ·
+//	if ( uart_rece_info.rx_buffer[4] == sys_param_1b[MADD_A_PRI_ADD].val )	// Aæ®µåœ°å€
 	{
 		TRACE_DEBUG("485A Handle Trans RE-----------------\r\n");
 		i = 0;
@@ -2912,11 +2912,11 @@ CHAR8 UartReceHandleMoTransRe(UCHAR8 *data,UINT16 data_len)
 		{
 			return 0;
 		}
-//		if ( 0xC1==re_trans_cmd )		// ÉèÖÃ²ÎÊı
+//		if ( 0xC1==re_trans_cmd )		// è®¾ç½®å‚æ•°
 //		{
 //			re_trans_cmd = MSG_CMD_SET_PARAM;
 //		}
-//		else if ( 0xC2==re_trans_cmd )	// ²éÑ¯²ÎÊı
+//		else if ( 0xC2==re_trans_cmd )	// æŸ¥è¯¢å‚æ•°
 //		{
 //			re_trans_cmd = MSG_CMD_GET_PARAM;
 //		}
@@ -2925,7 +2925,7 @@ CHAR8 UartReceHandleMoTransRe(UCHAR8 *data,UINT16 data_len)
 //			return 0;
 //		}
 		TRACE_INFO("data_len:[%02X],i:[%02X]------------\r\n", data_len,i);
-		if ( (i+3)>=data_len )		// Êı¾İ²¿·Ö×îÉÙÓĞÒ»¸ö²ÎÊı£¬¼´2×Ö½ÚµØÖ·£¬1×Ö½Ú³¤¶È£¬Òò´ËÊı¾İ°üÖĞÓ¦¸ÃÖÁÉÙ»¹Ê£ÏÂ4¸ö×Ö½ÚµÄÊı¾İ
+		if ( (i+3)>=data_len )		// æ•°æ®éƒ¨åˆ†æœ€å°‘æœ‰ä¸€ä¸ªå‚æ•°ï¼Œå³2å­—èŠ‚åœ°å€ï¼Œ1å­—èŠ‚é•¿åº¦ï¼Œå› æ­¤æ•°æ®åŒ…ä¸­åº”è¯¥è‡³å°‘è¿˜å‰©ä¸‹4ä¸ªå­—èŠ‚çš„æ•°æ®
 		{
 			return 0;
 		}
@@ -2942,12 +2942,12 @@ CHAR8 UartReceHandleMoTransRe(UCHAR8 *data,UINT16 data_len)
 		p_msg[MSG_RESERVE2] = MSG_RE_TRANS_RECV_CODE2;
 		tx_len = MSG_PKT_HEAD_SIZE;
 
-		p_msg[tx_len++] = re_trans_cmd;	// ×ÓÃüÁî
-		p_msg[tx_len++] = uart_rece_info.rx_buffer[4];//1;	// AB¶Î±êÖ¾: A
+		p_msg[tx_len++] = re_trans_cmd;	// å­å‘½ä»¤
+		p_msg[tx_len++] = uart_rece_info.rx_buffer[4];//1;	// ABæ®µæ ‡å¿—: A
 		TRACE_INFO("ABCD_FLAG:[%02X]------------\r\n", uart_rece_info.rx_buffer[4]);
 		for ( i; i<data_len; i++ )
 		{
-			p_msg[tx_len++] = data[i];	// AB¶Î±êÖ¾: A
+			p_msg[tx_len++] = data[i];	// ABæ®µæ ‡å¿—: A
 //			TRACE_INFO("p_msg:[%02X]------------\r\n", data[i]);
 
 		}
@@ -2955,22 +2955,22 @@ CHAR8 UartReceHandleMoTransRe(UCHAR8 *data,UINT16 data_len)
 #if 0		
 		while ( (i+3)<data_len )
 		{
-			// 485½Ó¿ÚµØÖ·
+			// 485æ¥å£åœ°å€
 			param_add = data[i]|( (UINT16)data[i+1]<<8);
 			i+=2;
-			// ²ÎÊı³¤¶È
+			// å‚æ•°é•¿åº¦
 			param_len = data[i++];
-			// 485½Ó¿ÚµØÖ·×ª»»ÎªÄ£¿éÏÂ±êµØÖ·
+			// 485æ¥å£åœ°å€è½¬æ¢ä¸ºæ¨¡å—ä¸‹æ ‡åœ°å€
 			if ( b_FALSE==ParamAddTranslate( param_len, param_add, PT_AP, &param_add ) )	
 			{
 				return 0;
 			}
-			// ÏÂ±êµØÖ·
+			// ä¸‹æ ‡åœ°å€
 			p_msg[tx_len++] = (UCHAR8)(param_add&0x00FF);	
 			p_msg[tx_len++] = (UCHAR8)((param_add>>8)&0x00FF);
-			// ³¤¶È
+			// é•¿åº¦
 			p_msg[tx_len++] = param_len;
-			// Êı¾İ
+			// æ•°æ®
 			while ( param_len-- )
 			{
 				p_msg[tx_len++] = data[i++];	
@@ -2979,7 +2979,7 @@ CHAR8 UartReceHandleMoTransRe(UCHAR8 *data,UINT16 data_len)
 #endif
 		p_msg[tx_len] = 0;
 		p_msg[tx_len+1] = 0;
-		// ·¢ËÍÊı¾İ°üµ½RE
+		// å‘é€æ•°æ®åŒ…åˆ°RE
 
 		
 	TRACE_INFO("Got Msg[%02X:%02X:%02X]->[%02X:%02X:%02X],cmd=%02X.\r\n", 
@@ -2997,8 +2997,8 @@ CHAR8 UartReceHandleMoTransRe(UCHAR8 *data,UINT16 data_len)
 
 /*************************************************************
 Name:UartReceHandleMonError        
-Description:¼à¿Ø´íÎó´¦Àí
-Input:´íÎóÄÚĞÍ            
+Description:ç›‘æ§é”™è¯¯å¤„ç†
+Input:é”™è¯¯å†…å‹            
 Output:void         
 Return:void         
 **************************************************************/
@@ -3011,7 +3011,7 @@ void UartReceHandleMoError(UCHAR8 error_type)
 	UartPacketTransHead(uart_rece_info.rx_buffer[1],uart_rece_info.rx_buffer[2],uart_rece_info.rx_buffer[3],
 						uart_rece_info.rx_buffer[4],uart_rece_info.rx_buffer[5],error_type);
 	
-	//´Ó½ÓÊÕµÄ°üÖĞ½«Êı¾İCOPYµ½·¢ËÍ»º´æ
+	//ä»æ¥æ”¶çš„åŒ…ä¸­å°†æ•°æ®COPYåˆ°å‘é€ç¼“å­˜
 	for (i=6; i<uart_rece_info.rx_len-4; i++)
 	{
 		uart_trans_info.tx_buffer[i]  = uart_rece_info.rx_buffer[i+1];
@@ -3028,8 +3028,8 @@ void UartReceHandleMoError(UCHAR8 error_type)
 
 /*************************************************************
 Name:UartReTransHandleAckMsg        
-Description: ´¦ÀíÊÕµ½µÄÔ¶³Ì·ÃÎÊREÖ¸ÁîµÄÓ¦´ğ
-Input:Êı¾İÖ¸Õë£¬Êı¾İ³¤¶È            
+Description: å¤„ç†æ”¶åˆ°çš„è¿œç¨‹è®¿é—®REæŒ‡ä»¤çš„åº”ç­”
+Input:æ•°æ®æŒ‡é’ˆï¼Œæ•°æ®é•¿åº¦            
 Output: void         
 Return: void
 **************************************************************/
@@ -3041,12 +3041,12 @@ void UartReTransHandleAckMsg(UCHAR8 result, UCHAR8 *data,UINT16 data_len)
 	UCHAR8 tmp;
 	UINT16 crc16;
 	
-	if ( (i+3)>=data_len )		// ÎŞÓĞĞ§²ÎÊıÊı¾İ£¬Ò»¸öÓĞĞ§²ÎÊıÊı¾İÖÁÉÙÕ¼ÓÃ4×Ö½Ú³¤¶È
+	if ( (i+3)>=data_len )		// æ— æœ‰æ•ˆå‚æ•°æ•°æ®ï¼Œä¸€ä¸ªæœ‰æ•ˆå‚æ•°æ•°æ®è‡³å°‘å ç”¨4å­—èŠ‚é•¿åº¦
 	{
 		return;
 	}
 
-	switch( result )	// ÃüÁîÖ´ĞĞ½á¹û
+	switch( result )	// å‘½ä»¤æ‰§è¡Œç»“æœ
 	{
 	case MSG_ACK_CMD_OK:
 		tmp = MONITOR_SUCCESS;
@@ -3058,12 +3058,12 @@ void UartReTransHandleAckMsg(UCHAR8 result, UCHAR8 *data,UINT16 data_len)
 		
 	case MSG_ACK_ERR_ADDR:
 	case MSG_ACK_ERR_VALUE:
-		if ( re_trans_cmd==0xC1 )		// ÉèÖÃ²ÎÊı
+		if ( re_trans_cmd==0xC1 )		// è®¾ç½®å‚æ•°
 		{
 			tmp = MONITOR_ERROR_SET;
 			break;
 		}
-		else if ( re_trans_cmd==0xC2 )		// ²éÑ¯²ÎÊı
+		else if ( re_trans_cmd==0xC2 )		// æŸ¥è¯¢å‚æ•°
 		{
 			tmp = MONITOR_ERROR_GET;
 			break;
@@ -3074,20 +3074,20 @@ void UartReTransHandleAckMsg(UCHAR8 result, UCHAR8 *data,UINT16 data_len)
 
 	}
 
-	// Éú³ÉÊı¾İ°üÍ·
+	// ç”Ÿæˆæ•°æ®åŒ…å¤´
 	UartPacketTransHead( re_trans_head_bk[0], re_trans_head_bk[1], re_trans_head_bk[2],
 						re_trans_head_bk[3], MONITOR_CMD_RE_TRANS, tmp );
-	// ×ÓÃüÁî×Ö¼°REÎ»ÖÃĞÅÏ¢
+	// å­å‘½ä»¤å­—åŠREä½ç½®ä¿¡æ¯
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = re_trans_cmd;
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = re_trans_fp;
 	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = re_trans_node;
 //	uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = re_trans_rf;
-	// ¸´Î»REÔ¶³Ì·ÃÎÊÃüÁîµÄÏà¹ØÊı¾İ
+	// å¤ä½REè¿œç¨‹è®¿é—®å‘½ä»¤çš„ç›¸å…³æ•°æ®
 	re_trans_cmd = 0;
 	re_trans_fp = 0;
 	re_trans_node = 0;
 	re_trans_rf = 0;
-	// ²ÎÊıÊı¾İ
+	// å‚æ•°æ•°æ®
 	while ( data_len-- )
 	{
 		uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = *data++;
@@ -3095,12 +3095,12 @@ void UartReTransHandleAckMsg(UCHAR8 result, UCHAR8 *data,UINT16 data_len)
 #if 0
 	while ( (i+3)<data_len )
 	{
-		// ÏÂ±êµØÖ·
+		// ä¸‹æ ‡åœ°å€
 		param_add = data[i]|( (UINT16)data[i+1]<<8);
 		i+=2;
-		// ²ÎÊı³¤¶È
+		// å‚æ•°é•¿åº¦
 		param_len = data[i++];
-		// ÏÂ±êµØÖ·×ª»»³É485µØÖ·
+		// ä¸‹æ ‡åœ°å€è½¬æ¢æˆ485åœ°å€
 		if ( 1==param_len )
 		{
 			if ( param_add<SYS_PARAM_1B_COUNT )
@@ -3134,11 +3134,11 @@ void UartReTransHandleAckMsg(UCHAR8 result, UCHAR8 *data,UINT16 data_len)
 				return;
 			}
 		}
-		else if ( param_add<SYS_PARAM_ASC_COUNT )	// ×Ö·û´®²ÎÊı
+		else if ( param_add<SYS_PARAM_ASC_COUNT )	// å­—ç¬¦ä¸²å‚æ•°
 		{
-			if ( param_len < sys_param_asc[param_add].length )	// ¼ì²é³¤¶È
+			if ( param_len < sys_param_asc[param_add].length )	// æ£€æŸ¥é•¿åº¦
 			{
-				param_add = sys_param_asc[param_add].addr;	// ²ÎÊı485µØÖ·
+				param_add = sys_param_asc[param_add].addr;	// å‚æ•°485åœ°å€
 			}
 			else
 			{
@@ -3150,14 +3150,14 @@ void UartReTransHandleAckMsg(UCHAR8 result, UCHAR8 *data,UINT16 data_len)
 			return;
 		}
 
-		if ( param_add != 0 )		// ÓĞĞ§µÄ485µØÖ·²»ÄÜÎª0
+		if ( param_add != 0 )		// æœ‰æ•ˆçš„485åœ°å€ä¸èƒ½ä¸º0
 		{
-			// ¿½±´µØÖ·
+			// æ‹·è´åœ°å€
 			uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)(param_add&0xFF);
 			uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = (UCHAR8)(param_add>>8);
-			// ¿½±´³¤¶È
+			// æ‹·è´é•¿åº¦
 			uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = param_len;
-			// ¿½±´Êı¾İ
+			// æ‹·è´æ•°æ®
 			while ( param_len-- )
 			{
 				uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = data[i++];
@@ -3179,7 +3179,7 @@ void UartReTransHandleAckMsg(UCHAR8 result, UCHAR8 *data,UINT16 data_len)
 
 /*************************************************************
 Name:UartStartTrans          
-Description:¿ªÊ¼·¢ËÍ
+Description:å¼€å§‹å‘é€
 Input:void            
 Output:void         
 Return:void         
@@ -3191,8 +3191,8 @@ void PcStartTrans(void)
 #if 0
 /*************************************************************
 Name:PcPacketTransHead          
-Description:´ò°ü°üÍ·
-Input:Ä£¿éµØÖ·£¬ÃüÁî×Ö£¬Ó¦´ğ±êÖ¾            
+Description:æ‰“åŒ…åŒ…å¤´
+Input:æ¨¡å—åœ°å€ï¼Œå‘½ä»¤å­—ï¼Œåº”ç­”æ ‡å¿—            
 Output:void         
 Return:void         
 **************************************************************/
@@ -3210,8 +3210,8 @@ void PcPacketTransHead(UCHAR8 type,UCHAR8 ver,UCHAR8 device,UCHAR8 address,UCHAR
 
 /*************************************************************
 Name:PcPacketTransHead          
-Description:´ò°ü°üÍ·
-Input:Ä£¿éµØÖ·£¬ÃüÁî×Ö£¬Ó¦´ğ±êÖ¾            
+Description:æ‰“åŒ…åŒ…å¤´
+Input:æ¨¡å—åœ°å€ï¼Œå‘½ä»¤å­—ï¼Œåº”ç­”æ ‡å¿—            
 Output:void         
 Return:void         
 **************************************************************/
@@ -3233,10 +3233,10 @@ void PcPacketTransHead(UCHAR8 *tx_buffer)
 //#if 0
 /*************************************************************
 Name:UartReceHandleSetFtPara          
-Description:ÉèÖÃÊÕ·¢Æ÷³õÊ¼»¯ĞòÁĞ
-Input:Êı¾İÖ¸Õë£¬Êı¾İ³¤¶È            
+Description:è®¾ç½®æ”¶å‘å™¨åˆå§‹åŒ–åºåˆ—
+Input:æ•°æ®æŒ‡é’ˆï¼Œæ•°æ®é•¿åº¦            
 Output:void         
-Return:1:³É¹¦£¬0:Ê§°Ü        
+Return:1:æˆåŠŸï¼Œ0:å¤±è´¥        
 **************************************************************/
 CHAR8 UartReceHandleSetFtPara(UCHAR8 *data,UINT16 data_len)
 {
@@ -3249,11 +3249,11 @@ CHAR8 UartReceHandleSetFtPara(UCHAR8 *data,UINT16 data_len)
 	UCHAR8 * p_packet_head;
 	data+=MSG_CMD_BODY;
 	ft_ab = data[3];				//A,B
-	current_p = data[4];			//µ±Ç°°üÊı
-	total_p = data[5];				//×Ü°üÊı
-	cmd_cnt = (data[6]<<8)|data[7];	//°üÖĞ°üº¬µÄÃüÁî¸öÊı
+	current_p = data[4];			//å½“å‰åŒ…æ•°
+	total_p = data[5];				//æ€»åŒ…æ•°
+	cmd_cnt = (data[6]<<8)|data[7];	//åŒ…ä¸­åŒ…å«çš„å‘½ä»¤ä¸ªæ•°
 
-	PKTlen =( data[4]<<8)|data[5];	//×Ü°üÊı
+	PKTlen =( data[4]<<8)|data[5];	//æ€»åŒ…æ•°
 	TRACE_INFO("@@@@@PKTlen=[%d],cmd_cnt=%d\r\n",PKTlen,cmd_cnt);
 
 
@@ -3296,24 +3296,24 @@ CHAR8 UartReceHandleSetFtPara(UCHAR8 *data,UINT16 data_len)
 
 
 	
-	//Ó¦´ğ°ü
+	//åº”ç­”åŒ…
 //	PcPacketTransHead(0xdf,0x01,0x01,0x01,0xab,0x00);
-	* tx_p++ = data[0];		//±í¸ñÀàĞÍ 9363
+	* tx_p++ = data[0];		//è¡¨æ ¼ç±»å‹ 9363
 	TRACE_INFO("9363_TYPE[%02X]\r\n",data[0]);
-	tx_p+=2;			//±£Áô¿Õ¼ä´æ´¢·µ»Ø°üµÄÊı¾İ³¤¶È
+	tx_p+=2;			//ä¿ç•™ç©ºé—´å­˜å‚¨è¿”å›åŒ…çš„æ•°æ®é•¿åº¦
 	* tx_p++ = data[3];	//A,B
-	* tx_p++ = data[4];	//µ±Ç°°üÊı
-	* tx_p++ = data[5];	//×Ü°üÊı
-	* tx_p++ = data[6];	//°üÖĞ°üº¬µÄÃüÁî¸öÊı
-	* tx_p++ = data[7];	//°üÖĞ°üº¬µÄÃüÁî¸öÊı
+	* tx_p++ = data[4];	//å½“å‰åŒ…æ•°
+	* tx_p++ = data[5];	//æ€»åŒ…æ•°
+	* tx_p++ = data[6];	//åŒ…ä¸­åŒ…å«çš„å‘½ä»¤ä¸ªæ•°
+	* tx_p++ = data[7];	//åŒ…ä¸­åŒ…å«çš„å‘½ä»¤ä¸ªæ•°
 
 
 	
 	data += 8;	
-	pc_trans_info.tx_len += 8;//8¸ö×Ö½ÚÍ·:1¸ö×Ö½Ú±í¸ñÀàĞÍ--9363£¬ 2×Ö½Ú·µ»Ø°üÊı¾İ³¤¶È£¬1×Ö½ÚA,B±êÖ¾£¬1×Ö½Úµ±Ç°°üÊı£¬1×Ö½Ú×Ü°üÊı£¬2×Ö½Ú°üÖĞ°üº¬µÄÃüÁî¸öÊı£¬
+	pc_trans_info.tx_len += 8;//8ä¸ªå­—èŠ‚å¤´:1ä¸ªå­—èŠ‚è¡¨æ ¼ç±»å‹--9363ï¼Œ 2å­—èŠ‚è¿”å›åŒ…æ•°æ®é•¿åº¦ï¼Œ1å­—èŠ‚A,Bæ ‡å¿—ï¼Œ1å­—èŠ‚å½“å‰åŒ…æ•°ï¼Œ1å­—èŠ‚æ€»åŒ…æ•°ï¼Œ2å­—èŠ‚åŒ…ä¸­åŒ…å«çš„å‘½ä»¤ä¸ªæ•°ï¼Œ
 
 	TRACE_DEBUG("from_pc:cmd_cnt[%d]=[%04x],data[0]=[%02x],data[1]=[%02x],data[2]=[%02x]\r\n\r\n",current_p,cmd_cnt,data[0],data[1],data[2]);	
-	//Ö´ĞĞÃüÁî
+	//æ‰§è¡Œå‘½ä»¤
 	for (i=0; i<cmd_cnt; i++)
 	{
 		WTD_CLR;
@@ -3398,7 +3398,7 @@ CHAR8 UartReceHandleSetFtPara(UCHAR8 *data,UINT16 data_len)
 					UsNopDelay(1);
 					if(0==k%1000)
 						WTD_CLR;
-					//µÈ´ıMCU¶ÁĞ´SPIÖ¸Ê¾ĞÅºÅÏĞ
+					//ç­‰å¾…MCUè¯»å†™SPIæŒ‡ç¤ºä¿¡å·é—²
 					if(0x01==(0x01&(FpgaReadRegister(0x7a)>>15))	)
 					{
 						continue;
@@ -3408,7 +3408,7 @@ CHAR8 UartReceHandleSetFtPara(UCHAR8 *data,UINT16 data_len)
 
 					if((k<10000)&&(TF_C==ft_ab)&&(AD9369)&&(	0x00==(0x01&(FpgaReadRegister(0x7a)>>14)))	)
 					{
-						//ÇĞ»»³ÉFPGA ROM SPIÄ£Ê½
+						//åˆ‡æ¢æˆFPGA ROM SPIæ¨¡å¼
 						mcuFpgaSpiStaus=FpgaReadRegister(0x8000|0x7b);
 						mcuFpgaSpiStaus&=0x3fff;
 						mcuFpgaSpiStaus|=(0x02<<14);
@@ -3416,7 +3416,7 @@ CHAR8 UartReceHandleSetFtPara(UCHAR8 *data,UINT16 data_len)
 						FPGA_ENABLE_WRITE;
 						FpgaWriteRegister(0x8000|0x7b,mcuFpgaSpiStaus);
 						FPGA_DISABLE_WRITE;
-						//FPGA SPI Êı¾İÊ¹ÄÜ
+						//FPGA SPI æ•°æ®ä½¿èƒ½
 						mcuFpgaSpiStaus=FpgaReadRegister(0x8000|0x7b);
 						mcuFpgaSpiStaus&=0xdfff;
 						mcuFpgaSpiStaus|=(0x1<<13);
@@ -3424,7 +3424,7 @@ CHAR8 UartReceHandleSetFtPara(UCHAR8 *data,UINT16 data_len)
 						FPGA_ENABLE_WRITE;
 						FpgaWriteRegister(0x8000|0x7b,mcuFpgaSpiStaus);
 						FPGA_DISABLE_WRITE; 
-						//µÈ´ıFPGA ROM Ğ´SPI Êı¾İÍê³É
+						//ç­‰å¾…FPGA ROM å†™SPI æ•°æ®å®Œæˆ
 						j=0;
 						while((j<5000)&&(0x00==(0x01&(FpgaReadRegister(0x7a)>>14))	))
 						{
@@ -3433,7 +3433,7 @@ CHAR8 UartReceHandleSetFtPara(UCHAR8 *data,UINT16 data_len)
 							WTD_CLR;
 						}
 						
-						//µÈ´ıMCU¶ÁĞ´SPIÖ¸Ê¾ĞÅºÅÏĞ
+						//ç­‰å¾…MCUè¯»å†™SPIæŒ‡ç¤ºä¿¡å·é—²
 						j=0;
 						while((j<5000)&&(0x01==(0x01&(FpgaReadRegister(0x7a)>>15))	))
 						{
@@ -3442,7 +3442,7 @@ CHAR8 UartReceHandleSetFtPara(UCHAR8 *data,UINT16 data_len)
 							WTD_CLR;
 						}
 
-						//ÇĞ»»³ÉMCUÄ£Äâ¿ØSPI
+						//åˆ‡æ¢æˆMCUæ¨¡æ‹Ÿæ§SPI
 						mcuFpgaSpiStaus=FpgaReadRegister(0x8000|0x7b);
 						mcuFpgaSpiStaus &= (~((1<<14)|(1<<15)));
 						TRACE_INFO("3FpgaWriteRegister(0x8000|0x7b,mcuFpgaSpiStaus):%x\r\n",mcuFpgaSpiStaus);
@@ -3455,9 +3455,9 @@ CHAR8 UartReceHandleSetFtPara(UCHAR8 *data,UINT16 data_len)
 				break;
 			#endif	
 			default:
-				//´íÎóÃüÁî				
+				//é”™è¯¯å‘½ä»¤				
 		//		PcPacketTransHead(0xdf,0x01,0x01,0x01,0xab,0x01);
-				TRACE_INFO("9363_´íÎóÃüÁî\r\n");
+				TRACE_INFO("9363_é”™è¯¯å‘½ä»¤\r\n");
 				* tx_p++ = 0;
 				pc_trans_info.tx_len++;
 		
@@ -3466,9 +3466,9 @@ CHAR8 UartReceHandleSetFtPara(UCHAR8 *data,UINT16 data_len)
 		}
 	}
 
-	//±£´æÊı¾İPKTlen
-	SaveInitData(ft_ab,current_p,total_p,p_packet_head,data_len-6-MSG_CMD_BODY);//data_len-6-MSG_CMD_BODY Îª×Ü°ü¸öÊıÖ®ºóµÄÊı¾İ ³¤¶È²»³¬¹ı1005-2×Ö½Ú
-	//SaveInitData(ft_ab,PKTlen,total_p,p_packet_head,data_len-6-MSG_CMD_BODY);//data_len-6-MSG_CMD_BODY Îª×Ü°ü¸öÊıÖ®ºóµÄÊı¾İ ³¤¶È²»³¬¹ı1005-2×Ö½
+	//ä¿å­˜æ•°æ®PKTlen
+	SaveInitData(ft_ab,current_p,total_p,p_packet_head,data_len-6-MSG_CMD_BODY);//data_len-6-MSG_CMD_BODY ä¸ºæ€»åŒ…ä¸ªæ•°ä¹‹åçš„æ•°æ® é•¿åº¦ä¸è¶…è¿‡1005-2å­—èŠ‚
+	//SaveInitData(ft_ab,PKTlen,total_p,p_packet_head,data_len-6-MSG_CMD_BODY);//data_len-6-MSG_CMD_BODY ä¸ºæ€»åŒ…ä¸ªæ•°ä¹‹åçš„æ•°æ® é•¿åº¦ä¸è¶…è¿‡1005-2å­—?
 out:
 	result_len = pc_trans_info.tx_len-MSG_CMD_BODY;
 	pc_trans_info.tx_buffer[MSG_CMD_BODY+1] = result_len;
@@ -3482,7 +3482,7 @@ out:
 
 	//PcStartTrans();
 	SendMsgPkt( pc_trans_info.tx_len,pc_trans_info.tx_buffer );
-	//Ğ´ÈëFLASH
+	//å†™å…¥FLASH
 	
 	return 1;	
 	

@@ -1,8 +1,8 @@
-/***************************************************************
+ï»¿/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :spi.h
-* Description :SPI´¦Àíº¯Êı
+* Description :SPIå¤„ç†å‡½æ•°
 * Version     :v0.1
 * Author      :shiyang
 * Date        :2008-01-29
@@ -10,7 +10,7 @@
 * History     :
 *
 * <author>    <time>    	<version>    <desc>
-*shiyang		2008-01-29	v0.1			³õÊ¼°æ±¾
+*shiyang		2008-01-29	v0.1			åˆå§‹ç‰ˆæœ¬
 **************************************************************/
 #ifndef _SPI_H
 #define _SPI_H
@@ -22,31 +22,31 @@
 #define FLASH_BYTES_PER_SECTOR			4096	// 256 BYTE PER PAGE   4KB PER SECTOR
 
 
-#define FLASH_PAGE_SIZE		flash_page_size		// FlashÒ³´óĞ¡
-#define FLASH_TYPE			flash_type			// FlashÀàĞÍ
-#define FLASH_PARR1			flash_parr1			// FlashÀàĞÍ
-#define FLASH_PAGE_SIZE_528		528		// FlashÒ³´óĞ¡
-#define FLASH_PAGE_SIZE_1056		1056		// FlashÒ³´óĞ¡
+#define FLASH_PAGE_SIZE		flash_page_size		// Flashé¡µå¤§å°
+#define FLASH_TYPE			flash_type			// Flashç±»å‹
+#define FLASH_PARR1			flash_parr1			// Flashç±»å‹
+#define FLASH_PAGE_SIZE_528		528		// Flashé¡µå¤§å°
+#define FLASH_PAGE_SIZE_1056		1056		// Flashé¡µå¤§å°
 
-#define FLASH_PAGE_SIZE_264		264		// FlashÒ³´óĞ¡
+#define FLASH_PAGE_SIZE_264		264		// Flashé¡µå¤§å°
 
 #ifdef FPGA_ACDU_16M_FLASH
-#define FLASH_PAGE_SIZE_256		256		// FlashÒ³´óĞ¡
+#define FLASH_PAGE_SIZE_256		256		// Flashé¡µå¤§å°
 #else
-#define FLASH_PAGE_SIZE_256		256		// FlashÒ³´óĞ¡
+#define FLASH_PAGE_SIZE_256		256		// Flashé¡µå¤§å°
 #endif
 
-#define FLASH_TYPE0		0		// FlashÀàĞÍ0 atmel 528 byte per page
-#define FLASH_TYPE1		1		// FlashÀàĞÍ1 atmel 1056 byte per page
-#define FLASH_TYPE2		2		// FlashÀàĞÍ2 atmel 264 byte per page
-#define FLASH_TYPE3		3		// FlashÀàĞÍ3 winbond 256 byte per page
-#define FLASH_ID0		0x1f270100		// FlashÀàĞÍ0 atmel 528 byte per page
-#define FLASH_ID1		0x1f280000		// FlashÀàĞÍ0 atmel 1056 byte per page
-#define FLASH_ID2		0x1f280001		// FlashÀàĞÍ0 atmel 264 byte per page
-#define FLASH_ID3		0xEF401800		// FlashÀàĞÍ0 winbond 256 byte per page
+#define FLASH_TYPE0		0		// Flashç±»å‹0 atmel 528 byte per page
+#define FLASH_TYPE1		1		// Flashç±»å‹1 atmel 1056 byte per page
+#define FLASH_TYPE2		2		// Flashç±»å‹2 atmel 264 byte per page
+#define FLASH_TYPE3		3		// Flashç±»å‹3 winbond 256 byte per page
+#define FLASH_ID0		0x1f270100		// Flashç±»å‹0 atmel 528 byte per page
+#define FLASH_ID1		0x1f280000		// Flashç±»å‹0 atmel 1056 byte per page
+#define FLASH_ID2		0x1f280001		// Flashç±»å‹0 atmel 264 byte per page
+#define FLASH_ID3		0xEF401800		// Flashç±»å‹0 winbond 256 byte per page
 
 
-#define FLASH_PAGE_COUNT	65536// Flash×ÜÒ³Êı
+#define FLASH_PAGE_COUNT	65536// Flashæ€»é¡µæ•°
 #define FLASH_PAGE_NUM_PER_SECTOR		16	// 256 BYTE PER PAGE   4KB PER SECTOR
 #define FLASH_SECTOR_SIZE		4096	// 256 BYTE PER PAGE   4KB PER SECTOR
 
@@ -57,7 +57,7 @@
 
 
 
-/*************************»ª°î*/
+/*************************åé‚¦*/
 
 
 #if 0
@@ -90,26 +90,26 @@
 #define FLASH_MCU_END			(30800-1)	
 #endif
 
-// ÏµÍ³²ÎÊı´æ´¢Çø1
+// ç³»ç»Ÿå‚æ•°å­˜å‚¨åŒº1
 #define FLASH_PARAM_1B_PAGE		35408		// 4k,16Page
 #define FLASH_PARAM_2B_PAGE		35424		// 4k,16Page
 #define FLASH_PARAM_4B_PAGE		35440		// 4k,16Page
 #define FLASH_PARAM_ASC_PAGE		35456		// 4k,16Page
 
-// ÏµÍ³²ÎÊı´æ´¢Çø2
+// ç³»ç»Ÿå‚æ•°å­˜å‚¨åŒº2
 #define FLASH_PARAM_1B_PAGE_EX		35472	// 4k,16Page
 #define FLASH_PARAM_2B_PAGE_EX		35488	// 4k,16Page
 #define FLASH_PARAM_4B_PAGE_EX		35504	// 4k,16Page
 #define FLASH_PARAM_ASC_PAGE_EX		35520	// 4k,16Page
 
-#define FLASH_A_DL_ATT_ADJ_TBL_PAGE		35536	// 4k,16Page //ÏÂĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ 
-#define FLASH_A_UL_ATT_ADJ_TBL_PAGE		35552	// 4k,16Page //ÉÏĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ
-#define FLASH_B_DL_ATT_ADJ_TBL_PAGE		35568	// 4k,16Page //ÏÂĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ
-#define FLASH_B_UL_ATT_ADJ_TBL_PAGE		35584	// 4k,16Page //ÉÏĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ
-#define FLASH_C_DL_ATT_ADJ_TBL_PAGE		35600	// 4k,16Page //ÏÂĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ 
-#define FLASH_C_UL_ATT_ADJ_TBL_PAGE		35616	// 4k,16Page //ÉÏĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ
-#define FLASH_D_DL_ATT_ADJ_TBL_PAGE		35632	// 4k,16Page //ÏÂĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ
-#define FLASH_D_UL_ATT_ADJ_TBL_PAGE		35648	// 4k,16Page //ÉÏĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ
+#define FLASH_A_DL_ATT_ADJ_TBL_PAGE		35536	// 4k,16Page //ä¸‹è¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼ 
+#define FLASH_A_UL_ATT_ADJ_TBL_PAGE		35552	// 4k,16Page //ä¸Šè¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼
+#define FLASH_B_DL_ATT_ADJ_TBL_PAGE		35568	// 4k,16Page //ä¸‹è¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼
+#define FLASH_B_UL_ATT_ADJ_TBL_PAGE		35584	// 4k,16Page //ä¸Šè¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼
+#define FLASH_C_DL_ATT_ADJ_TBL_PAGE		35600	// 4k,16Page //ä¸‹è¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼ 
+#define FLASH_C_UL_ATT_ADJ_TBL_PAGE		35616	// 4k,16Page //ä¸Šè¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼
+#define FLASH_D_DL_ATT_ADJ_TBL_PAGE		35632	// 4k,16Page //ä¸‹è¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼
+#define FLASH_D_UL_ATT_ADJ_TBL_PAGE		35648	// 4k,16Page //ä¸Šè¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼
 
 
 #define FLASH_A_TS_PAGE_START		(35664+15)	// 40K,160page
@@ -134,8 +134,8 @@
 #define FLASH_FPGA_PAGE_START1		(0*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE	))
 #define FLASH_FPGA_PAGE_START2 		((3700+flash_parr2*(8192-3700))*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE	))
 
-#define FLASH_FPGA_PAGE_COUNT		((3700+flash_parr2*(8192-3700))*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE	)	)	// FPGA³ÌĞò¿éÊıÁ¿
-//#define FLASH_FPGA_SECTOR_COUNT		(3700+flash_parr2*(8192-3700))/4		// FPGA³ÌĞò¿éÊıÁ¿
+#define FLASH_FPGA_PAGE_COUNT		((3700+flash_parr2*(8192-3700))*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE	)	)	// FPGAç¨‹åºå—æ•°é‡
+//#define FLASH_FPGA_SECTOR_COUNT		(3700+flash_parr2*(8192-3700))/4		// FPGAç¨‹åºå—æ•°é‡
 
 #define FLASH_MCU_SW_INFO_PAGE		7548
 #define FLASH_MCU_SW_START_PAGE		(7549*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))
@@ -143,14 +143,14 @@
 
 //#define FIRMWARE_START_ADDR			(32*1024+0x100000)	//16K
 
-#define FLASH_A_DL_ATT_ADJ_TBL_PAGE		((8042+2*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ÏÂĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ
-#define FLASH_A_UL_ATT_ADJ_TBL_PAGE		((8044+4*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ÉÏĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ
-#define FLASH_B_DL_ATT_ADJ_TBL_PAGE		((8046+6*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ÏÂĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ
-#define FLASH_B_UL_ATT_ADJ_TBL_PAGE		((8048+8*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ÉÏĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ
-#define FLASH_C_DL_ATT_ADJ_TBL_PAGE		((8050+10*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ÏÂĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ
-#define FLASH_C_UL_ATT_ADJ_TBL_PAGE		((8052+12*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ÉÏĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ
-#define FLASH_D_DL_ATT_ADJ_TBL_PAGE		((8054+14*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ÏÂĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ
-#define FLASH_D_UL_ATT_ADJ_TBL_PAGE		((8056+16*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ÉÏĞĞË¥¼õÆ÷Ğ£×¼±í¸ñ
+#define FLASH_A_DL_ATT_ADJ_TBL_PAGE		((8042+2*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ä¸‹è¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼
+#define FLASH_A_UL_ATT_ADJ_TBL_PAGE		((8044+4*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ä¸Šè¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼
+#define FLASH_B_DL_ATT_ADJ_TBL_PAGE		((8046+6*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ä¸‹è¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼
+#define FLASH_B_UL_ATT_ADJ_TBL_PAGE		((8048+8*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ä¸Šè¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼
+#define FLASH_C_DL_ATT_ADJ_TBL_PAGE		((8050+10*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ä¸‹è¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼
+#define FLASH_C_UL_ATT_ADJ_TBL_PAGE		((8052+12*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ä¸Šè¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼
+#define FLASH_D_DL_ATT_ADJ_TBL_PAGE		((8054+14*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ä¸‹è¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼
+#define FLASH_D_UL_ATT_ADJ_TBL_PAGE		((8056+16*flash_parr1)*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))	//ä¸Šè¡Œè¡°å‡å™¨æ ¡å‡†è¡¨æ ¼
 #define FLASH_A_TS_BLOCK		8104/8	////1013 BLOCK(8104--8111 8 pages)
 #define FLASH_B_TS_BLOCK		8120/8	////1014 BLOCK(8120--8119 8 pages)
 #ifdef     AD9369	
@@ -173,17 +173,17 @@
 
 #define FLASH_TS_INIT_MAX_STEP		1	//
 
-// ÏµÍ³²ÎÊı´æ´¢Çø1
+// ç³»ç»Ÿå‚æ•°å­˜å‚¨åŒº1
 #define FLASH_PARAM_1B_PAGE		(8000*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))
 #define FLASH_PARAM_2B_PAGE		(8004*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))
 #define FLASH_PARAM_4B_PAGE		(8008*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))
-#define FLASH_PARAM_ASC_PAGE	(8012*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))			//»ù±¾²ÎÊıÖĞµÄASCII
+#define FLASH_PARAM_ASC_PAGE	(8012*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))			//åŸºæœ¬å‚æ•°ä¸­çš„ASCII
 
-// ÏµÍ³²ÎÊı´æ´¢Çø2
+// ç³»ç»Ÿå‚æ•°å­˜å‚¨åŒº2
 #define FLASH_PARAM_1B_PAGE_EX		(8020*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))
 #define FLASH_PARAM_2B_PAGE_EX		(8024*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))
 #define FLASH_PARAM_4B_PAGE_EX		(8028*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))
-#define FLASH_PARAM_ASC_PAGE_EX		(8032*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))			//»ù±¾²ÎÊıÖĞµÄASCII
+#define FLASH_PARAM_ASC_PAGE_EX		(8032*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))			//åŸºæœ¬å‚æ•°ä¸­çš„ASCII
 
 #define FLASH_TOPO_PAGE			(8016*(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE))
 
@@ -191,10 +191,10 @@
 /*********************end*****************************/
 
 
-#define FLASH_PAGE_INFO_OK			    0x00	// flash ĞÅÏ¢ÕıÈ·
-#define FLASH_PAGE_INFO_ERROR			0xFF	// flash ĞÅÏ¢´íÎó
+#define FLASH_PAGE_INFO_OK			    0x00	// flash ä¿¡æ¯æ­£ç¡®
+#define FLASH_PAGE_INFO_ERROR			0xFF	// flash ä¿¡æ¯é”™è¯¯
 
-/***********************************AD9524¼Ä´æÆ÷µØÖ·**************************************/
+/***********************************AD9524å¯„å­˜å™¨åœ°å€**************************************/
 #define AD9524_ADD_PORT_CONF			0x00
 
 #define AD9524_ADD_READ_CON			    0x04
@@ -260,7 +260,7 @@
 
 
 
-/***************************************** HMC830¼Ä´æÆ÷**********************************************************/
+/***************************************** HMC830å¯„å­˜å™¨**********************************************************/
 #define HMC830_ID_00								0x00
 #define HMC830_RST_01								0x01
 #define HMC830_REFDIV_02							0x02
