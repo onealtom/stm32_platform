@@ -27,7 +27,7 @@
 *.opj
 *.uvopt
 *.bin
-
+*.uvgui.*
 *.a
 *.bz2
 *.c.[012]*.*
