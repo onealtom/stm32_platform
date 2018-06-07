@@ -22,7 +22,7 @@ int prompt_hello(int argc, char * argv[])
 
 	printf("hello prompt cli \r\n");
 	
-	//ad936x_init_main();
+	ad936x_init_main();
 	while ((c = getopt(argc, argv, "d:c:h")) != EOF){
 
 		switch ( c )

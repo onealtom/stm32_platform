@@ -1789,7 +1789,7 @@ void MsgHandleAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
 			if ( (p_msg_dat[MSG_SRC_FP]==re_trans_fp) && (p_msg_dat[MSG_SRC_RE]==re_trans_node)&& (p_msg_dat[MSG_SRC_REE]==re_trans_rf)  )
 			{
 				// 发送485数据包，跳过前两个字节的子命令字和AB段标志
-				UartReTransHandleAckMsg( p_msg_dat[MSG_ACK_FLAG], (p_msg_dat+MSG_CMD_BODY+2), (msg_length-MSG_PKT_HEAD_SIZE-2) );
+				////UartReTransHandleAckMsg( p_msg_dat[MSG_ACK_FLAG], (p_msg_dat+MSG_CMD_BODY+2), (msg_length-MSG_PKT_HEAD_SIZE-2) );
 				return;
 			} 
 		}

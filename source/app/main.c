@@ -199,7 +199,7 @@ void main()
 			// 处理485数据包
 			//TRACE_INFO("Handle 485\r\n");	
 			printf("Handle 485\r\n");	
-			UartReceHandle();
+			////UartReceHandle();
 			sys_work_info &= (~SYSTEM_FLAG_232_RECE);
 			WTD_CLR;	
 		}         

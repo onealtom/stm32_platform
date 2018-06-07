@@ -561,11 +561,6 @@
               <FilePath>..\source\cli\getopt.c</FilePath>
             </File>
             <File>
-              <FileName>uart_app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\uart_app.c</FilePath>
-            </File>
-            <File>
               <FileName>rec_app.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\app\rec_app.c</FilePath>
@@ -574,6 +569,11 @@
               <FileName>param_dat.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\app\param_dat.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart_app.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\uart_app.c</FilePath>
             </File>
           </Files>
         </Group>

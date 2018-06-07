@@ -1,4 +1,4 @@
-﻿/******************** (C) COPYRIGHT 2010 STMicroelectronics ********************
+/******************** (C) COPYRIGHT 2010 STMicroelectronics ********************
 * File Name          : stm32f10x_it.c
 * Author             : MCD Application Team
 * Version            : V3.2.1
@@ -189,45 +189,7 @@ void USB_LP_CAN1_RX0_IRQHandler(void)
   USB_Istr();
 }
 #endif /* STM32F10X_CL */
-#if 0
-/*******************************************************************************
-* Function Name  : USART1_IRQHandler
-* Description    : This function handles USART1 global interrupt request.
-* Input          : None
-* Output         : None
-* Return         : None
-*******************************************************************************/
-void USART1_IRQHandler(void)
-{
-	UINT16 tmp;
 
-	if (USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)
-	{
-		ThrUartIsrRxDat((UCHAR8)USART_ReceiveData(USART1));
-		USART_ClearITPendingBit(USART1, USART_IT_RXNE);
-	}
-
-	if (USART_GetITStatus(USART1, USART_IT_TXE) != RESET)
-	{
-		USART_ClearITPendingBit(USART1, USART_IT_TXE);
-		ThrUartIsrTxReady();
-	}
-
-	if (USART_GetITStatus(USART1, USART_IT_TC) != RESET)
-	{
-		USART_ClearITPendingBit(USART1, USART_IT_TC);
-		ThrUartIsrTxComplete();
-	}
-
-	if (USART_GetFlagStatus(USART1, USART_FLAG_ORE) != RESET)
-	{
-		tmp = USART1->SR;
-		tmp = USART1->DR;
-		uart_thr_ore_count++;
-	}
-
-}
-#else
 /*******************************************************************************
 * Function Name  : USART2_IRQHandler
 * Description    : This function handles USART2 global interrupt request.
@@ -238,40 +200,8 @@ void USART1_IRQHandler(void)
 void USART1_IRQHandler(void)
 {
 	UINT16 tmp;
-#if	0
-	if (USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)
-	{
-		/* Send the received data to the PC Host*/
-//		UartReceInterrupt((UCHAR8)USART_ReceiveData(USART1));
-		ThrUartIsrRxDat((UCHAR8)USART_ReceiveData(USART1));
-		
-		USART_ClearITPendingBit(USART1, USART_IT_RXNE);
-	}
-
-	/* If overrun condition occurs, clear the ORE flag and recover communication */  
-	if (USART_GetITStatus(USART1, USART_IT_TXE) != RESET)
-	{
-//		UartTransInterrupt();
-
-		USART_ClearITPendingBit(USART1, USART_IT_TXE);
-		ThrUartIsrTxReady();
-	}
-	if (USART_GetITStatus(USART1, USART_IT_TC) != RESET)
-	{
-		USART_ClearITPendingBit(USART1, USART_IT_TC);
-		ThrUartIsrTxComplete();
-	}
-
-	if (USART_GetFlagStatus(USART1, USART_FLAG_ORE) != RESET)
-	{
-//printf("ov");
-		tmp = USART1->SR;
-		tmp = USART1->DR;
-		uart_thr_ore_count++;
-	}
-#endif
 }
-#endif
+
 
 /*******************************************************************************
 * Function Name  : USART2_IRQHandler
@@ -287,14 +217,14 @@ void USART2_IRQHandler(void)
 	if (USART_GetITStatus(COM_CONTROL, USART_IT_RXNE) != RESET)
 	{
 		/* Send the received data to the PC Host*/
-		UartReceInterrupt((UCHAR8)USART_ReceiveData(COM_CONTROL));
+		////UartReceInterrupt((UCHAR8)USART_ReceiveData(COM_CONTROL));
 		USART_ClearITPendingBit(COM_CONTROL, USART_IT_RXNE);
 	}
 
 	/* If overrun condition occurs, clear the ORE flag and recover communication */  
 	if (USART_GetITStatus(COM_CONTROL, USART_IT_TXE) != RESET)
 	{
-		UartTransInterrupt();
+		////UartTransInterrupt();
 		USART_ClearITPendingBit(COM_CONTROL, USART_IT_TXE);
 	}
 

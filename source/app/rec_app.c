@@ -1165,120 +1165,6 @@ Return: void
 **************************************************************/
 void SysBroadcastReFcA( void )
 {
-#if ( defined(FUNC_FREQ_POINT_SEARCH_EN) && defined(FUNC_FPS_AUTO_SET) )	// 启用频点搜索，且自动设置频点
-	UCHAR8 * p_msg = sys_temp_buff;
-	UINT32 tx_len;
-	UINT16 tmp;
-	UINT32 i;
-	UINT16 addr_base;
-
-	if ( 0!=(sys_work_info&SYSTEM_FLAG_ATT_ADJ) )		// 处于校准状态，不设置RE参数
-	{
-		return;
-	}
-		
-	if ((total_re_count == 0 )||( total_re_count>(FP_MAX*RE_MAX)))
-	{
-		return;
-	}
-	
-	TRACE_INFO("Set Re Fc ParamA\r\n");
-
-	p_msg[MSG_DES_FP] = BROADCAST_ADD_FP;
-	p_msg[MSG_DES_RE] = BROADCAST_ADD_RE;
-	p_msg[MSG_DES_REE] =0;
-	p_msg[MSG_SRC_FP] = LOCAL_ADD_FP;
-	p_msg[MSG_SRC_RE] = LOCAL_ADD_RE;
-	p_msg[MSG_SRC_REE] =0;
-	p_msg[MSG_CMD_ID] = MSG_CMD_SET_PARAM;
-	p_msg[MSG_ACK_FLAG] = MSG_ACK_MASTER_SEND;
-	tx_len = MSG_PKT_HEAD_SIZE;
-
-	for ( i=0; i<MAX_CHANNEL_COUNT; i++)
-	{
-		tmp = MADD_A_DL_CHANNEL1+i;
-		p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
-		p_msg[tx_len++] = 2;
-		p_msg[tx_len++] = (UCHAR8)(sys_param_2b[tmp].val&0xFF);	
-		p_msg[tx_len++] = (UCHAR8)(sys_param_2b[tmp].val>>8);	
-	}
-	
-	for ( i=0; i<MAX_CHANNEL_COUNT; i++)
-	{
-		tmp = MADD_A_DCH_EN1+i;
-		p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
-		p_msg[tx_len++] = 1;
-		p_msg[tx_len++] = sys_param_1b[tmp].val;	
-	}
-
-#if 1 //( ( B_NETWORK_TYPE==NET_DIVE ) ||( B_NETWORK_TYPE==NET_TYPE_GSM900 ) || ( B_NETWORK_TYPE==NET_TYPE_DCS1800 ) || ( B_NETWORK_TYPE==NET_TYPE_WCDMA2100) ) 
-
-	for ( i=0; i<MAX_CHANNEL_COUNT; i++)
-	{
-		tmp = MADD_B_DL_CHANNEL1+i;
-		p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
-		p_msg[tx_len++] = 2;
-		p_msg[tx_len++] = (UCHAR8)(sys_param_2b[tmp].val&0xFF);	
-		p_msg[tx_len++] = (UCHAR8)(sys_param_2b[tmp].val>>8);	
-	}
-	
-	for ( i=0; i<MAX_CHANNEL_COUNT; i++)
-	{
-		tmp = MADD_B_DCH_EN1+i;
-		p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
-		p_msg[tx_len++] = 1;
-		p_msg[tx_len++] = sys_param_1b[tmp].val;	
-	}
-	
-#endif
-
-	for ( i=0; i<MAX_CHANNEL_COUNT-6; i++)
-	{
-		tmp = MADD_C_DL_CHANNEL1+i;
-		p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
-		p_msg[tx_len++] = 2;
-		p_msg[tx_len++] = (UCHAR8)(sys_param_2b[tmp].val&0xFF);	
-		p_msg[tx_len++] = (UCHAR8)(sys_param_2b[tmp].val>>8);	
-	}
-	
-	for ( i=0; i<MAX_CHANNEL_COUNT-6; i++)
-	{
-		tmp = MADD_C_DCH_EN1+i;
-		p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
-		p_msg[tx_len++] = 1;
-		p_msg[tx_len++] = sys_param_1b[tmp].val;	
-	}
-
-
-	for ( i=0; i<MAX_CHANNEL_COUNT-6; i++)
-	{
-		tmp = MADD_D_DL_CHANNEL1+i;
-		p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
-		p_msg[tx_len++] = 2;
-		p_msg[tx_len++] = (UCHAR8)(sys_param_2b[tmp].val&0xFF);	
-		p_msg[tx_len++] = (UCHAR8)(sys_param_2b[tmp].val>>8);	
-	}
-	
-	for ( i=0; i<MAX_CHANNEL_COUNT-6; i++)
-	{
-		tmp = MADD_D_DCH_EN1+i;
-		p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
-		p_msg[tx_len++] = 1;
-		p_msg[tx_len++] = sys_param_1b[tmp].val;	
-	}
-	
-
-	SendMsgPkt(tx_len, p_msg);
-#endif	
-
 }
 
 /*************************************************************
@@ -2037,9 +1923,7 @@ void GetPsfFromRe( UCHAR8 ab_flag, UCHAR8 ud_flag )
 			reg_psf_l = FPGA_REG_RE_B_DPSF_L;		// 下行选频通道功率低16位
 			reg_psf_h = FPGA_REG_RE_B_DPSF_H;		// 下行选频通道功率高16位
 		}
-		#if ( defined(FUNC_FREQ_POINT_SEARCH_EN) && defined(FUNC_FPS_AUTO_SET) && defined(FUNC_FPS_AVG_FP) )	// 启用频点搜索，且自动平均设置频点
-			ch = 8;		// B段上下行采用通道8校准
-		#endif
+
 
 		switch(fpga_cfg.b_net_type)
 		{

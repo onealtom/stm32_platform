@@ -44,7 +44,7 @@ __initial_spTop EQU    0x20000C00                 ; stack used for SystemInit_Ex
 ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ; </h>
 
-Heap_Size       EQU     0x00000000
+Heap_Size       EQU     0x00001000
 
                 AREA    HEAP, NOINIT, READWRITE, ALIGN=3
 __heap_base
