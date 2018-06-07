@@ -20,7 +20,7 @@ extern _T_PARAM_4B  sys_param_4b[];
 extern _T_PARAM_ASC sys_param_asc[];
 extern UCHAR8 usbBuffer[DATABUFFERSIZE];
 extern UCHAR8 str_pri_mcu_date[];
-extern UINT32 module_param_chg_flag;		//系统工作参数修改标志
+//extern UINT32 module_param_chg_flag;		//系统工作参数修改标志
 extern UINT32 fpga_load_status;
 extern _T_FP_INFO fp_inf[FP_MAX];
 UCHAR8 * p_mcu_date; 
@@ -242,7 +242,7 @@ void main()
 
 #if 1		
 			// 获取输入和输出功率
-			FpgaGetDlUlPowerA();
+			////FpgaGetDlUlPowerA();
 			//FpgaGetDlUlPowerB();
 			//FpgaGetDlUlPowerC();
 			//FpgaGetDlUlPowerD();			
@@ -334,7 +334,7 @@ void main()
 		}
 		if(sys_work_info&SYSTEM_FLAG_GAIN_ADJ)
 		{
-			FpgaGainAdjust();
+			////FpgaGainAdjust();
 		}
 		//if(sys_work_info&SYSTEM_FLAG_GAIN_ADJ)
 		//{
@@ -367,13 +367,12 @@ void main()
 		WTD_CLR;
 		FpgaSendThrDat(); 
 
-	        
 		//从FPGA中读取透传数据  
 		WTD_CLR;  
 		FpgaReadThrDat();  
 #endif	
-		UpdateWorkParam(module_param_chg_flag); 
-		module_param_chg_flag = 0;
+//		UpdateWorkParam(module_param_chg_flag); 
+//		module_param_chg_flag = 0;
  
 
 	}

@@ -1,4 +1,4 @@
-﻿#include "Header.h"
+#include "Header.h"
 
 extern UCHAR8 sys_temp_buff[];
 extern UCHAR8 gsm_type_a;	// gsm模式
@@ -236,7 +236,7 @@ void PA_SetChannel( UCHAR8 channel, UCHAR8 enable, INT32 freq_code )
 
 	
 	printf("channel = %02x  ",channel);
-	CalcFreqWord( freq_code ,SYS_A_FLAG,&up_fre_word,&down_fre_word);
+	////CalcFreqWord( freq_code ,SYS_A_FLAG,&up_fre_word,&down_fre_word);
 	reg_val=down_fre_word;
 	reg_val_16 =(UINT16)reg_val&0xfff;
 	FPGA_ENABLE_WRITE;

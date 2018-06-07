@@ -264,7 +264,7 @@ void PD_SetChannel( UCHAR8 channel, UCHAR8 enable, INT32 freq_code )
 	}
 	WTD_CLR;
 
-	CalcFreqWord( freq_code,SYS_D_FLAG,&up_fre_word, &down_fre_word );
+	////CalcFreqWord( freq_code,SYS_D_FLAG,&up_fre_word, &down_fre_word );
 	reg_val=down_fre_word;
 	reg_val_16 =(UINT16)reg_val&0x0fff;
 	FPGA_ENABLE_WRITE;
@@ -307,42 +307,6 @@ void PD_SetChannel( UCHAR8 channel, UCHAR8 enable, INT32 freq_code )
 
 	WTD_CLR;
 }
-#if 0
-/*************************************************************
-Name:FpgaSetGsmChannel
-Description:FPGA设置通道频点
-Input:
-	channel: 通道号
-	enable: 通道使能
-	freq_point: 频点号
-Output:void         
-Return:void        
-**************************************************************/
-void PB_SetTdMainChannel( UCHAR8 enable, INT32 freq_code )
-{
-	UINT16 reg_val;
-
-	if ( fpga_cfg.b_net_type==NET_NONE )
-	{
-		return;
-	}
-
-	reg_val = CalcFreqWord( freq_code,SYS_B_FLAG );
-    reg_val = CalcFpgaFwReg(reg_val); 
-	
-	FPGA_ENABLE_WRITE;
-	FPGA_SET_CHANNEL(0);		// 设置通道号
-	if ( 1 == enable )		// 设置频率字寄存器
-	{
-		reg_val |= SF_CHANNEL_EN;
-	}
- 	FpgaWriteRegister(FPGA_REG_TD_MAIN_CH, reg_val);
-	FPGA_DISABLE_WRITE;
-	
-	WTD_CLR;
-}
-
-#endif 
 
 /*************************************************************
 Name: FpgaSetOutAttValueB

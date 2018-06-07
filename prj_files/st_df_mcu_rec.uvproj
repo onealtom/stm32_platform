@@ -521,16 +521,6 @@
               <FilePath>..\source\app\fpga.c</FilePath>
             </File>
             <File>
-              <FileName>fps_app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\fps_app.c</FilePath>
-            </File>
-            <File>
-              <FileName>hmc1197_app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\hmc1197_app.c</FilePath>
-            </File>
-            <File>
               <FileName>init.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\app\init.c</FilePath>
@@ -546,54 +536,9 @@
               <FilePath>..\source\app\msg_app.c</FilePath>
             </File>
             <File>
-              <FileName>param_dat.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\param_dat.c</FilePath>
-            </File>
-            <File>
-              <FileName>PartA_app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\PartA_app.c</FilePath>
-            </File>
-            <File>
-              <FileName>PartB_app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\PartB_app.c</FilePath>
-            </File>
-            <File>
-              <FileName>PartC_app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\PartC_app.c</FilePath>
-            </File>
-            <File>
-              <FileName>PartD_app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\PartD_app.c</FilePath>
-            </File>
-            <File>
-              <FileName>rec_app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\rec_app.c</FilePath>
-            </File>
-            <File>
               <FileName>spi_app.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\app\spi_app.c</FilePath>
-            </File>
-            <File>
-              <FileName>sys_param.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\sys_param.c</FilePath>
-            </File>
-            <File>
-              <FileName>Transceiver_app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\Transceiver_app.c</FilePath>
-            </File>
-            <File>
-              <FileName>uart_app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\uart_app.c</FilePath>
             </File>
             <File>
               <FileName>update_app.c</FileName>
@@ -614,6 +559,21 @@
               <FileName>getopt.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\cli\getopt.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart_app.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\uart_app.c</FilePath>
+            </File>
+            <File>
+              <FileName>rec_app.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\rec_app.c</FilePath>
+            </File>
+            <File>
+              <FileName>param_dat.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\param_dat.c</FilePath>
             </File>
           </Files>
         </Group>

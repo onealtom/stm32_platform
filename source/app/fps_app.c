@@ -1,4 +1,4 @@
-﻿/***************************************************************
+/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    : Rfc_scan.c
@@ -1062,31 +1062,8 @@ UINT32 FPS_CalcFpgaFreqWord( UCHAR8 ab_flag, UINT16 freq_code )
 
 	up_fre_word = 0;
 	down_fre_word = 0;
-
-    #if 0
-		INT32  freq_point = -1;	// 频率
-		INT32  digit_freq;	    // 数字频率 
-		INT32  freq_word;
-		UINT32 fw; 
-	 
-		//if (( NULL != p_mo_cfg->lpf_ConvFcToFreq )&&( NULL != p_mo_cfg->lpf_CalcDf ))
-		{
-			 freq_point = CalcFreqPointToFreq(ucNetTye, freq_code) 
-			//freq_point = p_mo_cfg->lpf_ConvFcToFreq( freq_code );  edasion
-		} 
-		if (freq_point<0)
-		{
-			return 0;
-		}
-		//digit_freq = p_mo_cfg->lpf_CalcDf( freq_point, &(p_mo_cfg->dl_pcf) );		// 计算数字频率
-		freq_word = _CalcFpgaFw( digit_freq );	// 计算频率字
-		fw = _AdjustFpgaFw(freq_word);		// 频率字调整
-
-		return _CalcFpgaFwReg(fw);			// 转换成频率字寄存器的值	
-    #endif
-//	TRACE_INFO("FPS_CalcFpgaFreqWord---------FPS_CalcFpgaFreqWord---------reg_val= %04X,freq_code= %04X\r\n",reg_val,freq_code);
 	
-	reg_val = SearchFpCalcFreqWord( freq_code ,ab_flag,&up_fre_word,&down_fre_word);  
+	////reg_val = SearchFpCalcFreqWord( freq_code ,ab_flag,&up_fre_word,&down_fre_word);  
 	if(ab_flag == SYS_B_FLAG)
 	{
 		reg_val = down_fre_word;

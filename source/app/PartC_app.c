@@ -1,4 +1,4 @@
-﻿/***************************************************************
+/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    : PartA_app.c
@@ -230,7 +230,7 @@ void PC_SetChannel( UCHAR8 channel, UCHAR8 enable, INT32 freq_code )
 	}
 	WTD_CLR;
 
-	CalcFreqWord( freq_code ,SYS_C_FLAG,&up_fre_word,&down_fre_word);
+	////CalcFreqWord( freq_code ,SYS_C_FLAG,&up_fre_word,&down_fre_word);
 
 	reg_val = down_fre_word;
 	//reg_val=0;
@@ -291,7 +291,7 @@ void PC_SetTdMainChannel( UCHAR8 enable, INT32 freq_code )
 	TRACE_DEBUG("PB_SetTdMainChannelccccccccccccccccccccccfreq_code[%04x]\r\n",freq_code);
 	//reg_val = CalcFreqWord( freq_code,SYS_B_FLAG,&up_fre_word,&down_fre_word);
 	//reg_val = CalcFpgaFwReg(reg_val); 
-	SearchFpCalcFreqWord( freq_code,SYS_C_FLAG,&up_fre_word,&down_fre_word);
+	////SearchFpCalcFreqWord( freq_code,SYS_C_FLAG,&up_fre_word,&down_fre_word);
 	//TRACE_DEBUG("PB_SetTdMainChannel_up_fre_word=[%08x],down_fre_word=[%08x]\r\n",up_fre_word,down_fre_word);
 	reg_val_16=down_fre_word&0X0FFF;
 	FPGA_ENABLE_WRITE;

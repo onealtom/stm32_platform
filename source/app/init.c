@@ -24,7 +24,7 @@ extern _T_FPGA_CFG fpga_cfg;
 extern UCHAR8 gsm_type_a;	// gsm模式
 extern UCHAR8 gsm_type_b;	// gsm模式
 extern _T_MODULE_CFG mod_cfg_a, mod_cfg_b;
-extern UINT32 module_param_chg_flag;		//系统工作参数修改标志
+//extern UINT32 module_param_chg_flag;		//系统工作参数修改标志
 
 
 #if(FPGA_TYPE == CYCLONE5)
@@ -410,7 +410,8 @@ BOOL InitAD(void)
 void InitKeyDev(void)
 {
 	// 初始化9524 
-	sys_param_1b[MADD_INIT_CLK_ST].val = (b_FALSE==InitClkChip()) ? 1 : 0 ;
+	////sys_param_1b[MADD_INIT_CLK_ST].val = (b_FALSE==InitClkChip()) ? 1 : 0 ;
+	InitClkChip();
 	// 初始化6643  
 	//sys_param_1b[MADD_INIT_AD_ST].val = (b_FALSE==InitAD() ? 1 : 0);
 	//InitDA_A();  
@@ -577,11 +578,11 @@ Return:void
 **************************************************************/
 void ThrUartConfig()
 {
-	sys_param_1b[MADD_THR_PORT].val = 0;
-	sys_param_1b[MADD_THR_BAUD].val = 0;
+	////sys_param_1b[MADD_THR_PORT].val = 0;
+	////sys_param_1b[MADD_THR_BAUD].val = 0;
 	//ThrUartIntDisable();   
 	ResetThrFifo();
-	ThrUart_Init(sys_param_1b[MADD_THR_PORT].val, sys_param_1b[MADD_THR_BAUD].val);
+	////ThrUart_Init(sys_param_1b[MADD_THR_PORT].val, sys_param_1b[MADD_THR_BAUD].val);
 } 
 //#endif 
 
@@ -678,13 +679,13 @@ void InitSystem()
 
 	WTD_CLR;
 	//上电后初始化默认参数
-	ParamResetDefault();
+	////ParamResetDefault();
 
 	//从外部FLASH中读取系统参数 
-	GetSysParamFromFlash();  
+	////GetSysParamFromFlash();  
 
 	// 读取参数后重新初始化部分参数
-	ParamPreInit();  
+	////ParamPreInit();  
 
 	InitKeyDev(); 
 	TRACE_INFO("InitKeyDev OK\r\n");
@@ -735,28 +736,6 @@ void InitSystem()
 	///InitTransceiver(SYS_C_FLAG);
 	///InitTransceiver(SYS_D_FLAG);
 
-	#if 0
-	if(FPGA_LDST_OK== fpga_load_status )
-	{
-		
-		TFInit();
-		TFInitCs(TF_A);
-		WTD_CLR; 
-		if(0!=InitTransceiver(TF_A))
-		{
-			TRACE_INFO("InitTransceiver_A fail\r\n");
-		}
-		//TFInit();	
-		TFInitCs(TF_A);
-		WTD_CLR; 
-		if(0!=InitTransceiver(TF_A))
-		{
-			TRACE_INFO("InitTransceiver_A fail\r\n");
-		}
-	}
-	#endif
-	
-	
 	//InitHmc1197();	
 	
 	
@@ -819,7 +798,7 @@ void InitSystem()
 	FPS_Init();
 #endif
 	// 重新根据参数配置FPGA寄存器
-	module_param_chg_flag = 0xFFFFFFFF;
+	//module_param_chg_flag = 0xFFFFFFFF;
 	
 	
 }

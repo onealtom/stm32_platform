@@ -17,11 +17,11 @@
 extern _T_PARAM_1B sys_param_1b[];
 extern _T_PARAM_2B sys_param_2b[];
 extern _T_PARAM_4B sys_param_4b[];
-extern _T_MODULE_CFG mod_cfg_a;
+
 extern _T_MODULE_CFG mod_cfg_b;
 extern UINT32 fpga_load_status;
 extern _T_BIG_PKT_BUFF msg_big_buff[MSG_BIG_PKT_COUNT];
-extern UINT32 module_param_chg_flag;		//系统工作参数修改标志
+//extern UINT32 module_param_chg_flag;		//系统工作参数修改标志
 extern FLOAT32 fpga_dgcic_b;
 extern UCHAR8 traffic_start ;//开始话务量统计
 
@@ -195,45 +195,7 @@ Return: void
 **************************************************************/
 BOOL SetValidTopo( UCHAR8 * p_dat )
 {
-	
-	UCHAR8 fp_count;
-	UCHAR8 fp_set;
-	UCHAR8 re_cnt;
-	UCHAR8 i,j;
-
-	WTD_CLR;
-	fp_count = *p_dat++;
-
-	if ( fp_count>FP_MAX ) 
-	{
-		return b_FALSE;
-	}
-
-	for ( i=0; i<fp_count; i++ )
-	{
-		fp_set = *p_dat++;
-		valid_fp_topo[fp_set].fp_mode = *p_dat++;
-		re_cnt = *p_dat++;
-		if ( re_cnt > RE_MAX ) 
-		{
-			return b_FALSE;
-		}
-		
-		valid_fp_topo[fp_set].re_count = re_cnt;
-		for ( j=0; j<re_cnt; j++ )
-		{
-			valid_fp_topo[fp_set].re_inf[j].mode = *p_dat++; 
-			valid_fp_topo[fp_set].re_inf[j].id = *p_dat++; 
-		}
-
-		msg_big_buff[i].owner = 0;
-	}
-
-	SaveValidTopo();
-	
 	return b_TRUE;
-
-	
 }
 
 /*************************************************************
@@ -249,88 +211,6 @@ Return: void
 **************************************************************/
 void GetNewTopo()
 {
-	UCHAR8 i,j,k;
-	UINT16 tmp;
-
-	// D7-0：1/0----光口0~7的光模块没有插入/插入
-	tmp = FpgaReadRegister(FPGA_REG_SFP_CONNECT);
-	//printf("fp_enable = %d\r\n",fp_enable);
-	// 读取所有光口的拓扑状态
-	for ( i=0; i<FP_MAX; i++ )
-	{
-	#ifdef  CLIENT_XINMIN	// 欣民要求光口逆序排列
-		fp_inf[FP_MAX-i-1].re_cnt = 0;	// 清除RE数量
-		fp_inf[FP_MAX-i-1].ops_info = 0;	// 清除环网状态
-	#else
-		fp_inf[i].re_cnt = 0;	// 清除RE数量
-		fp_inf[i].ops_info = 0;	// 清除环网状态
-		fp_inf[i].ree_cnt=0;
-		// 判断光模块是否插入
-	#endif
-	
-		if ( 0== (tmp & (0x01<<i)) )
-		{
-			#ifdef CLIENT_XINMIN	// 欣民要求光口逆序排列
-				fp_inf[FP_MAX-i-1].sfp_attach = 1;
-			#else
-				fp_inf[i].sfp_attach = 1;
-         		   #endif 
-			
-		}
-		else
-		{
-			#ifdef CLIENT_XINMIN	// 欣民要求光口逆序排列
-				fp_inf[FP_MAX-i-1].sfp_attach = 0;
-			#else
-				fp_inf[i].sfp_attach = 0;
-            #endif
-		}
-		
-		// 检查光口是否使能
-		if ( 0 == fp_enable&(0x01<<i) )
-		{
-			continue;
-		}
-		
-		// 读取光口信息
-		#ifdef  CLIENT_XINMIN	// 欣民要求光口逆序排列
-			if ( b_FALSE==FpgaGetTopoStaus( i, &fp_inf[FP_MAX-i-1] ) )
-			{
-				fp_inf[FP_MAX-i-1].re_cnt = 0;
-				fp_inf[i].ree_cnt=0;
-			}  
-		#else
-			if ( b_FALSE==FpgaGetTopoStaus( i, &fp_inf[i] ) )
-			{
-				fp_inf[i].re_cnt = 0;
-				fp_inf[i].ree_cnt=0;
-			}
-		#endif
-			
-			//printf("i222=%d,eu=%d, ru=%d\\r\n",i,fp_inf[i].re_cnt,fp_inf[i].ree_cnt);
-			for(j=0;j<fp_inf[i].re_cnt;j++)
-			{
-				WTD_CLR;
-
-				for(k=0;k<8;k++)
-				{
-					if(0!=((1<<k)&tmp_re_inf[i][j].ree_nt_stat))
-					{
-						fp_inf[i].ree_cnt++;
-					}	
-				}
-				WTD_CLR;
-				for(k=0;k<4;k++)
-				{
-					if(0!=((1<<k)&tmp_re_inf[i][j].ree_fp_stat))
-					{
-						fp_inf[i].ree_cnt++;
-					}	
-				}
-	
-			}
-	}
-	
 }
 
 /*************************************************************
@@ -346,42 +226,7 @@ Return:       b_TRUE-拓扑改变；
 **************************************************************/
 BOOL CheckTopoChange()
 {
-	UCHAR8 i,j;
-	
-	BOOL IsChange = b_FALSE;
-	
-	total_re_count = 0;
-	total_ree_count = 0;
-	
-	for ( i=0; i<FP_MAX; i++ )
-	{
-		WTD_CLR;
-		if (  ( fp_inf[i].re_cnt != pre_re_count[i] )||(pre_ree_count[i] != fp_inf[i].ree_cnt)  )		// 光口的RE数量与前一次的不一样
-		{
-			IsChange = b_TRUE; 
-			//TRACE_INFO("pre_re_count[%d] =[%x], fp_inf[%d].re_cnt=[%x]\r\n",i,pre_re_count[i],i,fp_inf[i].re_cnt);
-			//TRACE_INFO("pre_ree_count[%d] =[%x], fp_inf[%d].ree_cnt=[%x]\r\n",i,pre_ree_count[i],i,fp_inf[i].ree_cnt);
 
-			pre_re_count[i] = fp_inf[i].re_cnt;
-			pre_ree_count[i] = fp_inf[i].ree_cnt;
-		}else
-		{
-			for(j=0;j<RE_MAX;j++)
-			{
-				if((tmp_re_inf[i][j].pre_ree_nt_stat!=tmp_re_inf[i][j].ree_nt_stat)||(tmp_re_inf[i][j].pre_ree_fp_stat!=tmp_re_inf[i][j].ree_fp_stat))
-				{
-					IsChange = b_TRUE; 
-					tmp_re_inf[i][j].pre_ree_nt_stat=tmp_re_inf[i][j].ree_nt_stat;
-					tmp_re_inf[i][j].pre_ree_fp_stat=tmp_re_inf[i][j].ree_fp_stat;
-				}
-			}
-		}
-		
-		total_re_count += fp_inf[i].re_cnt;
-		total_ree_count += fp_inf[i].ree_cnt;
-	}
-
-	return IsChange;
 }
 
 /*************************************************************
@@ -759,54 +604,6 @@ void GetReInfo()
 	msg[tx_len++] = 0xE5;		// 扩展标识2
 	msg[tx_len++] = 0x0;		// 模式版本0
 
-	tmp = mod_cfg_a.ul_pcf.reg_n;		// A段上行4153_N
-	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
-	msg[tx_len++] = (UCHAR8)(tmp>>8);	
-	msg[tx_len++] = (UCHAR8)(tmp>>16);	
-	msg[tx_len++] = (UCHAR8)(tmp>>24);	
-	
-	tmp = mod_cfg_a.ul_pcf.reg_r;		// A段上行4153_R
-	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
-	msg[tx_len++] = (UCHAR8)(tmp>>8);	
-	msg[tx_len++] = (UCHAR8)(tmp>>16);	
-	msg[tx_len++] = (UCHAR8)(tmp>>24);	
-
-	tmp = mod_cfg_a.dl_pcf.reg_n;		// A段下行4153_N
-	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
-	msg[tx_len++] = (UCHAR8)(tmp>>8);	
-	msg[tx_len++] = (UCHAR8)(tmp>>16);	
-	msg[tx_len++] = (UCHAR8)(tmp>>24);	
-	
-	tmp = mod_cfg_a.dl_pcf.reg_r;		// A段下行4153_R
-	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
-	msg[tx_len++] = (UCHAR8)(tmp>>8);	
-	msg[tx_len++] = (UCHAR8)(tmp>>16);	
-	msg[tx_len++] = (UCHAR8)(tmp>>24);	
-
-	tmp = mod_cfg_b.ul_pcf.reg_n;		// B段上行4153_N
-	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
-	msg[tx_len++] = (UCHAR8)(tmp>>8);	
-	msg[tx_len++] = (UCHAR8)(tmp>>16);	
-	msg[tx_len++] = (UCHAR8)(tmp>>24);	
-	
-	tmp = mod_cfg_b.ul_pcf.reg_r;		// B段上行4153_R
-	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
-	msg[tx_len++] = (UCHAR8)(tmp>>8);	
-	msg[tx_len++] = (UCHAR8)(tmp>>16);	
-	msg[tx_len++] = (UCHAR8)(tmp>>24);	
-
-	tmp = mod_cfg_b.dl_pcf.reg_n;		// B段下行4153_N
-	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
-	msg[tx_len++] = (UCHAR8)(tmp>>8);	
-	msg[tx_len++] = (UCHAR8)(tmp>>16);	
-	msg[tx_len++] = (UCHAR8)(tmp>>24);	
-	
-	tmp = mod_cfg_b.dl_pcf.reg_r;		// B段下行4153_R
-	msg[tx_len++] = (UCHAR8)(tmp&0xFF);	
-	msg[tx_len++] = (UCHAR8)(tmp>>8);	
-	msg[tx_len++] = (UCHAR8)(tmp>>16);	
-	msg[tx_len++] = (UCHAR8)(tmp>>24);	
-
 	SendMsgPkt(tx_len, msg);
 	
 }
@@ -1020,50 +817,6 @@ void GetNetworkDelay()
 		sys_param_2b[MADD_MAX_T14_D].val = (UINT16)(tmp/75.0/2)+RF_DELAY_TIME_D*100; //光口最大延时
 
 	}
-#if 0
-	if ( FPGA_LDST_OK == fpga_load_status )
-	{
-		FPGA_ENABLE_WRITE;
-		
-		for ( i=0; i<FP_MAX; i++ )
-		{
-			opt_t14 = 0;
-
-            #ifdef CLIENT_XINMIN
-			  FPGA_SET_OPT(7-i); //选中光口  
-			#else
-			   FPGA_SET_OPT(i); //选中光口     
-            #endif 
-
-			 
-			// 光口使能且锁定，读取延时,并且获得其中光口的最大延时 时间 
-			if ((0!=sys_param_1b[MADD_FP1_EN+i].val )&&( FRAME_LOCK==fp_inf[i].frm_lock))
-			{
-				tmp = FpgaReadRegister(FPGA_REG_OPT_DELAY_H);
-				opt_t14 = (UINT32)tmp<<8;
-				tmp = FpgaReadRegister(FPGA_REG_OPT_DELAY_L);
-				opt_t14 |= ( (tmp>>8) & 0x00FF );
-			}
-
-			if ( max_t14<opt_t14 )
-			{
-				max_t14 = opt_t14;
-			} 
-		}
-
-		// 除2,求T12
-		max_t14 >>= 1;
-
-		sys_param_2b[MADD_MAX_T14].val = (INT32)(max_t14*8.138)/10; //光口最大延时
-//		TRACE_INFO("sys_param_2b[MADD_MAX_T14].val=%04x,max_t14=%d\r\n",sys_param_2b[MADD_MAX_T14].val,max_t14);
-		
-		tmp = (UINT16)(max_t14>>8);
-		FpgaWriteRegister(FPGA_REG_DELAY_SPEC_H, tmp);
-		tmp = (UINT16)(max_t14&0xFF)<<8;
-		FpgaWriteRegister(FPGA_REG_DELAY_SPEC_L, tmp);
-		FPGA_DISABLE_WRITE; 
-	}
-#endif
 }
 
 /*************************************************************
@@ -1139,183 +892,14 @@ void GetPeripheralStatus()
 				// 锁定状态
 				sys_param_1b[MADD_SERDES1_PLL_ST+i].val = ((FRAME_LOCK==fp_inf[i].frm_lock)&&(0==fp_inf[i].tx_err) ? 0 : 1);
 			}
-#if 0
-			else 
-	//20130517		
-			{//20130510
-				// 光模块状态
-				sys_param_1b[MADD_FP1_LOS+i].val = 1;	//(( FRAME_LOCK==fp_inf[i].frm_lock ) ? 0 : 1);
-				// 链路同步状态
-				sys_param_1b[MADD_FP1_LOF+i].val = 1;
-				// 锁定状态
-				sys_param_1b[MADD_SERDES1_PLL_ST+i].val = 1;
-			}
-#endif 
-		}
 
-		// 混频器(本振)锁定状态, 1-失锁
-/*		sys_param_1b[MADD_A_TX_PLL_ST].val = ((ucPllStatus&A_DN_PLL_LCK)?0:1);
-		
-		if ( fpga_cfg.a_net_type==NET_TYPE_CMMB )	// CMMB无上行，认为上行前端本振锁定
-		{
-			sys_param_1b[MADD_A_RX_PLL_ST].val = 0;
-		} 
-		else   
-		{
-			sys_param_1b[MADD_A_RX_PLL_ST].val = ((ucPllStatus&A_UP_PLL_LCK)?0:1);
-		}  
-
-	
-		if ( fpga_cfg.b_net_type==NET_DIVE )
-		{
-			// 分集没有下行,认为下行前端本振锁定
-			sys_param_1b[MADD_B_TX_PLL_ST].val = 0;
 		}
-		else
-		{ 
-			sys_param_1b[MADD_B_TX_PLL_ST].val = ((ucPllStatus&B_DN_PLL_LCK)?0:1);
-		} 
-		
-		if ( fpga_cfg.b_net_type==NET_TYPE_CMMB )	// CMMB无上行，认为上行前端本振锁定
-		{
-			sys_param_1b[MADD_B_RX_PLL_ST].val = 0;
-		}
-		else
-		{ 
-			sys_param_1b[MADD_B_RX_PLL_ST].val = ((ucPllStatus&B_UP_PLL_LCK)?0:1);
-		} 
-*/
-
-
-#if	0
-		// 帧丢失状态,只要有一个光口出现LOF,则置位帧丢失状态
-		sys_param_1b[MADD_OPT_LOF].val = 0;
-		 
-		for ( i=0; i<FP_MAX; i++ )
-		{
-			if ( sys_param_1b[MADD_FP1_LOF+i].val == 1 )
-			{
-				sys_param_1b[MADD_OPT_LOF].val = 1;
-				break;
-			}
-		}
-		
-		sys_param_4b[MADD_BIT_ERR_COUNT].val  = bit_err_cnt;
-		sys_param_4b[MADD_TOPO_CHG_COUNT].val = topo_chg_cnt;
-		sys_param_4b[MADD_FPGA_PKT_COUNT].val = fpga_rx_pkt_cnt;
-
-		sys_param_4b[MADD_DEV_ADDR].val = 0x00000000;
-
-		sys_param_1b[MADD_TD_SYNC_ST].val = ((((1<<5) & FpgaReadRegister(FPGA_REG_TD_SYNC_ST) )>>5 ) == 0) ? 1 : 0;	// TD同步状态
-		sys_param_1b[MADD_C_TD_SYNC_ST].val = ((((1<<2) & FpgaReadRegister(FPGA_REG_C_TD_SYNC_ST) )>>2 ) == 0) ? 1 : 0;	// TD同步状态
-		sys_param_1b[MADD_D_TD_SYNC_ST].val = ((((1<<2) & FpgaReadRegister(FPGA_REG_D_TD_SYNC_ST) )>>2 ) == 0) ? 1 : 0;	// TD同步状态
-
-//		TRACE_INFO("sys_param_1b[MADD_TD_SYNC_ST].val(%02x)(%04x)!!!!!!!!!!!!1\r\n",sys_param_1b[MADD_TD_SYNC_ST].val,FpgaReadRegister(FPGA_REG_TD_SYNC_ST));
-
-//		TRACE_INFO("(INT16)sys_param_2b[MADD_TD_SLOT1_DPOW_OVER_THR].val(%d),sys_param_2b[MADD_TD_SLOT1_DPOW].val(%d)!!!!!!!!!!!!1\r\n",(INT16)sys_param_2b[MADD_TD_SLOT1_DPOW_OVER_THR].val,sys_param_2b[MADD_TD_SLOT1_DPOW].val);		
-		sys_param_1b[MADD_TD_D_OVER_SLOT1_THR_ALARM].val =0;
-		if((INT16)sys_param_2b[MADD_TD_SLOT1_DPOW_OVER_THR].val<(INT16)sys_param_2b[MADD_TD_SLOT1_DPOW].val)
-		{
-			sys_param_1b[MADD_TD_D_OVER_SLOT1_THR_ALARM].val =1;
-		}
-		sys_param_1b[MADD_TD_D_OWE_SLOT1_THR_ALARM].val =0;
-		if((INT16)sys_param_2b[MADD_TD_SLOT1_DPOW_OWE_THR].val>(INT16)sys_param_2b[MADD_TD_SLOT1_DPOW].val)
-		{
-			sys_param_1b[MADD_TD_D_OWE_SLOT1_THR_ALARM].val =1;
-		}
-		if(1==topo_st.IsTopoUnsteady)
-		{
-			sys_param_1b[MADD_HOST_DEVICE_LINK_SINGNAL_ALARM].val =1;
-		}
-		
-		sys_param_1b[MADD_LOW_POWER_ALARM].val =0;
-		if( 0!=( sys_param_1b[MADD_LOW_POWER].val  ) )
-		{
-			sys_param_1b[MADD_LOW_POWER_ALARM].val  =1;
-		}
-		sys_param_1b[MADD_HOST_DEVICE_LINK_SINGNAL_ALARM].val=0;//去除主从链路告警，因为定义不一样。
-		if ( ( 1==sys_param_1b[MADD_OPT_LOF].val )||( 1==sys_param_1b[MADD_TD_SYNC_ST].val )||( 1==sys_param_1b[MADD_HOST_DEVICE_LINK_SINGNAL_ALARM].val ) )
-		{
-			sys_param_1b[MADD_DIGITAL_SINGNAL_ALARM].val = 1;			
-		}
-		
-		sys_param_1b[MADD_A_INPUT_OVER_DPOW_THR_ALARM].val = 0;	
-		sys_param_1b[MADD_A_INPUT_OWE_DPOW_THR_ALARM].val = 0;
-		sys_param_1b[MADD_B_INPUT_OVER_DPOW_THR_ALARM].val = 0;	
-		sys_param_1b[MADD_B_INPUT_OWE_DPOW_THR_ALARM].val = 0;	
-		
-//		TRACE_INFO("sys_param_2b[PARA_A_INPUT_TOTAL_DPOW_OVER_THR].val(%d),sys_param_2b[MADD_A_DL_TOTAL_POW].val(%d)!!!!!!!!!!!!1\r\n",(INT16)sys_param_2b[PARA_A_INPUT_TOTAL_DPOW_OVER_THR].val,(INT16)sys_param_2b[MADD_A_DL_TOTAL_POW].val);				
-		if ( ( (INT16)sys_param_2b[MADD_A_INPUT_TOTAL_DPOW_OVER_THR].val< (INT16)sys_param_2b[MADD_A_DL_TOTAL_POW].val ) )
-		{
-			sys_param_1b[MADD_A_INPUT_OVER_DPOW_THR_ALARM].val = 1;			
-		}
-		
-		if ( ( (INT16)sys_param_2b[MADD_A_INPUT_TOTAL_DPOW_OWE_THR].val> (INT16)sys_param_2b[MADD_A_DL_TOTAL_POW].val ) )
-		{
-			sys_param_1b[MADD_A_INPUT_OWE_DPOW_THR_ALARM].val = 1;			
-		}
-		
-		if ( ( (INT16)sys_param_2b[MADD_B_INPUT_TOTAL_DPOW_OVER_THR].val< (INT16)sys_param_2b[MADD_B_DL_TOTAL_POW].val ) )
-		{
-			sys_param_1b[MADD_B_INPUT_OVER_DPOW_THR_ALARM].val = 1;			
-		}
-		
-		if ( ( (INT16)sys_param_2b[MADD_B_INPUT_TOTAL_DPOW_OWE_THR].val> (INT16)sys_param_2b[MADD_B_DL_TOTAL_POW].val ) )
-		{
-			sys_param_1b[MADD_B_INPUT_OWE_DPOW_THR_ALARM].val = 1;			
-		}
-		
-//		TRACE_INFO("sys_param_1b[MADD_PWR_9V0_VT].val(%d)!!!!!!!!!!!!1\r\n",sys_param_1b[MADD_PWR_9V0_VT].val);		
-		sys_param_1b[MADD_BATTERY_BREAKDOWN_ALARM].val = 1;
-		if( (sys_param_1b[MADD_PWR_9V0_VT].val<sys_param_1b[MADD_MONITOR_VOL_OVER_THR].val)&&(sys_param_1b[MADD_PWR_9V0_VT].val>sys_param_1b[MADD_MONITOR_VOL_OWE_THR].val))
-		{
-			sys_param_1b[MADD_BATTERY_BREAKDOWN_ALARM].val = 0;
-		}
-
-		//sys_param_1b[MADD_A_1197_LOCK_ST].val = (HMC_1197_LOCK_ST==(UCHAR8)ReadHmc1197(HMC_1197_REG_ADD) ? 0 : 1);
-
-		sys_param_1b[MADD_A_INIT_DA_ST].val = (AD9363_INIT_DA_ST==(UCHAR8)ReadWriteTF(TF_A,0,AD9363_REG_R_INIT_DA_ST,0) ? 0 : 1);
-		sys_param_1b[MADD_B_INIT_DA_ST].val = (AD9363_INIT_DA_ST==(UCHAR8)ReadWriteTF(TF_B,0,AD9363_REG_R_INIT_DA_ST,0) ? 0 : 1);
-		sys_param_1b[MADD_C_INIT_DA_ST].val = (AD9363_INIT_DA_ST==(UCHAR8)ReadWriteTF(TF_C,0,AD9363_REG_R_INIT_DA_ST,0) ? 0 : 1);
-		sys_param_1b[MADD_D_INIT_DA_ST].val = (AD9363_INIT_DA_ST==(UCHAR8)ReadWriteTF(TF_D,0,AD9363_REG_R_INIT_DA_ST,0) ? 0 : 1);
-
-		sys_param_1b[MADD_A_BB_PLL_LOCK].val = (AD9363_BB_PLL_LOCK==(UCHAR8)ReadWriteTF(TF_A,0,AD9363_REG_R_BB_PLL_LOCK,0) ? 0 : 1);
-		sys_param_1b[MADD_B_BB_PLL_LOCK].val = (AD9363_BB_PLL_LOCK==(UCHAR8)ReadWriteTF(TF_B,0,AD9363_REG_R_BB_PLL_LOCK,0) ? 0 : 1);
-		sys_param_1b[MADD_C_BB_PLL_LOCK].val = (AD9363_BB_PLL_LOCK==(UCHAR8)ReadWriteTF(TF_C,0,AD9363_REG_R_BB_PLL_LOCK,0) ? 0 : 1);
-		sys_param_1b[MADD_D_BB_PLL_LOCK].val = (AD9363_BB_PLL_LOCK==(UCHAR8)ReadWriteTF(TF_D,0,AD9363_REG_R_BB_PLL_LOCK,0) ? 0 : 1);
-
-		sys_param_1b[MADD_A_RX_PLL_ST].val = (AD9363_RX_PLL_ST==(UCHAR8)ReadWriteTF(TF_A,0,AD9363_REG_R_RX_PLL_ST,0) ? 0 : 1);
-		sys_param_1b[MADD_B_RX_PLL_ST].val = (AD9363_RX_PLL_ST==(UCHAR8)ReadWriteTF(TF_B,0,AD9363_REG_R_RX_PLL_ST,0) ? 0 : 1);
-		sys_param_1b[MADD_C_RX_PLL_ST].val = (AD9363_RX_PLL_ST==(UCHAR8)ReadWriteTF(TF_C,0,AD9363_REG_R_RX_PLL_ST,0) ? 0 : 1);
-		sys_param_1b[MADD_D_RX_PLL_ST].val = (AD9363_RX_PLL_ST==(UCHAR8)ReadWriteTF(TF_D,0,AD9363_REG_R_RX_PLL_ST,0) ? 0 : 1);
-		
-		sys_param_1b[MADD_A_TX_PLL_ST].val = (AD9363_TX_PLL_ST==(UCHAR8)ReadWriteTF(TF_A,0,AD9363_REG_R_TX_PLL_ST,0) ? 0 : 1);
-		sys_param_1b[MADD_B_TX_PLL_ST].val = (AD9363_TX_PLL_ST==(UCHAR8)ReadWriteTF(TF_B,0,AD9363_REG_R_TX_PLL_ST,0) ? 0 : 1);
-		sys_param_1b[MADD_C_TX_PLL_ST].val = (AD9363_TX_PLL_ST==(UCHAR8)ReadWriteTF(TF_C,0,AD9363_REG_R_TX_PLL_ST,0) ? 0 : 1);
-		sys_param_1b[MADD_D_TX_PLL_ST].val = (AD9363_TX_PLL_ST==(UCHAR8)ReadWriteTF(TF_D,0,AD9363_REG_R_TX_PLL_ST,0) ? 0 : 1);
-
-		sys_param_1b[MADD_A_Modulator_EN].val = (AD9363_A_Modulator_EN==(UCHAR8)ReadWriteTF(TF_A,0,AD9363_REG_R_Modulator_EN,0) ? 1 : 0);	//开：AU   AD9363  0x57	 3C	
-		sys_param_1b[MADD_B_Modulator_EN].val = (AD9363_B_Modulator_EN==(UCHAR8)ReadWriteTF(TF_B,0,AD9363_REG_R_Modulator_EN,0) ? 1 : 0);	//开：AU   AD9363  0x57	 3C
-		sys_param_1b[MADD_C_Modulator_EN].val = (((UCHAR8)ReadWriteTF(TF_C,0,AD9363_REG_R_Modulator_EN,0) & 0X02)? 0 : 1);	//开：AU   AD9363  0x57[1]   0
-		sys_param_1b[MADD_D_Modulator_EN].val = (((UCHAR8)ReadWriteTF(TF_D,0,AD9363_REG_R_Modulator_EN,0) & 0X01)? 0 : 1);	//开：AU   AD9363  0x57[0] 0
-
-		sys_param_1b[MADD_SLOT_TIME_DISTRI_B].val = (UCHAR8)FpgaReadRegister(FPGA_REG_R_SLOT_TIME_B);
-		sys_param_1b[MADD_VERSION_FLAG].val = version_number;
-#endif		
-		
-#if 0		
-		sys_param_1b[MADD_BATTERY_BREAKDOWN_ALARM].val =0;
-		if( 0!=( sys_param_1b[MADD_BATTERY_BREAKDOWN_ALARM].val  ) )
-		{
-			sys_param_1b[MADD_LOW_POWER_ALARM].val  =1;
-		}
-#endif
 
 #if	1
 		//GetWlanPortStatus();
 
 		CheckErrStatus();
-		//AutoProtect();
+
 		//RefreshParam();
 		
 		// 设置FPGA错误指示灯
@@ -1343,99 +927,7 @@ void CheckErrStatus_Erricson()
 	static UINT16 workerror_current = 0;//本次的告警的值
 	static UCHAR8 fp_eu_cnt_old[FP_MAX] = {0};
 
-
-	
-
-	
-	WTD_CLR;
-
-
-#if 0
-	// 预处理A\B段状态
-#if ( A_NETWORK_TYPE==NET_NONE )	// A段没有，状态全部正常
-	sys_param_1b[MADD_A_TX_PLL_ST].val = 0;
-	sys_param_1b[MADD_A_RX_PLL_ST].val = 0;
-	sys_param_1b[MADD_A_BB_PLL_LOCK].val = 0;
-#endif
-
-#if ( B_NETWORK_TYPE==NET_NONE )	// B段没有，状态全部正常
-	sys_param_1b[MADD_B_TX_PLL_ST].val = 0;
-	sys_param_1b[MADD_B_RX_PLL_ST].val = 0;
-	sys_param_1b[MADD_B_BB_PLL_LOCK].val = 0;
-#endif
-
-#if ( C_NETWORK_TYPE==NET_NONE )	// C段没有，状态全部正常
-	sys_param_1b[MADD_C_TX_PLL_ST].val = 0;
-	sys_param_1b[MADD_C_RX_PLL_ST].val = 0;
-	sys_param_1b[MADD_C_BB_PLL_LOCK].val = 0;
-#endif
-
-#if ( D_NETWORK_TYPE==NET_NONE )	// D段没有，状态全部正常
-	sys_param_1b[MADD_D_TX_PLL_ST].val = 0;
-	sys_param_1b[MADD_D_RX_PLL_ST].val = 0;
-	sys_param_1b[MADD_D_BB_PLL_LOCK].val = 0;
-#endif
-
-
-	// FPGA加载异常
-	if ( sys_param_1b[MADD_LOAD_FPGA_ST].val !=0 ) goto _set_work_err;
-
-	// 时钟失锁
-	if ( sys_param_1b[MADD_CLK_PLL_ST].val==1 ) goto _set_work_err;
-
-	// 本振失锁
-	if ( sys_param_1b[MADD_A_TX_PLL_ST].val==1) goto _set_work_err;
-	if ( sys_param_1b[MADD_A_RX_PLL_ST].val==1) goto _set_work_err;
-	if ( sys_param_1b[MADD_B_TX_PLL_ST].val==1) goto _set_work_err;
-	if ( sys_param_1b[MADD_B_RX_PLL_ST].val==1) goto _set_work_err;
-	if ( sys_param_1b[MADD_C_TX_PLL_ST].val==1) goto _set_work_err;
-	if ( sys_param_1b[MADD_C_RX_PLL_ST].val==1) goto _set_work_err;
-
-	// FPGA锁相环失锁
-	if ( sys_param_1b[MADD_FPGA_CLK_ST].val == 1) goto _set_work_err;
-	
-	// DA锁相环失锁
-	if ( sys_param_1b[MADD_A_BB_PLL_LOCK].val ==1 ) goto _set_work_err;
-	if ( sys_param_1b[MADD_B_BB_PLL_LOCK].val ==1 ) goto _set_work_err;
-
-	// LNA异常
-	
-	
-	// 光口异常
-	for( i=0; i<FP_MAX; i++)
-	{
-		if ( sys_param_1b[MADD_FP1_LOS+i].val==1 ) goto _set_work_err;
-		if ( sys_param_1b[MADD_FP1_LOF+i].val==1 ) goto _set_work_err;
-		if ( sys_param_1b[MADD_SERDES1_PLL_ST+i].val==1 ) goto _set_work_err;
-	}
-
-	if ( sys_param_1b[MADD_OPT_LOF].val == 1) goto _set_work_err;
-
-	sys_param_1b[MADD_WORK_ERROR].val = 0;
-	return;
-
-_set_work_err:		// 设置错误状态
-	sys_param_1b[MADD_WORK_ERROR].val = 1;
-#endif
-	//当该光口不存在EU时清除对应的EU RU告警项
-	#if 0
-	for(i=0; i<FP_MAX; i++)
-	{
-		if(sys_param_1b[MADD_FP1_LOS+i].val)
-		{
-			//sys_param_eu_1b[MADD_EU_ALARM_FLAG1+i].val = tmp? 0:sys_param_eu_1b[MADD_EU_ALARM_FLAG1+i].val;  //丢失光纤 清零告警
-			//sys_param_eu_2b[MADD_EU_RUALARM_FLAG1+i].val  = tmp? 0:sys_param_eu_2b[MADD_EU_RUALARM_FLAG1+i].val; //丢失光纤清零告警
-			sys_param_eu_1b[MADD_EU_ALARM_FLAG1+i].val = 0;
-			sys_param_eu_2b[MADD_EU_RUALARM_FLAG1+i].val  = 0;
-		 	for(j=0; j<RE_MAX; j++)
-		 	{
-		 		 topo_alarm[i][j].meu_alarm = 0;
-				 topo_alarm[i][j].ru_alarm = 0;
-		 	}
-		}
-	}
-	#endif
-
+	WTD_CLR;	
 	//光口下的级联EU减少时，清除被拔掉的EU的告警状态
 
 	for(i=0; i<FP_MAX; i++)
@@ -1540,90 +1032,6 @@ Return: void
 **************************************************************/
 void CheckErrStatus()
 {
-
-#if 0
-	UCHAR8 i;
-	
-	WTD_CLR;
-
-	// 预处理A\B段状态
-#if ( A_NETWORK_TYPE==NET_NONE )	// A段没有，状态全部正常
-	sys_param_1b[MADD_A_TX_PLL_ST].val = 0;
-	sys_param_1b[MADD_A_RX_PLL_ST].val = 0;
-	sys_param_1b[MADD_A_BB_PLL_LOCK].val = 0;
-#endif
-
-#if ( B_NETWORK_TYPE==NET_NONE )	// B段没有，状态全部正常
-	sys_param_1b[MADD_B_TX_PLL_ST].val = 0;
-	sys_param_1b[MADD_B_RX_PLL_ST].val = 0;
-	sys_param_1b[MADD_B_BB_PLL_LOCK].val = 0;
-#endif
-
-#if ( C_NETWORK_TYPE==NET_NONE )	// C段没有，状态全部正常
-	sys_param_1b[MADD_C_TX_PLL_ST].val = 0;
-	sys_param_1b[MADD_C_RX_PLL_ST].val = 0;
-	sys_param_1b[MADD_C_BB_PLL_LOCK].val = 0;
-#endif
-
-#if ( D_NETWORK_TYPE==NET_NONE )	// D段没有，状态全部正常
-	sys_param_1b[MADD_D_TX_PLL_ST].val = 0;
-	sys_param_1b[MADD_D_RX_PLL_ST].val = 0;
-	sys_param_1b[MADD_D_BB_PLL_LOCK].val = 0;
-#endif
-
-
-	// FPGA加载异常
-	if ( sys_param_1b[MADD_LOAD_FPGA_ST].val !=0 ) goto _set_work_err;
-
-	// 时钟失锁
-	if ( sys_param_1b[MADD_CLK_PLL_ST].val==1 ) goto _set_work_err;
-
-	// 本振失锁
-	if ( sys_param_1b[MADD_A_TX_PLL_ST].val==1) goto _set_work_err;
-	if ( sys_param_1b[MADD_A_RX_PLL_ST].val==1) goto _set_work_err;
-	if ( sys_param_1b[MADD_B_TX_PLL_ST].val==1) goto _set_work_err;
-	if ( sys_param_1b[MADD_B_RX_PLL_ST].val==1) goto _set_work_err;
-	if ( sys_param_1b[MADD_C_TX_PLL_ST].val==1) goto _set_work_err;
-	if ( sys_param_1b[MADD_C_RX_PLL_ST].val==1) goto _set_work_err;
-
-	// FPGA锁相环失锁
-	if ( sys_param_1b[MADD_FPGA_CLK_ST].val == 1) goto _set_work_err;
-	
-	// DA锁相环失锁
-	if ( sys_param_1b[MADD_A_BB_PLL_LOCK].val ==1 ) goto _set_work_err;
-	if ( sys_param_1b[MADD_B_BB_PLL_LOCK].val ==1 ) goto _set_work_err;
-
-	// LNA异常
-	
-	
-	// 光口异常
-	for( i=0; i<FP_MAX; i++)
-	{
-		if ( sys_param_1b[MADD_FP1_LOS+i].val==1 ) goto _set_work_err;
-		if ( sys_param_1b[MADD_FP1_LOF+i].val==1 ) goto _set_work_err;
-		if ( sys_param_1b[MADD_SERDES1_PLL_ST+i].val==1 ) goto _set_work_err;
-	}
-
-	if ( sys_param_1b[MADD_OPT_LOF].val == 1) goto _set_work_err;
-
-	sys_param_1b[MADD_WORK_ERROR].val = 0;
-	return;
-
-_set_work_err:		// 设置错误状态
-	sys_param_1b[MADD_WORK_ERROR].val = 1;
-
-	
-
-	if(workerror_last != sys_param_1b[MADD_WORK_ERROR].val)
-	{
-		printf("Alarm Occurred\r\n");
-		workerror_last = sys_param_1b[MADD_WORK_ERROR].val;
-		FPGA_ENABLE_WRITE;
-		FpgaWriteRegister(FPGA_REG_SHOW_ERROR, sys_param_1b[MADD_WORK_ERROR].val);
-		FPGA_DISABLE_WRITE;
-	}
-#endif
-
 #if ((defined CLIENT_ERRICSON)||(defined CLIENT_ERRICSON2)||(defined CLIENT_ERRICSON_W))
 
 CheckErrStatus_Erricson();
@@ -1632,88 +1040,6 @@ CheckErrStatus_Erricson();
 #endif
 
 	
-}
-
-// 自动保护措施
-void AutoProtect( void )
-{
-	UCHAR8 err_off;		// 故障关断输出标志 1-关断
-
-	// A段
-	err_off = 0;
-	
-	if (0==sys_param_1b[MADD_A_DL_WORK_EN].val)	err_off = 1;
-	if (0==sys_param_1b[MADD_A_UL_WORK_EN].val)	err_off = 1;
-	if (1==sys_param_1b[MADD_A_TX_PLL_ST].val) 	err_off = 1;
-	if (1==sys_param_1b[MADD_A_RX_PLL_ST].val) 	err_off = 1;
-	if (1==sys_param_1b[MADD_A_BB_PLL_LOCK].val) err_off = 1;
-	if (1==sys_param_1b[MADD_CLK_PLL_ST].val)	err_off = 1;
-
-	if ( 0==err_off )	// 不需要关断
-	{
-		if ( b_FALSE==FpgaIsEnableA() )	// 若之前关闭了FPGA输出，则开启
-		{ 
-			FpgaWorkEnableA( 1 );
-		} 
-	}
-	else	// 关断输出
-	{
-		FpgaWorkEnableA( 0 ); 
-	}
-
-	// B段
-	err_off = 0;	
-
-	if (0==sys_param_1b[MADD_B_DL_WORK_EN].val)	err_off = 1;
-	if (0==sys_param_1b[MADD_B_UL_WORK_EN].val)	err_off = 1;
-	if (1==sys_param_1b[MADD_B_TX_PLL_ST].val) 	err_off = 1;
-	if (1==sys_param_1b[MADD_B_RX_PLL_ST].val) 	err_off = 1;
-	if (1==sys_param_1b[MADD_B_BB_PLL_LOCK].val) err_off = 1;
-	if (1==sys_param_1b[MADD_CLK_PLL_ST].val)	err_off = 1;
-
-	if ( 0==err_off )	// 不需要关断
-	{
-		if ( b_FALSE==FpgaIsEnableB() )	// 若之前关闭了FPGA输出，则开启
-		{ 
-			FpgaWorkEnableB( 1 );
-		} 
-	}
-	else	// 关断输出
-	{
-		FpgaWorkEnableB( 0 ); 
-	}
-
-#if 0
-	if ((1==sys_param_1b[MADD_A_DL_WORK_EN].val)&&(1==sys_param_1b[MADD_A_UL_WORK_EN].val))
-	{
-		if (( sys_param_1b[MADD_A_TX_PLL_ST].val==1 )||( sys_param_1b[MADD_A_RX_PLL_ST].val==1 )||( sys_param_1b[MADD_A_BB_PLL_LOCK].val ==1 ))
-		{
-			// 时钟失锁则关断FPGA输出
-			//TRACE_ERROR("SecA Err, Close Output\r\n");
-			FpgaWorkEnableA( 0 );
-		}
-		else if ( b_FALSE==FpgaIsEnableA() )
-		{
-			// 时钟锁定，若之前关闭了FPGA输出，则开启
-			FpgaWorkEnableA( 1 );
-		}
-	}
-
-	if ((1==sys_param_1b[MADD_B_DL_WORK_EN].val)&&(1==sys_param_1b[MADD_B_UL_WORK_EN].val))
-	{
-		if (( sys_param_1b[MADD_B_TX_PLL_ST].val==1 )||( sys_param_1b[MADD_B_RX_PLL_ST].val==1 )||( sys_param_1b[MADD_B_BB_PLL_LOCK].val ==1 ))
-		{
-			// 时钟失锁则关断FPGA输出
-			//TRACE_ERROR("SecB Err, Close Output\r\n");
-			FpgaWorkEnableB( 0 );
-		}
-		else if ( b_FALSE==FpgaIsEnableB() )
-		{
-			// 时钟锁定，若之前关闭了FPGA输出，则开启
-			FpgaWorkEnableB( 1 );
-		}
-	}
-#endif
 }
 
 /*************************************************************
@@ -1737,10 +1063,7 @@ void UpdateWorkParam(UINT32 mask)
 	} 
 	
 	WTD_CLR;
-	FpgaWorkEnableA( 0 );
-	FpgaWorkEnableB( 0 );
-	FpgaWorkEnableC( 0 );
-	FpgaWorkEnableD( 0 );
+
 //	FpgaAttOutput(1);		// 控制衰减器全衰，防止逻辑开始工作时出现的杂散
 
 	//更改本振或者中心频率
@@ -1752,29 +1075,7 @@ void UpdateWorkParam(UINT32 mask)
 		MoveCenterFre(SYS_A_FLAG, SYS_DL_FLAG);
 		#endif
 	}
-#if 0
-	// 需要重置本振 
-	if ( 0!= (mask&PCHG_A_FL_CHG) ) 
-	{
-		mask |= PCHG_A_CHANNEL;	// 本振修改之后，逻辑的通道寄存器频率字要重新计算
-		
-		Init_Local_Pll(A_MIXER); 
-		Init_Local_Pll(A_MODEN);  
-		
 
-	} 
-
-	if ( 0!= (mask&PCHG_B_FL_CHG) ) 
-	{
-		mask |= PCHG_B_CHANNEL;	// 本振修改之后，逻辑的通道寄存器频率字要重新计算
-		//Init_Local_Pll(B_MIXER); 
-		//Init_Local_Pll(B_MODEN); 
-		//FpgaSetFreqAdjB();
-	
-	}
-
-	
-#endif
 
 	#if defined CLIENT_ERRICSON
 	// 修改频点搜索范围
@@ -1788,129 +1089,8 @@ void UpdateWorkParam(UINT32 mask)
 		FPS_SetParam(); 
 	}
 	#endif
-	// 设置通道和通道使能
-	if ( 0 != ( mask&PCHG_A_CHANNEL) )
-	{
-		WTD_CLR;
-		SetChannelByParam(SYS_A_FLAG);
-	}
 
-	if ( 0 != ( mask&PCHG_C_CHANNEL) )
-	{
-		WTD_CLR;
-		SetChannelByParam(SYS_C_FLAG);
-	}
-	
-	if ( 0 != ( mask&PCHG_D_CHANNEL) )
-	{
-		WTD_CLR;
-		SetChannelByParam(SYS_D_FLAG);
-	}
 
-#if 0
-
-	if ( 0!= (mask&(PCHG_A_CHANNEL|PCHG_B_CHANNEL|PCHG_C_CHANNEL|PCHG_D_CHANNEL)) )
-	{
-		WTD_CLR;
-		// 广播设置频点
-		sys_work_info |= SYSTEM_FLAG_SET_RE_SFC;
-		// 使能话务量统计,15分钟
-		FpgaEnableTrafficCtl( TRAFFIC_TIME, 1 );
-		//traffic_start = 1;
-	}
-	
-	// 设置上下行光口延迟
-	if ( 0!= ( mask&PCHG_OPT_DELAY ) )
-	{
-		WTD_CLR;
-		SetReSysConfig();
-		// 宽带版本的滤波器带宽设置用单独的数据包发送，否则旧版程序没这个参数会导致设置失败
-		//SetReBwConfig();
-
-		sys_work_info |= SYSTEM_FLAG_SET_RE_SYS_CFG;
-	}
-
-	// 设置上行通道最大功率 2012.6.20 添加了新的判断条件  PCHG_A_CHANNEL|PCHG_B_CHANNEL
-	if ( 0 != ( mask&(PCHG_A_POW_GAIN|PCHG_B_POW_GAIN|PCHG_A_CHANNEL|PCHG_B_CHANNEL|PCHG_C_POW_GAIN|PCHG_D_POW_GAIN|PCHG_C_CHANNEL|PCHG_D_CHANNEL)) )
-	{
-		WTD_CLR;
-		TRACE_INFO("PCHG_A_POW_GAIN|PCHG_B_POW_GAIN|PCHG_A_CHANNEL|PCHG_B_CHANNEL\r\n");
-		FpgaSetOutAttValueA();
-		FpgaSetOutAttValueC();
-		FpgaSetOutAttValueD();		
-//		SetReUlPowerGain();
-		sys_work_info |= SYSTEM_FLAG_SET_RE_UPOW;
-	}
-
-	if ( 0!=( mask&PCHG_TD_PARAM ) )
-	{
-		WTD_CLR;
-		SetTDParam_C();
-		//SetTDParam_D();
-		
-		sys_work_info |= SYSTEM_FLAG_SET_RE_TDSLOT;
-	}
-
-#endif
-	 // 设置A段射频开关使能
- 	if ( 0 != ( mask&(PCHG_A_WORK_EN)) )
- 	{
- 		RFWorkEnableA(); 
- 	}
-
-	// 设置B段射频开关使能
- 	if ( 0 != ( mask&(PCHG_A_WORK_EN)) )
- 	{
- 		WTD_CLR;
- 		RFWorkEnableB(); 
- 	}
-
-	 // 设置C段射频开关使能
- 	if ( 0 != ( mask&(PCHG_C_WORK_EN)) )
- 	{
-	 	 WTD_CLR;	
-  		RFWorkEnableC();
- 	}
-
-	 // 设置D段射频开关使能
- 	if ( 0 != ( mask&(PCHG_D_WORK_EN)) )
- 	{
-		WTD_CLR;
-		RFWorkEnableD();
- 	}
-#if 0
-
-	// 设置控制端口波特率
-	if ( 0 != ( mask&PCHG_CTRL_BAUD) )
-	{
-		WTD_CLR;
-		//CtrlUartConfig();
-	}
-
-	// 设置透传端口
-	if ( 0 != ( mask&PCHG_THR_CONFIG) )
-	{
-		//ThrUartConfig();
-	}
-
-#endif
-
-#if 0
-	// 低功耗模式
-	if ( 0 != (mask&PCHG_LOW_POWER) )
-	{
-		if ( sys_param_1b[MADD_LOW_POWER].val ==0 )
-		{
-			//SysNormalWorkMode();
-			;
-		}
-		else
-		{
-			//SysLowPowerMode();
-			;
-		}
-	}
-#endif
 
 	// 设置光口使能
 	if ( 0 != ( mask&PCHG_SYS_FP_EN) )
@@ -1919,63 +1099,6 @@ void UpdateWorkParam(UINT32 mask)
 		 EnableOpt();
 	}
 
-	//设置本振参数
-	#if 0
-	if(0!=( mask&PCHG_BENZHEN_ADJ_FLAG ) )
-	{
-		//SetAdjBenZhenSignalPara();
-	}
-	#endif
-	// 参数设置完成，若当前模式不是低功耗模式，则根据使能位使能FPGA工作
-	#if 0
-	if ( 0 == (sys_work_info & SYSTEM_FLAG_LOW_POWER ) )	
-	{
-	}
-	#endif
-	
-	// 设置工作使能
-	FpgaWorkEnableA( sys_param_1b[MADD_A_DL_WORK_EN].val);
-	FpgaWorkEnableB( sys_param_1b[MADD_B_DL_WORK_EN].val);
-	FpgaWorkEnableC( sys_param_1b[MADD_C_DL_WORK_EN].val);
-	FpgaWorkEnableD( sys_param_1b[MADD_D_DL_WORK_EN].val);
-	
-	#if 0	
-	if ((1==sys_param_1b[MADD_A_DL_WORK_EN].val)&&(1==sys_param_1b[MADD_A_UL_WORK_EN].val))
-		{
-			FpgaWorkEnableA( 1);
-		}
-		else
-		{
-			FpgaWorkEnableA( 0 );
-		}
-
-		if ((1==sys_param_1b[MADD_B_DL_WORK_EN].val)&&(1==sys_param_1b[MADD_B_UL_WORK_EN].val))
-		{
-			FpgaWorkEnableB( 1 );
-		}
-		else
-		{
-			FpgaWorkEnableB( 0 );
-		}
-
-		if ((1==sys_param_1b[MADD_C_DL_WORK_EN].val)&&(1==sys_param_1b[MADD_C_UL_WORK_EN].val))
-		{
-			FpgaWorkEnableC( 1 );
-		}
-		else
-		{
-			FpgaWorkEnableC( 0 );
-		}
-
-		if ((1==sys_param_1b[MADD_D_DL_WORK_EN].val)&&(1==sys_param_1b[MADD_D_UL_WORK_EN].val))
-		{
-			FpgaWorkEnableD( 1 );
-		}
-		else
-		{
-			FpgaWorkEnableD( 0 );
-		}
-#endif		
 	// 恢复衰减器功能
 	UsNopDelay(100*1000);			// 延时5ms
 	//FpgaAttOutput(0);
@@ -2032,211 +1155,6 @@ void SetRecFcmps()
 	msg[tx_len++] = DEV_ID_FPGA;
 
 //	SendMsgPkt(tx_len, msg);
-}
-
-void SetTDParam_C()
-{
-	UINT32 i;
-	UINT16 tmp=0;
-	INT32 val;
-
-	FPGA_ENABLE_WRITE;
-
-
-	// TD工作模式
-	FpgaWriteRegister( FPGA_REC_C_TD_WORK_MODE, sys_param_1b[MADD_C_TD_WORK_MODE].val );
-
-	// 第一转换点调整时间ns
-	val = (INT16)sys_param_2b[MADD_C_TD_1ST_CP_TIME].val;	// 有符号数，先带符号扩展为32位再按无符号数计算
-	tmp = _CalcTdTimeParam( val );
-	FpgaWriteRegister(FPGA_REC_C_TD_1ST_TIME, tmp);
-
-	// 第二转换点调整时间ns
-	val = (INT16)sys_param_2b[MADD_C_TD_2ND_CP_TIME].val;	// 有符号数，先带符号扩展为32位再按无符号数计算
-	tmp = _CalcTdTimeParam( val );
-	FpgaWriteRegister(FPGA_REC_C_TD_2ND_TIME, tmp);
-
-	// LNA开启迟后DN_PA关闭的保护时间ns
-	val = (INT16)sys_param_2b[MADD_C_TD_LNA_ON_TIME].val;		// 无符号数
-	tmp = _CalcTdTimeParam( val );
-	FpgaWriteRegister(FPGA_REC_C_TD_LNA_ON_TIME, tmp);
-
-	// LNA关闭超前DN_PA开启的保护时间ns
-	val = (INT16)sys_param_2b[MADD_C_TD_LNA_OFF_TIME].val;		// 无符号数
-	tmp = _CalcTdTimeParam( val );
-	FpgaWriteRegister(FPGA_REC_C_TD_LNA_OFF_TIME, tmp);
-	
-	tmp = (sys_param_1b[MADD_C_TD_TYPE_SELECT].val&0X07)| ((sys_param_1b[MADD_C_TD_NORMAL_CP].val<<3)&0X78)|((sys_param_1b[MADD_C_TD_EXTENDED_CP].val<<7)&0X80);
-
-	sys_param_1b[MADD_D_TD_TYPE_SELECT].val=sys_param_1b[MADD_C_TD_TYPE_SELECT].val;
-	sys_param_1b[MADD_D_TD_WORK_MODE].val=sys_param_1b[MADD_C_TD_WORK_MODE].val;
-
-	if((version_number == VERSION_40M_NOIN) || (version_number == VERSION_40M_IN_A) 
-	|| (version_number == VERSION_40M_IN_B) || (version_number == VERSION_40M_IN_C)
-	|| (version_number == VERSION_40M_IN_D) || (version_number == VERSION_40M_IN_E)
-	|| (version_number == VERSION_50M_IN_F) || (version_number == VERSION_50M_IN_V4)
-	|| (version_number == VERSION_50M_IN_V5)
-	)
-	{
-		if(sys_param_1b[MADD_SLOT_TIME_EN_C].val==1)//开启TDS时隙配比自动检测
-		{
-			tmp = (UINT16)sys_param_1b[MADD_SLOT_TIME_EN_C].val;		
-			tmp <<= 15;
-			TRACE_INFO("FPGA_REG_W_SLOT_TIME_C=[%X]\r\n",tmp);
-			FpgaWriteRegister( FPGA_REG_W_SLOT_TIME_C, tmp );
-		}
-		else
-		{
-			FpgaWriteRegister( FPGA_REG_W_SLOT_TIME_C, 0 );//关闭时隙自动检测
-
-			// 时隙上下行配比
-			FpgaWriteRegister(FPGA_REC_C_TS_CONFIG, tmp);
-			//特殊子帧配比
-			//FpgaWriteRegister(FPGA_REC_C_TS_CONFIG, sys_param_1b[MADD_C_TD_NORMAL_CP].val);
-			//CP配比
-			//FpgaWriteRegister(FPGA_REC_C_TS_CONFIG, sys_param_1b[MADD_C_TD_EXTENDED_CP].val);
-		}
-	}	
-	else if((version_number == VERSION_20M_NOIN) || (version_number == VERSION_20M_IN))
-	{
-		// 时隙上下行配比
-		FpgaWriteRegister(FPGA_REC_C_TS_CONFIG, tmp);
-		//特殊子帧配比
-		//FpgaWriteRegister(FPGA_REC_C_TS_CONFIG, sys_param_1b[MADD_C_TD_NORMAL_CP].val);
-		//CP配比
-		//FpgaWriteRegister(FPGA_REC_C_TS_CONFIG, sys_param_1b[MADD_C_TD_EXTENDED_CP].val);
-	}
-	
-	FPGA_DISABLE_WRITE;
-
-}
-
-
-void SetTDParam_D()
-{
-		UINT32 i;
-	UINT16 tmp=0;
-	INT32 val;
-
-	FPGA_ENABLE_WRITE;
-
-	// TD工作模式
-	FpgaWriteRegister( FPGA_REC_D_TD_WORK_MODE, sys_param_1b[MADD_D_TD_WORK_MODE].val );
-
-	// 第一转换点调整时间ns
-	val = (INT16)sys_param_2b[MADD_D_TD_1ST_CP_TIME].val;	// 有符号数，先带符号扩展为32位再按无符号数计算
-	tmp = _CalcTdTimeParam( val );
-	TRACE_INFO("tm=[%X]\r\n",tmp);
-	FpgaWriteRegister(FPGA_REC_D_TD_1ST_TIME, tmp);
-
-	// 第二转换点调整时间ns
-	val = (INT16)sys_param_2b[MADD_D_TD_2ND_CP_TIME].val;	// 有符号数，先带符号扩展为32位再按无符号数计算
-	tmp = _CalcTdTimeParam( val );
-	FpgaWriteRegister(FPGA_REC_D_TD_2ND_TIME, tmp);
-
-	// LNA开启迟后DN_PA关闭的保护时间ns
-	val = (INT16)sys_param_2b[MADD_D_TD_LNA_ON_TIME].val;		// 无符号数
-	tmp = _CalcTdTimeParam( val );
-	FpgaWriteRegister(FPGA_REC_D_TD_LNA_ON_TIME, tmp);
-
-	// LNA关闭超前DN_PA开启的保护时间ns
-	val = (INT16)sys_param_2b[MADD_D_TD_LNA_OFF_TIME].val;		// 无符号数
-	tmp = _CalcTdTimeParam( val );
-	FpgaWriteRegister(FPGA_REC_D_TD_LNA_OFF_TIME, tmp);
-	
-
-	tmp = (sys_param_1b[MADD_D_TD_TYPE_SELECT].val&0X07)| ((sys_param_1b[MADD_D_TD_NORMAL_CP].val<<3)&0X78)|((sys_param_1b[MADD_D_TD_EXTENDED_CP].val<<15)&0X80);
-	// 时隙上下行配比
-	FpgaWriteRegister(FPGA_REC_D_TS_CONFIG, tmp);
-	//特殊子帧配比
-	//FpgaWriteRegister(FPGA_REC_D_TS_CONFIG, sys_param_1b[MADD_D_TD_NORMAL_CP].val);
-	//CP配比
-	//FpgaWriteRegister(FPGA_REC_D_TS_CONFIG, sys_param_1b[MADD_D_TD_EXTENDED_CP].val);
-
-	
-	FPGA_DISABLE_WRITE;
-
-}
-void SetTDParam_B()
-{
-	UINT32 i;
-	UINT16 tmp=0;
-	INT32 val;
-
-	
-	
-	FPGA_ENABLE_WRITE;
-	if((version_number == VERSION_40M_NOIN) || (version_number == VERSION_40M_IN_A) 
-	|| (version_number == VERSION_40M_IN_B) || (version_number == VERSION_40M_IN_C)
-	|| (version_number == VERSION_40M_IN_D) || (version_number == VERSION_40M_IN_E)
-	|| (version_number == VERSION_50M_IN_F) || (version_number == VERSION_50M_IN_V4)
-	|| (version_number == VERSION_50M_IN_V5)
-	)
-	{
-		// 时隙上下行设置
-		if(sys_param_1b[MADD_SLOT_TIME_EN_B].val==1)//TDS时隙配比自动检测
-		{
-			tmp = (UINT16)sys_param_1b[MADD_SLOT_TIME_EN_B].val;		
-			tmp <<= 15;
-			TRACE_INFO("FPGA_REG_W_SLOT_TIME_B=[%X]\r\n",tmp);
-			FpgaWriteRegister( FPGA_REG_W_SLOT_TIME_B, tmp );
-		}
-		else
-		{
-			FpgaWriteRegister( FPGA_REG_W_SLOT_TIME_B, 0 );//关闭时隙自动检测
-			for ( i=0; i<7; i++)
-			{
-				if ( sys_param_1b[MADD_TD_T0_UD+i].val == 1 )
-				{
-					tmp |= (1<<i);
-				}
-			} 
-			TRACE_INFO("FPGA_REG_TDSLOT_CTL=[%X]\r\n",tmp);
-			FpgaWriteRegister(FPGA_REG_TDSLOT_CTL, tmp);
-		}
-	}
-	else if((version_number == VERSION_20M_NOIN) || (version_number == VERSION_20M_IN))
-	{
-		for ( i=0; i<7; i++)
-		{
-			if ( sys_param_1b[MADD_TD_T0_UD+i].val == 1 )
-			{
-				tmp |= (1<<i);
-			}
-		} 
-	
-	
-		// 时隙上下行设置
-		FpgaWriteRegister(FPGA_REG_TDSLOT_CTL, tmp);
-	}
-
-	// 第一转换点调整时间ns
-	val = sys_param_2b[MADD_TD_1ST_CP_TIME].val;	// 有符号数，先带符号扩展为32位再按无符号数计算
-	tmp = _CalcTdTimeParam( val );
-	FpgaWriteRegister(FPGA_REG_TD_1ST_TIME, tmp);
-
-	// 第二转换点调整时间ns
-	val = (INT16)sys_param_2b[MADD_TD_2ND_CP_TIME].val;	// 有符号数，先带符号扩展为32位再按无符号数计算
-	tmp = _CalcTdTimeParam( val );
-	FpgaWriteRegister(FPGA_REG_TD_2ND_TIME, tmp);
-
-	// LNA开启迟后DN_PA关闭的保护时间ns  
-	val = (INT16)sys_param_2b[MADD_TD_LNA_ON_TIME].val;		// 无符号数
-	tmp = _CalcTdTimeParam( val );
-	FpgaWriteRegister(FPGA_REG_TD_LNA_ON_TIME, tmp);
-
-	// LNA关闭超前DN_PA开启的保护时间ns  
-	val = (INT16)sys_param_2b[MADD_TD_LNA_OFF_TIME].val;		// 无符号数
-	tmp = _CalcTdTimeParam( val );
-	FpgaWriteRegister(FPGA_REG_TD_LNA_OFF_TIME, tmp);
-
-//	TRACE_INFO("sys_param_1b[MADD_TD_WORK_MODE].val=[%X]\r\n",sys_param_1b[MADD_TD_WORK_MODE].val);
-
-	// TD工作模式
-	FpgaWriteRegister( FPGA_REG_TD_WORK_MODE, sys_param_1b[MADD_TD_WORK_MODE].val );
-	
-	FPGA_DISABLE_WRITE;
-
 }
 
 /*************************************************************
@@ -2623,37 +1541,6 @@ void SetReUlPowerGain()
 	// 数据
 	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_D_UCH_ATT1].val;
 	
-
-#if 0//201411120931
-	p_msg[tx_len++] = (UCHAR8)(MADD_METER_OFFSET&0x00FF);	
-	p_msg[tx_len++] = (UCHAR8)((MADD_METER_OFFSET>>8)&0x00FF);
-	// 长度
-	p_msg[tx_len++] = 1;
-	// 数据
-	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_METER_OFFSET].val;
-
-	p_msg[tx_len++] = (UCHAR8)(MADD_METER_OFFSET_B&0x00FF);	
-	p_msg[tx_len++] = (UCHAR8)((MADD_METER_OFFSET_B>>8)&0x00FF);
-	// 长度
-	p_msg[tx_len++] = 1;
-	// 数据
-	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_METER_OFFSET_B].val;
-
-	p_msg[tx_len++] = (UCHAR8)(MADD_METER_OFFSET_C&0x00FF);	
-	p_msg[tx_len++] = (UCHAR8)((MADD_METER_OFFSET_C>>8)&0x00FF);
-	// 长度
-	p_msg[tx_len++] = 1;
-	// 数据
-	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_METER_OFFSET_C].val;
-
-	p_msg[tx_len++] = (UCHAR8)(MADD_METER_OFFSET_D&0x00FF);	
-	p_msg[tx_len++] = (UCHAR8)((MADD_METER_OFFSET_D>>8)&0x00FF);
-	// 长度
-	p_msg[tx_len++] = 1;
-	// 数据
-	p_msg[tx_len++] = (UCHAR8)sys_param_1b[MADD_METER_OFFSET_D].val;
-#endif 
-
 	p_msg[tx_len++] = (UCHAR8)(MADD_A_DL_RF_EN&0x00FF);	
 	p_msg[tx_len++] = (UCHAR8)((MADD_A_DL_RF_EN>>8)&0x00FF);
 	// 长度
@@ -3081,52 +1968,6 @@ void SetReTDParam()
 		p_msg[tx_len++] = sys_param_1b[MADD_C_TD_EXTENDED_CP].val;
 
 //----------------------------D-----------------------------------//
-#if 0
-		p_msg[tx_len++] = (UCHAR8)(MADD_D_TD_WORK_MODE&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((MADD_D_TD_WORK_MODE>>8)&0x00FF);
-		p_msg[tx_len++] = 1;
-		p_msg[tx_len++] = sys_param_1b[MADD_D_TD_WORK_MODE].val;	
-
-				p_msg[tx_len++] = (UCHAR8)(MADD_D_TD_1ST_CP_TIME&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((MADD_D_TD_1ST_CP_TIME>>8)&0x00FF);
-		p_msg[tx_len++] = 2;
-		p_msg[tx_len++] = (UCHAR8)(sys_param_1b[MADD_D_TD_1ST_CP_TIME].val&0Xff);	
-		p_msg[tx_len++] = (UCHAR8)((sys_param_1b[MADD_D_TD_1ST_CP_TIME].val>>8)&0Xff);	
-
-		p_msg[tx_len++] = (UCHAR8)(MADD_D_TD_2ND_CP_TIME&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((MADD_D_TD_2ND_CP_TIME>>8)&0x00FF);
-		p_msg[tx_len++] = 2;
-		p_msg[tx_len++] = (UCHAR8)(sys_param_1b[MADD_D_TD_2ND_CP_TIME].val&0Xff);	
-		p_msg[tx_len++] = (UCHAR8)((sys_param_1b[MADD_D_TD_2ND_CP_TIME].val>>8)&0Xff);	
-
-
-		p_msg[tx_len++] = (UCHAR8)(MADD_D_TD_LNA_ON_TIME&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((MADD_D_TD_LNA_ON_TIME>>8)&0x00FF);
-		p_msg[tx_len++] = 2;
-		p_msg[tx_len++] = (UCHAR8)(sys_param_1b[MADD_D_TD_LNA_ON_TIME].val&0Xff);	
-		p_msg[tx_len++] = (UCHAR8)((sys_param_1b[MADD_D_TD_LNA_ON_TIME].val>>8)&0Xff);	
-
-		p_msg[tx_len++] = (UCHAR8)(MADD_D_TD_LNA_OFF_TIME&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((MADD_D_TD_LNA_OFF_TIME>>8)&0x00FF);
-		p_msg[tx_len++] = 2;
-		p_msg[tx_len++] = (UCHAR8)(sys_param_1b[MADD_D_TD_LNA_OFF_TIME].val&0Xff);	
-		p_msg[tx_len++] = (UCHAR8)((sys_param_1b[MADD_D_TD_LNA_OFF_TIME].val>>8)&0Xff);	
-
-		p_msg[tx_len++] = (UCHAR8)(MADD_D_TD_TYPE_SELECT&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((MADD_D_TD_TYPE_SELECT>>8)&0x00FF);
-		p_msg[tx_len++] = 1;
-		p_msg[tx_len++] = sys_param_1b[MADD_D_TD_TYPE_SELECT].val;	
-
-		p_msg[tx_len++] = (UCHAR8)(MADD_D_TD_NORMAL_CP&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((MADD_D_TD_NORMAL_CP>>8)&0x00FF);
-		p_msg[tx_len++] = 1;
-		p_msg[tx_len++] = sys_param_1b[MADD_D_TD_NORMAL_CP].val;	
-
-		p_msg[tx_len++] = (UCHAR8)(MADD_D_TD_EXTENDED_CP&0x00FF);	
-		p_msg[tx_len++] = (UCHAR8)((MADD_D_TD_EXTENDED_CP>>8)&0x00FF);
-		p_msg[tx_len++] = 1;
-		p_msg[tx_len++] = sys_param_1b[MADD_D_TD_EXTENDED_CP].val;
-#endif 
 	TRACE_INFO("---------------Set Re TD Param_end------------\r\n");
 
 
@@ -3144,87 +1985,9 @@ Return:void
 **************************************************************/
 void SetAttByParam( UCHAR8 ab_flag )	
 {
-#if 0
-	if ( SYS_A_FLAG==ab_flag )
-	{
-		// 前端输入衰减器1
-		if ( sys_param_1b[MADD_A_IN_ATT1].val < 64 )
-		{
-			FpgaSetAttValue( SYS_A_FLAG, FPGA_AF_ATT1, sys_param_1b[MADD_A_IN_ATT1].val );
-		}
-
-		// 前端输入衰减器2
-		if ( sys_param_1b[MADD_A_IN_ATT2].val < 64 )
-		{
-			FpgaSetAttValue( SYS_A_FLAG, FPGA_AF_ATT2, sys_param_1b[MADD_A_IN_ATT2].val );
-		}
-
-		// 后端输出衰减器1
-		if ( sys_param_1b[MADD_A_OUT_ATT1].val < 64 )
-		{
-			FpgaSetAttValue( SYS_A_FLAG, FPGA_AB_ATT1, sys_param_1b[MADD_A_OUT_ATT1].val );
-		}
-	}
-	else if ( SYS_B_FLAG==ab_flag )
-	{
-		// 前端输入衰减器1
-		if ( sys_param_1b[MADD_B_IN_ATT1].val < 64 )
-		{
-			FpgaSetAttValue( SYS_B_FLAG, FPGA_BF_ATT1, sys_param_1b[MADD_B_IN_ATT1].val );
-		}
-
-		// 前端输入衰减器2
-		if ( sys_param_1b[MADD_B_IN_ATT2].val < 64 )
-		{
-			FpgaSetAttValue( SYS_B_FLAG, FPGA_BF_ATT2, sys_param_1b[MADD_B_IN_ATT2].val );
-		}
-
-		// 后端输出衰减器1
-		if ( sys_param_1b[MADD_B_OUT_ATT1].val < 64 )
-		{
-			FpgaSetAttValue( SYS_B_FLAG, FPGA_BB_ATT1, sys_param_1b[MADD_B_OUT_ATT1].val );
-		}
-	}
-#endif
 }
 
-/*************************************************************
-Name: SetChannelByParam
-Description: 根据参数中的频点号来配置频率
-Input: void
-Output:void         
-Return:void
-**************************************************************/
-void SetChannelByParam( UCHAR8 abcd_flag )	
-{
-	UINT32 i;
-	
-//	TRACE_DEBUG("SetChannelByParam,abcd_flag[%04x]\r\n",abcd_flag);
-	
-	if ( SYS_A_FLAG == abcd_flag )
-	{
-		for ( i=0; i<sys_param_1b[MADD_A_CHANNEL_COUNT].val; i++ )
-		{
-			PA_SetChannel(i, sys_param_1b[MADD_A_DCH_EN1+i].val, sys_param_2b[MADD_A_DL_CHANNEL1+i].val);
-		} 
-	}
-	else if ( SYS_C_FLAG==abcd_flag )
-	{
-		for ( i=0; i<sys_param_1b[MADD_C_CHANNEL_COUNT].val; i++ )
-		{
-			PC_SetChannel(i, sys_param_1b[MADD_C_DCH_EN1+i].val, sys_param_2b[MADD_C_DL_CHANNEL1+i].val);
-		}
-	}
-	else if ( SYS_D_FLAG==abcd_flag )
-	{
 
-		for ( i=0; i<sys_param_1b[MADD_D_CHANNEL_COUNT].val; i++ )
-		{
-			PD_SetChannel(i, sys_param_1b[MADD_D_DCH_EN1+i].val, sys_param_2b[MADD_D_DL_CHANNEL1+i].val);
-		}
-	}
-	
-}
 
 /*************************************************************
 Name: GetPsfFromRe
@@ -3645,20 +2408,21 @@ void TempGainCompensate( UCHAR8 force_set )
 			
 			comp_id = index;
 			// 设置A段温度补偿
-			FpgaSetTempComp( 0, 0, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_aul[index]/1000.0) );
-			FpgaSetTempComp( 0, 1, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_adl[index]/1000.0) );
+			////FpgaSetTempComp( 0, 0, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_aul[index]/1000.0) );
+			////FpgaSetTempComp( 0, 1, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_adl[index]/1000.0) );
 
 			// 设置B段温度补偿
-			FpgaSetTempComp( 1, 0, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_bul[index]/1000.0) );
-			FpgaSetTempComp( 1, 1, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_bdl[index]/1000.0) );
+			////FpgaSetTempComp( 1, 0, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_bul[index]/1000.0) );
+			////FpgaSetTempComp( 1, 1, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_bdl[index]/1000.0) );
 
 			// 设置C段温度补偿
-			FpgaSetTempComp( 2, 0, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_cul[index]/1000.0) );
-			FpgaSetTempComp( 2, 1, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_cdl[index]/1000.0) );
+			////FpgaSetTempComp( 2, 0, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_cul[index]/1000.0) );
+			////FpgaSetTempComp( 2, 1, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_cdl[index]/1000.0) );
 
 			// 设置D段温度补偿
-			FpgaSetTempComp( 3, 0, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_dul[index]/1000.0) );
-			FpgaSetTempComp( 3, 1, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_ddl[index]/1000.0) );		}
+			////FpgaSetTempComp( 3, 0, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_dul[index]/1000.0) );
+			////FpgaSetTempComp( 3, 1, (UINT16)CALC_FTCOMP(0-(INT16)temp_cmp_tbl_ddl[index]/1000.0) );		
+		}
 	}
 
 	// 保存本次温度
@@ -4202,8 +2966,8 @@ void MoveBenZhenTo2340( void)
 	 		if(state == 3)
 				state = 0;
 //	 		printf("满足条件执行\r\n");
-	 		module_param_chg_flag |= PCHG_C_CHANNEL;
-			module_param_chg_flag |= PCHG_D_CHANNEL;
+//	 		module_param_chg_flag |= PCHG_C_CHANNEL;
+//			module_param_chg_flag |= PCHG_D_CHANNEL;
 			MAUSetParamToMRU();
 	 }
 }
@@ -4381,21 +3145,6 @@ void MAUGetParamFromMEU(void)
 		 return;
 	}
 
-
-	#if 0
-	if ( (0 !=	( sys_work_info & SYSTEM_FLAG_SET_RE_UPOW))
-		||( 0 !=	(sys_work_info & SYSTEM_FLAG_SET_RE_SYS_CFG) ) )
-	{
-		// 设置RE的上行输出总功率(其值由界面设)
-		sys_work_info &= (~SYSTEM_FLAG_SET_RE_UPOW);
-		sys_work_info &= (~SYSTEM_FLAG_SET_RE_SYS_CFG);
-		WTD_CLR; 
-		//SetReUlPowerGain();
-		// REC的双工器参数用单独的数据包发送，避免旧版RE程序不识别，导致其他参数也设置失败
-		//SetReDpxInfo();
-
-	}
-	#endif
 	if ( 0 !=	(sys_work_info & SYSTEM_FLAG_SET_RE_SYS_CFG) )
 	{
 		WTD_CLR; 
@@ -4445,42 +3194,6 @@ void MauGetMeuAlarm()
 		 return;
 	}
 
-
-#if 0
-	for(i=0;i<REE_MAX;i++)
-	{
-		sys_param_ree_1b[MADD_REE_DETECT_RF_TEMP1+i].val=0;
-		sys_param_ree_1b[MADD_A_REE_DETECT_RF_POW_SWR1+i].val=0;
-		sys_param_ree_1b[MADD_B_REE_DETECT_RF_POW_SWR1+i].val=0;				
-		sys_param_ree_1b[MADD_C_REE_DETECT_RF_POW_SWR1+i].val=0;
-		sys_param_ree_1b[MADD_D_REE_DETECT_RF_POW_SWR1+i].val=0;
-		
-		sys_param_ree_2b[MADD_A_REE_DETECT_RF_DL_OUT_TOTAL_POW1+i].val=0;
-		sys_param_ree_2b[MADD_B_REE_DETECT_RF_DL_OUT_TOTAL_POW1+i].val=0;
-		sys_param_ree_2b[MADD_C_REE_DETECT_RF_DL_OUT_TOTAL_POW1+i].val=0;
-		sys_param_ree_2b[MADD_D_REE_DETECT_RF_DL_OUT_TOTAL_POW1+i].val=0;
-		
-		sys_param_ree_2b[MADD_A_REE_DETECT_RF_UL_INPUT_TOTAL_POW1+i].val=0;
-		sys_param_ree_2b[MADD_B_REE_DETECT_RF_UL_INPUT_TOTAL_POW1+i].val=0;
-		sys_param_ree_2b[MADD_C_REE_DETECT_RF_UL_INPUT_TOTAL_POW1+i].val=0;
-		sys_param_ree_2b[MADD_D_REE_DETECT_RF_UL_INPUT_TOTAL_POW1+i].val=0;
-		
-		sys_param_ree_2b[MADD_A_REE_DETECT_RF_ALARM_ST1+i].val=0;
-		sys_param_ree_2b[MADD_B_REE_DETECT_RF_ALARM_ST1+i].val=0;
-		sys_param_ree_2b[MADD_C_REE_DETECT_RF_ALARM_ST1+i].val=0;
-		sys_param_ree_2b[MADD_D_REE_DETECT_RF_ALARM_ST1+i].val=0;
-		
-		sys_param_ree_1b[MADD_RE_CIRCUIT_ALARM1+i].val=0;
-		sys_param_ree_1b[MADD_RE_WLAN_CONN_ST1+i].val=0;
-
-		sys_param_ree_1b[MADD_A_REE_ERL_JG1+i].val = 0;
-		sys_param_ree_1b[MADD_C_REE_ERL_JG1+i].val = 0;
-		sys_param_ree_1b[MADD_D_REE_ERL_JG1+i].val = 0;
-
-	}	
-#endif
-
-
 		msg_tx_len = MSG_CMD_BODY;
 
 		sys_temp_buff[msg_tx_len++]= (UCHAR8)MADD_WORK_ERROR;
@@ -4506,38 +3219,6 @@ void MauGetMeuAlarm()
 	//}
 	//TRACE_INFO(" \r\n"); 		
 
-#if 0
-		for( i=0; i<REE_MAX; i++)
-		{		tx_len = MSG_PKT_HEAD_SIZE;
-				tmp = MADD_C_DCH_EN1;
-				p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
-				p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
-				p_msg[tx_len++] = 1;
-				p_msg[tx_len++] = (UCHAR8)(sys_param_ree_1b[MADD_C_RF_CHANNEL1_EN1+i].val&0xFF);	
-					
-				
-				tmp = MADD_C_DCH_EN2;
-				p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
-				p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
-				p_msg[tx_len++] = 1;
-				p_msg[tx_len++] = sys_param_ree_1b[MADD_C_RF_CHANNEL2_EN1+i].val;	
-
-				tmp = MADD_D_DCH_EN1;
-				p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
-				p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
-				p_msg[tx_len++] = 1;
-				p_msg[tx_len++] = (UCHAR8)(sys_param_ree_1b[MADD_D_RF_CHANNEL1_EN1+i].val&0xFF);						
-
-				tmp = MADD_D_DCH_EN2;
-				p_msg[tx_len++] = (UCHAR8)(tmp&0x00FF);	
-				p_msg[tx_len++] = (UCHAR8)((tmp>>8)&0x00FF);
-				p_msg[tx_len++] = 1;
-				p_msg[tx_len++] = sys_param_ree_1b[MADD_D_RF_CHANNEL2_EN1+i].val;
-				
-				MAUBroadcastToMEU( 0,i+1,sys_temp_buff ,msg_tx_len,MSG_CMD_SET_PARAM);	
-				
-		}
-#endif
 		if(eu_port>FP_MAX)
 			eu_port = 1;
 

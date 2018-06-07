@@ -1,4 +1,4 @@
-﻿/***************************************************************
+/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    : uart_app.c
@@ -19,8 +19,7 @@ extern UCHAR8 para_bak[];
 extern _T_PARAM_1B sys_param_1b[];
 extern _T_PARAM_2B sys_param_2b[];
 extern _T_PARAM_4B sys_param_4b[];
-extern _T_MODULE_CFG mod_cfg_a;
-extern UINT32 module_param_chg_flag;		//系统工作参数修改标志
+
 extern _T_FP_INFO fp_inf[];		            // 光口拓扑信息
 extern _T_VALID_FP_TOPO valid_fp_topo[FP_MAX];
 extern _T_FP_INFO fp_inf[FP_MAX];
@@ -824,11 +823,11 @@ UCHAR8 MonHXSetNormalPara(UCHAR8 cmd, UCHAR8 * data , UINT16 body_len, UCHAR8 up
 			sys_param_1b[addr].val = data[0]&0x7F;
 			if ( 0==ab_flag )
 			{
-				module_param_chg_flag |= PCHG_A_POW_GAIN;//((0==up_down) ? PCHG_A_UL_GAIN : PCHG_A_DL_GAIN);	// 置修改参数标志
+//				module_param_chg_flag |= PCHG_A_POW_GAIN;//((0==up_down) ? PCHG_A_UL_GAIN : PCHG_A_DL_GAIN);	// 置修改参数标志
 			}
 			else
 			{
-				module_param_chg_flag |= PCHG_B_POW_GAIN;//((0==up_down) ? PCHG_A_UL_GAIN : PCHG_A_DL_GAIN);	// 置修改参数标志
+//				module_param_chg_flag |= PCHG_B_POW_GAIN;//((0==up_down) ? PCHG_A_UL_GAIN : PCHG_A_DL_GAIN);	// 置修改参数标志
 			}
 		}
 		else
@@ -851,7 +850,7 @@ UCHAR8 MonHXSetNormalPara(UCHAR8 cmd, UCHAR8 * data , UINT16 body_len, UCHAR8 up
 			{
 				sys_param_1b[MADD_A_UL_WORK_EN].val = data[0];
 				sys_param_1b[MADD_A_DL_WORK_EN].val = data[0];
-				module_param_chg_flag |= PCHG_A_WORK_EN;
+//				module_param_chg_flag |= PCHG_A_WORK_EN;
 			}
 			else
 			{
@@ -864,7 +863,7 @@ UCHAR8 MonHXSetNormalPara(UCHAR8 cmd, UCHAR8 * data , UINT16 body_len, UCHAR8 up
 			{
 				sys_param_1b[MADD_B_UL_WORK_EN].val = data[0];
 				sys_param_1b[MADD_B_DL_WORK_EN].val = data[0];
-				module_param_chg_flag |= PCHG_B_WORK_EN;
+//				module_param_chg_flag |= PCHG_B_WORK_EN;
 			}
 			else
 			{
@@ -882,7 +881,7 @@ UCHAR8 MonHXSetNormalPara(UCHAR8 cmd, UCHAR8 * data , UINT16 body_len, UCHAR8 up
 			return 2;
 		}
 		sys_param_1b[addr].val = data[0];
-		module_param_chg_flag |= ((0==ab_flag) ? PCHG_A_LTHR: PCHG_B_LTHR);
+//		module_param_chg_flag |= ((0==ab_flag) ? PCHG_A_LTHR: PCHG_B_LTHR);
 	break;
 
 	case HXCT_CMD_SET_NOISE_GATE:		// 躁声抑制电平下门限MADD_B_LTHR_DN
@@ -892,7 +891,7 @@ UCHAR8 MonHXSetNormalPara(UCHAR8 cmd, UCHAR8 * data , UINT16 body_len, UCHAR8 up
 			return 2;
 		}
 		sys_param_1b[addr].val = data[0];
-		module_param_chg_flag |= ((0==ab_flag) ? PCHG_A_LTHR: PCHG_B_LTHR);
+//		module_param_chg_flag |= ((0==ab_flag) ? PCHG_A_LTHR: PCHG_B_LTHR);
 	break;
 
 	default:
@@ -952,7 +951,7 @@ UCHAR8 HxExtraSetDpxInAtt( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 		if ( val16 !=sys_param_2b[MADD_A_UDPX_IN_GAIN].val )
 		{
 			sys_param_2b[MADD_A_UDPX_IN_GAIN].val = val16;
-			module_param_chg_flag |= PCHG_A_POW_GAIN;
+//			module_param_chg_flag |= PCHG_A_POW_GAIN;
 		}
 		else
 		{
@@ -964,7 +963,7 @@ UCHAR8 HxExtraSetDpxInAtt( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 		if ( val16 !=sys_param_2b[MADD_B_UDPX_IN_GAIN].val )
 		{
 			sys_param_2b[MADD_B_UDPX_IN_GAIN].val = val16;
-			module_param_chg_flag |= PCHG_B_POW_GAIN;
+//			module_param_chg_flag |= PCHG_B_POW_GAIN;
 		}
 		else
 		{
@@ -998,7 +997,7 @@ UCHAR8 HxExtraSetDpxOutAtt( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 		if ( val16 !=sys_param_2b[MADD_A_UDPX_OUT_GAIN].val )
 		{
 			sys_param_2b[MADD_A_UDPX_OUT_GAIN].val = val16;
-			module_param_chg_flag |= PCHG_A_POW_GAIN;
+//			module_param_chg_flag |= PCHG_A_POW_GAIN;
 		}
 		else
 		{
@@ -1010,7 +1009,7 @@ UCHAR8 HxExtraSetDpxOutAtt( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 		if ( val16 !=sys_param_2b[MADD_B_UDPX_OUT_GAIN].val )
 		{
 			sys_param_2b[MADD_B_UDPX_OUT_GAIN].val = val16;
-			module_param_chg_flag |= PCHG_B_POW_GAIN;
+//			module_param_chg_flag |= PCHG_B_POW_GAIN;
 		}
 		else
 		{
@@ -1091,7 +1090,7 @@ UCHAR8 HxExtraSetFpsParam( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 		{
 			return 0;	// 出错
 		}
-		module_param_chg_flag |= PCHG_FPS_RANGE;
+//		module_param_chg_flag |= PCHG_FPS_RANGE;
 		return 1;		
 	}
 	
@@ -1122,7 +1121,7 @@ UCHAR8 HxExtraSetFpsLockCid( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 		{
 			return 0;	// 出错
 		}
-		module_param_chg_flag |= PCHG_FPS_RANGE;
+//		module_param_chg_flag |= PCHG_FPS_RANGE;
 		return 1;
 	}
 	else
@@ -1151,7 +1150,7 @@ UCHAR8 HxExtraSetAutoDelayMode( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 	if ( data[0]!=sys_param_1b[MADD_DELAY_MODE].val )
 	{
 		sys_param_1b[MADD_DELAY_MODE].val = data[0];
-		module_param_chg_flag |= PCHG_OPT_DELAY;
+//		module_param_chg_flag |= PCHG_OPT_DELAY;
 		return 1;
 	}
 	else
@@ -1176,7 +1175,7 @@ UCHAR8 HxExtraSetDelayOffset( UCHAR8 * data, UCHAR8 up_down, UCHAR8 ab_flag )
 	if ( val16 != sys_param_2b[MADD_DL_DELAY_OFFSET].val )
 	{
 		sys_param_2b[MADD_DL_DELAY_OFFSET].val = val16;
-		module_param_chg_flag |= PCHG_OPT_DELAY;
+//		module_param_chg_flag |= PCHG_OPT_DELAY;
 		return 1;
 	}
 	else
@@ -1216,7 +1215,7 @@ UCHAR8 MonHXSetExtraPara(UCHAR8 sub_cmd, UCHAR8 * data , UINT16 body_len, UCHAR8
 			return 2;
 		}
 		sys_param_2b[addr].val = val16;
-		module_param_chg_flag |= ((0==ab_flag) ? PCHG_A_POW_GAIN : PCHG_B_POW_GAIN);
+//		module_param_chg_flag |= ((0==ab_flag) ? PCHG_A_POW_GAIN : PCHG_B_POW_GAIN);
 	break;
 	
 	case HXCT_SUBCMD_SET_GAIN:		// 设置整机通道最大增益
@@ -1279,7 +1278,7 @@ UCHAR8 MonHXSetExtraPara(UCHAR8 sub_cmd, UCHAR8 * data , UINT16 body_len, UCHAR8
 			//}
 		}
 		if ( tmp!=0 ) return 2;		// 参数没变，不需要保存
-		module_param_chg_flag |= ((0==ab_flag) ? PCHG_A_CHANNEL: PCHG_B_CHANNEL);
+//		module_param_chg_flag |= ((0==ab_flag) ? PCHG_A_CHANNEL: PCHG_B_CHANNEL);
 	break;
 
 	case HXCT_SUBCMD_SET_CH_EN:		// 设置信道开关
@@ -1331,7 +1330,7 @@ UCHAR8 MonHXSetExtraPara(UCHAR8 sub_cmd, UCHAR8 * data , UINT16 body_len, UCHAR8
 			//}
 		}
 		if ( val16!=0 ) return 2;		// 参数没变，不需要保存
-		module_param_chg_flag |= ((0==ab_flag) ? PCHG_A_CHANNEL: PCHG_B_CHANNEL);
+//		module_param_chg_flag |= ((0==ab_flag) ? PCHG_A_CHANNEL: PCHG_B_CHANNEL);
 	break;
 
 	case HXCT_SUBCMD_SET_OPT_EN:		// 光模块开关
@@ -1352,7 +1351,7 @@ UCHAR8 MonHXSetExtraPara(UCHAR8 sub_cmd, UCHAR8 * data , UINT16 body_len, UCHAR8
 			sys_param_1b[MADD_FP1_EN+i].val = tmp;
 		}
 		if ( val16!=0 ) return 2;		// 参数没变，不需要保存
-		module_param_chg_flag |= PCHG_SYS_FP_EN;
+//		module_param_chg_flag |= PCHG_SYS_FP_EN;
 	break;
 
 
@@ -1410,7 +1409,7 @@ UCHAR8 MonHXSetExtraPara(UCHAR8 sub_cmd, UCHAR8 * data , UINT16 body_len, UCHAR8
 		if ( data[0]!=sys_param_1b[MADD_LOW_POWER].val ) tmp = 0;
 		sys_param_1b[MADD_LOW_POWER].val = *data++;
 		if ( tmp!=0 ) return 2;
-		module_param_chg_flag |= (PCHG_OPT_DELAY|PCHG_LOW_POWER);
+//		module_param_chg_flag |= (PCHG_OPT_DELAY|PCHG_LOW_POWER);
 	break;
 #endif
 
@@ -2592,7 +2591,8 @@ CHAR8 UartReceHandleMoGetAllPara(UCHAR8 *data,UINT16 data_len)
 		flag=SYS_D_FLAG;
 	}	
 	
-	ret_len = GetAllMoParam( i, flag, uart_trans_info.tx_buffer+uart_trans_info.tx_len );
+	//ret_len = GetAllMoParam( i, flag, uart_trans_info.tx_buffer+uart_trans_info.tx_len );
+	ret_len=0;
 	
 	TRACE_DEBUG("485A Handle HandShake1\r\n")
 	if ( ret_len == 0 )
@@ -2751,7 +2751,8 @@ CHAR8 UartReceHandleMoGetPara(UCHAR8 *data,UINT16 data_len)
 		return 0;
 	}
 	TRACE_INFO("p_msg:data_len=[%04X],mask=[%02X],data=[%04X],[%04X]------------\r\n",data_len,mask,data, uart_trans_info.tx_buffer+uart_trans_info.tx_len  );
-	ret_len = GetSysParam( data_len, mask, data, uart_trans_info.tx_buffer+uart_trans_info.tx_len );
+	////ret_len = GetSysParam( data_len, mask, data, uart_trans_info.tx_buffer+uart_trans_info.tx_len );
+	ret_len = 0;
 
 	if (ret_len == 0)
 		return 0;
@@ -2776,91 +2777,7 @@ Return:1:成功，0:失败
 **************************************************************/
 CHAR8 UartReceHandleMoSetPara(UCHAR8 *data,UINT16 data_len)
 {
-	UINT16 ret_len,crc16;
-	UCHAR8 dev_add;
-	UINT16 err_add;
-	UCHAR8 ex_flag;
-	UINT16 i;
-	
-	TRACE_DEBUG("485A Handle Set Param\r\n");
 
-	UartPacketTransHead(uart_rece_info.rx_buffer[1],uart_rece_info.rx_buffer[2],uart_rece_info.rx_buffer[3],
-			/*(UCHAR8)sys_param_1b[MADD_A_PRI_ADD].addr*/uart_rece_info.rx_buffer[4],uart_rece_info.rx_buffer[5],MONITOR_SUCCESS);	
-
-	dev_add = uart_rece_info.rx_buffer[4];
-
-	if ( dev_add == sys_param_1b[MADD_A_PRI_ADD].val )
-	{
-		ex_flag = 1;
-		dev_add = SYS_A_FLAG;
-	}
-	else if ( dev_add == sys_param_1b[MADD_B_PRI_ADD].val )
-	{
-		ex_flag = 2;
-		dev_add = SYS_B_FLAG;
-	}
-	else if ( dev_add == sys_param_1b[MADD_C_PRI_ADD].val )
-	{
-		ex_flag = 3;
-		dev_add = SYS_C_FLAG;
-	}
-	else if ( dev_add == sys_param_1b[MADD_D_PRI_ADD].val )
-	{
-		ex_flag = 4;
-		dev_add = SYS_D_FLAG;
-	}	
-	else
-	{
-		return 0;
-	}
-
-	BackupSystemPara(para_bak);
-
-	// 设置参数
-	if ( 0 != SetSysParam( data_len, ex_flag, data, &err_add ) )
-	{
-		// 保存参数
-		SaveSysParamToFlash();
-	}
-	else
-	{
-		RestoreSystemPara(para_bak);
-		return 0;
-	}
-
-	for(i =0;i<data_len; i++)
-	{
-		uart_trans_info.tx_buffer[uart_trans_info.tx_len++] = data[i];
-	}
-	
-
-	//设置完成有可能改变了设备地址
-	if ( SYS_A_FLAG==dev_add ) 
-	{
-		uart_trans_info.tx_buffer[3] = (UCHAR8)sys_param_1b[MADD_A_PRI_ADD].val;
-	}
-	else if (SYS_B_FLAG==dev_add )
-	{
-		uart_trans_info.tx_buffer[3] = (UCHAR8)sys_param_1b[MADD_B_PRI_ADD].val;
-	}
-	else if (SYS_C_FLAG==dev_add )
-	{
-	uart_trans_info.tx_buffer[3] = (UCHAR8)sys_param_1b[MADD_C_PRI_ADD].val;
-	}
-
-	else if (SYS_D_FLAG==dev_add )
-	{
-		uart_trans_info.tx_buffer[3] = (UCHAR8)sys_param_1b[MADD_D_PRI_ADD].val;
-	}
-	
-	
-	//uart_trans_info.tx_len += ret_len;
-	crc16 = CalCrc16(uart_trans_info.tx_buffer,uart_trans_info.tx_len,0x0000);
-	uart_trans_info.tx_buffer[uart_trans_info.tx_len] = (UCHAR8)crc16;
-	uart_trans_info.tx_buffer[uart_trans_info.tx_len+1] = (UCHAR8)(crc16>>8);
-	uart_trans_info.tx_len+=2;
-	UartStartTrans();
-	
 	return 1;
 }
 
@@ -3240,253 +3157,9 @@ Return:1:成功，0:失败
 **************************************************************/
 CHAR8 UartReceHandleSetFtPara(UCHAR8 *data,UINT16 data_len)
 {
-	UCHAR8 ft_ab,current_p,total_p;
-	UINT16 cmd_cnt,i,j,k,mcuFpgaSpiStaus;
-	UINT16 PKTlen;
-	UCHAR8 cmd,cmd_result,length;
-	UCHAR8 * tx_p = pc_trans_info.tx_buffer+MSG_CMD_BODY;
-	UINT16 result_len;
-	UCHAR8 * p_packet_head;
-	data+=MSG_CMD_BODY;
-	ft_ab = data[3];				//A,B
-	current_p = data[4];			//当前包数
-	total_p = data[5];				//总包数
-	cmd_cnt = (data[6]<<8)|data[7];	//包中包含的命令个数
 
-	PKTlen =( data[4]<<8)|data[5];	//总包数
-	TRACE_INFO("@@@@@PKTlen=[%d],cmd_cnt=%d\r\n",PKTlen,cmd_cnt);
-
-
-	
-	p_packet_head = data+6;
-
-	if((0==current_p)&&(	(TF_C!=ft_ab)||(!AD9369)||(	0x00==(0x01&(FpgaReadRegister(0x7a)>>14)))	)	)
-	{
-		TFInitCs( ft_ab);	//201503171043
-	}
-	if((0==current_p)&&(TF_C==ft_ab)&&(AD9369))
-	{
-		i=0;
-		while((i<10000))
-		{
-			
-			if(0x01==(0x01&(FpgaReadRegister(0x7a)>>15))	)
-			{
-				UsNopDelay(1);
-				if(0==i%1000)
-					WTD_CLR;
-				continue;
-			}
-			i=0x3fff&FpgaReadRegister(0x8000|0x7b);
-
-			FPGA_ENABLE_WRITE;
-			FpgaWriteRegister(0x8000|0x7b,i);//201503171043
-			FPGA_DISABLE_WRITE;	
-			TRACE_INFO("FpgaWriteRegister(0x8000|0x7b,i)=[%x]\r\n",i);
-
-			break;
-			
-		}	
-	}
-
-	if((0==current_p)	)
-	{
-		TFInitCs( ft_ab);	//201503171043
-	}
-
-
-	
-	//应答包
-//	PcPacketTransHead(0xdf,0x01,0x01,0x01,0xab,0x00);
-	* tx_p++ = data[0];		//表格类型 9363
-	TRACE_INFO("9363_TYPE[%02X]\r\n",data[0]);
-	tx_p+=2;			//保留空间存储返回包的数据长度
-	* tx_p++ = data[3];	//A,B
-	* tx_p++ = data[4];	//当前包数
-	* tx_p++ = data[5];	//总包数
-	* tx_p++ = data[6];	//包中包含的命令个数
-	* tx_p++ = data[7];	//包中包含的命令个数
-
-
-	
-	data += 8;	
-	pc_trans_info.tx_len += 8;//8个字节头:1个字节表格类型--9363， 2字节返回包数据长度，1字节A,B标志，1字节当前包数，1字节总包数，2字节包中包含的命令个数，
-
-	TRACE_DEBUG("from_pc:cmd_cnt[%d]=[%04x],data[0]=[%02x],data[1]=[%02x],data[2]=[%02x]\r\n\r\n",current_p,cmd_cnt,data[0],data[1],data[2]);	
-	//执行命令
-	for (i=0; i<cmd_cnt; i++)
-	{
-		WTD_CLR;
-
-		
-		cmd = data[0];
-
-		switch(cmd)
-		{		
-			case CMD_BLOCK_WRITE:
-				* tx_p++ = CMD_RESULT_IGNORE;
-				pc_trans_info.tx_len++;
-				data += CMD_BLOCK_WRITE_LEN;				
-			break;
-			
-			case CMD_SPI_WRITE:
-
-				FPGA_ENABLE_WRITE;
-				cmd_result = CmdHandleSpiWrite(ft_ab,(data[1]<<8)|data[2],data[3]);
-				FPGA_DISABLE_WRITE;
-				* tx_p++ = cmd_result;
-		
-				pc_trans_info.tx_len++;
-	
-				data += CMD_SPI_WRITE_LEN;
-			break;
-			
-			case CMD_WAIT:
-				cmd_result = CmdHandleWait((data[1]<<8)|data[2]);
-				* tx_p++ = cmd_result;
-				pc_trans_info.tx_len++;
-				data += CMD_WAIT_LEN;				
-			break;
-			
-			case CMD_REFCLK_SCALE:
-				* tx_p++ = CMD_RESULT_IGNORE;
-				pc_trans_info.tx_len++;
-				data += CMD_REFCLK_SCALE_LEN;
-			break;
-
-			case CMD_WAIT_CALDONE:
-				FPGA_ENABLE_WRITE;
-				cmd_result = CmdHandleWaitCaldone(ft_ab,data[1],(data[2]<<8)|data[3]);
-				FPGA_DISABLE_WRITE;
-				if((1!=cmd_result)&&(TF_A==ft_ab))
-				{
-					TRACE_DEBUG("error__________9363_CmdHandleWaitCaldone--cmd_result[%02x],addr=[%x],data=[%x]\r\n",cmd_result,data[1],(data[2]<<8)|data[3]);
-						
-				}				
-				* tx_p++ = cmd_result;
-				pc_trans_info.tx_len++;
-				data += CMD_WAIT_CALDONE_LEN;
-			break;
-
-			case CMD_SPI_READ:
-				FPGA_ENABLE_WRITE;
-				cmd_result = ReadWriteTF(ft_ab,0,(data[1]<<8)|data[2],0);
-				FPGA_DISABLE_WRITE;
-				* tx_p++ = cmd_result;
-				pc_trans_info.tx_len++;
-				data += CMD_SPI_READ_LEN;
-			break;
-			case CMD_FPGA_WRITE:  break;
-
-			
-			case CMD_UPDATA_DATA:
-				length=0;
-
-				TRACE_INFO("9363_GetUpdateData........\r\n");
-				cmd_result = GetUpdateData(ft_ab, data,&length);
-					
-				data += length;
-				pc_trans_info.tx_len++;
-			break;			
-
-			case CMD_WAIT_FPGA_CFG:
-#if 1
-				k=0;
-				while((TF_C==ft_ab)&&(AD9369)&&(k<10000))
-				{
-					k++;
-					UsNopDelay(1);
-					if(0==k%1000)
-						WTD_CLR;
-					//等待MCU读写SPI指示信号闲
-					if(0x01==(0x01&(FpgaReadRegister(0x7a)>>15))	)
-					{
-						continue;
-					}
-					
-					TRACE_INFO("( 0x00==(0x01&(FpgaReadRegister(0x7a)>>14))):%x\r\n",(	0x00==(0x01&(FpgaReadRegister(0x7a)>>14))));
-
-					if((k<10000)&&(TF_C==ft_ab)&&(AD9369)&&(	0x00==(0x01&(FpgaReadRegister(0x7a)>>14)))	)
-					{
-						//切换成FPGA ROM SPI模式
-						mcuFpgaSpiStaus=FpgaReadRegister(0x8000|0x7b);
-						mcuFpgaSpiStaus&=0x3fff;
-						mcuFpgaSpiStaus|=(0x02<<14);
-						TRACE_INFO("1FpgaWriteRegister(0x8000|0x7b,mcuFpgaSpiStaus):%x\r\n",mcuFpgaSpiStaus);
-						FPGA_ENABLE_WRITE;
-						FpgaWriteRegister(0x8000|0x7b,mcuFpgaSpiStaus);
-						FPGA_DISABLE_WRITE;
-						//FPGA SPI 数据使能
-						mcuFpgaSpiStaus=FpgaReadRegister(0x8000|0x7b);
-						mcuFpgaSpiStaus&=0xdfff;
-						mcuFpgaSpiStaus|=(0x1<<13);
-						TRACE_INFO("2FpgaWriteRegister(0x8000|0x7b,mcuFpgaSpiStaus):%x\r\n",mcuFpgaSpiStaus);
-						FPGA_ENABLE_WRITE;
-						FpgaWriteRegister(0x8000|0x7b,mcuFpgaSpiStaus);
-						FPGA_DISABLE_WRITE; 
-						//等待FPGA ROM 写SPI 数据完成
-						j=0;
-						while((j<5000)&&(0x00==(0x01&(FpgaReadRegister(0x7a)>>14))	))
-						{
-							j++;
-							UsNopDelay(1*1000);
-							WTD_CLR;
-						}
-						
-						//等待MCU读写SPI指示信号闲
-						j=0;
-						while((j<5000)&&(0x01==(0x01&(FpgaReadRegister(0x7a)>>15))	))
-						{
-							j++;
-							UsNopDelay(1*1000);
-							WTD_CLR;
-						}
-
-						//切换成MCU模拟控SPI
-						mcuFpgaSpiStaus=FpgaReadRegister(0x8000|0x7b);
-						mcuFpgaSpiStaus &= (~((1<<14)|(1<<15)));
-						TRACE_INFO("3FpgaWriteRegister(0x8000|0x7b,mcuFpgaSpiStaus):%x\r\n",mcuFpgaSpiStaus);
-						FPGA_ENABLE_WRITE;
-						FpgaWriteRegister(0x8000|0x7b,mcuFpgaSpiStaus);
-						FPGA_DISABLE_WRITE;
-					}	
-					break;
-				}
-				break;
-			#endif	
-			default:
-				//错误命令				
-		//		PcPacketTransHead(0xdf,0x01,0x01,0x01,0xab,0x01);
-				TRACE_INFO("9363_错误命令\r\n");
-				* tx_p++ = 0;
-				pc_trans_info.tx_len++;
-		
-				goto out;
-			break;
-		}
-	}
-
-	//保存数据PKTlen
-	SaveInitData(ft_ab,current_p,total_p,p_packet_head,data_len-6-MSG_CMD_BODY);//data_len-6-MSG_CMD_BODY 为总包个数之后的数据 长度不超过1005-2字节
-	//SaveInitData(ft_ab,PKTlen,total_p,p_packet_head,data_len-6-MSG_CMD_BODY);//data_len-6-MSG_CMD_BODY 为总包个数之后的数据 长度不超过1005-2字?
-out:
-	result_len = pc_trans_info.tx_len-MSG_CMD_BODY;
-	pc_trans_info.tx_buffer[MSG_CMD_BODY+1] = result_len;
-	pc_trans_info.tx_buffer[MSG_CMD_BODY+2] = result_len>>8;	
-	
-	pc_trans_info.tx_buffer[MSG_CMD_BODY+2+result_len] = 0x00;
-	pc_trans_info.tx_buffer[MSG_CMD_BODY+2+result_len+1] = 0x00;	
-	
-//	pc_trans_info.tx_buffer[8+result_len+2] = 0x4E;	
-//	pc_trans_info.tx_len = 8+result_len+3;
-
-	//PcStartTrans();
-	SendMsgPkt( pc_trans_info.tx_len,pc_trans_info.tx_buffer );
-	//写入FLASH
-	
 	return 1;	
-	
-	
+
 }
 //#endif 
 

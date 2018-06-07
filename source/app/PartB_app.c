@@ -195,7 +195,7 @@ void PB_SetChannel( UCHAR8 channel, UCHAR8 enable, INT32 freq_code )
 
 	//if(NET_TYPE_TD==fpga_cfg.b_net_type)
 	//{
-		CalcFreqWord( freq_code,SYS_B_FLAG ,&up_fre_word, &down_fre_word);
+		////CalcFreqWord( freq_code,SYS_B_FLAG ,&up_fre_word, &down_fre_word);
 	//}else
 	//{
 	//	CalcFreqWord( freq_code,SYS_B_FLAG ,&up_fre_word, &down_fre_word);
@@ -273,7 +273,7 @@ void PB_SetTdMainChannel( UCHAR8 enable, INT32 freq_code )
 //	TRACE_DEBUG("PB_SetTdMainChannelbbbbbbbbbbbbbbbbbfreq_code[%04x]\r\n",freq_code);
 	//reg_val = CalcFreqWord( freq_code,SYS_B_FLAG,&up_fre_word,&down_fre_word);
 	//reg_val = CalcFpgaFwReg(reg_val); 
-	SearchFpCalcFreqWord( freq_code,SYS_B_FLAG,&up_fre_word,&down_fre_word);
+	////SearchFpCalcFreqWord( freq_code,SYS_B_FLAG,&up_fre_word,&down_fre_word);
 	TRACE_DEBUG("PB_SetTdMainChannel_up_fre_word=[%08x],down_fre_word=[%08x]\r\n",up_fre_word,down_fre_word);
 	reg_val_16=down_fre_word&0X0FFF;
 	FPGA_ENABLE_WRITE;

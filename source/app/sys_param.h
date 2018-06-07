@@ -1,4 +1,4 @@
-﻿/***************************************************************
+/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :sys_param.c
@@ -95,7 +95,7 @@ void SaveValidTopo();
 void ParamResetDefault();
 void ParamPreInit();
 void InitUserInterface();
-void GetSysParamFromFlash(void);
+
 void SaveSysParamToFlash(void);
 BOOL ParamAddTranslate( UCHAR8 len,  UINT16 param_addr, UCHAR8 ab_flag, UINT16* p_mo_addr );
 UINT32 CheckParamValid( UINT32 param_add, UINT32 param_val );

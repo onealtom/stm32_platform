@@ -1028,7 +1028,7 @@ void MsgHandleSetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 			
 		case DEV_ID_A_AD9363:
 			TRACE_INFO_WP("<W IC>9363.(CHAR8)reg_add=[%02x], tmp=[%08x]\r\n",(CHAR8)reg_add, tmp);
-			CmdHandleSpiWrite(TF_A,reg_add,tmp);
+			//CmdHandleSpiWrite(TF_A,reg_add,tmp);
 			break;
 
 		case DEV_ID_B_AD9363:
@@ -1040,7 +1040,7 @@ void MsgHandleSetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 			
 		case DEV_ID_C_AD9363:
 			TRACE_INFO_WP("<W IC>9363_C.(CHAR8)reg_add=[%02x], tmp=[%08x]\r\n",(CHAR8)reg_add, tmp);
-			CmdHandleSpiWrite(TF_C,reg_add,tmp);
+			//CmdHandleSpiWrite(TF_C,reg_add,tmp);
 			
 			break;
 			
@@ -1312,8 +1312,8 @@ void MsgHandleResetDev( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 	dev_id = p_args[0];
 	
 	// 保存输出状态
-	if ( b_TRUE==FpgaIsEnableA() )	output_st |= 0x01;
-	if ( b_TRUE==FpgaIsEnableB() )	output_st |= 0x02;
+	////if ( b_TRUE==FpgaIsEnableA() )	output_st |= 0x01;
+	////if ( b_TRUE==FpgaIsEnableB() )	output_st |= 0x02;
 	// 关闭调制器输出
 	EnableModulatorA( 0 );
 	EnableModulatorB( 0 );

@@ -1,4 +1,4 @@
-﻿/***************************************************************
+/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :rec_app.c
@@ -80,14 +80,14 @@ void GetReInfo();
 void CheckReID();
 void UpdateWorkParam(UINT32 mask);
 void CheckErrStatus();
-void AutoProtect();
+
 void SetTDParam_B();
 void SetTDParam_C();
 void SetTDParam_D();
 void SetReUlPowerGain();
 void SetReSysConfig();
 void SetReTDParam();
-void SetChannelByParam( UCHAR8 abcd_flag );
+
 void SetReID( UCHAR8 fp, UCHAR8 re, UCHAR8 rf,  UCHAR8 id );
 void SysLowPowerMode();
 void SysNormalWorkMode();
