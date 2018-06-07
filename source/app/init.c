@@ -725,9 +725,7 @@ void InitSystem()
 	WTD_CLR; 
 	//InitKeyDev();
 
-
-	ad936x_init_main();
-
+	//ad936x_init_main();
 
 	WTD_CLR; 
 	InitFpga();

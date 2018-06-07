@@ -21,7 +21,8 @@ int prompt_hello(int argc, char * argv[])
 	unsigned int band_channel;
 
 	printf("hello prompt cli \r\n");
-
+	
+	//ad936x_init_main();
 	while ((c = getopt(argc, argv, "d:c:h")) != EOF){
 
 		switch ( c )

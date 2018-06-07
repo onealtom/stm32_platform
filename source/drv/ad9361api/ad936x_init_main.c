@@ -88,17 +88,16 @@ int ad936x_init_main(void)
 		ad9361_set_rx_fir_config(ad9361_phy, rx_fir_config);
 		
 		printf("Done.\n");
-		//ad9361_free(ad9361_phy);
-		
 
 	}
-	
+
+	printf("############a=%ld\n\r",ad9361_phy->clk_refin->rate);
+
+	free(ad9361_phy->spi);
 	free(ad9361_phy->clk_refin);
 	free(ad9361_phy->pdata);
 	free(ad9361_phy);
-
-	free(&default_init_param);
-	
+	printf("############a=%ld\n\r",ad9361_phy->clk_refin->rate);
 	if (FpgaReadRegister(FPGA_REG_A_FAD_POW_H) >0x4000 ){ 
 		return -1;
 	}else{

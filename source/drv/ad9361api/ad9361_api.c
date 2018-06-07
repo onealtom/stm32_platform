@@ -472,6 +472,7 @@ out:
 	printf("%s : AD936x initialization error\n", __func__);
 
 	return -ENODEV;
+
 }
 
 
