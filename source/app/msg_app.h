@@ -230,27 +230,18 @@ void MsgHandleBlankCmd( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 int MsgHandlePromtp(UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff);
 void MsgHandleSetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
 void MsgHandleGetParam( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
-void MsgHandleSetTable( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
-void MsgHandleGetTable( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
+
+
 void MsgHandleSetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
 void MsgHandleGetDevReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
 void MsgHandleResetDev( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
 void MsgHandleGetFpgaReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
-void MsgHandleSetTopo( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
-void MsgHandleGetTopo( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
+
 void MsgHandleUpdateMCU( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
 void MsgHandleUpdateFPGA( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
 void MsgHandleGetFlashPage( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
 void MsgHandleFlashOperatePage( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff ) ;
-void MsgHandleStartAttAdj( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
-void MsgHandleAttStepAdj( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
-void MsgHandleEndAttAdj( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
-void MsgHandleFcScan( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
+
 void MsgHandleAck( UINT16 msg_length, UCHAR8 * p_msg_dat );
-void MsgHandleNoiseTest( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
-void MsgHandleGainAdj( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
-void MsgHandleGainAdjEUAck( UINT16 msg_length, UCHAR8 * p_msg_dat);
-void MsgHandleErrAlarm( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff  );
-void MsgHandleGetEUParam( UINT16 msg_length, UCHAR8 * p_msg_dat );
 
 #endif
