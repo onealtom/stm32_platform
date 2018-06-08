@@ -1877,7 +1877,7 @@ int MsgHandlePromtp(UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff)
 	//printf("\rlen=%d\r\n",len);
 	
 	p=(char *)malloc(p_msg_dat[10]+1);
-	
+	//p=(char *)malloc(512);
 	if(p==NULL){
 		printf("malloc error\r\n");
 		return -1;

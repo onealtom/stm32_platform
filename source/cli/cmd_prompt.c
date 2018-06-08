@@ -17,24 +17,36 @@ int prompt_hello(int argc, char * argv[])
 	char* pipe;
 	char* chnnum;
 	char* chndir;
+	int memsiz;
+	char * p;
 
 	unsigned int band_channel;
 
 	printf("hello prompt cli \r\n");
 	
-	ad936x_init_main();
-	while ((c = getopt(argc, argv, "d:c:h")) != EOF){
+	while ((c = getopt(argc, argv, "im:d:c:h")) != EOF){
 
 		switch ( c )
 		{
-			case '?':
-				printf("Unknown option %c\n\r",optopt);
-				break;
-			case ':':
-				printf("-%c needs value\n\r",optopt);
-				break;
-			case 'h':
-			default:	
+		case 'i':
+			ad936x_init_main();
+			break;
+		case 'm':
+			memsiz = strtol( optarg, NULL, 0 );
+			printf("memsiz=%d\r\n",memsiz);
+			p=(char *)malloc(memsiz);
+			if(p==NULL){
+				printf("Malloc ERROR\r\n");
+			}
+			break;
+		case '?':
+			printf("Unknown option %c\n\r",optopt);
+			break;
+		case ':':
+			printf("-%c needs value\n\r",optopt);
+			break;
+		case 'h':
+		default:	
 			printf("\r+------------------+\n");
 			printf("\r| help:            |\n");
 			printf("\r|                  |\n");

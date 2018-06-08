@@ -210,7 +210,6 @@ void main()
 		if ( SYSTEM_FLAG_1S_EVENT == (sys_work_info & SYSTEM_FLAG_1S_EVENT ))
 		{
 			TRACE_INFO("Handle 1S\r\n");
-			printf("Handle 1111S\r\n");
 			TaskManageTopo(); 
 			//FpgaGetMsgPkt(); 
 			sys_work_info &= (~SYSTEM_FLAG_1S_EVENT);

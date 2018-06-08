@@ -45,7 +45,7 @@
 #include "ad9361_api.h"
 #include "parameters.h"
 #include "platform.h"
-#include "def_init_param.h"
+
 
 /******************************************************************************/
 /************************ Variables Definitions *******************************/
@@ -58,10 +58,10 @@
  */
 int ad936x_init_main(void)
 {
-	
+#include "def_init_param.h"
 	// NOTE: The user has to choose the GPIO numbers according to desired
 	// carrier board.
-	default_init_param.gpio_resetb = GPIO_RESET_PIN;
+	//.gpio_resetb = GPIO_RESET_PIN;
 	int ret;
 	
 	printf("def param ad = 0x%08X\r\n",&default_init_param);
@@ -77,18 +77,20 @@ int ad936x_init_main(void)
 
 	spi_init(SPI_DEVICE_ID, 1, 0);
 
-	if (AD9364_DEVICE)
-		default_init_param.dev_sel = ID_AD9364;
-	if (AD9363A_DEVICE)
-		default_init_param.dev_sel = ID_AD9363A;
+	//if (AD9364_DEVICE){
+		//printf("ID_AD9364\r\n");
+		//default_init_param.dev_sel = ID_AD9364;
+	//}
+	//if (AD9363A_DEVICE){
+	//	printf("ID_AD9363A\r\n");
+	//	default_init_param.dev_sel = ID_AD9363A;
+	//}
 
 	ret = ad9361_init(&ad9361_phy, &default_init_param);
 	if(ret == 0){
 		ad9361_set_tx_fir_config(ad9361_phy, tx_fir_config);
 		ad9361_set_rx_fir_config(ad9361_phy, rx_fir_config);
-		
 		printf("Done.\n");
-
 	}
 
 	printf("############a=%ld\n\r",ad9361_phy->clk_refin->rate);

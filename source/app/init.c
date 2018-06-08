@@ -723,10 +723,10 @@ void InitSystem()
 		FpgaSetErrInfo(FPGA_ERR_PROG);
 		printf("FPGA加载失败2\r\n");
 	}
-	WTD_CLR; 
+	WTD_CLR;
 	//InitKeyDev();
 
-	//ad936x_init_main();
+	ad936x_init_main();
 
 	WTD_CLR; 
 	InitFpga();

@@ -1,9 +1,9 @@
-#ifndef __DEF_INIT_PARAM_H
-#define __DEF_INIT_PARAM_H
+//#ifndef __DEF_INIT_PARAM_H
+//#define __DEF_INIT_PARAM_H
 
-AD9361_InitParam default_init_param = {
+const AD9361_InitParam default_init_param = {
 	/* Device selection */
-	ID_AD9361,      // dev_sel
+	ID_AD9363A,      // dev_sel
 	/* Identification number */
 	0,		//id_no;
 	/* Reference Clock */
@@ -226,7 +226,8 @@ AD9361_InitParam default_init_param = {
 	48,		//tx1_mon_lo_cm *** adi,txmon-1-lo-cm
 	48,		//tx2_mon_lo_cm *** adi,txmon-2-lo-cm
 	/* GPIO definitions */
-	-1,		//gpio_resetb *** reset-gpios
+	//-1,		//gpio_resetb *** reset-gpios
+	GPIO_RESET_PIN,	//gpio_resetb *** reset-gpios
 	/* MCS Sync */
 	-1,		//gpio_sync *** sync-gpios
 	-1,		//gpio_cal_sw1 *** cal-sw1-gpios
@@ -238,7 +239,7 @@ AD9361_InitParam default_init_param = {
 
 };
 
-AD9361_RXFIRConfig rx_fir_config = {	// BPF PASSBAND 3/20 fs to 1/4 fs
+const AD9361_RXFIRConfig rx_fir_config = {	// BPF PASSBAND 3/20 fs to 1/4 fs
 	3, // rx
 	-6, // rx_gain
 	2, // rx_dec
@@ -263,7 +264,7 @@ AD9361_RXFIRConfig rx_fir_config = {	// BPF PASSBAND 3/20 fs to 1/4 fs
 	51641372 // rx_bandwidth
 };
 
-AD9361_TXFIRConfig tx_fir_config = {	// BPF PASSBAND 3/20 fs to 1/4 fs
+const AD9361_TXFIRConfig tx_fir_config = {	// BPF PASSBAND 3/20 fs to 1/4 fs
 	3, // tx
 	0, // tx_gain
 	2, // tx_int
@@ -289,4 +290,4 @@ AD9361_TXFIRConfig tx_fir_config = {	// BPF PASSBAND 3/20 fs to 1/4 fs
 };
 struct ad9361_rf_phy *ad9361_phy;
 
-#endif /*__DEF_INIT_PARAM_H*/
+//#endif /*__DEF_INIT_PARAM_H*/

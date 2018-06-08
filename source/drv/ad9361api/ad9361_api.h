@@ -355,7 +355,7 @@ enum ad9361_ensm_mode {
 /************************ Functions Declarations ******************************/
 /******************************************************************************/
 /* Initialize the AD9361 part. */
-int32_t ad9361_init (struct ad9361_rf_phy **ad9361_phy, AD9361_InitParam *init_param);
+int32_t ad9361_init (struct ad9361_rf_phy **ad9361_phy, const AD9361_InitParam *init_param);
 /* Free AD9361 mem. */
 int32_t ad9361_free (	struct ad9361_rf_phy *phy );
 /* Set the Enable State Machine (ENSM) mode. */
