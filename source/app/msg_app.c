@@ -16,10 +16,10 @@
 #include <stdio.h>
 
 
-extern _T_PARAM_ASC sys_param_asc[];
+
 extern _T_VALID_FP_TOPO valid_fp_topo[FP_MAX];
-extern _T_FP_INFO fp_inf[FP_MAX];
-extern _T_RE_INFO tmp_re_inf[FP_MAX][RE_MAX];		// RE信息的临时缓存
+
+
 //extern UINT32 sys_work_info;
 extern unsigned int traceLevel;
 extern _T_ATT_ADJ_ST fpga_att_adj_st;
@@ -37,7 +37,7 @@ UCHAR8 msg_buff[FP_MAX][FPGA_MSG_BUFF_SIZE];		// 小消息包缓冲
 UINT32 re_msg_buff_st[FP_MAX];
 
 UCHAR8 msg_tx_buff[MSG_BIG_PKT_SIZE];		// 发送缓冲
-extern _T_NOISE_TEST_STATUS noise_test_st ;
+
 /*************************************************************
 Name:CheckMsgAddr          
 Description: 检查地址是否合法
@@ -94,11 +94,7 @@ UINT32 CheckMsgAddr( UCHAR8 des_fp, UCHAR8 des_re ,UCHAR8 des_ree)
 						des_ree -= 1;
 					return MSG_TO_RE; 
 					
-					// 查看此位置是否有RE
-					if (   (des_re<fp_inf[des_fp].re_cnt )&&(des_ree<REE_MAX  ))
-					{
-						return MSG_TO_RE; 
-					}
+
 				}
 				else
 				if( (0 != des_re)&&( 0!=des_fp ) ) 
@@ -1810,15 +1806,7 @@ void MsgHandleAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
 		src_re = p_msg_dat[MSG_SRC_RE]-1;
 		src_ree = p_msg_dat[MSG_SRC_REE]-1;
 		
-		if (( src_fp<FP_MAX )&&( src_re<RE_MAX )) 
-		{   
-			len++;
-			fp_inf[src_fp].re_info[src_re].rf_count=p_args[len++];
-			fp_inf[src_fp].re_info[src_re].ree_sync_st_inf[0]=p_args[len++];
-			fp_inf[src_fp].re_info[src_re].ree_sync_st_inf[1]=p_args[len++];
-			fp_inf[src_fp].re_info[src_re].re_id=src_re+1;
-
-		}                     
+                
 	} 
 
 	if ( MSG_CMD_GET_REE_INFO == p_msg_dat[MSG_CMD_ID] )
@@ -1828,25 +1816,7 @@ void MsgHandleAck( UINT16 msg_length, UCHAR8 * p_msg_dat )
 		src_re = p_msg_dat[MSG_SRC_RE]-1;
 		src_ree = p_msg_dat[MSG_SRC_REE]-1;
 		
-		if (( src_fp<FP_MAX )&&( src_re<RE_MAX )) 
-		{   
-		    	tmp_re_inf[src_fp][src_re].flag = 1; 
-			tmp_re_inf[src_fp][src_re].id = p_args[len++]; 
-			tmp_re_inf[src_fp][src_re].status = p_args[len++];  
-			tmp_re_inf[src_fp][src_re].re_t12 = p_args[len++]|(p_args[len++]<<8)|(p_args[len++]<<16)|(p_args[len++]<<24);
-			tmp_re_inf[src_fp][src_re].ree_nt_stat =  p_args[len++]; // 8个连到RF的网口口状态 
-			tmp_re_inf[src_fp][src_re].ree_fp_stat =  p_args[len++]; // 8个连到RF的光口状态
-			tmp_re_inf[src_fp][src_re].ree_work_status=p_args[len++]|(p_args[len++]<<8);
 
-			TRACE_INFO("[src_fp (%d).src_re (%d)\r\n",src_fp ,src_re);
-			TRACE_INFO("RE.id (%d)\r\n",tmp_re_inf[src_fp][src_re].id);
-			TRACE_INFO("tmp_re_inf[src_fp][src_re].status(%d).\r\n",tmp_re_inf[src_fp][src_re].status);
-			TRACE_INFO("tmp_re_inf[src_fp][src_re].ree_nt_stat(%d).\r\n",tmp_re_inf[src_fp][src_re].ree_nt_stat);
-			TRACE_INFO("tmp_re_inf[src_fp][src_re].ree_fp_stat(%d)\r\n.",tmp_re_inf[src_fp][src_re].ree_fp_stat);
-			TRACE_INFO("tmp_re_inf[src_fp][src_re].ree_work_status(%d)\r\n.",tmp_re_inf[src_fp][src_re].ree_work_status);
-
-//			TRACE_INFO("\r\n.");
-		}  
 		
 
 	}

@@ -40,7 +40,7 @@
 #include "Update_app.h"
 #include "Twi_app.h"
 #include "msg_app.h" 
-#include "rec_app.h"
+//#include "rec_app.h"
 //#include "wcdma_app.h"
 
 #include "fps_app.h"

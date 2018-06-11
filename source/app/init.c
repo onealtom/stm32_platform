@@ -472,19 +472,7 @@ Return:void
 **************************************************************/
 void CtrlUartConfig()
 {
-	UINT32 baudrate = 9600;
-	sys_param_1b[MADD_CTRL_BAUD].val = 0;
-	switch( sys_param_1b[MADD_CTRL_BAUD].val )
-	{
-		case 0:	baudrate = 9600;		break;
-		case 1:	baudrate = 19200;		break;
-		case 2:	baudrate = 38400;		break;
-		case 3:	baudrate = 57600;		break;
-		case 4:	baudrate = 115200;	break;
-	    default: //return 0;
-	} 
-	
-	InitControlUart(baudrate);
+
 }
 
 
@@ -536,9 +524,6 @@ void InitSystem()
 //	EnableModulatorD(0);
 
 
-#ifndef NOTRACE	
-	//InitDebugUart( DEBUG_UART_BAUD  );		// 配置调试串口
-#endif 
 	InitDebugUart( DEBUG_UART_BAUD	);		// 配置调试串口
 
 	//Uart1_Init(DEBUG_UART_BAUD);
@@ -582,12 +567,12 @@ void InitSystem()
 			// 配置FPGA寄存器
 			AfterFpgaLoad();
 			
-			sys_param_1b[MADD_LOAD_FPGA_ST].val = 0;	// 加载成功
+////			sys_param_1b[MADD_LOAD_FPGA_ST].val = 0;	// 加载成功
 			printf("FPGA test 成功\r\n");
 		}
 		else
 		{
-			sys_param_1b[MADD_LOAD_FPGA_ST].val = 1;	// 加载失败
+////			sys_param_1b[MADD_LOAD_FPGA_ST].val = 1;	// 加载失败
 			printf("FPGA test 加载失败\r\n");
 			fpga_load_status = FPGA_LDST_INIT_ERR;
 			FpgaSetErrInfo(FPGA_ERR_PROG);
@@ -596,7 +581,7 @@ void InitSystem()
 	else
 	{
 		TRACE_ERROR("Fpga load Fail\r\n");
-		sys_param_1b[MADD_LOAD_FPGA_ST].val = 2;	// 加载失败
+////		sys_param_1b[MADD_LOAD_FPGA_ST].val = 2;	// 加载失败
 		FpgaSetErrInfo(FPGA_ERR_PROG);
 		printf("FPGA加载失败2\r\n");
 	}
@@ -627,49 +612,6 @@ void InitSystem()
 	InitAdc();
 	AdcStartConv();
 	
-#if 0	
-	WTD_CLR; 
-	//初始化指定用户的一些参数设置 
-	InitUserInterface(); 
-   
-	// 配置透传端口
-	ThrUartConfig(); 
-	//配置控制端口 
-	CtrlUartConfig();
-#ifndef NOTRACE	
-	//InitDebugUart( DEBUG_UART_BAUD  );		// 配置调试串口
-#endif 	
-	//	InitPhyIo();
-	//	HardResetPhy(PHY5_KSZ9031);
-
-	// 配置USB
-	InitUsb();
-
-	
-	WTD_CLR;
-	// 初始化其他配置
-	InitRec();
-
-	// 初始化内部AD，开始监控电压
-	InitAdc();
-	AdcStartConv();
-
-	//使能对应的光口
-	EnableOpt();		// 光口使能
-
-	WTD_CLR;
-	//频点搜索初始化
-	FPS_Init(); 
-	// 上电后，将数字版上电状态置1
-	sys_param_1b[MADD_POWERUP_ST].val = 1;
-	WTD_CLR;
-	
-	InitPhyReg( PHY5_KSZ9031);
-
-	SetAdjBenZhenSignalPara();
-	GetPllStatus(); 
-#endif
-
 #if defined CLIENT_ERRICSON
 	//频点搜索初始化
 	FPS_Init();

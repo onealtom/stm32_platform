@@ -600,11 +600,6 @@
               <FileType>1</FileType>
               <FilePath>..\source\app\json\cJSON.c</FilePath>
             </File>
-            <File>
-              <FileName>rec_app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\rec_app.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>

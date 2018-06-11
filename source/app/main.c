@@ -14,15 +14,12 @@
 **************************************************************/
 #include "Header.h"
    
-extern _T_PARAM_1B  sys_param_1b[];
-extern _T_PARAM_2B  sys_param_2b[];
-extern _T_PARAM_4B  sys_param_4b[];
-extern _T_PARAM_ASC sys_param_asc[];
+
 extern UCHAR8 usbBuffer[DATABUFFERSIZE];
 extern UCHAR8 str_pri_mcu_date[];
 //extern UINT32 module_param_chg_flag;		//系统工作参数修改标志
 extern UINT32 fpga_load_status;
-extern _T_FP_INFO fp_inf[FP_MAX];
+
 UCHAR8 * p_mcu_date; 
 UCHAR8  p_mcu_date_GUOREN[11]={'S','e','p',' ','2','9',' ','2','0','1','4'};
 
@@ -210,7 +207,7 @@ void main()
 		if ( SYSTEM_FLAG_1S_EVENT == (sys_work_info & SYSTEM_FLAG_1S_EVENT ))
 		{
 			TRACE_INFO("Handle 1S\r\n");
-			TaskManageTopo(); 
+////			TaskManageTopo(); 
 			//FpgaGetMsgPkt(); 
 			sys_work_info &= (~SYSTEM_FLAG_1S_EVENT);
    
@@ -231,12 +228,9 @@ void main()
 			}
  
 			// 更新RE信息
-			UpdateReInfo(); 
+////			UpdateReInfo(); 
 
-			#if( (defined  CLIENT_ERRICSON)||(defined  CLIENT_ERRICSON2)||(defined CLIENT_ERRICSON_W))
-			//查询设置EU 的参数
-			MAUGetParamFromMEU();
-			#endif
+
 			
 
 #if 1		
@@ -273,43 +267,11 @@ void main()
 			{
 				FLASH_LED;
 			}
-			
-			//printf("AU ERR:%02x\r\n",sys_param_1b[MADD_HOST_DEVICE_LINK_SINGNAL_ALARM].val );
-			//printf("EU ERR1:%02x %02X %02X %02X\r\n",topo_alarm[0][0].meu_alarm,topo_alarm[1][0].meu_alarm,topo_alarm[2][0].meu_alarm,topo_alarm[3][0].meu_alarm );
-			//printf("EU ERR2:%02x %02X %02X %02X\r\n",topo_alarm[0][1].meu_alarm,topo_alarm[1][1].meu_alarm,topo_alarm[2][1].meu_alarm,topo_alarm[3][1].meu_alarm );
-			//printf("RU ERR1:%02x %02X %02X %02X\r\n",topo_alarm[0][0].ru_alarm,topo_alarm[1][0].ru_alarm,topo_alarm[2][0].ru_alarm,topo_alarm[3][0].ru_alarm );
-			//printf("RU ERR2:%02x %02X %02X %02X\r\n",topo_alarm[0][1].ru_alarm,topo_alarm[1][1].ru_alarm,topo_alarm[2][1].ru_alarm,topo_alarm[3][1].ru_alarm );
-			//printf("eu cnt:%02x %02x %02x %02x\r\n",fp_inf[0].re_cnt,fp_inf[1].re_cnt,fp_inf[2].re_cnt,fp_inf[3].re_cnt);
-			
-			//printf("AU ERR flg:%02x\r\n",sys_param_1b[MADD_BATTERY_BREAKDOWN_ALARM].val );
-			//printf("Eu1 ERR:%02x,%02x,%02x,%02x\r\n",sys_param_eu_1b[MADD_EU_ALARM_FLAG1].val, sys_param_eu_1b[MADD_EU_ALARM_FLAG2].val ,sys_param_eu_1b[MADD_EU_ALARM_FLAG3].val ,sys_param_eu_1b[MADD_EU_ALARM_FLAG4].val );
 
-
-			//printf("EuRU ERR:%02x,%02x,%02x,%02x\r\n",sys_param_eu_2b[MADD_EU_RUALARM_FLAG1].val,sys_param_eu_2b[MADD_EU_RUALARM_FLAG2].val,sys_param_eu_2b[MADD_EU_RUALARM_FLAG3].val,sys_param_eu_2b[MADD_EU_RUALARM_FLAG4].val );
-
-			GetPsfFromRe(SYS_C_FLAG,ATT_DL_ADJ);
-
- 			//EnableUartTx(1, 0x77);
-			//UartReceHandleMoError(0x77);
-			MAUSetParamToMEU();
-#if 0
-			GetPllStatus(); 
-					
-			
-			ZiDongShiXiPeiBi();
-
-			
-//			MoveBenZhenTo2340();
-
-			//温度
-			sys_param_1b[MADD_BOARD_TEMP].val =  GetTemperature();
-			// 温度补偿
-			TempGainCompensate( 0 );
-#endif
 			/*ADC处理*/
 			AdcHandle();	
 			//温度
-			sys_param_1b[MADD_BOARD_TEMP].val =  GetTemperature();
+////			sys_param_1b[MADD_BOARD_TEMP].val =  GetTemperature();
 		}
 		
 		// 5秒事件
@@ -322,7 +284,7 @@ void main()
 			//FpgaSendMsgPkt( 0x00000100, 0x00000000, 28, p_msg_dat );
 			//FpgaSendThrDat(); 
 			//1197 不能频繁读取
-			//sys_param_1b[MADD_A_1197_LOCK_ST].val = (HMC_1197_LOCK_ST==(UCHAR8)ReadHmc1197(HMC_1197_REG_ADD) ? 0 : 1);
+
 		}
  		WTD_CLR;
 #endif
@@ -344,8 +306,7 @@ void main()
 		// 检查拓扑状态
 		//TaskManageTopo();
 	
-		// 更新外设状态
-		GetPeripheralStatus();  
+
 
 		 
 	  

@@ -18,10 +18,9 @@
 extern UCHAR8 para_bak[];
 
 
-extern _T_FP_INFO fp_inf[];		            // 光口拓扑信息
 extern _T_VALID_FP_TOPO valid_fp_topo[FP_MAX];
-extern _T_FP_INFO fp_inf[FP_MAX];
-extern _T_RE_INFO tmp_re_inf[FP_MAX][RE_MAX];		// RE信息的临时缓存
+
+
 
 ////UCHAR8 uart_rx_buff[ UART_BUFF_SIZE ]; 
 ////UCHAR8 uart_tx_buff[ UART_BUFF_SIZE ]; 

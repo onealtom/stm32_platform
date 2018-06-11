@@ -15,21 +15,7 @@
 #ifndef _PARAM_ADDR_H_
 #define _PARAM_ADDR_H_
 
-// 1字节参数结构体
-typedef struct _S_PARAM_1B
-{
-	UINT16	addr;	// 地址
-	UCHAR8	type;	// 性质和算法
-	UCHAR8	val;		// 参数值
-}_T_PARAM_1B;
 
-// 2字节参数结构体
-typedef struct _S_PARAM_2B
-{
-	UINT16	addr;	// 地址
-	UCHAR8	type;	// 性质和算法
-	UINT16	val;		// 参数值
-}_T_PARAM_2B;
 
 // 4字节参数结构体
 typedef struct _S_PARAM_4B
@@ -39,14 +25,7 @@ typedef struct _S_PARAM_4B
 	UINT32	val;		// 参数值
 }_T_PARAM_4B;
 
-// 字符串参数结构体
-typedef struct _S_PARAM_ASC
-{
-	UINT16	addr;	// 地址
-	UCHAR8	type;	// 性质和算法
-	UCHAR8	length;	// 字符串长度
-	UCHAR8 * p_asc;	// 指向字符串首地址指针
-}_T_PARAM_ASC;
+
 
 
 
@@ -4226,13 +4205,7 @@ extern UCHAR8 str_pri_mcu_version_new[];
 
 
 extern const UCHAR8 calc_type[];
-extern _T_PARAM_1B sys_param_1b[];
-extern _T_PARAM_2B sys_param_2b[];
-extern _T_PARAM_4B sys_param_4b[];
-extern _T_PARAM_ASC sys_param_asc[];
 
-extern _T_PARAM_1B sys_param_eu_1b[];
-extern _T_PARAM_2B sys_param_eu_2b[];
 
 
 #endif

@@ -14,15 +14,15 @@
 **************************************************************/
 #include "Header.h"
 
-extern _T_PARAM_2B sys_param_2b[];
+
 extern UCHAR8      sys_temp_buff[SYS_TMP_BUFF_SIZE];
-extern _T_FP_INFO  fp_inf[FP_MAX];
+
 extern _T_BIG_PKT_BUFF msg_big_buff[MSG_BIG_PKT_COUNT];
 extern UCHAR8 msg_buff[FP_MAX][FPGA_MSG_BUFF_SIZE];		// 小消息包缓冲
 extern UINT32 re_msg_buff_st[FP_MAX];
 //extern UINT32 module_param_chg_flag;		//系统工作参数修改标志
-extern UINT32 bit_err_cnt; 
-extern UINT32 fpga_rx_pkt_cnt;   
+UINT32 bit_err_cnt; 
+
 extern UCHAR8 benzhen2340;
 
 UCHAR8 str_fpga_check_err[]="Fpga Data Bus Check Error!";
@@ -76,19 +76,7 @@ Return:void
 **************************************************************/
 void FpgaSetErrInfo( UCHAR8 err_id )
 {
-	switch(err_id)
-	{
-		case FPGA_ERR_PROG:			// 加载错误
-			sys_param_asc[MADD_PRI_FPGA_DATE].length = sizeof(str_fpga_prog_err);
-			sys_param_asc[MADD_PRI_FPGA_DATE].p_asc = str_fpga_prog_err;
-		break;
-			
-		case FPGA_ERR_CHECK:		// 校验错误
-			sys_param_asc[MADD_PRI_FPGA_DATE].length = sizeof(str_fpga_check_err);
-			sys_param_asc[MADD_PRI_FPGA_DATE].p_asc = str_fpga_check_err;
-		break;
-		
-	}
+
 }
 #ifdef FPGA_MSG_ADD_ADDRESS
 /*************************************************************
@@ -609,7 +597,7 @@ void FpgaGetMsgPkt( void )
 					MsgHandle( msg_len, msg_buff[i] );
 				}  
 				 
-				fpga_rx_pkt_cnt++;
+
 			}
 			
 		}
@@ -908,7 +896,7 @@ void FpgaGetMsgPkt( void )
 							/****test*********///20121127
 				}  
 				
-				fpga_rx_pkt_cnt++;
+
 			}         
 			
 			
@@ -1142,7 +1130,7 @@ void FpgaGetMsgPkt( void )
 							/****test*********///20121127
 				}  
 				
-				fpga_rx_pkt_cnt++;
+
 			}         
 			
 			
@@ -1363,7 +1351,6 @@ void FpgaGetMsgPkt( void )
 						}
 					}
 					
-					fpga_rx_pkt_cnt++;
 					
 				}
 			}
@@ -1386,61 +1373,6 @@ Return:        void
 **************************************************************/
 void FpgaReadThrDat()
 {
-	_T_THR_FIFO * p_fifo;	// FIFO指针
-	UINT16 fp; 
-	UCHAR8 dat; 
-
-	WTD_CLR;
-
-	if ( FPGA_LDST_OK != fpga_load_status )
-	{
-		// FPGA故障，返回
-		return; 
-	}
-
-	// FPGA透传接收FIFO指针
-	p_fifo = (0==thr_utx_fifo_use) ? (&uart_thr_tx_fifo[1]) : (&uart_thr_tx_fifo[0]);	
-	//TRACE_INFO("FpgaReadThrDat---thr_utx_fifo_use=[%x]\r\n",thr_utx_fifo_use);
-
-	// 循环读取8个光口的透传数据
-	for ( fp=0; fp<FP_MAX; fp++ )	
-	{
-		FPGA_ENABLE_WRITE;	// 打开FPGA写使能 
-		FPGA_SET_OPT(fp);	// 切换光口号 
-		FPGA_DISABLE_WRITE;	// 关闭FPGA写使能 
-
-		//thr_func.pf_en_tx_it(0);	// 关闭透传串口发送中断，防止此时串口中断改变队列结构
-
-		if ( IS_OPT_ENABLE(fp) )	// 光口已使能
-		{
-			while ( p_fifo->count < THR_FIFO_SIZE )
-			{
-				//TRACE_INFO("mau_rev_thr_dat_from_meu---dat_flag=[%x],fp=[%d]\r\n",FpgaReadRegister(FPGA_REG_THR_FIFO_ST) & (1<<fp),fp);
-				
-				// FPGA透传缓冲有数据
-				if ( 0 != (FpgaReadRegister(FPGA_REG_THR_FIFO_ST) & (1<<fp)) )	
-				{
-					// 从FPGA透传缓冲读取数据
-					dat = (UCHAR8)(0xff&FpgaReadRegister(FPGA_REG_R_THR_DAT));	
-
-					// 保存数据到FIFO中, 数据个数+1
-					p_fifo->p_dat[p_fifo->count++] = dat;
-					TRACE_INFO("dat=%02x,p_fifo->count=%dr\n",dat,p_fifo->count);
-				}
-				else
-				{
-					
-				// 跳出读下一光口数据
-					break;	
-				}
-				WTD_CLR;
-			}
-		}
-		//if ( 0==thr_tx_end )			// 前一次传输未完成
-		//{
-			//thr_func.pf_en_tx_it(1);	// 恢复透传串口发送中断
-		//}
-	}
 
 }
 
@@ -1466,27 +1398,7 @@ void FpgaSendThrDat()
 
 	// 复位数据索引值
 	p_fifo->index = 0;
-#if 0
-/*--------------------------以下为测试透传数据--------------------------*/	
-	p_fifo->p_dat[ p_fifo->index++ ]='T';
-	p_fifo->p_dat[ p_fifo->index++ ]='h';
-	p_fifo->p_dat[ p_fifo->index++ ]='r';
-	p_fifo->p_dat[ p_fifo->index++ ]='D';
-	p_fifo->p_dat[ p_fifo->index++ ]='a';
-	p_fifo->p_dat[ p_fifo->index++ ]='t';	
-	p_fifo->p_dat[ p_fifo->index++ ]='f';
-	p_fifo->p_dat[ p_fifo->index++ ]='a';
-	for(;p_fifo->index<97;)
-	{
-		p_fifo->p_dat[ p_fifo->index++ ]='m';
-	}
-	p_fifo->p_dat[ p_fifo->index++ ]='a';
-	p_fifo->p_dat[ p_fifo->index++ ]='u';
-	p_fifo->p_dat[ p_fifo->index++ ]='u';		
-	p_fifo->count=p_fifo->index;
-	p_fifo->index = 0;
-/*--------------------------以上为测试透传数据--------------------------*/	
-#endif
+
 	//TRACE_INFO("-------------------1ThrUart_send_dat_to_meu---p_fifo->count=[%d]\r\n",p_fifo->count);	
 	
 	if(p_fifo->count > 0)
@@ -1528,32 +1440,6 @@ void FpgaSendThrDat()
 		FpgaWriteRegister( FPGA_REG_W_THR_DAT, dat );	// 写入数据到FPGA透传缓冲
 		FPGA_DISABLE_WRITE;		// 关闭FPGA写使能
 
-		
-		if(sys_param_1b[MADD_PASSTHROUGH_EN].val)
-		{
-			TRACE_INFO("正在测试透传485......uart_index=%d\r\n",uart_index);
-	
-			uart_test_tx_buff[uart_index++]=dat; 
-	
-			if((dat==0x4E)&&(uart_flag==0x7E))
-			{
-				
-				for(i=0;i<uart_index;i++)
-				{
-					thr_func.pf_send_byte(uart_test_tx_buff[i]);
-					TRACE_INFO("正在发送测试透传485数据[%d]:[%x]......\r\n",i,uart_test_tx_buff[i]);
-				}
-				uart_index=0;
-				uart_flag=0;
-	
-			}
-			else if(dat==0x7E)
-			{
-				uart_flag =dat;
-			}
-		}
-
-		
 		// FIFO数据个数-1
 		p_fifo->count--;	
 
@@ -1978,7 +1864,7 @@ UINT16 FpgaReadRegister(UINT16 add)
 		case 0x1://1字节通过读逻辑读A段参数
 			//if (0X00==add  )
 			{
-				return sys_param_1b[add].val;
+				////return sys_param_1b[add].val;
 			}
 			return 0;
 		break;
@@ -1986,7 +1872,7 @@ UINT16 FpgaReadRegister(UINT16 add)
 		case 0x2://2字节通过读逻辑读B段参数
 		//	if ( 0X00==add )
 			{
-				return sys_param_2b[add].val;
+				////return sys_param_2b[add].val;
 			}
 			return 0;		
 		break;	
@@ -2079,22 +1965,22 @@ void AfterFpgaLoad(void)
 
 	//软件版本	
 	reg_val = FpgaReadRegister(FPGA_REG_EDITION_INFO); 
-	sys_param_2b[MADD_PRI_SOFT_V].val = MCU_SOFT_VER|((reg_val<<8)&0xFF00);
+////	sys_param_2b[MADD_PRI_SOFT_V].val = MCU_SOFT_VER|((reg_val<<8)&0xFF00);
 	
 	//PCB版本号    
 	reg_val = FpgaReadRegister(FPGA_REG_PCB_VERSION); 
-	sys_param_2b[MADD_PRI_HARD_V].val = reg_val;	//hard_ware_v;
+////	sys_param_2b[MADD_PRI_HARD_V].val = reg_val;	//hard_ware_v;
 	
 	//读取水印文件 
 	FpgaReadRegister(FPGA_REG_IRQ_CLEAN);	//水印读出初始化
 	
-	for (ret_val=0; ret_val<sys_param_asc[MADD_PRI_FPGA_DATE].length; ret_val++)
+	////for (ret_val=0; ret_val<sys_param_asc[MADD_PRI_FPGA_DATE].length; ret_val++)
 	{
-		str_pri_fpga_date[ret_val] = (CHAR8)FpgaReadRegister(FPGA_REG_WATER_PRINT);
+		////str_pri_fpga_date[ret_val] = (CHAR8)FpgaReadRegister(FPGA_REG_WATER_PRINT);
 	}      
-	for (ret_val=0; ret_val<sys_param_asc[MADD_PRI_FPGA2_DATE].length; ret_val++)
+	////for (ret_val=0; ret_val<sys_param_asc[MADD_PRI_FPGA2_DATE].length; ret_val++)
 	{
-		str_pri_fpga2_date[ret_val] = ' ';
+		////str_pri_fpga2_date[ret_val] = ' ';
 	}	
 	//初始化当前拓扑结构体和RE延时测量值
 	//InitTopoInfo();
@@ -2109,47 +1995,7 @@ Return:-1:失败，1: 成功
 **************************************************************/
 void FpgaGetChannelCount()
 {
-	UINT16 tmp;
-	UINT16 i;
-	
-	tmp = FpgaReadRegister(FPGA_REG_CH_COUNT);		// 从FPGA读取通道数
-	#if defined CLIENT_JIZHUN
-	sys_param_1b[MADD_A_CHANNEL_COUNT].val = tmp&0x1F>>0;		// A段支持的通道数
-	sys_param_1b[MADD_B_CHANNEL_COUNT].val = 0;		// B段支持的通道数
-	sys_param_1b[MADD_C_CHANNEL_COUNT].val = 0;			// C段支持的通道数
-	sys_param_1b[MADD_D_CHANNEL_COUNT].val = 0;		// D段支持的通道数
-	#else 
-	sys_param_1b[MADD_A_CHANNEL_COUNT].val = tmp&BM_A_CH_COUNT;			// A段支持的通道数
-	sys_param_1b[MADD_B_CHANNEL_COUNT].val = (tmp&BM_B_CH_COUNT)>>8;		// B段支持的通道数
-	sys_param_1b[MADD_C_CHANNEL_COUNT].val = (tmp&BM_C_CH_COUNT)>>4;			// C段支持的通道数
-	sys_param_1b[MADD_D_CHANNEL_COUNT].val = (tmp&BM_D_CH_COUNT)>>12;		// D段支持的通道数
-	#endif
 
-	if ( sys_param_1b[MADD_A_CHANNEL_COUNT].val > MAX_CHANNEL_COUNT )
-	{
-		//TRACE_ERROR("A Channel Count Err(%d)\r\n", sys_param_1b[MADD_A_CHANNEL_COUNT].val );
-		sys_param_1b[MADD_A_CHANNEL_COUNT].val = 0;
-	}
-
-	if ( sys_param_1b[MADD_B_CHANNEL_COUNT].val > MAX_CHANNEL_COUNT )
-	{
-		//TRACE_ERROR("B Channel Count Err(%d)\r\n", sys_param_1b[MADD_B_CHANNEL_COUNT].val );
-		sys_param_1b[MADD_B_CHANNEL_COUNT].val = 0;
-	}
-	
-	if ( sys_param_1b[MADD_C_CHANNEL_COUNT].val > 4 )
-	{
-		//TRACE_ERROR("A Channel Count Err(%d)\r\n", sys_param_1b[MADD_A_CHANNEL_COUNT].val );
-		sys_param_1b[MADD_C_CHANNEL_COUNT].val = 0;
-	}
-
-	if ( sys_param_1b[MADD_D_CHANNEL_COUNT].val > 4 )
-	{
-		//TRACE_ERROR("B Channel Count Err(%d)\r\n", sys_param_1b[MADD_B_CHANNEL_COUNT].val );
-		sys_param_1b[MADD_D_CHANNEL_COUNT].val = 0;
-	}	
-
-	
 }
 
 
@@ -2497,7 +2343,7 @@ void FpgaAttAdjust()
 			//UsNopDelay(1000*1000);	
 			WTD_CLR;
 			// 从RE读取选频功率寄存器   32位 
-			GetPsfFromRe( fpga_att_adj_st.ab_flag, fpga_att_adj_st.ud_flag );
+////			GetPsfFromRe( fpga_att_adj_st.ab_flag, fpga_att_adj_st.ud_flag );
 			// 读取REC 自身的 AD、DA功率      
 			FpgaGetAdDaPow( fpga_att_adj_st.ab_flag );
 			
@@ -2558,7 +2404,7 @@ void FpgaAttAdjust()
 			UsNopDelay(50000);
 			//TRACE_INFO("FpgaAttAdjust_ATT_ADJ_ST_STEP_ADJ(%d)\r\n",fpga_att_adj_st.step);
 			// 从RE读取选频功率寄存器
-			GetPsfFromRe( fpga_att_adj_st.ab_flag, fpga_att_adj_st.ud_flag );
+////			GetPsfFromRe( fpga_att_adj_st.ab_flag, fpga_att_adj_st.ud_flag );
 			fpga_att_adj_st.adj_st= ATT_ADJ_ST_WAIT_STEP_PSF;
 			// 置等待标志
 			fpga_att_adj_st.is_wait = 1;
@@ -3464,7 +3310,7 @@ void FpgaGainAdjust()
 			{
 				//printf("EU adj\r\n");
 				//EU进入校准模式				
-				GainAdjSetEUEnterAdjMode( gain_adj_st.ab_flag );
+////				GainAdjSetEUEnterAdjMode( gain_adj_st.ab_flag );
 				
 			}
 			else
@@ -3485,7 +3331,7 @@ void FpgaGainAdjust()
 			//设置AU的频点
 			GainAdjSetAUFrePoint(gain_adj_st.ab_flag,fre_point);
 			//设置EU的频点			
-			GainAdjSetEUFrePoint(gain_adj_st.ab_flag,fre_point);
+////			GainAdjSetEUFrePoint(gain_adj_st.ab_flag,fre_point);
 			gain_adj_st.is_wait = 1;
 			gain_adj_st.adj_st= GAIN_ADJ_ST_GET_EU_SF_POW;
 			//gain_adj_st.is_wait = 0;//进入下一个命令
@@ -3493,7 +3339,7 @@ void FpgaGainAdjust()
 		case GAIN_ADJ_ST_GET_EU_SF_POW://读取EU第一个通道的选频功率
 		
 			//GetPsfFromRe( gain_adj_st.ab_flag, gain_adj_st.ud_flag );
-			GainAdjGetEUPow(gain_adj_st.ab_flag, gain_adj_st.ud_flag);
+			////GainAdjGetEUPow(gain_adj_st.ab_flag, gain_adj_st.ud_flag);
 			gain_adj_st.step++;
 			gain_adj_st.is_wait = 1;
 			//printf("step%d\r\n",gain_adj_st.step);
@@ -3613,15 +3459,15 @@ UINT32 MoveCenterFre(UCHAR8 ab_flag, UCHAR8 ud_flag)
 			{
 				//addr_h = FPGA_REG_A_D_CH_SPOW_H;
 				//addr_l=FPGA_REG_A_D_CH_SPOW_L;
-				center_fre_d = sys_param_2b[MADD_MOVE_CENTER_FRE_D].val/100.0+300;
-				center_fre_u = sys_param_2b[MADD_MOVE_CENTER_FRE_U].val/100.0+300;
+////				center_fre_d = sys_param_2b[MADD_MOVE_CENTER_FRE_D].val/100.0+300;
+////				center_fre_u = sys_param_2b[MADD_MOVE_CENTER_FRE_U].val/100.0+300;
 			}
 			else if(ud_flag == SYS_UL_FLAG)
 			{
 				//addr_h = FPGA_REG_A_U_CH_SPOW_H;
 				//addr_l =FPGA_REG_A_U_CH_SPOW_L;
-				center_fre_d = sys_param_2b[MADD_MOVE_CENTER_FRE_D].val/100.0+300;
-				center_fre_u = sys_param_2b[MADD_MOVE_CENTER_FRE_U].val/100.0+300;
+////				center_fre_d = sys_param_2b[MADD_MOVE_CENTER_FRE_D].val/100.0+300;
+////				center_fre_u = sys_param_2b[MADD_MOVE_CENTER_FRE_U].val/100.0+300;
 			}
 			break;
 		case SYS_B_FLAG:
