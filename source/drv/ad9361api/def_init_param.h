@@ -1,7 +1,7 @@
 //#ifndef __DEF_INIT_PARAM_H
 //#define __DEF_INIT_PARAM_H
 
-const AD9361_InitParam default_init_param = {
+AD9361_InitParam default_init_param = {
 	/* Device selection */
 	ID_AD9363A,      // dev_sel
 	/* Identification number */

@@ -575,6 +575,41 @@
               <FileType>1</FileType>
               <FilePath>..\source\app\uart_app.c</FilePath>
             </File>
+            <File>
+              <FileName>chn2freq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\json\chn2freq.c</FilePath>
+            </File>
+            <File>
+              <FileName>common_hw.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\json\common_hw.c</FilePath>
+            </File>
+            <File>
+              <FileName>confctrl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\json\confctrl.c</FilePath>
+            </File>
+            <File>
+              <FileName>formula.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\json\formula.c</FilePath>
+            </File>
+            <File>
+              <FileName>json_parse.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\json\json_parse.c</FilePath>
+            </File>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\json\port.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\json\cJSON.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -575,7 +575,6 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 			case MSG_CMD_GET_FPGA_REG:
 				MsgHandleGetFpgaReg( msg_len, p_msg_dat, msg_tx_buff );
 				break;
-				
 			case MSG_CMD_UPDATE_MCU:		// 升级MCU
 				MsgHandleUpdateMCU( msg_len, p_msg_dat, msg_tx_buff );
 				break;
@@ -590,7 +589,6 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 			case MSG_CMD_FLASH_OPERATION: //Flash页操作
 				MsgHandleFlashOperatePage( msg_len, p_msg_dat, msg_tx_buff );
 				break;
-			
 			case MSG_CMD_BLANK:
 				MsgHandleBlankCmd( msg_len, p_msg_dat, msg_tx_buff );
 				break;

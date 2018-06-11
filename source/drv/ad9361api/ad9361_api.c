@@ -73,7 +73,7 @@ static struct axiadc_chip_info axiadc_chip_info_tbl[] =
  *
  * Note: This function will/may affect the data path.
  */
-int32_t ad9361_init (struct ad9361_rf_phy **ad9361_phy, const AD9361_InitParam *init_param)
+int32_t ad9361_init (struct ad9361_rf_phy **ad9361_phy, AD9361_InitParam *init_param)
 {
 	struct ad9361_rf_phy *phy;
 	int32_t ret = 0;
