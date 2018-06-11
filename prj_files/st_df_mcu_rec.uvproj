@@ -353,7 +353,7 @@
             <PlainCh>0</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>2</wLevel>
+            <wLevel>1</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>1</uC99>
@@ -506,11 +506,6 @@
               <FilePath>..\source\app\adc_app.c</FilePath>
             </File>
             <File>
-              <FileName>base_app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\base_app.c</FilePath>
-            </File>
-            <File>
               <FileName>crc8.C</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\app\crc8.C</FilePath>
@@ -561,11 +556,6 @@
               <FilePath>..\source\cli\getopt.c</FilePath>
             </File>
             <File>
-              <FileName>rec_app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\rec_app.c</FilePath>
-            </File>
-            <File>
               <FileName>param_dat.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\app\param_dat.c</FilePath>
@@ -609,6 +599,11 @@
               <FileName>cJSON.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\app\json\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>rec_app.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\rec_app.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -24,7 +24,7 @@
 //#define VERSION_40M_NOIN		 	1   //40M 非一体化
 //#define VERSION_20M_IN			    2   //20M 一体化
 //#define VERSION_40M_IN			    3   //40M 一体化
-
+#define VERSION_GEDT_ERRICSON_W	4  
 #define VERSION_NUMBER	VERSION_50M_IN_V4				
 
           

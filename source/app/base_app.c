@@ -83,49 +83,6 @@ Return:
 **************************************************************/
 BOOL Init_Local_Pll(UCHAR8 ucPll)//822 U PLL
 {
-#if 0
-    UCHAR8  ucFmt ;
-    UCHAR8  ucPllTye ;
-    UCHAR8  i;
-
-    if (A_MIXER==ucPll ||A_MODEN==ucPll)
-    {
-       ucFmt  = fpga_cfg.a_net_type;
-    }
-    else
-	{
-        ucFmt = fpga_cfg.b_net_type;
-		if ( NET_DIVE==ucFmt )
-		{
-			ucFmt = fpga_cfg.a_net_type;
-		}
-	}
-
-	if ( NET_NONE==ucFmt ) return;
-    
-    if (A_MIXER==ucPll ||B_MIXER==ucPll)
-    {
-       ucPllTye = TYPE_MIXER; 
-    }
-    else
-    {
-       ucPllTye = TYPE_MODEN; 
-    }
-
-	FPGA_ENABLE_WRITE;
-
-#if ((A_NETWORK_TYPE == NET_TYPE_GSM900)||(B_NETWORK_TYPE == NET_TYPE_GSM900))
-	LoadGsmPllRegTbl(G2Tpye);         
-#elif ((A_NETWORK_TYPE == NET_TYPE_DCS1800)||(B_NETWORK_TYPE == NET_TYPE_DCS1800))
-	LoadDcsPllRegTbl(G2Tpye);      
-#endif	
-
-	for (i=0;i<11;i++)
-	{
-    	ReadWriteHmc830(ucPll,0,aPllRegTbl[i],auiPllRegVlaue[ucFmt][i][ucPllTye][clk_flag]);
-	} 
-	FPGA_DISABLE_WRITE;
-#endif	
 	return b_TRUE; 
 }
 
@@ -203,24 +160,7 @@ UINT32 _AdjustFpgaFw(INT32 df)
 	return (UINT32)df;
 }
 
-// 根据频率字计算FPGA频点寄存器的值
-UINT16 _CalcFpgaFwReg( UINT32 fw )
-{
-	UINT16 qw,rw; 
-	
-	if(0==clk_flag)
-	{	// 122.88M时钟
-		qw = fw/384;	// 商
-		rw = fw%384;	// 余数
-		return (UINT16)(((qw&0x07)<<9)|(rw&0x01FF));
-	}
-	else
-	{	// 125M时钟
-		qw = fw/625;	// 商
-		rw = fw%625;	// 余数
-		return (UINT16)(((qw&0x07)<<10)|(rw&0x03FF));
-	}   
-}
+
 
 ////////////////////////////// TD函数 ////////////////////////////////
 // TD时间计算
@@ -278,18 +218,6 @@ FLOAT32 CalcGsmdfu( FLOAT32 freq_point, FLOAT32 fd_local )
     
 //    fClkFreq = clk_flag ? AD_FS_125M : AD_FS_122M;
 //    return ( freq_point-fu_local+(2.0*fClkFreq)-(5.0*fClkFreq/8.0));
-#if 0
-	if ( CLK_FLAG_122_88M==clk_flag )	// 122.88M
-	{
-
-		return ( freq_point-fd_local+245.76-92.16);
-
-  	}
-  	else	// 125M
-  	{
- 	 	return ( freq_point-fd_local+250-93.75);   
-  	}
-#endif
 	if(freq_point>fd_local)
 	{
 		return ( freq_point-fd_local); 
@@ -323,37 +251,6 @@ FLOAT32 CalcDcsfu( FLOAT32 freq_point, FLOAT32 fd_local )
  	  
 
 } 
-
-#if 0
-/*************************************************************
-Name:         CalcGsmdfu
-Description:  计算GSM输入逻辑的频率
-Input:        freq_point -  输入的RF频率
-              fu_local   -  本振的输出频率
-Output:       void         
-Return:	 GSM输入逻辑的频率
-**************************************************************/
-FLOAT32 CalcDcsfu( FLOAT32 freq_point, FLOAT32 fd_local )
-{
-    FLOAT32 fClkFreq;
-    
-    fClkFreq = clk_flag ? AD_FS_125M : AD_FS_122M;
-
-//  TRACE_INFO("%f - %f +%f\r\n",freq_point,fu_local,(5.0*fClkFreq/4.0)); 
-//  return ( freq_point-fu_local+(2.0*fClkFreq)-(5.0*fClkFreq/8.0));
-    if ( CLK_FLAG_122_88M==clk_flag )	// 122.88M
-	{
-
-		return ( freq_point-fd_local+245.76-92.16);
-
-  	}
-  	else	// 125M
-  	{
- 	 	return ( freq_point-fd_local+250-93.75);  
-  	}
-
-} 
-#endif
 
 /*************************************************************
 Name:         CalcGsmdfu
@@ -377,54 +274,7 @@ FLOAT32 CalcWcdmafu( FLOAT32 freq_point, FLOAT32 fd_local )
 	}
  	  
 } 
-#if 0
 
-/*************************************************************
-Name:         CalcGsmdfu
-Description:  计算GSM输入逻辑的频率
-Input:        freq_point -  输入的RF频率
-              fu_local   -  本振的输出频率
-Output:       void         
-Return:	 GSM输入逻辑的频率
-**************************************************************/
-FLOAT32 CalcWcdmafu( FLOAT32 freq_point, FLOAT32 fd_local )
-{
-    FLOAT32 fClkFreq;  
-    
-    fClkFreq = clk_flag ? AD_FS_125M : AD_FS_122M;
-
-  //TRACE_INFO("%f - %f +%f\r\n",freq_point,fu_local,(5.0*fClkFreq/4.0)); 
-   //return ( freq_point-fu_local+(2.0*fClkFreq)-(5.0*fClkFreq/8.0));
-   if ( CLK_FLAG_122_88M==clk_flag )	// 122.88M
-	{
-
-		return ( freq_point-fd_local+245.76-92.16);
-
-  	}
-  	else	// 125M
-  	{
- 	 	return ( freq_point-fd_local+250-93.75);  
-  	}
-}
-/*************************************************************
-Name:         CalcGsmdfu
-Description:  计算GSM输入逻辑的频率
-Input:        freq_point -  输入的RF频率
-              fu_local   -  本振的输出频率
-Output:       void         
-Return:	 GSM输入逻辑的频率
-**************************************************************/
-FLOAT32 CalcTetrafu( FLOAT32 freq_point, FLOAT32 fu_local )
-{
-    FLOAT32 fClkFreq; 
-    
-    fClkFreq = clk_flag ? AD_FS_125M : AD_FS_122M;
-
-    //TRACE_INFO("%f - %f +%f\r\n",freq_point,fu_local,(5.0*fClkFreq/4.0));
-   // RJ return ( freq_point-fu_local+(2.0*fClkFreq)+(5.0*fClkFreq/8.0));
-   return ( freq_point-fu_local+(2.0*fClkFreq)-(5.0*fClkFreq/8.0));
-}
-#endif
 /*************************************************************
 Name:         CalcTdLtefu
 Description:  计算GSM输入逻辑的频率
@@ -448,23 +298,6 @@ FLOAT32 CalcTdLtefu( FLOAT32 freq_point, FLOAT32 fd_local )
 	}
 } 
 
-
-#if  0
-/*************************************************************
-Name:         CalcFpgaFw
-Description:  计算GSM输入逻辑的数字频率字
-Input:        fDf -  输入的逻辑频率
-Output:       void         
-Return:	 逻辑的数字频率字
-**************************************************************/
-INT32 CalcFpgaFw( FLOAT32 fDf )	
-{
-    FLOAT32 fdiv;
-    
-    fdiv = clk_flag ? DIV_125M : DIV_122M;
-	return (INT32)((FLOAT32)(fDf)/fdiv + ((fDf<0) ? -0.5 : 0.5 ));
-}
-#endif
 /*************************************************************
 Name:         CalcFpgaFw
 Description:  计算GSM输入逻辑的数字频率字
@@ -604,57 +437,7 @@ INT32  AdjustFpgaFw(INT32 iDf)
     return iDf;
 }
 
-#if 0
-/*************************************************************
-Name:         CalcFpgaFwReg  
-Description:  生成逻辑的数字频率寄存器字   
-Input:        fDf -  GSM输入逻辑的数字频率字   
-Output:       void         
-Return:	逻辑寄存器值
-**************************************************************/
-UINT16 CalcFpgaFwReg( UINT32 fw )
-{
-	UINT16 iQw,iRw;
 
-	if(0==clk_flag) 
-	{	// 122.88M时钟
-		iQw = fw/384;	// 商
-		iRw = fw%384;	// 余数
-		return (UINT16)(((iQw&0x07)<<9)|(iRw&0x01FF));
-	}
-	else
-	{	// 125M时钟
-		iQw = fw/625;	// 商
-		iRw = fw%625;	// 余数
-		return (UINT16)(((iQw&0x07)<<10)|(iRw&0x03FF));
-	} 
-}
-#endif
-
-/*************************************************************
-Name:         CalcFpgaFwReg  
-Description:  生成逻辑的数字频率寄存器字   
-Input:        fDf -  GSM输入逻辑的数字频率字   
-Output:       void         
-Return:	逻辑寄存器值
-**************************************************************/
-UINT16 CalcFpgaFwReg( UINT32 fw )
-{
-	UINT16 iQw,iRw;
-	clk_flag=1;
-	if(0==clk_flag) 
-	{	// 122.88M时钟
-		iQw = fw/384;	// 商
-		iRw = fw%384;	// 余数
-		return (UINT16)(((iQw&0x07)<<9)|(iRw&0x01FF));
-	}
-	else
-	{	// 125M时钟
-		iQw = fw/625;	// 商
-		iRw = fw%625;	// 余数
-		return (UINT16)(((iQw&0x07)<<10)|(iRw&0x03FF));
-	} 
-}
 
 /*************************************************************
 Name: ConvGsmFcToFreqDL

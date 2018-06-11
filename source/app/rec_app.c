@@ -18,7 +18,7 @@ extern _T_PARAM_1B sys_param_1b[];
 extern _T_PARAM_2B sys_param_2b[];
 extern _T_PARAM_4B sys_param_4b[];
 
-extern _T_MODULE_CFG mod_cfg_b;
+
 extern UINT32 fpga_load_status;
 extern _T_BIG_PKT_BUFF msg_big_buff[MSG_BIG_PKT_COUNT];
 //extern UINT32 module_param_chg_flag;		//系统工作参数修改标志
@@ -2133,124 +2133,6 @@ Description: TD自动频点搜索功能，当发现TD无法同步之后，自动
 **************************************************************/
 void TdAutoSearchFp( UCHAR8 reset_fp )
 {
-#ifdef FUNC_TD_AUTO_SEARCH_FP
-	static UCHAR8 search_ch = 0;	// td_scdma搜索通道号，第1通道为界面设置的频点，接下来前9个为华为的固定频点，后9个为华为的固定频点:10055、10063、10071、10080、10088、10096、10104、10112、10120,10054,10062,10070,10079,10087,10095,10104,10112,10120
-
-	UINT16 tmp;
-	UINT16 cnt;
-	UINT16 search_ch_loop;
-
-
-	tmp = sys_param_2b[MADD_B_DL_CHANNEL1].val; //起始频点
-	tds_dl_channel[0]=tmp;
-	TRACE_INFO("Start FrePoint=[%d]\r\n",tmp);
-	TRACE_INFO("\r\n");
-	cnt = 16; //当前固定写全部15个频点
-	//TRACE_INFO("FrePonit Count=[%d]\r\n",cnt);
-	FPGA_ENABLE_WRITE;
-	FpgaWriteRegister(FPGA_REG_TD_MAIN_CH_CNT, (cnt&0x00FF));
-	FPGA_DISABLE_WRITE;
-	//计算频点个数并写入FPGA
-	for(search_ch=1;search_ch<16;search_ch++)
-	{
-		if(tds_dl_channel[search_ch]>=tmp)
-		{
-			break;
-		}   
-	}
-	search_ch_loop = search_ch; //最大频点绕回来最小后要写的频点个数
-         //计算频率字并写入FPGA
-	for(;search_ch<16;search_ch++)
-	{  
-		PB_SetTdMainChannel( sys_param_1b[MADD_B_DCH_EN1].val, tds_dl_channel[search_ch] );
-	}
-         for(search_ch=0;search_ch<search_ch_loop;search_ch++)
-	{  
-		PB_SetTdMainChannel( sys_param_1b[MADD_B_DCH_EN1].val, tds_dl_channel[search_ch] );
-	}
-	//写频率字完毕，发完毕脉冲(写空也行)
-	FPGA_ENABLE_WRITE;
-	FpgaWriteRegister(FPGA_REG_TD_MAIN_CH_END, (cnt&0x0000));
-	FPGA_DISABLE_WRITE; 
-
-	if((version_number == VERSION_40M_NOIN) || (version_number == VERSION_40M_IN_A) 
-	|| (version_number == VERSION_40M_IN_B) || (version_number == VERSION_40M_IN_C)
-	|| (version_number == VERSION_40M_IN_D) || (version_number == VERSION_40M_IN_E)
-	|| (version_number == VERSION_50M_IN_F) ||(version_number == VERSION_50M_IN_V4)
-	||(version_number == VERSION_50M_IN_V5)
-	)
-	{
-		//c段
-		tmp = sys_param_2b[MADD_C_DL_CHANNEL1].val; //起始频点
-		tds_dl_channel[0]=tmp;
-		TRACE_INFO("Start FrePoint=[%d]\r\n",tmp);
-		TRACE_INFO("\r\n");
-		cnt = 16; //当前固定写全部15个频点
-		//TRACE_INFO("FrePonit Count=[%d]\r\n",cnt);
-		FPGA_ENABLE_WRITE;
-		FpgaWriteRegister(FPGA_REG_LTE_MAIN_CH_CNT, (cnt&0x00FF));
-		FPGA_DISABLE_WRITE;
-		//计算频点个数并写入FPGA
-		for(search_ch=1;search_ch<16;search_ch++)
-		{
-			if(tds_dl_channel[search_ch]>=tmp)
-			{
-				break;
-			}   
-		}
-		search_ch_loop = search_ch; //最大频点绕回来最小后要写的频点个数
-		//计算频率字并写入FPGA
-		for(;search_ch<16;search_ch++)
-		{  
-			PC_SetTdMainChannel( sys_param_1b[MADD_C_DCH_EN1].val, tds_dl_channel[search_ch] );
-		}
-		for(search_ch=0;search_ch<search_ch_loop;search_ch++)
-		{  
-			PC_SetTdMainChannel( sys_param_1b[MADD_C_DCH_EN1].val, tds_dl_channel[search_ch] );
-		}
-		//写频率字完毕，发完毕脉冲(写空也行)
-		FPGA_ENABLE_WRITE;
-		FpgaWriteRegister(FPGA_REG_LTE_MAIN_CH_END, (cnt&0x0000));
-		FPGA_DISABLE_WRITE; 
-	}
-#ifdef 0
-			tmp = tds_dl_channel[search_ch];
-			search_ch++;
-			TRACE_INFO("tmp=[%d],search_ch=[%d]\r\n",tmp,search_ch);
-			PB_SetTdMainChannel( sys_param_1b[MADD_B_DCH_EN1].val, tmp );	
-			sys_param_2b[MADD_B_DL_CHANNEL1].val=tmp;
-			tm_search_wait = 0;
-			tm_check_wait = 0;	// 清零等待时间
-		}
-		else // 之前处于同步状态
-		{
-			tmp = FpgaReadRegister( FPGA_REG_TD_SYNC_ST ) & BM_TD_SYNC_OK;		// 读取同步状态
-			TRACE_INFO("1tmp{0/1}=[%x],tm_check_wait=[%x]\r\n",tmp,tm_check_wait);
-			if ( 0==tmp )	// 检测到不同步
-			{
-				if ( 0==tm_check_wait )	// 初次检测到不同步，等待15秒
-				{
-					tm_check_wait = 1;
-				}
-			}
-
-			if ( tm_check_wait>0 )	// 延时等待
-			{
-				tm_check_wait++;
-				if ( tm_check_wait>=15 )	// 15秒时间判断同步状态
-				{
-					if ( 0==tmp )
-					{
-						pre_sync_st = 0;		// 状态变为未同步
-						tm_search_wait = 0;	// 清零搜索等待时间
-					}
-					tm_check_wait = 0;	// 清零等待时间
-				}
-			}
-		}
-	}
-#endif
-#endif
 }
 /*************************************************************
 Name: TempGainCompensate
@@ -2730,39 +2612,6 @@ void ZiDongShiXiPeiBi( void)
 	UINT16 tmp=0,tmp2=0,tmp3=0;
 //获取自动时隙配比
 
-	if( (version_number == VERSION_50M_IN_F)||(version_number == VERSION_50M_IN_V4)||(version_number == VERSION_50M_IN_V5))
-	{
-		if(sys_param_1b[MADD_SLOT_TIME_EN_C].val==1)//开启TDS时隙配比自动检测
-		{
-			//使能自动时隙检测功能
-			FpgaWriteRegister( FPGA_REG_W_SLOT_TIME_C, 1<<15 );
-
-			//获取自动时隙配比
-			sys_param_1b[MADD_SLOT_TIME_DISTRI_C].val; 
-			tmp = (UCHAR8)FpgaReadRegister(FPGA_REG_R_SLOT_TIME_C);
-			tmp2= tmp&0x0f;//特殊子帧配比
-			tmp3 = (tmp&0xf0)>>4;//上下行时隙配比
-			//tmp2 =  (sys_param_1b[MADD_C_TD_NORMAL_CP].val)| ((sys_param_1b[MADD_C_TD_TYPE_SELECT].val<<3)&0X78)|((sys_param_1b[MADD_C_TD_EXTENDED_CP].val<<7)&0X80);
-			//获取配比成功
-			//与原有的配比比较
-			if((tmp2 != sys_param_1b[MADD_C_TD_NORMAL_CP].val)||(tmp3 != sys_param_1b[MADD_C_TD_TYPE_SELECT].val))
-			{
-				sys_param_1b[MADD_C_TD_NORMAL_CP].val = tmp2;
-				sys_param_1b[MADD_C_TD_TYPE_SELECT].val = tmp3;
-				tmp = (sys_param_1b[MADD_C_TD_TYPE_SELECT].val&0X07)| ((sys_param_1b[MADD_C_TD_NORMAL_CP].val<<3)&0X78)|((sys_param_1b[MADD_C_TD_EXTENDED_CP].val<<7)&0X80);
-
-				//写入时隙配比寄存器	
-				FPGA_ENABLE_WRITE;
-				FpgaWriteRegister(FPGA_REC_C_TS_CONFIG, tmp);
-				FPGA_DISABLE_WRITE;
-
-				sys_work_info |= SYSTEM_FLAG_SET_RE_TDSLOT;
-
-			}
-		}
-
-	}
-	
 }
 /*************************************************************
 Name: MoveBenZhenTo2345

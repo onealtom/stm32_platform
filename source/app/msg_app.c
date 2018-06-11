@@ -16,9 +16,6 @@
 #include <stdio.h>
 
 
-extern _T_PARAM_1B sys_param_1b[];
-extern _T_PARAM_2B sys_param_2b[];
-extern _T_PARAM_4B sys_param_4b[];
 extern _T_PARAM_ASC sys_param_asc[];
 extern _T_VALID_FP_TOPO valid_fp_topo[FP_MAX];
 extern _T_FP_INFO fp_inf[FP_MAX];
@@ -788,11 +785,13 @@ void MsgHandleBlankCmd( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 	p_tx_buff[msg_tx_len++] = fpga_cfg.c_net_type;
 	p_tx_buff[msg_tx_len++] = fpga_cfg.d_net_type;	
 	p_tx_buff[msg_tx_len++] = MODULE_TYPE_REC;
-	
+#define VERSION_FLAG	            0xAA	
 	p_tx_buff[msg_tx_len++] = VERSION_FLAG; //2014.08.16
-	p_tx_buff[msg_tx_len++] = version_number; //2014.08.16
+	p_tx_buff[msg_tx_len++] = VERSION_FLAG;
+	//p_tx_buff[msg_tx_len++] = version_number; //2014.08.16
 
-	
+#define MCU_PARAM_FLAG	            0xAB	//2014.08.29	
+#define MCU_PARAM_VER_5			     5    
 	p_tx_buff[msg_tx_len++] = MCU_PARAM_FLAG; //2014.08.29
 	p_tx_buff[msg_tx_len++] = MCU_PARAM_VER_5;  //2014.08.29
 

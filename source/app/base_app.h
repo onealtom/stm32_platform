@@ -1,4 +1,4 @@
-﻿#ifndef _BASE_APP_H_
+#ifndef _BASE_APP_H_
 #define _BASE_APP_H_
 
 
@@ -184,7 +184,6 @@ typedef struct _S_MODULE_CFG	// 段配置结构
 
 #define CLK_FLAG_122_88M		0
 #define CLK_FLAG_125M			1
-extern UCHAR8 clk_flag;	//时钟标示： 0-122.88，1-125
 
 //版本控制
 #define VERSION_FLAG	            0xAA
@@ -237,7 +236,7 @@ UINT32 _CalcDelayReg( UINT32 ns );
 UINT32 _CalcBusyTime( UINT32 reg_val, UINT32 ch_count );
 INT32 _CalcFpgaFw( INT32 df );
 UINT32 _AdjustFpgaFw(INT32 df);
-UINT16 _CalcFpgaFwReg( UINT32 fw );
+
 UINT16 _CalcTdTimeParam( UINT32 tm );
 FLOAT32 CalcGsmdfu( FLOAT32 freq_point, FLOAT32 fd_local );
 FLOAT32 CalcDcsfu( FLOAT32 freq_point, FLOAT32 fd_local );
@@ -250,7 +249,7 @@ INT32 CalcFpgaFw_B( FLOAT32 fDf )	;
 INT32 CalcFpgaFw_CD( FLOAT32 fDf )	;
 INT32 CalcTypeFddFpgaFw_CD( FLOAT32 fDf );
 INT32  AdjustFpgaFw(INT32 iDf)	; 
-UINT16 CalcFpgaFwReg( UINT32 fw );  
+
 FLOAT32 ConvGsmFcToFreqDL( INT32 freq_code );
 FLOAT32 ConvGsmFcToFreqUL( INT32 freq_code );
 FLOAT32 ConvDcsFcToFreqDL( INT32 freq_code );

@@ -16,9 +16,7 @@
 #include "Header.h"
 
 extern UCHAR8 para_bak[];
-extern _T_PARAM_1B sys_param_1b[];
-extern _T_PARAM_2B sys_param_2b[];
-extern _T_PARAM_4B sys_param_4b[];
+
 
 extern _T_FP_INFO fp_inf[];		            // 光口拓扑信息
 extern _T_VALID_FP_TOPO valid_fp_topo[FP_MAX];

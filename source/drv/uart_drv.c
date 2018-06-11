@@ -1,4 +1,4 @@
-﻿#include "Header.h"
+#include "Header.h"
 
 _T_THR_FUNC thr_func;
 volatile UINT16 uart_ctl_ore_count = 0;
@@ -117,16 +117,7 @@ void EnableUartTx(UCHAR8 flag, UCHAR8 ch_head)
 	}
 	else
 	{
-		#if 0
-		while( USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET )		// 等待发送完成
-		{
-			UsNopDelay(1);
-			if ( ++i>1500 )
-			{
-				break;
-			}
-		}
-		#endif
+
 		DisableCtrlUartTxIT();
 //		UsNopDelay(10);
 		RS485A_RX_MODE;
@@ -141,18 +132,7 @@ Return:void
 **************************************************************/
 void EnableUartRx(UCHAR8 flag)
 {
-#if 0
-	if (flag)
-	{	
-		USART_SetReceiverEnabled(AT91C_BASE_US1, 1);
-		AT91C_BASE_US1->US_IER = AT91C_US_RXRDY;			
-	}
-	else
-	{
-		USART_SetReceiverEnabled(AT91C_BASE_US1, 0);
-		AT91C_BASE_US1->US_IDR = AT91C_US_RXRDY;	
-	}
-#endif	
+
 }
 
 
@@ -222,21 +202,7 @@ UCHAR8 ThrUart_Init( UINT16 port_flag, UINT16 baud_set)
 
 void ThrUartIntDisable()
 {
-#ifdef NOTRACE
-	if(sys_param_1b[MADD_THR_PORT].val)
-	{
-		Uart1_EnableInterrupt(0);
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, DISABLE);	// 禁能时钟
-	}
-	else
-	{
-		Uart3_EnableInterrupt(0);
-	    RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, DISABLE);	// 禁能时钟
-	}
-#else
-	Uart3_EnableInterrupt(0);
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, DISABLE);	// 禁能时钟
-#endif
+
 	
 
 

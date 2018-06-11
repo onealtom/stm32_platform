@@ -1,4 +1,4 @@
-﻿#ifndef _HEADER_H_
+#ifndef _HEADER_H_
 #define _HEADER_H_
 
 #include <string.h>
@@ -42,7 +42,7 @@
 #include "msg_app.h" 
 #include "rec_app.h"
 //#include "wcdma_app.h"
-#include "base_app.h"
+
 #include "fps_app.h"
 #include "Transceiver_app.h"
 #include "hmc1197_app.h"

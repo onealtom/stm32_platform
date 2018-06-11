@@ -2045,37 +2045,7 @@ void FpgaConfigPara(void)
 }
 
 
-/*************************************************************
-Name:		CheckClkMode
-Description: 检查FPGA时钟
-Input:void
-Output:void         
-Return:void
-**************************************************************/
-void CheckClkMode()
-{
-	UINT16 tmp;
-	tmp = FpgaReadRegister(FPGA_REG_GCLK_ST);
-	
-	if ( 0==( tmp&BM_CLK_125) )
-	{
-		SetClkFlag(CLK_FLAG_122_88M);
-		
-	}
-	else
-	{
-		SetClkFlag(CLK_FLAG_125M);
-	}
- 
-	if ( 0==( tmp&BM_WLAN_EN) )
-	{
-		fpga_cfg.wlan_en = 0;
-	}
-	else
-	{
-		fpga_cfg.wlan_en = 1;
-	}
-}
+
 
 /*************************************************************
 Name:AfterFpgaLoad         
@@ -2638,13 +2608,7 @@ void FpgaEnterAttAdjMode( UCHAR8 abcd_flag )
 		FpgaWriteRegister(FPGA_REG_A_ATT3_EN,0x01);
 		FPGA_DISABLE_WRITE;
 
-		if(version_number == VERSION_50M_IN_V5)
-		{
-			FPGA_ENABLE_WRITE;
-			FpgaWriteRegister(FPGA_REG_A_D_FREQ_CTL_L_12, 0x8893);
-	 		FpgaWriteRegister(FPGA_REG_A_D_FREQ_CTL_H_14, 0x0041);
-			FPGA_DISABLE_WRITE;
- 		}
+
 		
 
 	}
@@ -2751,16 +2715,9 @@ void FpgaEnterAttAdjMode( UCHAR8 abcd_flag )
 		UsNopDelay(20);
 		FPGA_SET_CHANNEL(0);		// 设置通道号
 		//FREQ_CTL_Val=0x8893*50/62.5;
-		if((version_number == VERSION_40M_IN_E))
-		{
-			FpgaWriteRegister(FPGA_REG_D_FREQ_CTL_L_12, 0x870A);
-	 		FpgaWriteRegister(FPGA_REG_D_FREQ_CTL_H_14, 0x8A3D);
- 		}
- 		else
- 		{
- 			FpgaWriteRegister(FPGA_REG_D_FREQ_CTL_L_12, 0x8893);
-	 		FpgaWriteRegister(FPGA_REG_D_FREQ_CTL_H_14, 0x0041);
- 		}
+
+
+ 		
  		TRACE_INFO("FpgaReadRegister( FPGA_REG_CH_SEL):%x\r\n",FpgaReadRegister( FPGA_REG_CH_SEL));
  		TRACE_INFO("FpgaReadRegister( FPGA_REG_D_FREQ_CTL_L_12):%x\r\n",FpgaReadRegister( FPGA_REG_D_FREQ_CTL_L_12));
  		
@@ -2790,159 +2747,6 @@ Return: void
 **************************************************************/
 void FpgaExitAttAdjMode( UCHAR8 ab_flag )
 {
-	UINT16 tmp; 
-	UINT16 reg;
-	UCHAR8 data;	
-
-	if ( SYS_A_FLAG == ab_flag )
-	{
-		reg= FPGA_REG_A_ATT_CTL;
-		data=0x0a;
-		ReadWriteTF(TF_A,1,0X56,0X00);//打开上行，输出通道、	
-
-		if(version_number == VERSION_50M_IN_V5)
-		{
-			FPGA_ENABLE_WRITE;
-			FPGA_SET_CHANNEL(0);		// 设置通道号
-			FpgaWriteRegister(FPGA_REG_A_D_FREQ_CTL_L_12, 0x8000);
-	 		FpgaWriteRegister(FPGA_REG_A_D_FREQ_CTL_H_14, 0x0000);
-			
-			//FpgaWriteRegister(FPGA_REC_D_TD_WORK_MODE, TD_WM_NORMAL);
-			//sys_param_1b[MADD_D_TD_WORK_MODE].val = TD_WM_NORMAL;
-			FPGA_DISABLE_WRITE;
-			//退出校准上行时，打开上行射频开关
-			tmp=ReadWriteTF(TF_A,0,0x057,0x01);
-			tmp&=(~0x01<<0);
-			ReadWriteTF(TF_A,1,0x057,tmp);		
-			// 下行输入			
-			//退出校准，打开下行射频开关
-			tmp=ReadWriteTF(TF_D,0,0x053,0x01);
-			tmp&=~((0x01<<2)|(0x01<<4));			
-			ReadWriteTF(TF_A,1,0x053,tmp);		
-
-			ReadWriteTF(TF_A,1,0X56,0X00);//打开上行，输出通道、
-		}
-	}
-	else if ( SYS_B_FLAG == ab_flag )
-	{
-		data=0x0b;
-		reg= FPGA_REG_B_ATT_CTL;
-		FPGA_ENABLE_WRITE;
-		if(NET_TYPE_TD!=fpga_cfg.b_net_type)
-		{
-			FPGA_SET_CHANNEL(0);		// 设置通道号
-			FpgaWriteRegister(FPGA_REG_B_FREQ_CTL_L_12, 0x8000);
-	 		FpgaWriteRegister(FPGA_REG_B_FREQ_CTL_H_14, 0x0000);			
-		}
-		FpgaWriteRegister(FPGA_REG_TD_WORK_MODE, TD_WM_NORMAL);
-		sys_param_1b[MADD_TD_WORK_MODE].val = 0;
-		FPGA_DISABLE_WRITE;		
-		//退出校准上行时，打开上行射频开关
-		tmp=ReadWriteTF(TF_B,0,0x057,0x01);
-		tmp&=(~0x01<<0);
-		ReadWriteTF(TF_B,1,0x057,tmp);		
-	// 下行输入			
-		//退出校准，打开下行射频开关
-		tmp=ReadWriteTF(TF_B,0,0x053,0x01);
-		tmp&=~((0x01<<3)|(0x01<<5));			
-		ReadWriteTF(TF_B,1,0x053,tmp);		
-		
-		ReadWriteTF(TF_B,1,0X56,0X00);//打开上行，输出通道、
-		
-	} 
-	else if ( SYS_C_FLAG == ab_flag )
-	{
-		data=0x0b;
-		reg= FPGA_REG_C_ATT_CTL;
-		FPGA_ENABLE_WRITE;
-		FPGA_SET_CHANNEL(0);		// 设置通道号
-		FpgaWriteRegister(FPGA_REG_C_FREQ_CTL_L_12, 0x8000);
- 		FpgaWriteRegister(FPGA_REG_C_FREQ_CTL_H_14, 0x0000);
-		
-		FpgaWriteRegister(FPGA_REC_C_TD_WORK_MODE, TD_WM_NORMAL);
-		sys_param_1b[MADD_C_TD_WORK_MODE].val = TD_WM_NORMAL;
-		FPGA_DISABLE_WRITE;		
-		
-		//退出校准上行时，打开上行射频开关
-		tmp=ReadWriteTF(TF_C,0,0x057,0x01);
-		tmp&=(~0x01<<1);
-		ReadWriteTF(TF_C,1,0x057,tmp);		
-	// 下行输入			
-		//退出校准，打开下行射频开关
-		tmp=ReadWriteTF(TF_C,0,0x053,0x01);
-		tmp&=~((0x01<<3)|(0x01<<5));			
-		ReadWriteTF(TF_C,1,0x053,tmp);	
-		ReadWriteTF(TF_C,1,0X56,0X00);//打开上行，输出通道、
-				
-	} 
-	else if ( SYS_D_FLAG == ab_flag )
-	{
-		data=0x0b;
-		reg= FPGA_REG_D_ATT_CTL;
-
-		FPGA_ENABLE_WRITE;
-		FPGA_SET_CHANNEL(0);		// 设置通道号
-		FpgaWriteRegister(FPGA_REG_D_FREQ_CTL_L_12, 0x8000);
- 		FpgaWriteRegister(FPGA_REG_D_FREQ_CTL_H_14, 0x0000);
-		
-		FpgaWriteRegister(FPGA_REC_D_TD_WORK_MODE, TD_WM_NORMAL);
-		sys_param_1b[MADD_D_TD_WORK_MODE].val = TD_WM_NORMAL;
-		FPGA_DISABLE_WRITE;
-		//退出校准上行时，打开上行射频开关
-		tmp=ReadWriteTF(TF_D,0,0x057,0x01);
-		tmp&=(~0x01<<0);
-		ReadWriteTF(TF_D,1,0x057,tmp);		
-	// 下行输入			
-		//退出校准，打开下行射频开关
-		tmp=ReadWriteTF(TF_D,0,0x053,0x01);
-		tmp&=~((0x01<<2)|(0x01<<4));			
-		ReadWriteTF(TF_D,1,0x053,tmp);		
-
-		ReadWriteTF(TF_D,1,0X56,0X00);//打开上行，输出通道、
-
-	} 
-	// 退出校准模式
-	tmp = FpgaReadRegister(reg);
-	
-	tmp &= (~(ATT_MODE_MASK|ATT_MANUAL)); //自动ATT衰减  
-	tmp |= ATT_MODE_NORMAL;  //ATT正常工作模式   
-	
-	FPGA_ENABLE_WRITE;  
-	FpgaWriteRegister(reg, tmp);
-	 
-	if(SYS_D_FLAG == ab_flag)
-	{
-		ab_flag=SYS_C_FLAG ;
-	}
-	FPGA_DISABLE_WRITE;
-	ReadWriteTF(ab_flag,1,0x0FB,data);
-
-#if 0
-	FPGA_ENABLE_WRITE;
-//	if ( 0==p_args[1] )  
-//	{	// 上行输出
-		//校准上行时，打开上行射频开关
-		tmp=ReadWriteTF(TF_C,0,0x057,0x01);
-		tmp&=(~0x01<<1);
-		ReadWriteTF(TF_C,1,0x057,tmp);	
-//	}    
-//	else 
-//	{	// 下行输入
-				
-		//校准下行时关上行射频开关，打开下行射频开关
-		tmp=ReadWriteTF(TF_C,0,0x057,0x01);
-		tmp|=(0x01<<1);
-		ReadWriteTF(TF_C,1,0x057,tmp);
- 
-		tmp=ReadWriteTF(TF_C,0,0x053,0x01);
-		tmp&=~((0x01<<3)|(0x01<<5));
-			
-		ReadWriteTF(TF_C,1,0x053,tmp);				
-//	}
-	FPGA_DISABLE_WRITE;
-#endif 	
-	// 重新根据参数配置FPGA寄存器
-	//module_param_chg_flag = 0xFFFFFFFF;
 
 }
 
