@@ -25,8 +25,7 @@
 #define FLASH_PAGE_SIZE		flash_page_size		// Flash页大小
 #define FLASH_TYPE			flash_type			// Flash类型
 #define FLASH_PARR1			flash_parr1			// Flash类型
-#define FLASH_PAGE_SIZE_528		528		// Flash页大小
-#define FLASH_PAGE_SIZE_1056		1056		// Flash页大小
+
 
 #define FLASH_PAGE_SIZE_264		264		// Flash页大小
 

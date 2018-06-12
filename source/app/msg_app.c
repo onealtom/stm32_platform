@@ -1794,7 +1794,7 @@ void MsgHandleFlashOperatePage( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * 
 	if(p_msg_dat[MSG_RESERVE1]==0) //擦除Flash 操作
 	{
 	    TRACE_INFO("FlashErase!\r\n");
-	    page = (UINT32)( p_args[0]|(p_args[1]<<8)|(p_args[2]<<16)|(p_args[3]<<24) )*((UINT32)(FLASH_PAGE_SIZE_1056/FLASH_PAGE_SIZE));
+	    page = (UINT32)( p_args[0]|(p_args[1]<<8)|(p_args[2]<<16)|(p_args[3]<<24) )*4U;
         TRACE_INFO("page=%d,page=%x\r\n",page,page);
 	   	if ( page >= FLASH_PAGE_COUNT )
 		{

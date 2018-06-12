@@ -646,66 +646,18 @@ void GetFlashPageSize()
 	//id = FlashReadId(FLASH_TYPE3);
 	id = FlashReadId();
 	printf("flash_id=<%08X>\r\n ", id);
-	 if(FLASH_ID3==id)
+	 //if(FLASH_ID3==id)
 	 {
 	 	
 		flash_page_size = FLASH_PAGE_SIZE_256;
 		flash_type =FLASH_TYPE3;
 		flash_parr1=1;
-	 }else 
-	 {
-	 	//flash_type =FLASH_TYPE1;
-		//id = FlashReadId(FLASH_TYPE1);
-		TRACE_INFO("flash_id1=<%08X>\r\n  ", id);
-		 if(FLASH_ID1==id)
-		 {
-		 	
-			flash_page_size = FLASH_PAGE_SIZE_1056;
-			flash_type =FLASH_TYPE1;
-			
-		 }else 
-		 {
-			// id = FlashReadId(FLASH_TYPE2);
-			 TRACE_INFO("flash_id2=<%08X>\r\n  ", id);
-			 if(FLASH_ID2==id)
-			 {			 	
-				flash_page_size = FLASH_PAGE_SIZE_264;
-				flash_type =FLASH_TYPE2;
-			 }else 
-			 {
-				//id = FlashReadId(FLASH_TYPE0);
-				TRACE_INFO("flash_id0=<%08X> \r\n ", id); 	
-				 if(FLASH_ID0==id)
-				 {
-					flash_page_size = FLASH_PAGE_SIZE_528;
-					flash_type =FLASH_TYPE0;
-				 }else 
-				 {
-				 	TRACE_INFO("flash_id33=<%08X>\r\n  ", id);
-				 	flash_page_size = FLASH_PAGE_SIZE_256;
-					flash_type =FLASH_TYPE3;
-					flash_parr1 =1 ;
-					
-				 }
-			 }
-		 }
-
 	 }
 	TRACE_INFO("flash_page_size=[%04x],FLASH_PAGE_SIZE=[%04x]\r\n",flash_page_size,FLASH_PAGE_SIZE);	
 
-//ACDU升级包大小根据flash类型来判断，MDAS V2 V3的固定为1056
-#ifdef FPGA_ACDU_16M_FLASH
-	switch(flash_page_size)
-	{
-		case FLASH_PAGE_SIZE_256: update_pak_max_len=256*4;break;
-		case FLASH_PAGE_SIZE_528: update_pak_max_len=528*2;break;
-		case FLASH_PAGE_SIZE_1056: update_pak_max_len=1056;break;
-		default: update_pak_max_len=1056;
-	}
-	
-#else
-	update_pak_max_len=1056;
-#endif
+
+	update_pak_max_len=1024;
+
 
 
 }
