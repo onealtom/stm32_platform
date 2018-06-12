@@ -135,6 +135,10 @@ typedef struct _S_BIG_PKT_BUFF
 #define MSG_CMD_GET_REE_INFO		0x00DB	// 获取RE信息
 #define MSG_CMD_UPDATE_MCU		0x00DC	// MCU升级
 #define MSG_CMD_UPDATE_FPGA		0x00DD	// FPGA升级
+
+#define MSG_CMD_UPDATE_FPGA2		0x00E1	//发送文件到RU
+#define MSG_CMD__UPDATE_CONF		0x00E2	//PC发送json到AU  FPGA3
+
 #define MSG_CMD_GET_FLASH_PAGE	0x00DE	// 读取Flash页内容
 #define MSG_CMD_ERR_ALARM			0x00EE	// 错误或故障报警
 #define MSG_CMD_BLANK				0x00DF	// 空命令
@@ -239,6 +243,7 @@ void MsgHandleGetFpgaReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_b
 
 void MsgHandleUpdateMCU( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
 void MsgHandleUpdateFPGA( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
+void MsgHandleUpdateJSON( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
 void MsgHandleGetFlashPage( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff );
 void MsgHandleFlashOperatePage( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff ) ;
 

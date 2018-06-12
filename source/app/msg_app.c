@@ -575,9 +575,13 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 			case MSG_CMD_UPDATE_FPGA:		// 升级FPGA
 				MsgHandleUpdateFPGA( msg_len, p_msg_dat, msg_tx_buff );
 				break;
+			case MSG_CMD__UPDATE_CONF:		// _UPDATEjson配置
+				MsgHandleUpdateJSON( msg_len, p_msg_dat, msg_tx_buff );
+				break;		
 				
 			case MSG_CMD_GET_FLASH_PAGE:	// 读取FLASH页内容
 				MsgHandleGetFlashPage( msg_len, p_msg_dat, msg_tx_buff );
+			
 				break;
 			case MSG_CMD_FLASH_OPERATION: //Flash页操作
 				MsgHandleFlashOperatePage( msg_len, p_msg_dat, msg_tx_buff );
@@ -1654,6 +1658,74 @@ void MsgHandleUpdateFPGA( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_b
 	}
 	SendMsgPkt(msg_tx_len, p_tx_buff);
 }
+
+/*************************************************************
+
+**************************************************************/
+void MsgHandleUpdateJSON( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
+{
+	UINT32 len;
+	UINT32 tmp;
+	UINT32 msg_tx_len;
+	UCHAR8 * p_args;
+	static char filename[8];
+	int i;
+
+	TRACE_INFO("Message Handle Update json!\r\n");
+
+	msg_tx_len = MSG_PKT_HEAD_SIZE;
+	p_args = p_msg_dat+MSG_PKT_HEAD_SIZE;
+
+	if (( 0xFA == p_args[0] )&&( 0x5A == p_args[1] ))
+	{
+		UINT32 pkt_count;
+		
+		//起始包
+		pkt_count = p_args[2]|(p_args[3]<<8);
+		len = p_args[4]|(p_args[5]<<8)|(p_args[6]<<16)|(p_args[7]<<24);
+		
+		for(i=0;i<8;i++){
+			filename[i]=p_args[8+i];
+			printf("%c\n\r",filename[i]);
+		}
+		printf("%s\n\r",filename);
+		
+		
+		p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
+	}
+	else if (( 0xA5 == p_args[0] )&&( 0xAF == p_args[1] ))
+	{
+		TRACE_INFO("Message Handle Update FPGA_________FpgaUpdateEnd!\r\n");
+		//结束包
+		tmp = p_args[2]|(p_args[3]<<8);
+		p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
+		sys_work_info |= SYSTEM_FLAG_FPGA_RELOAD;
+		sys_work_info &= (~SYSTEM_FLAG_FPGA_UPDATE);
+	}
+	else
+	{
+		UINT16 pkt_no;
+
+		pkt_no = p_args[0]|(p_args[1]<<8);
+		len = p_args[2]|(p_args[3]<<8);
+//		printf("Rx Pkt:%d",pkt_no);
+		if ( 0 == SaveFpgaUpdatePkt( pkt_no, len, p_args+4, &tmp) )
+		{
+			p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_UPDATE_PKT;
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(tmp & 0x00ff);
+			p_tx_buff[msg_tx_len++] = (UCHAR8)((tmp>>8) & 0x00ff);
+//			printf("-Err Need:%d", (UINT16)tmp);
+		}
+		else
+		{
+			p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
+			p_tx_buff[msg_tx_len++] = (UCHAR8)(pkt_no & 0x00ff);
+			p_tx_buff[msg_tx_len++] = (UCHAR8)((pkt_no>>8) & 0x00ff);
+		}
+	}
+	SendMsgPkt(msg_tx_len, p_tx_buff);
+}
+
 
 /*************************************************************
 Name: MsgHandleGetFlashPage          

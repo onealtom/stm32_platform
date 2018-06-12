@@ -1099,14 +1099,7 @@ void FpgaGetMsgPkt( void )
 						tmp--;
 						MsgHandle(src_fp[i], src_re[i], src_ree[i],msg_len, msg_big_buff[tmp].buff);
 						msg_big_buff[tmp].owner = 0;		// 释放大数据缓冲资源
-#if 0  				
-							for(j=0;j<msg_len;j++)
-							{
-					
-              						TRACE_INFO("msg_big_buff[i].buff[%d]=%d\r\n",j,msg_big_buff[i].buff[j]); 
-
-							}
-#endif							
+						
 							/****test*********///20121127
 
 						

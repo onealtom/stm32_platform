@@ -1,4 +1,4 @@
-﻿/***************************************************************
+/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :update_app.c
@@ -111,22 +111,7 @@ UINT32 UpdateStart( UINT32 type, UINT32 len, UINT32 pkt_count )
 	{
 		return 0;
 	}
-#if 0	
-	if ( UPDATE_TYPE_FPGA == type )
-	{
-		if ( (pkt_count * UPDATE_PKT_MAX_LEN) >= (FLASH_PAGE_SIZE * FLASH_FPGA_BLOCK_COUNT * 2) )
-		{
-			return 0;	// 升级数据长度超过存储范围
-		}
-	}
-	else
-	{
-		if ( (pkt_count * UPDATE_PKT_MAX_LEN) > MCU_FW_MAX_LEN )
-		{
-			return 0;	// 升级数据长度超过存储范围
-		}
-	}
-#else
+
 	if ( UPDATE_TYPE_FPGA == type )
 	{
 		if ( (pkt_count * UPDATE_PKT_MAX_LEN) >= (FLASH_PAGE_SIZE * FLASH_FPGA_BLOCK_COUNT *2) )
@@ -141,7 +126,7 @@ UINT32 UpdateStart( UINT32 type, UINT32 len, UINT32 pkt_count )
 			return 0;	// 升级数据长度超过存储范围
 		}
 	}
-#endif	
+
 	// 置升级中标志
 	if ( UPDATE_TYPE_FPGA == type )
 	{
