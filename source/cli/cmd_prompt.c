@@ -29,7 +29,8 @@ int prompt_hello(int argc, char * argv[])
 		switch ( c )
 		{
 		case 'i':
-			ad936x_init_main();
+			//ad936x_init_main();
+			fs_main();
 			break;
 		case 'm':
 			memsiz = strtol( optarg, NULL, 0 );

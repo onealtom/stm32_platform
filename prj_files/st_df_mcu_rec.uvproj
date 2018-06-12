@@ -362,7 +362,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER, STM32F10X_HD, USE_STM3210E_EVAL</Define>
               <Undefine></Undefine>
-              <IncludePath>..\source\app;..\source\drv;..\source\drv\utility;..\source\ex_conf;..\source\lib\usb_cdc\inc;..\source\lib\CMSIS\Core\CM3;..\source\lib\STM32F10x_StdPeriph_Driver\inc</IncludePath>
+              <IncludePath>..\source\app;..\source\drv;..\source\drv\utility;..\source\ex_conf;..\source\lib\usb_cdc\inc;..\source\lib\CMSIS\Core\CM3;..\source\lib\STM32F10x_StdPeriph_Driver\inc;..\source\lib\SPIFFS;..\source\drv\spiflash_drv</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -495,6 +495,11 @@
               <FileType>1</FileType>
               <FilePath>..\source\drv\pl_spi_drv.c</FilePath>
             </File>
+            <File>
+              <FileName>spiflash_drv.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\drv\spiflash_drv\spiflash_drv.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -599,6 +604,11 @@
               <FileName>cJSON.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\app\json\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>fs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\fs\fs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -724,6 +734,31 @@
               <FileName>stm32f10x_wwdg.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_wwdg.c</FilePath>
+            </File>
+            <File>
+              <FileName>spiffs_cache.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\lib\SPIFFS\spiffs_cache.c</FilePath>
+            </File>
+            <File>
+              <FileName>spiffs_check.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\lib\SPIFFS\spiffs_check.c</FilePath>
+            </File>
+            <File>
+              <FileName>spiffs_gc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\lib\SPIFFS\spiffs_gc.c</FilePath>
+            </File>
+            <File>
+              <FileName>spiffs_hydrogen.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\lib\SPIFFS\spiffs_hydrogen.c</FilePath>
+            </File>
+            <File>
+              <FileName>spiffs_nucleus.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\lib\SPIFFS\spiffs_nucleus.c</FilePath>
             </File>
           </Files>
         </Group>
