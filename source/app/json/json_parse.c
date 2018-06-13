@@ -423,8 +423,8 @@ int sgmt_parse_then_set(char * content)
 
 		p_sgx = init_sgmt('A'+i);
 		if ( IS_OK== parse_sgmt_X(json_tmp, p_sgx) ){
-			set_thr_regs(p_sgx);
-			set_chn_regs(p_sgx);
+			//set_thr_regs(p_sgx);
+			//set_chn_regs(p_sgx);
 		}else{
 			pr_err("Json missing necessary parameters\n");
 		}
@@ -432,6 +432,8 @@ int sgmt_parse_then_set(char * content)
 		free(p_sgx);
 
 	}
+	
+	
 
 	return iCnt;
 }

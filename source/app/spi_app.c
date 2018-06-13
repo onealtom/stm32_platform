@@ -503,28 +503,26 @@ CHAR8 FlashEraseSectors2(UINT32 from,UINT32 to)
 	
 	for(sector_add=from; sector_add<=to; sector_add++)
 	{
-		
-			FlashWaitReady2();
+		FlashWaitReady2();
 
-			op_data[0]=0x06;
-			SpiWriteBuf(SPI_CS_AT45,op_data,1,NULL,0);
+		op_data[0]=0x06;
+		SpiWriteBuf(SPI_CS_AT45,op_data,1,NULL,0);
 
-			op_data[0] = 0x20;
-			op_data[1] = (UCHAR8)(((sector_add*FLASH_BYTES_PER_SECTOR)>>16)&0x00ff);
-			op_data[2] = (UCHAR8)(((sector_add*FLASH_BYTES_PER_SECTOR)>>8)&0x00ff);	
-			op_data[3] =(UCHAR8)(((sector_add*FLASH_BYTES_PER_SECTOR)>>0)&0x00ff);
-			SpiWriteBuf(SPI_CS_AT45,op_data,4,NULL,0);
+		op_data[0] = 0x20;
+		op_data[1] = (UCHAR8)(((sector_add*FLASH_BYTES_PER_SECTOR)>>16)&0x00ff);
+		op_data[2] = (UCHAR8)(((sector_add*FLASH_BYTES_PER_SECTOR)>>8)&0x00ff);	
+		op_data[3] =(UCHAR8)(((sector_add*FLASH_BYTES_PER_SECTOR)>>0)&0x00ff);
+		SpiWriteBuf(SPI_CS_AT45,op_data,4,NULL,0);
 			
-			delay_10ms_count=400;		
-			while (delay_10ms_count--)
-			{
-				//BUSY bit
-				if (!(FlashReadStatus2()&(0x01<<0)))    
-					break;
-				UsNopDelay(1000);				//delay 25ms
-				WTD_CLR;
-				
-			}
+		delay_10ms_count=400;		
+		while (delay_10ms_count--)
+		{
+		//BUSY bit
+		if (!(FlashReadStatus2()&(0x01<<0)))
+			break;
+			UsNopDelay(1000);	//delay 25ms
+			WTD_CLR;
+		}
 	}
 	return 1;
 }
@@ -672,28 +670,28 @@ Return:
 CHAR8 FlashEraseSectors(UINT32 from,UINT32 to)
 {
 	#ifdef FLASH_OLD
-		FlashEraseSectors1( from, to);
-		#else
-		FlashEraseSectors2( from, to);
-		#endif
+	//FlashEraseSectors1( from, to);
+	#else
+	FlashEraseSectors2( from, to);
+	#endif
 	return 1;
 }
 
 void  FlashRead(INT32 page,INT16 offset,UCHAR8 *data,INT32 len)
 {
-		#ifdef FLASH_OLD
-		FlashRead1(page, offset, data,len);
-		#else
-		FlashRead2(page, offset, data, FLASH_PAGE_SIZE);
-		#endif
+	#ifdef FLASH_OLD
+	//FlashRead1(page, offset, data,len);
+	#else
+	FlashRead2(page, offset, data, FLASH_PAGE_SIZE);
+	#endif
 }
 void FlashWrite(UINT32 page,INT16 offset,UCHAR8 *data,UINT16 len,UINT16 option)
 {
-		#ifdef FLASH_OLD
-		FlashWrite1(page,offset, data, len,option);
-		#else
-		FlashWrite2(page, 0, data, len,option );
-		#endif
+	#ifdef FLASH_OLD
+	//FlashWrite1(page,offset, data, len,option);
+	#else
+	FlashWrite2(page, 0, data, len,option );
+	#endif
 }
 
 #endif

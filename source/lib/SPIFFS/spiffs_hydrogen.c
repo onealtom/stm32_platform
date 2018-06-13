@@ -25,31 +25,37 @@ s32_t SPIFFS_mount(spiffs *fs, spiffs_config *config, u8_t *work,
     u8_t *fd_space, u32_t fd_space_size,
     u8_t *cache, u32_t cache_size,
     spiffs_check_callback check_cb_f) {
+	    SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   SPIFFS_LOCK(fs);
   memset(fs, 0, sizeof(spiffs));
   memcpy(&fs->cfg, config, sizeof(spiffs_config));
   fs->block_count = SPIFFS_CFG_PHYS_SZ(fs) / SPIFFS_CFG_LOG_BLOCK_SZ(fs);
   fs->work = &work[0];
   fs->lu_work = &work[SPIFFS_CFG_LOG_PAGE_SZ(fs)];
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   memset(fd_space, 0, fd_space_size);
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   // align fd_space pointer to pointer size byte boundary, below is safe
   u8_t ptr_size = sizeof(u8_t*);
 //#pragma GCC diagnostic push
 //#pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   u8_t addr_lsb = ((u8_t)fd_space) & (ptr_size-1);
 //#pragma GCC diagnostic pop
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   if (addr_lsb) {
     fd_space += (ptr_size-addr_lsb);
     fd_space_size -= (ptr_size-addr_lsb);
   }
   fs->fd_space = fd_space;
   fs->fd_count = (fd_space_size/sizeof(spiffs_fd));
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   // align cache pointer to 4 byte boundary, below is safe
 //#pragma GCC diagnostic push
 //#pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
   addr_lsb = ((u8_t)cache) & (ptr_size-1);
 //#pragma GCC diagnostic pop
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   if (addr_lsb) {
     cache += (ptr_size-addr_lsb);
     cache_size -= (ptr_size-addr_lsb);
@@ -57,15 +63,17 @@ s32_t SPIFFS_mount(spiffs *fs, spiffs_config *config, u8_t *work,
   if (cache_size & (ptr_size-1)) {
     cache_size -= (cache_size & (ptr_size-1));
   }
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
 #if SPIFFS_CACHE
   fs->cache = cache;
   fs->cache_size = cache_size;
   spiffs_cache_init(fs);
 #endif
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   s32_t res = spiffs_obj_lu_scan(fs);
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   SPIFFS_API_CHECK_RES_UNLOCK(fs, res);
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   SPIFFS_DBG("page index byte len:         %i\n", SPIFFS_CFG_LOG_PAGE_SZ(fs));
   SPIFFS_DBG("object lookup pages:         %i\n", SPIFFS_OBJ_LOOKUP_PAGES(fs));
   SPIFFS_DBG("page pages per block:        %i\n", SPIFFS_PAGES_PER_BLOCK(fs));

@@ -362,7 +362,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER, STM32F10X_HD, USE_STM3210E_EVAL</Define>
               <Undefine></Undefine>
-              <IncludePath>..\source\app;..\source\drv;..\source\drv\utility;..\source\ex_conf;..\source\lib\usb_cdc\inc;..\source\lib\CMSIS\Core\CM3;..\source\lib\STM32F10x_StdPeriph_Driver\inc;..\source\lib\SPIFFS;..\source\drv\spiflash_drv</IncludePath>
+              <IncludePath>..\source\app;..\source\drv;..\source\drv\utility;..\source\ex_conf;..\source\lib\usb_cdc\inc;..\source\lib\CMSIS\Core\CM3;..\source\lib\STM32F10x_StdPeriph_Driver\inc;..\source\lib\SPIFFS;..\source\drv\spiflash_drv;..\source\drv\mymalloc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -500,6 +500,11 @@
               <FileType>1</FileType>
               <FilePath>..\source\drv\spiflash_drv\spiflash_drv.c</FilePath>
             </File>
+            <File>
+              <FileName>mymalloc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\drv\mymalloc\mymalloc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -609,6 +614,11 @@
               <FileName>fs.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\app\fs\fs.c</FilePath>
+            </File>
+            <File>
+              <FileName>json_main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\json\json_main.c</FilePath>
             </File>
           </Files>
         </Group>

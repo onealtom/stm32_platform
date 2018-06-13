@@ -80,9 +80,10 @@ typedef enum {
 typedef void (*spiffs_check_callback)(spiffs_check_type type, spiffs_check_report report,
     u32_t arg1, u32_t arg2);
 
+
 #ifndef SPIFFS_DBG
 #define SPIFFS_DBG(...) \
-    print(__VA_ARGS__)
+    printf(__VA_ARGS__)
 #endif
 #ifndef SPIFFS_GC_DBG
 #define SPIFFS_GC_DBG(...) printf(__VA_ARGS__)

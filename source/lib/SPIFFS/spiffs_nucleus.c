@@ -131,11 +131,11 @@ s32_t spiffs_obj_lu_find_entry_visitor(
   s32_t entry_count = fs->block_count * SPIFFS_OBJ_LOOKUP_MAX_ENTRIES(fs);
   spiffs_block_ix cur_block = starting_block;
   u32_t cur_block_addr = starting_block * SPIFFS_CFG_LOG_BLOCK_SZ(fs);
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   spiffs_obj_id *obj_lu_buf = (spiffs_obj_id *)fs->lu_work;
   int cur_entry = starting_lu_entry;
   u32_t entries_per_page = (SPIFFS_CFG_LOG_PAGE_SZ(fs) / sizeof(spiffs_obj_id));
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   // wrap initial
   if (cur_entry >= SPIFFS_OBJ_LOOKUP_MAX_ENTRIES(fs) - 1) {
     cur_entry = 0;
@@ -147,20 +147,28 @@ s32_t spiffs_obj_lu_find_entry_visitor(
       cur_block_addr = 0;
     }
   }
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   // check each block
   while (res == SPIFFS_OK && entry_count > 0) {
+SPIFFS_DBG("@"); 
     int obj_lookup_page = cur_entry / entries_per_page;
     // check each object lookup page
     while (res == SPIFFS_OK && obj_lookup_page < SPIFFS_OBJ_LOOKUP_PAGES(fs)) {
+SPIFFS_DBG("#");
       int entry_offset = obj_lookup_page * entries_per_page;
+	    
       res = _spiffs_rd(fs, SPIFFS_OP_T_OBJ_LU | SPIFFS_OP_C_READ,
           0, cur_block_addr + SPIFFS_PAGE_TO_PADDR(fs, obj_lookup_page), SPIFFS_CFG_LOG_PAGE_SZ(fs), fs->lu_work);
+	    
+SPIFFS_DBG("res=%d\r\n",res);
+SPIFFS_DBG("cur_entry=%d,entry_offset=%d,entries_per_page=%d\r\n", cur_entry, entry_offset, entries_per_page);  
+SPIFFS_DBG("SPIFFS_OBJ_LOOKUP_MAX_ENTRIES(fs)=%d\r\n",SPIFFS_OBJ_LOOKUP_MAX_ENTRIES(fs));
+SPIFFS_DBG("SPIFFS_CFG_LOG_PAGE_SZ(fs)=%d\r\n",SPIFFS_CFG_LOG_PAGE_SZ(fs));
       // check each entry
       while (res == SPIFFS_OK &&
           cur_entry - entry_offset < entries_per_page && // for non-last obj lookup pages
           cur_entry < SPIFFS_OBJ_LOOKUP_MAX_ENTRIES(fs)) // for last obj lookup page
-      {
+      {printf("$");
         if ((flags & SPIFFS_VIS_CHECK_ID) == 0 || obj_lu_buf[cur_entry-entry_offset] == obj_id) {
           if (block_ix) *block_ix = cur_block;
           if (lu_entry) *lu_entry = cur_entry;
@@ -207,9 +215,9 @@ s32_t spiffs_obj_lu_find_entry_visitor(
       }
     }
   } // per block
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   SPIFFS_CHECK_RES(res);
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   return SPIFFS_VIS_END;
 }
 
@@ -246,7 +254,7 @@ s32_t spiffs_obj_lu_scan(
   fs->free_blocks = 0;
   fs->stats_p_allocated = 0;
   fs->stats_p_deleted = 0;
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   res = spiffs_obj_lu_find_entry_visitor(fs,
       0,
       0,
@@ -257,13 +265,13 @@ s32_t spiffs_obj_lu_scan(
       0,
       &bix,
       &entry);
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   if (res == SPIFFS_VIS_END) {
     res = SPIFFS_OK;
   }
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   SPIFFS_CHECK_RES(res);
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   bix = 0;
   spiffs_obj_id erase_count_final;
   spiffs_obj_id erase_count_min = SPIFFS_OBJ_ID_FREE;
@@ -281,7 +289,7 @@ s32_t spiffs_obj_lu_scan(
     }
     bix++;
   }
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   if (erase_count_min == 0 && erase_count_max == SPIFFS_OBJ_ID_FREE) {
     // clean system, set counter to zero
     erase_count_final = 0;
@@ -291,9 +299,9 @@ s32_t spiffs_obj_lu_scan(
   } else {
     erase_count_final = erase_count_max+1;
   }
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   fs->max_erase_count = erase_count_final;
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   return res;
 }
 

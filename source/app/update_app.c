@@ -275,6 +275,7 @@ UINT32 SaveFpgaUpdatePkt( UINT32 pkt_no, UINT32 len, UCHAR8* p_dat, UINT32* p_er
 		{
 			wr_len = (len>FLASH_PAGE_SIZE) ? FLASH_PAGE_SIZE : len;
 			FlashWrite( page, 0,p_dat, wr_len, 1);	// 写入数据
+			printf("page=%d\r\n",page);
 			page++;
 			p_dat += wr_len;		// 指针后移
 			len -= wr_len;			// 计算剩余长度

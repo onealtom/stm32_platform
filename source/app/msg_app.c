@@ -1913,27 +1913,39 @@ int MsgHandlePromtp(UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff)
 	
 	len = p_msg_dat[10];
 	
-	//printf("\rlen=%d\r\n",len);
-	
+	printf("rec cmdline:\n");
+
+	printf("p_msg_dat[10]=%d\n",p_msg_dat[10]);
+
 	p=(char *)malloc(p_msg_dat[10]+1);
-	//p=(char *)malloc(512);
+	//p=(char *)mymalloc(256);
 	if(p==NULL){
 		printf("malloc error\r\n");
 		return -1;
 	}
+
+	for(i=0;i<p_msg_dat[10]+1;i++){
+		p[i]=0x00;
+	}
+	
+	//p=(char *)malloc(p_msg_dat[10]);
+	//p=(char *)malloc(512);
+
 	
 	for(i=0;i<p_msg_dat[10];i++){
 		p[i]=(char)p_msg_dat[i+11];
-		printf("%c",p[i]);
+	//	printf("%c",p[i]);
 	}
-	p[p_msg_dat[10]+1-1]='\0';
+	//p[p_msg_dat[10]+1-1]=0;//p_msg_dat[10]是从1开始，数组取值从0开始，加1是在已有字节后添加一个'\0'，减1是换成数组从0开始的标号
+	
+	printf("%s\n",(char*)p);
 	
 	command_process(p);
 	
 	ret_val = MSG_ACK_CMD_OK;
 	p_tx_buff[MSG_ACK_FLAG] = ret_val;
 	SendMsgPkt(msg_tx_len, p_tx_buff);
-	
+
 	free(p);
 	
 WTD_CLR;

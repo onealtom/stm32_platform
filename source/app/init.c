@@ -554,7 +554,7 @@ void InitSystem()
 
 	WTD_CLR;  
 	//InitExtentBus_8();	// 初始化8位总线
-	FpgaLoad();			// 加载FPGA 
+	//FpgaLoad();			// 加载FPGA 
 	InitExtentBus_16();	// 初始化16位总线 
 
 	if ( FPGA_LDST_OK== fpga_load_status )
@@ -568,12 +568,12 @@ void InitSystem()
 			AfterFpgaLoad();
 			
 ////			sys_param_1b[MADD_LOAD_FPGA_ST].val = 0;	// 加载成功
-			printf("FPGA test 成功\r\n");
+			printf("FPGA test success\r\n");
 		}
 		else
 		{
 ////			sys_param_1b[MADD_LOAD_FPGA_ST].val = 1;	// 加载失败
-			printf("FPGA test 加载失败\r\n");
+			printf("FPGA test Fail\r\n");
 			fpga_load_status = FPGA_LDST_INIT_ERR;
 			FpgaSetErrInfo(FPGA_ERR_PROG);
 		}
@@ -583,16 +583,17 @@ void InitSystem()
 		TRACE_ERROR("Fpga load Fail\r\n");
 ////		sys_param_1b[MADD_LOAD_FPGA_ST].val = 2;	// 加载失败
 		FpgaSetErrInfo(FPGA_ERR_PROG);
-		printf("FPGA加载失败2\r\n");
+		printf("FPGA Fail 2\r\n");
 	}
 	WTD_CLR;
 	//InitKeyDev();
 
-	ad936x_init_main();
+	WTD_CLR; 
 
-	WTD_CLR; 
+	//ad936x_init_main();
 	InitFpga();
-	WTD_CLR; 
+
+	WTD_CLR;
 	//InitTransceiver(SYS_A_FLAG);
 	///InitTransceiver(SYS_B_FLAG);
 	///InitTransceiver(SYS_C_FLAG);
