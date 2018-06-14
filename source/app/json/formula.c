@@ -113,10 +113,10 @@ int freq2phase(uint32_t  mclk, uint32_t losc , uint32_t freq)
 	double tmp;
 	int phase;
 	//614400,874500,829500
-mclk=614400;
-losc=874500;
-freq=829500;
-pr_dbg("mclk=%d, losc=%d, freq=%d\n",mclk , losc , freq);
+//mclk=614400;
+//losc=874500;
+//freq=829500;
+printf("mclk=%d, losc=%d, freq=%d\n",mclk , losc , freq);
 
 
 	tmp = ((double)freq - (double)losc)/(double)mclk;

@@ -6,7 +6,7 @@
 #define pr_err(format, ...)		port_pr_info(format, ## __VA_ARGS__)
 #define pr_info(format, ...)		port_pr_info(format, ## __VA_ARGS__)
 
-#define PR_DEBUG
+//#define PR_DEBUG
 #ifdef PR_DEBUG
    #define LOG() do{printf("%s (%d) %s \n ",__FILE__,__LINE__,__FUNCTION__);}while(0)
    //#define LOG() do{printf("%s %s\n",__DATE__,__TIME__);}while(0)

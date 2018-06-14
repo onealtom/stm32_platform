@@ -92,10 +92,6 @@ inline pSGMT_SET_T init_sgmt(char sgmt_no )
 	pr_dbg("sizeof(SGMT_SET_T)=%d\n",sizeof(SGMT_SET_T));
 
 	p_sg = (pSGMT_SET_T)malloc(sizeof(SGMT_SET_T));
-
-
-
-	pr_dbg("get point\n");
 	
 	p_sg->pipe_nr = (uint16_t)get_max_pnr(sgmt_no);
 
@@ -271,7 +267,7 @@ int parse_sgmt_X(cJSON *input , pSGMT_SET_T p_sg)
 	}else{
 		array_size = 0;
 	}
-
+printf("array_size=%d\n",array_size);
 	p_sg->ul_pipe_mask = (1U<<(array_size))-1;
 	p_sg->dl_pipe_mask = (1U<<(array_size))-1;
 
@@ -285,10 +281,14 @@ int parse_sgmt_X(cJSON *input , pSGMT_SET_T p_sg)
 		if(!item) {
 		//TODO...
 		}
+//#if 0
 
 		p = cJSON_PrintUnformatted(item);
-		it = cJSON_Parse(p);
+		//printf("~~~~~~~~~~~~~~~~~~\n");
+		//printf("%s\n",p);
 
+		it = cJSON_Parse(p);
+#if 1
 		if(!it)
 			continue ;
 
@@ -309,8 +309,19 @@ int parse_sgmt_X(cJSON *input , pSGMT_SET_T p_sg)
 		}else{
 			p_sg->pipe_tab[i].dl_chn = CHN_DEFAULTS;
 		}
-	}
+#endif	
 
+		free(p);
+		p=NULL;
+
+	cJSON_Delete(it);
+
+	}
+	//cJSON_Delete(json_tmp);
+//	cJSON_Delete(item);
+
+//	cJSON_Delete(ul_chn);
+//	cJSON_Delete(dl_chn);
 	return IS_OK;
 }
 
@@ -375,29 +386,32 @@ int sgmt_parse_then_set(char * content)
 	int i;
 	cJSON *root = NULL;
 	cJSON *json_tmp = NULL;
+	char *pr;
 	int iCnt = 0;
 
 	root = cJSON_Parse(content);
 	if (content != NULL){
-		free(content);
+		//free(content);
 	}else{
 		pr_err("Json Format Error\n");
 		return -1;
 	}
-	/*pipe数组少逗号的格式错误，上面一句不会报错*/
-	if (NULL==cJSON_Print(root)){
 
+	/*pipe数组少逗号的格式错误，上面一句不会报错*/
+	pr = cJSON_Print(root);
+
+	if (!pr){
 		pr_err("Json Format Error\n");
 		return -1;
 	}
+	free(pr);
 
 	// char sgmt_list[EXTRA_NUMOF_SGMTS];
 	// for(i=0;i<EXTRA_NUMOF_SGMTS;i++){
 	// 	sgmt_list[i] ='A'+i;
 	// }
 
-
-	pSGMT_SET_T p_sgx;
+	pSGMT_SET_T p_sgx=NULL;
 
 	//段处理
 	char sgmt_json_filename[sizeof("SgmtX")];
@@ -405,7 +419,6 @@ int sgmt_parse_then_set(char * content)
 	for(i=0 ; i<EXTRA_NUMOF_SGMTS ; i++){
 		//整理文件名
 		snprintf(sgmt_json_filename, sizeof("SgmtX"), "Sgmt%c", 'A'+i );
-		printf("%s\n",sgmt_json_filename);
 
 		json_tmp = cJSON_GetObjectItem(root, sgmt_json_filename);
 
@@ -422,18 +435,22 @@ int sgmt_parse_then_set(char * content)
 		json_tmp = cJSON_GetObjectItem(root, sgmt_json_filename);
 
 		p_sgx = init_sgmt('A'+i);
+#if 1
 		if ( IS_OK== parse_sgmt_X(json_tmp, p_sgx) ){
 			//set_thr_regs(p_sgx);
-			//set_chn_regs(p_sgx);
+			set_chn_regs(p_sgx);
 		}else{
 			pr_err("Json missing necessary parameters\n");
 		}
-
+#endif
 		free(p_sgx);
+		p_sgx = NULL;
+
 
 	}
-	
-	
+
+	cJSON_Delete(json_tmp);
+	cJSON_Delete(root);
 
 	return iCnt;
 }

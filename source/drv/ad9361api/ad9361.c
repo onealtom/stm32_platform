@@ -957,7 +957,7 @@ int32_t ad9361_en_dis_tx(struct ad9361_rf_phy *phy, uint32_t tx_if, uint32_t ena
 {
 	if ((tx_if & enable) > 1 && AD9364_DEVICE && enable)
 		return -EINVAL;
-LOG();
+
 	return ad9361_spi_writef(phy->spi, REG_TX_ENABLE_FILTER_CTRL,
 		TX_CHANNEL_ENABLE(tx_if), enable);
 }

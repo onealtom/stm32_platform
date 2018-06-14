@@ -16,7 +16,7 @@
  typedef signed char s8_t;
  typedef unsigned char u8_t;
 
-#if 0
+#if 1
 #define  SPIFLASH_CFG_PHYS_SZ               (1024*1024*8)    //FLASH总容量 应该是分区的容量
 #define  SPIFLASH_CFG_PHYS_ERASE_SZ         (65536)          //FLASH擦除的最大容量(W25X系列可以按块擦除，一块的容量是65535字节)
 #define  SPIFLASH_CFG_PHYS_ADDR             (32768)           //起始地址 分区的其实地址，从16M的后半开始用，size8M，32768page*256byte/page=8MByte
@@ -38,6 +38,7 @@
 #define SPIFFS_DBG(...)
 #endif
 // Set spiffs debug output call for garbage collecting.
+//#define SPIFFS_GC_DGB
 #ifndef SPIFFS_GC_DGB
 #define SPIFFS_GC_DBG(...)
 #endif
@@ -56,7 +57,7 @@
 #ifndef SPIFFS_BUFFER_HELP
 #define SPIFFS_BUFFER_HELP              0
 #endif
-#if 0
+#if 1
 // Enables/disable memory read caching of nucleus file system operations.
 // If enabled, memory area must be provided for cache in SPIFFS_mount.
 #ifndef  SPIFFS_CACHE

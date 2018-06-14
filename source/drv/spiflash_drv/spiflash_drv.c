@@ -1,6 +1,6 @@
   
 #include "spiflash_drv.h"
-
+#include "Header.h"
 
 /***********************************************************************************
        W25X系列SPI FLASH存储器存储结构介绍
@@ -17,11 +17,11 @@ void SPI_FLASH_CS_LOW(void)
 {
 #define SPI_CS_AT45			0
 	
-	//SPI_Cmd(SPI2, ENABLE);
-	//SpiCsEnable(SPI_CS_AT45);
+	SPI_Cmd(SPI2, ENABLE);
+	SpiCsEnable(SPI_CS_AT45);
 	
-	SpiCsDisable(SPI_CS_AT45);
-	SPI_Cmd(SPI2, DISABLE);
+	//SpiCsDisable(SPI_CS_AT45);
+	//SPI_Cmd(SPI2, DISABLE);
 	
 }
 
@@ -38,20 +38,20 @@ void SPI_FLASH_CS_HIGH(void)
 static u8_t SPIx_ReadWriteByte(u8_t TxData)
 {		
 	u8 retry=0;				 	
-	while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET) //检查指定的SPI标志位设置与否:发送缓存空标志位
-		{
+	while (SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_TXE) == RESET) //检查指定的SPI标志位设置与否:发送缓存空标志位
+	{
 		retry++;
 		if(retry>200)return 0;
-		}			  
-	SPI_I2S_SendData(SPI1, TxData); //通过外设SPIx发送一个数据
+	}			  
+	SPI_I2S_SendData(SPI2, TxData); //通过外设SPIx发送一个数据
 	retry=0;
 
-	while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_RXNE) == RESET) //检查指定的SPI标志位设置与否:接受缓存非空标志位
-		{
+	while (SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_RXNE) == RESET) //检查指定的SPI标志位设置与否:接受缓存非空标志位
+	{
 		retry++;
 		if(retry>200)return 0;
-		}	  						    
-	return SPI_I2S_ReceiveData(SPI1); //返回通过SPIx最近接收的数据					    
+	}	  						    
+	return SPI_I2S_ReceiveData(SPI2); //返回通过SPIx最近接收的数据					    
 }
 
 
@@ -118,12 +118,15 @@ u16_t SPI_Flash_ReadID(void)
 */
 void SPI_Flash_Erase_Chip(void)   
 {                                             
-    SPI_FLASH_Write_Enable();                  //SET WEL 
-    SPI_Flash_Wait_Busy();   
-  	SPI_FLASH_CS_LOW();                            //使能器件   
-    SPIx_ReadWriteByte(W25X_ChipErase);        //发送片擦除命令  
-	  SPI_FLASH_CS_HIGH();                            //取消片选     	      
-	  SPI_Flash_Wait_Busy();   				   //等待芯片擦除结束
+#if 0
+	SPI_FLASH_Write_Enable();                  //SET WEL 
+	SPI_Flash_Wait_Busy();   
+	SPI_FLASH_CS_LOW();                            //使能器件   
+	SPIx_ReadWriteByte(W25X_ChipErase);        //发送片擦除命令  
+	SPI_FLASH_CS_HIGH();                            //取消片选     	      
+	SPI_Flash_Wait_Busy();   				   //等待芯片擦除结束
+#endif	
+	WTD_CLR;
 }   
 
 
@@ -135,21 +138,22 @@ void SPI_Flash_Erase_Chip(void)
 */
 s32_t SPI_Flash_Read(u32_t ReadAddr,u32_t NumByteToRead,u8_t * pBuffer)   
 { 
- 	u16 i;    
-printf("\r\nReadAddr=%d,NumByteToRead=%d\r\n",ReadAddr,NumByteToRead);	
-	SPI_FLASH_CS_LOW();                            //使能器件   
-    SPIx_ReadWriteByte(W25X_ReadData);         //发送读取命令   
-    SPIx_ReadWriteByte((u8_t)((ReadAddr)>>16));  //发送24bit地址    
-    SPIx_ReadWriteByte((u8_t)((ReadAddr)>>8));   
-    SPIx_ReadWriteByte((u8_t)ReadAddr);   
-    for(i=0;i<NumByteToRead;i++)
-	{ 
-        pBuffer[i]=SPIx_ReadWriteByte(0XFF);   //循环读数  
-    }
-	SPI_FLASH_CS_HIGH();                            //取消片选     
-
-  return 0;		
-} 
+ 	u16 i;
+	//printf("ReadAddr=%d,NumByteToRead=%d\n",ReadAddr,NumByteToRead);
+#if 1
+	SPI_FLASH_CS_LOW();                            //使能器件
+	SPIx_ReadWriteByte(W25X_ReadData);         //发送读取命令
+	SPIx_ReadWriteByte((u8_t)((ReadAddr)>>16));  //发送24bit地址
+	SPIx_ReadWriteByte((u8_t)((ReadAddr)>>8));
+	SPIx_ReadWriteByte((u8_t)ReadAddr);
+	for(i=0;i<NumByteToRead;i++){
+		pBuffer[i]=SPIx_ReadWriteByte(0XFF);   //循环读数
+	}
+	SPI_FLASH_CS_HIGH();                            //取消片选
+#endif
+	WTD_CLR;
+	return 0;
+}
 
 
 /**************************************************************************************
@@ -159,47 +163,80 @@ printf("\r\nReadAddr=%d,NumByteToRead=%d\r\n",ReadAddr,NumByteToRead);
 */
 s32_t SPI_Flash_Write(u32_t WriteAddr,u32_t NumByteToWrite,u8_t * pBuffer)
 {
- 	u16 i;  
-  SPI_FLASH_Write_Enable();                  //SET WEL 
+	printf("WriteAddr=%d,NumByteToWrite=%d\n",WriteAddr,NumByteToWrite);
+ #if 1
+	u16 i;  
+	SPI_FLASH_Write_Enable();                  //SET WEL 
 	SPI_FLASH_CS_LOW();                            //使能器件   
-  SPIx_ReadWriteByte(W25X_PageProgram);      //发送写页命令   
-  SPIx_ReadWriteByte((u8)((WriteAddr)>>16)); //发送24bit地址    
-  SPIx_ReadWriteByte((u8)((WriteAddr)>>8));   
-  SPIx_ReadWriteByte((u8)WriteAddr);   
-  for(i=0;i<NumByteToWrite;i++)SPIx_ReadWriteByte(pBuffer[i]);//循环写数  
+	SPIx_ReadWriteByte(W25X_PageProgram);      //发送写页命令   
+	SPIx_ReadWriteByte((u8)((WriteAddr)>>16)); //发送24bit地址    
+	SPIx_ReadWriteByte((u8)((WriteAddr)>>8));   
+	SPIx_ReadWriteByte((u8)WriteAddr);   
+	for(i=0;i<NumByteToWrite;i++)
+		SPIx_ReadWriteByte(pBuffer[i]);//循环写数  
 	SPI_FLASH_CS_HIGH();                            //取消片选 
 	SPI_Flash_Wait_Busy();					       //等待写入结束
-
+#endif
+	WTD_CLR;
 	return 0;
 } 
 
 /*************************************************************************************
 *   擦除多个扇区 (文件系统接口函数)
-*   Addr ：擦除起始地址  
-*   Num ： 要擦除扇区个数
+*   Addr ：擦除起始字节地址  
+*   Num ： 要擦除的字节数
 */
 s32_t SPI_Flash_Erase(u32_t Addr,u32_t Num)   
-{   
-	  
-	  u32_t secpos;
-	  u32_t Address;
-	  u32_t i;
-	  secpos = Addr/4096; //扇区地址 (计算给定的地址处于第几个扇区)
-	
-	  for(i=0;i<Num;i++) {
-	  Address = secpos * 4096;        //根据扇区计算扇区的起始地址
-	  SPI_FLASH_Write_Enable();                  //SET WEL 	 
-    SPI_Flash_Wait_Busy();   
-  	SPI_FLASH_CS_LOW();                        //使能器件   
-    SPIx_ReadWriteByte(W25X_SectorErase);      //发送扇区擦除指令 
-    SPIx_ReadWriteByte((u8_t)((Address)>>16));  //发送24bit地址    
-    SPIx_ReadWriteByte((u8_t)((Address)>>8));   
-    SPIx_ReadWriteByte((u8_t)Address);  
-	  SPI_FLASH_CS_HIGH();                        //取消片选     	      
-    SPI_Flash_Wait_Busy();   				            //等待擦除完成
+{
+	printf("Addr=%d,Num=%d\n",Addr,Num);
+
+	u32_t secpos;
+	u32_t Address;
+	u32_t i;
+ #if 0	  
+	secpos = Addr/4096; //扇区地址 (计算给定的地址处于第几个扇区)
+ 
+	for(i=0;i<Num;i++) {
+		Address = secpos * 4096;        //根据扇区计算扇区的起始地址
+		SPI_FLASH_Write_Enable();                  //SET WEL 	 
+		SPI_Flash_Wait_Busy();   
+		SPI_FLASH_CS_LOW();                        //使能器件   
+		SPIx_ReadWriteByte(W25X_SectorErase);      //发送扇区擦除指令 
+		SPIx_ReadWriteByte((u8_t)((Address)>>16));  //发送24bit地址    
+		SPIx_ReadWriteByte((u8_t)((Address)>>8));   
+		SPIx_ReadWriteByte((u8_t)Address);  
+		SPI_FLASH_CS_HIGH();                        //取消片选     	      
+		SPI_Flash_Wait_Busy();   				            //等待擦除完成
 		secpos++;	
-		}
-	  
+	}
+#endif 
+	
+	u32_t erase_time;
+	if( Num >= (64*1024) ){
+		erase_time = Num/(64*1024);
+	}else if ( Num >= (32*1024) ){
+		return -1;
+	}else if ( Num >= (4*1024) ){
+		return -1;
+	}else if ( Num < (4*1024) ){
+		return -1;
+	}
+	
+	for(i=0;i<erase_time;i++) {
+		Address = Addr;        				//根据扇区计算扇区的起始地址
+		SPI_FLASH_Write_Enable();                  //SET WEL 	 
+		SPI_Flash_Wait_Busy();   
+		SPI_FLASH_CS_LOW();                        //使能器件   
+		SPIx_ReadWriteByte(W25X_BlockErase);      //发送扇区擦除指令 
+		SPIx_ReadWriteByte((u8_t)((Address)>>16));  //发送24bit地址    
+		SPIx_ReadWriteByte((u8_t)((Address)>>8));   
+		SPIx_ReadWriteByte((u8_t)Address);  
+		SPI_FLASH_CS_HIGH();                        //取消片选     	      
+		SPI_Flash_Wait_Busy();   				            //等待擦除完成
+		secpos++;	
+	}
+	
+	WTD_CLR
 	return 0;
 }  
 

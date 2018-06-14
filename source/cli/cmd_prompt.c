@@ -113,8 +113,10 @@ int prompt_sendpkt(int argc, char * argv[])
 
 int prompt_fs(int argc, char * argv[])
 {
+	uint8_t tmp[256];
+	int i;
 	int c;
-	while ((c = getopt(argc, argv, "ltr:w:c:dh")) != EOF){
+	while ((c = getopt(argc, argv, "ltrwedh")) != EOF){
 
 		switch ( c ){
 		case 'l':
@@ -123,11 +125,16 @@ int prompt_fs(int argc, char * argv[])
 			fs_test();
 			break;
 		case 'r':
-			SPI_Flash_Read();
+			SPI_Flash_Read(32768,256,tmp);
+			for(i=0;i<256;i++)
+				printf("0x%02X ",tmp[i]);
+		
 			break;
 		case 'w':
+			
 			break;
-		case 'c':
+		case 'e':
+			SPI_Flash_Erase();
 			break;
 		case 'd':
 			break;

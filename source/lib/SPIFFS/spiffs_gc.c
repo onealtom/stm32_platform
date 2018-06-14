@@ -126,13 +126,13 @@ s32_t spiffs_gc_check(
   }
 
   //printf("gcing started  %i dirty, blocks %i free, want %i bytes\n", fs->stats_p_allocated + fs->stats_p_deleted, fs->free_blocks, len);
-
-  do {
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+  do {SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
     SPIFFS_GC_DBG("\ngc_check #%i: run gc free_blocks:%i pfree:%i pallo:%i pdele:%i [%i] len:%i of %i\n",
         tries,
         fs->free_blocks, free_pages, fs->stats_p_allocated, fs->stats_p_deleted, (free_pages+fs->stats_p_allocated+fs->stats_p_deleted),
         len, free_pages*SPIFFS_DATA_PAGE_SIZE(fs));
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
     spiffs_block_ix *cands;
     int count;
     spiffs_block_ix cand;
@@ -156,17 +156,17 @@ s32_t spiffs_gc_check(
       SPIFFS_GC_DBG("gc_check: cleaning block %i, result %i\n", cand, res);
     }
     SPIFFS_CHECK_RES(res);
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
     res = spiffs_gc_erase_page_stats(fs, cand);
     SPIFFS_CHECK_RES(res);
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
     res = spiffs_gc_erase_block(fs, cand);
     SPIFFS_CHECK_RES(res);
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
     free_pages =
           (SPIFFS_PAGES_PER_BLOCK(fs) - SPIFFS_OBJ_LOOKUP_PAGES(fs)) * fs->block_count
           - fs->stats_p_allocated - fs->stats_p_deleted;
-
+SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   } while (++tries < SPIFFS_GC_MAX_RUNS && (fs->free_blocks <= 2 ||
       len > free_pages*SPIFFS_DATA_PAGE_SIZE(fs)));
   SPIFFS_GC_DBG("gc_check: finished\n");

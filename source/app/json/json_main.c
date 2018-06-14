@@ -9,13 +9,13 @@ char *content = "{\"LO\":{\"au_ad\":[{\"tx_losc\":0,\"rx_losc\":0},{\"tx_losc\":
 
 int json_main(void)
 {
+#if 0
 	cJSON *parsed = NULL;
 
 	parsed = cJSON_Parse(content);
 	printf("cJSON_Parse\r\n");
 	char *p ;
-	
-	
+
 	if(!parsed){
 		printf("cJSON_Parse return NULL\r\n");
 	}
@@ -26,8 +26,8 @@ int json_main(void)
 		cJSON_Delete(parsed);
 		free(p);
 	}
+#endif
 
-	
 	sgmt_parse_then_set(content);
 	
 	
