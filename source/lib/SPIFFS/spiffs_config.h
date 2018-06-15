@@ -32,7 +32,7 @@
 
 #endif
 
-#define SPIFFS_DGB
+
 // Set generic spiffs debug output call.
 #ifndef SPIFFS_DGB
 #define SPIFFS_DBG(...)
@@ -57,7 +57,7 @@
 #ifndef SPIFFS_BUFFER_HELP
 #define SPIFFS_BUFFER_HELP              0
 #endif
-#if 1
+
 // Enables/disable memory read caching of nucleus file system operations.
 // If enabled, memory area must be provided for cache in SPIFFS_mount.
 #ifndef  SPIFFS_CACHE
@@ -67,7 +67,7 @@
 // Enables memory write caching for file descriptors in hydrogen
 #ifndef  SPIFFS_CACHE_WR
 #define SPIFFS_CACHE_WR                 1
-#endif
+
 
 // Enable/disable statistics on caching. Debug/test purpose only.
 #ifndef  SPIFFS_CACHE_STATS

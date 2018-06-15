@@ -73,7 +73,7 @@ s32_t SPIFFS_mount(spiffs *fs, spiffs_config *config, u8_t *work,
   s32_t res = spiffs_obj_lu_scan(fs);
 
   SPIFFS_API_CHECK_RES_UNLOCK(fs, res);
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
   SPIFFS_DBG("page index byte len:         %i\n", SPIFFS_CFG_LOG_PAGE_SZ(fs));
   SPIFFS_DBG("object lookup pages:         %i\n", SPIFFS_OBJ_LOOKUP_PAGES(fs));
   SPIFFS_DBG("page pages per block:        %i\n", SPIFFS_PAGES_PER_BLOCK(fs));
@@ -86,7 +86,7 @@ SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   fs->check_cb_f = check_cb_f;
 
   SPIFFS_UNLOCK(fs);
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
   return 0;
 }
 
@@ -146,22 +146,22 @@ spiffs_file SPIFFS_open(spiffs *fs, const char *path, spiffs_flags flags, spiffs
 
   if ((flags & SPIFFS_CREAT) && res == SPIFFS_ERR_NOT_FOUND) {
     spiffs_obj_id obj_id;
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
     res = spiffs_obj_lu_find_free_obj_id(fs, &obj_id);
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
     if (res < SPIFFS_OK) {
       spiffs_fd_return(fs, fd->file_nbr);
     }
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
     SPIFFS_API_CHECK_RES_UNLOCK(fs, res);
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
     res = spiffs_object_create(fs, obj_id, (u8_t*)path, SPIFFS_TYPE_FILE, &pix);
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
     if (res < SPIFFS_OK) {
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);	    
+	    
       spiffs_fd_return(fs, fd->file_nbr);
     }
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
     SPIFFS_API_CHECK_RES_UNLOCK(fs, res);
     flags &= ~SPIFFS_TRUNC;
   } else {

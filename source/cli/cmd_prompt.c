@@ -1,6 +1,6 @@
 #include "getopt.h"
 #include "Header.h"
-
+#include <spiffs.h>
 
 #define MAX_CLI_CAHR	53
 #define MAX_CLI_ARGS	10
@@ -116,19 +116,48 @@ int prompt_fs(int argc, char * argv[])
 	uint8_t tmp[256];
 	int i;
 	int c;
-	while ((c = getopt(argc, argv, "ltrwedh")) != EOF){
+
+	spiffs_DIR d;
+	extern spiffs SPIFlashFS;
+	struct spiffs_dirent e;
+	struct spiffs_dirent *pe = &e;
+	
+	char *ReadBuf;
+	spiffs_file fd;
+	spiffs_stat s;
+	int file_size;
+	int res;
+	
+	while ((c = getopt(argc, argv, "ltc:wedh")) != EOF){
 
 		switch ( c ){
 		case 'l':
+			SPIFFS_opendir(&SPIFlashFS, "/", &d);
+			while ((pe = SPIFFS_readdir(&d, pe))) {
+				printf("%s [%04x] size:%i\n", pe->name, pe->obj_id, pe->size);
+			}
+			SPIFFS_closedir(&d);
 			break;
 		case 't':
-			fs_test();
 			break;
-		case 'r':
-			SPI_Flash_Read(32768,256,tmp);
-			for(i=0;i<256;i++)
-				printf("0x%02X ",tmp[i]);
-		
+		case 'c':
+			fd = SPIFFS_open(&SPIFlashFS, optarg, SPIFFS_RDWR, 0);
+			if (fd < 0) {
+				printf("errno %i\n", SPIFFS_errno(&SPIFlashFS));
+				break;
+			}
+			res = SPIFFS_fstat(&SPIFlashFS, fd, &s);
+			if (res < 0) {
+				printf("SPIFFS_ERR_NOT_FOUND errno: %i\n", SPIFFS_errno(&SPIFlashFS));
+				break;
+			}
+			ReadBuf = malloc(s.size);
+
+			if (SPIFFS_read(&SPIFlashFS, fd, ReadBuf, s.size ) < 0)
+				printf("errno: %i\n", SPIFFS_errno(&SPIFlashFS));
+			SPIFFS_close(&SPIFlashFS, fd);
+
+			printf("%s\n", ReadBuf);
 			break;
 		case 'w':
 			
@@ -146,14 +175,14 @@ int prompt_fs(int argc, char * argv[])
 			break;
 		case 'h':
 		default:	
-			printf("\r+------------------+\n");
-			printf("\r| help:            |\n");
-			printf("\r| l: list          |\n");
-			printf("\r| r: read          |\n");
-			printf("\r| w: write         |\n");
-			printf("\r| c: create        |\n");
-			printf("\r| d: delect        |\n");		
-			printf("\r+------------------+\n\r");
+			printf("\r+--------------------+\n");
+			printf("\r| help:              |\n");
+			printf("\r| l: list /          |\n");
+			printf("\r| c: cat filename    |\n");
+			printf("\r| w: write filename  |\n");
+			printf("\r| c: create filename |\n");
+			printf("\r| d: delect filename |\n");		
+			printf("\r+--------------------+\n\r");
 
 			return 0;
 		}

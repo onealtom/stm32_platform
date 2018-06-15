@@ -538,7 +538,7 @@ void InitSystem()
 
 	InitUsb();
 
-
+	spiffs_init();
 	WTD_CLR;
 	//上电后初始化默认参数
 	////ParamResetDefault();
@@ -620,6 +620,7 @@ void InitSystem()
 	// 重新根据参数配置FPGA寄存器
 	//module_param_chg_flag = 0xFFFFFFFF;
 	
+
 	
 }
 

@@ -132,7 +132,7 @@ s32_t spiffs_obj_lu_find_entry_visitor(
   s32_t entry_count = fs->block_count * SPIFFS_OBJ_LOOKUP_MAX_ENTRIES(fs);
   spiffs_block_ix cur_block = starting_block;
   u32_t cur_block_addr = starting_block * SPIFFS_CFG_LOG_BLOCK_SZ(fs);
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
   spiffs_obj_id *obj_lu_buf = (spiffs_obj_id *)fs->lu_work;
   int cur_entry = starting_lu_entry;
   u32_t entries_per_page = (SPIFFS_CFG_LOG_PAGE_SZ(fs) / sizeof(spiffs_obj_id));
@@ -252,7 +252,7 @@ s32_t spiffs_obj_lu_scan(
   fs->free_blocks = 0;
   fs->stats_p_allocated = 0;
   fs->stats_p_deleted = 0;
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
   res = spiffs_obj_lu_find_entry_visitor(fs,
       0,
       0,
@@ -299,7 +299,7 @@ SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
   }
 
   fs->max_erase_count = erase_count_final;
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
   return res;
 }
 
@@ -312,7 +312,7 @@ s32_t spiffs_obj_lu_find_free(
     spiffs_block_ix *block_ix,
     int *lu_entry) {
   s32_t res;
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
   if (!fs->cleaning && fs->free_blocks < 2) {
     res = spiffs_gc_quick(fs);
     SPIFFS_CHECK_RES(res);
@@ -320,10 +320,10 @@ SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
       return SPIFFS_ERR_FULL;
     }
   }
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
   res = spiffs_obj_lu_find_id(fs, starting_block, starting_lu_entry,
       SPIFFS_OBJ_ID_FREE, block_ix, lu_entry);
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
   if (res == SPIFFS_OK) {
     fs->free_cursor_block_ix = *block_ix;
     fs->free_cursor_obj_lu_entry = *lu_entry;
@@ -619,12 +619,12 @@ s32_t spiffs_object_create(
   spiffs_block_ix bix;
   spiffs_page_object_ix_header oix_hdr;
   int entry;
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
   res = spiffs_gc_check(fs, 0);
   SPIFFS_CHECK_RES(res);
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
   obj_id |= SPIFFS_OBJ_ID_IX_FLAG;
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
   // find free entry
   res = spiffs_obj_lu_find_free(fs, fs->free_cursor_block_ix, fs->free_cursor_obj_lu_entry, &bix, &entry);
   SPIFFS_CHECK_RES(res);
@@ -1698,11 +1698,11 @@ s32_t spiffs_obj_lu_find_free_obj_id(spiffs *fs, spiffs_obj_id *obj_id) {
 					SPIFFS_DBG("free_obj_id: compacted table is full\n");
 					return SPIFFS_ERR_FULL;
 				}
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
 				SPIFFS_DBG("free_obj_id: COMP select index:%i min_count:%i min:%04x max:%04x compact:%i\n", min_i, min_count, state.min_obj_id, state.max_obj_id, state.compaction);
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
 				if (min_count == 0) {
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);	
+
 					// no id in this range, skip compacting and use directly
 					*obj_id = min_i * state.compaction + state.min_obj_id;
 					return SPIFFS_OK;
@@ -1712,9 +1712,9 @@ SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
 					state.max_obj_id = state.min_obj_id + state.compaction;
 					// decrease compaction
 				}
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
 				if ((state.max_obj_id - state.min_obj_id <= SPIFFS_CFG_LOG_PAGE_SZ(fs)*8)) {
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
 					// no need for compacting, use bitmap
 					continue;
 				}
@@ -1722,19 +1722,17 @@ SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
 			// in a work memory of log_page_size bytes, we may fit in log_page_size ids
 			// todo what if compaction is > 255 - then we cannot fit it in a byte
 			state.compaction = (state.max_obj_id-state.min_obj_id) / ((SPIFFS_CFG_LOG_PAGE_SZ(fs) / sizeof(u8_t)));
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
 			SPIFFS_DBG("free_obj_id: COMP min:%04x max:%04x compact:%i\n", state.min_obj_id, state.max_obj_id, state.compaction);
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
 			memset(fs->work, 0, SPIFFS_CFG_LOG_PAGE_SZ(fs));
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);     
+     
 			res = spiffs_obj_lu_find_entry_visitor(fs, 0, 0, 0, 0, spiffs_obj_lu_find_free_obj_id_compact_v, 0, &state, 0, 0);
 			if (res == SPIFFS_VIS_END) res = SPIFFS_OK;
 			SPIFFS_CHECK_RES(res);
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
 		}
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
 	}
-SPIFFS_DBG("%s(%d) %s\r\n",__FILE__,__LINE__,__FUNCTION__);
+
 	return res;
 }
 

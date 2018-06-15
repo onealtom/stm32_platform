@@ -48,31 +48,31 @@ void Mount_SPI_Flash_File_System(void)
   char WriteBuf2[]={"                                                                          "};
 char ReadBuf[80];	
 
-int fs_test(void)
+int spiffs_init(void)
 {
 	//SPI_FLASH_Init();   //FLASH存储器初始化 设备已经初始化过了
 	Mount_SPI_Flash_File_System( );//spi flash文件系统初始化
 
 	//打开文件，如果文件不存在，自动创建
-	printf("fs1\r\n");
-	spiffs_file fd = SPIFFS_open(&SPIFlashFS, "my_file", SPIFFS_CREAT | SPIFFS_TRUNC | SPIFFS_RDWR, 0);
+	//printf("fs1\r\n");
+	//spiffs_file fd = SPIFFS_open(&SPIFlashFS, "my_file", SPIFFS_CREAT | SPIFFS_TRUNC | SPIFFS_RDWR, 0);
 
-	printf("fs2\r\n");
+	//printf("fs2\r\n");
 	//写文件
 	//if (SPIFFS_write(&SPIFlashFS, fd, WriteBuf, sizeof(WriteBuf)) < 0)
 	//	printf("errno %i\n", SPIFFS_errno(&SPIFlashFS));
 //SPIFFS_close(&SPIFlashFS, fd);
   
-	printf("fs3\r\n");
+	//printf("fs3\r\n");
 	//读文件
-	fd = SPIFFS_open(&SPIFlashFS, "my_file", SPIFFS_RDWR, 0);
-	if (SPIFFS_read(&SPIFlashFS, fd, ReadBuf, sizeof(WriteBuf2)) < 0)
-		printf("errno %i\n", SPIFFS_errno(&SPIFlashFS));
-	SPIFFS_close(&SPIFlashFS, fd);
+	//fd = SPIFFS_open(&SPIFlashFS, "my_file", SPIFFS_RDWR, 0);
+	//if (SPIFFS_read(&SPIFlashFS, fd, ReadBuf, sizeof(WriteBuf2)) < 0)
+	//	printf("errno %i\n", SPIFFS_errno(&SPIFlashFS));
+	//SPIFFS_close(&SPIFlashFS, fd);
   
-	printf("fs4\r\n");
+	//printf("fs4\r\n");
 	//打印输出文件内容
-	printf("%s\n", ReadBuf);
+	//printf("%s\n", ReadBuf);
 
 }
 
