@@ -362,7 +362,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER, STM32F10X_HD, USE_STM3210E_EVAL</Define>
               <Undefine></Undefine>
-              <IncludePath>..\source\app;..\source\drv;..\source\drv\utility;..\source\ex_conf;..\source\lib\usb_cdc\inc;..\source\lib\CMSIS\Core\CM3;..\source\lib\STM32F10x_StdPeriph_Driver\inc;..\source\lib\SPIFFS;..\source\drv\spiflash_drv;..\source\drv\mymalloc;..\source\app\json</IncludePath>
+              <IncludePath>..\source\app;..\source\drv;..\source\drv\utility;..\source\ex_conf;..\source\lib\usb_cdc\inc;..\source\lib\CMSIS\Core\CM3;..\source\lib\STM32F10x_StdPeriph_Driver\inc;..\source\lib\SPIFFS;..\source\drv\spiflash_drv;..\source\drv\mymalloc;..\source\app\json;..\source\lib;..\source\app\fs</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -769,6 +769,11 @@
               <FileName>spiffs_nucleus.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\lib\SPIFFS\spiffs_nucleus.c</FilePath>
+            </File>
+            <File>
+              <FileName>tools.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\lib\tools.c</FilePath>
             </File>
           </Files>
         </Group>

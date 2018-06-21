@@ -14,8 +14,8 @@
 **************************************************************/
 #include "Header.h"
 #include <stdio.h>
-
-
+#include <spiffs.h>
+#include <tools.h>
 
 extern _T_VALID_FP_TOPO valid_fp_topo[FP_MAX];
 
@@ -575,13 +575,12 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 			case MSG_CMD_UPDATE_FPGA:		// 升级FPGA
 				MsgHandleUpdateFPGA( msg_len, p_msg_dat, msg_tx_buff );
 				break;
-			case MSG_CMD__UPDATE_CONF:		// _UPDATEjson配置
+			case MSG_CMD_UPDATE_CONF:		// _UPDATEjson配置
 				MsgHandleUpdateJSON( msg_len, p_msg_dat, msg_tx_buff );
 				break;		
 				
 			case MSG_CMD_GET_FLASH_PAGE:	// 读取FLASH页内容
 				MsgHandleGetFlashPage( msg_len, p_msg_dat, msg_tx_buff );
-			
 				break;
 			case MSG_CMD_FLASH_OPERATION: //Flash页操作
 				MsgHandleFlashOperatePage( msg_len, p_msg_dat, msg_tx_buff );
@@ -1523,6 +1522,7 @@ void MsgHandleUpdateMCU( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 		len = p_args[4]|(p_args[5]<<8)|(p_args[6]<<16)|(p_args[7]<<24);
 		if ( 0 == UpdateStart( UPDATE_TYPE_MCU, len, pkt_count) )
 		{
+			printf("MSG_ACK_ERR_UPDATE_FAIL\n");
 			p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_UPDATE_FAIL;
 		}
 		else
@@ -1551,11 +1551,11 @@ void MsgHandleUpdateMCU( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 	{
 		pkt_no = p_args[0]|(p_args[1]<<8);
 		len = p_args[2]|(p_args[3]<<8);
-
 		if ( pkt_no == 1 )
 		{
 			if ( 0==CheckIsMcuFw( (UINT32*)(p_args+4) ) )	// 检查数据头，判断是否是合法的MCU程序
 			{
+				printf("MSG_ACK_ERR_UPDATE_FAIL\n");
 				p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_UPDATE_FAIL;
 				goto __re_ack;
 			}
@@ -1563,6 +1563,7 @@ void MsgHandleUpdateMCU( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 
 		if ( 0 == SaveMcuUpdatePkt( pkt_no, len, p_args+4, (UCHAR8*)(&tmp) ) )
 		{
+			printf("MSG_ACK_ERR_UPDATE_PKT\n");
 			p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_UPDATE_PKT;
 			p_tx_buff[msg_tx_len++] = (UCHAR8)(tmp & 0x00ff);
 			p_tx_buff[msg_tx_len++] = (UCHAR8)((tmp>>8) & 0x00ff);
@@ -1662,68 +1663,151 @@ void MsgHandleUpdateFPGA( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_b
 /*************************************************************
 
 **************************************************************/
-void MsgHandleUpdateJSON( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
+int MsgHandleUpdateJSON( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
 {
-	UINT32 len;
-	UINT32 tmp;
+	/*start*/
+	static UINT32 all_pkt;  	//2 Byte [2~3] lsb
+	UINT32 all_len;  		//4 Byte [4~7] lsb
+	int name_len;			//1 Byte [8]
+	//static char filename[14];	//1~13 Byte [9~21] text head在前
+	static char *filename;		//1~13 Byte [9~21] text head在前
+	/*mid*/
+	UINT16 pkt_no;			//2 Byte [0~1] lsb
+	int len;			//2 Byte [2~3] lsb
+	/*end*/
+	UINT16 checksum;		//2 Byte [2~3] lsb
+	
+
 	UINT32 msg_tx_len;
 	UCHAR8 * p_args;
-	static char filename[8];
-	int i;
 
-	TRACE_INFO("Message Handle Update json!\r\n");
+	int i;
+	int res;
+	
+	static spiffs_file fd;
+	extern spiffs sfblk0p1;
+	
+	printf("Message Handle Update json!\r\n");
 
 	msg_tx_len = MSG_PKT_HEAD_SIZE;
 	p_args = p_msg_dat+MSG_PKT_HEAD_SIZE;
+//起始包，检查容量，open创建无后缀文件名, 如果无法打开则先关闭,rm再open, (判断文件名)
+//中间包，连续写不关闭, 句柄作为静态变量
+//结束包，写完删除有后缀文件名, rename文件名加上后缀json
+	if (( 0xFA == p_args[0] )&&( 0x5A == p_args[1] )){
+	/*开始包*/
+		
+		printf("JSON Start Pkg\n");
+		printf("Total len is: %d, %d packets trans.\n",all_len, all_pkt);
+		
+		hexdump(p_args, 32);
 
-	if (( 0xFA == p_args[0] )&&( 0x5A == p_args[1] ))
-	{
-		UINT32 pkt_count;
+		all_pkt = p_args[2]|(p_args[3]<<8);
+		all_len = p_args[4]|(p_args[5]<<8)|(p_args[6]<<16)|(p_args[7]<<24);
 		
-		//起始包
-		pkt_count = p_args[2]|(p_args[3]<<8);
-		len = p_args[4]|(p_args[5]<<8)|(p_args[6]<<16)|(p_args[7]<<24);
+		/*上位机限制了文件名长度最大8.4，spiffs config 文件名最长32*/
+		name_len = p_args[8];
 		
-		for(i=0;i<8;i++){
-			filename[i]=p_args[8+i];
-			printf("%c\n\r",filename[i]);
+		
+#define NAMELEN_8_4 14 //8 + '.' + 4 + '\0'
+		
+		filename = malloc(NAMELEN_8_4);
+		for(i=0;i<NAMELEN_8_4;i++){
+			filename[i]=0x00;
 		}
-		printf("%s\n\r",filename);
+		for(i=0;i<name_len;i++){
+			filename[i]=*(p_args+9+i);
+		}		
+		//printf("Receive file: %s\n\r",filename);
+
+		//filename = malloc(name_len+1);
+		//strncpy(filename, p_args+9, name_len+1);
+		hexdump(filename, name_len);
 		
+#define WRITE_TO_FLASH 1		
+#if WRITE_TO_FLASH
+
+		fd = SPIFFS_open(&sfblk0p1, filename, SPIFFS_CREAT | SPIFFS_RDWR, 0);
 		
+		if (fd < 0) {
+			printf("File busy %i\n", SPIFFS_errno(&sfblk0p1));
+			printf("Try close \n");
+			SPIFFS_close(&sfblk0p1, fd);
+			fd = SPIFFS_open(&sfblk0p1, filename, SPIFFS_CREAT | SPIFFS_TRUNC | SPIFFS_RDWR, 0);
+			if (fd < 0) {
+				printf("MSG_ACK_ERR_UPDATE_FAIL\n");
+				goto ack_err;
+			}else{
+				printf("MSG_ACK_CMD_OK\n");
+				//goto ack_ok;
+			}
+		}else{
+			printf("MSG_ACK_CMD_OK2\n");
+			//goto ack_ok;
+		}
+		SPIFFS_fflush(&sfblk0p1, fd);
+		SPIFFS_close(&sfblk0p1, fd); 
+#endif
+		goto ack_ok;
+
+	}else if (( 0xA5 == p_args[0] )&&( 0xAF == p_args[1] )){
+	/*结束包*/
+		
+		printf("JSON End Pkg\n");
+		hexdump(p_args, 32);
+		free(filename);
+		
+		//SPIFFS_close(&sfblk0p1, fd);
+
+		checksum = p_args[2]|(p_args[3]<<8);
 		p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
-	}
-	else if (( 0xA5 == p_args[0] )&&( 0xAF == p_args[1] ))
-	{
-		TRACE_INFO("Message Handle Update FPGA_________FpgaUpdateEnd!\r\n");
-		//结束包
-		tmp = p_args[2]|(p_args[3]<<8);
-		p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
-		sys_work_info |= SYSTEM_FLAG_FPGA_RELOAD;
-		sys_work_info &= (~SYSTEM_FLAG_FPGA_UPDATE);
-	}
-	else
-	{
-		UINT16 pkt_no;
+
+
+	}else{
+	/*中间包*/
+		printf("JSON Mid Pkg\n");
 
 		pkt_no = p_args[0]|(p_args[1]<<8);
 		len = p_args[2]|(p_args[3]<<8);
-//		printf("Rx Pkt:%d",pkt_no);
-		if ( 0 == SaveFpgaUpdatePkt( pkt_no, len, p_args+4, &tmp) )
-		{
-			p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_UPDATE_PKT;
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(tmp & 0x00ff);
-			p_tx_buff[msg_tx_len++] = (UCHAR8)((tmp>>8) & 0x00ff);
-//			printf("-Err Need:%d", (UINT16)tmp);
+		
+		hexdump(p_args, len+4);
+		//printf("Rx Pkt:%d\n",pkt_no);
+		//printf("len=%d\n",len);
+		printf("filename addr = %x\n",filename);
+		hexdump(filename, 14);
+#if WRITE_TO_FLASH
+		fd = SPIFFS_open(&sfblk0p1, filename , SPIFFS_CREAT | SPIFFS_RDWR, 0);
+
+		if (fd < 0) {
+			printf("Can not open file %i\n", SPIFFS_errno(&sfblk0p1));
+			goto ack_err;
 		}
-		else
-		{
-			p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
-			p_tx_buff[msg_tx_len++] = (UCHAR8)(pkt_no & 0x00ff);
-			p_tx_buff[msg_tx_len++] = (UCHAR8)((pkt_no>>8) & 0x00ff);
+		res = SPIFFS_lseek(&sfblk0p1, fd, 0, SPIFFS_SEEK_END);
+		if (res < 0) {
+			printf("lseek errno: %i\n", SPIFFS_errno(&sfblk0p1));
+			goto ack_err;
 		}
+		if (SPIFFS_write(&sfblk0p1, fd, p_args+4, len ) < 0) {
+			printf("write errno %i\n", SPIFFS_errno(&sfblk0p1));
+			goto ack_err;
+		}
+		SPIFFS_fflush(&sfblk0p1, fd);
+		SPIFFS_close(&sfblk0p1, fd);
+#endif
+
+		p_tx_buff[msg_tx_len++] = (UCHAR8)(pkt_no & 0x00ff);
+		p_tx_buff[msg_tx_len++] = (UCHAR8)((pkt_no>>8) & 0x00ff);
 	}
+
+ack_ok:
+	p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
 	SendMsgPkt(msg_tx_len, p_tx_buff);
+	return 0;
+ack_err:
+	p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_UPDATE_FAIL;
+	SendMsgPkt(msg_tx_len, p_tx_buff);
+	return -1;
+
 }
 
 

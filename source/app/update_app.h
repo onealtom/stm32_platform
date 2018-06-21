@@ -1,4 +1,4 @@
-﻿/***************************************************************
+/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :update_app.h

@@ -280,7 +280,7 @@ UINT32 SaveFpgaUpdatePkt( UINT32 pkt_no, UINT32 len, UCHAR8* p_dat, UINT32* p_er
 			p_dat += wr_len;		// 指针后移
 			len -= wr_len;			// 计算剩余长度
 		}
-		next_pkt_no++;
+  		next_pkt_no++;
 		return 1;
 	}
 	else
@@ -344,6 +344,7 @@ UINT32 McuUpdateEnd( UINT32 checksum, UINT32 * p_err )
 	}
 
 	checksum_val = McuChecksum(update_fw_len);
+printf("checksum_val=%d,checksum=%d\n",checksum_val,checksum);
 	if ( ( next_pkt_no==(update_pkt_count+1) )&&(checksum_val==checksum) )
 	{
 		//重新写FPGA程序更新标志
@@ -363,6 +364,7 @@ UINT32 McuUpdateEnd( UINT32 checksum, UINT32 * p_err )
 	}
 	else
 	{
+
 		*p_err++ = checksum_val;
 		return 0;
 	}
@@ -387,28 +389,24 @@ UINT32 SaveMcuUpdatePkt( UINT32 pkt_no, UINT32 len, UCHAR8* p_dat, UCHAR8* p_err
 
 	TRACE_INFO("SaveMcuUpdatePkt\r\n");
 
-
 	if ((0==(sys_work_info & SYSTEM_FLAG_MCU_UPDATE))|| (0==pkt_no)||(len>UPDATE_PKT_MAX_LEN) )
 	{
 		return 0;
 	}
 
-
-	TRACE_INFO("SaveMcuUpdatePkt_pkt_no=[%d]\r\n",pkt_no);
 	if ( pkt_no == next_pkt_no )
 	{
 		page += (pkt_no-1)*( (UPDATE_PKT_MAX_LEN+FLASH_PAGE_SIZE-1)/FLASH_PAGE_SIZE );
 		while ( len>0 )
 		{
-			TRACE_INFO("SaveMcuUpdatePkt_page=[%d],len=[%d]\r\n",page,len);
 			WTD_CLR;
-			
 			wr_len = (len>FLASH_PAGE_SIZE) ? FLASH_PAGE_SIZE : len;
 			FlashWrite( page,0, p_dat, (UINT16)wr_len,2);	// 写入数据
 			page++;
 			p_dat += wr_len;		// 指针后移
 			len -= wr_len;		// 计算剩余长度
 		}
+		
 		next_pkt_no++;
 		return 1;
 	}

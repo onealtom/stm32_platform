@@ -163,7 +163,7 @@ s32_t SPI_Flash_Read(u32_t ReadAddr,u32_t NumByteToRead,u8_t * pBuffer)
 */
 s32_t SPI_Flash_Write(u32_t WriteAddr,u32_t NumByteToWrite,u8_t * pBuffer)
 {
-	printf("WriteAddr=%d,NumByteToWrite=%d\n",WriteAddr,NumByteToWrite);
+	//printf("WriteAddr=%d,NumByteToWrite=%d\n",WriteAddr,NumByteToWrite);
  #if 1
 	u16 i;  
 	SPI_FLASH_Write_Enable();                  //SET WEL 

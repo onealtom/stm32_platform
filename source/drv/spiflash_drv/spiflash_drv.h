@@ -26,7 +26,6 @@
 #define W25X_ManufactDeviceID	0x90 
 #define W25X_JedecDeviceID		0x9F 
 
-void SPI_FLASH_Init(void);
 u16_t  SPI_Flash_ReadID(void);  	    //¶ÁÈ¡FLASH ID
 void SPI_Flash_Erase_Chip(void);    	  //ÕûÆ¬²Á³ý
 
