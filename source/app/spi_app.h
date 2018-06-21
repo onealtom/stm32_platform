@@ -22,7 +22,7 @@
 #define FLASH_BYTES_PER_SECTOR			4096	// 256 BYTE PER PAGE   4KB PER SECTOR
 
 
-#define FLASH_PAGE_SIZE		flash_page_size		// Flash页大小
+#define FLASH_PAGE_SIZE		256
 #define FLASH_TYPE			flash_type			// Flash类型
 #define FLASH_PARR1			flash_parr1			// Flash类型
 
