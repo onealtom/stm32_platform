@@ -5,7 +5,7 @@
 #include "pl_config.h"
 
 #include "port.h"
-
+#include "regmap.h"
 
 
 
@@ -123,6 +123,43 @@ static uint32_t pipereg_read(char sgmt, uint32_t pipe_sel_num, uint32_t reg )
 
 }
 
+uint32_t sgmt_ad_tran( char sgmt, uint32_t offset_ad )
+{
+	uint8_t port_num;
+	uint32_t basead;
+	
+	port_num = (uint8_t)(sgmt - 'A');
+
+	basead = SGMTA_CTLREGS_BASEAD + (port_num * SGMTREGS_LEN);
+	
+	return (basead+(offset_ad*REG_LEN));
+
+}
+
+
+
+uint32_t sgmtreg_write_bytes(char sgmt , uint32_t reg , uint8_t *value, int len)
+{
+	uint8_t port_num;
+	uint32_t basead;
+	uint32_t actual_ad;
+
+
+	actual_ad = sgmt_ad_tran(sgmt ,reg );
+
+	pl_raw_write_bytes( actual_ad , value , len);
+}
+/*
+extern uint32_t pipereg_write_bytes(char sgmt, uint32_t pipe_sel_num, uint32_t reg, uint8_t *value, int len)
+{
+	pipe_select(pipe_sel_num);
+
+	pr_dbg("[pi_w]sgmt%c ch%d reg%X ",sgmt, pipe_sel_num,reg);
+	sgmtreg_write_bytes( sgmt, reg, value , len);
+
+}
+
+*/
 extern int get_max_pnr(char sgmt_chr)
 {
 	// int sgmt_no;

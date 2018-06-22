@@ -1,14 +1,6 @@
 #include <errno.h>
+#include "port.h"
 
-#define HARDWARE_AU	1
-#define HARDWARE_RU	0
-#define HARDWARE_ID  HARDWARE_AU
-
-#if(HARDWARE_ID==HARDWARE_AU)
-	#define BARE_PLATFORM
-#else
-	#define LINUX_PLATFORM
-#endif
 
 #ifdef LINUX_PLATFORM
 #include <fcntl.h>
@@ -32,9 +24,46 @@
 enum iodev { RX, TX };
 
 
+int pl_raw_write_bytes( uint32_t ad , uint8_t *data , int len)
+{
+	uint8_t reg[4];
+	
+	if(1==len){
+		goto not_support;
+	}else if(2==len){
+		goto not_support;
+	}else if(3==len){
+		goto not_support;
+	}else if(4==len){
+		
+		uint8_t reg[4];
+		uint16_t lsb;
+		uint16_t msb;
+		
+		reg[0] = *data;
+		reg[1] = *(data+1);
+		reg[2] = *(data+2);
+		reg[3] = *(data+3);
+		
+		lsb =  (reg[1]<<8) + reg[0] ;
+		msb =  (reg[3]<<8) + reg[2] ;
+		
+		PLWriteRegister(ad , lsb);
+		
+		PLWriteRegister(ad+2, msb);
+	
+	}else{
+		goto not_support;
+	}
+	
+	return 0;
+not_support:
+	return -1;
+}
+
 int port_is_au(void)
 {
-	return HARDWARE_ID;
+	return PRODUCT_MODE;
 }
 
 #ifdef LINUX_PLATFORM
@@ -218,7 +247,6 @@ int devmem_write(uint32_t addr, uint32_t write_data )
 #endif/*LINUX_PLATFORM*/
 
 #ifdef BARE_PLATFORM
-
 
 
 uint32_t port_get_pl_mclk(void)

@@ -2,47 +2,10 @@
 #define _COMMON_HW_H
 
 #include <stdint.h>
+#include "port.h"
 
-#define REG_LEN2		8
-#define REG_LEN		4
-#define SGMTREGS_LEN	(REG_LEN*32)
 
-#define PHYINFO_REGS_BASEAD  0x40000180
-#define PHYINFO_PIPENR1_REG  PHYINFO_REGS_BASEAD+(REG_LEN*0x04)
-#define PHYINFO_PIPENR2_REG  PHYINFO_REGS_BASEAD+(REG_LEN*0x05)
-#define PHYINFO_PIPENR3_REG  PHYINFO_REGS_BASEAD+(REG_LEN*0x06)
-#define PHYINFO_PIPENR4_REG  PHYINFO_REGS_BASEAD+(REG_LEN*0x07)
-#define PHYINFO_PIPESEL_REG  PHYINFO_REGS_BASEAD+(REG_LEN*0x08)
 
-#define SGMTA_CTLREGS_BASEAD  0x40000200
-#define SGMTB_CTLREGS_BASEAD  SGMTA_CTLREGS_BASEAD + (SGMTREGS_LEN*0x01 )
-#define SGMTC_CTLREGS_BASEAD  SGMTA_CTLREGS_BASEAD + (SGMTREGS_LEN*0x02 )
-#define SGMTD_CTLREGS_BASEAD  SGMTA_CTLREGS_BASEAD + (SGMTREGS_LEN*0x03 )
-
-//Setting Reg Group Addr
-#define SGMTX_PIPEX_RXPHASE  0x05 //set
-#define SGMTX_PIPEX_TXPHASE  0x06 //set
-#define SGMTX_PIPEX_TXGAIN   0x08 //set
-#define SGMTX_PIPEX_RXGAIN   0x09 //set
-#define SGMTX_PIPEX_TXALC    0x0A //set
-#define SGMTX_PIPEX_RXALC    0x0B //set
-
-#define SGMTX_ADHTHR         0x17 //set
-#define SGMTX_ADLTHR         0x18 //set
-#define SGMTX_DAHTHR         0x19 //set
-#define SGMTX_DALTHR         0x1A //set
-//---------------------------------------
-//Get Status Regs Group Addr
-#define SGMTX_PIPEX_DLPOW    0x11 //get
-#define SGMTX_PIPEX_ULPOW    0x12 //get
-#define SGMTX_PIPEX_RECTGAIN 0x13 //get
-
-#define SGMTX_RXTEMPCOMP     0x03 //get@@
-#define SGMTX_TXTEMPCOMP     0x04 //get
-#define SGMTX_ADPOW          0x0C //get@@
-#define SGMTX_DAPOW          0x0D //get
-#define SGMTX_COMP           0x0F //get
-#define SGMTX_ATTCOMP        0x0E //get@
 
 extern uint32_t sgmtreg_write(char sgmt , uint32_t reg , uint32_t value);
 extern uint32_t pipereg_write(char sgmt, uint32_t pipe_sel, uint32_t reg, uint32_t value);

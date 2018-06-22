@@ -589,7 +589,7 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 				MsgHandleBlankCmd( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 			case MSG_CMD_PROMTP:
-				printf("MSG_CMD_PROMTP\r\n");
+				//printf("MSG_CMD_PROMTP\r\n");
 				MsgHandlePromtp( msg_len, p_msg_dat, msg_tx_buff );
 				break;
 			default:		// 未知命令
@@ -1453,21 +1453,6 @@ void MsgHandleGetFpgaReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_b
 
 			printf("type2 = %02x \r\n",reg_type2);
 
-			if ( REG_TYPE_OTHER_TYPE1 == reg_type2 )
-			{
-				guangkou =  p_msg_dat[i];
-				FPGA_SET_OPT(guangkou);
-				p_tx_buff[msg_tx_len++] = p_msg_dat[i++];	
-
-				printf("guangkou = %02x \r\n",guangkou);
-
-				channel =  p_msg_dat[i];
-				FPGA_SET_CHANNEL( channel );
-				p_tx_buff[msg_tx_len++] = p_msg_dat[i++];
-
-				printf("channel = %02x \r\n",channel);
-			}
-			
 		}
 		FPGA_DISABLE_WRITE;
 		
@@ -1996,10 +1981,8 @@ int MsgHandlePromtp(UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff)
 	int len ;
 	
 	len = p_msg_dat[10];
-	
-	printf("rec cmdline:\n");
 
-	printf("p_msg_dat[10]=%d\n",p_msg_dat[10]);
+	//printf("p_msg_dat[10]=%d\n",p_msg_dat[10]);
 
 	p=(char *)malloc(p_msg_dat[10]+1);
 	//p=(char *)mymalloc(256);
@@ -2022,7 +2005,7 @@ int MsgHandlePromtp(UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff)
 	}
 	//p[p_msg_dat[10]+1-1]=0;//p_msg_dat[10]是从1开始，数组取值从0开始，加1是在已有字节后添加一个'\0'，减1是换成数组从0开始的标号
 	
-	printf("%s\n",(char*)p);
+	//printf("%s\n",(char*)p);
 	
 	command_process(p);
 	

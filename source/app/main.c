@@ -312,7 +312,7 @@ void main()
 	  
 		// 处理光纤数据通讯
 		WTD_CLR;
-		FpgaGetMsgPkt();  
+		////FpgaGetMsgPkt();  
 		
 
 #if defined CLIENT_JIZHUN

@@ -554,19 +554,17 @@ void InitSystem()
 
 	WTD_CLR;  
 	//InitExtentBus_8();	// 初始化8位总线
-	//FpgaLoad();			// 加载FPGA 
+	FpgaLoad();			// 加载FPGA 
 	InitExtentBus_16();	// 初始化16位总线 
 
 	if ( FPGA_LDST_OK== fpga_load_status )
 	{
 		if ( 0!=FpgaTest() )	// 寄存器读写测试成功
 		{
-			
 			// 确定系统时钟模式并配置时钟芯片
 			//CheckClkMode();     
 			// 配置FPGA寄存器
 			AfterFpgaLoad();
-			
 ////			sys_param_1b[MADD_LOAD_FPGA_ST].val = 0;	// 加载成功
 			printf("FPGA test success\r\n");
 		}

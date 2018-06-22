@@ -7,9 +7,9 @@
 #define MAX_CLI_CAHR	53
 #define MAX_CLI_ARGS	10
 
-enum  cmd_num{ hello ,sendpkt ,fs ,memm ,ls, touch, cat, writef ,rm , parse_then_set };
-const char *cmd_num[]={ "hello" ,"sendpkt", "fs" ,"memm", "ls", "touch", "cat", "writef" , "rm" ,"parse_then_set" };
-#define NUM_OF_CMD 10
+enum  cmd_num{ hello ,sendpkt ,memm ,ls, touch, cat, writef ,rm , parse_then_set, devmem, fpga, fwinfo, help };
+const char *cmd_num[]={ "hello" ,"sendpkt", "memm", "ls", "touch", "cat", "writef" , "rm" ,"parse_then_set" , "devmem", "fpga", "fwinfo", "help"};
+#define NUM_OF_CMD 13
 
 int prompt_hello(int argc, char * argv[])
 {
@@ -233,7 +233,7 @@ int prompt_writef(int argc, char * argv[])
 			printf("\r| formart : writef -f <filename> -m <text>             |\n");
 			printf("\r+------------------------------------------------------+\n\r");
 			return 0;
-		}	
+		}
 	}
 
 	//printf("filename=%s\n",filename);
@@ -258,108 +258,6 @@ int prompt_writef(int argc, char * argv[])
 	SPIFFS_close(&sfblk0p1, fd);
 	return 0;
 
-}
-int prompt_fs(int argc, char * argv[])
-{
-	uint8_t tmp[256];
-	int i;
-	int c;
-
-	spiffs_DIR d;
-	extern spiffs sfblk0p1;
-	struct spiffs_dirent e;
-	struct spiffs_dirent *pe = &e;
-	
-	char *ReadBuf;
-	spiffs_file fd;
-	spiffs_stat s;
-	int file_size;
-	int res;
-	
-	while ((c = getopt(argc, argv, "ltc:wedh")) != EOF){
-
-		switch ( c ){
-		case 'l':
-			SPIFFS_opendir(&sfblk0p1, "/", &d);
-			while ((pe = SPIFFS_readdir(&d, pe))) {
-				printf("%s [%04x] size:%i\n", pe->name, pe->obj_id, pe->size);
-			}
-			SPIFFS_closedir(&d);
-			break;
-		case 't':
-			break;
-		case 'c':
-			fd = SPIFFS_open(&sfblk0p1, optarg, SPIFFS_RDWR, 0);
-			if (fd < 0) {
-				printf("Can not open file %i\n", SPIFFS_errno(&sfblk0p1));
-				break;
-			}
-			res = SPIFFS_fstat(&sfblk0p1, fd, &s);
-			if (res < 0) {
-				printf("stat errno: %i\n", SPIFFS_errno(&sfblk0p1));
-				break;
-			}
-			printf("cat size=%d\n",s.size);
-			ReadBuf = malloc(s.size+1);
-			if (ReadBuf!=NULL){
-				if (SPIFFS_read(&sfblk0p1, fd, ReadBuf, s.size ) < 0){
-					printf("errno: %i\n", SPIFFS_errno(&sfblk0p1));
-				}
-				ReadBuf[s.size]=0x00;
-				printf("%s\n", ReadBuf);
-				
-				//for(i=0;i<s.size;i++)
-				//	printf("0x%02X",ReadBuf[i]);
-				//printf("\n");
-				free(ReadBuf);
-			}
-			SPIFFS_close(&sfblk0p1, fd);
-			break;
-		case 'w':
-			fd = SPIFFS_open(&sfblk0p1, "my_file", SPIFFS_CREAT | SPIFFS_RDWR, 0);
-		
-			if (fd < 0) {
-				printf("Can not open file %i\n", SPIFFS_errno(&sfblk0p1));
-				break;
-			}
-
-			res = SPIFFS_lseek(&sfblk0p1, fd, -1, SPIFFS_SEEK_END);
-			if (res < 0) {
-				printf("lseek errno: %i\n", SPIFFS_errno(&sfblk0p1));
-				break;
-			}
-
-			if (SPIFFS_write(&sfblk0p1, fd, (u8_t *)"Hello world", 12) < 0) {
-				printf("write errno %i\n", SPIFFS_errno(&sfblk0p1));
-				break;
-			}
-			SPIFFS_close(&sfblk0p1, fd);
-			break;
-		case 'e':
-			SPI_Flash_Erase();
-			break;
-		case 'd':
-			break;
-		case '?':
-			printf("Unknown option %c\n\r",optopt);
-			break;
-		case ':':
-			printf("-%c needs value\n\r",optopt);
-			break;
-		case 'h':
-		default:	
-			printf("\r+--------------------+\n");
-			printf("\r| help:              |\n");
-			printf("\r| l: list /          |\n");
-			printf("\r| c: cat filename    |\n");
-			printf("\r| w: write filename  |\n");
-			printf("\r| c: create filename |\n");
-			printf("\r| d: delect filename |\n");		
-			printf("\r+--------------------+\n\r");
-
-			return 0;
-		}
-	}
 }
 
 int prompt_memm(int argc, char * argv[])
@@ -449,7 +347,111 @@ int prompt_parse_then_set(int argc, char * argv[])
 
 }
 
+int prompt_devmem(int argc, char * argv[])
+{
+	uint32_t addr;
+	uint16_t value;
+	int width ;
+	int c;
+	
+	if(argv[3] ){/*write*/
+		width  = (uint32_t)strtol( argv[2], NULL, 0 );
+		if(width == 16){
+			addr = (uint32_t)strtol( argv[1], NULL, 0 );
+			value = (uint16_t)strtol( argv[3], NULL, 0 );
+			PLWriteRegister(addr, value);
+		}else{
+			goto usage_text;
+		}
+	}else if(argc ==2){/*read*/
+		addr = (uint32_t)strtol( argv[1], NULL, 0 );
+		printf("0x%04X\n",PLReadRegister(addr) );
 
+	}else{
+		goto usage_text;
+	}
+
+	return 0;
+
+usage_text:
+	printf("\r+---------------------------------------+\n");
+	printf("\r| Usage: devmem ADDRESS [WIDTH [VALUE]] |\n");
+	printf("\r| Read/write from physical address      |\n");
+	printf("\r| ADDRESS Address to act upon           |\n");
+	printf("\r| WIDTH   Width only16                  |\n");
+	printf("\r| VALUE   Data to be written            |\n");
+	printf("\r+---------------------------------------+\n\r");
+
+}
+
+int prompt_fpga(int argc, char * argv[])
+{
+	uint16_t addr;
+	uint16_t value;
+	int c;
+
+	if(argv[2] ){/*write*/
+		FPGA_ENABLE_WRITE;
+
+		addr = (uint16_t)strtol( argv[1], NULL, 0 );
+		value = (uint16_t)strtol( argv[2], NULL, 0 );
+		//printf("string: %s %s,%s \n",argv[0],argv[1],argv[3]);
+		//printf("%x %x\n",addr, value);
+		FpgaWriteRegister(FPGA_WO_REG(addr), value);
+
+	}else if(argc ==2){/*read*/
+		addr = (uint16_t)strtol( argv[1], NULL, 0 );
+		//printf("argc ==2\n" );
+		printf("0x%04X\n",FpgaReadRegister(addr) );
+
+	}else{
+		printf("\r+---------------------------------------+\n");
+		printf("\r| Usage: fpga ADDRESS [VALUE]           |\n");
+		printf("\r+---------------------------------------+\n\r");
+	}
+
+	return 0;
+
+}
+
+void prompt_fwinfo(void)
+{
+	uint8_t *buf;
+	uint8_t *p;
+	int i;
+	
+	printf("[MCU fw info]\n");
+	printf("Build time: %s %s \n", __DATE__, __TIME__);
+	
+	printf("[FPGA fw info]\n");
+	printf("Ver Code: 0x%02X\n", (uint8_t)PLReadRegister(0x60000004));
+	printf(" hw Code: 0x%02X\n", (uint8_t)PLReadRegister(0x60000008));
+	printf(" SN Code: 0x%02X\n", (uint8_t)PLReadRegister(0x6000000C));
+	
+	buf = malloc(65);
+	p = buf;
+	for( i=0; i<64; i++){
+		*buf = (uint8_t)PLReadRegister(0x60000010);
+		buf++;
+	}
+	*buf = 0x00;
+
+	printf("Watermark: %s\n", p );
+	free(p);
+}
+
+void prompt_help(void)
+{
+	printf("fwinfo  - print mcu and fpga watermark info\n");
+	printf("ls      - list files in flash filesystem\n");
+	printf("touch   - create a blank file\n");
+	printf("cat     - read document content\n");
+	printf("writef  - write a string into end of the file\n");
+	printf("rm      - delete file of flash with filename or id \n");
+	printf("parse_then_set - parse the json config file and set regs\n");
+	printf("devmem  - read/write reg (mem map addr)\n");
+	printf("fpga    - read/write reg (phy addr)\n");
+}
 int command_process(char * str )
 {
 	int i;
@@ -461,7 +463,8 @@ int command_process(char * str )
 	char * argv[MAX_CLI_ARGS];
 	int argc = 0;
 
-	
+	printf("\r\n");
+
 	for(i=0;i<MAX_CLI_ARGS;i++){
 		argv[i] = NULL ;
 	}
@@ -469,7 +472,7 @@ int command_process(char * str )
 	WTD_CLR;
 	optind=1; // repoint optge gal point to start head
 	
-	printf("strlen=%d\n",strlen(str));
+	//printf("strlen=%d\n",strlen(str));
 	/* 获取第一个子字符串 */
 	token = strtok(str, " ");
 	argv[argc++] = token;
@@ -483,7 +486,7 @@ int command_process(char * str )
 	argc-=1;//去掉末尾有问题项
 
 	for(i=0;i<argc;i++){
-		printf("argv[%d]=%s\n",i, argv[i] );
+		//printf("argv[%d]=%s\n",i, argv[i] );
 	}
 	
 	for(i=0; i<NUM_OF_CMD; i++){
@@ -502,12 +505,11 @@ WTD_CLR;
 	case sendpkt:
 		prompt_sendpkt(argc,argv );
 		break;
-	case fs:
-		prompt_fs(argc,argv );
-		break;
+
 	case memm:
 		prompt_memm(argc,argv );
 		break;
+	
 	/*--------file option--------*/
 	case ls:
 		prompt_ls();
@@ -524,10 +526,27 @@ WTD_CLR;
 	case rm:
 		prompt_rm(argc,argv );
 		break;
+	/*--------file option end----*/
+	
 	case parse_then_set:
 		prompt_parse_then_set(argc,argv );
 		break;
-	/*--------file option end----*/
+	
+	case devmem:
+		prompt_devmem(argc,argv );
+		break;
+
+	case fpga:
+		prompt_fpga(argc,argv );
+		break;
+	
+	case fwinfo:
+		prompt_fwinfo();
+		break;
+	
+	case help:
+		prompt_help();
+		break;	
 	default:
 		printf("unknow command\n\r");
 		break;

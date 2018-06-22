@@ -13,7 +13,7 @@
 *shiyang		2008-01-29	v0.1			初始版本
 **************************************************************/
 #include "Header.h"
-
+#include <stdint.h>
 
 extern UCHAR8      sys_temp_buff[SYS_TMP_BUFF_SIZE];
 
@@ -129,15 +129,7 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 	src_ree = (UCHAR8)((src_add>>0)&0x00ff);		   // 低位表示Ree号
 
 	TRACE_INFO("FpgaSendMsgPkt(%02x:%02x:%02x)-->des(%02x:%02x:%02x)\r\n" , src_fp,src_re,src_ree, des_fp,des_re,des_ree);
-#if 0	
-	if (    (  (des_fp>FP_MAX)&&(  (BROADCAST_ADD_FP!=des_fp)  || (BROADCAST_ADD_FP!=des_fp)  )   )
-		||( (des_re>RE_MAX)&&(  (BROADCAST_ADD_RE!=des_re)  || (BROADCAST_ADD_FP!=des_fp)   )   )
-		||(  (des_ree>REE_MAX)&& (  (BROADCAST_ADD_REE!=des_ree)  || (BROADCAST_ADD_FP!=des_fp)   )  )
-		)
-	{
-		return;
-	}
-#endif
+
 
 	FPGA_ENABLE_WRITE;
 
@@ -291,15 +283,7 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 	des_re = (UCHAR8)((des_add>>8)&0xff);		// 低位表示RE号
 	des_ree = (UCHAR8)(des_add&0xff);		// 低位表示REe号
 //	TRACE_INFO("FpgaSendMsgPkt [%02X:%02X:%02X]->[%02X:%02X:%02X],cmd=%02X\r\n",*( p_msg_dat+3),*( p_msg_dat+4),*( p_msg_dat+5),des_fp,des_re,des_ree,p_msg_dat[MSG_CMD_ID] );
-#if 0	
-	if (    (  (des_fp>FP_MAX)&&(  (BROADCAST_ADD_FP!=des_fp)  || (BROADCAST_ADD_FP!=des_fp)  )   )
-		||( (des_re>RE_MAX)&&(  (BROADCAST_ADD_RE!=des_re)  || (BROADCAST_ADD_FP!=des_fp)   )   )
-		||(  (des_ree>REE_MAX)&& (  (BROADCAST_ADD_REE!=des_ree)  || (BROADCAST_ADD_FP!=des_fp)   )  )
-		)
-	{
-		return;
-	}
-#endif
+
 
 	FPGA_ENABLE_WRITE;
 
@@ -380,232 +364,6 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 }
 #endif
 
-#if 0
-/*************************************************************
-Name:FpgaSaveMsgDat
-Description: 从光口数据FIFO读取数据，存入指定缓冲区
-Input:
-	len: 要读取的数据长度
-	p_save_buff: 缓冲区地址
-Output:void         
-Return: 已保存的数据长度
-**************************************************************/
-INT16 FpgaSaveMsgDat( INT16 len, UCHAR8 *p_save_buff )
-{
-	INT16 i = 0;
-	UCHAR8 tmp;
-
-	if (( 0 != p_save_buff )&&( len <= FPGA_MSG_BUFF_SIZE ))
-	{
-		for ( i=0; i<len; i++ )
-		{
-			tmp = FpgaReadRegister( FPGA_REG_R_MSG_DAT );
-			*p_save_buff++ = tmp;
-		} 
-	} 
-	
-	//TRACE_INFO_WP("save fpga rx_dat(%d).", len);
-	
-	return i;
-}
-
-/*************************************************************
-Name:FpgaGetMsgPkt
-Description: 通过FPGA向光口的RE发送数据
-Input:
-	des_add: 接收数据包的地址，高8位表示光口号，低8位表示RE序号
-	src_add: 发送数据包的地址，高8位表示光口号，低8位表示RE序号
-	length: 数据包字节长度
-	p_msg_dat: 只是数据缓冲的指针
-Output:void         
-Return:void
-**************************************************************/
-void FpgaGetMsgPkt( void )
-{
-	UINT32 i,j,k;
-	UINT32 tmp;
-	UINT16 msg_fifo_st;
-	static UCHAR8 des_fp, des_re;
-	static UCHAR8 src_fp, src_re;
-	INT16  frame_len;
-	UCHAR8 frame_no;
-	BOOL   msg_end_flag = b_FALSE;
-	UINT32 msg_len;
-	UCHAR8 *p_msg_dat = 0;
-
-	WTD_CLR;
-	
-	if ( FPGA_LDST_OK != fpga_load_status )
-	{
-		// FPGA故障，返回
-		return;    
-	} 
- 
-	// 光口数据包接收FIFO状态,位对应,低8位1表示FIFO有数据,高8位1表示FIFO满 
-	msg_fifo_st = FpgaReadRegister( FPGA_REG_MSG_FIFO_ST );
-	
-	// 按光口顺序处理数据包 
-	for ( i=0; i<FP_MAX; i++ )
-	{
-		// 写入要操作的光口号
-		FPGA_ENABLE_WRITE;
-		FPGA_SET_OPT(i);
-		FPGA_DISABLE_WRITE; 
-
-		// 累计数据包错误计数 ，并清空对应寄存器
-		bit_err_cnt += FpgaReadRegister(FPGA_REG_PKT_ERR_COUNT);
-		FpgaReadRegister(FPGA_REG_CLEAR_PKT_ERR);
-		
-		// 判断光口是否有收到数据包
-		if ( 0 != (msg_fifo_st & (0x0001<<i)) ) 
-		{
-			p_msg_dat = sys_temp_buff;
-			
-			for ( j=0; j<FPGA_FRAME_FIFO_SIZE; j++ )
-			{
-				*p_msg_dat++ = (UCHAR8)( 0x00FF & FpgaReadRegister( FPGA_REG_R_MSG_DAT ) );
-			} 	   
-	   		
-	   		// 读取数据长度
-	   		frame_len = sys_temp_buff[4];	 //TRACE_INFO("frame_len = %d\r\n",frame_len);  
-	   		
-	   		// 读取数据帧编号  
-	   		frame_no = sys_temp_buff[5];	 // TRACE_INFO("frame_no = %02x\r\n",frame_no);
-
-			if (( src_fp>FP_MAX )||( src_re>RE_MAX )||(0==frame_len)||(frame_len>FPGA_MSG_BUFF_SIZE)||
-				((frame_no&MSG_FRAME_INDEX_MASK)>=MSG_MAX_FRAME_INDEX) )
-			{
-				// 切换FIFO页
-				FpgaReadRegister( FPGA_REG_R_NEXT_MSG );
-				continue;
-			}  
-			
-			frame_len--;	  // 长度减1,即为有效数据长度
-
-			if ( 0 ==(frame_no & MSG_FRAME_INDEX_MASK) ) 
-			{ 
-				des_fp   = sys_temp_buff[6];
-				des_re   = sys_temp_buff[7];
-				src_fp   = sys_temp_buff[8];
-				src_re   = sys_temp_buff[9];
-			}       
-
-			if ( 0 != (frame_no & MSG_FRAME_END_FLAG) )	// 最末帧
-			{
-				msg_end_flag = b_TRUE;
-				
-				frame_no &= MSG_FRAME_INDEX_MASK;	// 取得帧编号
-				
-				// 判断是否是大数据包
-				if ( frame_no > 0 )
-				{	
-					// 大数据包，判断RE是否有大缓冲使用权
-					tmp = GetReBigMsgBuffIndex( src_fp, src_re );
-					
-					if ( 0 == tmp ) 	// 该RE没有大缓冲的使用权
-					{
-						// 返回接收端未就绪的应答
-						p_msg_dat = 0;
-						MsgReceiverBusy( src_fp, src_re );
-						continue;
-					} 
-					else
-					{
-						// 存入大数据缓冲
-						tmp--;
-						p_msg_dat = msg_big_buff[tmp].buff;
-						p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
-						msg_len = frame_no * FPGA_MSG_FRAME_LEN + frame_len;
- 					}
-				}
-				else
-				{
-					// 普通数据包，直接保存并处理
-					p_msg_dat = msg_buff[i];
-					msg_len = frame_len;
-				}
-			}
-			else
-			{
-				// 不是最后的数据帧
-				msg_end_flag = b_FALSE; 
-				
-				// 数据需要保存到大缓冲中，先判断RE有没有大缓冲的使用权
-				tmp = GetReBigMsgBuffIndex( src_fp, src_re );
-				
-				if ( 0 == tmp )	 // RE没有大数据缓冲的使用权
-				{  
-					tmp = GetFreeBigBuffIndex();
-
-					if ( 0 != tmp )	// 大数据缓冲空闲,将其分配给当前RE
-					{
-						tmp--;    
-						
-						msg_big_buff[tmp].owner = ((src_fp<<8)|src_re); 
-						msg_big_buff[tmp].time_out = MSG_BIG_PKT_TIME_OUT;
-
-						 // 数据指针指向大数据缓冲    
-						p_msg_dat = msg_big_buff[tmp].buff; 
-						p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
-					}
-					else // 大数据缓冲被占用
-					{
-						// 返回接收端未就绪的应答
-						p_msg_dat = 0;
-						MsgReceiverBusy( src_fp, src_re );
-						continue;
-					} 
-				}
-				else
-				{
-					tmp--;
-					msg_big_buff[tmp].time_out = MSG_BIG_PKT_TIME_OUT;
-					p_msg_dat = msg_big_buff[tmp].buff;
-					p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
-				} 
-			}
-
-			WTD_CLR; 
-
-			for ( k=0; k<frame_len; k++ )
-		    {
-				*p_msg_dat++ = sys_temp_buff[k+6];  
- 	
-		    }
-           
-			// 切换FIFO页
-			FpgaReadRegister( FPGA_REG_R_NEXT_MSG );
-
-			if ( b_TRUE == msg_end_flag )
-			{
-				
-				if ( frame_no>0 )
-				{  
-					 //TRACE_INFO_WP("handle big pkt\r\n");
-					tmp = GetReBigMsgBuffIndex( src_fp, src_re );
-					
-					if ( tmp>0 )
-					{
-						tmp--;
-						MsgHandle(msg_len, msg_big_buff[tmp].buff );
-						msg_big_buff[tmp].owner = 0;		// 释放大数据缓冲资源
-					}
-				}
-				else
-				{ 
-					//TRACE_INFO_WP("handle small pkt\r\n");
-					MsgHandle( msg_len, msg_buff[i] );
-				}  
-				 
-
-			}
-			
-		}
-	}
-	
-}
-#endif
-
 /*************************************************************
 Name:FpgaSaveMsgDat
 Description: 从光口数据FIFO读取数据，存入指定缓冲区
@@ -662,7 +420,7 @@ void FpgaGetMsgPkt( void )
 	UCHAR8 *p_msg_dat = 0;
 
 	WTD_CLR;
-	
+
 	if ( FPGA_LDST_OK != fpga_load_status )
 	{
 		// FPGA故障，返回
@@ -865,14 +623,7 @@ void FpgaGetMsgPkt( void )
 						tmp--;
 						MsgHandle(src_fp, src_re, src_ree,msg_len, msg_big_buff[tmp].buff);
 						msg_big_buff[tmp].owner = 0;		// 释放大数据缓冲资源
-#if 0  				
-							for(j=0;j<msg_len;j++)
-							{
-					
-              						TRACE_INFO("msg_big_buff[i].buff[%d]=%d\r\n",j,msg_big_buff[i].buff[j]); 
-
-							}
-#endif							
+							
 							/****test*********///20121127
 
 						
@@ -885,14 +636,7 @@ void FpgaGetMsgPkt( void )
 
 							/****test*********///20121127
 			//				TRACE_INFO_WP("msg_buff3\r\n");
-#if 0  				
-							for(j=0;j<msg_len;j++)
-							{
-					
-              						TRACE_INFO("msg_buff2[%d]=%d\r\n",j,msg_buff[i][j]); 
-
-							}
-#endif							
+							
 							/****test*********///20121127
 				}  
 				
@@ -906,455 +650,8 @@ void FpgaGetMsgPkt( void )
 }
 
 #else
-/*************************************************************
-Name:FpgaGetMsgPkt
-Description: 通过FPGA从光口的读取RE数据
-Input:
-	des_add: 接收数据包的地址，高8位表示光口号，低8位表示RE序号
-	src_add: 发送数据包的地址，高8位表示光口号，低8位表示RE序号
-	length: 数据包字节长度
-	p_msg_dat: 只是数据缓冲的指针
-Output:void         
-Return:void
-**************************************************************/
-void FpgaGetMsgPkt( void )
-{
-	UINT32 i,j,k;
-	UINT32 tmp;
-	UINT16 msg_fifo_st;
-	static UCHAR8 des_fp, des_re,des_ree;
-	static UCHAR8 src_fp[FP_MAX], src_re[FP_MAX],src_ree[FP_MAX];
-	INT16  frame_len;
-	UCHAR8 frame_no;
-	BOOL   msg_end_flag = b_FALSE;
-	UINT32 msg_len;
-	UCHAR8 *p_msg_dat = 0;
 
-	WTD_CLR;
-	
-	if ( FPGA_LDST_OK != fpga_load_status )
-	{
-		// FPGA故障，返回
-		return;    
-	} 
- 
-	// 光口数据包接收FIFO状态,位对应,低8位1表示FIFO有数据,高8位1表示FIFO满 
-	msg_fifo_st = FpgaReadRegister( FPGA_REG_MSG_FIFO_ST );
-	
-	// 按光口顺序处理数据包 
-	for ( i=0; i<FP_MAX; i++ )
-	{
-		// 写入要操作的光口号
-		FPGA_ENABLE_WRITE;
-		FPGA_SET_OPT(i);
-		FPGA_DISABLE_WRITE; 
-
-		// 累计数据包错误计数 ，并清空对应寄存器
-		bit_err_cnt += FpgaReadRegister(FPGA_REG_PKT_ERR_COUNT);
-		FpgaReadRegister(FPGA_REG_CLEAR_PKT_ERR);
-//		TRACE_INFO_WP("fpga rx1\n"); 
-		// 判断光口是否有收到数据包
-		if ( 0 != (msg_fifo_st & (0x0001<<i)) )
-		{
-			TRACE_INFO_WP("fpga rx2\n"); 
-			p_msg_dat = sys_temp_buff;
-			
-			for ( j=0; j<FPGA_FRAME_FIFO_SIZE; j++ )
-			{
-				*p_msg_dat++ = (UCHAR8)( 0x00FF & FpgaReadRegister( FPGA_REG_R_MSG_DAT ) );
-			} 
-
-	   		// 读取数据长度
-	   		frame_len = sys_temp_buff[4];	
-	   		
-	   		// 读取数据帧编号 
-	   		frame_no = sys_temp_buff[5]; 
-			 
-			if ( 0 ==(frame_no & MSG_FRAME_INDEX_MASK) )
-			{
-			//	TRACE_INFO("the fisrt data packet\r\n");
-				
-				des_fp   = sys_temp_buff[6];
-				des_re   = sys_temp_buff[7];
-	            des_ree   = sys_temp_buff[8];
-				
-				src_fp[i]   = sys_temp_buff[9];
-				src_re[i]   = sys_temp_buff[10];
-	           		 src_ree[i]   = sys_temp_buff[11];
-
-				TRACE_INFO("FpgaGetMsgPkt--(%02X:%02X:%02X->%02X:%02X:%02X-len=%d).", src_fp[i], src_re[i], src_ree[i], des_fp, des_re,des_ree, frame_len);
-
-			}  	
-			
-			if ((0==frame_len)||(frame_len>FPGA_MSG_BUFF_SIZE)||
-				((frame_no&MSG_FRAME_INDEX_MASK)>=MSG_MAX_FRAME_INDEX) )
-			{
-				TRACE_INFO_WP("FpgaGetMsgPkt--Err(%02X:%02X->%02X:%02X-%d).", src_fp[i], src_re[i], des_fp, des_re, frame_len);
-				// 切换FIFO页
-				FpgaReadRegister( FPGA_REG_R_NEXT_MSG );
-				continue;
-			} 
-			
-			//TRACE_INFO_WP( "(%d) fi(0x%02X).", frame_len, frame_no );
-
-			frame_len--;	// 长度减1,即为有效数据长度   
-			  			 
-			if ( 0 != (frame_no & MSG_FRAME_END_FLAG) )	// 最末帧
-			{
-				msg_end_flag = b_TRUE;
-				
-				frame_no &= MSG_FRAME_INDEX_MASK;	// 取得帧编号
-				
-				// 判断是否是大数据包
-				if ( frame_no > 0 )
-				{	
-					// 大数据包，判断RE是否有大缓冲使用权
-					tmp = GetReBigMsgBuffIndex( src_fp[i], src_re[i],src_ree[i]);
-					
-					if ( 0 == tmp ) 	// 该RE没有大缓冲的使用权
-					{
-						// 返回接收端未就绪的应答
-						p_msg_dat = 0;
-						MsgReceiverBusy( src_fp[i], src_re[i],src_ree[i]);
-						continue;
-					} 
-					else
-					{
-						// 存入大数据缓冲
-						tmp--;
-						p_msg_dat = msg_big_buff[tmp].buff;
-						p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
-						msg_len = frame_no * FPGA_MSG_FRAME_LEN + frame_len;
- 					}
-				}
-				else
-				{
-					// 普通数据包，直接保存并处理
-					p_msg_dat = msg_buff[i];
-					msg_len   = frame_len;
-				}
-			}
-			else
-			{
-				// 不是最后的数据帧
-				msg_end_flag = b_FALSE; 
-				
-				// 数据需要保存到大缓冲中，先判断RE有没有大缓冲的使用权
-				tmp = GetReBigMsgBuffIndex( src_fp[i], src_re[i],src_ree[i]);
-				
-				if ( 0 == tmp )	 // RE没有大数据缓冲的使用权
-				{  
-					tmp = GetFreeBigBuffIndex();
-
-					if ( 0 != tmp )	// 大数据缓冲空闲,将其分配给当前RE
-					{
-						tmp--;    
-						
-						msg_big_buff[tmp].owner = ((src_fp[i]<<16)|(src_re[i]<<8)|src_ree[i]); 
-						msg_big_buff[tmp].time_out = MSG_BIG_PKT_TIME_OUT;
-
-						 // 数据指针指向大数据缓冲    
-						p_msg_dat = msg_big_buff[tmp].buff; 
-						p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
-					}
-					else // 大数据缓冲被占用
-					{
-						// 返回接收端未就绪的应答
-						p_msg_dat = 0;
-						MsgReceiverBusy( src_fp[i], src_re[i],src_ree[i]);
-						continue;
-					} 
-				}
-				else
-				{
-					tmp--;
-					msg_big_buff[tmp].time_out = MSG_BIG_PKT_TIME_OUT;
-					p_msg_dat = msg_big_buff[tmp].buff;
-					p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
-				} 
-			} 
-
-			WTD_CLR;
-			
-			for ( k=0; k<frame_len; k++ )
-			{
-				*p_msg_dat++ = sys_temp_buff[k+6];
-			}  
-			
-			// 切换FIFO页 
-			FpgaReadRegister( FPGA_REG_R_NEXT_MSG );
-			TRACE_INFO_WP("fpga rx3\n"); 
-		//	TRACE_INFO_WP("msg_end_flag(%d)\n",msg_end_flag); 
-			if ( b_TRUE == msg_end_flag )
-			{
-				//TRACE_INFO_WP("handle.");
-				if ( frame_no>0 )
-				{
-					
-					tmp = GetReBigMsgBuffIndex( src_fp[i], src_re[i],src_ree[i]);
-		//		TRACE_INFO_WP("GetReBigMsgBuffIndex(%d)\n",tmp); 				
-					if ( tmp>0 )
-					{
-//						TRACE_INFO_WP("msg_big_buff(%d)\n",tmp); 
-						tmp--;
-						MsgHandle(src_fp[i], src_re[i], src_ree[i],msg_len, msg_big_buff[tmp].buff);
-						msg_big_buff[tmp].owner = 0;		// 释放大数据缓冲资源
-						
-							/****test*********///20121127
-
-						
-					}
-				}
-				else
-				{
-					MsgHandle(src_fp[i], src_re[i], src_ree[i],msg_len, msg_buff[i]);
-//					MsgHandle( msg_len, msg_buff[i] );
-
-							/****test*********///20121127
-			//				TRACE_INFO_WP("msg_buff3\r\n");
-#if 0  				
-							for(j=0;j<msg_len;j++)
-							{
-					
-              						TRACE_INFO("msg_buff2[%d]=%d\r\n",j,msg_buff[i][j]); 
-
-							}
-#endif							
-							/****test*********///20121127
-				}  
-				
-
-			}         
-			
-			
-		}
-	}
-	
-}
 #endif
-
-#if 0
-/*************************************************************
-Name:FpgaGetMsgPkt
-Description: 通过FPGA向光口的RE发送数据
-Input:
-	des_add: 接收数据包的地址，高8位表示光口号，低8位表示RE序号
-	src_add: 发送数据包的地址，高8位表示光口号，低8位表示RE序号
-	length: 数据包字节长度
-	p_msg_dat: 只是数据缓冲的指针
-Output:void         
-Return:void
-**************************************************************/
-void FpgaGetMsgPkt( void )
-{
-	UINT32 i,j;
-	UINT32 tmp;
-	UINT16 msg_fifo_st;
-	UCHAR8 des_fp, des_re, des_ree;
-	UCHAR8 src_fp, src_re, src_ree;
-	INT16 frame_len;
-	UCHAR8 frame_no;
-	BOOL msg_end_flag = b_FALSE;
-	UINT32 msg_len;
-	UCHAR8 *p_msg_dat = 0;
-
-	WTD_CLR;
-	if ( FPGA_LDST_OK != fpga_load_status )
-	{
-		// FPGA故障，返回
-		return;
-	}
-
-	// 读取数据包FIFO状态
-	msg_fifo_st = FpgaReadRegister( FPGA_REG_MSG_FIFO_ST );
-	
-	// 按光口顺序处理数据包
-	for ( i=0; i<FP_MAX; i++ )
-	{
-		// 写入要操作的光口号
-		FPGA_ENABLE_WRITE;
-		FPGA_SET_OPT(i);
-		FPGA_DISABLE_WRITE;
-
-		// 累计数据包错误计数
-		bit_err_cnt += FpgaReadRegister(FPGA_REG_PKT_ERR_COUNT);
-		FpgaReadRegister(FPGA_REG_CLEAR_PKT_ERR);
-
-		TRACE_INFO_WP( "test1");
-		TRACE_INFO_WP( "msg_fifo_st=%d",msg_fifo_st);
-		// 判断光口是否有收到数据包
-		if ( 0 != (msg_fifo_st & (0x0001<<i)) )
-		{
-			TRACE_INFO_WP("fpga rx");
-	
-			// 读取目的地址
-			des_fp = FpgaReadRegister( FPGA_REG_R_MSG_DAT )+2;
-			des_re = FpgaReadRegister( FPGA_REG_R_MSG_DAT )+1;
-			des_ree = FpgaReadRegister( FPGA_REG_R_MSG_DAT );
-			// 读取源地址
-			src_fp = FpgaReadRegister( FPGA_REG_R_MSG_DAT )+2;
-			src_re = FpgaReadRegister( FPGA_REG_R_MSG_DAT )+1;
-			src_ree = FpgaReadRegister( FPGA_REG_R_MSG_DAT );
-			
-			// 读取数据长度
-			frame_len = FpgaReadRegister( FPGA_REG_R_MSG_DAT );
-			
-			// 读取数据帧编号
-			frame_no = FpgaReadRegister( FPGA_REG_R_MSG_DAT );
-
-			TRACE_INFO_WP(" test(%02X:%02X->%02X:%02X-%d).", src_fp, src_re, des_fp, des_re, frame_len);//add20121127
-			
-			if (( src_fp>FP_MAX )||( src_re>RE_MAX )||(0==frame_len)||(frame_len>FPGA_MSG_BUFF_SIZE)||
-				((frame_no&MSG_FRAME_INDEX_MASK)>=MSG_MAX_FRAME_INDEX) )
-			{
-				TRACE_INFO_WP(" Err(%02X:%02X->%02X:%02X-%d).", src_fp, src_re, des_fp, des_re, frame_len);
-				// 切换FIFO页
-				FpgaReadRegister( FPGA_REG_R_NEXT_MSG );
-				continue;
-			}
-			
-			TRACE_INFO_WP( "(%d) fi(0x%02X).", frame_len, frame_no );
-
-			frame_len--;	// 长度减1,即为有效数据长度
-
-			// 释放缓冲区指针
-			p_msg_dat = 0;
-			
-			if ( 0 != (frame_no & MSG_FRAME_END_FLAG) )	// 最末帧
-			{
-				msg_end_flag = b_TRUE;
-				
-				frame_no &= MSG_FRAME_INDEX_MASK;	// 取得帧编号
-				
-				// 判断是否是大数据包
-				if ( frame_no > 0 )
-				{	
-					// 大数据包，判断RE是否有大缓冲使用权
-					tmp = GetReBigMsgBuffIndex( src_fp, src_re );
-					
-					if ( 0 == tmp ) 	// 该RE没有大缓冲的使用权
-					{
-						// 返回接收端未就绪的应答
-						MsgReceiverBusy( src_fp, src_re );
-					}
-					else
-					{
-						// 存入大数据缓冲
-						tmp--;
-						p_msg_dat = msg_big_buff[tmp].buff;
-						p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
-						msg_len = frame_no * FPGA_MSG_FRAME_LEN + frame_len;
- 					}
-				}
-				else
-				{
-					// 普通数据包，直接保存并处理
-					p_msg_dat = msg_buff[i];
-					msg_len = frame_len;
-				}
-			}
-			else
-			{
-				// 不是最后的数据帧
-				msg_end_flag = b_FALSE;
-				
-				// 数据需要保存到大缓冲中，先判断RE有没有大缓冲的使用权
-				//if ( 0 == (re_msg_buff_st[src_fp] & (0x00000001<<src_re)) )
-				tmp = GetReBigMsgBuffIndex( src_fp, src_re );
-				if ( 0 == tmp )	 // RE没有大数据缓冲的使用权
-				{
-					tmp = GetFreeBigBuffIndex();
-
-					if ( 0 != tmp )	// 大数据缓冲空闲,将其分配给当前RE
-					{
-						tmp--;
-						
-						msg_big_buff[tmp].owner = ((src_fp<<8)|src_re);
-						msg_big_buff[tmp].time_out = MSG_BIG_PKT_TIME_OUT;
-
-						// 数据指针指向大数据缓冲
-						p_msg_dat = msg_big_buff[tmp].buff;
-						p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
-					}
-					else		// 大数据缓冲被占用
-					{
-						// 返回接收端未就绪的应答
-						MsgReceiverBusy( src_fp, src_re );
-					}
-				}
-				else
-				{
-					tmp--;
-					msg_big_buff[tmp].time_out = MSG_BIG_PKT_TIME_OUT;
-					p_msg_dat = msg_big_buff[tmp].buff;
-					p_msg_dat += ( frame_no * FPGA_MSG_FRAME_LEN );
-				}
-			}
-
-			FPGA_ENABLE_WRITE;
-			FPGA_SET_OPT(i);
-			FPGA_DISABLE_WRITE;
-
-			WTD_CLR;
-			tmp = 0;
-			if ( 0!=p_msg_dat )
-			{
-				// 读取数据
-				tmp = FpgaSaveMsgDat( frame_len, p_msg_dat );
-			}
-
-			// 切换FIFO页
-			FpgaReadRegister( FPGA_REG_R_NEXT_MSG );
-
-			if (( tmp>0 )&&( tmp<=FPGA_MSG_BUFF_SIZE))
-			{
-				WTD_CLR;
-				if ( 0!=p_msg_dat )
-				{
-					// 处理消息包
-					if ( b_TRUE == msg_end_flag )
-					{
-						TRACE_INFO_WP("handle(%d).", msg_len);
-						if ( frame_no>0 )
-						{
-							tmp = GetReBigMsgBuffIndex( src_fp, src_re );
-							if ( tmp>0 )
-							{
-								tmp--;
-								MsgHandle( src_fp, src_re, src_ree,msg_len, msg_big_buff[tmp].buff );
-								msg_big_buff[tmp].owner = 0;		// 释放大数据缓冲资源
-							}
-						}
-						else
-						{
-							MsgHandle( src_fp, src_re, msg_len, msg_buff[i] );
-							
-							/****test*********///20121127
-							TRACE_INFO_WP("msg_buff\r\n");
-				
-							for(j=0;j<msg_len;j++)
-							{
-//#if 0  					
-              						TRACE_INFO("msg_buff2[%d]=%d\n",j,msg_buff[i][j]); 
-//#endif
-							}
-							/****test*********///20121127
-
-							
-						}
-					}
-					
-					
-				}
-			}
-		}
-	}
-	
-	
-}
-#endif
-
-
 
 //#if 0//20130621
 /*************************************************************
@@ -1578,11 +875,11 @@ UCHAR8 FpgaTest()
 	FPGA_ENABLE_WRITE;
 	for ( i=0; i<16; i++)
 	{
-		
 		//FpgaWriteRegister(0x8000, dw);
 		FpgaWriteRegister(FPGA_REG_WRITE_PROTECT, dw);
 		dr = 0xffff&( ~ FpgaReadRegister(FPGA_REG_WRITE_CHECK) );
-		//TRACE_INFO("fpga test  w:%04X r:%04X\r\n", dw, ~dr);
+		
+		printf("fpga test  w:%04X r:%04X\r\n", dw, ~dr);
 		if ( dw !=dr )
 		{
 			wr_ok_flag = 0;
@@ -1743,6 +1040,21 @@ void FpgaPowSelSlot(UINT32 reg_add)
 	}
 }
 
+void PLWriteRegister(uint32_t addr, uint16_t data)
+{
+	FPGA_ENABLE_WRITE;
+	//printf("addr=0x%04X,data=0x%02X\n",addr,data);
+	*(volatile uint16_t *)addr = data;
+}
+
+uint16_t PLReadRegister(uint32_t addr)
+{
+	uint16_t tmp;
+	tmp = *(volatile uint16_t*)addr;
+	//printf("addr=0x%08X,tmp=0x%04X\n",addr, tmp);
+	return tmp;
+}
+
 /*************************************************************
 Name:FpgaWriteRegister
 Description:向FPGA写寄存器写数据
@@ -1754,17 +1066,15 @@ void FpgaWriteRegister(UINT16 add, UINT16 dat)
 {
 	UINT16 ch = 0;
 
-
 	if ( FPGA_LDST_OK != fpga_load_status )
 	{
-		return;		
-	}	
+		return;
+	}
 	if (0==(add & 0x8000))
 	{
 		return;
 	}
 
-	
 	add &= 0x7FFF;
 
 	if ( add<FPGA_WO_REG_COUNT )
@@ -1777,7 +1087,8 @@ void FpgaWriteRegister(UINT16 add, UINT16 dat)
 	{
 		//TRACE_INFO("\r\n\r\n201404211100FpgaWriteRegister................... [%x]=%X\r\n", add, fpga_wo_reg[add]);
 		;
-	}	
+	}
+
 	*(p_ext_16+(add<<1)) = dat;
 
 }
@@ -1806,7 +1117,7 @@ UINT16 FpgaReadRegister(UINT16 add)
 	{
 		case 0x00:
 			//只读寄存器地址
-			return *(p_ext_16+(add<<1));	
+			return *(p_ext_16+(add<<1));
 		break;
 			
 		case 0x08:
@@ -2159,17 +1470,6 @@ void FpgaGetAdDaPow( UCHAR8 ab_flag )
 	att_adj_buff[ fpga_att_adj_st.dat_len++] = (UCHAR8)(tmp&0xff);
 	att_adj_buff[ fpga_att_adj_st.dat_len++] = (UCHAR8)((tmp>>8)&0xff);
 
-	#if 0
-			TRACE_INFO("att_adj_buff10[%X]\r\n",att_adj_buff[10]);
-			TRACE_INFO("att_adj_buff11[%X]\r\n",att_adj_buff[11]);
-			TRACE_INFO("att_adj_buff12[%X]\r\n",att_adj_buff[12]);
-			TRACE_INFO("att_adj_buff13[%X]\r\n",att_adj_buff[13]);
-
-			TRACE_INFO("att_adj_buff14[%X]\r\n",att_adj_buff[14]);
-			TRACE_INFO("att_adj_buff15[%X]\r\n",att_adj_buff[15]);
-			TRACE_INFO("att_adj_buff16[%X]\r\n",att_adj_buff[16]);
-			TRACE_INFO("att_adj_buff17[%X]\r\n",att_adj_buff[17]);
-	#endif 
 }
 
 
@@ -2267,27 +1567,6 @@ void FpgaAttStepAdj()
 				att_reg = FPGA_REG_D_ATT1_CAL;
 			}
 		}
-		else // att2 
-		{
-		#if 0
-			if ( SYS_A_FLAG==fpga_att_adj_st.ab_flag )
-			{
-				att_reg = FPGA_REG_A_ATT2_CAL;
-			}
-			else if( SYS_B_FLAG==fpga_att_adj_st.ab_flag )
-			{
-				att_reg = FPGA_REG_B_ATT2_CAL;
-			}
-			else if( SYS_C_FLAG==fpga_att_adj_st.ab_flag )
-			{
-				att_reg = FPGA_REG_C_ATT2_CAL;
-			}
-			else if( SYS_D_FLAG==fpga_att_adj_st.ab_flag )
-			{
-				att_reg = FPGA_REG_D_ATT2_CAL;
-			}
-		#endif
-		}
 	}
 
 	if ( fpga_att_adj_st.step >= 64 )
@@ -2352,12 +1631,7 @@ void FpgaAttAdjust()
 	//	TRACE_INFO("FpgaAttAdjust_ ATT_ADJ_ST_WAIT_MAX_PSF\r\n");		
 		if ( 0==fpga_att_adj_st.is_wait )
 		{ 
-			#if 0
-			TRACE_INFO("att_adj_buff10[%X]\r\n",att_adj_buff[10]);
-			TRACE_INFO("att_adj_buff11[%X]\r\n",att_adj_buff[11]);
-			TRACE_INFO("att_adj_buff12[%X]\r\n",att_adj_buff[12]);
-			TRACE_INFO("att_adj_buff13[%X]\r\n",att_adj_buff[13]);
-			#endif 
+
 			//TRACE_INFO("ATT_ADJ_ST_WAIT_MAX_PSF-------------fpga_att_adj_st.dat_len=%X\r\n",fpga_att_adj_st.dat_len);
 			//TRACE_INFO_WP("1=%X,2=%X,3=%X,4=%X\r\n",att_adj_buff[17],att_adj_buff[18],att_adj_buff[19],att_adj_buff[21]);		
 
@@ -2690,25 +1964,7 @@ void SentLoadDatA7(UCHAR8 Dat)
 #endif
 
 
-#if 0
-	char i; 
-	for (i = 8;i>0; i-- )
-	{
-	    //UsNopDelay(20);			
-		if ( (Dat>>(i-1))&0x01 )//高位在前
-		{
-		      SET_FPGA_DATA1_PIN;
-		}
-		else  
-	    { 
-	      CLR_FPGA_DATA1_PIN;
-	    } 
-		CLR_FPGA_CCLK_PIN; //201411061713 	
-		//UsNopDelay(20);	
-		SET_FPGA_CCLK_PIN; //201411061713 
-	}
 
-#endif
 }
 
 /*************************************************************

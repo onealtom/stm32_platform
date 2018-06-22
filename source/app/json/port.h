@@ -2,15 +2,23 @@
 #define _PORT_H
 
 #include <stdint.h>
-//#include "config.h"
+
+#define PRODUCT_AU	1
+#define PRODUCT_RU	0
+#define PRODUCT_MODE  PRODUCT_AU
+
+#if(PRODUCT_MODE==PRODUCT_AU)
+	#define BARE_PLATFORM
+	#define STM32_PLATFORM
+#endif
+
+#if(PRODUCT_MODE==PRODUCT_RU)
+	#define LINUX_PLATFORM
+	#define ZYNQ_PLATFORM
+#endif
 
 
-// #define HARDWARE_AU	1
-// #define HARDWARE_RU	0
 
-// #define HARDWARE_ID  HARDWARE_RU
-
-//#if defined(linux)
 #define port_pr_err(format, ...)		do {fprintf(stderr, format, ## __VA_ARGS__);}while(0)
 #define port_pr_info(format, ...)		do {fprintf(stdout, format, ## __VA_ARGS__);}while(0)
 

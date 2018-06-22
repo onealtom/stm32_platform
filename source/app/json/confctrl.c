@@ -9,7 +9,7 @@
 #include "common_hw.h"
 #include "formula.h"
 #include "confctrl.h"
-
+#include "regmap.h"
 
 /*
   批量设置寄存器接口
