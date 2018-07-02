@@ -453,7 +453,7 @@ void FpgaGetMsgPkt( void )
 			for ( j=0; j<FPGA_FRAME_FIFO_SIZE; j++ )
 			{
 				*p_msg_dat++ = (UCHAR8)( 0x00FF & FpgaReadRegister( FPGA_REG_R_MSG_DAT ) );
-			} 
+			}
 
 	   		// 读取数据长度
 	   		frame_len = sys_temp_buff[4];	
@@ -1040,19 +1040,42 @@ void FpgaPowSelSlot(UINT32 reg_add)
 	}
 }
 
-void PLWriteRegister(uint32_t addr, uint16_t data)
+void PLWriteRegister(uint32_t addr, int bit, uint16_t data)
 {
 	FPGA_ENABLE_WRITE;
 	//printf("addr=0x%04X,data=0x%02X\n",addr,data);
-	*(volatile uint16_t *)addr = data;
+
+	if (bit==8){
+		*(volatile uint8_t *)addr = (uint8_t)data;
+	}else if(bit==16){
+		*(volatile uint16_t *)addr = (uint16_t)data;
+	}else if(bit==32){
+		*(volatile uint32_t *)addr = (uint32_t)data;
+	}else{
+		*(volatile uint16_t *)addr = (uint16_t)data;
+	}
+	
 }
 
-uint16_t PLReadRegister(uint32_t addr)
+uint32_t PLReadRegister(uint32_t addr, int bit)
 {
-	uint16_t tmp;
-	tmp = *(volatile uint16_t*)addr;
-	//printf("addr=0x%08X,tmp=0x%04X\n",addr, tmp);
-	return tmp;
+	uint8_t tmp8;
+	uint16_t tmp16;
+	uint32_t tmp32;
+
+	if (bit==8){
+		tmp8 = *(volatile uint8_t*)addr;
+		return (uint32_t)tmp8;
+	}else if(bit==16){
+		tmp16 = *(volatile uint16_t*)addr;
+		return (uint32_t)tmp16;
+	}else if(bit==32){
+		tmp32 = *(volatile uint32_t*)addr;
+		return (uint32_t)tmp32;
+	}else{
+		tmp16 = *(volatile uint16_t*)addr;
+		return (uint32_t)tmp16;
+	}
 }
 
 /*************************************************************

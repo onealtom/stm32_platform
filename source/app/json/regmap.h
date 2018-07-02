@@ -12,12 +12,12 @@
 #endif
 
 #ifdef STM32_PLATFORM
-	#define REG_LEN 2
+	#define REG_LEN 4
 	#define SGMTREGS_LEN	(REG_LEN*0x32)
-	#define SGMTA_CTLREGS_BASEAD  (0x60000000+(0x8020*2))
+	#define SGMTA_CTLREGS_BASEAD  (0x60000000+(0x0020*4))
 
 	/*PHYINFO¼Ä´æÆ÷×é pipesel pipenum*/
-	#define PHYINFO_PIPESEL_REG  (0x60000000+(0x8002*2))
+	#define PHYINFO_PIPESEL_REG  (0x60000000+(0x0002*4))
 #endif
 
 

@@ -144,13 +144,12 @@ uint32_t sgmtreg_write_bytes(char sgmt , uint32_t reg , uint8_t *value, int len)
 	uint32_t basead;
 	uint32_t actual_ad;
 
-
 	actual_ad = sgmt_ad_tran(sgmt ,reg );
 
 	pl_raw_write_bytes( actual_ad , value , len);
 }
-/*
-extern uint32_t pipereg_write_bytes(char sgmt, uint32_t pipe_sel_num, uint32_t reg, uint8_t *value, int len)
+
+uint32_t pipereg_write_bytes(char sgmt, uint32_t pipe_sel_num, uint32_t reg, uint8_t *value, int len)
 {
 	pipe_select(pipe_sel_num);
 
@@ -159,7 +158,7 @@ extern uint32_t pipereg_write_bytes(char sgmt, uint32_t pipe_sel_num, uint32_t r
 
 }
 
-*/
+
 extern int get_max_pnr(char sgmt_chr)
 {
 	// int sgmt_no;

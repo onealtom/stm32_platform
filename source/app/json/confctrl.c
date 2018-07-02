@@ -58,14 +58,14 @@ int set_chn_regs(pSGMT_SET_T p_sg )
 
 	is_au_flag = is_au();
 
-	if( is_au_flag ){LOG();
+	if( is_au_flag ){
 		/*AU*/
 		ul_losc = p_sg->ul_tx_losc;
 		dl_losc = p_sg->dl_rx_losc;
 		ulphase_regad = SGMTX_PIPEX_TXPHASE;
 		dlphase_regad = SGMTX_PIPEX_RXPHASE;
 	
-	}else{LOG();
+	}else{
 		/*RU*/
 		ul_losc = p_sg->ul_rx_losc;
 		dl_losc = p_sg->dl_tx_losc;
@@ -76,17 +76,18 @@ printf("%04X,%04X\n",p_sg->ul_pipe_mask,p_sg->dl_pipe_mask);
 	for(i=0;(i<16)&&(i<p_sg->pipe_nr);i++){
 
 		if( (p_sg->ul_pipe_mask) & (0x0001<<i) ) {
-LOG();
+
 			f = chn2freq(p_sg->net_std, p_sg->pipe_tab[i].ul_chn, UP_LINK);
 			pr_dbg("f=%d\n",f);
 			/* 传入频率统一单位为KHz get_pl_mclk 返回单位Hz，
 			配置文件传入的本振单位MHz，
 			chn2freq 返回单位0.1MHz */
 			//reg = freq2reg((uint32_t)(get_pl_mclk()/1000), (uint32_t)(ul_losc/1000), (uint32_t)(f*100) );
-			phase = freq2phase((uint32_t)(get_pl_mclk()/1000), (uint32_t)(ul_losc/1000), (uint32_t)(f*100) );
-			printf("phase=%d\n",phase);
 
+			
 			if( is_au_flag ){
+				phase = freq2phase((uint32_t)(get_pl_mclk()/1000), (uint32_t)(ul_losc/1000), (uint32_t)(f*100), 26 );
+				printf("phase=%d\n",phase);
 				reg = phase2aureg(phase);
 				regs[3]= reg & BIT_MASK(7,0);
 				regs[2]= (reg & BIT_MASK(15,8))>>8;
@@ -95,12 +96,14 @@ LOG();
 				printf("REGS = %02X,%02X,%02X,%02X\n",regs[3],regs[2],regs[1],regs[0]);
 				//pipereg_write_bytes(p_sg->name, i, ulphase_regad, regs , 4 );
 			}else{
+				phase = freq2phase((uint32_t)(get_pl_mclk()/1000), (uint32_t)(ul_losc/1000), (uint32_t)(f*100), 28 );
+				printf("phase=%d\n",phase);
 				reg = phase2rureg(phase);
 				pipereg_write(p_sg->name, i, ulphase_regad, reg );
 			}
 		}
 		if( (p_sg->dl_pipe_mask) & (0x0001<<i) ) {
-LOG();
+
 			f = chn2freq(p_sg->net_std, p_sg->pipe_tab[i].dl_chn, DW_LINK);
 			pr_dbg("f=%d\n",f);
 			/* 传入频率统一单位为KHz get_pl_mclk 返回单位Hz，
@@ -112,6 +115,12 @@ LOG();
 
 			if( is_au_flag ){
 				reg = phase2aureg(phase);
+				regs[3]= reg & BIT_MASK(7,0);
+				regs[2]= (reg & BIT_MASK(15,8))>>8;
+				regs[1]= (reg & BIT_MASK(23,16))>>16;
+				regs[0]= (reg & BIT_MASK(31,24))>>24;
+				printf("REGS = %02X,%02X,%02X,%02X\n",regs[3],regs[2],regs[1],regs[0]);
+				//pipereg_write_bytes(p_sg->name, i, ulphase_regad, regs , 4 );
 			}else{
 				reg = phase2rureg(phase);
 				pipereg_write(p_sg->name, i, dlphase_regad, reg );

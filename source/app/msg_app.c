@@ -1450,9 +1450,6 @@ void MsgHandleGetFpgaReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_b
 		{
 			reg_type2 = p_msg_dat[i];
 			p_tx_buff[msg_tx_len++] = p_msg_dat[i++];
-
-			printf("type2 = %02x \r\n",reg_type2);
-
 		}
 		FPGA_DISABLE_WRITE;
 		

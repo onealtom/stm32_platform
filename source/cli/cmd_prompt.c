@@ -86,9 +86,9 @@ int prompt_sendpkt(int argc, char * argv[])
 	FpgaWriteRegister( FPGA_REG_W_MSG_LEN, 195 );//最大195
 	
 	//3 写发送数据寄存器
-	for ( i=0; i<200; i++ )
+	for ( i=0; i<210; i++ )
 	{
-		FpgaWriteRegister( FPGA_REG_W_MSG_DAT, i );
+		FpgaWriteRegister( FPGA_REG_W_MSG_DAT, 32+i );
 	}
 	
 	//4 启动发送
@@ -106,7 +106,7 @@ int prompt_sendpkt(int argc, char * argv[])
 		}
 	}
 	printf("tx ready reg =1\r\n");
-	
+
 }
 int prompt_ls(void)
 {
@@ -351,22 +351,28 @@ int prompt_devmem(int argc, char * argv[])
 {
 	uint32_t addr;
 	uint16_t value;
+	uint32_t readtmp;
 	int width ;
 	int c;
 	
-	if(argv[3] ){/*write*/
+	addr = (uint32_t)strtol( argv[1], NULL, 0 );
+	
+	if(argv[3]){
 		width  = (uint32_t)strtol( argv[2], NULL, 0 );
-		if(width == 16){
-			addr = (uint32_t)strtol( argv[1], NULL, 0 );
-			value = (uint16_t)strtol( argv[3], NULL, 0 );
-			PLWriteRegister(addr, value);
-		}else{
-			goto usage_text;
-		}
-	}else if(argc ==2){/*read*/
-		addr = (uint32_t)strtol( argv[1], NULL, 0 );
-		printf("0x%04X\n",PLReadRegister(addr) );
+	}else{
+		width = 16;
+	}
 
+	if(argc ==4 ){/*write*/
+		addr = (uint32_t)strtol( argv[1], NULL, 0 );
+		value = (uint16_t)strtol( argv[3], NULL, 0 );
+		printf("addr=0x%08X\n",addr);
+		printf("ModAddr: 0x%04X\n", (addr-0x60000000)/4 );
+		PLWriteRegister(addr, width, value);
+		
+	}else if ( (argc ==2) || (argc ==3) ) {/*read*/
+		readtmp= PLReadRegister(addr, width);
+		printf("0x%08X\n",readtmp);
 	}else{
 		goto usage_text;
 	}
@@ -389,19 +395,19 @@ int prompt_fpga(int argc, char * argv[])
 	uint16_t addr;
 	uint16_t value;
 	int c;
-
+	volatile uint16_t * p = (volatile uint16_t*)0x60000000;
+	
 	if(argv[2] ){/*write*/
 		FPGA_ENABLE_WRITE;
 
 		addr = (uint16_t)strtol( argv[1], NULL, 0 );
 		value = (uint16_t)strtol( argv[2], NULL, 0 );
-		//printf("string: %s %s,%s \n",argv[0],argv[1],argv[3]);
-		//printf("%x %x\n",addr, value);
+		printf("MapAddr: 0x%08X\n",p+(addr<<1));
 		FpgaWriteRegister(FPGA_WO_REG(addr), value);
 
 	}else if(argc ==2){/*read*/
 		addr = (uint16_t)strtol( argv[1], NULL, 0 );
-		//printf("argc ==2\n" );
+		printf("MapAddr: 0x%08X\n",p+(addr<<1));
 		printf("0x%04X\n",FpgaReadRegister(addr) );
 
 	}else{
@@ -424,19 +430,21 @@ void prompt_fwinfo(void)
 	printf("Build time: %s %s \n", __DATE__, __TIME__);
 	
 	printf("[FPGA fw info]\n");
-	printf("Ver Code: 0x%02X\n", (uint8_t)PLReadRegister(0x60000004));
-	printf(" hw Code: 0x%02X\n", (uint8_t)PLReadRegister(0x60000008));
-	printf(" SN Code: 0x%02X\n", (uint8_t)PLReadRegister(0x6000000C));
+	printf("Ver Code: 0x%02X\n", (uint8_t)PLReadRegister(0x60000004,16));
+	printf(" hw Code: 0x%02X\n", (uint8_t)PLReadRegister(0x60000008,16));
+	printf(" SN Code: 0x%02X\n", (uint8_t)PLReadRegister(0x6000000C,16));
 	
 	buf = malloc(65);
 	p = buf;
 	for( i=0; i<64; i++){
-		*buf = (uint8_t)PLReadRegister(0x60000010);
+		*buf = (uint8_t)PLReadRegister(0x60000010,8);
 		buf++;
 	}
 	*buf = 0x00;
 
+
 	printf("Watermark: %s\n", p );
+
 	free(p);
 }
 

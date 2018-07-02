@@ -88,7 +88,6 @@ uint32_t freq2reg(uint32_t  mclk, uint32_t losc , uint32_t freq)
 	float tmp;
 	uint32_t reg;
 
-
 pr_dbg("mclk=%d, losc=%d, freq=%d\n",mclk , losc , freq);
 
 	sft = abs(freq - losc);
@@ -107,31 +106,31 @@ pr_dbg("mclk=%d, losc=%d, freq=%d\n",mclk , losc , freq);
 	return reg;
 }
 
-int freq2phase(uint32_t  mclk, uint32_t losc , uint32_t freq)
+int freq2phase(uint32_t  mclk, uint32_t losc , uint32_t freq, uint8_t width )
 {
 	uint32_t sft ;
 	double tmp;
 	int phase;
-	//614400,874500,829500
+//614400,874500,829500
 //mclk=614400;
 //losc=874500;
 //freq=829500;
-printf("mclk=%d, losc=%d, freq=%d\n",mclk , losc , freq);
-
+	printf("mclk=%d, losc=%d, freq=%d\n",mclk , losc , freq);
 
 	tmp = ((double)freq - (double)losc)/(double)mclk;
-printf("%f\n",tmp);
-	phase = (int)(67108864 * tmp);
-
+	printf("%f\n",tmp);
+	//phase = (int)( (2<<width) * tmp);
+	phase = (int)( (2<<width) * tmp);
 	return phase;
 }
+
 
 uint32_t phase2rureg(int phase)
 {
 	uint32_t reg=0;
 
 	reg = abs(phase);
-pr_dbg("reg=%x\n",reg);
+	pr_dbg("reg=%x\n",reg);
 	/*符号位*/
 	if ( phase<0 )
 		reg = reg | (1U<<28);
@@ -167,7 +166,7 @@ uint32_t phase2aureg(int phase)
 
 uint32_t field2reg(uint32_t field)
 {
-	
+
 struct reg_freq_input_lsb{
 	uint16_t lsb	 : 12;
 	uint8_t reserved : 3;

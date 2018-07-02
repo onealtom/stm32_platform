@@ -50,7 +50,7 @@ int pl_raw_write_bytes( uint32_t ad , uint8_t *data , int len)
 		
 		PLWriteRegister(ad , lsb);
 		
-		PLWriteRegister(ad+2, msb);
+		PLWriteRegister(ad+4, msb);
 	
 	}else{
 		goto not_support;
