@@ -147,6 +147,7 @@ void SysTick_Handler(void)
 {
 	Timer100msHandle();
 	AdcStartExConv();
+	uwTick++;
 }
 
 /**
@@ -247,36 +248,39 @@ void USART2_IRQHandler(void)
 *******************************************************************************/
 void USART3_IRQHandler(void)
 {
-#if 1
-			UINT16 tmp;
-			if (USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)
-			{
-				//TRACE_INFO_WP(" UART3\r\n");
-				/* Send the received data to the PC Host*/
-				ThrUartIsrRxDat((UCHAR8)USART_ReceiveData(USART3));
-				//UartReceInterrupt((UCHAR8)USART_ReceiveData(UART4));
-				USART_ClearITPendingBit(USART3, USART_IT_RXNE);
-			}
+
+	int len=0;
+	
+	while(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)
+	{
+		/* Read one byte from the receive data register */
+		printf("%c",  USART_ReceiveData(USART3) );
+		len++;
+		if (len>=1024){
+			printf(" ");
+			break;
+		}
+	}
+
+#if 0
+	/* If overrun condition occurs, clear the ORE flag and recover communication */  
+	if (USART_GetITStatus(USART3, USART_IT_TXE) != RESET)
+	{
+		ThrUartIsrTxReady();
+		USART_ClearITPendingBit(USART3, USART_IT_TXE);
+	}
 		
-			/* If overrun condition occurs, clear the ORE flag and recover communication */  
-			if (USART_GetITStatus(USART3, USART_IT_TXE) != RESET)
-			{
-				ThrUartIsrTxReady();
-				USART_ClearITPendingBit(USART3, USART_IT_TXE);
-			}
-		
-			if (USART_GetITStatus(USART3, USART_IT_TC) != RESET)
-			{
-				USART_ClearITPendingBit(USART3, USART_IT_TC);
-				ThrUartIsrTxComplete();
-			}
-		
-			
-			if (USART_GetFlagStatus(USART3, USART_FLAG_ORE) != RESET)
-			{
-				tmp = USART3->SR;
-				tmp = USART3->DR;
-			}
+			////if (USART_GetITStatus(USART3, USART_IT_TC) != RESET)
+			////{
+			/////	USART_ClearITPendingBit(USART3, USART_IT_TC);
+			////	ThrUartIsrTxComplete();
+			////}
+
+			////if (USART_GetFlagStatus(USART3, USART_FLAG_ORE) != RESET)
+			////{
+			////	tmp = USART3->SR;
+			////	tmp = USART3->DR;
+			////}
 #endif
 
 

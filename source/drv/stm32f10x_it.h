@@ -1,4 +1,4 @@
-﻿/**
+/**
   ******************************************************************************
   * @file    Project/Template/stm32f10x_it.h 
   * @author  MCD Application Team
@@ -29,6 +29,8 @@
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
+
+static __IO uint32_t uwTick;
 
 void NMI_Handler(void);
 void HardFault_Handler(void);

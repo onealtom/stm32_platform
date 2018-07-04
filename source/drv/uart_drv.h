@@ -1,4 +1,4 @@
-﻿/************************************************************
+/************************************************************
 
      Copyright (C), 2011-2111, 格兰泰克科技有限公司
 
@@ -100,7 +100,6 @@ void Uart4_IE_TxReady( UCHAR8 enable);
 void Uart4_IE_RxDat( UCHAR8 enable );
 void Uart4_IE_TxComplete( UCHAR8 enable );
 void Uart4_TxFinish( void );
-
 
 
 

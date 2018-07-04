@@ -362,7 +362,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER, STM32F10X_HD, USE_STM3210E_EVAL</Define>
               <Undefine></Undefine>
-              <IncludePath>..\source\app;..\source\drv;..\source\drv\utility;..\source\ex_conf;..\source\lib\usb_cdc\inc;..\source\lib\CMSIS\Core\CM3;..\source\lib\STM32F10x_StdPeriph_Driver\inc;..\source\lib\SPIFFS;..\source\drv\spiflash_drv;..\source\drv\mymalloc;..\source\app\json;..\source\lib;..\source\app\fs</IncludePath>
+              <IncludePath>..\source\app;..\source\drv;..\source\drv\utility;..\source\ex_conf;..\source\lib\usb_cdc\inc;..\source\lib\CMSIS\Core\CM3;..\source\lib\STM32F10x_StdPeriph_Driver\inc;..\source\lib\SPIFFS;..\source\drv\spiflash_drv;..\source\drv\mymalloc;..\source\app\json;..\source\lib;..\source\app\fs;..\source\app\ymodem</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -619,6 +619,11 @@
               <FileName>json_main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\app\json\json_main.c</FilePath>
+            </File>
+            <File>
+              <FileName>ymodem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\ymodem\ymodem.c</FilePath>
             </File>
           </Files>
         </Group>

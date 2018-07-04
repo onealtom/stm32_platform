@@ -525,7 +525,8 @@ void InitSystem()
 
 
 	InitDebugUart( DEBUG_UART_BAUD	);		// 配置调试串口
-
+	Uart3_Init(115200);
+	
 	//Uart1_Init(DEBUG_UART_BAUD);
 	TRACE_INFO("Init APP SPI\r\n");
 	InitSpi();	// 初始化SPI总线 

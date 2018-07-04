@@ -350,54 +350,6 @@ Return:void
 **************************************************************/
 void Uart3_Init(UINT32 baudrate)
 {
-
-#if 0
-	UINT16 tmp;
-	USART_InitTypeDef uart_cfg;
-	// 使能时钟
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
-	USART_DeInit(USART3);
-	
-	Uart3_EnableInterrupt(0);
-	USART_ITConfig(USART3, USART_IT_RXNE, DISABLE);	// 禁能接收中断
-
-	USART_StructInit( &uart_cfg );
-
-	uart_cfg.USART_BaudRate = baudrate;
-	
-	USART_Init( USART3, &uart_cfg );
-
-	USART_Cmd(USART3, ENABLE);
-
-	RS485B_RX_MODE;
-	tmp = USART_ReceiveData(USART3);
-	tmp = USART_ReceiveData(USART3);
-	Uart3_EnableInterrupt(1);
-	USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);	// 使能接收中断
-#endif
-
-#if 0
-	UINT16 tmp;
-	USART_InitTypeDef uart_cfg;
-
-	// 使能时钟
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
-	
-	USART_StructInit( &uart_cfg );
-
-	uart_cfg.USART_BaudRate = baudrate;
-	
-	USART_Init( USART3, &uart_cfg );
-
-	USART_Cmd(USART3, ENABLE);
-
-	//RS485B_RX_MODE;
-	tmp = USART_ReceiveData(USART3);
-	tmp = USART_ReceiveData(USART3);
-	Uart3_EnableInterrupt(1); 
-	USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);	// 使能接收中断
-#endif
-
 	UINT16 tmp;
 	USART_InitTypeDef uart_cfg;
 	// 使能时钟
@@ -416,8 +368,8 @@ void Uart3_Init(UINT32 baudrate)
 	USART_Cmd(USART3, ENABLE);
 
 	//RS485B_RX_MODE;
-	tmp = USART_ReceiveData(USART3);
-	tmp = USART_ReceiveData(USART3);
+	//tmp = USART_ReceiveData(USART3);
+	//tmp = USART_ReceiveData(USART3);
 	Uart3_EnableInterrupt(1);
 	USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);	// 使能接收中断
 	
@@ -647,4 +599,70 @@ void Uart4_TxFinish( void )
 
 #endif
 
+typedef enum 
+{
+  HAL_OK       = 0x00,
+  HAL_ERROR    = 0x01,
+  HAL_BUSY     = 0x02,
+  HAL_TIMEOUT  = 0x03
+} HAL_StatusTypeDef;
 
+#define NAK_TIMEOUT             ((uint32_t)0x100000)
+#define DOWNLOAD_TIMEOUT        ((uint32_t)1000) /* One second retry delay */
+
+int UART3_WaitRXUntilTimeout( uint32_t Timeout)
+{
+	uint32_t tickstart = 0;
+	tickstart = uwTick;
+	
+	while(USART_GetITStatus(USART3, USART_IT_RXNE) == RESET){
+		
+		if((Timeout == 0)||((uwTick - tickstart ) > Timeout)){
+			return HAL_TIMEOUT;
+		}
+      
+	}
+	return HAL_OK;
+}
+
+int UART3_Receive(uint8_t *pData, uint16_t Size, uint32_t Timeout)
+{
+	int i;
+	uint8_t * p;
+	
+	p= pData;
+	
+	for(i=0; i<Size; i++ ){
+		if(UART3_WaitRXUntilTimeout(Timeout)!=HAL_OK){
+			return HAL_TIMEOUT;
+		}
+
+		//printf("%c",  USART_ReceiveData(USART3) );
+		*p = USART_ReceiveData(USART3);
+		p++;
+	}
+	
+	return HAL_OK;
+}
+
+int send_string(uint8_t * string)
+{
+	int i;
+	while( *string !=0x00 ){
+		USART_SendData(USART3, *string);
+		while(USART_GetFlagStatus(USART3, USART_FLAG_TXE) == RESET)
+		{
+		}
+		string++;
+	}
+}
+
+uint8_t USART3_GetByte(uint8_t *c)
+{
+	if(USART_GetFlagStatus(USART3, USART_FLAG_RXNE) != RESET)
+	{
+		*c = USART_ReceiveData(USART3);
+		return 1;
+	}  
+	return 0;
+}

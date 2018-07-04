@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <spiffs.h>
 #include <tools.h>
-
+#include <ymodem.h>
 extern _T_VALID_FP_TOPO valid_fp_topo[FP_MAX];
 
 
@@ -575,10 +575,12 @@ void MsgHandle( UCHAR8 fp, UCHAR8 re, UCHAR8 ree,UINT32 msg_len, UCHAR8* p_msg_d
 			case MSG_CMD_UPDATE_FPGA:		// 升级FPGA
 				MsgHandleUpdateFPGA( msg_len, p_msg_dat, msg_tx_buff );
 				break;
+			case MSG_CMD_YMODEM_STREAM:
+				MsgHandleYModemStream( msg_len, p_msg_dat, msg_tx_buff );
+				break;
 			case MSG_CMD_UPDATE_CONF:		// _UPDATEjson配置
 				MsgHandleUpdateJSON( msg_len, p_msg_dat, msg_tx_buff );
-				break;		
-				
+				break;
 			case MSG_CMD_GET_FLASH_PAGE:	// 读取FLASH页内容
 				MsgHandleGetFlashPage( msg_len, p_msg_dat, msg_tx_buff );
 				break;
@@ -1744,17 +1746,16 @@ int MsgHandleUpdateJSON( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 		checksum = p_args[2]|(p_args[3]<<8);
 		p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
 
-
 	}else{
 	/*中间包*/
 		printf("JSON Mid Pkg\n");
 
 		pkt_no = p_args[0]|(p_args[1]<<8);
 		len = p_args[2]|(p_args[3]<<8);
-		
+		printf("pkt_no=%d\n",pkt_no);
 		hexdump(p_args, len+4);
-		//printf("Rx Pkt:%d\n",pkt_no);
-		//printf("len=%d\n",len);
+		printf("Rx Pkt:%d\n",pkt_no);
+		printf("len=%d\n",len);
 		printf("filename addr = %x\n",filename);
 		hexdump(filename, 14);
 #if WRITE_TO_FLASH
@@ -1792,6 +1793,94 @@ ack_err:
 
 }
 
+int MsgHandleYModemStream( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
+{
+	/*start*/
+	static UINT32 all_pkt;  	//2 Byte [2~3] lsb
+	UINT32 all_len;  		//4 Byte [4~7] lsb
+	int name_len;			//1 Byte [8]
+	//static char filename[14];	//1~13 Byte [9~21] text head在前
+	static char *filename;		//1~13 Byte [9~21] text head在前
+	/*mid*/
+	UINT16 pkt_no;			//2 Byte [0~1] lsb
+	int len;			//2 Byte [2~3] lsb
+	/*end*/
+	UINT16 checksum;		//2 Byte [2~3] lsb
+
+	UINT32 msg_tx_len;
+	UCHAR8 * p_args;
+
+	/*YMODEM*/
+	uint8_t packet_data[PACKET_1K_SIZE + PACKET_OVERHEAD];
+	
+	int i;
+	int res;
+
+	msg_tx_len = MSG_PKT_HEAD_SIZE;
+	p_args = p_msg_dat+MSG_PKT_HEAD_SIZE;
+
+	if (( 0xFA == p_args[0] )&&( 0x5A == p_args[1] )){
+	/*开始包*/
+
+		printf("JSON Start Pkg\n");
+		printf("Total len is: %d, %d packets trans.\n",all_len, all_pkt);
+		
+		hexdump(p_args, 32);
+
+		all_pkt = p_args[2]|(p_args[3]<<8);
+		all_len = p_args[4]|(p_args[5]<<8)|(p_args[6]<<16)|(p_args[7]<<24);
+		
+		/*上位机限制了文件名长度最大8.4，spiffs config 文件名最长32*/
+		name_len = p_args[8];
+		
+		
+#define NAMELEN_8_4 14 //8 + '.' + 4 + '\0'
+
+		filename = malloc(NAMELEN_8_4);
+		for(i=0;i<NAMELEN_8_4;i++){
+			filename[i]=0x00;
+		}
+		for(i=0;i<name_len;i++){
+			filename[i]=*(p_args+9+i);
+		}		
+
+		ymodem_start_pkt(packet_data, filename, all_len );
+
+		goto ack_ok;
+
+	}else if (( 0xA5 == p_args[0] )&&( 0xAF == p_args[1] )){
+	/*结束包*/
+		
+		printf("JSON End Pkg\n");
+		hexdump(p_args, 32);
+		free(filename);
+
+		checksum = p_args[2]|(p_args[3]<<8);
+		p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
+
+
+	}else{
+	/*中间包*/
+
+		pkt_no = p_args[0]|(p_args[1]<<8);
+		len = p_args[2]|(p_args[3]<<8);
+
+		ymodem_mid_pkt(p_args+4, pkt_no, len  );
+
+		p_tx_buff[msg_tx_len++] = (UCHAR8)(pkt_no & 0x00ff);
+		p_tx_buff[msg_tx_len++] = (UCHAR8)((pkt_no>>8) & 0x00ff);
+	}
+
+ack_ok:
+	p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
+	SendMsgPkt(msg_tx_len, p_tx_buff);
+	return 0;
+ack_err:
+	p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_ERR_UPDATE_FAIL;
+	SendMsgPkt(msg_tx_len, p_tx_buff);
+	return -1;
+
+}
 
 /*************************************************************
 Name: MsgHandleGetFlashPage          

@@ -11,6 +11,10 @@ enum  cmd_num{ hello ,sendpkt ,memm ,ls, touch, cat, writef ,rm , parse_then_set
 const char *cmd_num[]={ "hello" ,"sendpkt", "memm", "ls", "touch", "cat", "writef" , "rm" ,"parse_then_set" , "devmem", "fpga", "fwinfo", "help"};
 #define NUM_OF_CMD 13
 
+
+
+
+
 int prompt_hello(int argc, char * argv[])
 {
 	int c;
@@ -21,19 +25,21 @@ int prompt_hello(int argc, char * argv[])
 	char* chndir;
 	int memsiz;
 	char * p;
-
-	unsigned int band_channel;
-
+	char * text = "Hello World";
+	char ch;
+	
 	printf("hello prompt cli \r\n");
 	
-	while ((c = getopt(argc, argv, "ih")) != EOF){
+	while ((c = getopt(argc, argv, "igh")) != EOF){
 
 		switch ( c )
 		{
 		case 'i':
-			json_main();
+			//json_main();
+			send_string(text);
 			break;
-
+		case 'g':
+			break;
 		case '?':
 			printf("Unknown option %c\n\r",optopt);
 			break;
@@ -82,7 +88,7 @@ int prompt_sendpkt(int argc, char * argv[])
 	FpgaWriteRegister( FPGA_REG_W_MSG_DES_ADD, 1 );
 	FpgaWriteRegister( FPGA_REG_W_MSG_SRC_ADD, 0 );
 	
-	//2 启动计数
+	//2 启动计数/pid
 	FpgaWriteRegister( FPGA_REG_W_MSG_LEN, 195 );//最大195
 	
 	//3 写发送数据寄存器
