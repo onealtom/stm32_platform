@@ -13,7 +13,7 @@
 *shiyang		2008-01-29	v0.1			初始版本
 **************************************************************/
 #include "Header.h"
-
+#include "stm32f10x_tim.h"
 extern UINT32 ex_adc_cs;		// 外部采样源选择
 extern UINT32 fpga_load_status;
 extern _T_BIG_PKT_BUFF msg_big_buff[MSG_BIG_PKT_COUNT];
@@ -476,6 +476,118 @@ void CtrlUartConfig()
 }
 
 
+/**
+	* @brief  Configures the different system clocks.
+	* @param  None
+	* @retval None
+	*/
+void RCC_Configuration(void)
+{
+	/* PCLK1 = HCLK/4 */
+	RCC_PCLK1Config(RCC_HCLK_Div4);
+
+	/* TIM2 clock enable */
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
+
+	/* GPIOC clock enable */
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
+}
+
+/**
+	* @brief  Configure the GPIO Pins.
+	* @param  None
+	* @retval None
+	*/
+void GPIO_Configuration(void)
+{
+	GPIO_InitTypeDef GPIO_InitStructure;
+
+	/* GPIOC Configuration:Pin6, 7, 8 and 9 as alternate function push-pull */
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+
+	GPIO_Init(GPIOC, &GPIO_InitStructure);
+}
+
+/**
+	* @brief  Configure the nested vectored interrupt controller.
+	* @param  None
+	* @retval None
+	*/
+void NVIC_Configuration(void)
+{
+	NVIC_InitTypeDef NVIC_InitStructure;
+
+	/* Enable the TIM2 global Interrupt */
+	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+
+	NVIC_Init(&NVIC_InitStructure);
+}
+
+void InitTimer2(void) 
+{
+	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
+	TIM_OCInitTypeDef  TIM_OCInitStructure;
+	
+	//__IO uint16_t CCR1_Val = 40961;
+	__IO uint16_t CCR1_Val = 60000;
+	__IO uint16_t CCR2_Val = 27309;
+	__IO uint16_t CCR3_Val = 13654;
+	__IO uint16_t CCR4_Val = 6826;
+	uint16_t PrescalerValue = 0;
+	uint32_t SystemCoreClock = 72000000;
+	
+	/* System Clocks Configuration */
+	RCC_Configuration();
+
+	/* NVIC Configuration */
+	NVIC_Configuration();
+
+	/* ---------------------------------------------------------------
+		TIM2 Configuration: Output Compare Timing Mode:
+		TIM2 counter clock at 6 MHz
+		//CC1 update rate = TIM2 counter clock / CCR1_Val = 146.48 Hz , 6.82ms
+		CC1 update rate = TIM2 counter clock / CCR1_Val = 100 Hz , 10ms
+		CC2 update rate = TIM2 counter clock / CCR2_Val = 219.7 Hz , 4.55ms
+		CC3 update rate = TIM2 counter clock / CCR3_Val = 439.4 Hz , 2.27ms
+		CC4 update rate = TIM2 counter clock / CCR4_Val = 878.9 Hz , 1.13ms
+	--------------------------------------------------------------- */
+
+	/* Compute the prescaler value */
+	PrescalerValue = (uint16_t) (SystemCoreClock / 12000000) - 1;
+
+	/* Time base configuration */
+	TIM_TimeBaseStructure.TIM_Period = 65535;
+	TIM_TimeBaseStructure.TIM_Prescaler = 0;
+	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+
+	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
+
+	/* Prescaler configuration */
+	TIM_PrescalerConfig(TIM2, PrescalerValue, TIM_PSCReloadMode_Immediate);
+
+	/* Output Compare Timing Mode configuration: Channel1 */
+	TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_Timing;
+	TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+	TIM_OCInitStructure.TIM_Pulse = CCR1_Val;
+	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
+	TIM_OC1Init(TIM2, &TIM_OCInitStructure);
+
+	TIM_OC1PreloadConfig(TIM2, TIM_OCPreload_Disable);
+
+	/* TIM IT enable */
+	TIM_ITConfig(TIM2, TIM_IT_CC1 , ENABLE);
+
+	/* TIM2 enable counter */
+	TIM_Cmd(TIM2, ENABLE);
+} 
+
 /*************************************************************
 Name:InitSystem         
 Description: 系统初始化
@@ -533,7 +645,7 @@ void InitSystem()
 	
 //	TRACE_INFO("Init Sys Time Tick\r\n");
 	InitSystemTimer();		// 初始化系统节拍定时器
-
+	InitTimer2();
 //	TRACE_INFO("Get Flash Page Size\r\n");
 	GetFlashPageSize();		// 读取Flash页大小
 
@@ -555,7 +667,7 @@ void InitSystem()
 
 	WTD_CLR;  
 	//InitExtentBus_8();	// 初始化8位总线
-	FpgaLoad();			// 加载FPGA 
+	//FpgaLoad();			// 加载FPGA 
 	InitExtentBus_16();	// 初始化16位总线 
 
 	if ( FPGA_LDST_OK== fpga_load_status )
