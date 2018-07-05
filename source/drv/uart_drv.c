@@ -368,8 +368,8 @@ void Uart3_Init(UINT32 baudrate)
 	USART_Cmd(USART3, ENABLE);
 
 	//RS485B_RX_MODE;
-	//tmp = USART_ReceiveData(USART3);
-	//tmp = USART_ReceiveData(USART3);
+	tmp = USART_ReceiveData(USART3);
+	tmp = USART_ReceiveData(USART3);
 	Uart3_EnableInterrupt(1);
 	USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);	// 使能接收中断
 	
@@ -665,4 +665,27 @@ uint8_t USART3_GetByte(uint8_t *c)
 		return 1;
 	}  
 	return 0;
+}
+
+
+int usart3_cat_onebyte2buf(uint8_t * data, unsigned int len)
+{
+	int i;
+	uint8_t * p;
+	
+#define BUFF_SIZE 192
+	static uint8_t tx_buff[BUFF_SIZE];
+	
+	static unsigned int cur_num;
+	
+	if ( (cur_num + 1) <= BUFF_SIZE )
+		cur_num ++;
+	else{
+		pkt_tx_bytes(tx_buff , cur_num+1);
+		cur_num = 0;
+	}
+	
+	tx_buff[cur_num] = USART_ReceiveData(USART3);
+	
+
 }

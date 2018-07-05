@@ -305,34 +305,13 @@ void main()
 		WTD_CLR;	        
 		// 检查拓扑状态
 		//TaskManageTopo();
-	
 
-
-		 
-	  
 		// 处理光纤数据通讯
 		WTD_CLR;
-		////FpgaGetMsgPkt();  
-		
+		////FpgaGetMsgPkt();
 
-#if defined CLIENT_JIZHUN
-		// 把逻辑FIFO中接受到的透传数据，通过透传口发出去
-		WTD_CLR;
-		if ( 1 == uart_thr_tx_end )  
-		{
-			UartTransThrDat(); 
-		}    
-		
-		//往FPGA中发送透传数据
-		WTD_CLR;
-		FpgaSendThrDat(); 
+		//rx_task( (uint8_t)(0x00FF & FpgaReadRegister( FPGA_REG_MSG_FIFO_ST )) );
 
-		//从FPGA中读取透传数据  
-		WTD_CLR;  
-		FpgaReadThrDat();  
-#endif	
-//		UpdateWorkParam(module_param_chg_flag); 
-//		module_param_chg_flag = 0;
  
 
 	}

@@ -505,6 +505,11 @@
               <FileType>1</FileType>
               <FilePath>..\source\drv\mymalloc\mymalloc.c</FilePath>
             </File>
+            <File>
+              <FileName>pkt_drv.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\drv\pkt_drv.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

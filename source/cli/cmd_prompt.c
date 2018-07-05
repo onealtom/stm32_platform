@@ -7,12 +7,9 @@
 #define MAX_CLI_CAHR	53
 #define MAX_CLI_ARGS	10
 
-enum  cmd_num{ hello ,sendpkt ,memm ,ls, touch, cat, writef ,rm , parse_then_set, devmem, fpga, fwinfo, help };
-const char *cmd_num[]={ "hello" ,"sendpkt", "memm", "ls", "touch", "cat", "writef" , "rm" ,"parse_then_set" , "devmem", "fpga", "fwinfo", "help"};
-#define NUM_OF_CMD 13
-
-
-
+enum  cmd_num{ hello ,sendpkt ,memm ,ls, touch, cat, writef ,rm , parse_then_set, devmem, fpga, fwinfo, help, fpgaload };
+const char *cmd_num[]={ "hello" ,"sendpkt", "memm", "ls", "touch", "cat", "writef" , "rm" ,"parse_then_set" , "devmem", "fpga", "fwinfo", "help", "fpgaload" };
+#define NUM_OF_CMD 14
 
 
 int prompt_hello(int argc, char * argv[])
@@ -90,6 +87,7 @@ int prompt_sendpkt(int argc, char * argv[])
 	
 	//2 启动计数/pid
 	FpgaWriteRegister( FPGA_REG_W_MSG_LEN, 195 );//最大195
+	
 	
 	//3 写发送数据寄存器
 	for ( i=0; i<210; i++ )
@@ -396,6 +394,8 @@ usage_text:
 
 }
 
+
+
 int prompt_fpga(int argc, char * argv[])
 {
 	uint16_t addr;
@@ -456,15 +456,16 @@ void prompt_fwinfo(void)
 
 void prompt_help(void)
 {
-	printf("fwinfo  - print mcu and fpga watermark info\n");
-	printf("ls      - list files in flash filesystem\n");
-	printf("touch   - create a blank file\n");
-	printf("cat     - read document content\n");
-	printf("writef  - write a string into end of the file\n");
-	printf("rm      - delete file of flash with filename or id \n");
+	printf("fwinfo   - print mcu and fpga watermark info\n");
+	printf("ls       - list files in flash filesystem\n");
+	printf("touch    - create a blank file\n");
+	printf("cat      - read document content\n");
+	printf("writef   - write a string into end of the file\n");
+	printf("rm       - delete file of flash with filename or id \n");
 	printf("parse_then_set - parse the json config file and set regs\n");
-	printf("devmem  - read/write reg (mem map addr)\n");
-	printf("fpga    - read/write reg (phy addr)\n");
+	printf("devmem   - read/write reg (mem map addr)\n");
+	printf("fpga     - read/write reg (phy addr)\n");
+	printf("fpgaload - init or reconfigure fpga \n");
 }
 int command_process(char * str )
 {
@@ -553,11 +554,13 @@ WTD_CLR;
 	case fpga:
 		prompt_fpga(argc,argv );
 		break;
-	
+	case fpgaload:
+		FpgaLoad();
+		FpgaTest();
+		break;
 	case fwinfo:
 		prompt_fwinfo();
 		break;
-	
 	case help:
 		prompt_help();
 		break;	

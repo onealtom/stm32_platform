@@ -269,18 +269,7 @@ Return:-1:失败，0: 成功
 BOOL InitAD(void)
 {
 
-#if 0
-    u8 ret,i;
-		
-	WTD_CLR;  
-
-    for (i=0;i<(sizeof(ucAd6649RegVal)/2);i++)
-    {
-       Ad6649Write(ucAd6649RegVal[i][0],ucAd6649RegVal[i][1]);
-    } 
 	
-	return b_TRUE;	 	
-#endif	
 }
 
 
@@ -295,155 +284,7 @@ void InitKeyDev(void)
 	//InitDA_B();
 }
 
-#if 0
-BOOL InitAllKeyDev(void)
-{
-	InitKeyDev(); 
-	Init_Local_Pll(A_MIXER); //822 U PLL  A段上行本震 ,RE为混频
-    Init_Local_Pll(A_MODEN); //839 D PLL  A段下行本震  RE为调制
-	Init_Local_Pll(B_MIXER); //822 U PLL  A段上行本震 ,RE为混频
-    Init_Local_Pll(B_MODEN); //839 D PLL  A段下行本震  RE为调制   
-    return b_TRUE;
-}
-#endif
 
-#if 0
-UINT16 GetStrMonth( UCHAR8 * str_month )
-{
-	UINT32 tmp = 0;
-	UINT16 i;
-
-	for (i=0; i<3; i++)
-	{
-		tmp<<=8;
-		
-		if ( VAL_IN_RANGE(str_month[i], 'a', 'z') )
-		{
-			tmp |= str_month[i];
-			continue;
-		}
-		
-		if ( VAL_IN_RANGE(str_month[i], 'A', 'Z') )
-		{ 
-			tmp |= (str_month[i]+0x20);
-			continue;
-		}  
-
-		return 0;
-	}
-	
-	if ( tmp == MONTH_CODE_JAN )	return 1;
-	if ( tmp == MONTH_CODE_FEB)	return 2;
-	if ( tmp == MONTH_CODE_MAR)	return 3;
-	if ( tmp == MONTH_CODE_APR)	return 4;
-	if ( tmp == MONTH_CODE_MAY)	return 5;
-	if ( tmp == MONTH_CODE_JUN)	return 6;
-	if ( tmp == MONTH_CODE_JUL)	return 7;
-	if ( tmp == MONTH_CODE_AUG)	return 8;
-	if ( tmp == MONTH_CODE_SEP)	return 9;
-	if ( tmp == MONTH_CODE_OCT)	return 10;
-	if ( tmp == MONTH_CODE_NOV)	return 11;
-	if ( tmp == MONTH_CODE_DEC)	return 12;
-
-	return 0;
-}
-
-UINT16 GetStrIntVal( UCHAR8 * str_int, INT16 str_len )
-{
-	UINT16 tmp = 0;
-	UCHAR8 ch;
-	
-	if (str_len>4) str_len=4;
-
-	while( str_len>0 )
-	{
-		if ( *str_int != ' ' )
-		{
-			break;
-		}
-		str_len--;
-		str_int++;
-	}
-	
-	while ( str_len--)
-	{
-		ch = *str_int++;
-		
-		if ( VAL_IN_RANGE( ch, '0', '9') )
-		{
-			tmp = (tmp*10)+( ch-'0' );
-		}
-		else
-		{
-			break;
-		}
-	}
-	return tmp;
-}
-
-/*************************************************************
-Name:ConvStrToDate         
-Description: 检查字符串中的日期与给定日期的前后关系
-Input:
-	p_str: 包含日期的字符串，格式[M D Y],M占3字节[Jan.Feb.Mar.Apr.May Jun.Jul.Aug.Sep.Oct.Nov.Dec.]之一，D占2字节1~31，Y占4字节，年份
-	day: 	给定日期-号
-	month: 	给定日期-月
-	year:	给定日期-年
-Output:void      
-Return:
-	0:同一天
-	1:字符串表示的日期在给定日期之后
-	-1:字符串表示的日期在给定日期之前
-	-2:错误的日期字符串
-**************************************************************/
-CHAR8 CheckStrDate( UCHAR8* p_str, UINT16 day, UINT16 month, UINT16 year )
-{
-	UINT16 tmp;
-	//[MMM_DD_YYYY]
-	tmp = GetStrIntVal(p_str+7, 4);		// 年
-	if (0==tmp) return -2;
-	if ( tmp<year )
-	{
-		return -1;
-	}
-	else if ( tmp>year )
-	{
-		return 1;
-	}
-	else
-	{
-		tmp = GetStrMonth(p_str+0);
-		if (0==tmp) return -2;
-		if ( tmp<month )
-		{
-			return -1;
-		}
-		else if ( tmp>month )
-		{
-			return 1;
-		}
-		else
-		{
-			tmp = GetStrIntVal(p_str+4, 2);
-			if (0==tmp) return -2;
-			if ( tmp<day )
-			{
-				return -1;
-			}
-			else if ( tmp>day )
-			{
-				return 1;
-			}
-			else
-			{
-				return 0;
-			}
-		}
-	}
-
-	return -2;
-}
-#endif
 
 //#if 0//20130621
 /*************************************************************
@@ -667,7 +508,7 @@ void InitSystem()
 
 	WTD_CLR;  
 	//InitExtentBus_8();	// 初始化8位总线
-	//FpgaLoad();			// 加载FPGA 
+	FpgaLoad();			// 加载FPGA 
 	InitExtentBus_16();	// 初始化16位总线 
 
 	if ( FPGA_LDST_OK== fpga_load_status )
@@ -680,9 +521,7 @@ void InitSystem()
 			AfterFpgaLoad();
 ////			sys_param_1b[MADD_LOAD_FPGA_ST].val = 0;	// 加载成功
 			printf("FPGA test success\r\n");
-		}
-		else
-		{
+		}else{
 ////			sys_param_1b[MADD_LOAD_FPGA_ST].val = 1;	// 加载失败
 			printf("FPGA test Fail\r\n");
 			fpga_load_status = FPGA_LDST_INIT_ERR;

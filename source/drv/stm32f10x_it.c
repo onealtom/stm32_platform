@@ -23,6 +23,9 @@
 #include "usb_istr.h"
 //#include "hw_config.h"
 
+static uint8_t tmp_tx_buf[200];
+static int cur_cnt=0;
+
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -170,12 +173,17 @@ void TIM2_IRQHandler(void)
 		//GPIO_WriteBit(GPIOC, GPIO_Pin_6, (BitAction)(1 - GPIO_ReadOutputDataBit(GPIOC, GPIO_Pin_6)));
 		capture = TIM_GetCapture1(TIM2);
 		TIM_SetCompare1(TIM2, capture + CCR1_Val);
-		if(iCnt>500){
-			iCnt=0;
-			printf("5s \n");
-		}else{
-			iCnt++;
-		}
+		/*flush output*/
+		//if( cur_cnt >0 ){
+		//	route_txframe(tmp_tx_buf, cur_cnt );
+		//	cur_cnt=0;
+		//}
+		//if(iCnt>500){
+		//	iCnt=0;
+		//	printf("5s \n");
+		//}else{
+		//	iCnt++;
+		//}
 	}
 
 }
@@ -279,40 +287,19 @@ void USART2_IRQHandler(void)
 void USART3_IRQHandler(void)
 {
 
-	int len=0;
-	
 	while(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)
 	{
+		//cur_cnt++;
 		/* Read one byte from the receive data register */
-		printf("%c",  USART_ReceiveData(USART3) );
-		len++;
-		if (len>=1024){
-			printf(" ");
-			break;
-		}
-	}
-
-#if 0
-	/* If overrun condition occurs, clear the ORE flag and recover communication */  
-	if (USART_GetITStatus(USART3, USART_IT_TXE) != RESET)
-	{
-		ThrUartIsrTxReady();
-		USART_ClearITPendingBit(USART3, USART_IT_TXE);
-	}
+		printf("%x ",  USART_ReceiveData(USART3) );
+		//tmp_tx_buf[cur_cnt-1] = USART_ReceiveData(USART3);
 		
-			////if (USART_GetITStatus(USART3, USART_IT_TC) != RESET)
-			////{
-			/////	USART_ClearITPendingBit(USART3, USART_IT_TC);
-			////	ThrUartIsrTxComplete();
-			////}
-
-			////if (USART_GetFlagStatus(USART3, USART_FLAG_ORE) != RESET)
-			////{
-			////	tmp = USART3->SR;
-			////	tmp = USART3->DR;
-			////}
-#endif
-
+		
+		//if(cur_cnt>=192){
+		//	route_txframe(tmp_tx_buf, cur_cnt );
+		//	cur_cnt=0;
+		//}
+	}
 
 }
 
