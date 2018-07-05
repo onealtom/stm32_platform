@@ -23,7 +23,8 @@
 #include "usb_istr.h"
 //#include "hw_config.h"
 
-static uint8_t tmp_tx_buf[200];
+#define USART3_RXBUF_SIZE  256
+static uint8_t tmp_tx_buf[USART3_RXBUF_SIZE];
 static int cur_cnt=0;
 
 /* Private typedef -----------------------------------------------------------*/
@@ -174,13 +175,16 @@ void TIM2_IRQHandler(void)
 		capture = TIM_GetCapture1(TIM2);
 		TIM_SetCompare1(TIM2, capture + CCR1_Val);
 		/*flush output*/
-		//if( cur_cnt >0 ){
-		//	route_txframe(tmp_tx_buf, cur_cnt );
-		//	cur_cnt=0;
-		//}
-		if(iCnt>500){
+
+		if(iCnt>200){//x检查一次，是否有数据，有就发送
 			iCnt=0;
-			printf("5s \n");
+			//printf("\ncur_cnt=%d \n",cur_cnt);
+			if( cur_cnt >0 ){
+				//route_txframe(tmp_tx_buf, cur_cnt );
+				printf("\ncur_cnt=%d \n",cur_cnt);
+				hexdump(tmp_tx_buf, cur_cnt );
+				cur_cnt=0;
+			}
 		}else{
 			iCnt++;
 		}
@@ -286,20 +290,26 @@ void USART2_IRQHandler(void)
 *******************************************************************************/
 void USART3_IRQHandler(void)
 {
-
+	/*够了就转发，TM2中断用于避免没满，但没有数据进来的情况下，也能把已有的即使发出*/
+	if(cur_cnt>=192){
+		printf("\ncur_cnt=%d \n",cur_cnt);
+		//route_txframe(tmp_tx_buf, cur_cnt );
+		hexdump(tmp_tx_buf, cur_cnt );
+		cur_cnt=0;
+	}
+	
 	while(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)
 	{
-		//cur_cnt++;
+		USART_ClearITPendingBit(USART3,USART_IT_RXNE); //清除中断标志.  
 		/* Read one byte from the receive data register */
-		printf("%x ",  USART_ReceiveData(USART3) );
-		//tmp_tx_buf[cur_cnt-1] = USART_ReceiveData(USART3);
-		
-		
-		//if(cur_cnt>=192){
-		//	route_txframe(tmp_tx_buf, cur_cnt );
-		//	cur_cnt=0;
-		//}
+		//printf("%c ",  USART_ReceiveData(USART3) );
+		if(cur_cnt<USART3_RXBUF_SIZE){
+			tmp_tx_buf[cur_cnt] = USART_ReceiveData(USART3);
+			cur_cnt++;
+		}
 	}
+	
+
 
 }
 

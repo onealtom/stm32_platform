@@ -16,6 +16,9 @@ int route_txframe(uint8_t* data , int len)
 {
 	pPKT_DEV_T pkt_dev;
 	
+	if(len<=0)
+		return 0;
+	
 	pkt_dev->des_addr = 1;
 	pkt_dev->src_addr = 0;
 	pkt_dev->fiber_port = 0;

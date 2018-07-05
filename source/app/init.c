@@ -509,7 +509,7 @@ void InitSystem()
 
 	WTD_CLR;  
 	//InitExtentBus_8();	// 初始化8位总线
-	FpgaLoad();			// 加载FPGA 
+	//FpgaLoad();			// 加载FPGA 
 	InitExtentBus_16();	// 初始化16位总线 
 
 	if ( FPGA_LDST_OK== fpga_load_status )
