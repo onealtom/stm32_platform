@@ -178,12 +178,12 @@ void TIM2_IRQHandler(void)
 		//	route_txframe(tmp_tx_buf, cur_cnt );
 		//	cur_cnt=0;
 		//}
-		//if(iCnt>500){
-		//	iCnt=0;
-		//	printf("5s \n");
-		//}else{
-		//	iCnt++;
-		//}
+		if(iCnt>500){
+			iCnt=0;
+			printf("5s \n");
+		}else{
+			iCnt++;
+		}
 	}
 
 }

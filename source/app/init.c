@@ -476,7 +476,8 @@ void InitSystem()
 //	EnableModulatorC(0);
 //	EnableModulatorD(0);
 
-
+	InitTimer2();
+	
 	InitDebugUart( DEBUG_UART_BAUD	);		// 配置调试串口
 	Uart3_Init(115200);
 	
@@ -486,7 +487,7 @@ void InitSystem()
 	
 //	TRACE_INFO("Init Sys Time Tick\r\n");
 	InitSystemTimer();		// 初始化系统节拍定时器
-	InitTimer2();
+	
 //	TRACE_INFO("Get Flash Page Size\r\n");
 	GetFlashPageSize();		// 读取Flash页大小
 
