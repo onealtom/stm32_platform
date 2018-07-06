@@ -101,6 +101,9 @@ void Uart4_IE_RxDat( UCHAR8 enable );
 void Uart4_IE_TxComplete( UCHAR8 enable );
 void Uart4_TxFinish( void );
 
-
+typedef struct{
+	uint8_t * p;
+	uint8_t cnt;
+}rxbuffer;
 
 #endif

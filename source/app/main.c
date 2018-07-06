@@ -13,7 +13,11 @@
 *RJ		2010-03-10		v0.1			初始版本
 **************************************************************/
 #include "Header.h"
-   
+#include "tools.h"
+#ifndef USART3_RXBUF_SIZE
+	#define USART3_RXBUF_SIZE  256
+#endif
+
 
 extern UCHAR8 usbBuffer[DATABUFFERSIZE];
 extern UCHAR8 str_pri_mcu_date[];
@@ -30,142 +34,70 @@ UCHAR8 traffic_start = 0;//开始话务量统计
 
 unsigned int traceLevel = TRACE_LEVEL_DEBUG;
 
-UCHAR8 GetMcuNetType( UCHAR8 net_type )
-{
-	switch ( net_type )
-	{
-		case NET_TYPE_GSM900:
-			return 'G';
 
-		case NET_TYPE_WCDMA2100:
-			return 'W';
-
-		case NET_TYPE_TD:
-			return 'T';
-
-		case NET_TYPE_DCS1800:
-			return 'D';
-
-		case NET_DIVE:
-			return 'd';
-
-		case NET_TYPE_CMMB:
-			return 'B';
-			
-		case NET_TYPE_CDMA:
-		case NET_TYPE_CDMA800:
-			return 'C';
-			
-		case NET_TYPE_TETRA:   //集群Tetra
-			return 'T'; 
-			
-		case NET_TYPE_LTE_TD:
-			return 'T';
-		case NET_TYPE_LTE_FDD:
-			return 'F';
-			
-
-		case NET_NONE:
-			return '_';
-			
-		default:
-			return '?';
-	}
-	
-}
-
-//SYSTEM_INIT_DATA_T c_init_data;
-
-void GetMcuWaterPrint()
-{
-	UINT32 i;
-	UINT32 tmp=0;
-	
-	//MCU编译日期和水印
-	str_pri_mcu_date[tmp++] = 'A';
-	str_pri_mcu_date[tmp++] = 'U';
-	str_pri_mcu_date[tmp++] = '1';
-	str_pri_mcu_date[tmp++] = ' ';
-	
-#if ((defined CLIENT_ERRICSON2) ||(defined CLIENT_ERRICSON_W))				
-		str_pri_mcu_date[tmp++] = 'E';
-		str_pri_mcu_date[tmp++] = 'R';
-#elif defined( CLIENT_ERRICSON )			
-		str_pri_mcu_date[tmp++] = 'E';
-		str_pri_mcu_date[tmp++] = 'R';
-#elif defined( CLIENT_JIZHUN )				
-		str_pri_mcu_date[tmp++] = 'J';
-		str_pri_mcu_date[tmp++] = 'Z';
-#elif defined( CLIENT_DATANG )		
-		str_pri_mcu_date[tmp++] = 'D';
-		str_pri_mcu_date[tmp++] = 'T';
-#else								   
-		str_pri_mcu_date[tmp++] = 'E';
-		str_pri_mcu_date[tmp++] = 'R';
-#endif
-	str_pri_mcu_date[tmp++] = ' ';
-
-	str_pri_mcu_date[tmp++] = GetMcuNetType(fpga_cfg.a_net_type);
-	str_pri_mcu_date[tmp++] = GetMcuNetType(fpga_cfg.b_net_type);;
-	str_pri_mcu_date[tmp++] = GetMcuNetType(fpga_cfg.c_net_type);
-	str_pri_mcu_date[tmp++] = GetMcuNetType(fpga_cfg.d_net_type);	
-
-	//str_pri_mcu_date[tmp++] = ' ';
-
-
-
-
-
-#ifdef USE_RS232_AS_CTRL_PORT
-	str_pri_mcu_date[tmp++] = ',';
-#elif defined ( FUNC_FREQ_POINT_SEARCH_EN )	// SFP
-	str_pri_mcu_date[tmp++] = '#';
-#else
-	if ( fpga_cfg.wlan_en==1 )
-	{
-		str_pri_mcu_date[tmp++] = '|';
-	}
-	else  
-	{
-		str_pri_mcu_date[tmp++] = ' ';
-	}  
-
-#endif
-	//str_pri_mcu_date[tmp++] = ' ';
-
-	p_mcu_date = __DATE__; 	
-
-	memcpy(str_pri_mcu_date+tmp,p_mcu_date,PRI_MCU_DATE_LEN-tmp);
-	
-}
+rxbuffer *rx_buf1;
+rxbuffer *rx_buf2;
+rxbuffer *capt_guy;
+rxbuffer *proc_guy;
+int Uart3_Sta;
 
 void main()
 {
 	UINT32 tmp=0;
 	UCHAR8 reset_time=0;
+	int i;
 
 	//UCHAR8 p_msg_dat[]={0x01,0x01,0x00,0x00,0x00,0x00,0xdf,0xff,0x00,0x00,'t','e','s','k','o','k','.','f','r','o','m','.','r','e','c','.','.','.','.','.','.','.','.','.'};
 	//UCHAR8 p_msg_dat1[]={0xC2,0x01,0x01,0x69,0x82,0x02,0x00,0x00};
 	
 	// 系统初始化
 	InitSystem();
-
-	// 读MCU水印
-	GetMcuWaterPrint();	
+	
 	WTD_CLR;
 
 	TRACE_INFO("Sys Start Run\r\n");
 
 	UsbConnect(); 
-   
-	 
+
+	
+	rx_buf1 = (rxbuffer*)malloc( sizeof(rxbuffer) );
+	rx_buf1->p = (uint8_t*)malloc(256);
+	if(rx_buf1->p==NULL)
+		printf("NULL\n");
+	else{
+		rx_buf1->cnt=0;
+	}
+	rx_buf2 = (rxbuffer*)malloc(sizeof(rxbuffer));
+	rx_buf2->p = (uint8_t*)malloc(256);
+	if(rx_buf2->p==NULL)
+		printf("NULL\n");
+	else{
+		rx_buf2->cnt=0;	
+	}
+	capt_guy = rx_buf1;
+	proc_guy = rx_buf2;
+
 	while(1)
 	{ 
-	
+
+		if(Uart3_Sta)
+		{
+			if(proc_guy->cnt > 0){
+				printf("\n\rcnt: %d, proc: %d \n\r",proc_guy->cnt, (proc_guy == rx_buf1)? 1: 2 );
+				hexdump(proc_guy->p, proc_guy->cnt);
+			}
+			//for(i=0; i < proc_guy->cnt ; i++ )
+				//printf("%c ", proc_guy->p[i] );
+
+
+			Uart3_Sta = 0;
+			proc_guy->cnt=0;
+		}
+		
 		WTD_CLR;
 
 		// USB状态转换 
-		USBChgStatus();  
+		USBChgStatus();
 
 		if ( 1 == IsUsbConfigured() )
 		{

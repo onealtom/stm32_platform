@@ -23,10 +23,12 @@
 #include "usb_istr.h"
 //#include "hw_config.h"
 
-#define USART3_RXBUF_SIZE  256
-static uint8_t tmp_tx_buf[USART3_RXBUF_SIZE];
-static int cur_cnt=0;
 
+extern  int Uart3_Sta;
+extern rxbuffer *rx_buf1;
+extern rxbuffer *rx_buf2;
+extern rxbuffer *capt_guy;
+extern rxbuffer *proc_guy;
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -176,14 +178,18 @@ void TIM2_IRQHandler(void)
 		TIM_SetCompare1(TIM2, capture + CCR1_Val);
 		/*flush output*/
 
-		if(iCnt>200){//x检查一次，是否有数据，有就发送
+		if(iCnt>20){//x检查一次，是否有数据，有就发送
 			iCnt=0;
 			//printf("\ncur_cnt=%d \n",cur_cnt);
-			if( cur_cnt >0 ){
-				//route_txframe(tmp_tx_buf, cur_cnt );
-				printf("\ncur_cnt=%d \n",cur_cnt);
-				hexdump(tmp_tx_buf, cur_cnt );
-				cur_cnt=0;
+			if( Uart3_Sta ==0 ){
+				Uart3_Sta =1;
+				if (capt_guy ==rx_buf1){
+					capt_guy=rx_buf2;
+					proc_guy=rx_buf1;
+				}else{
+					capt_guy=rx_buf1;
+					proc_guy=rx_buf2;
+				}
 			}
 		}else{
 			iCnt++;
@@ -281,6 +287,9 @@ void USART2_IRQHandler(void)
 }
 
 
+
+
+
 /*******************************************************************************
 * Function Name  : USART3_IRQHandler
 * Description    : This function handles USART2 global interrupt request.
@@ -290,6 +299,8 @@ void USART2_IRQHandler(void)
 *******************************************************************************/
 void USART3_IRQHandler(void)
 {
+
+#if 0
 	/*够了就转发，TM2中断用于避免没满，但没有数据进来的情况下，也能把已有的即使发出*/
 	if(cur_cnt>=192){
 		printf("\ncur_cnt=%d \n",cur_cnt);
@@ -308,7 +319,28 @@ void USART3_IRQHandler(void)
 			cur_cnt++;
 		}
 	}
-	
+#endif
+#if 1
+	if(USART_GetITStatus(USART3, USART_IT_RXNE) == SET){
+		capt_guy->p[capt_guy->cnt] = USART_ReceiveData(USART3);
+		//printf("%c ",  capt_guy->p[capt_guy->cnt] );
+		(capt_guy->cnt)+=1;
+
+		if(capt_guy->cnt >= 192 ){
+
+			Uart3_Sta=1;
+			if (capt_guy ==rx_buf1){
+				capt_guy=rx_buf2;
+				proc_guy=rx_buf1;
+			}else{
+				capt_guy=rx_buf1;
+				proc_guy=rx_buf2;
+			}
+		}
+	}
+#endif
+
+
 
 
 }

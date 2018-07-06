@@ -30,6 +30,12 @@
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 
+
+#define usart_len       10
+extern uint8_t usart_array[usart_len];
+extern uint8_t flag;
+extern uint8_t usart_sta;
+
 static __IO uint32_t uwTick;
 
 void NMI_Handler(void);
