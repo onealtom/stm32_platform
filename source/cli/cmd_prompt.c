@@ -86,9 +86,9 @@ int prompt_sendpkt(int argc, char * argv[])
 	FpgaWriteRegister( FPGA_REG_W_MSG_SRC_ADD, 0 );
 	
 	//2 启动计数/pid
-	FpgaWriteRegister( FPGA_REG_W_MSG_LEN, 195 );//最大195
-	
-	
+	FpgaWriteRegister( FPGA_REG_W_MSG_LEN, 5 );//最大195
+
+	FpgaWriteRegister( FPGA_REG_W_MSG_DAT, 192 );
 	//3 写发送数据寄存器
 	for ( i=0; i<210; i++ )
 	{
@@ -556,7 +556,13 @@ WTD_CLR;
 		break;
 	case fpgaload:
 		FpgaLoad();
-		FpgaTest();
+		if ( 0!=FpgaTest() )
+		{
+			printf("FPGA test success\r\n");
+		}else{
+			printf("FPGA test Fail\r\n");
+
+		}
 		break;
 	case fwinfo:
 		prompt_fwinfo();

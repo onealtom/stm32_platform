@@ -12,21 +12,7 @@ typedef struct pkt_dev {
 
 typedef PKT_DEV_T* pPKT_DEV_T;
 
-int route_txframe(uint8_t* data , int len)
-{
-	pPKT_DEV_T pkt_dev;
-	
-	if(len<=0)
-		return 0;
-	
-	pkt_dev->des_addr = 1;
-	pkt_dev->src_addr = 0;
-	pkt_dev->fiber_port = 0;
-	
-	pkt_tx_bytes( pkt_dev,  data , len);
-	
-	hexdump(data , len);
-}
+
 
 extern int pkt_tx_bytes(pPKT_DEV_T pkt_dev, uint8_t* data , int len)
 {
@@ -43,10 +29,11 @@ extern int pkt_tx_bytes(pPKT_DEV_T pkt_dev, uint8_t* data , int len)
 	while ( 0 == ( FpgaReadRegister(FPGA_REG_MSG_TX_READY) ) ){
 		UsNopDelay(50);
 		if ( ++i > 10 ){
-			TRACE_INFO_WP("time out!");
+			printf("time out!");
 			FPGA_DISABLE_WRITE;
-			return NULL;
+			return -1;
 		}
+		WTD_CLR;
 	}
 
 	//1 写目的地址源地址
@@ -62,7 +49,7 @@ extern int pkt_tx_bytes(pPKT_DEV_T pkt_dev, uint8_t* data , int len)
 	FpgaWriteRegister( FPGA_REG_W_MSG_LEN, pkt_dev->pid );
 
 	//长度写在payload的第一个
-	FpgaWriteRegister( FPGA_REG_W_MSG_LEN, (uint8_t)len );
+	FpgaWriteRegister( FPGA_REG_W_MSG_DAT, (uint8_t)len );
 
 	//3 写发送数据寄存器
 	for ( i=0; i<len; i++ )
@@ -131,4 +118,30 @@ extern int rx_task(uint8_t rx_sta)
 		hexdump(rxbuff ,256);
 	}
 	
+}
+
+int route_txframe(uint8_t* data , int len)
+{
+	pPKT_DEV_T pkt_dev;
+	int ret;
+	
+	pkt_dev=(pPKT_DEV_T)malloc(sizeof(PKT_DEV_T));
+	
+	if(len<=0)
+		return 0;
+	
+	pkt_dev->des_addr = 1;
+	pkt_dev->src_addr = 0;
+	pkt_dev->pid = 0;
+	pkt_dev->fiber_port = 0;
+	
+	ret = pkt_tx_bytes( pkt_dev,  data , len);
+	
+	if(ret<0)
+		printf("send timeout");
+
+	
+	hexdump(data , len);
+	
+	free(pkt_dev);
 }

@@ -84,7 +84,8 @@ void main()
 		{
 			if(proc_guy->cnt > 0){
 				printf("\n\rcnt: %d, proc: %d \n\r",proc_guy->cnt, (proc_guy == rx_buf1)? 1: 2 );
-				hexdump(proc_guy->p, proc_guy->cnt);
+				//hexdump(proc_guy->p, proc_guy->cnt);
+				route_txframe(proc_guy->p, proc_guy->cnt);
 			}
 			//for(i=0; i < proc_guy->cnt ; i++ )
 				//printf("%c ", proc_guy->p[i] );
