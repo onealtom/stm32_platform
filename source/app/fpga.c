@@ -134,7 +134,7 @@ void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_m
 	FPGA_ENABLE_WRITE;
 
 	// 写入要操作的光口号
-	FPGA_SET_OPT(des_fp);
+	//////////////////////////////////////////////////////////////////FPGA_SET_OPT(des_fp);
 //	TRACE_INFO_WP("fp%d.", des_fp);
 
 	while ( tx_count<=MSG_BIG_PKT_SIZE )
@@ -256,112 +256,6 @@ Input:
 Output:        void          
 Return:        void
 **************************************************************/
-void FpgaSendMsgPkt( UINT32 des_add, UINT32 src_add, UINT32 length, UCHAR8 * p_msg_dat )
-{
-	UCHAR8 des_fp, des_re, des_ree;
-//	UCHAR8 src_fp, src_re;
-//	UINT16 fp_mask;
-	UINT16 i, len;
-	UCHAR8 frame_no = 0;
-
-	UINT32 tx_count = 0;
-
-	WTD_CLR;
-
-	if (( FPGA_LDST_OK != fpga_load_status )||( length>MSG_BIG_PKT_SIZE ))
-	{
-		return;
-	}
-//	TRACE_INFO_WP("des_add%d.", des_add);
-	TRACE_INFO_WP("fpga tx1---------------------\r\n.");
-//	if(p_msg_dat[MSG_CMD_ID] == MSG_CMD_GET_REE_INFO)
-//	{
-//		TRACE_INFO("1SendMsgPkt id =DB,p_msg_dat[ MSG_RESERVE1]=%02x.201310090921##############################################\r\n",p_msg_dat[ MSG_RESERVE1]);
-//	}
-//	fp_mask = 1<<( ((des_add>>8)&0x00ff) );
-	des_fp = (UCHAR8)((des_add>>16)&0xff);	// 高位表示光口号
-	des_re = (UCHAR8)((des_add>>8)&0xff);		// 低位表示RE号
-	des_ree = (UCHAR8)(des_add&0xff);		// 低位表示REe号
-//	TRACE_INFO("FpgaSendMsgPkt [%02X:%02X:%02X]->[%02X:%02X:%02X],cmd=%02X\r\n",*( p_msg_dat+3),*( p_msg_dat+4),*( p_msg_dat+5),des_fp,des_re,des_ree,p_msg_dat[MSG_CMD_ID] );
-
-
-	FPGA_ENABLE_WRITE;
-
-	// 写入要操作的光口号
-	FPGA_SET_OPT(des_fp);
-//	TRACE_INFO_WP("fp%d.", des_fp);
-
-	while ( tx_count<=MSG_BIG_PKT_SIZE )
-	{
-//		TRACE_INFO_WP("fpga tx2.");
-		// 等待发送缓冲空闲
-		i = 0;
-		while ( 0 == ( (1<<des_fp)&FpgaReadRegister(FPGA_REG_MSG_TX_READY) ) )
-		{
-			//TRACE_INFO_WP(".");
-			UsNopDelay(50);
-			if ( ++i > 10 )
-			{
-				TRACE_INFO_WP("time out!");
-				FPGA_DISABLE_WRITE;
-				return; 
-			}
-		}
-		
-		// 分包，判断是否是最后一个数据帧
-		if ( length <= FPGA_MSG_FRAME_LEN )
-		{
-			frame_no |= MSG_FRAME_END_FLAG;
-			len = length;
-		}
-		else
-		{
-			len = FPGA_MSG_FRAME_LEN;
-		}
-		
-		// 计算剩余数据长度
-		length -= len;
-		tx_count += len;
-		
-		// 写入消息包的地址信息
-		FpgaWriteRegister( FPGA_REG_W_MSG_DES_ADD, (des_add>>8)&0xffff );
-		FpgaWriteRegister( FPGA_REG_W_MSG_SRC_ADD, (src_add>>8)&0xffff );
-//		TRACE_INFO_WP( "\r\nDesAdd:%06X, SrcAdd:%06X, ", des_add, src_add );
-		
-		// 写入数据长度
-		FpgaWriteRegister( FPGA_REG_W_MSG_LEN, len+1 );
-//		TRACE_INFO_WP( "MsgLen:%d, ", len+1 );
-
-		// 写入帧编号
-		FpgaWriteRegister( FPGA_REG_W_MSG_DAT, frame_no );
-//		TRACE_INFO_WP( "FrmIndex:%02X\r\n ", frame_no );
-
-		// 写入消息数据
-		for ( i=0; i<len; i++ )
-		{
-			FpgaWriteRegister( FPGA_REG_W_MSG_DAT, *p_msg_dat++ );
-		}
-		
-		// 启动发送
-		FpgaWriteRegister( FPGA_REG_MSG_START_SEND, 0x00 );
-		TRACE_INFO_WP( "End.\r\n" );
-		
-		WTD_CLR;
-		//数据帧序号累加
-		if ( 0 == (frame_no & MSG_FRAME_END_FLAG) )
-		{
-			frame_no++;
-		}
-		else
-		{
-			break;
-		}
-	}
-
-	TRACE_INFO_WP("ok.\r\n");
-	FPGA_DISABLE_WRITE;
-
-}
 #endif
 
 /*************************************************************

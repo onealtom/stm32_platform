@@ -17,6 +17,12 @@
 #include <spiffs.h>
 #include <tools.h>
 #include <ymodem.h>
+#include <string.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include "tran_file.h"
 extern _T_VALID_FP_TOPO valid_fp_topo[FP_MAX];
 
 
@@ -1313,7 +1319,6 @@ void MsgHandleResetDev( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 	////if ( b_TRUE==FpgaIsEnableA() )	output_st |= 0x01;
 	////if ( b_TRUE==FpgaIsEnableB() )	output_st |= 0x02;
 	// 关闭调制器输出
-	EnableModulatorA( 0 );
 	EnableModulatorB( 0 );
 
 	switch( dev_id )
@@ -1378,7 +1383,6 @@ void MsgHandleResetDev( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buf
 		UsNopDelay( 500000 );
 		WTD_CLR;
 		UsNopDelay( 500000 );
-		if ( 0!=(output_st&0x01) ) EnableModulatorA( 1 );
 		if ( 0!=(output_st&0x02) ) EnableModulatorB( 1 );
 		WTD_CLR;
 	}
@@ -1426,7 +1430,7 @@ void MsgHandleGetFpgaReg( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_b
 		{
 					
 
-			FPGA_SET_OPT(reg_type&REG_TYPE_ARGS);
+			//FPGA_SET_OPT(reg_type&REG_TYPE_ARGS);
 			//TRACE_INFO_WP( "Fp%d", reg_type&REG_TYPE_ARGS );
 		}
 		else if ( REG_TYPE_TDSLOT == (reg_type&REG_TYPE_MASK) )
@@ -1660,17 +1664,16 @@ int MsgHandleUpdateJSON( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 	int len;			//2 Byte [2~3] lsb
 	/*end*/
 	UINT16 checksum;		//2 Byte [2~3] lsb
-	
 
 	UINT32 msg_tx_len;
 	UCHAR8 * p_args;
 
 	int i;
 	int res;
-	
+
 	static spiffs_file fd;
 	extern spiffs sfblk0p1;
-	
+
 	printf("Message Handle Update json!\r\n");
 
 	msg_tx_len = MSG_PKT_HEAD_SIZE;
@@ -1680,35 +1683,37 @@ int MsgHandleUpdateJSON( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 //结束包，写完删除有后缀文件名, rename文件名加上后缀json
 	if (( 0xFA == p_args[0] )&&( 0x5A == p_args[1] )){
 	/*开始包*/
-		
+
 		printf("JSON Start Pkg\n");
 		printf("Total len is: %d, %d packets trans.\n",all_len, all_pkt);
 		
-		hexdump(p_args, 32);
+		hexdump(p_args, 40);
 
 		all_pkt = p_args[2]|(p_args[3]<<8);
 		all_len = p_args[4]|(p_args[5]<<8)|(p_args[6]<<16)|(p_args[7]<<24);
 		
 		/*上位机限制了文件名长度最大8.4，spiffs config 文件名最长32*/
-		name_len = p_args[8];
+		//name_len = p_args[8];
 		
 		
-#define NAMELEN_8_4 14 //8 + '.' + 4 + '\0'
+//#define NAMELEN_8_4 14 //8 + '.' + 4 + '\0'
 		
-		filename = malloc(NAMELEN_8_4);
-		for(i=0;i<NAMELEN_8_4;i++){
-			filename[i]=0x00;
-		}
-		for(i=0;i<name_len;i++){
-			filename[i]=*(p_args+9+i);
-		}		
+		filename = malloc(32);
+		//for(i=0;i<32;i++){
+		//	filename[i]=0x00;
+		//}
+		//for(i=0;i<name_len;i++){
+		//	filename[i]=*(p_args+9+i);
+		//}
+		
 		//printf("Receive file: %s\n\r",filename);
 
 		//filename = malloc(name_len+1);
-		//strncpy(filename, p_args+9, name_len+1);
-		hexdump(filename, name_len);
-		
-#define WRITE_TO_FLASH 1		
+		memcpy(filename, p_args+8, 32);
+		//filename = (char*)(p_args+8);
+		//hexdump(p_args, 82);
+
+#define WRITE_TO_FLASH 1
 #if WRITE_TO_FLASH
 
 		fd = SPIFFS_open(&sfblk0p1, filename, SPIFFS_CREAT | SPIFFS_RDWR, 0);
@@ -1741,7 +1746,7 @@ int MsgHandleUpdateJSON( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 		hexdump(p_args, 32);
 		free(filename);
 		
-		//SPIFFS_close(&sfblk0p1, fd);
+		SPIFFS_close(&sfblk0p1, fd);
 
 		checksum = p_args[2]|(p_args[3]<<8);
 		p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
@@ -1796,11 +1801,15 @@ ack_err:
 int MsgHandleYModemStream( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_buff )
 {
 	/*start*/
-	static UINT32 all_pkt;  	//2 Byte [2~3] lsb
+	UINT32 all_pkt;  	//2 Byte [2~3] lsb
 	UINT32 all_len;  		//4 Byte [4~7] lsb
 	int name_len;			//1 Byte [8]
 	//static char filename[14];	//1~13 Byte [9~21] text head在前
-	static char *filename;		//1~13 Byte [9~21] text head在前
+	static pRU_TX_FILE_T fd = NULL;
+	
+	char *fname;
+	char *md5;
+	uint8_t port , node ;
 	/*mid*/
 	UINT16 pkt_no;			//2 Byte [0~1] lsb
 	int len;			//2 Byte [2~3] lsb
@@ -1822,42 +1831,43 @@ int MsgHandleYModemStream( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_
 	if (( 0xFA == p_args[0] )&&( 0x5A == p_args[1] )){
 	/*开始包*/
 
-		printf("JSON Start Pkg\n");
+		printf("TXMODEM Start Pkg\n");
 		printf("Total len is: %d, %d packets trans.\n",all_len, all_pkt);
-		
-		hexdump(p_args, 32);
+
+		hexdump(p_args, 82);
 
 		all_pkt = p_args[2]|(p_args[3]<<8);
 		all_len = p_args[4]|(p_args[5]<<8)|(p_args[6]<<16)|(p_args[7]<<24);
-		
+
 		/*上位机限制了文件名长度最大8.4，spiffs config 文件名最长32*/
-		name_len = p_args[8];
-		
-		
-#define NAMELEN_8_4 14 //8 + '.' + 4 + '\0'
-
-		filename = malloc(NAMELEN_8_4);
-		for(i=0;i<NAMELEN_8_4;i++){
-			filename[i]=0x00;
+		//name_len = p_args[8];
+		fname = (char*)(p_args+8);
+		//md5 = (char*)(p_args+8+32);
+		port = *(p_args+8+32+32);
+		node = *(p_args+8+32+32+1);
+		printf("filename=%s\n",fname);
+		//printf("md5=%s\n",md5);
+		printf("port=%d\n",port);
+		printf("node=%d\n",node);
+		if( check_node_alive(port, node) ){
+			//tran_txstart_frame((int)port, (int)node, all_len, fname );
+			fd = create_ru_file( port,  node, all_len, fname );
+			memcpy(fd->md5 , (char*)(p_args+8+32), 32 );
+			goto ack_ok;
+		}else{
+			printf("node not alive\n");
+			goto ack_err;
 		}
-		for(i=0;i<name_len;i++){
-			filename[i]=*(p_args+9+i);
-		}		
-
-		ymodem_start_pkt(packet_data, filename, all_len );
-
-		goto ack_ok;
-
 	}else if (( 0xA5 == p_args[0] )&&( 0xAF == p_args[1] )){
 	/*结束包*/
-		
-		printf("JSON End Pkg\n");
-		hexdump(p_args, 32);
-		free(filename);
 
+		printf("TXMODEM End Pkg\n");
+		hexdump(p_args, 32);
+		//free(filename);
+		close_ru_file(fd);
+		fd = NULL;
 		checksum = p_args[2]|(p_args[3]<<8);
 		p_tx_buff[MSG_ACK_FLAG] = MSG_ACK_CMD_OK;
-
 
 	}else{
 	/*中间包*/
@@ -1865,8 +1875,14 @@ int MsgHandleYModemStream( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_
 		pkt_no = p_args[0]|(p_args[1]<<8);
 		len = p_args[2]|(p_args[3]<<8);
 
-		ymodem_mid_pkt(p_args+4, pkt_no, len  );
-
+		/*pkt_no从1开始，如果是第一个中间包, 检测RU是否已经回复了开始包状态*/
+		if(pkt_no==1){
+			//goto ack_err;
+		}
+		 write_ru_file( fd, p_args+4, len );
+		//ymodem_mid_pkt(p_args+4, pkt_no, len  );
+		//tran_txmid_frame(3, 9, text, 1024);
+		//hexdump(p_args, len+2);
 		p_tx_buff[msg_tx_len++] = (UCHAR8)(pkt_no & 0x00ff);
 		p_tx_buff[msg_tx_len++] = (UCHAR8)((pkt_no>>8) & 0x00ff);
 	}

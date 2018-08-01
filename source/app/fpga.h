@@ -1,4 +1,4 @@
-﻿//20140209
+//20140209
 /***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
@@ -677,7 +677,8 @@ extern UINT32 fpga_load_status;
 
 // 宏操作定义
 #define FPGA_ENABLE_WRITE		FpgaWriteRegister( FPGA_REG_WRITE_PROTECT, WP_CODE_NO_PROTECT)
-#define FPGA_DISABLE_WRITE		FpgaWriteRegister( FPGA_REG_WRITE_PROTECT, WP_CODE_PROTECT_ALL)
+//#define FPGA_DISABLE_WRITE		FpgaWriteRegister( FPGA_REG_WRITE_PROTECT, WP_CODE_PROTECT_ALL)
+#define FPGA_DISABLE_WRITE
 
 #define FPGA_SET_OPT( OPT_NO )	FpgaWriteRegister( FPGA_REG_OPT_SEL, (OPT_NO) )		// 设置要操作的光口号
 #define FPGA_GET_OPT( OPT_NO )	FpgaReadRegister( FPGA_REG_OPT_SEL,(OPT_NO)  )				// 当前操作的光口号

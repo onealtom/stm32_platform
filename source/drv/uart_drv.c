@@ -109,7 +109,7 @@ void EnableUartTx(UCHAR8 flag, UCHAR8 ch_head)
 	UINT16 i=0;
 	
 	if (0!=flag)
-	{	
+	{
 		RS485A_TX_MODE;
 		UsNopDelay(10);
 		CtrlUartSendDat(ch_head);
@@ -657,6 +657,27 @@ int send_string(uint8_t * string)
 	}
 }
 
+int USART3_tx_buf(uint8_t * data, int len)
+{	
+	int i=0;
+	int cnt;
+	for(cnt=0;cnt<len;cnt++)
+	{
+		i=0;
+		while(USART_GetFlagStatus(USART3, USART_FLAG_TXE) == RESET)
+		{
+			UsNopDelay(10);
+			if ( ++i > 50 ){
+				printf("timeout");
+				return cnt;
+			}
+		}
+		USART_SendData(USART3, *data);
+		data++;
+	}
+	return len;
+}
+
 uint8_t USART3_GetByte(uint8_t *c)
 {
 	if(USART_GetFlagStatus(USART3, USART_FLAG_RXNE) != RESET)
@@ -667,7 +688,7 @@ uint8_t USART3_GetByte(uint8_t *c)
 	return 0;
 }
 
-
+/*
 int usart3_cat_onebyte2buf(uint8_t * data, unsigned int len)
 {
 	int i;
@@ -681,11 +702,11 @@ int usart3_cat_onebyte2buf(uint8_t * data, unsigned int len)
 	if ( (cur_num + 1) <= BUFF_SIZE )
 		cur_num ++;
 	else{
-		pkt_tx_bytes(tx_buff , cur_num+1);
+		pkt_tx_base_frame(tx_buff , cur_num+1);
 		cur_num = 0;
 	}
 	
 	tx_buff[cur_num] = USART_ReceiveData(USART3);
 	
 
-}
+}*/

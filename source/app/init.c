@@ -471,10 +471,8 @@ void InitSystem()
 	UsbDisConnect();  
 
 	// 关断调制器输出
-//	EnableModulatorA(0);
 //	EnableModulatorB(0);
-//	EnableModulatorC(0);
-//	EnableModulatorD(0);
+
 
 	InitTimer2();
 	

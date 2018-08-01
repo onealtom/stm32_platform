@@ -3,13 +3,15 @@
 #include <spiffs.h>
 
 #include <fs.h>
+#include "pkt_drv.h"
+#include "tran_file.h"
 
 #define MAX_CLI_CAHR	53
 #define MAX_CLI_ARGS	10
 
-enum  cmd_num{ hello ,sendpkt ,memm ,ls, touch, cat, writef ,rm , parse_then_set, devmem, fpga, fwinfo, help, fpgaload };
-const char *cmd_num[]={ "hello" ,"sendpkt", "memm", "ls", "touch", "cat", "writef" , "rm" ,"parse_then_set" , "devmem", "fpga", "fwinfo", "help", "fpgaload" };
-#define NUM_OF_CMD 14
+enum  cmd_num{ hello ,sendpkt ,memm ,ls, touch, cat, writef ,rm , parse_then_set, devmem, fpga, fwinfo, fpgaload, txfile, help };
+const char *cmd_num[]={ "hello" ,"sendpkt", "memm", "ls", "touch", "cat", "writef" , "rm" ,"parse_then_set" , "devmem", "fpga", "fwinfo", "fpgaload","txfile", "help" };
+#define NUM_OF_CMD 15
 
 
 int prompt_hello(int argc, char * argv[])
@@ -24,7 +26,8 @@ int prompt_hello(int argc, char * argv[])
 	char * p;
 	char * text = "Hello World";
 	char ch;
-	
+	int len=0;
+
 	printf("hello prompt cli \r\n");
 	
 	while ((c = getopt(argc, argv, "igh")) != EOF){
@@ -33,9 +36,12 @@ int prompt_hello(int argc, char * argv[])
 		{
 		case 'i':
 			//json_main();
-			send_string(text);
+			//send_string(text);
+			//len = tran_txmid_frame(3, 9, text, 1024);
+			printf("len = %d\n", len);
 			break;
 		case 'g':
+			rx_task( (uint8_t)(0x00FF & FpgaReadRegister( FPGA_REG_MSG_FIFO_ST )) );
 			break;
 		case '?':
 			printf("Unknown option %c\n\r",optopt);
@@ -61,7 +67,95 @@ int prompt_hello(int argc, char * argv[])
 
 int prompt_sendpkt(int argc, char * argv[])
 {
-	int i;
+	int c;
+	pPKT_DEV_T pkt_dev;
+	uint8_t* data;
+	uint8_t len;
+	uint8_t i;
+	int mode;
+	
+	pkt_dev=(pPKT_DEV_T)malloc(sizeof(PKT_DEV_T));
+	data =(uint8_t*)malloc(256);
+
+	while ((c = getopt(argc, argv, "p:a:b:c:d:l:m:h")) != EOF){
+
+		switch ( c )
+		{
+			case 'p':
+				pkt_dev->fiber_port = (uint8_t)strtol( optarg, NULL, 0 );
+				break;
+			case 'a':
+				pkt_dev->des.bs.port = (uint8_t)strtol( optarg, NULL, 0 );
+				break;
+			case 'b':
+				pkt_dev->des.bs.node = (uint8_t)strtol( optarg, NULL, 0 );
+				break;
+			case 'c':
+				pkt_dev->src.bs.port = (uint8_t)strtol( optarg, NULL, 0 );
+				break;
+			case 'd':
+				pkt_dev->src.bs.node = (uint8_t)strtol( optarg, NULL, 0 );
+				break;
+			case 'l':
+				len = (uint8_t)strtol( optarg, NULL, 0 );
+				break;
+			case 'm':
+				mode = (uint8_t)strtol( optarg, NULL, 0 );
+				break;			
+			case 'h':
+			default:
+			printf("\r#########################################################\n");
+			printf("\r# Usage   : MDIO Bus Read                               #\n");
+			printf("\r# formart : mset <-i> -p <phy num> -i <port num> -s     #\n");
+			printf("\r# -i      : if <-i> mdio set ip , else set phy          #\n");
+			printf("\r# -p      : port 0~6                                    #\n");
+			printf("\r# -d      : dev addr , only for phy                     #\n");
+			printf("\r# -a      : reg addr                                    #\n");
+			printf("\r# example : mset -p 0 -d 3 -a 0x3008                    #\n");
+			printf("\r# example : mset -i -p 0 -a 0x00                        #\n");
+			printf("\r#########################################################\n\r");
+			return 0;
+		}
+
+	}
+	printf("port=0x%02X\n",pkt_dev->fiber_port);
+	printf("des_port_ad=0x%02X\n",pkt_dev->des.bs.port);
+	printf("des_node_ad=0x%02X\n",pkt_dev->des.bs.node);
+	printf("src_port_ad=0x%02X\n",pkt_dev->src.bs.port);
+	printf("src_node_ad=0x%02X\n",pkt_dev->src.bs.node);
+	
+	printf("des=0x%04X\n",pkt_dev->des.ws);
+	printf("src=0x%04X\n",pkt_dev->src.ws);	
+	
+	printf("len=0x%02X\n",len );
+	
+	if(mode == 1){
+		printf("test base pkt mode\n");
+		for(i=0;i<0xFF;i++){
+			data[i]=0xFF;
+		}
+		for(i=0;i<len;i++){
+			data[i]=i;
+		}
+		pkt_tx_base_frame( pkt_dev,  data , len);	
+	}else if(mode == 2){
+
+		printf("tx start pkt mode\n");
+
+		uint32_t fsize = 64*1024*1024;
+		char *fname = "test.txt";
+
+		tran_txstart_frame( pkt_dev->des.bs.port, pkt_dev->des.bs.node,  fsize, fname );
+
+	}else if(mode == 3){
+		printf("tx end pkt mode\n");
+		
+	}
+
+
+	free(data);
+	
+/*	int i;
 	uint16_t des_add=0x1;
 	uint16_t src_add=0xFF;
 
@@ -82,7 +176,7 @@ int prompt_sendpkt(int argc, char * argv[])
 	//1 写目的地址源地址
 	//FpgaWriteRegister( FPGA_REG_W_MSG_DES_ADD, (des_add>>8)&0xffff );
 	//FpgaWriteRegister( FPGA_REG_W_MSG_SRC_ADD, (src_add>>8)&0xffff );	
-	FpgaWriteRegister( FPGA_REG_W_MSG_DES_ADD, 1 );
+	FpgaWriteRegister( FPGA_REG_W_MSG_DES_ADD, 0xFFFF );
 	FpgaWriteRegister( FPGA_REG_W_MSG_SRC_ADD, 0 );
 	
 	//2 启动计数/pid
@@ -110,6 +204,7 @@ int prompt_sendpkt(int argc, char * argv[])
 		}
 	}
 	printf("tx ready reg =1\r\n");
+*/
 
 }
 int prompt_ls(void)
@@ -208,7 +303,10 @@ int prompt_cat(int argc, char * argv[])
 	char * fstring;
 	fstring = readf_to_string(argv[1]);
 	printf("%s\n",fstring);
-
+	
+	if(fstring!=NULL)
+		free(fstring);
+	
 	return 0;
 }
 int prompt_writef(int argc, char * argv[])
@@ -348,6 +446,9 @@ int prompt_parse_then_set(int argc, char * argv[])
 	if (gainctl_flag){
 		gainctl_parse_then_set(content);
 	}
+	
+	if(content!=NULL)
+		free(content);
 
 }
 
@@ -454,6 +555,34 @@ void prompt_fwinfo(void)
 	free(p);
 }
 
+int prompt_txfile(int argc, char * argv[])
+{
+	int c;
+	char *filename;
+	uint8_t port, node; 
+	while ((c = getopt(argc, argv, "p:n:f:h")) != EOF){
+		
+		switch ( c )
+		{
+			case 'p':
+				port = (uint8_t)strtol( optarg, NULL, 0 );;
+				break;
+			case 'n':
+				node = (uint8_t)strtol( optarg, NULL, 0 );;
+				break;
+			case 'f':
+				filename = optarg;
+				break;
+			case 'h':
+			default:
+			printf("\r+------------------------------------------------------+\n");
+			printf("\r| Usage   : txfile \n");
+			printf("\r+------------------------------------------------------+\n\r");
+			return 0;
+		}
+	}
+	tran_local_file(port, node, filename );
+}
 void prompt_help(void)
 {
 	printf("fwinfo   - print mcu and fpga watermark info\n");
@@ -566,6 +695,9 @@ WTD_CLR;
 		break;
 	case fwinfo:
 		prompt_fwinfo();
+		break;
+	case txfile:
+		prompt_txfile(argc,argv );
 		break;
 	case help:
 		prompt_help();

@@ -1,4 +1,4 @@
-﻿/************************************************************
+/************************************************************
 
      Copyright (C), 2011-2111, 格兰泰克科技有限公司
 
@@ -29,7 +29,7 @@ Input:           void
 Output:          void         
 Return:          void         
 **************************************************************/
-void InitGpio()
+void InitGpio(void)
 {
 	unsigned int i; 
 
@@ -100,7 +100,7 @@ Input:           void
 Output:          void         
 Return:          void         
 **************************************************************/
-void LedFlash()
+void LedFlash(void)
 {
 	if ( 0==GPIO_ReadOutputDataBit( GPIOC, IO_LED ) )
 	{
@@ -120,7 +120,7 @@ Input:           void
 Output:          void         
 Return:          void         
 **************************************************************/
-void LedOn()
+void LedOn(void)
 {
 	GPIO_ResetBits( GPIOC, IO_LED );
 }
@@ -133,7 +133,7 @@ Input:           void
 Output:          void         
 Return:          void         
 **************************************************************/
-void LedOff()
+void LedOff(void)
 {
 	GPIO_SetBits( GPIOC, IO_LED );
 }
@@ -186,72 +186,13 @@ void HardResetClkChip(void)
 	gpio_ad9524_sp.GPIO_Mode = GPIO_Mode_IPU;
 	GPIO_Init( GPIOA, &gpio_ad9524_sp );
 #endif
-#if 0
-	GPIO_SetBits( GPIOB, GPIO_Pin_5); 
-	UsNopDelay(50*1000);
-	GPIO_ResetBits( GPIOB, GPIO_Pin_5);
-	UsNopDelay(50*1000);
-	GPIO_SetBits( GPIOB, GPIO_Pin_5); 
-	UsNopDelay(50*1000); 
-#endif
+
 }  
 
 
-/*************************************************************
-Name:            HardReset9122A         
-Description:     A段9122硬件复位
-Input:           void          
-Output:          void         
-Return:          void         
-**************************************************************/
-void HardReset9122A()
-{
-	GPIO_SetBits( GPIOE, GPIO_Pin_1);
-	UsNopDelay(50*1000);
-	GPIO_ResetBits( GPIOE, GPIO_Pin_1);
-	UsNopDelay(50*1000);
-	GPIO_SetBits( GPIOE, GPIO_Pin_1);
-	UsNopDelay(50*1000);
-}
 
 
-/*************************************************************
-Name:            HardReset9122B       
-Description:     B段9122硬件复位
-Input:           void          
-Output:          void         
-Return:          void         
-**************************************************************/
-void HardReset9122B()
-{
-	GPIO_SetBits( GPIOE, GPIO_Pin_0);
-	UsNopDelay(50*1000); 
-	GPIO_ResetBits( GPIOE, GPIO_Pin_0 );
-	UsNopDelay(50*1000);
-	GPIO_SetBits( GPIOE, GPIO_Pin_0 );
-	UsNopDelay(50*1000);
-} 
 
-/*************************************************************
-Name:EnableModulatorA          
-Description:控制A段调制器使能
-Input:enable: 1-on, 0-off          
-Output:void         
-Return:void         
-**************************************************************/
-void EnableModulatorA(UCHAR8 enable)
-{
-#if 0
-	if ( 0 != enable )
-	{
-		CLR_DSOP_A_PIN;
-	}
-	else
-	{
-		SET_DSOP_A_PIN;
-	}
-#endif
-}
 
 /*************************************************************
 Name:EnableModulatorB          
@@ -272,47 +213,6 @@ void EnableModulatorB(UCHAR8 enable)
 	}
 }
 
-/*************************************************************
-Name:EnableModulatorC         
-Description:控制A段调制器使能
-Input:enable: 1-on, 0-off          
-Output:void         
-Return:void         
-**************************************************************/
-void EnableModulatorC(UCHAR8 enable)
-{
-#if 0
-	if ( 0 != enable )
-	{
-		CLR_DSOP_A_PIN;
-	}
-	else
-	{
-		SET_DSOP_A_PIN;
-	}
-#endif
-}
-
-/*************************************************************
-Name:EnableModulatorD          
-Description:控制B段调制器使能
-Input:enable: 1-on, 0-off          
-Output:void         
-Return:void         
-**************************************************************/
-void EnableModulatorD(UCHAR8 enable)
-{
-#if 0
-	if ( 0 != enable )
-	{
-		CLR_DSOP_B_PIN;
-	}
-	else
-	{
-		SET_DSOP_B_PIN;
-	}
-#endif
-}
 
 /*************************************************************
 Name:Hmc1197CsEnalbe

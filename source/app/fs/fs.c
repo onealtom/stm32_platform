@@ -102,7 +102,7 @@ char *readf_to_string( char *filename)
 	}
 	printf("cat size=%d\n",s.size);
 	ReadBuf = malloc(s.size+1);
-	
+
 	if (ReadBuf!=NULL){
 		if (SPIFFS_read(&sfblk0p1, fd, ReadBuf, s.size ) < 0){
 			printf("errno: %i\n", SPIFFS_errno(&sfblk0p1));
@@ -118,6 +118,4 @@ char *readf_to_string( char *filename)
 	
 	return ReadBuf;
 }
-
-
 

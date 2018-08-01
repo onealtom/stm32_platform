@@ -21,6 +21,7 @@
 #ifndef _GPIO_DRV_H_
 #define _GPIO_DRV_H_ 
 
+#include "type_def.h"
 /*************************************************A端口的配置************************************************************************/
 //#define PINS_A_LNA1_VD_M	{GPIO_Pin_0, GPIO_Speed_2MHz,  GPIO_Mode_AIN}
 //#define PINS_RTS485A		{GPIO_Pin_1, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}//201511051616
@@ -63,10 +64,7 @@
 			PINS_USB5V,\
 			PINS_AD9524_SP1,\
 			PINS_AD9524_SP0
-			
-//			PINS_SPICLK,\
-//			PINS_MISO,\
-//			PINS_MOSI,\			
+	
 /**************************** USB connect*************************************/
 #define PINS_DP_CONNECT		{GPIO_Pin_12, GPIO_Speed_50MHz, GPIO_Mode_AF_OD}
 
@@ -300,30 +298,21 @@
  
 #define FPGA_INIT_B		    GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_11)
 // 模拟I2C的IO操作  
-#if 0
-#define I2C_SCL_H				GPIO_SetBits( GPIOB, GPIO_Pin_10 )
-#define I2C_SCL_L				GPIO_ResetBits( GPIOB, GPIO_Pin_10 )
-#define I2C_SDA_H				GPIO_SetBits( GPIOB, GPIO_Pin_11 )
-#define I2C_SDA_L				GPIO_ResetBits( GPIOB, GPIO_Pin_11 )
-#define I2C_SDA_GET				GPIO_ReadInputDataBit( GPIOB, GPIO_Pin_11 )
-#endif
+
 // =========================================================================================
 
 
 
 // function=========================================
-void InitGpio();
-void LedFlash();
-void LedOn();
-void LedOff();
+void InitGpio(void);
+void LedFlash(void);
+void LedOn(void);
+void LedOff(void);
 void ClrWtd(void);
 void HardResetClkChip(void);
-void HardReset9122A();
-void HardReset9122B();
-void EnableModulatorA(UCHAR8 enable);
+
 void EnableModulatorB(UCHAR8 enable);
-void EnableModulatorC(UCHAR8 enable);
-void EnableModulatorD(UCHAR8 enable);
+
 void Hmc1197CsEnalbe(UCHAR8 enable);
 
 #endif

@@ -44,6 +44,7 @@ int Uart3_Sta;
 void main()
 {
 	UINT32 tmp=0;
+	uint16_t tmp16;
 	UCHAR8 reset_time=0;
 	int i;
 
@@ -193,6 +194,11 @@ void main()
 		// 3秒事件
 		if ( SYSTEM_FLAG_3S_EVENT == (sys_work_info & SYSTEM_FLAG_3S_EVENT))
 		{
+			
+			tmp16=FpgaReadRegister( FPGA_REG_MSG_FIFO_ST );
+			//printf("FPGA_REG_MSG_FIFO_ST=0x%04X\n",tmp16);
+			rx_task( (uint8_t)(0x0F & tmp16 ) );
+			
 			TRACE_INFO("Handle 3S\r\n");
 			sys_work_info &= (~SYSTEM_FLAG_3S_EVENT);
 			//TRACE_INFO("fpga_load_status:%d\r\n",fpga_load_status);
@@ -242,8 +248,8 @@ void main()
 		// 处理光纤数据通讯
 		WTD_CLR;
 		////FpgaGetMsgPkt();
-
-		//rx_task( (uint8_t)(0x00FF & FpgaReadRegister( FPGA_REG_MSG_FIFO_ST )) );
+		
+		
 
  
 

@@ -1,4 +1,4 @@
-﻿/***************************************************************
+/***************************************************************
 *Shenzhen Grandlinking Technology Co.,Ltd All rights reserved
 *
 * FileName    :usbTxRx.c
@@ -206,106 +206,6 @@ void USBRxHandle()
 	g_rx_dat.lenth = 0;
 
 }
-
-#if 0
-/*************************************************************
-Name:SaveUsbMsgData          
-Description: 转义保存USB收到的数据
-Input:
-	p_rx_dat: USB接收缓冲区指针
-	data_len: 数据长度
-Output:void         
-Return:void         
-**************************************************************/
-UCHAR8 SaveUsbMsgData(UCHAR8 * p_rx_dat, UINT16 data_len)
-{
-	static UCHAR8 usb_pkt_flag = 0x00;
-	UINT16 i;
-	UINT16 msg_len;
-	UCHAR8 tmp;
-	UCHAR8 * p_msg_dat = g_rx_dat.dat;
-
-	msg_len = g_rx_dat.lenth;
-	usb_remain_len = data_len;
-	for ( i=0; i<data_len; i++)
-	{
-		tmp = *p_rx_dat++;
-		usb_remain_len--;
-
-		if ( 0 == usb_pkt_flag)
-		{
-			//等待包分隔标志
-			if ( MSG_PKT_FLAG == tmp )
-			{
-				usb_pkt_flag = 1;
-				msg_len = 0;
-			}
-		}
-		else
-		{
-			if ( 2 == usb_pkt_flag )
-			{
-				//前一个收到的字符是转义字符
-				if ( 0x4D == tmp )
-				{
-					p_msg_dat[msg_len] = 0x4E;
-					msg_len++;
-				}
-				else if ( 0x5D == tmp )
-				{
-					p_msg_dat[msg_len] = 0x5E;
-					msg_len++;
-				}
-				usb_pkt_flag = 1;
-			}
-			else if ( MSG_PKT_FLAG == tmp )
-			{
-				//收到了分隔标志
-				if ( msg_len >= MSG_PKT_SIZE_MIN )
-				{
-					//收到完整数据包
-					usb_pkt_flag = 0;
-					//更新长度
-					g_rx_dat.lenth = msg_len;
-					//设置需要处理标志位
-					sys_work_info |= SYSTEM_FLAG_USB_RECE;
-					//保存下一个读出数据的位置
-					usb_remain_start = i+1;
-					return 1;
-				}
-				else
-				{
-					//以新收到这个作为包头，前面收到的数据都去掉
-					msg_len = 0;
-				}
-			}
-			else
-			{
-				if ( MSG_SHIFT_FLAG == tmp )
-				{
-					usb_pkt_flag = 2;	
-				}
-				else
-				{
-					usb_pkt_flag = 1;
-					p_msg_dat[msg_len] = tmp;
-					msg_len++;
-					//长度检查
-					if ( msg_len > USB_RX_BUFFER_LEN )
-					{
-						//数据包长度超过了允许长度，丢弃
-						usb_pkt_flag = 0;
-						msg_len = 0; 
-					}
-				}
-			}
-		}
-	}
-	g_rx_dat.lenth = msg_len;
-	usb_remain_len = 0;
-	return 0;
-}
-#endif
 
 /*************************************************************
 Name:GetUsbMsgPkt          
