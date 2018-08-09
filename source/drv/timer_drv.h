@@ -1,4 +1,4 @@
-﻿/************************************************************
+/************************************************************
 
      Copyright (C), 2011-2111, 格兰泰克科技有限公司
 
@@ -32,6 +32,8 @@ void UsNopDelay_1(UINT32 ustime);
 
 void InitTimeTick(void);
 void Timer100msHandle(void);
+
+unsigned int get_ms_clk(void);
 
 #endif 
 

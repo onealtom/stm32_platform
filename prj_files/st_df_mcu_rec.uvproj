@@ -353,7 +353,7 @@
             <PlainCh>0</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>2</wLevel>
+            <wLevel>1</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>1</uC99>
@@ -510,11 +510,6 @@
               <FileType>1</FileType>
               <FilePath>..\source\drv\pkt_drv.c</FilePath>
             </File>
-            <File>
-              <FileName>tran_file.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\source\app\tran_file.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -639,6 +634,11 @@
               <FileName>md5.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\app\md5\md5.c</FilePath>
+            </File>
+            <File>
+              <FileName>tran_file.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app\tran_file.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -794,6 +794,11 @@
               <FileName>tools.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\lib\tools.c</FilePath>
+            </File>
+            <File>
+              <FileName>kfifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\lib\kfifo.c</FilePath>
             </File>
           </Files>
         </Group>

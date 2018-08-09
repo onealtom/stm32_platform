@@ -1,4 +1,4 @@
-﻿/************************************************************
+/************************************************************
 
      Copyright (C), 2011-2111, 格兰泰克科技有限公司
 
@@ -112,6 +112,12 @@ void InitTimeTick()
 	}
 }
 
+unsigned int ms_clk;
+
+unsigned int get_ms_clk(void)
+{
+	return ms_clk;
+}
 /*************************************************************
 Name:Timer100msHandle          
 Description:100ms的系统定时器处理函数
@@ -141,6 +147,10 @@ void Timer100msHandle(void)
 		sys_work_info |= SYSTEM_FLAG_5S_EVENT;		//读取滤波系数，计算隔离度
 	}
 
+
 }
 
-
+void Timer10msHandle(void)
+{
+	ms_clk++;
+}

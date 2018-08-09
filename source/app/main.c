@@ -178,27 +178,23 @@ void main()
 			#if defined  CLIENT_ERRICSON
 			FPS_MainFunc();
 			#endif
-#endif	
-			
+#endif
+
 			// 释放大数据缓冲 
 			CheckBigBuffTimeOut();
- 
+
 		    WTD_CLR;  
-			
-		
+
 		}
 
-
- 
 #if 1
 		// 3秒事件
 		if ( SYSTEM_FLAG_3S_EVENT == (sys_work_info & SYSTEM_FLAG_3S_EVENT))
 		{
-			
 			tmp16=FpgaReadRegister( FPGA_REG_MSG_FIFO_ST );
 			//printf("FPGA_REG_MSG_FIFO_ST=0x%04X\n",tmp16);
-			rx_task( (uint8_t)(0x0F & tmp16 ) );
-			
+			//rx_task( (uint8_t)(0x0F & tmp16 ) );
+
 			TRACE_INFO("Handle 3S\r\n");
 			sys_work_info &= (~SYSTEM_FLAG_3S_EVENT);
 			//TRACE_INFO("fpga_load_status:%d\r\n",fpga_load_status);
@@ -208,11 +204,11 @@ void main()
 			}
 
 			/*ADC处理*/
-			AdcHandle();	
+			AdcHandle();
 			//温度
 ////			sys_param_1b[MADD_BOARD_TEMP].val =  GetTemperature();
 		}
-		
+
 		// 5秒事件
 		if (SYSTEM_FLAG_5S_EVENT==(sys_work_info & SYSTEM_FLAG_5S_EVENT))
 		{

@@ -162,7 +162,7 @@ void TIM2_IRQHandler(void)
 {
 	uint16_t capture = 0;
 	//__IO uint16_t CCR1_Val = 40961;
-	__IO uint16_t CCR1_Val = 60000;
+	__IO uint16_t CCR1_Val = 60000;//10ms
 	__IO uint16_t CCR2_Val = 27309;
 	__IO uint16_t CCR3_Val = 13654;
 	__IO uint16_t CCR4_Val = 6826;
@@ -178,6 +178,7 @@ void TIM2_IRQHandler(void)
 		TIM_SetCompare1(TIM2, capture + CCR1_Val);
 		/*flush output*/
 
+		Timer10msHandle();
 		if(iCnt>20){//x检查一次，是否有数据，有就发送
 			iCnt=0;
 			//printf("\ncur_cnt=%d \n",cur_cnt);
@@ -194,6 +195,7 @@ void TIM2_IRQHandler(void)
 		}else{
 			iCnt++;
 		}
+		
 	}
 
 }

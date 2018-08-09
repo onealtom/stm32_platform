@@ -1753,16 +1753,16 @@ int MsgHandleUpdateJSON( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 
 	}else{
 	/*中间包*/
-		printf("JSON Mid Pkg\n");
+		//printf("JSON Mid Pkg\n");
 
 		pkt_no = p_args[0]|(p_args[1]<<8);
 		len = p_args[2]|(p_args[3]<<8);
-		printf("pkt_no=%d\n",pkt_no);
-		hexdump(p_args, len+4);
-		printf("Rx Pkt:%d\n",pkt_no);
-		printf("len=%d\n",len);
-		printf("filename addr = %x\n",filename);
-		hexdump(filename, 14);
+		//printf("pkt_no=%d\n",pkt_no);
+		//hexdump(p_args, len+4);
+		//printf("Rx Pkt:%d\n",pkt_no);
+		//printf("len=%d\n",len);
+		//printf("filename addr = %x\n",filename);
+		//hexdump(filename, 14);
 #if WRITE_TO_FLASH
 		fd = SPIFFS_open(&sfblk0p1, filename , SPIFFS_CREAT | SPIFFS_RDWR, 0);
 
@@ -1780,6 +1780,7 @@ int MsgHandleUpdateJSON( UINT16 msg_length, UCHAR8 * p_msg_dat, UCHAR8 * p_tx_bu
 			goto ack_err;
 		}
 		SPIFFS_fflush(&sfblk0p1, fd);
+		CMB_wait_ms(10);
 		SPIFFS_close(&sfblk0p1, fd);
 #endif
 

@@ -9,16 +9,17 @@
 #define MAX_CLI_CAHR	53
 #define MAX_CLI_ARGS	10
 
-enum  cmd_num{ hello ,sendpkt ,memm ,ls, touch, cat, writef ,rm , parse_then_set, devmem, fpga, fwinfo, fpgaload, txfile, help };
-const char *cmd_num[]={ "hello" ,"sendpkt", "memm", "ls", "touch", "cat", "writef" , "rm" ,"parse_then_set" , "devmem", "fpga", "fwinfo", "fpgaload","txfile", "help" };
-#define NUM_OF_CMD 15
+enum  cmd_num{ hello ,sendpkt ,memm ,ls, touch, cat, writef ,rm , parse_then_set, devmem, fpga, fwinfo, fpgaload, txfile, md5sum, help };
+const char *cmd_num[]={ "hello" ,"sendpkt", "memm", "ls", "touch", "cat", "writef" , "rm" ,"parse_then_set" , "devmem", "fpga", "fwinfo", "fpgaload","txfile", "md5sum", "help" };
+#define NUM_OF_CMD 16
 
 
 int prompt_hello(int argc, char * argv[])
 {
 	int c;
 	char* devstr;
-
+	int ret;
+	
 	char* pipe;
 	char* chnnum;
 	char* chndir;
@@ -27,10 +28,12 @@ int prompt_hello(int argc, char * argv[])
 	char * text = "Hello World";
 	char ch;
 	int len=0;
+	
+	uint8_t tmp;
 
 	printf("hello prompt cli \r\n");
 	
-	while ((c = getopt(argc, argv, "igh")) != EOF){
+	while ((c = getopt(argc, argv, "igsdrth")) != EOF){
 
 		switch ( c )
 		{
@@ -38,11 +41,39 @@ int prompt_hello(int argc, char * argv[])
 			//json_main();
 			//send_string(text);
 			//len = tran_txmid_frame(3, 9, text, 1024);
-			printf("len = %d\n", len);
+			//printf("len = %d\n", len);
+
+			//port_chain_del();
+			ret = port_chain_init();
+			if(ret){
+				printf("init ret %d\n",port_chain_init() );
+				chain_display();
+				set_node_data(0,0, 0x11);
+				set_node_data(1,0, 0x22);
+				set_node_data(2,0, 0x33);
+				set_node_data(3,0, 0x44);
+				chain_display();
+				port_chain_del();
+			}
+			break;
+		case 's':
+			set_node_data(2,1, 0x81);
 			break;
 		case 'g':
-			rx_task( (uint8_t)(0x00FF & FpgaReadRegister( FPGA_REG_MSG_FIFO_ST )) );
+			get_node_data(2,1, &tmp);
+			printf("2.1=%x\n", tmp );
 			break;
+		case 'd':
+			chain_display();
+			break;
+		case 'r':
+			port_chain_del();
+			break;
+		case 't':
+			//ret = wait_ack_until_timout(2,1,3000);
+			printf("ret=%x \n",ret);
+			break;		
+		
 		case '?':
 			printf("Unknown option %c\n\r",optopt);
 			break;
@@ -496,7 +527,10 @@ usage_text:
 }
 
 
-
+/*
+fpga 0xa4
+fpga 0xa8
+*/
 int prompt_fpga(int argc, char * argv[])
 {
 	uint16_t addr;
@@ -559,30 +593,70 @@ int prompt_txfile(int argc, char * argv[])
 {
 	int c;
 	char *filename;
-	uint8_t port, node; 
+	uint8_t port=0, node=0; 
+
 	while ((c = getopt(argc, argv, "p:n:f:h")) != EOF){
 		
 		switch ( c )
 		{
 			case 'p':
-				port = (uint8_t)strtol( optarg, NULL, 0 );;
+				port = (uint8_t)strtol( optarg, NULL, 0 );
+				printf("port=%d\n",port);
 				break;
 			case 'n':
-				node = (uint8_t)strtol( optarg, NULL, 0 );;
+				node = (uint8_t)strtol( optarg, NULL, 0 );
+				printf("node=%d\n",node);
 				break;
 			case 'f':
 				filename = optarg;
+				printf("filename: %s\n",filename);
 				break;
 			case 'h':
 			default:
 			printf("\r+------------------------------------------------------+\n");
-			printf("\r| Usage   : txfile \n");
+			printf("\r| Usage   : txfile -p 2 -n 1 -f testfile.json \n");
 			printf("\r+------------------------------------------------------+\n\r");
 			return 0;
 		}
 	}
+
+	if(port==0 && node==0)
+		return -1;
+
 	tran_local_file(port, node, filename );
+	return 0;
 }
+
+int prompt_md5sum(int argc, char * argv[])
+{
+	int c;
+	char *filename;
+	uint8_t port=0, node=0; 
+
+	while ((c = getopt(argc, argv, "f:h")) != EOF){
+		
+		switch ( c )
+		{
+
+			case 'f':
+				filename = optarg;
+				printf("filename: %s\n",filename);
+				break;
+			case 'h':
+			default:
+			printf("\r+------------------------------------------------------+\n");
+			printf("\r| Usage   : md5sum -f tx.txt \n");
+			printf("\r+------------------------------------------------------+\n\r");
+			return 0;
+		}
+	}
+
+
+
+	md5sum_file(filename );
+	return 0;
+}
+
 void prompt_help(void)
 {
 	printf("fwinfo   - print mcu and fpga watermark info\n");
@@ -698,6 +772,9 @@ WTD_CLR;
 		break;
 	case txfile:
 		prompt_txfile(argc,argv );
+		break;
+	case md5sum:
+		prompt_md5sum(argc,argv );
 		break;
 	case help:
 		prompt_help();
